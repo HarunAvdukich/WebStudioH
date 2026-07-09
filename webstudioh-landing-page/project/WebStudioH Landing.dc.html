@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="design_doc_mode" content="canvas" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>WebStudioH — Premium Landing Page</title>
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet" />
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: #050506;
+    color: #F4F6F8;
+    font-family: 'Satoshi', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  a { color: #57B4FF; text-decoration: none; }
+  a:hover { color: #8FCBFF; }
+  ::selection { background: rgba(30,155,245,.32); color: #fff; }
+  @keyframes wshAurora { 0%,100% { transform: translate(-50%,0) scale(1); opacity:.72; } 50% { transform: translate(-50%,0) scale(1.14); opacity:1; } }
+  @keyframes wshDot { 0%,100% { box-shadow: 0 0 0 0 rgba(58,213,152,.55); } 70% { box-shadow: 0 0 0 7px rgba(58,213,152,0); } }
+  @keyframes wshFloat { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+  @keyframes wshFloat2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(9px); } }
+</style>
+</helmet>
+<div style="min-height:100%;background:radial-gradient(1200px 800px at 20% -5%, #0d1016 0%, #050506 55%);padding:80px clamp(28px,4vw,96px) 120px;font-family:'Satoshi',system-ui,sans-serif;">
+
+  <div style="display:flex;align-items:center;gap:18px;margin-bottom:52px;flex-wrap:wrap;max-width:1440px;">
+    <span style="display:inline-flex;align-items:center;height:30px;padding:0 13px;border-radius:999px;background:rgba(30,155,245,.12);border:1px solid rgba(30,155,245,.3);color:#8FCBFF;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;">Turn 1</span>
+    <span style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:19px;color:#F4F6F8;letter-spacing:-.01em;">WebStudioH — Premium landing page</span>
+    <span style="font-size:13.5px;color:rgba(244,246,248,.45);">Move your cursor over the hero — the floating cards react.</span>
+  </div>
+
+  <div style="display:flex;align-items:flex-start;gap:110px;flex-wrap:wrap;">
+
+    <!-- ============ 1A — FULL BUILD (Direction A) ============ -->
+    <div id="1a" style="flex:0 0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <a href="#1a" style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:28px;padding:0 11px;border-radius:8px;background:#1287F2;color:#fff;font-weight:700;font-size:13px;letter-spacing:.02em;">1A</a>
+        <span style="font-size:14px;color:rgba(244,246,248,.6);font-weight:500;">Full build · Direction A <span style="color:#57B4FF;">— recommended</span></span>
+      </div>
+
+      <div style="width:1440px;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#0A0B0D;box-shadow:0 60px 140px -50px rgba(0,0,0,.9), 0 0 0 1px rgba(255,255,255,.02);">
+
+        <!-- NAV -->
+        <div style="position:sticky;top:0;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:rgba(10,11,13,.72);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.06);">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#1287F2,#0C63D6);box-shadow:0 6px 18px -6px rgba(30,155,245,.8);">
+              <span style="width:9px;height:9px;background:#fff;transform:rotate(45deg);border-radius:1.5px;"></span>
+            </span>
+            <span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;color:#F4F6F8;">WEBSTUDIO<span style="color:#1E9BF5;">H</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:36px;">
+            <a href="#services-a" style="color:rgba(244,246,248,.66);font-size:14.5px;font-weight:500;">Services</a>
+            <a href="#work-a" style="color:rgba(244,246,248,.66);font-size:14.5px;font-weight:500;">Work</a>
+            <a href="#process-a" style="color:rgba(244,246,248,.66);font-size:14.5px;font-weight:500;">Process</a>
+            <a href="#pricing-a" style="color:rgba(244,246,248,.66);font-size:14.5px;font-weight:500;">Pricing</a>
+          </div>
+          <a href="#cta-a" style="display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:14px;border:1px solid rgba(140,200,255,.55);box-shadow:0 10px 26px -10px rgba(30,155,245,.75), inset 0 1px 0 rgba(255,255,255,.35);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 16px 34px -10px rgba(30,155,245,.9), inset 0 1px 0 rgba(255,255,255,.4);">Start a Project →</a>
+        </div>
+
+        <!-- HERO A -->
+        <div data-parallax-root="true" style="position:relative;overflow:hidden;padding:104px 48px 88px;text-align:center;">
+          <div style="position:absolute;left:50%;top:-140px;width:900px;height:640px;margin-left:-450px;background:radial-gradient(circle at center, rgba(30,155,245,.42) 0%, rgba(30,155,245,.12) 34%, transparent 66%);filter:blur(20px);animation:wshAurora 9s ease-in-out infinite;pointer-events:none;"></div>
+          <div style="position:absolute;inset:0;background:radial-gradient(700px 340px at 50% 0%, rgba(255,255,255,.05), transparent 70%);pointer-events:none;"></div>
+
+          <div style="position:relative;max-width:900px;margin:0 auto;">
+            <span data-reveal="true" style="display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 15px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);font-size:12.5px;font-weight:600;letter-spacing:.02em;color:rgba(244,246,248,.78);">
+              <span style="width:8px;height:8px;border-radius:50%;background:#3ED598;animation:wshDot 2.4s infinite;"></span>
+              Available for new projects · Summer 2026
+            </span>
+            <h1 data-reveal="true" data-reveal-delay="70" style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:74px;line-height:1.04;letter-spacing:-.03em;margin:26px 0 0;color:#F7F9FB;">
+              Websites that look premium,<br />load fast, and turn visitors<br />into <span style="background:linear-gradient(120deg,#57B4FF,#1287F2);-webkit-background-clip:text;background-clip:text;color:transparent;">clients.</span>
+            </h1>
+            <p data-reveal="true" data-reveal-delay="140" style="max-width:620px;margin:26px auto 0;font-size:19px;line-height:1.6;color:rgba(244,246,248,.62);">
+              WebStudioH designs and builds modern websites and online stores for businesses that want to look serious, sell more, and stand out online.
+            </p>
+            <div data-reveal="true" data-reveal-delay="210" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:38px;flex-wrap:wrap;">
+              <a href="#cta-a" style="display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:15.5px;border:1px solid rgba(140,200,255,.55);box-shadow:0 14px 38px -12px rgba(30,155,245,.8), inset 0 1px 0 rgba(255,255,255,.35);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-3px);box-shadow:0 22px 48px -12px rgba(30,155,245,.95), inset 0 1px 0 rgba(255,255,255,.4);">Start a Project →</a>
+              <a href="#work-a" style="display:inline-flex;align-items:center;gap:9px;padding:16px 26px;border-radius:999px;background:rgba(255,255,255,.04);color:#F4F6F8;font-weight:600;font-size:15.5px;border:1px solid rgba(255,255,255,.16);transition:transform .25s ease,background .25s ease,border-color .25s ease;" style-hover="transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.3);">View Work</a>
+            </div>
+          </div>
+
+          <!-- floating cards stage -->
+          <div style="position:relative;max-width:1060px;height:452px;margin:70px auto 0;perspective:1500px;">
+            <!-- main landing card -->
+            <div style="position:absolute;left:50%;top:14px;width:560px;margin-left:-280px;transform-style:preserve-3d;transform:translate3d(calc(var(--mx,0)*10px),calc(var(--my,0)*10px),0) rotateY(calc(var(--mx,0)*5deg)) rotateX(calc(var(--my,0)*-5deg));transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="border-radius:20px;background:rgba(20,24,32,.72);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -30px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.14);padding:16px;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;">
+                  <div style="display:flex;align-items:center;gap:8px;"><span style="width:15px;height:15px;border-radius:5px;background:linear-gradient(150deg,#1287F2,#0C63D6);"></span><span style="width:52px;height:7px;border-radius:4px;background:rgba(255,255,255,.5);"></span></div>
+                  <div style="display:flex;gap:14px;"><span style="width:30px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);"></span><span style="width:30px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);"></span><span style="width:30px;height:6px;border-radius:3px;background:rgba(255,255,255,.22);"></span></div>
+                  <span style="width:58px;height:20px;border-radius:6px;background:linear-gradient(180deg,#48ABFF,#1287F2);"></span>
+                </div>
+                <div style="width:78%;height:15px;border-radius:6px;background:rgba(255,255,255,.85);margin-bottom:9px;"></div>
+                <div style="width:56%;height:15px;border-radius:6px;background:rgba(255,255,255,.55);margin-bottom:14px;"></div>
+                <div style="display:flex;gap:10px;margin-bottom:16px;"><span style="width:96px;height:26px;border-radius:8px;background:linear-gradient(180deg,#48ABFF,#1287F2);"></span><span style="width:88px;height:26px;border-radius:8px;border:1px solid rgba(255,255,255,.2);"></span></div>
+                <div style="height:118px;border-radius:12px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 11px, rgba(255,255,255,.02) 11px 22px);border:1px solid rgba(255,255,255,.06);"></div>
+              </div>
+            </div>
+            <!-- shop card front-left -->
+            <div style="position:absolute;left:2%;top:150px;width:288px;transform-style:preserve-3d;transform:translate3d(calc(var(--mx,0)*28px),calc(var(--my,0)*22px),70px) rotateY(calc(var(--mx,0)*9deg)) rotateX(calc(var(--my,0)*-8deg));transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="border-radius:18px;background:rgba(22,26,34,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.13);box-shadow:0 40px 80px -28px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.14);padding:14px;">
+                <div style="height:104px;border-radius:11px;background:repeating-linear-gradient(45deg, rgba(87,180,255,.14) 0 11px, rgba(87,180,255,.05) 11px 22px);border:1px solid rgba(255,255,255,.07);margin-bottom:12px;"></div>
+                <div style="width:64%;height:11px;border-radius:5px;background:rgba(255,255,255,.7);margin-bottom:8px;"></div>
+                <div style="display:flex;align-items:center;justify-content:space-between;">
+                  <span style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;color:#57B4FF;">$129</span>
+                  <span style="padding:6px 12px;border-radius:8px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-size:11px;font-weight:600;">Add to cart</span>
+                </div>
+              </div>
+            </div>
+            <!-- performance card right -->
+            <div style="position:absolute;right:1%;top:96px;width:242px;transform-style:preserve-3d;transform:translate3d(calc(var(--mx,0)*22px),calc(var(--my,0)*18px),48px) rotateY(calc(var(--mx,0)*8deg)) rotateX(calc(var(--my,0)*-7deg));transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="border-radius:18px;background:rgba(22,26,34,.82);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.13);box-shadow:0 40px 80px -28px rgba(0,0,0,.9), inset 0 1px 0 rgba(255,255,255,.14);padding:18px;">
+                <div style="display:flex;align-items:center;gap:14px;">
+                  <div style="width:58px;height:58px;border-radius:50%;background:conic-gradient(#3ED598 0% 96%, rgba(255,255,255,.1) 96% 100%);display:flex;align-items:center;justify-content:center;">
+                    <div style="width:44px;height:44px;border-radius:50%;background:#12151b;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:600;font-size:17px;color:#3ED598;">98</div>
+                  </div>
+                  <div><div style="font-size:12.5px;font-weight:600;color:#F4F6F8;">Performance</div><div style="font-size:11px;color:rgba(244,246,248,.5);margin-top:2px;">PageSpeed score</div></div>
+                </div>
+                <div style="display:flex;gap:6px;align-items:flex-end;height:34px;margin-top:16px;">
+                  <span style="flex:1;height:40%;border-radius:3px;background:rgba(87,180,255,.35);"></span>
+                  <span style="flex:1;height:62%;border-radius:3px;background:rgba(87,180,255,.5);"></span>
+                  <span style="flex:1;height:80%;border-radius:3px;background:rgba(87,180,255,.7);"></span>
+                  <span style="flex:1;height:100%;border-radius:3px;background:#57B4FF;"></span>
+                </div>
+              </div>
+            </div>
+            <!-- conversions chip -->
+            <div style="position:absolute;right:12%;top:8px;transform:translate3d(calc(var(--mx,0)*40px),calc(var(--my,0)*34px),90px);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="animation:wshFloat 6s ease-in-out infinite;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:rgba(20,24,32,.9);border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 40px -14px rgba(0,0,0,.8);">
+                <span style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:15px;color:#3ED598;">+142%</span>
+                <span style="font-size:11.5px;color:rgba(244,246,248,.62);">conversions</span>
+              </div>
+            </div>
+            <!-- live chip left -->
+            <div style="position:absolute;left:9%;top:56px;transform:translate3d(calc(var(--mx,0)*34px),calc(var(--my,0)*30px),80px);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="animation:wshFloat2 7s ease-in-out infinite;display:inline-flex;align-items:center;gap:8px;padding:9px 13px;border-radius:12px;background:rgba(20,24,32,.9);border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 40px -14px rgba(0,0,0,.8);">
+                <span style="width:8px;height:8px;border-radius:50%;background:#3ED598;animation:wshDot 2.4s infinite;"></span>
+                <span style="font-size:11.5px;color:rgba(244,246,248,.72);font-weight:500;">Live in 4 weeks</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VALUE STRIP -->
+        <div data-reveal="true" style="border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:26px 48px;display:flex;align-items:center;justify-content:center;gap:38px;flex-wrap:wrap;background:rgba(255,255,255,.012);">
+          <span style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:600;color:rgba(244,246,248,.82);"><span style="width:7px;height:7px;background:#1E9BF5;transform:rotate(45deg);border-radius:1px;"></span>Custom Design</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);"></span>
+          <span style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:600;color:rgba(244,246,248,.82);"><span style="width:7px;height:7px;background:#1E9BF5;transform:rotate(45deg);border-radius:1px;"></span>Fast Loading</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);"></span>
+          <span style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:600;color:rgba(244,246,248,.82);"><span style="width:7px;height:7px;background:#1E9BF5;transform:rotate(45deg);border-radius:1px;"></span>SEO Ready</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);"></span>
+          <span style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:600;color:rgba(244,246,248,.82);"><span style="width:7px;height:7px;background:#1E9BF5;transform:rotate(45deg);border-radius:1px;"></span>Mobile First</span>
+          <span style="width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.18);"></span>
+          <span style="display:inline-flex;align-items:center;gap:11px;font-size:15px;font-weight:600;color:rgba(244,246,248,.82);"><span style="width:7px;height:7px;background:#1E9BF5;transform:rotate(45deg);border-radius:1px;"></span>Easy to Manage</span>
+        </div>
+
+        <!-- SERVICES -->
+        <div id="services-a" style="padding:118px 48px;">
+          <div data-reveal="true" style="max-width:720px;margin-bottom:60px;">
+            <span style="font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#57B4FF;">What we do</span>
+            <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:16px 0 0;color:#F7F9FB;">Everything your website needs, under one studio.</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+            <sc-for list="{{ services }}" as="s" hint-placeholder-count="6">
+              <div data-reveal="true" data-reveal-delay="{{ s.delay }}" style="position:relative;padding:32px 30px 34px;border-radius:20px;background:linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));border:1px solid rgba(255,255,255,.08);overflow:hidden;transition:transform .3s cubic-bezier(.22,1,.36,1),border-color .3s ease,background .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(30,155,245,.4);background:linear-gradient(180deg, rgba(30,155,245,.09), rgba(255,255,255,.012));">
+                <span style="font-family:'Clash Display',sans-serif;font-weight:500;font-size:15px;color:#1E9BF5;letter-spacing:.04em;">{{ s.n }}</span>
+                <h3 style="font-size:21px;font-weight:700;letter-spacing:-.01em;margin:16px 0 12px;color:#F4F6F8;">{{ s.t }}</h3>
+                <p style="font-size:15px;line-height:1.6;color:rgba(244,246,248,.58);margin:0;">{{ s.d }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- PORTFOLIO -->
+        <div id="work-a" style="padding:0 48px 118px;">
+          <div data-reveal="true" style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:50px;flex-wrap:wrap;">
+            <div style="max-width:640px;">
+              <span style="font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#57B4FF;">Selected work</span>
+              <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:16px 0 0;color:#F7F9FB;">Work that looks the part — and performs.</h2>
+            </div>
+            <a href="#cta-a" style="display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:#F4F6F8;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.2);transition:color .25s ease,border-color .25s ease;" style-hover="color:#57B4FF;border-color:#57B4FF;">View all projects →</a>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:22px;">
+
+            <!-- project 1: shop -->
+            <div data-reveal="true" style="border-radius:20px;overflow:hidden;background:#0D0F14;border:1px solid rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(255,255,255,.18);">
+              <div style="height:236px;background:linear-gradient(160deg,#11151c,#0b0d12);border-bottom:1px solid rgba(255,255,255,.06);padding:14px;">
+                <div style="display:flex;align-items:center;gap:6px;margin-bottom:14px;"><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);"></span><span style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);"></span><span style="flex:1;"></span><span style="width:120px;height:14px;border-radius:5px;background:rgba(255,255,255,.06);"></span></div>
+                <div style="height:70px;border-radius:9px;background:repeating-linear-gradient(45deg, rgba(87,180,255,.14) 0 10px, rgba(87,180,255,.04) 10px 20px);margin-bottom:11px;"></div>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:9px;">
+                  <div style="height:66px;border-radius:8px;background:rgba(255,255,255,.05);"></div>
+                  <div style="height:66px;border-radius:8px;background:rgba(255,255,255,.05);"></div>
+                  <div style="height:66px;border-radius:8px;background:rgba(255,255,255,.05);"></div>
+                </div>
+              </div>
+              <div style="padding:22px 24px 26px;display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#57B4FF;margin-bottom:8px;">E-Commerce · WooCommerce</div>
+                  <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:22px;color:#F4F6F8;">Nordvel Store</div>
+                </div>
+                <span style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#F4F6F8;font-size:15px;">→</span>
+              </div>
+            </div>
+
+            <!-- project 2: saas -->
+            <div data-reveal="true" data-reveal-delay="90" style="border-radius:20px;overflow:hidden;background:#0D0F14;border:1px solid rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(255,255,255,.18);">
+              <div style="height:236px;background:linear-gradient(160deg,#11151c,#0b0d12);border-bottom:1px solid rgba(255,255,255,.06);padding:14px;display:flex;gap:11px;">
+                <div style="width:52px;background:rgba(255,255,255,.04);border-radius:9px;padding:10px 0;display:flex;flex-direction:column;align-items:center;gap:9px;"><span style="width:22px;height:22px;border-radius:7px;background:linear-gradient(150deg,#1287F2,#0C63D6);"></span><span style="width:20px;height:6px;border-radius:3px;background:rgba(255,255,255,.14);"></span><span style="width:20px;height:6px;border-radius:3px;background:rgba(255,255,255,.14);"></span><span style="width:20px;height:6px;border-radius:3px;background:rgba(255,255,255,.14);"></span></div>
+                <div style="flex:1;">
+                  <div style="display:flex;gap:9px;margin-bottom:11px;"><div style="flex:1;height:44px;border-radius:8px;background:rgba(255,255,255,.05);"></div><div style="flex:1;height:44px;border-radius:8px;background:rgba(255,255,255,.05);"></div></div>
+                  <div style="height:96px;border-radius:9px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);padding:10px;display:flex;align-items:flex-end;gap:6px;">
+                    <span style="flex:1;height:35%;border-radius:3px 3px 0 0;background:rgba(87,180,255,.4);"></span><span style="flex:1;height:58%;border-radius:3px 3px 0 0;background:rgba(87,180,255,.5);"></span><span style="flex:1;height:42%;border-radius:3px 3px 0 0;background:rgba(87,180,255,.45);"></span><span style="flex:1;height:78%;border-radius:3px 3px 0 0;background:rgba(87,180,255,.65);"></span><span style="flex:1;height:100%;border-radius:3px 3px 0 0;background:#57B4FF;"></span><span style="flex:1;height:66%;border-radius:3px 3px 0 0;background:rgba(87,180,255,.5);"></span>
+                  </div>
+                </div>
+              </div>
+              <div style="padding:22px 24px 26px;display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#57B4FF;margin-bottom:8px;">SaaS · Custom Build</div>
+                  <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:22px;color:#F4F6F8;">Lumen Analytics</div>
+                </div>
+                <span style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#F4F6F8;font-size:15px;">→</span>
+              </div>
+            </div>
+
+            <!-- project 3: portfolio -->
+            <div data-reveal="true" data-reveal-delay="180" style="border-radius:20px;overflow:hidden;background:#0D0F14;border:1px solid rgba(255,255,255,.08);transition:transform .35s cubic-bezier(.22,1,.36,1),border-color .3s ease;" style-hover="transform:translateY(-6px);border-color:rgba(255,255,255,.18);">
+              <div style="height:236px;background:linear-gradient(160deg,#11151c,#0b0d12);border-bottom:1px solid rgba(255,255,255,.06);padding:16px;">
+                <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:19px;color:rgba(255,255,255,.85);line-height:1.15;margin-bottom:14px;">Atelier<br />Maison</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;">
+                  <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 9px, rgba(255,255,255,.02) 9px 18px);"></div>
+                  <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 9px, rgba(255,255,255,.02) 9px 18px);"></div>
+                  <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 9px, rgba(255,255,255,.02) 9px 18px);"></div>
+                  <div style="height:64px;border-radius:8px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.06) 0 9px, rgba(255,255,255,.02) 9px 18px);"></div>
+                </div>
+              </div>
+              <div style="padding:22px 24px 26px;display:flex;align-items:center;justify-content:space-between;">
+                <div>
+                  <div style="font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#57B4FF;margin-bottom:8px;">Studio · WordPress</div>
+                  <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:22px;color:#F4F6F8;">Atelier Maison</div>
+                </div>
+                <span style="width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;color:#F4F6F8;font-size:15px;">→</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- PROCESS -->
+        <div id="process-a" style="padding:110px 48px;background:linear-gradient(180deg, rgba(255,255,255,.018), transparent);border-top:1px solid rgba(255,255,255,.06);">
+          <div data-reveal="true" style="text-align:center;max-width:640px;margin:0 auto 66px;">
+            <span style="font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#57B4FF;">How we work</span>
+            <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:16px 0 0;color:#F7F9FB;">A calm, four-step path to launch.</h2>
+          </div>
+          <div style="position:relative;">
+            <div style="position:absolute;left:6%;right:6%;top:34px;height:1px;background:linear-gradient(90deg, transparent, rgba(30,155,245,.5), rgba(30,155,245,.5), transparent);"></div>
+            <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:22px;">
+              <sc-for list="{{ process }}" as="p" hint-placeholder-count="4">
+                <div data-reveal="true" data-reveal-delay="{{ p.delay }}" style="text-align:center;padding:0 8px;">
+                  <div style="width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:#0A0B0D;border:1px solid rgba(30,155,245,.4);display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:600;font-size:22px;color:#57B4FF;box-shadow:0 0 0 6px rgba(10,11,13,1), 0 10px 30px -10px rgba(30,155,245,.5);position:relative;z-index:2;">{{ p.n }}</div>
+                  <h3 style="font-size:20px;font-weight:700;margin:0 0 10px;color:#F4F6F8;">{{ p.t }}</h3>
+                  <p style="font-size:14.5px;line-height:1.6;color:rgba(244,246,248,.56);margin:0;">{{ p.d }}</p>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHY US -->
+        <div style="padding:118px 48px;display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start;">
+          <div data-reveal="true" style="position:sticky;top:100px;">
+            <span style="font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#57B4FF;">Why WebStudioH</span>
+            <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:44px;line-height:1.1;letter-spacing:-.025em;margin:16px 0 20px;color:#F7F9FB;">Built to make your business look serious — and get chosen.</h2>
+            <p style="font-size:16.5px;line-height:1.65;color:rgba(244,246,248,.6);margin:0 0 30px;">We pair clean, intentional design with real performance, so your site doesn't just look premium — it earns trust and turns visitors into enquiries.</p>
+            <div style="display:flex;gap:36px;flex-wrap:wrap;">
+              <div><div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:38px;color:#F4F6F8;">98<span style="color:#57B4FF;">+</span></div><div style="font-size:13px;color:rgba(244,246,248,.5);margin-top:2px;">Avg. PageSpeed</div></div>
+              <div><div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:38px;color:#F4F6F8;">40<span style="color:#57B4FF;">+</span></div><div style="font-size:13px;color:rgba(244,246,248,.5);margin-top:2px;">Sites launched</div></div>
+              <div><div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:38px;color:#F4F6F8;">100<span style="color:#57B4FF;">%</span></div><div style="font-size:13px;color:rgba(244,246,248,.5);margin-top:2px;">Custom built</div></div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;">
+            <sc-for list="{{ whyUs }}" as="w" hint-placeholder-count="4">
+              <div data-reveal="true" data-reveal-delay="{{ w.delay }}" style="padding:30px 28px 32px;border-radius:20px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.08);transition:border-color .3s ease,background .3s ease;" style-hover="border-color:rgba(30,155,245,.35);background:rgba(30,155,245,.06);">
+                <div style="width:44px;height:44px;border-radius:12px;background:rgba(30,155,245,.12);border:1px solid rgba(30,155,245,.28);display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:600;font-size:15px;color:#57B4FF;margin-bottom:20px;">{{ w.n }}</div>
+                <h3 style="font-size:19px;font-weight:700;margin:0 0 10px;color:#F4F6F8;letter-spacing:-.01em;">{{ w.t }}</h3>
+                <p style="font-size:14.5px;line-height:1.6;color:rgba(244,246,248,.58);margin:0;">{{ w.d }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- PRICING -->
+        <div id="pricing-a" style="padding:110px 48px;border-top:1px solid rgba(255,255,255,.06);background:linear-gradient(180deg, rgba(255,255,255,.018), transparent);">
+          <div data-reveal="true" style="text-align:center;max-width:640px;margin:0 auto 62px;">
+            <span style="font-size:12.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#57B4FF;">Packages</span>
+            <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:46px;line-height:1.08;letter-spacing:-.025em;margin:16px 0 0;color:#F7F9FB;">Simple packages, tailored to you.</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;">
+
+            <!-- basic -->
+            <div data-reveal="true" style="display:flex;flex-direction:column;padding:34px 32px 36px;border-radius:22px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);">
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:23px;color:#F4F6F8;">Basic Website</div>
+              <div style="font-size:14px;color:rgba(244,246,248,.55);margin:8px 0 22px;">For small businesses that need a sharp, credible presence.</div>
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#57B4FF;">Starting from</div>
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:34px;color:#F4F6F8;margin:4px 0 26px;">Custom quote</div>
+              <div style="display:flex;flex-direction:column;gap:13px;margin-bottom:30px;">
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Up to 5 custom pages</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Responsive, mobile-first design</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Basic SEO setup</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Contact form + hosting setup</span></div>
+              </div>
+              <a href="#cta-a" style="margin-top:auto;text-align:center;padding:14px;border-radius:999px;background:rgba(255,255,255,.05);color:#F4F6F8;font-weight:600;font-size:15px;border:1px solid rgba(255,255,255,.16);transition:background .25s ease,border-color .25s ease;" style-hover="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);">Start a Project</a>
+            </div>
+
+            <!-- business (featured) -->
+            <div data-reveal="true" data-reveal-delay="90" style="position:relative;display:flex;flex-direction:column;padding:34px 32px 36px;border-radius:22px;background:linear-gradient(180deg, rgba(30,155,245,.14), rgba(30,155,245,.03));border:1px solid rgba(30,155,245,.5);box-shadow:0 40px 90px -40px rgba(30,155,245,.6), inset 0 1px 0 rgba(255,255,255,.1);">
+              <span style="position:absolute;top:-13px;left:50%;transform:translateX(-50%);padding:6px 15px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;box-shadow:0 10px 24px -8px rgba(30,155,245,.8);">Most popular</span>
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:23px;color:#F4F6F8;">Business Website</div>
+              <div style="font-size:14px;color:rgba(244,246,248,.62);margin:8px 0 22px;">For growing brands that need to convert, rank and scale.</div>
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#8FCBFF;">Starting from</div>
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:34px;color:#fff;margin:4px 0 26px;">Custom quote</div>
+              <div style="display:flex;flex-direction:column;gap:13px;margin-bottom:30px;">
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(87,180,255,.24);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.86);">Everything in Basic, plus:</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(87,180,255,.24);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.86);">Up to 12 pages + WordPress CMS</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(87,180,255,.24);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.86);">Advanced SEO &amp; speed tuning</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(87,180,255,.24);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.86);">Blog setup + priority support</span></div>
+              </div>
+              <a href="#cta-a" style="margin-top:auto;text-align:center;padding:14px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:15px;border:1px solid rgba(140,200,255,.55);box-shadow:0 14px 32px -12px rgba(30,155,245,.8), inset 0 1px 0 rgba(255,255,255,.35);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-2px);box-shadow:0 20px 42px -12px rgba(30,155,245,.95);">Start a Project</a>
+            </div>
+
+            <!-- web shop -->
+            <div data-reveal="true" data-reveal-delay="180" style="display:flex;flex-direction:column;padding:34px 32px 36px;border-radius:22px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.09);">
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:23px;color:#F4F6F8;">Web Shop</div>
+              <div style="font-size:14px;color:rgba(244,246,248,.55);margin:8px 0 22px;">For businesses ready to sell online with confidence.</div>
+              <div style="font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#57B4FF;">Custom quote</div>
+              <div style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:34px;color:#F4F6F8;margin:4px 0 26px;">Let's talk</div>
+              <div style="display:flex;flex-direction:column;gap:13px;margin-bottom:30px;">
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Full WooCommerce store</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Secure checkout &amp; payments</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Inventory &amp; shipping tools</span></div>
+                <div style="display:flex;align-items:center;gap:11px;"><span style="flex:0 0 auto;width:19px;height:19px;border-radius:50%;background:rgba(30,155,245,.14);display:inline-flex;align-items:center;justify-content:center;"><span style="width:5px;height:9px;border-right:2px solid #57B4FF;border-bottom:2px solid #57B4FF;transform:rotate(43deg) translateY(-1px);"></span></span><span style="font-size:14.5px;color:rgba(244,246,248,.72);">Ongoing maintenance plan</span></div>
+              </div>
+              <a href="#cta-a" style="margin-top:auto;text-align:center;padding:14px;border-radius:999px;background:rgba(255,255,255,.05);color:#F4F6F8;font-weight:600;font-size:15px;border:1px solid rgba(255,255,255,.16);transition:background .25s ease,border-color .25s ease;" style-hover="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.3);">Get a Quote</a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- FINAL CTA -->
+        <div id="cta-a" style="padding:64px 48px 96px;">
+          <div data-reveal="true" style="position:relative;overflow:hidden;border-radius:28px;border:1px solid rgba(30,155,245,.28);background:linear-gradient(160deg, rgba(30,155,245,.16), rgba(10,11,13,.4));padding:80px 48px;text-align:center;">
+            <div style="position:absolute;left:50%;bottom:-220px;width:760px;height:520px;margin-left:-380px;background:radial-gradient(circle at center, rgba(30,155,245,.45), transparent 66%);filter:blur(10px);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:52px;line-height:1.08;letter-spacing:-.03em;margin:0 auto;max-width:760px;color:#F9FBFD;">Ready to make your business look serious online?</h2>
+              <p style="max-width:520px;margin:22px auto 0;font-size:18px;line-height:1.6;color:rgba(244,246,248,.66);">Let's turn your website into your hardest-working salesperson — premium, fast, and built to convert.</p>
+              <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:38px;flex-wrap:wrap;">
+                <a href="#" style="display:inline-flex;align-items:center;gap:9px;padding:17px 32px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:16px;border:1px solid rgba(140,200,255,.55);box-shadow:0 16px 42px -12px rgba(30,155,245,.85), inset 0 1px 0 rgba(255,255,255,.35);transition:transform .25s ease,box-shadow .25s ease;" style-hover="transform:translateY(-3px);box-shadow:0 24px 54px -12px rgba(30,155,245,1);">Let's Build Your Website →</a>
+                <a href="#" style="display:inline-flex;align-items:center;gap:9px;padding:17px 28px;border-radius:999px;background:rgba(255,255,255,.05);color:#F4F6F8;font-weight:600;font-size:16px;border:1px solid rgba(255,255,255,.18);transition:background .25s ease,border-color .25s ease;" style-hover="background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.32);">Book a call</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div style="border-top:1px solid rgba(255,255,255,.06);padding:52px 48px;display:flex;align-items:flex-start;justify-content:space-between;gap:40px;flex-wrap:wrap;">
+          <div style="max-width:300px;">
+            <div style="display:flex;align-items:center;gap:11px;margin-bottom:14px;">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:linear-gradient(150deg,#1287F2,#0C63D6);"><span style="width:8px;height:8px;background:#fff;transform:rotate(45deg);border-radius:1.5px;"></span></span>
+              <span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:17px;color:#F4F6F8;">WEBSTUDIO<span style="color:#1E9BF5;">H</span></span>
+            </div>
+            <p style="font-size:14px;line-height:1.6;color:rgba(244,246,248,.5);margin:0;">Premium websites &amp; online stores for businesses that want to look serious online.</p>
+          </div>
+          <div style="display:flex;gap:64px;flex-wrap:wrap;">
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,246,248,.4);">Services</span>
+              <a href="#services-a" style="font-size:14px;color:rgba(244,246,248,.66);">Custom Design</a>
+              <a href="#services-a" style="font-size:14px;color:rgba(244,246,248,.66);">WordPress</a>
+              <a href="#services-a" style="font-size:14px;color:rgba(244,246,248,.66);">WooCommerce</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,246,248,.4);">Studio</span>
+              <a href="#work-a" style="font-size:14px;color:rgba(244,246,248,.66);">Work</a>
+              <a href="#process-a" style="font-size:14px;color:rgba(244,246,248,.66);">Process</a>
+              <a href="#pricing-a" style="font-size:14px;color:rgba(244,246,248,.66);">Pricing</a>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <span style="font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(244,246,248,.4);">Contact</span>
+              <a href="#" style="font-size:14px;color:rgba(244,246,248,.66);">hello@webstudioh.com</a>
+              <a href="#" style="font-size:14px;color:rgba(244,246,248,.66);">Instagram</a>
+              <a href="#" style="font-size:14px;color:rgba(244,246,248,.66);">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,.06);padding:20px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <span style="font-size:13px;color:rgba(244,246,248,.4);">© 2026 WebStudioH. All rights reserved.</span>
+          <span style="font-size:13px;color:rgba(244,246,248,.4);">Designed &amp; built with care.</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ 1B — HERO DIRECTION B ============ -->
+    <div id="1b" style="flex:0 0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <a href="#1b" style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:28px;padding:0 11px;border-radius:8px;background:#22262e;border:1px solid rgba(255,255,255,.14);color:#F4F6F8;font-weight:700;font-size:13px;">1B</a>
+        <span style="font-size:14px;color:rgba(244,246,248,.6);font-weight:500;">Hero · Direction B — split / editorial (alternate)</span>
+      </div>
+
+      <div style="width:1280px;border-radius:30px;overflow:hidden;border:1px solid rgba(255,255,255,.09);background:#0A0B0D;box-shadow:0 60px 140px -50px rgba(0,0,0,.9);">
+        <!-- nav -->
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:22px 44px;border-bottom:1px solid rgba(255,255,255,.06);">
+          <div style="display:flex;align-items:center;gap:11px;">
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:linear-gradient(150deg,#1287F2,#0C63D6);"><span style="width:9px;height:9px;background:#fff;transform:rotate(45deg);border-radius:1.5px;"></span></span>
+            <span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;color:#F4F6F8;">WEBSTUDIO<span style="color:#1E9BF5;">H</span></span>
+          </div>
+          <div style="display:flex;align-items:center;gap:32px;">
+            <span style="color:rgba(244,246,248,.6);font-size:14px;font-weight:500;">Services</span>
+            <span style="color:rgba(244,246,248,.6);font-size:14px;font-weight:500;">Work</span>
+            <span style="color:rgba(244,246,248,.6);font-size:14px;font-weight:500;">Pricing</span>
+            <a href="#" style="padding:10px 18px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:14px;border:1px solid rgba(140,200,255,.55);">Start a Project</a>
+          </div>
+        </div>
+
+        <!-- hero B -->
+        <div data-parallax-root="true" style="position:relative;overflow:hidden;padding:78px 44px 90px;display:grid;grid-template-columns:1.02fr .98fr;gap:52px;align-items:center;perspective:1500px;">
+          <div style="position:absolute;right:-120px;top:-100px;width:640px;height:560px;background:radial-gradient(circle at center, rgba(30,155,245,.32), transparent 66%);filter:blur(14px);pointer-events:none;"></div>
+
+          <div style="position:relative;">
+            <span style="display:inline-flex;align-items:center;gap:9px;height:34px;padding:0 15px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);font-size:12.5px;font-weight:600;color:rgba(244,246,248,.78);"><span style="width:8px;height:8px;border-radius:50%;background:#3ED598;animation:wshDot 2.4s infinite;"></span>Web design &amp; development studio</span>
+            <h1 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:64px;line-height:1.03;letter-spacing:-.03em;margin:24px 0 0;color:#F7F9FB;">Websites that look premium &amp; turn visitors into <span style="background:linear-gradient(120deg,#57B4FF,#1287F2);-webkit-background-clip:text;background-clip:text;color:transparent;">clients.</span></h1>
+            <p style="max-width:460px;margin:24px 0 0;font-size:18px;line-height:1.6;color:rgba(244,246,248,.62);">We build modern websites and online stores for businesses that want to look professional, load fast, and stand out online.</p>
+            <div style="display:flex;align-items:center;gap:13px;margin-top:34px;flex-wrap:wrap;">
+              <a href="#" style="display:inline-flex;align-items:center;gap:9px;padding:16px 28px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:15.5px;border:1px solid rgba(140,200,255,.55);box-shadow:0 14px 38px -12px rgba(30,155,245,.8);transition:transform .25s ease;" style-hover="transform:translateY(-3px);">Start a Project →</a>
+              <a href="#" style="display:inline-flex;align-items:center;gap:9px;padding:16px 26px;border-radius:999px;background:rgba(255,255,255,.04);color:#F4F6F8;font-weight:600;font-size:15.5px;border:1px solid rgba(255,255,255,.16);transition:transform .25s ease;" style-hover="transform:translateY(-3px);">View Work</a>
+            </div>
+            <div style="display:flex;align-items:center;gap:26px;margin-top:44px;">
+              <span style="font-size:13.5px;color:rgba(244,246,248,.5);">Trusted by <span style="color:#F4F6F8;font-weight:600;">40+ brands</span></span>
+              <span style="width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.2);"></span>
+              <span style="font-size:13.5px;color:rgba(244,246,248,.5);"><span style="color:#F4F6F8;font-weight:600;">98</span> avg. PageSpeed</span>
+            </div>
+          </div>
+
+          <!-- tilted card stack -->
+          <div style="position:relative;height:440px;transform-style:preserve-3d;">
+            <div style="position:absolute;right:0;top:40px;width:340px;transform:translate3d(calc(var(--mx,0)*-14px),calc(var(--my,0)*-12px),0) rotateY(calc(-14deg + var(--mx,0)*6deg)) rotateX(calc(6deg + var(--my,0)*-6deg));transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="border-radius:18px;background:rgba(20,24,32,.7);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,.12);box-shadow:0 40px 90px -30px rgba(0,0,0,.85), inset 0 1px 0 rgba(255,255,255,.12);padding:15px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px;"><span style="width:13px;height:13px;border-radius:4px;background:linear-gradient(150deg,#1287F2,#0C63D6);"></span><span style="width:44px;height:6px;border-radius:3px;background:rgba(255,255,255,.45);"></span></div>
+                <div style="width:76%;height:13px;border-radius:5px;background:rgba(255,255,255,.85);margin-bottom:8px;"></div>
+                <div style="width:52%;height:13px;border-radius:5px;background:rgba(255,255,255,.5);margin-bottom:14px;"></div>
+                <div style="height:110px;border-radius:11px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 10px, rgba(255,255,255,.02) 10px 20px);"></div>
+              </div>
+            </div>
+            <div style="position:absolute;left:0;top:150px;width:270px;transform:translate3d(calc(var(--mx,0)*24px),calc(var(--my,0)*20px),80px) rotateY(calc(10deg + var(--mx,0)*6deg)) rotateX(calc(-6deg + var(--my,0)*-6deg));transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="border-radius:16px;background:rgba(22,26,34,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.13);box-shadow:0 40px 80px -28px rgba(0,0,0,.9);padding:14px;">
+                <div style="display:flex;align-items:center;gap:12px;">
+                  <div style="width:50px;height:50px;border-radius:50%;background:conic-gradient(#3ED598 0% 96%, rgba(255,255,255,.1) 96% 100%);display:flex;align-items:center;justify-content:center;"><div style="width:38px;height:38px;border-radius:50%;background:#12151b;display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:600;font-size:15px;color:#3ED598;">98</div></div>
+                  <div><div style="font-size:12px;font-weight:600;color:#F4F6F8;">Performance</div><div style="font-size:10.5px;color:rgba(244,246,248,.5);margin-top:2px;">PageSpeed</div></div>
+                </div>
+              </div>
+            </div>
+            <div style="position:absolute;right:40px;top:-6px;transform:translate3d(calc(var(--mx,0)*36px),calc(var(--my,0)*30px),110px);transition:transform .3s cubic-bezier(.22,1,.36,1);">
+              <div style="animation:wshFloat 6s ease-in-out infinite;display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:12px;background:rgba(20,24,32,.92);border:1px solid rgba(255,255,255,.14);box-shadow:0 20px 40px -14px rgba(0,0,0,.8);"><span style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:14px;color:#3ED598;">+142%</span><span style="font-size:11px;color:rgba(244,246,248,.62);">conversions</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============ 1C — MOBILE ============ -->
+    <div id="1c" style="flex:0 0 auto;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+        <a href="#1c" style="display:inline-flex;align-items:center;justify-content:center;min-width:38px;height:28px;padding:0 11px;border-radius:8px;background:#22262e;border:1px solid rgba(255,255,255,.14);color:#F4F6F8;font-weight:700;font-size:13px;">1C</a>
+        <span style="font-size:14px;color:rgba(244,246,248,.6);font-weight:500;">Mobile</span>
+      </div>
+
+      <div style="width:390px;border-radius:46px;padding:12px;background:linear-gradient(160deg,#1a1c22,#0a0b0d);border:1px solid rgba(255,255,255,.1);box-shadow:0 60px 120px -50px rgba(0,0,0,.9);">
+        <div style="border-radius:36px;overflow:hidden;background:#0A0B0D;border:1px solid rgba(255,255,255,.06);">
+          <!-- status + notch -->
+          <div style="position:relative;height:36px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;">
+            <span style="font-size:12px;font-weight:600;color:#F4F6F8;">9:41</span>
+            <div style="position:absolute;left:50%;top:8px;transform:translateX(-50%);width:96px;height:22px;border-radius:999px;background:#000;"></div>
+            <span style="font-size:12px;color:#F4F6F8;">▪▪▪ ◗</span>
+          </div>
+          <!-- nav -->
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.06);">
+            <div style="display:flex;align-items:center;gap:9px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;background:linear-gradient(150deg,#1287F2,#0C63D6);"><span style="width:8px;height:8px;background:#fff;transform:rotate(45deg);border-radius:1px;"></span></span><span style="font-family:'Clash Display',sans-serif;font-weight:700;font-size:16px;color:#F4F6F8;">WEBSTUDIO<span style="color:#1E9BF5;">H</span></span></div>
+            <div style="display:flex;flex-direction:column;gap:4px;"><span style="width:20px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;"></span><span style="width:20px;height:2px;background:rgba(255,255,255,.7);border-radius:2px;"></span></div>
+          </div>
+          <!-- hero -->
+          <div style="position:relative;overflow:hidden;padding:36px 22px 30px;text-align:center;">
+            <div style="position:absolute;left:50%;top:-80px;width:340px;height:280px;margin-left:-170px;background:radial-gradient(circle at center, rgba(30,155,245,.4), transparent 66%);filter:blur(6px);pointer-events:none;"></div>
+            <div style="position:relative;">
+              <span style="display:inline-flex;align-items:center;gap:7px;height:28px;padding:0 12px;border-radius:999px;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.12);font-size:11px;font-weight:600;color:rgba(244,246,248,.78);"><span style="width:6px;height:6px;border-radius:50%;background:#3ED598;"></span>Available · Summer 2026</span>
+              <h1 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:33px;line-height:1.08;letter-spacing:-.03em;margin:18px 0 0;color:#F7F9FB;">Websites that turn visitors into <span style="background:linear-gradient(120deg,#57B4FF,#1287F2);-webkit-background-clip:text;background-clip:text;color:transparent;">clients.</span></h1>
+              <p style="font-size:14.5px;line-height:1.55;color:rgba(244,246,248,.62);margin:16px 0 0;">Modern websites &amp; online stores for businesses that want to look serious online.</p>
+              <div style="display:flex;flex-direction:column;gap:10px;margin-top:24px;">
+                <a href="#" style="text-align:center;padding:14px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:15px;border:1px solid rgba(140,200,255,.55);box-shadow:0 12px 30px -12px rgba(30,155,245,.8);">Start a Project →</a>
+                <a href="#" style="text-align:center;padding:14px;border-radius:999px;background:rgba(255,255,255,.04);color:#F4F6F8;font-weight:600;font-size:15px;border:1px solid rgba(255,255,255,.16);">View Work</a>
+              </div>
+              <!-- one card -->
+              <div style="margin-top:30px;border-radius:16px;background:rgba(20,24,32,.72);border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 60px -24px rgba(0,0,0,.85);padding:13px;text-align:left;">
+                <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:7px;"><span style="width:12px;height:12px;border-radius:4px;background:linear-gradient(150deg,#1287F2,#0C63D6);"></span><span style="width:40px;height:6px;border-radius:3px;background:rgba(255,255,255,.45);"></span></div><span style="width:46px;height:16px;border-radius:5px;background:linear-gradient(180deg,#48ABFF,#1287F2);"></span></div>
+                <div style="width:76%;height:11px;border-radius:5px;background:rgba(255,255,255,.85);margin-bottom:7px;"></div>
+                <div style="width:52%;height:11px;border-radius:5px;background:rgba(255,255,255,.5);margin-bottom:12px;"></div>
+                <div style="height:82px;border-radius:10px;background:repeating-linear-gradient(45deg, rgba(255,255,255,.05) 0 10px, rgba(255,255,255,.02) 10px 20px);"></div>
+              </div>
+            </div>
+          </div>
+          <!-- value strip -->
+          <div style="display:flex;flex-wrap:wrap;gap:8px;padding:18px 20px;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);justify-content:center;">
+            <span style="padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:600;color:rgba(244,246,248,.8);">Custom Design</span>
+            <span style="padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:600;color:rgba(244,246,248,.8);">Fast Loading</span>
+            <span style="padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:600;color:rgba(244,246,248,.8);">SEO Ready</span>
+            <span style="padding:7px 12px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);font-size:12px;font-weight:600;color:rgba(244,246,248,.8);">Mobile First</span>
+          </div>
+          <!-- services -->
+          <div style="padding:30px 20px;">
+            <span style="font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#57B4FF;">What we do</span>
+            <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:26px;line-height:1.1;letter-spacing:-.02em;margin:12px 0 22px;color:#F7F9FB;">Everything your site needs.</h2>
+            <div style="display:flex;flex-direction:column;gap:12px;">
+              <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);"><span style="font-family:'Clash Display',sans-serif;font-weight:500;font-size:13px;color:#1E9BF5;">01</span><h3 style="font-size:17px;font-weight:700;margin:8px 0 6px;color:#F4F6F8;">Custom Website Design</h3><p style="font-size:13.5px;line-height:1.55;color:rgba(244,246,248,.58);margin:0;">Bespoke, conversion-focused websites built around your brand.</p></div>
+              <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);"><span style="font-family:'Clash Display',sans-serif;font-weight:500;font-size:13px;color:#1E9BF5;">03</span><h3 style="font-size:17px;font-weight:700;margin:8px 0 6px;color:#F4F6F8;">WooCommerce Web Shops</h3><p style="font-size:13.5px;line-height:1.55;color:rgba(244,246,248,.58);margin:0;">Fast, secure online stores that turn browsers into buyers.</p></div>
+              <div style="padding:20px;border-radius:16px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);"><span style="font-family:'Clash Display',sans-serif;font-weight:500;font-size:13px;color:#1E9BF5;">04</span><h3 style="font-size:17px;font-weight:700;margin:8px 0 6px;color:#F4F6F8;">SEO &amp; Speed Optimization</h3><p style="font-size:13.5px;line-height:1.55;color:rgba(244,246,248,.58);margin:0;">Rank higher, load instantly, keep visitors engaged.</p></div>
+            </div>
+          </div>
+          <!-- mobile cta -->
+          <div style="padding:8px 20px 34px;">
+            <div style="position:relative;overflow:hidden;border-radius:22px;border:1px solid rgba(30,155,245,.28);background:linear-gradient(160deg, rgba(30,155,245,.16), rgba(10,11,13,.4));padding:34px 22px;text-align:center;">
+              <div style="position:absolute;left:50%;bottom:-120px;width:320px;height:240px;margin-left:-160px;background:radial-gradient(circle at center, rgba(30,155,245,.45), transparent 66%);filter:blur(6px);"></div>
+              <div style="position:relative;">
+                <h2 style="font-family:'Clash Display',sans-serif;font-weight:600;font-size:24px;line-height:1.12;letter-spacing:-.02em;margin:0;color:#F9FBFD;">Ready to look serious online?</h2>
+                <a href="#" style="display:block;margin-top:20px;text-align:center;padding:14px;border-radius:999px;background:linear-gradient(180deg,#48ABFF,#1287F2);color:#fff;font-weight:600;font-size:15px;border:1px solid rgba(140,200,255,.55);box-shadow:0 14px 34px -12px rgba(30,155,245,.85);">Let's Build Your Website →</a>
+              </div>
+            </div>
+          </div>
+          <!-- home indicator -->
+          <div style="display:flex;justify-content:center;padding:8px 0 12px;"><span style="width:130px;height:5px;border-radius:999px;background:rgba(255,255,255,.3);"></span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  componentDidMount() {
+    try { this.initParallax(); this.initReveal(); } catch (e) { console.warn('WSH init', e); }
+  }
+  componentWillUnmount() {
+    (this._cleanup || []).forEach((fn) => fn());
+    if (this._io) this._io.disconnect();
+    if (this._revealFallback) clearTimeout(this._revealFallback);
+  }
+  initParallax() {
+    this._cleanup = [];
+    document.querySelectorAll('[data-parallax-root]').forEach((root) => {
+      let raf = null, tx = 0, ty = 0;
+      const onMove = (e) => {
+        const r = root.getBoundingClientRect();
+        tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+        ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+        if (!raf) raf = requestAnimationFrame(() => {
+          root.style.setProperty('--mx', tx.toFixed(3));
+          root.style.setProperty('--my', ty.toFixed(3));
+          raf = null;
+        });
+      };
+      const onLeave = () => {
+        root.style.setProperty('--mx', '0');
+        root.style.setProperty('--my', '0');
+      };
+      root.addEventListener('mousemove', onMove);
+      root.addEventListener('mouseleave', onLeave);
+      this._cleanup.push(() => {
+        root.removeEventListener('mousemove', onMove);
+        root.removeEventListener('mouseleave', onLeave);
+      });
+    });
+  }
+  initReveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting) {
+          const el = en.target;
+          const d = parseInt(el.getAttribute('data-reveal-delay') || '0', 10);
+          setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, d);
+          io.unobserve(el);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    els.forEach((el) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .8s cubic-bezier(.22,1,.36,1), transform .8s cubic-bezier(.22,1,.36,1)';
+      el.style.willChange = 'opacity, transform';
+      io.observe(el);
+    });
+    this._io = io;
+    this._revealFallback = setTimeout(() => {
+      els.forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    }, 2800);
+  }
+  renderVals() {
+    return {
+      services: [
+        { n: '01', t: 'Custom Website Design', d: 'Bespoke, conversion-focused websites designed around your brand and the customers you want to win.', delay: 0 },
+        { n: '02', t: 'WordPress Development', d: 'Flexible, easy-to-manage WordPress builds you can confidently update yourself — no developer required.', delay: 70 },
+        { n: '03', t: 'WooCommerce Web Shops', d: 'Fast, secure online stores built to showcase products beautifully and turn browsers into buyers.', delay: 140 },
+        { n: '04', t: 'SEO & Speed Optimization', d: 'Technical SEO and performance tuning so you rank higher, load instantly and keep visitors engaged.', delay: 0 },
+        { n: '05', t: 'Website Maintenance', d: 'Ongoing updates, backups and support that keep your site secure, current and running smoothly.', delay: 70 },
+        { n: '06', t: 'Hosting & Domain Setup', d: 'We handle domains, hosting and email so everything simply works — from launch day onward.', delay: 140 }
+      ],
+      process: [
+        { n: '01', t: 'Discover', d: 'We learn your business, goals and audience, then map the ideal structure for your site.', delay: 0 },
+        { n: '02', t: 'Design', d: 'We craft a premium, on-brand interface — with your feedback shaping every screen.', delay: 90 },
+        { n: '03', t: 'Build', d: 'We develop a fast, responsive, SEO-ready site with clean, scalable code.', delay: 180 },
+        { n: '04', t: 'Launch', d: 'We test, optimize and go live — then stay on to support you as you grow.', delay: 270 }
+      ],
+      whyUs: [
+        { n: '01', t: 'Clean, intentional design', d: 'Every element earns its place. No clutter, no templates — just clarity that builds instant trust.', delay: 0 },
+        { n: '02', t: 'Performance by default', d: 'Optimized code and assets so your pages load fast and keep visitors moving toward action.', delay: 80 },
+        { n: '03', t: 'Clear communication', d: 'One point of contact, honest timelines and zero jargon — from kickoff to launch and beyond.', delay: 160 },
+        { n: '04', t: 'Built to win clients', d: 'Every page is engineered around conversion, so more of your visitors become real enquiries.', delay: 240 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

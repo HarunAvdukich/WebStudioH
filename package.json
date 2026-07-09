@@ -1,0 +1,23 @@
+{
+  "name": "webstudioh-landing",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "WebStudioH premium landing page — implemented from the Claude Design handoff (Direction A).",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-react-ssg build && node scripts/gen-sitemap.mjs",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "marked": "^18.0.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.30.4",
+    "vite-react-ssg": "^0.9.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^5.4.11"
+  }
+}

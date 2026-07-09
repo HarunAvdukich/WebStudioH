@@ -1,0 +1,34 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Uređivač piše markdown fajlove u repozitorij; sajt se automatski ponovo gradi.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+locale: "en"
+
+collections:
+  - name: "blog"
+    label: "Savjeti (blog)"
+    label_singular: "Članak"
+    folder: "src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    summary: "{{title}} — {{date}}"
+    sortable_fields: ["date", "title"]
+    fields:
+      - { label: "Naslov", name: "title", widget: "string" }
+      - {
+          label: "Datum",
+          name: "date",
+          widget: "datetime",
+          date_format: "YYYY-MM-DD",
+          time_format: false,
+          format: "YYYY-MM-DD",
+        }
+      - { label: "Kratki opis", name: "excerpt", widget: "text" }
+      - { label: "Vrijeme čitanja", name: "read", widget: "string", default: "4 min" }
+      - { label: "Sadržaj", name: "body", widget: "markdown" }
