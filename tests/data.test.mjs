@@ -63,3 +63,8 @@ test('usluge: web trgovine prve, bh. tržište druge, ukupno šest', () => {
 test('sve cijene su po dogovoru', () => {
   assert.ok(data.pricing.every((p) => p.price === 'Po dogovoru'))
 })
+
+test('svaka recenzija pripada postojećem radu', () => {
+  const slugs = data.projects.map((p) => p.slug)
+  assert.deepEqual(data.testimonials.filter((t) => !slugs.includes(t.project)).map((t) => t.name), [])
+})

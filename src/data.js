@@ -266,7 +266,37 @@ export const navLinks = [
 
 // Recenzija ide ovdje tek kad je klijent potvrdi: tačno potvrđen tekst i ime,
 // sa `approved: true`. Oblik: { quote, name, role, initials, project, approved }.
-export const testimonials = []
+// Potvrđene 27. 9. 2026. (javio vlasnik WebStudioH); potpis je naziv firme dok
+// klijent ne kaže drugačije.
+export const testimonials = [
+  {
+    quote:
+      'Trebala nam je trgovina koja može nositi hiljade artikala i sama ih držati ažurnim na OLX-u. Danas imamo preko 7.400 artikala, oglasi se sami ažuriraju, a sadržaj mijenjamo i sami iz administracije.',
+    name: 'mrt.ba',
+    role: 'Trgovina alata i opreme',
+    initials: 'MR',
+    project: 'mrt',
+    approved: true,
+  },
+  {
+    quote:
+      'Web trgovina izgleda profesionalno, a kupci na telefonu lako pronađu i naruče sat. Uz katalog od preko 500 modela imamo i posebne stranice za graviranje i servis.',
+    name: 'SmartTime',
+    role: 'Trgovina satova',
+    initials: 'ST',
+    project: 'smarttime',
+    approved: true,
+  },
+  {
+    quote:
+      'Dobili smo modernu i preglednu stranicu koja predstavlja rad udruženja, takmičenja i škole skijanja na jednom mjestu. Komunikacija tokom izrade je bila jednostavna.',
+    name: 'UPTOS Breza',
+    role: 'Udruženje pedagoga',
+    initials: 'UB',
+    project: 'uptos',
+    approved: true,
+  },
+]
 
 export function onlyApproved(list) {
   return list.filter((t) => t.approved === true)
