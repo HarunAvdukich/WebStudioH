@@ -61,3 +61,17 @@ test('svi unutrašnji linkovi vode na postojeći fajl', () => {
   }
   assert.deepEqual(broken, [])
 })
+
+test('svaka og:image slika postoji', () => {
+  const missing = []
+  for (const { file, html } of pages) {
+    for (const [, url] of html.matchAll(/<meta[^>]*property="og:image"[^>]*content="https:\/\/webstudioh\.ba(\/[^"]+)"/g)) {
+      if (!existsSync(join(DIST, url))) missing.push(`${file}: ${url}`)
+    }
+  }
+  assert.deepEqual(missing, [])
+})
+
+test('slika glavnog rada postoji', () => {
+  assert.ok(existsSync(join(DIST, 'project-mrt.webp')))
+})
