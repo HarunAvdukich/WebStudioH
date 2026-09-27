@@ -5,7 +5,7 @@ excerpt: "Cijena web stranice varira od nekoliko stotina do nekoliko hiljada KM.
 read: "5 min"
 ---
 
-Najčešće pitanje koje dobijemo glasi: „Koliko košta web stranica?" Iskren odgovor je — zavisi. Ali to ne znači da cijena mora biti misterija. U nastavku objašnjavamo glavne faktore koji određuju budžet.
+Najčešće pitanje koje dobijemo glasi: „Koliko košta web stranica?" Iskren odgovor je: zavisi. Ali to ne znači da cijena mora biti misterija. U nastavku objašnjavamo glavne faktore koji određuju budžet.
 
 ## Od čega zavisi cijena
 
@@ -21,4 +21,4 @@ Jednostavna, ali kvalitetna prezentacijska stranica obično je najpristupačnija
 
 ## Kako izbjeći skrivene troškove
 
-Tražite ponudu koja jasno navodi šta je uključeno: hosting, domena, održavanje i podrška nakon lansiranja. Kod nas je sve transparentno — cijenu formiramo prema vašim ciljevima, **bez iznenađenja na kraju**.
+Tražite ponudu koja jasno navodi šta je uključeno: hosting, domena, održavanje i podrška nakon lansiranja. Kod nas je sve transparentno: cijenu formiramo prema vašim ciljevima, **bez iznenađenja na kraju**.

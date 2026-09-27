@@ -8,7 +8,7 @@ const data = {
   '@type': 'ProfessionalService',
   name: SITE_NAME,
   description:
-    'Dizajn i izrada modernih web stranica i online trgovina za firme koje žele izgledati ozbiljno online.',
+    'Izrada WooCommerce web trgovina za bh. prodavnice, sa OLX sinhronizacijom i uvozom kataloga od dobavljača.',
   url: SITE_URL,
   email: contact.email,
   telephone: contact.phoneDisplay,

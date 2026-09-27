@@ -11,7 +11,7 @@ export default function Services({ preview = false, showHead = true }) {
           <div className="services__head" data-reveal>
             <span className="eyebrow">Šta radimo</span>
             <h2 className="section-title">
-              Sve što vaša web stranica treba, na jednom mjestu.
+              Sve što vaša web trgovina treba, na jednom mjestu.
             </h2>
           </div>
         )}

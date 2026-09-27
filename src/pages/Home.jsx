@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Seo
         path="/"
-        description="WebStudioH dizajnira i gradi moderne web stranice i online trgovine za firme koje žele izgledati ozbiljno, prodavati više i istaknuti se online."
+        description="WebStudioH gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima."
       />
       <Hero />
       <ValueStrip />

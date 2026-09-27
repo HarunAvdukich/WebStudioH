@@ -18,7 +18,7 @@ export default function PrivacyPage() {
 
       <article className="post">
         <div className="container post__wrap">
-          <div className="post__meta">Posljednje ažuriranje: 9. juli 2026.</div>
+          <div className="post__meta">Posljednje ažuriranje: 27. septembar 2026.</div>
           <div className="post__body">
             <p>
               Vaša privatnost nam je važna. Ova politika objašnjava koje podatke
@@ -29,17 +29,12 @@ export default function PrivacyPage() {
             <h2>Koje podatke prikupljamo</h2>
             <ul>
               <li>
-                <strong>Podaci iz kontakt forme</strong> — ime, email adresa,
+                <strong>Podaci iz kontakt forme:</strong> ime, email adresa,
                 odabrana usluga i sadržaj poruke koju nam pošaljete.
               </li>
               <li>
-                <strong>Komunikacija</strong> — poruke koje razmijenimo putem
+                <strong>Komunikacija:</strong> poruke koje razmijenimo putem
                 emaila, telefona ili WhatsApp-a.
-              </li>
-              <li>
-                <strong>Anonimna statistika posjeta</strong> — koristimo Plausible
-                Analytics, alat koji ne koristi kolačiće i ne prikuplja lične
-                podatke niti prati korisnike između stranica.
               </li>
             </ul>
 
@@ -47,7 +42,6 @@ export default function PrivacyPage() {
             <ul>
               <li>Da vam odgovorimo na upit i pripremimo ponudu.</li>
               <li>Za komunikaciju tokom projekta i pružanje usluga.</li>
-              <li>Za razumijevanje posjećenosti stranice (anonimno).</li>
             </ul>
 
             <h2>Pravni osnov</h2>
@@ -58,9 +52,9 @@ export default function PrivacyPage() {
 
             <h2>Dijeljenje s trećim stranama</h2>
             <p>
-              Vaše podatke ne prodajemo. Podatke mogu obrađivati pouzdani pružaoci
-              usluga koji nam pomažu u radu — hosting platforma (Netlify) i alat za
-              anonimnu statistiku (Plausible) — isključivo u gore navedene svrhe.
+              Vaše podatke ne prodajemo. Podatke može obrađivati pouzdan pružalac
+              usluga koji nam pomaže u radu, hosting platforma (Netlify),
+              isključivo u gore navedene svrhe.
             </p>
 
             <h2>Kolačići</h2>

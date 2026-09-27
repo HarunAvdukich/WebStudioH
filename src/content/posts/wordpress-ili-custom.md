@@ -1,5 +1,5 @@
 ---
-title: "WordPress ili custom izrada — šta odabrati?"
+title: "WordPress ili custom izrada: šta odabrati?"
 date: "2026-05-30"
 excerpt: "Oba pristupa imaju svoje mjesto. Vodič kroz prednosti i mane, i kako odlučiti šta je pravo za vaše poslovanje."
 read: "4 min"
@@ -17,4 +17,4 @@ Ako imate specifične funkcionalnosti, potrebu za maksimalnim performansama ili 
 
 ## Naš pristup
 
-Ne krećemo od tehnologije, nego od vaših ciljeva. Preporučimo ono što najbolje služi vašem poslovanju — i objasnimo zašto, **jednostavnim jezikom**.
+Ne krećemo od tehnologije, nego od vaših ciljeva. Preporučimo ono što najbolje služi vašem poslovanju, i objasnimo zašto, **jednostavnim jezikom**.

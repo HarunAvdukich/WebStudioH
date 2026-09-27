@@ -40,6 +40,13 @@ const FORBIDDEN = [
   ['Rahmedin', 'nepotvrđena recenzija'],
   ['Mirza B.', 'nepotvrđena recenzija'],
   ['Eldar Z.', 'nepotvrđena recenzija'],
+  ['—', 'duga crta'],
+  ['–', 'srednja crta'],
+  ['plausible', 'analitika bez naloga'],
+  ['Ljeto 2026', 'zastarjela značka'],
+  ['$129', 'cijena u dolarima'],
+  ['+142%', 'izmišljena brojka iz predloška'],
+  ['Online za 4 sedmice', 'izmišljena tvrdnja iz predloška'],
 ]
 
 for (const [needle, why] of FORBIDDEN) {
@@ -74,4 +81,8 @@ test('svaka og:image slika postoji', () => {
 
 test('slika glavnog rada postoji', () => {
   assert.ok(existsSync(join(DIST, 'project-mrt.webp')))
+})
+
+test('nigdje cijena u dolarima', () => {
+  assert.deepEqual(pages.filter((p) => /\$\s?\d/.test(p.text)).map((p) => p.file), [])
 })
