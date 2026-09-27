@@ -107,6 +107,25 @@ export const aboutStats = [
   { num: '98', sfx: '', label: 'PageSpeed ove stranice, računar' },
 ]
 
+// Dokaz koji se ne ponavlja sa heroja. Izvor: Lighthouse (medijan tri mjerenja) i
+// smarttime.ba Store API, 27. 9. 2026.
+export const proofStats = [
+  { label: 'PageSpeed mrt.ba, računar', value: '87' },
+  { label: 'PageSpeed SmartTime, računar', value: '89' },
+  { label: 'Brendova na SmartTime', value: '15+' },
+  { label: 'Modela na SmartTime', value: '500+' },
+]
+
+// Isti artikal na mrt.ba i na OLX-u. Oglas je objavio OLX dodatak trgovine, bez
+// ručnog unosa. Snimljeno 27. 9. 2026; slike i porijeklo u public/proof-*.webp.
+export const syncProof = {
+  product: 'Samohodna kosilica Stiga Combi 53 SQ',
+  price: '799 KM',
+  date: '27. 9. 2026.',
+  shop: { image: '/proof-mrt-artikal.webp', source: 'mrt.ba', code: 'Šifra MRT003420' },
+  olx: { image: '/proof-olx.webp', source: 'OLX', code: 'Oglas 79608162' },
+}
+
 export const projects = [
   {
     slug: 'mrt',

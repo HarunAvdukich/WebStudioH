@@ -1,6 +1,7 @@
 import Seo from '../components/Seo.jsx'
 import Hero from '../components/Hero.jsx'
 import ValueStrip from '../components/ValueStrip.jsx'
+import SyncProof from '../components/SyncProof.jsx'
 import Services from '../components/Services.jsx'
 import WhyUs from '../components/WhyUs.jsx'
 import Portfolio from '../components/Portfolio.jsx'
@@ -16,6 +17,7 @@ export default function Home() {
       />
       <Hero />
       <ValueStrip />
+      <SyncProof />
       <Services preview />
       <WhyUs />
       <Portfolio preview />

@@ -1,51 +1,45 @@
 import { Link } from 'react-router-dom'
+import Icon from './Icon.jsx'
 import { pricing } from '../data.js'
 
-export default function Pricing({ showHead = true }) {
+// Tri paketa kao tri cjenovne etikete na istom nosaču.
+export default function Pricing() {
   return (
-    <section id="pricing" className="pricing">
+    <section className="band band--shelf">
       <div className="container">
-        {showHead && (
-          <div className="pricing__head" data-reveal>
-            <span className="eyebrow">Paketi</span>
-            <h2 className="section-title">Jednostavni paketi, prilagođeni vama.</h2>
-          </div>
-        )}
-
-        <div className="plans">
+        <div className="shelf-row">
           {pricing.map((plan, i) => (
-            <div
+            <article
               key={plan.name}
-              className={`plan${plan.featured ? ' plan--featured' : ''}`}
-              data-reveal
-              data-reveal-delay={i * 90}
+              className={`tag tag--hang hang price-tag span-4${plan.featured ? ' price-tag--akcija' : ''}`}
             >
-              {plan.badge && <span className="plan__badge">{plan.badge}</span>}
-              <div className="plan__name">{plan.name}</div>
-              <div className="plan__blurb">{plan.blurb}</div>
-              <div className="plan__label">{plan.priceLabel}</div>
-              <div className="plan__price">{plan.price}</div>
-
-              <div className="plan__features">
-                {plan.features.map((f) => (
-                  <div key={f} className="feat">
-                    <span className="feat__check">
-                      <i />
-                    </span>
-                    <span>{f}</span>
-                  </div>
-                ))}
+              <header className={`tag__head${plan.featured ? ' tag__head--ink' : ''}`}>
+                <strong>{plan.name}</strong>
+                <span>Paket {i + 1}</span>
+              </header>
+              <div className="tag__body">
+                <p className="tag__text">{plan.blurb}</p>
+                <ul className="checks">
+                  {plan.features.map((f) => (
+                    <li key={f}>
+                      <Icon name="check" size={18} />
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-
-              <Link
-                className={`btn btn--block plan__cta ${
-                  plan.featured ? 'btn--primary' : 'btn--ghost'
-                }`}
-                to="/kontakt"
-              >
-                {plan.cta}
-              </Link>
-            </div>
+              <footer className="tag__foot">
+                <div className={`price price--big${plan.featured ? ' price--red' : ''}`}>
+                  <small>{plan.priceLabel}</small>
+                  <strong>{plan.price}</strong>
+                </div>
+                <Link className={`btn ${plan.featured ? 'btn--ink' : 'btn--paper'}`} to="/kontakt">
+                  {plan.cta}
+                  <Icon name="arrow" className="icon--arrow" />
+                </Link>
+              </footer>
+              {plan.badge && <span className="roundel">{plan.badge}</span>}
+            </article>
           ))}
         </div>
       </div>

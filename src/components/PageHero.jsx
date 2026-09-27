@@ -1,14 +1,12 @@
-export default function PageHero({ eyebrow, title, subtitle }) {
+// Zaglavlje unutrašnje stranice: žuti pojas i nosač police ispod njega.
+export default function PageHero({ title, subtitle }) {
   return (
-    <section className="page-hero">
-      <div className="page-hero__aurora" />
+    <section className="page-head">
       <div className="container">
-        <div className="page-hero__inner" data-reveal>
-          {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-          <h1 className="page-hero__title">{title}</h1>
-          {subtitle && <p className="page-hero__sub">{subtitle}</p>}
-        </div>
+        <h1 className="display page-head__title">{title}</h1>
+        {subtitle && <p className="page-head__sub">{subtitle}</p>}
       </div>
+      <div className="rail" aria-hidden="true" />
     </section>
   )
 }
