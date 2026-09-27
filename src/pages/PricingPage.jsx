@@ -4,7 +4,7 @@ import Pricing from '../components/Pricing.jsx'
 import Includes from '../components/Includes.jsx'
 import Faq from '../components/Faq.jsx'
 import FinalCta from '../components/FinalCta.jsx'
-import { faqPricing } from '../data.js'
+import { faqPricing, maintenance } from '../data.js'
 
 export default function PricingPage() {
   return (
@@ -12,15 +12,16 @@ export default function PricingPage() {
       <Seo
         title="Cijene"
         path="/cijene"
-        description="Jednostavni paketi za web stranice i online trgovine — transparentno i bez skrivenih troškova."
+        description="Paketi za web trgovine i prezentacijske stranice, transparentno i bez skrivenih troškova."
       />
       <PageHero
         eyebrow="Cijene"
         title="Jednostavni paketi, prilagođeni vama."
-        subtitle="Transparentno i bez skrivenih troškova — svaki paket kreiramo prema vašim ciljevima i budžetu."
+        subtitle="Transparentno i bez skrivenih troškova. Svaki paket kreiramo prema vašim ciljevima i budžetu."
       />
       <Pricing showHead={false} />
       <Includes />
+      <Includes eyebrow={maintenance.eyebrow} title={maintenance.title} items={maintenance.items} />
       <Faq eyebrow="Česta pitanja" title="Pitanja o cijenama i saradnji." items={faqPricing} />
       <FinalCta />
     </>

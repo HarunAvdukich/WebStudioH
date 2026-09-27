@@ -76,7 +76,7 @@ const previews = {
 }
 
 export default function Portfolio({ preview = false, showHead = true }) {
-  const list = preview ? projects.slice(0, 3) : projects
+  const list = preview ? projects.filter((p) => p.url).slice(0, 3) : projects
   const head = preview
     ? { link: '/radovi', linkText: 'Svi radovi →' }
     : { link: '/kontakt', linkText: 'Započni projekat →' }
@@ -89,7 +89,7 @@ export default function Portfolio({ preview = false, showHead = true }) {
             <div>
               <span className="eyebrow">Odabrani radovi</span>
               <h2 className="section-title">
-                Radovi koji izgledaju kako treba — i daju rezultate.
+                Radovi koji izgledaju kako treba i daju rezultate.
               </h2>
             </div>
             <Link className="link-underline" to={head.link}>
@@ -111,7 +111,7 @@ export default function Portfolio({ preview = false, showHead = true }) {
               >
                 {p.image ? (
                   <div className="project__preview project__preview--shot">
-                    <img src={p.image} alt={`${p.name} — web stranica`} loading="lazy" />
+                    <img src={p.image} alt={`${p.name}, web stranica`} loading="lazy" />
                   </div>
                 ) : (
                   <Preview />

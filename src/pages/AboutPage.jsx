@@ -2,14 +2,7 @@ import Seo from '../components/Seo.jsx'
 import PageHero from '../components/PageHero.jsx'
 import Testimonials from '../components/Testimonials.jsx'
 import FinalCta from '../components/FinalCta.jsx'
-import { values } from '../data.js'
-
-const stats = [
-  { num: '40', sfx: '+', label: 'Projekata isporučeno' },
-  { num: '98', sfx: '+', label: 'Prosj. PageSpeed' },
-  { num: '100', sfx: '%', label: 'Izrađeno po mjeri' },
-  { num: '24', sfx: 'h', label: 'Vrijeme odgovora' },
-]
+import { values, aboutStats } from '../data.js'
 
 export default function AboutPage() {
   return (
@@ -17,12 +10,12 @@ export default function AboutPage() {
       <Seo
         title="O nama"
         path="/o-nama"
-        description="Mali, posvećen studio koji spaja dizajn i performanse — gradimo web stranice i online trgovine za bh. firme."
+        description="Mali, posvećen studio koji gradi web trgovine za bh. prodavnice i povezuje ih sa OLX-om i dobavljačima."
       />
       <PageHero
         eyebrow="O nama"
         title="Studio koji spaja dizajn i performanse."
-        subtitle="Mali, posvećen tim koji gradi web stranice i trgovine kakve velike agencije naplaćuju višestruko — bez komplikacija."
+        subtitle="Mali, posvećen studio koji gradi web trgovine kakve velike agencije naplaćuju višestruko, bez komplikacija."
       />
 
       <section className="about-story">
@@ -32,20 +25,19 @@ export default function AboutPage() {
             <h2 className="section-title">Mali studio, velika posvećenost.</h2>
             <p>
               WebStudioH je nastao iz jednostavne ideje: da i male i srednje firme
-              zaslužuju web prisustvo koje izgleda i radi vrhunski — bez
+              zaslužuju web prisustvo koje izgleda i radi vrhunski, bez
               korporativnih cijena i nepotrebnih komplikacija.
             </p>
             <p>
-              Danas spajamo dizajn, razvoj i performanse pod jednim krovom. Radimo
-              blisko sa svakim klijentom, od prve skice do lansiranja i dalje,
-              gradeći stranice koje ne samo da lijepo izgledaju — već donose stvarne
-              rezultate.
+              Danas gradimo web trgovine za bh. tržište: od kataloga i korpe do
+              OLX-a, Ananasa i uvoza od dobavljača. Radimo blisko sa svakim
+              klijentom, od prve skice do lansiranja i dalje.
             </p>
           </div>
 
           <div className="about-panel" data-reveal data-reveal-delay="90">
             <div className="about-panel__stats">
-              {stats.map((s) => (
+              {aboutStats.map((s) => (
                 <div key={s.label} className="about-stat">
                   <div className="about-stat__num">
                     {s.num}

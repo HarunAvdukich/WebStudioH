@@ -3,19 +3,19 @@ import Seo from '../components/Seo.jsx'
 import PageHero from '../components/PageHero.jsx'
 import FinalCta from '../components/FinalCta.jsx'
 import NotFound from './NotFound.jsx'
-import { projects, testimonials } from '../data.js'
+import { projects, publishedTestimonials } from '../data.js'
 
 export default function CaseStudyPage() {
   const { slug } = useParams()
   const project = projects.find((p) => p.slug === slug)
   if (!project) return <NotFound />
 
-  const testimonial = testimonials.find((t) => t.project === slug)
+  const testimonial = publishedTestimonials.find((t) => t.project === slug)
 
   return (
     <>
       <Seo
-        title={`${project.name} — ${project.tag}`}
+        title={`${project.name} · ${project.tag}`}
         path={`/radovi/${project.slug}`}
         description={project.summary}
       />
@@ -25,7 +25,7 @@ export default function CaseStudyPage() {
         <div className="container">
           <div className="case__media" data-reveal>
             {project.image ? (
-              <img src={project.image} alt={`${project.name} — web stranica`} />
+              <img src={project.image} alt={`${project.name}, web stranica`} />
             ) : (
               <div className="case__media-ph">
                 <span className="font-display">{project.name}</span>
