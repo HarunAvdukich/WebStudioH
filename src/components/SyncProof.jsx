@@ -31,7 +31,7 @@ export default function SyncProof() {
             <h2 className="section-title">Artikal sa mrt.ba sam se pojavio na OLX-u.</h2>
             <p className="lede">
               Ista kosilica, ista cijena. Oglas je objavio OLX dodatak trgovine, bez
-              ručnog unosa, a kad se promijeni cijena ili zaliha, oglas se ažurira sam.
+              ručnog unosa.
             </p>
           </div>
         </div>

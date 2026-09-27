@@ -1016,4 +1016,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 /* ---------- studija slučaja: lijeva kolona nosi snimke i recenziju ---------- */
 
 .case__media { display: grid; gap: 28px; }
+@media (min-width: 960px) {
+  .case__spec { position: sticky; top: 100px; }
+}
 .case__media .slip-wrap { margin: 0; }

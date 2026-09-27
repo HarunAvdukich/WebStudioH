@@ -10,7 +10,7 @@ export const services = [
   {
     n: '02',
     t: 'Povezivanje sa bh. tržištem',
-    d: 'Artikli se sami objavljuju i ažuriraju na OLX-u, katalog ide u feed za Ananas, a cijene i zalihe se preuzimaju od dobavljača. Po potrebi i B2B portal za veleprodaju.',
+    d: 'Artikli se sami objavljuju na OLX-u, katalog ide u feed za Ananas, a cijene i zalihe se preuzimaju od dobavljača. Po potrebi i B2B portal za veleprodaju.',
     delay: 70,
   },
   {
@@ -136,7 +136,7 @@ export const projects = [
     variant: 'shop',
     summary: 'Web trgovina alata, mašina i opreme sa 7.400+ artikala, povezana sa OLX-om.',
     overview:
-      'mrt.ba je trgovina alata, mašina, vrtne i poljoprivredne opreme. Izgradili smo WooCommerce trgovinu koja preuzima katalog od više dobavljača, sama objavljuje i ažurira artikle na OLX-u i ima feed za Ananas. Veleprodajni kupci imaju svoj B2B portal, a vlasnik sadržaj mijenja preko AI urednika u administraciji.',
+      'mrt.ba je trgovina alata, mašina, vrtne i poljoprivredne opreme. Izgradili smo WooCommerce trgovinu koja preuzima katalog od više dobavljača, sama objavljuje artikle na OLX-u i ima feed za Ananas. Veleprodajni kupci imaju svoj B2B portal, a vlasnik sadržaj mijenja preko AI urednika u administraciji.',
     highlights: [
       '7.400+ artikala u 278 kategorija',
       'Automatska sinhronizacija sa OLX-om, 4.300+ aktivnih oglasa',
@@ -353,7 +353,7 @@ export const faqServices = [
   },
   {
     q: 'Možete li povezati trgovinu sa OLX-om?',
-    a: 'Da. Artikli se sami objavljuju na OLX-u i ažuriraju kad promijenite cijenu ili zalihu. Na mrt.ba tako radi preko 4.300 oglasa.',
+    a: 'Da. Artikli se sami objavljuju na OLX-u, bez ručnog unosa. Na mrt.ba tako radi preko 4.300 oglasa.',
   },
   {
     q: 'Mogu li sam ažurirati sadržaj?',
