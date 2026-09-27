@@ -3,7 +3,7 @@ import logo from '/webstudioh-logo.webp'
 
 export default function Brand({ compact = false }) {
   return (
-    <Link className="brand" to="/" aria-label="WebStudioH — početna">
+    <Link className="brand" to="/" aria-label="WebStudioH, početna">
       <img
         className={`brand__logo${compact ? ' brand__logo--sm' : ''}`}
         src={logo}

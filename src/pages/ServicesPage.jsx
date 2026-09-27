@@ -12,12 +12,12 @@ export default function ServicesPage() {
       <Seo
         title="Usluge"
         path="/usluge"
-        description="Dizajn web stranica, WordPress i WooCommerce razvoj, SEO, održavanje i hosting — sve na jednom mjestu."
+        description="WooCommerce web trgovine, povezivanje sa OLX-om i dobavljačima, održavanje, SEO i AI alati na jednom mjestu."
       />
       <PageHero
         eyebrow="Usluge"
-        title="Sve što vaša web stranica treba, na jednom mjestu."
-        subtitle="Od dizajna i razvoja, preko SEO-a, do održavanja i hostinga — kompletna briga o vašem online prisustvu."
+        title="Sve što vaša web trgovina treba, na jednom mjestu."
+        subtitle="Od trgovine i integracija, preko SEO-a i brzine, do održavanja i hostinga."
       />
       <Services showHead={false} />
       <Process />

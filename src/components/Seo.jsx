@@ -3,7 +3,7 @@ import { Head } from 'vite-react-ssg'
 export const SITE_NAME = 'WebStudioH'
 export const SITE_URL = 'https://webstudioh.ba'
 const DEFAULT_DESC =
-  'WebStudioH dizajnira i gradi moderne web stranice i online trgovine za firme koje žele izgledati ozbiljno, prodavati više i istaknuti se online.'
+  'WebStudioH gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima.'
 
 /**
  * Per-page <head> (title, description, canonical, Open Graph).
@@ -17,8 +17,8 @@ function ogImageFor(path) {
 
 export default function Seo({ title, description = DEFAULT_DESC, path = '', image, noindex = false }) {
   const fullTitle = title
-    ? `${title} — ${SITE_NAME}`
-    : `${SITE_NAME} — Premium web stranice i online trgovine`
+    ? `${title} · ${SITE_NAME}`
+    : `${SITE_NAME} · Web trgovine za bh. prodavnice`
   const url = SITE_URL + path
   const ogImage = SITE_URL + (image || ogImageFor(path))
 

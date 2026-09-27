@@ -10,7 +10,7 @@ export function useReveal(dep) {
     const els = Array.from(document.querySelectorAll('[data-reveal]:not(.is-revealed)'))
     if (!els.length) return
 
-    // Respect users who prefer reduced motion — show everything immediately.
+    // Respect users who prefer reduced motion: show everything immediately.
     const prefersReduced = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches

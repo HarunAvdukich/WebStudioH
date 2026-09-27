@@ -9,23 +9,23 @@ export default function FinalCta() {
           <div className="cta__glow" />
           <div className="cta__inner">
             <h2 className="cta__title">
-              Spremni da vaše poslovanje izgleda ozbiljno online?
+              Spremni da vaša trgovina prodaje i online?
             </h2>
             <p className="cta__sub">
-              Pretvorimo vašu web stranicu u vašeg najvrednijeg prodavača —
-              premium, brzu i građenu za konverziju.
+              Pretvorimo vašu web stranicu u vašeg najvrednijeg prodavača: brzu,
+              preglednu i povezanu sa OLX-om.
             </p>
             <div className="cta__actions">
               <Link className="btn btn--lg btn--primary" to="/kontakt">
-                Napravimo vašu stranicu →
+                Napravimo vašu trgovinu →
               </Link>
               <a
                 className="btn btn--lg btn--ghost"
-                href={contact.booking}
+                href={`${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappText)}`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Zakaži poziv
+                Piši na WhatsApp
               </a>
             </div>
           </div>

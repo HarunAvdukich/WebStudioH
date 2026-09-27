@@ -6,9 +6,9 @@ const columns = [
   {
     title: 'Usluge',
     links: [
-      { label: 'Prilagođeni dizajn', to: '/usluge' },
-      { label: 'WordPress', to: '/usluge' },
-      { label: 'WooCommerce', to: '/usluge' },
+      { label: 'Web trgovine', to: '/usluge' },
+      { label: 'OLX i dobavljači', to: '/usluge' },
+      { label: 'Održavanje', to: '/usluge' },
     ],
   },
   {
@@ -26,7 +26,6 @@ const columns = [
       { label: contact.email, href: `mailto:${contact.email}` },
       { label: contact.phoneDisplay, href: contact.phoneHref },
       { label: 'WhatsApp', href: contact.whatsapp, external: true },
-      { label: 'Instagram', href: '#' },
     ],
   },
 ]
@@ -38,8 +37,8 @@ export default function Footer() {
         <div style={{ maxWidth: 300 }}>
           <Brand compact />
           <p className="footer__blurb">
-            Premium web stranice i online trgovine za firme koje žele izgledati
-            ozbiljno online.
+            Web trgovine za bh. prodavnice, povezane sa OLX-om i vašim
+            dobavljačima.
           </p>
         </div>
 

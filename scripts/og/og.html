@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="bs">
+<head>
+  <meta charset="utf-8" />
+  <!-- Šablon za OG slike 1200x630. Tekst ide kroz ?eyebrow=...&title=..., snima se gstack browseom. -->
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@600&f[]=satoshi@500,700&display=swap" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; background: #0b0d10; }
+    #og {
+      position: relative; width: 1200px; height: 630px; overflow: hidden;
+      background: radial-gradient(640px 420px at 80% 6%, rgba(18, 135, 242, 0.34), transparent 70%), #0d0f12;
+      color: #fff; font-family: Satoshi, sans-serif;
+    }
+    #logo { position: absolute; left: 76px; top: 66px; height: 44px; }
+    #eyebrow {
+      position: absolute; left: 76px; top: 352px; font-weight: 700; font-size: 22px;
+      letter-spacing: 0.14em; text-transform: uppercase; color: #57b4ff;
+    }
+    #title {
+      position: absolute; left: 76px; right: 120px; top: 388px; margin: 0;
+      font-family: 'Clash Display', sans-serif; font-weight: 600; font-size: 64px; line-height: 1.12;
+    }
+    #domain { position: absolute; left: 76px; bottom: 60px; font-size: 24px; color: rgba(255, 255, 255, 0.5); }
+  </style>
+</head>
+<body>
+  <div id="og">
+    <img id="logo" src="../../public/webstudioh-logo.webp" alt="" />
+    <div id="eyebrow"></div>
+    <h1 id="title"></h1>
+    <div id="domain">webstudioh.ba</div>
+  </div>
+  <script>
+    const q = new URLSearchParams(location.search)
+    document.getElementById('eyebrow').textContent = q.get('eyebrow') || ''
+    document.getElementById('title').textContent = q.get('title') || ''
+  </script>
+</body>
+</html>

@@ -4,11 +4,11 @@ import PageHero from '../components/PageHero.jsx'
 import { contact } from '../data.js'
 
 const services = [
-  'Web stranica',
   'Web trgovina (WooCommerce)',
-  'WordPress razvoj',
-  'SEO i optimizacija',
+  'Povezivanje sa OLX-om i dobavljačima',
   'Održavanje',
+  'SEO i brzina',
+  'Prezentacijska stranica',
   'Nešto drugo',
 ]
 
@@ -25,7 +25,7 @@ export default function ContactPage() {
   const update = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }))
 
   const mailtoFallback = () => {
-    const subject = `Novi upit — ${form.service}`
+    const subject = `Novi upit: ${form.service}`
     const body = [`Ime: ${form.name}`, `Email: ${form.email}`, `Usluga: ${form.service}`, '', form.message].join('\n')
     window.location.href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
@@ -42,7 +42,7 @@ export default function ContactPage() {
       if (!res.ok) throw new Error('bad status')
       setStatus('sent')
     } catch {
-      // Off-Netlify (e.g. local) — fall back to the email client so nothing is lost.
+      // Van Netlifyja (npr. lokalno) prelazi na mail klijent, da se ništa ne izgubi.
       mailtoFallback()
       setStatus('idle')
     }
@@ -53,12 +53,12 @@ export default function ContactPage() {
       <Seo
         title="Kontakt"
         path="/kontakt"
-        description="Započnimo vaš projekat — pišite nam na WhatsApp ili email. Javljamo se u roku od 24 sata."
+        description="Započnimo vaš projekat. Pišite nam na WhatsApp ili email, javljamo se u roku od 24 sata."
       />
       <PageHero
         eyebrow="Kontakt"
         title="Započnimo vaš projekat."
-        subtitle="Recite nam nešto o svom poslovanju i ciljevima — javljamo se u roku od 24 sata s prijedlogom sljedećih koraka."
+        subtitle="Recite nam nešto o svom poslovanju i ciljevima, a mi se javljamo u roku od 24 sata s prijedlogom sljedećih koraka."
       />
 
       <section className="contact">
@@ -66,8 +66,8 @@ export default function ContactPage() {
           <aside className="contact__aside" data-reveal>
             <h2 className="contact__aside-title">Razgovarajmo</h2>
             <p className="contact__aside-text">
-              Bilo da vam treba nova web stranica, online trgovina ili osvježenje
-              postojećeg sajta — tu smo da pomognemo.
+              Bilo da vam treba nova web trgovina, stranica ili osvježenje
+              postojećeg sajta, tu smo da pomognemo.
             </p>
 
             <div className="contact__actions">
@@ -78,14 +78,6 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
               >
                 Piši nam na WhatsApp
-              </a>
-              <a
-                className="btn btn--md btn--ghost"
-                href={contact.booking}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Zakaži poziv →
               </a>
             </div>
 
@@ -104,13 +96,6 @@ export default function ContactPage() {
             <div className="contact__detail">
               <span className="contact__detail-label">Vrijeme odgovora</span>
               <span className="contact__detail-value">U roku od 24 sata</span>
-            </div>
-            <div className="contact__detail">
-              <span className="contact__detail-label">Društvene mreže</span>
-              <span className="contact__socials">
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
-              </span>
             </div>
           </aside>
 

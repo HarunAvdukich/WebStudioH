@@ -11,7 +11,7 @@ export default function BlogPage() {
       <Seo
         title="Savjeti"
         path="/savjeti"
-        description="Savjeti i vodiči o web stranicama, online trgovinama, SEO-u i cijenama — jednostavnim jezikom."
+        description="Savjeti i vodiči o web stranicama, online trgovinama, SEO-u i cijenama, jednostavnim jezikom."
       />
       <PageHero
         eyebrow="Savjeti"

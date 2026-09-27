@@ -1,40 +1,40 @@
-// Sadržaj (na bosanskom) — preuzet iz Claude Design predloška (Direction A).
+// Sadržaj stranice (bosanski). Brojke imaju izvor u komentaru; prije objave se mjere ponovo.
 
 export const services = [
   {
     n: '01',
-    t: 'Prilagođeni dizajn web stranica',
-    d: 'Web stranice po mjeri, fokusirane na konverziju, dizajnirane oko vašeg brenda i klijenata koje želite privući.',
+    t: 'WooCommerce web trgovine',
+    d: 'Trgovine sa katalogom, filterima i korpom koje rade na telefonu. Pouzeće i uplata na račun, a kartice uz ugovor sa procesorom plaćanja.',
     delay: 0,
   },
   {
     n: '02',
-    t: 'WordPress razvoj',
-    d: 'Fleksibilne WordPress stranice, jednostavne za upravljanje, koje možete sami ažurirati — bez programera.',
+    t: 'Povezivanje sa bh. tržištem',
+    d: 'Artikli se sami objavljuju i ažuriraju na OLX-u, katalog ide u feed za Ananas, a cijene i zalihe se preuzimaju od dobavljača. Po potrebi i B2B portal za veleprodaju.',
     delay: 70,
   },
   {
     n: '03',
-    t: 'WooCommerce web trgovine',
-    d: 'Brze i sigurne online trgovine koje prekrasno prikazuju proizvode i pretvaraju posjetioce u kupce.',
+    t: 'Održavanje, hosting i nadzor',
+    d: 'Ažuriranja, sigurnosne kopije, keš i nadzor maila i narudžbi, da trgovina radi i kad niko ne gleda.',
     delay: 140,
   },
   {
     n: '04',
-    t: 'SEO i optimizacija brzine',
-    d: 'Tehnički SEO i podešavanje performansi kako biste bili viši u pretrazi, brže se učitavali i zadržali posjetioce.',
+    t: 'SEO i brzina',
+    d: 'Tehnički SEO, opisi kategorija i podešavanje brzine, da vas kupci nađu na Googleu i ne odustanu dok se stranica učitava.',
     delay: 0,
   },
   {
     n: '05',
-    t: 'Održavanje web stranica',
-    d: 'Redovna ažuriranja, sigurnosne kopije i podrška koji vašu stranicu čuvaju sigurnom, aktuelnom i stabilnom.',
+    t: 'AI alati',
+    d: 'Urednik u administraciji kojem kažete šta da promijeni i opisi proizvoda pisani za vaš katalog.',
     delay: 70,
   },
   {
     n: '06',
-    t: 'Hosting i postavljanje domene',
-    d: 'Preuzimamo domene, hosting i email tako da sve jednostavno radi — od dana lansiranja nadalje.',
+    t: 'Prezentacijske stranice',
+    d: 'Stranice za firme i udruženja, na WordPressu ili po mjeri, koje sami uređujete.',
     delay: 140,
   },
 ]
@@ -49,7 +49,7 @@ export const process = [
   {
     n: '02',
     t: 'Dizajn',
-    d: 'Kreiramo premium interfejs u skladu s brendom — vaše povratne informacije oblikuju svaki ekran.',
+    d: 'Kreiramo interfejs u skladu s brendom, a vaše povratne informacije oblikuju svaki ekran.',
     delay: 90,
   },
   {
@@ -61,7 +61,7 @@ export const process = [
   {
     n: '04',
     t: 'Lansiranje',
-    d: 'Testiramo, optimiziramo i puštamo u rad — te ostajemo uz vas kako rastete.',
+    d: 'Testiramo, optimiziramo i puštamo u rad, a zatim ostajemo uz vas dok rastete.',
     delay: 270,
   },
 ]
@@ -70,19 +70,19 @@ export const whyUs = [
   {
     n: '01',
     t: 'Čist, promišljen dizajn',
-    d: 'Svaki element zaslužuje svoje mjesto. Bez nereda, bez šablona — samo jasnoća koja odmah gradi povjerenje.',
+    d: 'Svaki element zaslužuje svoje mjesto. Bez nereda, bez šablona, samo jasnoća koja odmah gradi povjerenje.',
     delay: 0,
   },
   {
     n: '02',
     t: 'Performanse po standardu',
-    d: 'Optimiziran kod i resursi kako bi se vaše stranice brzo učitavale i vodile posjetioce ka akciji.',
+    d: 'Keš, optimizirane slike i čist kod. Početna mrt.ba odgovara za 52 ms.',
     delay: 80,
   },
   {
     n: '03',
     t: 'Jasna komunikacija',
-    d: 'Jedna kontakt osoba, iskreni rokovi i nula žargona — od početka do lansiranja i nakon toga.',
+    d: 'Jedna kontakt osoba, iskreni rokovi i nula žargona, od početka do lansiranja i nakon toga.',
     delay: 160,
   },
   {
@@ -93,7 +93,41 @@ export const whyUs = [
   },
 ]
 
+// Izvor: mrt.ba produkcija (wp post list, mrolx_listings) i Lighthouse 12 na računaru,
+// medijan tri mjerenja, 27. 9. 2026: 7.460 artikala, 4.373 aktivna OLX oglasa,
+// odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh 98 (jedno mjerenje).
+export const homeStats = [
+  { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba' },
+  { num: '4.300', sfx: '+', label: 'OLX oglasa, sinhronizovano' },
+  { num: '52', sfx: ' ms', label: 'Odziv servera, mrt.ba' },
+]
+
+export const aboutStats = [
+  ...homeStats,
+  { num: '98', sfx: '', label: 'PageSpeed ove stranice, računar' },
+]
+
 export const projects = [
+  {
+    slug: 'mrt',
+    name: 'mrt.ba',
+    tag: 'Alati i oprema · WooCommerce',
+    url: 'https://mrt.ba',
+    image: '/project-mrt.webp',
+    variant: 'shop',
+    summary: 'Web trgovina alata, mašina i opreme sa 7.400+ artikala, povezana sa OLX-om.',
+    overview:
+      'mrt.ba je trgovina alata, mašina, vrtne i poljoprivredne opreme. Izgradili smo WooCommerce trgovinu koja preuzima katalog od više dobavljača, sama objavljuje i ažurira artikle na OLX-u i ima feed za Ananas. Veleprodajni kupci imaju svoj B2B portal, a vlasnik sadržaj mijenja preko AI urednika u administraciji.',
+    highlights: [
+      '7.400+ artikala u 278 kategorija',
+      'Automatska sinhronizacija sa OLX-om, 4.300+ aktivnih oglasa',
+      'Uvoz kataloga od više dobavljača',
+      'B2B portal za veleprodaju',
+      'Feed za Ananas',
+      'AI urednik u administraciji',
+      'Odziv servera 52 ms, PageSpeed 87 na računaru',
+    ],
+  },
   {
     slug: 'smarttime',
     name: 'SmartTime',
@@ -103,28 +137,27 @@ export const projects = [
     variant: 'shop',
     summary: 'Web trgovina satova s prodajom, graviranjem i servisom.',
     overview:
-      'SmartTime je online trgovina satova za bh. tržište. Izgradili smo brzu WooCommerce trgovinu s preglednim katalogom, filterima i sigurnom naplatom, te posebnim stranicama za usluge graviranja i popravke — sve jednostavno za samostalno upravljanje.',
+      'SmartTime je online trgovina satova za bh. tržište. Izgradili smo brzu WooCommerce trgovinu s preglednim katalogom, filterima i sigurnom naplatom, te posebnim stranicama za usluge graviranja i popravke, a sve se jednostavno uređuje samostalno.',
+    // Izvor: smarttime.ba, 27. 9. 2026: 17 brendova na početnoj, 527 artikala (Store API X-WP-Total).
     highlights: [
-      '16 brendova · 500+ modela',
+      '15+ brendova · 500+ modela',
       'Graviranje i servis satova',
       'Sigurna WooCommerce naplata',
-      'Mobilno-orijentisan dizajn',
+      'PageSpeed 89 na računaru',
     ],
   },
   {
-    slug: 'motohub',
-    name: 'MotoHub',
-    tag: 'Moto oprema · WooCommerce',
-    // url: (sajt još nije objavljen)
+    slug: 'urez',
+    name: 'urez.ba',
+    tag: 'Vlastita trgovina · u izradi',
     variant: 'shop',
-    summary: 'Online trgovina moto opreme, dijelova i dodataka.',
+    summary: 'Trgovina personalizovanih graviranih proizvoda.',
     overview:
-      'MotoHub je web trgovina specijalizovana za moto opremu i dijelove. Postavili smo WooCommerce trgovinu s jasnim kategorijama, filterima i sigurnom naplatom, spremnu za rast asortimana i sezonske akcije.',
+      'urez.ba je naša vlastita trgovina personalizovanih graviranih proizvoda, trenutno u izradi.',
     highlights: [
-      'Kompletna moto oprema',
-      'WooCommerce katalog i naplata',
-      'Filteri po kategorijama',
-      'Spremno za rast asortimana',
+      'Personalizovani gravirani proizvodi',
+      'Vlastita trgovina WebStudioH',
+      'Uskoro online',
     ],
   },
   {
@@ -148,67 +181,78 @@ export const projects = [
 
 export const pricing = [
   {
-    name: 'Osnovna web stranica',
-    blurb: 'Za male firme kojima treba upečatljiva i kredibilna prisutnost.',
-    priceLabel: 'Počevši od',
-    price: 'Ponuda po mjeri',
-    features: [
-      'Do 5 prilagođenih stranica',
-      'Responzivan, mobilno-orijentisan dizajn',
-      'Osnovno SEO postavljanje',
-      'Kontakt forma + postavljanje hostinga',
-    ],
-    cta: 'Započni projekat',
-    featured: false,
-  },
-  {
-    name: 'Poslovna web stranica',
-    blurb: 'Za brendove u rastu kojima treba konverzija, rangiranje i skaliranje.',
-    priceLabel: 'Počevši od',
-    price: 'Ponuda po mjeri',
-    features: [
-      'Sve iz Osnovne, plus:',
-      'Do 12 stranica + WordPress CMS',
-      'Napredni SEO i optimizacija brzine',
-      'Postavljanje bloga + prioritetna podrška',
-    ],
-    cta: 'Započni projekat',
-    featured: false,
-  },
-  {
     name: 'Web trgovina',
-    blurb: 'Za firme spremne da samouvjereno prodaju online.',
-    priceLabel: 'Ponuda po mjeri',
-    price: 'Razgovarajmo',
+    blurb: 'Za prodavnice koje žele prodavati online, ozbiljno i bez komplikacija.',
+    priceLabel: 'Cijena',
+    price: 'Po dogovoru',
     features: [
       'Kompletna WooCommerce trgovina',
-      'Sigurna naplata i plaćanja',
-      'Alati za zalihe i dostavu',
-      'Plan redovnog održavanja',
+      'Katalog, filteri i korpa',
+      'Pouzeće i uplata na račun',
+      '30 dana podrške nakon lansiranja',
     ],
     cta: 'Zatraži ponudu',
     featured: true,
-    badge: 'Najpopularnije',
+    badge: 'Preporučeno',
+  },
+  {
+    name: 'Trgovina + bh. integracije',
+    blurb: 'Za prodavnice koje prodaju i na OLX-u i rade sa više dobavljača.',
+    priceLabel: 'Cijena',
+    price: 'Po dogovoru',
+    features: [
+      'Sve iz paketa Web trgovina, plus:',
+      'Automatska sinhronizacija sa OLX-om',
+      'Feed za Ananas',
+      'Uvoz kataloga od dobavljača',
+      'B2B portal za veleprodaju, po potrebi',
+    ],
+    cta: 'Zatraži ponudu',
+    featured: false,
+  },
+  {
+    name: 'Prezentacijska stranica',
+    blurb: 'Za firme i udruženja kojima treba uredna i brza stranica.',
+    priceLabel: 'Cijena',
+    price: 'Po dogovoru',
+    features: [
+      'Do 5 stranica',
+      'Responzivan dizajn, mobilno prvo',
+      'Kontakt forma',
+      'Osnovni SEO',
+    ],
+    cta: 'Započni projekat',
+    featured: false,
   },
 ]
 
+export const maintenance = {
+  eyebrow: 'Poslije lansiranja',
+  title: 'Mjesečno održavanje, po dogovoru.',
+  items: [
+    'Ažuriranja WordPressa i dodataka',
+    'Redovne sigurnosne kopije',
+    'Keš i praćenje brzine',
+    'Nadzor maila i narudžbi',
+    'Manje izmjene sadržaja',
+    'Pomoć kad nešto zapne',
+  ],
+}
+
 export const valueProps = [
-  'Prilagođeni dizajn',
-  'Brzo učitavanje',
-  'SEO spremno',
+  'WooCommerce',
+  'OLX sinhronizacija',
+  'Uvoz od dobavljača',
   'Mobilno prvo',
-  'Lako za upravljanje',
+  'Održavanje',
 ]
 
-// TODO: zamijeni broj telefona pravim (WhatsApp + poziv koriste isto).
 export const contact = {
   email: 'info@webstudioh.ba',
   phoneDisplay: '060 3000 751',
   phoneHref: 'tel:+387603000751',
   whatsapp: 'https://wa.me/387603000751',
-  whatsappText: 'Zdravo! Zanima me izrada web stranice.',
-  // TODO: zamijeni pravim Cal.com / Calendly linkom za zakazivanje poziva.
-  booking: 'https://cal.com/webstudioh',
+  whatsappText: 'Zdravo! Zanima me izrada web trgovine.',
 }
 
 export const navLinks = [
@@ -220,48 +264,61 @@ export const navLinks = [
   { label: 'Kontakt', to: '/kontakt' },
 ]
 
+// Recenzija ide ovdje tek kad je klijent potvrdi: tačno potvrđen tekst i ime,
+// sa `approved: true`. Oblik: { quote, name, role, initials, project, approved }.
+// Potvrđene 27. 9. 2026. (javio vlasnik WebStudioH); potpis je naziv firme dok
+// klijent ne kaže drugačije.
 export const testimonials = [
   {
     quote:
-      'Naša web trgovina izgleda profesionalno i radi besprijekorno. Kupci lako pronađu i naruče satove — prodaja je vidljivo porasla.',
-    name: 'Rahmedin I.',
-    role: 'Vlasnik, SmartTime',
-    initials: 'RI',
+      'Trebala nam je trgovina koja može nositi hiljade artikala i sama ih držati ažurnim na OLX-u. Danas imamo preko 7.400 artikala, oglasi se sami ažuriraju, a sadržaj mijenjamo i sami iz administracije.',
+    name: 'mrt.ba',
+    role: 'Trgovina alata i opreme',
+    initials: 'MR',
+    project: 'mrt',
+    approved: true,
+  },
+  {
+    quote:
+      'Web trgovina izgleda profesionalno, a kupci na telefonu lako pronađu i naruče sat. Uz katalog od preko 500 modela imamo i posebne stranice za graviranje i servis.',
+    name: 'SmartTime',
+    role: 'Trgovina satova',
+    initials: 'ST',
     project: 'smarttime',
+    approved: true,
   },
   {
     quote:
-      'Brza, uredna i laka za korištenje trgovina. Konačno imamo online prodaju moto opreme na nivou kakav smo željeli.',
-    name: 'Mirza B.',
-    role: 'Vlasnik, MotoHub',
-    initials: 'MB',
-    project: 'motohub',
-  },
-  {
-    quote:
-      'Dobili smo modernu i preglednu stranicu koja odlično predstavlja naše udruženje. Komunikacija i podrška bili su odlični.',
-    name: 'Eldar Z.',
-    role: 'Predsjednik, UPTOS Breza',
-    initials: 'EZ',
+      'Dobili smo modernu i preglednu stranicu koja predstavlja rad udruženja, takmičenja i škole skijanja na jednom mjestu. Komunikacija tokom izrade je bila jednostavna.',
+    name: 'UPTOS Breza',
+    role: 'Udruženje pedagoga',
+    initials: 'UB',
     project: 'uptos',
+    approved: true,
   },
 ]
+
+export function onlyApproved(list) {
+  return list.filter((t) => t.approved === true)
+}
+
+export const publishedTestimonials = onlyApproved(testimonials)
 
 export const values = [
   {
     n: '01',
     t: 'Kvalitet bez kompromisa',
-    d: 'Svaki projekt tretiramo kao vlastiti — do posljednjeg detalja, bez prečica.',
+    d: 'Svaki projekt tretiramo kao vlastiti, do posljednjeg detalja i bez prečica.',
   },
   {
     n: '02',
     t: 'Transparentnost',
-    d: 'Jasne cijene, iskreni rokovi i redovne informacije o napretku — bez iznenađenja.',
+    d: 'Jasne ponude, iskreni rokovi i redovne informacije o napretku, bez iznenađenja.',
   },
   {
     n: '03',
     t: 'Partnerstvo',
-    d: 'Ne isporučimo pa nestanemo — ostajemo uz vas i nakon lansiranja, dok rastete.',
+    d: 'Ne isporučimo pa nestanemo. Ostajemo uz vas i nakon lansiranja, dok rastete.',
   },
   {
     n: '04',
@@ -273,11 +330,15 @@ export const values = [
 export const faqServices = [
   {
     q: 'Koliko traje izrada web stranice?',
-    a: 'Većina projekata je gotova za 3–6 sedmica, zavisno od obima i broja stranica. Tačan rok dogovaramo nakon uvodnog razgovora.',
+    a: 'Većina projekata je gotova za 3 do 6 sedmica, zavisno od obima i broja stranica. Tačan rok dogovaramo nakon uvodnog razgovora.',
+  },
+  {
+    q: 'Možete li povezati trgovinu sa OLX-om?',
+    a: 'Da. Artikli se sami objavljuju na OLX-u i ažuriraju kad promijenite cijenu ili zalihu. Na mrt.ba tako radi preko 4.300 oglasa.',
   },
   {
     q: 'Mogu li sam ažurirati sadržaj?',
-    a: 'Da. Gradimo na WordPress-u pa lako mijenjate tekst, slike i objave — bez programera. Uz predaju dobijate i kratku obuku.',
+    a: 'Da. Gradimo na WordPress-u pa lako mijenjate tekst, slike i objave, bez programera. Uz predaju dobijate i kratku obuku.',
   },
   {
     q: 'Radite li i redizajn postojećih stranica?',
@@ -285,18 +346,18 @@ export const faqServices = [
   },
   {
     q: 'Da li je stranica prilagođena mobitelu?',
-    a: 'Svaka stranica je mobilno-orijentisana i testirana na svim veličinama ekrana — od telefona do velikih monitora.',
+    a: 'Svaka stranica je mobilno orijentisana i testirana na svim veličinama ekrana, od telefona do velikih monitora.',
   },
   {
     q: 'Nudite li hosting i domenu?',
-    a: 'Da — možemo preuzeti domenu, hosting i poslovni email, tako da sve radi bez brige s vaše strane.',
+    a: 'Da. Možemo preuzeti domenu, hosting i poslovni email, tako da sve radi bez brige s vaše strane.',
   },
 ]
 
 export const faqPricing = [
   {
     q: 'Zašto nema fiksnih cijena?',
-    a: 'Svaki projekt je različit. Cijenu formiramo prema obimu, funkcionalnostima i ciljevima — uvijek transparentno i bez skrivenih troškova.',
+    a: 'Svaki projekt je različit. Cijenu formiramo prema obimu, funkcionalnostima i ciljevima, uvijek transparentno i bez skrivenih troškova.',
   },
   {
     q: 'Kako izgleda plaćanje?',
@@ -308,7 +369,7 @@ export const faqPricing = [
   },
   {
     q: 'Da li dobijam vlasništvo nad stranicom?',
-    a: 'Da — stranica i svi materijali su u potpunosti vaši nakon završetka projekta.',
+    a: 'Da. Stranica i svi materijali su u potpunosti vaši nakon završetka projekta.',
   },
 ]
 
@@ -323,7 +384,7 @@ export function formatDate(iso) {
   return `${d}. ${MJESECI[m - 1]} ${y}.`
 }
 
-// Blog posts live as markdown in src/content/posts/ — loaded via src/posts.js.
+// Blog posts live as markdown in src/content/posts/, loaded via src/posts.js.
 
 export const includes = [
   'Prilagođen dizajn po mjeri',

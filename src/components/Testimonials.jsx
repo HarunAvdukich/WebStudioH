@@ -1,9 +1,11 @@
-import { testimonials } from '../data.js'
+import { publishedTestimonials } from '../data.js'
 
 export default function Testimonials({
   eyebrow = 'Recenzije',
   title = 'Ono što kažu naši klijenti.',
 }) {
+  if (publishedTestimonials.length === 0) return null
+
   return (
     <section className="tst">
       <div className="container">
@@ -13,7 +15,7 @@ export default function Testimonials({
         </div>
 
         <div className="grid-3">
-          {testimonials.map((t, i) => (
+          {publishedTestimonials.map((t, i) => (
             <figure
               key={t.name}
               className="tst-card"

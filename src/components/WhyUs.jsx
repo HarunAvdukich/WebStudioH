@@ -1,10 +1,4 @@
-import { whyUs } from '../data.js'
-
-const stats = [
-  { num: '98', sfx: '+', label: 'Prosj. PageSpeed' },
-  { num: '40', sfx: '+', label: 'Lansiranih stranica' },
-  { num: '100', sfx: '%', label: 'Izrađeno po mjeri' },
-]
+import { whyUs, homeStats } from '../data.js'
 
 export default function WhyUs() {
   return (
@@ -12,15 +6,14 @@ export default function WhyUs() {
       <div className="why__aside" data-reveal>
         <span className="eyebrow">Zašto WebStudioH</span>
         <h2 className="why__title">
-          Napravljeno da vaše poslovanje izgleda ozbiljno — i bude izabrano.
+          Napravljeno da vaše poslovanje izgleda ozbiljno i bude izabrano.
         </h2>
         <p className="why__lede">
-          Spajamo čist, promišljen dizajn sa stvarnim performansama, tako da vaša
-          stranica ne izgleda samo premium — već gradi povjerenje i pretvara
-          posjetioce u upite.
+          Spajamo čist dizajn sa stvarnim performansama, tako da vaša trgovina ne
+          izgleda samo dobro, nego gradi povjerenje i prodaje.
         </p>
         <div className="stats">
-          {stats.map((s) => (
+          {homeStats.map((s) => (
             <div key={s.label}>
               <div className="stat__num">
                 {s.num}

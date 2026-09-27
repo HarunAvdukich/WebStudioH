@@ -1,5 +1,5 @@
 /* ============================================================
-   WebStudioH — Premium Landing (Direction A)
+   WebStudioH, Premium Landing (Direction A)
    Implemented from the Claude Design handoff. Values mirror the
    source prototype; hover + responsive behavior added for a real site.
    ============================================================ */
@@ -333,6 +333,12 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   margin-left: -280px;
   transform: translate3d(calc(var(--mx, 0) * 10px), calc(var(--my, 0) * 10px), 0)
     rotateY(calc(var(--mx, 0) * 5deg)) rotateX(calc(var(--my, 0) * -5deg));
+}
+.stage-main__shot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
 }
 .stage-shop {
   left: 2%;
