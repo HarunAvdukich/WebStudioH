@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Seo from '../components/Seo.jsx'
 import PageHero from '../components/PageHero.jsx'
+import Icon, { WhatsAppIcon } from '../components/Icon.jsx'
 import { contact } from '../data.js'
 
 const services = [
@@ -48,6 +49,8 @@ export default function ContactPage() {
     }
   }
 
+  const wa = `${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappText)}`
+
   return (
     <>
       <Seo
@@ -56,107 +59,104 @@ export default function ContactPage() {
         description="Započnimo vaš projekat. Pišite nam na WhatsApp ili email, javljamo se u roku od 24 sata."
       />
       <PageHero
-        eyebrow="Kontakt"
         title="Započnimo vaš projekat."
         subtitle="Recite nam nešto o svom poslovanju i ciljevima, a mi se javljamo u roku od 24 sata s prijedlogom sljedećih koraka."
       />
 
-      <section className="contact">
-        <div className="container contact__grid">
-          <aside className="contact__aside" data-reveal>
-            <h2 className="contact__aside-title">Razgovarajmo</h2>
-            <p className="contact__aside-text">
+      <section className="band band--shelf">
+        <div className="container order__grid">
+          <aside className="order__aside">
+            <a className="btn btn--red" href={wa} target="_blank" rel="noopener noreferrer">
+              <WhatsAppIcon size={26} />
+              Piši nam na WhatsApp
+            </a>
+            <dl className="decl">
+              <div className="decl__row">
+                <dt>Telefon</dt>
+                <dd>
+                  <a href={contact.phoneHref}>{contact.phoneDisplay}</a>
+                </dd>
+              </div>
+              <div className="decl__row">
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${contact.email}`}>{contact.email}</a>
+                </dd>
+              </div>
+              <div className="decl__row">
+                <dt>Vrijeme odgovora</dt>
+                <dd>do 24 sata</dd>
+              </div>
+            </dl>
+            <p className="lede">
               Bilo da vam treba nova web trgovina, stranica ili osvježenje
               postojećeg sajta, tu smo da pomognemo.
             </p>
-
-            <div className="contact__actions">
-              <a
-                className="btn btn--md btn--wa"
-                href={`${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappText)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Piši nam na WhatsApp
-              </a>
-            </div>
-
-            <div className="contact__detail">
-              <span className="contact__detail-label">Email</span>
-              <a href={`mailto:${contact.email}`} className="contact__detail-value">
-                {contact.email}
-              </a>
-            </div>
-            <div className="contact__detail">
-              <span className="contact__detail-label">Telefon</span>
-              <a href={contact.phoneHref} className="contact__detail-value">
-                {contact.phoneDisplay}
-              </a>
-            </div>
-            <div className="contact__detail">
-              <span className="contact__detail-label">Vrijeme odgovora</span>
-              <span className="contact__detail-value">U roku od 24 sata</span>
-            </div>
           </aside>
 
-          {status === 'sent' ? (
-            <div className="contact__done" data-reveal>
-              <div className="contact__done-check">
-                <i />
-              </div>
-              <h2>Hvala na poruci!</h2>
-              <p>Primili smo vaš upit i javljamo se u roku od 24 sata.</p>
+          <div className="order-form">
+            <div className="order-form__head">
+              <h2>Narudžbenica</h2>
+              <span className="mono" style={{ fontSize: 13, fontWeight: 600 }}>
+                Upit bez obaveze
+              </span>
             </div>
-          ) : (
-            <form
-              className="contact__form"
-              data-reveal
-              data-reveal-delay="90"
-              name={FORM_NAME}
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={onSubmit}
-            >
-              <input type="hidden" name="form-name" value={FORM_NAME} />
-              <p className="contact__hp">
-                <label>
-                  Ne popunjavati: <input name="bot-field" tabIndex={-1} autoComplete="off" />
-                </label>
-              </p>
 
-              <div className="field">
-                <label htmlFor="name">Ime i prezime</label>
-                <input id="name" name="name" type="text" required placeholder="Vaše ime" value={form.name} onChange={update('name')} />
+            {status === 'sent' ? (
+              <div className="order-done" role="status">
+                <h2>Hvala na poruci!</h2>
+                <p className="lede">Primili smo vaš upit i javljamo se u roku od 24 sata.</p>
               </div>
+            ) : (
+              <form
+                className="order-form__body"
+                name={FORM_NAME}
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={onSubmit}
+              >
+                <input type="hidden" name="form-name" value={FORM_NAME} />
+                <p className="hp">
+                  <label>
+                    Ne popunjavati: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                  </label>
+                </p>
 
-              <div className="field">
-                <label htmlFor="email">Email</label>
-                <input id="email" name="email" type="email" required placeholder="vas@email.com" value={form.email} onChange={update('email')} />
-              </div>
+                <div className="field">
+                  <label htmlFor="name">Ime i prezime</label>
+                  <input id="name" name="name" type="text" required autoComplete="name" placeholder="Vaše ime" value={form.name} onChange={update('name')} />
+                </div>
 
-              <div className="field">
-                <label htmlFor="service">Usluga</label>
-                <select id="service" name="service" value={form.service} onChange={update('service')}>
-                  {services.map((s) => (
-                    <option key={s} value={s}>
-                      {s}
-                    </option>
-                  ))}
-                </select>
-              </div>
+                <div className="field">
+                  <label htmlFor="email">Email</label>
+                  <input id="email" name="email" type="email" required autoComplete="email" placeholder="vas@email.com" value={form.email} onChange={update('email')} />
+                </div>
 
-              <div className="field">
-                <label htmlFor="message">Poruka</label>
-                <textarea id="message" name="message" rows={5} required placeholder="Ukratko o vašem projektu..." value={form.message} onChange={update('message')} />
-              </div>
+                <div className="field">
+                  <label htmlFor="service">Usluga</label>
+                  <select id="service" name="service" value={form.service} onChange={update('service')}>
+                    {services.map((s) => (
+                      <option key={s} value={s}>
+                        {s}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
-              <button type="submit" className="btn btn--md btn--primary contact__submit" disabled={status === 'sending'}>
-                {status === 'sending' ? 'Šaljem…' : 'Pošalji upit →'}
-              </button>
-              <p className="contact__note">Odgovaramo u roku od 24 sata. Bez spama.</p>
-            </form>
-          )}
+                <div className="field">
+                  <label htmlFor="message">Poruka</label>
+                  <textarea id="message" name="message" rows={5} required placeholder="Šta prodajete, gdje sada prodajete i šta vam treba." value={form.message} onChange={update('message')} />
+                </div>
+
+                <button type="submit" className="btn btn--red order-form__submit" disabled={status === 'sending'}>
+                  {status === 'sending' ? 'Šaljem…' : 'Pošalji upit'}
+                  {status !== 'sending' && <Icon name="arrow" className="icon--arrow" />}
+                </button>
+                <p className="order-form__note">Odgovaramo u roku od 24 sata. Bez spama.</p>
+              </form>
+            )}
+          </div>
         </div>
       </section>
     </>

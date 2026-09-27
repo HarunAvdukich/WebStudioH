@@ -1,16 +1,11 @@
 import { Link } from 'react-router-dom'
-import logo from '/webstudioh-logo.webp'
 
-export default function Brand({ compact = false }) {
+// Logotip kao dvije naljepnice: crna sa imenom, crvena sa slovom H.
+export default function Brand({ onDark = false }) {
   return (
-    <Link className="brand" to="/" aria-label="WebStudioH, početna">
-      <img
-        className={`brand__logo${compact ? ' brand__logo--sm' : ''}`}
-        src={logo}
-        alt="WebStudioH"
-        width={900}
-        height={185}
-      />
+    <Link className={`brand${onDark ? ' brand--on-dark' : ''}`} to="/" aria-label="WebStudioH, početna">
+      <span className="brand__word" aria-hidden="true">WebStudio</span>
+      <span className="brand__h" aria-hidden="true">H</span>
     </Link>
   )
 }

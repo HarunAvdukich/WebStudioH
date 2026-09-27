@@ -11,15 +11,15 @@ export default function PrivacyPage() {
         description="Kako WebStudioH prikuplja, koristi i štiti vaše lične podatke."
       />
       <PageHero
-        eyebrow="Pravno"
         title="Politika privatnosti"
         subtitle="Kako prikupljamo, koristimo i štitimo vaše lične podatke."
       />
 
-      <article className="post">
-        <div className="container post__wrap">
-          <div className="post__meta">Posljednje ažuriranje: 27. septembar 2026.</div>
-          <div className="post__body">
+      <section className="band band--shelf">
+        <div className="container">
+        <article className="article">
+          <p className="article__meta">Posljednje ažuriranje: 27. septembar 2026.</p>
+          <div className="prose">
             <p>
               Vaša privatnost nam je važna. Ova politika objašnjava koje podatke
               prikupljamo putem web stranice <strong>webstudioh.ba</strong>, u koju
@@ -89,8 +89,9 @@ export default function PrivacyPage() {
               <a href={`mailto:${contact.email}`}>{contact.email}</a>.
             </p>
           </div>
+        </article>
         </div>
-      </article>
+      </section>
     </>
   )
 }

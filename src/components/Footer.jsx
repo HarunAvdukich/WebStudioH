@@ -32,47 +32,45 @@ const columns = [
 
 export default function Footer() {
   return (
-    <footer className="footer">
-      <div className="container footer__top">
-        <div style={{ maxWidth: 300 }}>
-          <Brand compact />
-          <p className="footer__blurb">
-            Web trgovine za bh. prodavnice, povezane sa OLX-om i vašim
-            dobavljačima.
-          </p>
+    <footer className="site-foot">
+      <div className="container">
+        <div className="site-foot__top">
+          <div>
+            <Brand onDark />
+            <p className="site-foot__blurb">
+              Web trgovine za bh. prodavnice, povezane sa OLX-om i vašim
+              dobavljačima.
+            </p>
+          </div>
+
+          <div className="site-foot__cols">
+            {columns.map((col) => (
+              <div key={col.title} className="site-foot__col">
+                <h2>{col.title}</h2>
+                {col.links.map((l) =>
+                  l.to ? (
+                    <Link key={l.label} to={l.to}>
+                      {l.label}
+                    </Link>
+                  ) : (
+                    <a
+                      key={l.label}
+                      href={l.href}
+                      {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {l.label}
+                    </a>
+                  ),
+                )}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="footer__cols">
-          {columns.map((col) => (
-            <div key={col.title} className="footer__col">
-              <span className="footer__col-title">{col.title}</span>
-              {col.links.map((l) =>
-                l.to ? (
-                  <Link key={l.label} to={l.to}>
-                    {l.label}
-                  </Link>
-                ) : (
-                  <a
-                    key={l.label}
-                    href={l.href}
-                    {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {l.label}
-                  </a>
-                ),
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="container footer__bar">
-        <span>© 2026 WebStudioH. Sva prava zadržana.</span>
-        <span className="footer__bar-right">
+        <div className="site-foot__bar">
+          <span>© 2026 WebStudioH</span>
           <Link to="/politika-privatnosti">Politika privatnosti</Link>
-          <span className="footer__bar-sep">·</span>
-          Dizajnirano i izrađeno s pažnjom.
-        </span>
+        </div>
       </div>
     </footer>
   )

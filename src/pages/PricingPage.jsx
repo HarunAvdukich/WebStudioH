@@ -12,17 +12,25 @@ export default function PricingPage() {
       <Seo
         title="Cijene"
         path="/cijene"
-        description="Paketi za web trgovine i prezentacijske stranice, transparentno i bez skrivenih troškova."
+        description="Paketi za web trgovine i prezentacijske stranice. Cijenu dajemo u razgovoru, kad znamo šta prodajete i gdje."
       />
       <PageHero
-        eyebrow="Cijene"
         title="Jednostavni paketi, prilagođeni vama."
-        subtitle="Transparentno i bez skrivenih troškova. Svaki paket kreiramo prema vašim ciljevima i budžetu."
+        subtitle="Cijenu dajemo u razgovoru, kad znamo šta prodajete i gdje. Na svakoj etiketi piše šta dobijate."
       />
-      <Pricing showHead={false} />
-      <Includes />
-      <Includes eyebrow={maintenance.eyebrow} title={maintenance.title} items={maintenance.items} />
-      <Faq eyebrow="Česta pitanja" title="Pitanja o cijenama i saradnji." items={faqPricing} />
+      <Pricing />
+      <section className="band band--paper">
+        <div className="container receipts">
+          <Includes />
+          <Includes
+            title={maintenance.title}
+            sub={maintenance.eyebrow}
+            items={maintenance.items}
+            total="Po dogovoru"
+          />
+        </div>
+      </section>
+      <Faq title="Pitanja o cijenama i saradnji." items={faqPricing} />
       <FinalCta />
     </>
   )

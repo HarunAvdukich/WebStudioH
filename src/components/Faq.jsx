@@ -1,10 +1,7 @@
 import { Head } from 'vite-react-ssg'
+import Icon from './Icon.jsx'
 
-export default function Faq({
-  eyebrow = 'Česta pitanja',
-  title = 'Pitanja koja najčešće dobijamo.',
-  items,
-}) {
+export default function Faq({ title = 'Pitanja koja najčešće dobijamo.', items }) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -16,29 +13,20 @@ export default function Faq({
   }
 
   return (
-    <section className="faq">
+    <section className="band band--shelf">
       <Head>
         <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Head>
-      <div className="container faq__wrap">
-        <div className="faq__head" data-reveal>
-          <span className="eyebrow">{eyebrow}</span>
-          <h2 className="section-title">{title}</h2>
-        </div>
-
-        <div className="faq__list">
-          {items.map((it, i) => (
-            <details
-              key={it.q}
-              className="faq-item"
-              data-reveal
-              data-reveal-delay={i * 60}
-            >
-              <summary className="faq-item__q">
+      <div className="container faq__grid">
+        <h2 className="section-title">{title}</h2>
+        <div>
+          {items.map((it) => (
+            <details key={it.q} className="faq-item">
+              <summary>
                 {it.q}
-                <span className="faq-item__icon" aria-hidden="true" />
+                <Icon name="plus" size={22} />
               </summary>
-              <div className="faq-item__a">{it.a}</div>
+              <p>{it.a}</p>
             </details>
           ))}
         </div>

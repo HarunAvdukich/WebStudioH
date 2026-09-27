@@ -1,16 +1,18 @@
-import { Fragment } from 'react'
 import { valueProps } from '../data.js'
 
+// Male etikete okačene o nosač, na dnu žutog pojasa.
 export default function ValueStrip() {
   return (
-    <div className="value-strip" data-reveal>
-      <div className="container value-strip__inner">
-        {valueProps.map((v, i) => (
-          <Fragment key={v}>
-            {i > 0 && <span className="value-sep" />}
-            <span className="value-item">{v}</span>
-          </Fragment>
-        ))}
+    <div className="strip">
+      <div className="container">
+        <div className="rail" aria-hidden="true" />
+        <ul className="strip__tags" aria-label="Šta trgovina radi">
+          {valueProps.map((v) => (
+            <li key={v} className="mini-tag hang">
+              {v}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
