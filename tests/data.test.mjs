@@ -48,8 +48,8 @@ test('objavljene recenzije su samo potvrđene', () => {
 })
 
 test('brojke odgovaraju izmjerenim 27. 9. 2026.', () => {
-  assert.deepEqual(data.homeStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '50 ms'])
-  assert.deepEqual(data.aboutStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '50 ms', '98'])
+  assert.deepEqual(data.homeStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms'])
+  assert.deepEqual(data.aboutStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms', '98'])
 })
 
 test('usluge: web trgovine prve, bh. tržište druge, ukupno šest', () => {

@@ -73,7 +73,7 @@ export default function Hero() {
             <div className="glass--tight" style={{ padding: 18 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
                 <div style={{ width: 58, height: 58, borderRadius: '50%', background: '#3ED598', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                  <div className="font-display" style={{ width: 44, height: 44, borderRadius: '50%', background: '#12151b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: 17, color: '#3ED598' }}>50</div>
+                  <div className="font-display" style={{ width: 44, height: 44, borderRadius: '50%', background: '#12151b', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: 17, color: '#3ED598' }}>52</div>
                 </div>
                 <div>
                   <div style={{ fontSize: 12.5, fontWeight: 600, color: '#F4F6F8' }}>Odziv servera</div>

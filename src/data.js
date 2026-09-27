@@ -76,7 +76,7 @@ export const whyUs = [
   {
     n: '02',
     t: 'Performanse po standardu',
-    d: 'Keš, optimizirane slike i čist kod. Početna mrt.ba odgovara za 50 ms.',
+    d: 'Keš, optimizirane slike i čist kod. Početna mrt.ba odgovara za 52 ms.',
     delay: 80,
   },
   {
@@ -93,12 +93,13 @@ export const whyUs = [
   },
 ]
 
-// Izvor: mrt.ba produkcija (wp post list, mrolx_listings) i Lighthouse 12, 27. 9. 2026.
-// 7.460 artikala, 4.373 aktivna OLX oglasa, odziv servera 50 ms; webstudioh 98 na računaru.
+// Izvor: mrt.ba produkcija (wp post list, mrolx_listings) i Lighthouse 12 na računaru,
+// medijan tri mjerenja, 27. 9. 2026: 7.460 artikala, 4.373 aktivna OLX oglasa,
+// odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh 98 (jedno mjerenje).
 export const homeStats = [
   { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba' },
   { num: '4.300', sfx: '+', label: 'OLX oglasa, sinhronizovano' },
-  { num: '50', sfx: ' ms', label: 'Odziv servera, mrt.ba' },
+  { num: '52', sfx: ' ms', label: 'Odziv servera, mrt.ba' },
 ]
 
 export const aboutStats = [
@@ -124,7 +125,7 @@ export const projects = [
       'B2B portal za veleprodaju',
       'Feed za Ananas',
       'AI urednik u administraciji',
-      'Odziv servera 50 ms, PageSpeed 89 na računaru',
+      'Odziv servera 52 ms, PageSpeed 87 na računaru',
     ],
   },
   {
