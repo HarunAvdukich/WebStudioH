@@ -814,7 +814,6 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 }
 .site-foot__bar a { color: #f2f2f2; border-bottom: 1px solid #6a6a6a; }
 .site-foot__bar a:hover { color: var(--yellow); border-color: var(--yellow); }
-.site-foot .barcode { width: 100px; fill: #d9d9d9; }
 @media (min-width: 900px) {
   .site-foot__top { grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 64px; }
 }

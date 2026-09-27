@@ -13,12 +13,11 @@ export default function WorkPage() {
         description="Odabir projekata koje smo dizajnirali i izgradili: web trgovine i prezentacijske stranice."
       />
       <PageHero
-        eyebrow="Radovi"
         title="Radovi koji izgledaju kako treba i daju rezultate."
         subtitle="Odabir projekata koje smo dizajnirali i izgradili, od velikih web trgovina do stranica udruženja."
       />
       <Portfolio showHead={false} />
-      <Testimonials eyebrow="Povjerenje" title="Klijenti koji su nam vjerovali." />
+      <Testimonials title="Klijenti koji su nam vjerovali." />
       <FinalCta />
     </>
   )

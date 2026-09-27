@@ -15,13 +15,12 @@ export default function ServicesPage() {
         description="WooCommerce web trgovine, povezivanje sa OLX-om i dobavljačima, održavanje, SEO i AI alati na jednom mjestu."
       />
       <PageHero
-        eyebrow="Usluge"
         title="Sve što vaša web trgovina treba, na jednom mjestu."
         subtitle="Od trgovine i integracija, preko SEO-a i brzine, do održavanja i hostinga."
       />
       <Services showHead={false} />
       <Process />
-      <Faq eyebrow="Česta pitanja" title="Sve što vas zanima o saradnji." items={faqServices} />
+      <Faq title="Sve što vas zanima o saradnji." items={faqServices} />
       <FinalCta />
     </>
   )
