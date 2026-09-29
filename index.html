@@ -15,6 +15,9 @@
     <link rel="manifest" href="/site.webmanifest" />
 
     <!-- title / description / Open Graph are managed per page via <Seo> (react-helmet-async) -->
+
+    <!-- Sadržaj se skriva za animaciju pojavljivanja samo kad JavaScript radi. -->
+    <script>document.documentElement.classList.add('js')</script>
   </head>
   <body>
     <!-- Static form so Netlify Forms detects "kontakt" at build time (SPA submits to it) -->

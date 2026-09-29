@@ -80,17 +80,18 @@ a { color: var(--blue-300); text-decoration: none; }
   50% { transform: translateY(9px); }
 }
 
-/* ---------- scroll reveal ---------- */
-[data-reveal] {
+/* ---------- scroll reveal ----------
+   Samo uz JavaScript (klasa .js iz index.html); bez njega sve je vidljivo. */
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
   will-change: opacity, transform;
 }
-[data-reveal].is-revealed { opacity: 1; transform: none; }
+.js [data-reveal].is-revealed { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
   html { scroll-behavior: auto; }
 }
 

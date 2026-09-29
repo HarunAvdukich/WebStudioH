@@ -4,10 +4,24 @@ import { Link } from 'react-router-dom'
 import StoryModel from './StoryModel.jsx'
 import { odluci, procitaj } from '../lib/mogucnosti.js'
 import { ocistiTekst, GRAVURA_MAX } from '../three/gravura.js'
+import { useBlizu } from '../lib/useBlizu.js'
+import { poslijeInterakcije } from '../lib/interakcija.js'
 
 const put = (prica, ime) => `/price/${prica.id}/${ime}`
 
-function Video({ prica, korak, pusti }) {
+// Slika dobija adresu tek kad je priča blizu; bez JavaScripta je u <noscript>.
+function Slika({ src, blizu, ...ostalo }) {
+  return (
+    <>
+      <img src={blizu ? src : undefined} decoding="async" {...ostalo} />
+      <noscript>
+        <img src={src} loading="lazy" decoding="async" {...ostalo} />
+      </noscript>
+    </>
+  )
+}
+
+function Video({ prica, korak, pusti, blizu }) {
   const ref = useRef(null)
   useEffect(() => {
     const v = ref.current
@@ -17,7 +31,7 @@ function Video({ prica, korak, pusti }) {
   }, [pusti])
   return (
     <video ref={ref} className="prica__video" muted playsInline loop preload="none"
-      poster={put(prica, korak.poster)} aria-label={korak.alt}>
+      poster={blizu ? put(prica, korak.poster) : undefined} aria-label={korak.alt}>
       <source src={put(prica, `${korak.video}-720.mp4`)} type="video/mp4" media="(max-width: 767px)" />
       <source src={put(prica, `${korak.video}-1080.mp4`)} type="video/mp4" />
     </video>
@@ -30,6 +44,7 @@ export default function Story({ prica }) {
   const [ziva, setZiva] = useState(false)
   const [video, setVideo] = useState(false)
   const [gravura, setGravura] = useState(undefined)
+  const blizu = useBlizu(ref)
 
   useEffect(() => {
     const m = odluci(procitaj())
@@ -37,17 +52,23 @@ export default function Story({ prica }) {
     if (!m.pin || !ref.current) return undefined
     let gasi = () => {}
     let otkazano = false
-    import('../lib/pricaPokret.js').then(({ ozivi }) =>
-      ozivi(ref.current, { broj: prica.koraci.length, naKorak: setKorak }).then((g) => {
-        if (otkazano) g()
-        else {
-          gasi = g
-          setZiva(true)
-        }
+    // Kačenje mijenja samo raspored ispod prvog ekrana, pa čeka prvu
+    // interakciju i ne opterećuje učitavanje stranice.
+    const otkazi = poslijeInterakcije(() =>
+      import('../lib/pricaPokret.js').then(({ ozivi }) => {
+        if (otkazano || !ref.current) return
+        return ozivi(ref.current, { broj: prica.koraci.length, naKorak: setKorak }).then((g) => {
+          if (otkazano) g()
+          else {
+            gasi = g
+            setZiva(true)
+          }
+        })
       }),
     )
     return () => {
       otkazano = true
+      otkazi()
       gasi()
     }
   }, [prica])
@@ -65,8 +86,8 @@ export default function Story({ prica }) {
         </header>
 
         <div className="prica__vizual">
-          <img className="prica__poster" src={put(prica, prica.model.poster)} alt={prica.model.alt}
-            width="1200" height="1200" loading="lazy" decoding="async" />
+          <Slika className="prica__poster" src={put(prica, prica.model.poster)} blizu={blizu}
+            alt={prica.model.alt} width="1200" height="1200" />
           <ClientOnly>{() => <StoryModel prica={prica} aktivan={korak === 0} gravura={gravura} />}</ClientOnly>
         </div>
 
@@ -78,14 +99,14 @@ export default function Story({ prica }) {
               <p className="prica__tekst">{k.tekst}</p>
               {k.tip === 'ekran' && (
                 <figure className="prica__ekran">
-                  <img src={put(prica, k.slika)} alt={k.alt} loading="lazy" decoding="async" />
+                  <Slika src={put(prica, k.slika)} blizu={blizu} alt={k.alt} />
                   <figcaption>{k.izvor}</figcaption>
                 </figure>
               )}
               {k.tip === 'video' && (
                 video
-                  ? <Video prica={prica} korak={k} pusti={i === korak} />
-                  : <img className="prica__video" src={put(prica, k.poster)} alt={k.alt} loading="lazy" />
+                  ? <Video prica={prica} korak={k} pusti={i === korak} blizu={blizu} />
+                  : <Slika className="prica__video" src={put(prica, k.poster)} blizu={blizu} alt={k.alt} />
               )}
               {k.tip === 'gravura' && (
                 <label className="prica__gravura">

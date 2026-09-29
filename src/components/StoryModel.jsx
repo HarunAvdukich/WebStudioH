@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import { odluci, procitaj } from '../lib/mogucnosti.js'
+import { poslijeInterakcije } from '../lib/interakcija.js'
 
 export default function StoryModel({ prica, aktivan, gravura }) {
   const ref = useRef(null)
@@ -50,6 +51,14 @@ export default function StoryModel({ prica, aktivan, gravura }) {
         s.grupa.add(s.gravura.mesh)
         s.gravura.postavi(zadnje.current.gravura ?? korakGravure.predlozak)
       }
+      await s.scena.renderer.compileAsync(s.scena.scena, s.scena.kamera)
+      if (otkazano || stanje.current !== s) {
+        s.kontrole.dispose()
+        s.gravura?.ugasi()
+        oslobodi(s.model)
+        s.scena.ugasi()
+        return
+      }
       s.scena.pokreni(() => s.kontrole.update())
       s.kontrole.autoRotate = zadnje.current.aktivan
       s.ucitava = false
@@ -62,22 +71,27 @@ export default function StoryModel({ prica, aktivan, gravura }) {
       }
     }
 
-    // Model se učitava kad je priča jedan ekran daleko, gasi kad ode dalje.
-    const io = new IntersectionObserver(
-      ([u]) => {
-        if (u.isIntersecting && !stanje.current.scena && !stanje.current.ucitava) ucitaj()
-        if (!u.isIntersecting && stanje.current.ugasi) {
-          stanje.current.ugasi()
-          stanje.current = {}
-          platno.closest('.prica__vizual')?.classList.remove('je-3d')
-        }
-      },
-      { rootMargin: '100% 0px 100% 0px' },
-    )
-    io.observe(platno)
+    // Model se učitava kad je priča jedan ekran daleko, gasi kad ode dalje,
+    // i to tek poslije prve interakcije (do tada stoji slika artikla).
+    let io = null
+    const otkazi = poslijeInterakcije(() => {
+      io = new IntersectionObserver(
+        ([u]) => {
+          if (u.isIntersecting && !stanje.current.scena && !stanje.current.ucitava) ucitaj()
+          if (!u.isIntersecting && stanje.current.ugasi) {
+            stanje.current.ugasi()
+            stanje.current = {}
+            platno.closest('.prica__vizual')?.classList.remove('je-3d')
+          }
+        },
+        { rootMargin: '100% 0px 100% 0px' },
+      )
+      io.observe(platno)
+    })
     return () => {
       otkazano = true
-      io.disconnect()
+      otkazi()
+      io?.disconnect()
       stanje.current.ugasi?.()
       stanje.current = {}
     }

@@ -8,15 +8,15 @@ export default function Hero() {
     <section id="top" className="uvod">
       <div className="container uvod__mreza">
         <div className="uvod__tekst">
-          <h1 className="uvod__naslov" data-reveal data-reveal-delay="70">
+          <h1 className="uvod__naslov">
             <span className="uvod__naglasak">Web stranice, trgovine i sistemi</span> koji rade za vaš posao.
           </h1>
-          <p className="uvod__podnaslov" data-reveal data-reveal-delay="140">
+          <p className="uvod__podnaslov">
             Od stranice udruženja do trgovine sa 7.400+ artikala povezane sa OLX-om
             i zakazivanja termina na SmartTimeu. Sve na jednom mjestu, od prvog
             razgovora do održavanja.
           </p>
-          <div className="uvod__dugmad" data-reveal data-reveal-delay="210">
+          <div className="uvod__dugmad">
             <a className="btn btn--md btn--primary" href={wa} target="_blank" rel="noopener noreferrer">
               Pošalji upit
             </a>

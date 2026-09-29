@@ -5,7 +5,7 @@ export default function Stats() {
     <section className="brojke" aria-label="Brojke iz naših radova">
       <div className="container brojke__red">
         {homeStats.map((s) => (
-          <div className="brojka" key={s.label} data-reveal>
+          <div className="brojka" key={s.label}>
             <p className="brojka__broj">
               {s.num}
               <span>{s.sfx}</span>

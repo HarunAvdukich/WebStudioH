@@ -125,3 +125,28 @@ test('početna: redoslijed sekcija i bez Fontsharea', () => {
   assert.deepEqual([...mjesta].sort((a, b) => a - b), mjesta)
   assert.ok(!html.includes('api.fontshare.com'))
 })
+
+test('početna: prvi ekran je vidljiv bez JavaScripta', () => {
+  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8')
+  // Naslov, brojke i dugmad ne čekaju animaciju pojavljivanja.
+  const uvod = html.slice(html.indexOf('class="uvod"'), html.indexOf('id="price"'))
+  assert.ok(uvod.length > 0)
+  assert.ok(!uvod.includes('data-reveal'), 'prvi ekran ne smije nositi data-reveal')
+  // Skrivanje za animaciju važi samo uz klasu .js koju postavlja inline skript.
+  assert.match(html, /classList\.add\('js'\)/)
+  const css = readdirSync(new URL('../dist/assets/', import.meta.url)).filter((f) => f.endsWith('.css'))
+    .map((f) => readFileSync(new URL(`../dist/assets/${f}`, import.meta.url), 'utf8')).join('')
+  const bezJs = css.split('[data-reveal]{opacity:0').slice(0, -1).filter((prije) => !prije.endsWith('.js '))
+  assert.equal(bezJs.length, 0, 'data-reveal skriva sadržaj i bez JavaScripta')
+})
+
+test('početna: slike priča ne otimaju protok prvom ekranu', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  const price = html.slice(html.indexOf('id="price"'), html.indexOf('id="usluge"'))
+  // Bez JavaScripta slike stoje u <noscript>; van njega nijedna ne kreće sama.
+  const van = price.replace(/<noscript>[\s\S]*?<\/noscript>/g, '')
+  assert.ok(!/<img[^>]*\ssrc="\/price\//.test(van), 'slika priče se učitava odmah')
+  assert.ok(!/<video[^>]*\sposter=/.test(van), 'video u HTML-u nosi poster')
+  const uNoscript = (price.match(/<noscript>[\s\S]*?<\/noscript>/g) || []).join('')
+  for (const s of stories) assert.ok(uNoscript.includes(`/price/${s.id}/${s.model.poster}`), `${s.id}: poster u noscript`)
+})

@@ -97,8 +97,8 @@ export const whyUs = [
 // medijan tri mjerenja, 27. 9. 2026: 7.460 artikala, 4.373 aktivna OLX oglasa,
 // odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh.netlify.app 98 (jedno mjerenje).
 export const homeStats = [
-  { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba', izvor: 'mrt.ba, 27. 9. 2026.' },
-  { num: '4.300', sfx: '+', label: 'OLX oglasa povezanih sa mrt.ba', izvor: 'olx.ba, 27. 9. 2026.' },
+  { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba', izvor: 'mrt.ba, 29. 9. 2026.' },
+  { num: '4.300', sfx: '+', label: 'OLX oglasa povezanih sa mrt.ba', izvor: 'olx.ba, 29. 9. 2026.' },
   { num: '52', sfx: ' ms', label: 'Odziv servera, mrt.ba', izvor: 'mjereno 27. 9. 2026.' },
   { num: '500', sfx: '+', label: 'Modela satova na SmartTimeu', izvor: 'smarttime.ba, 29. 9. 2026.' },
 ]

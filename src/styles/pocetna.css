@@ -296,6 +296,11 @@
 .prica__gravura input:focus-visible { outline: 2px solid var(--mint-jaka); outline-offset: 2px; }
 .prica__link { grid-column: 1 / -1; font-weight: 700; justify-self: start; }
 
+/* Slika priče bez adrese čeka da priča bude blizu: drži mjesto, ali se ne
+   vidi. Bez JavaScripta prikazuje se kopija iz <noscript>. */
+.prica img:not([src]) { visibility: hidden; }
+html:not(.js) .prica img:not([src]) { display: none; }
+
 /* Scena je zakačena dok skrol ide kroz korake: jedan broj i jedan korak na ekranu.
    Zaglavlje sajta (84 px) ostaje iznad scene, pa scena počinje ispod njega. */
 .prica--ziva .prica__scena { height: 100vh; height: 100svh; padding-top: calc(84px + clamp(12px, 3vh, 32px)); }

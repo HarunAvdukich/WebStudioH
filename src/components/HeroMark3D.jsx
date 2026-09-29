@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { ClientOnly } from 'vite-react-ssg'
 import { HunarZnak } from './Brand.jsx'
 import { odluci, procitaj } from '../lib/mogucnosti.js'
+import { poslijeInterakcije } from '../lib/interakcija.js'
 
 const MAKS_OKRET = 0.61 // 35 stepeni, skrolom kroz naslov
 
@@ -25,6 +26,12 @@ function Platno({ naSpremno }) {
       s.renderer.toneMappingExposure = 0.52
       const znak = napraviZnak()
       s.scena.add(znak)
+      // Shaderi se prevode bez blokiranja glavne niti gdje preglednik to podržava.
+      await s.renderer.compileAsync(s.scena, s.kamera)
+      if (otkazano) {
+        s.ugasi()
+        return
+      }
 
       let misX = 0
       let misY = 0
@@ -50,11 +57,17 @@ function Platno({ naSpremno }) {
       }
     }
 
-    const id = 'requestIdleCallback' in window
-      ? window.requestIdleCallback(pokreni, { timeout: 1500 })
-      : window.setTimeout(pokreni, 600)
+    // Ravni znak izgleda isto kao 3D dok se ne okrene, pa 3D čeka prvu
+    // interakciju i slobodan trenutak glavne niti.
+    let id = 0
+    const otkazi = poslijeInterakcije(() => {
+      id = 'requestIdleCallback' in window
+        ? window.requestIdleCallback(pokreni, { timeout: 800 })
+        : window.setTimeout(pokreni, 200)
+    })
     return () => {
       otkazano = true
+      otkazi()
       if ('cancelIdleCallback' in window) window.cancelIdleCallback(id)
       window.clearTimeout(id)
       ugasi()
