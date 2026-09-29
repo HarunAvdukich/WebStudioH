@@ -19,6 +19,17 @@ export function HunarLogo({ className }) {
   )
 }
 
+export function HunarZnak({ className }) {
+  return (
+    <svg className={className} viewBox="0 0 426 308" aria-hidden="true" focusable="false">
+      <g fill="#0E8A64">
+        <path d={ZNAK} />
+        <path d={ZNAK} transform="rotate(180 213 154)" />
+      </g>
+    </svg>
+  )
+}
+
 export default function Brand({ compact = false }) {
   return (
     <Link className="brand" to="/" aria-label="Hunar, početna">

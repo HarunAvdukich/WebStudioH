@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="bs">
+<head><meta charset="utf-8"><title>Pregled modela</title>
+<style>html,body{margin:0;height:100%;background:transparent}canvas{width:100%;height:100%;display:block}</style></head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+import { napraviScenu } from '/src/three/scena.js'
+import { ucitajModel } from '/src/three/model.js'
+const q = new URLSearchParams(location.search)
+if (q.get('bg')) document.body.style.background = '#' + q.get('bg')
+const s = napraviScenu(document.getElementById('c'), { udaljenost: 5.2 })
+s.kamera.position.y = Number(q.get('nagib') || 0)
+s.kamera.lookAt(0, 0, 0)
+const model = await ucitajModel(q.get('glb'))
+model.rotation.y = Number(q.get('ugao') || 0.6)
+s.scena.add(model)
+const vrti = !q.has('poster')
+s.pokreni(() => { if (vrti) model.rotation.y += 0.01 })
+document.title = 'spremno'
+</script>
+</body></html>

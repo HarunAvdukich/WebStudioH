@@ -97,13 +97,14 @@ export const whyUs = [
 // medijan tri mjerenja, 27. 9. 2026: 7.460 artikala, 4.373 aktivna OLX oglasa,
 // odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh.netlify.app 98 (jedno mjerenje).
 export const homeStats = [
-  { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba' },
-  { num: '4.300', sfx: '+', label: 'OLX oglasa, sinhronizovano' },
-  { num: '52', sfx: ' ms', label: 'Odziv servera, mrt.ba' },
+  { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba', izvor: 'mrt.ba, 29. 9. 2026.' },
+  { num: '4.300', sfx: '+', label: 'OLX oglasa povezanih sa mrt.ba', izvor: 'olx.ba, 29. 9. 2026.' },
+  { num: '52', sfx: ' ms', label: 'Odziv servera, mrt.ba', izvor: 'mjereno 27. 9. 2026.' },
+  { num: '500', sfx: '+', label: 'Modela satova na SmartTimeu', izvor: 'smarttime.ba, 29. 9. 2026.' },
 ]
 
 export const aboutStats = [
-  ...homeStats,
+  ...homeStats.slice(0, 3),
   { num: '98', sfx: '', label: 'PageSpeed ove stranice, računar' },
 ]
 
@@ -252,7 +253,7 @@ export const contact = {
   phoneDisplay: '060 3000 751',
   phoneHref: 'tel:+387603000751',
   whatsapp: 'https://wa.me/387603000751',
-  whatsappText: 'Zdravo! Zanima me izrada web trgovine.',
+  whatsappText: 'Zdravo! Zanima me izrada web stranice.',
 }
 
 export const navLinks = [
@@ -393,4 +394,94 @@ export const includes = [
   'SSL certifikat i sigurnost',
   'Obuka za samostalno korištenje',
   '30 dana podrške nakon lansiranja',
+]
+
+export const serviceGroups = [
+  {
+    id: 'stranice',
+    naslov: 'Stranice i trgovine',
+    tekst: 'Prezentacijske stranice, web trgovine na WooCommerceu i redizajn postojećih.',
+    primjeri: [
+      { naziv: 'mrt.ba', href: '/radovi/mrt' },
+      { naziv: 'UPTOS Breza', href: '/radovi/uptos' },
+    ],
+  },
+  {
+    id: 'sistemi',
+    naslov: 'Sistemi i aplikacije',
+    tekst: 'Zakazivanje termina, portali za veleprodaju i aplikacije po mjeri vašeg posla.',
+    primjeri: [
+      { naziv: 'Zakazivanje na SmartTimeu', href: '/radovi/smarttime' },
+      { naziv: 'B2B portal za mrt.ba', href: '/radovi/mrt' },
+    ],
+  },
+  {
+    id: 'integracije',
+    naslov: 'Integracije i AI',
+    tekst: 'OLX, Ananas, uvoz kataloga od dobavljača i AI asistent koji kupcima odgovara na sajtu.',
+    primjeri: [
+      { naziv: '4.300+ OLX oglasa na mrt.ba', href: '/radovi/mrt' },
+      { naziv: 'AI asistent na mrt.ba', href: '/radovi/mrt' },
+    ],
+  },
+  {
+    id: 'odrzavanje',
+    naslov: 'Održavanje i rast',
+    tekst: 'Hosting, brzina, SEO i praćenje oglasa, da sajt radi i poslije objave.',
+    primjeri: [{ naziv: 'Odziv servera 52 ms na mrt.ba', href: '/radovi/mrt' }],
+  },
+]
+
+// Priče na početnoj. Nova priča: novi unos ovdje i fajlovi u public/price/<id>/.
+export const stories = [
+  {
+    id: 'mrt',
+    projekat: 'mrt',
+    naslov: 'mrt.ba',
+    podnaslov: 'Alati i oprema · WooCommerce',
+    oznaka: null,
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Kosilica Stiga Combi 53 SQ u 3D', udaljenost: 4.2 },
+    koraci: [
+      { tip: '3d', naslov: 'Artikal iz ponude', tekst: 'Kosilica Stiga Combi 53 SQ, jedan od 7.400+ artikala. Okrenite je.' },
+      { tip: 'video', naslov: 'Pod svjetlom', tekst: 'Svaki detalj koji kupac želi vidjeti prije narudžbe.',
+        video: 'studio', poster: 'studio.jpg', alt: 'Kosilica pod studijskim svjetlom, kamera kruži oko nje' },
+      { tip: 'ekran', naslov: 'Postaje kartica na mrt.ba', tekst: 'Slika, cijena i dugme za korpu, na telefonu.',
+        slika: 'kartica.webp', alt: 'Kartica kosilice Stiga Combi 53 SQ na mrt.ba, 799 KM', izvor: 'mrt.ba, 29. 9. 2026.' },
+      { tip: 'ekran', naslov: 'I oglas na OLX-u', tekst: 'Jedan od 4.300+ oglasa povezanih sa trgovinom.',
+        slika: 'olx.webp', alt: 'OLX oglas 79608162 za kosilicu Stiga Combi 53 SQ, 799 KM', izvor: 'olx.ba (PIK), 29. 9. 2026.' },
+    ],
+  },
+  {
+    id: 'smarttime',
+    projekat: 'smarttime',
+    naslov: 'SmartTime',
+    podnaslov: 'Satovi · trgovina i zakazivanje',
+    oznaka: null,
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Sat Casio F-91W u 3D', udaljenost: 4.6 },
+    koraci: [
+      { tip: '3d', naslov: 'Sat iz ponude', tekst: 'Casio F-91W, jedan od 500+ modela. Okrenite ga.' },
+      { tip: 'ekran', naslov: 'Na stranici sata', tekst: 'Fotografije, cijena i opis na jednom ekranu telefona.',
+        slika: 'sat.webp', alt: 'Stranica sata Casio F-91W na smarttime.ba', izvor: 'smarttime.ba, 29. 9. 2026.' },
+      { tip: 'video', naslov: 'Popravka i graviranje', tekst: 'SmartTime satove i prodaje, i popravlja, i gravira.',
+        video: 'proces', poster: 'proces.jpg', alt: 'Ruka u rukavici podiže sat sa satovskog stola' },
+      { tip: 'ekran', naslov: 'Termin se zakazuje online', tekst: 'Kupac izabere uslugu i slobodan termin, bez poziva.',
+        slika: 'termin.webp', alt: 'Stranica Zakaži termin na smarttime.ba', izvor: 'smarttime.ba, 29. 9. 2026.' },
+    ],
+  },
+  {
+    id: 'urez',
+    projekat: 'urez',
+    naslov: 'urez.ba',
+    podnaslov: 'Gravure po mjeri · vlastita trgovina',
+    oznaka: 'u izradi',
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Drvena kasica za graviranje u 3D', udaljenost: 5.2 },
+    koraci: [
+      { tip: '3d', naslov: 'Poklon koji nosi ime', tekst: 'Drvena kasica sa praznom pločicom za ime. Okrenite je.' },
+      { tip: 'gravura', naslov: 'Vaš tekst na pločici', tekst: 'Upišite ime i pogledajte gravuru na kasici.',
+        predlozak: 'Ajla',
+        povrsina: { polozaj: [0, -0.165, 0.7], rotacija: [0, 0, 0], velicina: [1.1, 0.32] } },
+      { tip: 'video', naslov: 'Laser gravira', tekst: 'Laser upisuje ornament u drvo za nekoliko minuta.',
+        video: 'laser', poster: 'laser.jpg', alt: 'Laser gravira liniju na poklopcu drvene kasice' },
+    ],
+  },
 ]

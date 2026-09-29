@@ -3,6 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { stories } from '../src/data.js'
 
 const DIST = 'dist'
 
@@ -85,4 +86,67 @@ test('slika glavnog rada postoji', () => {
 
 test('nigdje cijena u dolarima', () => {
   assert.deepEqual(pages.filter((p) => /\$\s?\d/.test(p.text)).map((p) => p.file), [])
+})
+
+test('početna: novi naslov, WhatsApp dugme i ravni znak kao rezerva', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  assert.match(html.replace(/<[^>]+>/g, ''), /Web stranice, trgovine i sistemi koji rade za vaš posao\./)
+  assert.match(html, /href="https:\/\/wa\.me\/387603000751\?text=[^"]+"[^>]*>Pošalji upit/)
+  assert.match(html, /class="hero-znak__ravni"/)
+})
+
+test('početna: četiri brojke sa izvorom i četiri grupe usluga', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  assert.equal((html.match(/class="brojka__izvor"/g) || []).length, 4)
+  for (const n of ['Stranice i trgovine', 'Sistemi i aplikacije', 'Integracije i AI', 'Održavanje i rast'])
+    assert.ok(html.includes(n), n)
+})
+
+test('početna: sve priče su u HTML-u i bez JavaScripta', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  const tekst = html.replace(/<[^>]+>/g, '')
+  assert.ok(tekst.includes('Preskoči priče'))
+  assert.ok(tekst.includes('u izradi'))
+  for (const s of stories) {
+    assert.ok(html.includes(`id="prica-${s.id}"`), s.id)
+    assert.ok(html.includes(`/price/${s.id}/${s.model.poster}`), `${s.id} poster`)
+    for (const k of s.koraci) {
+      assert.ok(tekst.includes(k.naslov), `${s.id}: ${k.naslov}`)
+      if (k.tip === 'ekran') assert.ok(html.includes(k.alt), `${s.id}: ${k.alt}`)
+    }
+  }
+})
+
+test('početna: redoslijed sekcija i bez Fontsharea', () => {
+  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8')
+  const redom = ['class="uvod"', 'class="brojke"', 'id="price"', 'id="usluge"']
+  const mjesta = redom.map((r) => html.indexOf(r))
+  assert.ok(mjesta.every((m) => m > 0), JSON.stringify(mjesta))
+  assert.deepEqual([...mjesta].sort((a, b) => a - b), mjesta)
+  assert.ok(!html.includes('api.fontshare.com'))
+})
+
+test('početna: prvi ekran je vidljiv bez JavaScripta', () => {
+  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8')
+  // Naslov, brojke i dugmad ne čekaju animaciju pojavljivanja.
+  const uvod = html.slice(html.indexOf('class="uvod"'), html.indexOf('id="price"'))
+  assert.ok(uvod.length > 0)
+  assert.ok(!uvod.includes('data-reveal'), 'prvi ekran ne smije nositi data-reveal')
+  // Skrivanje za animaciju važi samo uz klasu .js koju postavlja inline skript.
+  assert.match(html, /classList\.add\('js'\)/)
+  const css = readdirSync(new URL('../dist/assets/', import.meta.url)).filter((f) => f.endsWith('.css'))
+    .map((f) => readFileSync(new URL(`../dist/assets/${f}`, import.meta.url), 'utf8')).join('')
+  const bezJs = css.split('[data-reveal]{opacity:0').slice(0, -1).filter((prije) => !prije.endsWith('.js '))
+  assert.equal(bezJs.length, 0, 'data-reveal skriva sadržaj i bez JavaScripta')
+})
+
+test('početna: slike priča ne otimaju protok prvom ekranu', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  const price = html.slice(html.indexOf('id="price"'), html.indexOf('id="usluge"'))
+  // Bez JavaScripta slike stoje u <noscript>; van njega nijedna ne kreće sama.
+  const van = price.replace(/<noscript>[\s\S]*?<\/noscript>/g, '')
+  assert.ok(!/<img[^>]*\ssrc="\/price\//.test(van), 'slika priče se učitava odmah')
+  assert.ok(!/<video[^>]*\sposter=/.test(van), 'video u HTML-u nosi poster')
+  const uNoscript = (price.match(/<noscript>[\s\S]*?<\/noscript>/g) || []).join('')
+  for (const s of stories) assert.ok(uNoscript.includes(`/price/${s.id}/${s.model.poster}`), `${s.id}: poster u noscript`)
 })

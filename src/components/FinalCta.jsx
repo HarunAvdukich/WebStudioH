@@ -9,15 +9,15 @@ export default function FinalCta() {
           <div className="cta__glow" />
           <div className="cta__inner">
             <h2 className="cta__title">
-              Spremni da vaša trgovina prodaje i online?
+              Spremni da vaš posao radi i na webu?
             </h2>
             <p className="cta__sub">
-              Pretvorimo vašu web stranicu u vašeg najvrednijeg prodavača: brzu,
-              preglednu i povezanu sa OLX-om.
+              Stranica, trgovina ili sistem za zakazivanje: brzo, pregledno i
+              povezano sa onim što već koristite.
             </p>
             <div className="cta__actions">
               <Link className="btn btn--lg btn--primary" to="/kontakt">
-                Napravimo vašu trgovinu →
+                Javite nam se →
               </Link>
               <a
                 className="btn btn--lg btn--ghost"
