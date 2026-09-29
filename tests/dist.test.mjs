@@ -86,3 +86,10 @@ test('slika glavnog rada postoji', () => {
 test('nigdje cijena u dolarima', () => {
   assert.deepEqual(pages.filter((p) => /\$\s?\d/.test(p.text)).map((p) => p.file), [])
 })
+
+test('početna: novi naslov, WhatsApp dugme i ravni znak kao rezerva', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  assert.match(html.replace(/<[^>]+>/g, ''), /Web stranice, trgovine i sistemi koji rade za vaš posao\./)
+  assert.match(html, /href="https:\/\/wa\.me\/387603000751\?text=[^"]+"[^>]*>Pošalji upit/)
+  assert.match(html, /class="hero-znak__ravni"/)
+})
