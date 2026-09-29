@@ -67,7 +67,7 @@ export default function Footer() {
       </div>
 
       <div className="container footer__bar">
-        <span>© 2026 WebStudioH. Sva prava zadržana.</span>
+        <span>© 2026 Hunar. Sva prava zadržana.</span>
         <span className="footer__bar-right">
           <Link to="/politika-privatnosti">Politika privatnosti</Link>
           <span className="footer__bar-sep">·</span>

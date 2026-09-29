@@ -12,7 +12,7 @@ export default function Home() {
     <>
       <Seo
         path="/"
-        description="WebStudioH gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima."
+        description="Hunar gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima."
       />
       <Hero />
       <ValueStrip />

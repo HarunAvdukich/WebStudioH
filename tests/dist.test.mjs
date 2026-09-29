@@ -72,7 +72,7 @@ test('svi unutrašnji linkovi vode na postojeći fajl', () => {
 test('svaka og:image slika postoji', () => {
   const missing = []
   for (const { file, html } of pages) {
-    for (const [, url] of html.matchAll(/<meta[^>]*property="og:image"[^>]*content="https:\/\/webstudioh\.ba(\/[^"]+)"/g)) {
+    for (const [, url] of html.matchAll(/<meta[^>]*property="og:image"[^>]*content="https:\/\/hunar\.ba(\/[^"]+)"/g)) {
       if (!existsSync(join(DIST, url))) missing.push(`${file}: ${url}`)
     }
   }

@@ -1,9 +1,9 @@
 {
-  "name": "webstudioh-landing",
+  "name": "hunar-web",
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "description": "WebStudioH premium landing page — implemented from the Claude Design handoff (Direction A).",
+  "description": "Stranica studija Hunar (hunar.ba), ranije WebStudioH.",
   "scripts": {
     "dev": "vite",
     "build": "vite-react-ssg build && node scripts/gen-sitemap.mjs",

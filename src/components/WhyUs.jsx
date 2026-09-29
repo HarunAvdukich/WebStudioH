@@ -4,7 +4,7 @@ export default function WhyUs() {
   return (
     <section className="why container">
       <div className="why__aside" data-reveal>
-        <span className="eyebrow">Zašto WebStudioH</span>
+        <span className="eyebrow">Zašto Hunar</span>
         <h2 className="why__title">
           Napravljeno da vaše poslovanje izgleda ozbiljno i bude izabrano.
         </h2>

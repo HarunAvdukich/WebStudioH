@@ -59,11 +59,11 @@ export default function Hero() {
           {/* kartica proizvoda, ilustracija: naprijed lijevo */}
           <div className="stage-card stage-shop stage-aside">
             <div className="glass--tight" style={{ padding: 14 }}>
-              <div style={{ height: 104, borderRadius: 11, background: 'repeating-linear-gradient(45deg, rgba(87,180,255,.14) 0 11px, rgba(87,180,255,.05) 11px 22px)', border: '1px solid rgba(255,255,255,.07)', marginBottom: 12 }} />
+              <div style={{ height: 104, borderRadius: 11, background: 'repeating-linear-gradient(45deg, rgba(77, 212, 164,.14) 0 11px, rgba(77, 212, 164,.05) 11px 22px)', border: '1px solid rgba(255,255,255,.07)', marginBottom: 12 }} />
               <div style={{ width: '64%', height: 11, borderRadius: 5, background: 'rgba(255,255,255,.7)', marginBottom: 8 }} />
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span className="font-display" style={{ fontWeight: 600, fontSize: 16, color: '#57B4FF' }}>129 KM</span>
-                <span style={{ padding: '6px 12px', borderRadius: 8, background: 'linear-gradient(180deg,#48ABFF,#1287F2)', color: '#fff', fontSize: 11, fontWeight: 600 }}>Dodaj u korpu</span>
+                <span className="font-display" style={{ fontWeight: 600, fontSize: 16, color: '#4dd4a4' }}>129 KM</span>
+                <span style={{ padding: '6px 12px', borderRadius: 8, background: 'linear-gradient(180deg,#34c08d,#0e8a64)', color: '#fff', fontSize: 11, fontWeight: 600 }}>Dodaj u korpu</span>
               </div>
             </div>
           </div>
@@ -81,10 +81,10 @@ export default function Hero() {
                 </div>
               </div>
               <div style={{ display: 'flex', gap: 6, alignItems: 'flex-end', height: 34, marginTop: 16 }}>
-                <span style={{ flex: 1, height: '40%', borderRadius: 3, background: 'rgba(87,180,255,.35)' }} />
-                <span style={{ flex: 1, height: '62%', borderRadius: 3, background: 'rgba(87,180,255,.5)' }} />
-                <span style={{ flex: 1, height: '80%', borderRadius: 3, background: 'rgba(87,180,255,.7)' }} />
-                <span style={{ flex: 1, height: '100%', borderRadius: 3, background: '#57B4FF' }} />
+                <span style={{ flex: 1, height: '40%', borderRadius: 3, background: 'rgba(77, 212, 164,.35)' }} />
+                <span style={{ flex: 1, height: '62%', borderRadius: 3, background: 'rgba(77, 212, 164,.5)' }} />
+                <span style={{ flex: 1, height: '80%', borderRadius: 3, background: 'rgba(77, 212, 164,.7)' }} />
+                <span style={{ flex: 1, height: '100%', borderRadius: 3, background: '#4dd4a4' }} />
               </div>
             </div>
           </div>

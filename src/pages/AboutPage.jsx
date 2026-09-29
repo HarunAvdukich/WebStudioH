@@ -24,7 +24,7 @@ export default function AboutPage() {
             <span className="eyebrow">Naša priča</span>
             <h2 className="section-title">Mali studio, velika posvećenost.</h2>
             <p>
-              WebStudioH je nastao iz jednostavne ideje: da i male i srednje firme
+              Hunar je nastao iz jednostavne ideje: da i male i srednje firme
               zaslužuju web prisustvo koje izgleda i radi vrhunski, bez
               korporativnih cijena i nepotrebnih komplikacija.
             </p>
