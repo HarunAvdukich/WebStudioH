@@ -1,5 +1,5 @@
 /* ============================================================
-   WebStudioH, Premium Landing (Direction A)
+   Hunar (ranije WebStudioH), Premium Landing (Direction A)
    Implemented from the Claude Design handoff. Values mirror the
    source prototype; hover + responsive behavior added for a real site.
    ============================================================ */
@@ -9,17 +9,17 @@
   --panel: #0a0b0d;
   --text: #f4f6f8;
   --heading: #f7f9fb;
-  --blue: #1e9bf5;
-  --blue-200: #8fcbff;
-  --blue-300: #57b4ff;
-  --blue-400: #48abff;
-  --blue-600: #1287f2;
-  --blue-700: #0c63d6;
+  --blue: #12a579;
+  --blue-200: #9be6c8;
+  --blue-300: #4dd4a4;
+  --blue-400: #34c08d;
+  --blue-600: #0e8a64;
+  --blue-700: #0b6e50;
   --green: #3ed598;
 
-  --grad-btn: linear-gradient(180deg, #48abff, #1287f2);
-  --grad-mark: linear-gradient(150deg, #1287f2, #0c63d6);
-  --grad-text: linear-gradient(120deg, #57b4ff, #1287f2);
+  --grad-btn: linear-gradient(180deg, #34c08d, #0e8a64);
+  --grad-mark: linear-gradient(150deg, #0e8a64, #0b6e50);
+  --grad-text: linear-gradient(120deg, #4dd4a4, #0e8a64);
 
   --maxw: 1440px;
   --gutter: clamp(20px, 4vw, 48px);
@@ -41,7 +41,7 @@ body {
 h1, h2, h3, p { margin: 0; }
 img { max-width: 100%; display: block; }
 a { color: var(--blue-300); text-decoration: none; }
-::selection { background: rgba(30, 155, 245, 0.32); color: #fff; }
+::selection { background: rgba(18, 165, 121, 0.32); color: #fff; }
 
 .page {
   background: var(--panel);
@@ -125,14 +125,14 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 .btn--primary {
   background: var(--grad-btn);
   color: #fff;
-  border-color: rgba(140, 200, 255, 0.55);
-  box-shadow: 0 12px 32px -12px rgba(30, 155, 245, 0.8),
+  border-color: rgba(155, 230, 200, 0.55);
+  box-shadow: 0 12px 32px -12px rgba(18, 165, 121, 0.8),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 .btn--primary:hover {
   color: #fff;
   transform: translateY(-3px);
-  box-shadow: 0 22px 48px -12px rgba(30, 155, 245, 0.95),
+  box-shadow: 0 22px 48px -12px rgba(18, 165, 121, 0.95),
     inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 .btn--ghost {
@@ -157,15 +157,15 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 /* ============================================================
    Brand mark
    ============================================================ */
-.brand { display: inline-flex; align-items: center; }
+.brand { display: inline-flex; align-items: center; color: var(--heading); }
 .brand__logo {
-  height: 44px;
+  height: 40px;
   width: auto;
   display: block;
 }
-.brand__logo--sm { height: 36px; }
+.brand__logo--sm { height: 34px; }
 @media (max-width: 480px) {
-  .brand__logo { height: 38px; }
+  .brand__logo { height: 34px; }
 }
 
 /* ============================================================
@@ -256,8 +256,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   margin-left: -450px;
   background: radial-gradient(
     circle at center,
-    rgba(30, 155, 245, 0.42) 0%,
-    rgba(30, 155, 245, 0.12) 34%,
+    rgba(18, 165, 121, 0.42) 0%,
+    rgba(18, 165, 121, 0.12) 34%,
     transparent 66%
   );
   filter: blur(20px);
@@ -469,8 +469,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .service-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(30, 155, 245, 0.4);
-  background: linear-gradient(180deg, rgba(30, 155, 245, 0.09), rgba(255, 255, 255, 0.012));
+  border-color: rgba(18, 165, 121, 0.4);
+  background: linear-gradient(180deg, rgba(18, 165, 121, 0.09), rgba(255, 255, 255, 0.012));
 }
 .service-card__n {
   font-family: 'Clash Display', sans-serif;
@@ -601,8 +601,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(30, 155, 245, 0.5),
-    rgba(30, 155, 245, 0.5),
+    rgba(18, 165, 121, 0.5),
+    rgba(18, 165, 121, 0.5),
     transparent
   );
 }
@@ -614,7 +614,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   margin: 0 auto 22px;
   border-radius: 50%;
   background: var(--panel);
-  border: 1px solid rgba(30, 155, 245, 0.4);
+  border: 1px solid rgba(18, 165, 121, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -622,7 +622,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   font-weight: 600;
   font-size: 22px;
   color: var(--blue-300);
-  box-shadow: 0 0 0 6px var(--panel), 0 10px 30px -10px rgba(30, 155, 245, 0.5);
+  box-shadow: 0 0 0 6px var(--panel), 0 10px 30px -10px rgba(18, 165, 121, 0.5);
   position: relative;
   z-index: 2;
 }
@@ -676,13 +676,13 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   transition: border-color 0.3s ease, background 0.3s ease;
 }
-.why-card:hover { border-color: rgba(30, 155, 245, 0.35); background: rgba(30, 155, 245, 0.06); }
+.why-card:hover { border-color: rgba(18, 165, 121, 0.35); background: rgba(18, 165, 121, 0.06); }
 .why-card__icon {
   width: 44px;
   height: 44px;
   border-radius: 12px;
-  background: rgba(30, 155, 245, 0.12);
-  border: 1px solid rgba(30, 155, 245, 0.28);
+  background: rgba(18, 165, 121, 0.12);
+  border: 1px solid rgba(18, 165, 121, 0.28);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -720,9 +720,9 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   border: 1px solid rgba(255, 255, 255, 0.09);
 }
 .plan--featured {
-  background: linear-gradient(180deg, rgba(30, 155, 245, 0.14), rgba(30, 155, 245, 0.03));
-  border-color: rgba(30, 155, 245, 0.5);
-  box-shadow: 0 40px 90px -40px rgba(30, 155, 245, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(18, 165, 121, 0.14), rgba(18, 165, 121, 0.03));
+  border-color: rgba(18, 165, 121, 0.5);
+  box-shadow: 0 40px 90px -40px rgba(18, 165, 121, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 .plan__badge {
   position: absolute;
@@ -737,7 +737,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  box-shadow: 0 10px 24px -8px rgba(30, 155, 245, 0.8);
+  box-shadow: 0 10px 24px -8px rgba(18, 165, 121, 0.8);
   white-space: nowrap;
 }
 .plan__name {
@@ -771,12 +771,12 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   width: 19px;
   height: 19px;
   border-radius: 50%;
-  background: rgba(30, 155, 245, 0.14);
+  background: rgba(18, 165, 121, 0.14);
   display: inline-flex;
   align-items: center;
   justify-content: center;
 }
-.plan--featured .feat__check { background: rgba(87, 180, 255, 0.24); }
+.plan--featured .feat__check { background: rgba(77, 212, 164, 0.24); }
 .feat__check i {
   width: 5px;
   height: 9px;
@@ -797,8 +797,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   position: relative;
   overflow: hidden;
   border-radius: 28px;
-  border: 1px solid rgba(30, 155, 245, 0.28);
-  background: linear-gradient(160deg, rgba(30, 155, 245, 0.16), rgba(10, 11, 13, 0.4));
+  border: 1px solid rgba(18, 165, 121, 0.28);
+  background: linear-gradient(160deg, rgba(18, 165, 121, 0.16), rgba(10, 11, 13, 0.4));
   padding: 80px 48px;
   text-align: center;
 }
@@ -809,7 +809,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   width: 760px;
   height: 520px;
   margin-left: -380px;
-  background: radial-gradient(circle at center, rgba(30, 155, 245, 0.45), transparent 66%);
+  background: radial-gradient(circle at center, rgba(18, 165, 121, 0.45), transparent 66%);
   filter: blur(10px);
   pointer-events: none;
 }
@@ -923,8 +923,8 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   margin-left: -410px;
   background: radial-gradient(
     circle at center,
-    rgba(30, 155, 245, 0.3) 0%,
-    rgba(30, 155, 245, 0.08) 38%,
+    rgba(18, 165, 121, 0.3) 0%,
+    rgba(18, 165, 121, 0.08) 38%,
     transparent 68%
   );
   filter: blur(24px);
@@ -1028,15 +1028,15 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .field select:focus,
 .field textarea:focus {
   outline: none;
-  border-color: rgba(30, 155, 245, 0.6);
-  box-shadow: 0 0 0 3px rgba(30, 155, 245, 0.16);
+  border-color: rgba(18, 165, 121, 0.6);
+  box-shadow: 0 0 0 3px rgba(18, 165, 121, 0.16);
 }
 .field select {
   appearance: none;
   -webkit-appearance: none;
   cursor: pointer;
   padding-right: 40px;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'><path d='M1 1l5 5 5-5' stroke='%2357B4FF' stroke-width='1.6'/></svg>");
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'><path d='M1 1l5 5 5-5' stroke='%234DD4A4' stroke-width='1.6'/></svg>");
   background-repeat: no-repeat;
   background-position: right 15px center;
 }
@@ -1057,8 +1057,8 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   gap: 8px;
   padding: 48px 32px;
   border-radius: 22px;
-  background: rgba(30, 155, 245, 0.06);
-  border: 1px solid rgba(30, 155, 245, 0.28);
+  background: rgba(18, 165, 121, 0.06);
+  border: 1px solid rgba(18, 165, 121, 0.28);
 }
 .contact__done h2 {
   font-family: 'Clash Display', sans-serif;
@@ -1076,7 +1076,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 14px 30px -10px rgba(30, 155, 245, 0.8);
+  box-shadow: 0 14px 30px -10px rgba(18, 165, 121, 0.8);
 }
 .contact__done-check i {
   width: 12px;
@@ -1156,8 +1156,8 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 }
 .tst-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(30, 155, 245, 0.35);
-  background: rgba(30, 155, 245, 0.05);
+  border-color: rgba(18, 165, 121, 0.35);
+  background: rgba(18, 165, 121, 0.05);
 }
 .tst-card__stars { color: #ffc24b; font-size: 15px; letter-spacing: 2px; margin-bottom: 16px; }
 .tst-card__quote {
@@ -1202,7 +1202,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   padding: 2px 22px;
   transition: border-color 0.3s ease, background 0.3s ease;
 }
-.faq-item[open] { border-color: rgba(30, 155, 245, 0.35); background: rgba(30, 155, 245, 0.05); }
+.faq-item[open] { border-color: rgba(18, 165, 121, 0.35); background: rgba(18, 165, 121, 0.05); }
 .faq-item__q {
   list-style: none;
   cursor: pointer;
@@ -1264,7 +1264,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: rgba(30, 155, 245, 0.14);
+  background: rgba(18, 165, 121, 0.14);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1293,8 +1293,8 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 }
 .post-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(30, 155, 245, 0.4);
-  background: linear-gradient(180deg, rgba(30, 155, 245, 0.08), rgba(255, 255, 255, 0.012));
+  border-color: rgba(18, 165, 121, 0.4);
+  background: linear-gradient(180deg, rgba(18, 165, 121, 0.08), rgba(255, 255, 255, 0.012));
 }
 .post-card__meta {
   display: flex;
@@ -1379,7 +1379,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .post__body blockquote {
   margin: 22px 0;
   padding: 6px 0 6px 20px;
-  border-left: 3px solid rgba(30, 155, 245, 0.5);
+  border-left: 3px solid rgba(18, 165, 121, 0.5);
   color: rgba(244, 246, 248, 0.72);
   font-style: italic;
 }
@@ -1409,7 +1409,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   align-items: center;
   justify-content: center;
   gap: 10px;
-  background: linear-gradient(160deg, rgba(30, 155, 245, 0.14), rgba(10, 11, 13, 0.5));
+  background: linear-gradient(160deg, rgba(18, 165, 121, 0.14), rgba(10, 11, 13, 0.5));
 }
 .case__media-ph span:first-child { font-size: 40px; font-weight: 600; color: var(--heading); }
 .case__media-ph-note {
@@ -1489,9 +1489,9 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .about-story__text p:last-child { margin-bottom: 0; }
 .about-panel {
   border-radius: 24px;
-  background: linear-gradient(180deg, rgba(30, 155, 245, 0.09), rgba(255, 255, 255, 0.02));
+  background: linear-gradient(180deg, rgba(18, 165, 121, 0.09), rgba(255, 255, 255, 0.02));
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 40px 90px -50px rgba(30, 155, 245, 0.5);
+  box-shadow: 0 40px 90px -50px rgba(18, 165, 121, 0.5);
   padding: 42px;
 }
 .about-panel__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 24px; }

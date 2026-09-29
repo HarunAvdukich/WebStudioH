@@ -1,9 +1,9 @@
 import { Head } from 'vite-react-ssg'
 
-export const SITE_NAME = 'WebStudioH'
-export const SITE_URL = 'https://webstudioh.ba'
+export const SITE_NAME = 'Hunar'
+export const SITE_URL = 'https://hunar.ba'
 const DEFAULT_DESC =
-  'WebStudioH gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima.'
+  'Hunar gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima.'
 
 /**
  * Per-page <head> (title, description, canonical, Open Graph).

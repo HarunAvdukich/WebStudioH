@@ -8,7 +8,7 @@ export default function PrivacyPage() {
       <Seo
         title="Politika privatnosti"
         path="/politika-privatnosti"
-        description="Kako WebStudioH prikuplja, koristi i štiti vaše lične podatke."
+        description="Kako Hunar prikuplja, koristi i štiti vaše lične podatke."
       />
       <PageHero
         eyebrow="Pravno"
@@ -22,8 +22,8 @@ export default function PrivacyPage() {
           <div className="post__body">
             <p>
               Vaša privatnost nam je važna. Ova politika objašnjava koje podatke
-              prikupljamo putem web stranice <strong>webstudioh.ba</strong>, u koju
-              svrhu i koja su vaša prava. Voditelj obrade je WebStudioH.
+              prikupljamo putem web stranice <strong>hunar.ba</strong>, u koju
+              svrhu i koja su vaša prava. Voditelj obrade je Hunar.
             </p>
 
             <h2>Koje podatke prikupljamo</h2>

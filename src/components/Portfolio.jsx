@@ -11,7 +11,7 @@ function ShopPreview() {
         <span style={{ flex: 1 }} />
         <span style={{ width: 120, height: 14, borderRadius: 5, background: 'rgba(255,255,255,.06)' }} />
       </div>
-      <div style={{ height: 70, borderRadius: 9, background: 'repeating-linear-gradient(45deg, rgba(87,180,255,.14) 0 10px, rgba(87,180,255,.04) 10px 20px)', marginBottom: 11 }} />
+      <div style={{ height: 70, borderRadius: 9, background: 'repeating-linear-gradient(45deg, rgba(77, 212, 164,.14) 0 10px, rgba(77, 212, 164,.04) 10px 20px)', marginBottom: 11 }} />
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 9 }}>
         <div style={{ height: 66, borderRadius: 8, background: 'rgba(255,255,255,.05)' }} />
         <div style={{ height: 66, borderRadius: 8, background: 'rgba(255,255,255,.05)' }} />
@@ -26,7 +26,7 @@ function SaasPreview() {
   return (
     <div className="project__preview" style={{ padding: 14, display: 'flex', gap: 11 }}>
       <div style={{ width: 52, background: 'rgba(255,255,255,.04)', borderRadius: 9, padding: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 9 }}>
-        <span style={{ width: 22, height: 22, borderRadius: 7, background: 'linear-gradient(150deg,#1287F2,#0C63D6)' }} />
+        <span style={{ width: 22, height: 22, borderRadius: 7, background: 'linear-gradient(150deg,#0e8a64,#0b6e50)' }} />
         <span style={{ width: 20, height: 6, borderRadius: 3, background: 'rgba(255,255,255,.14)' }} />
         <span style={{ width: 20, height: 6, borderRadius: 3, background: 'rgba(255,255,255,.14)' }} />
         <span style={{ width: 20, height: 6, borderRadius: 3, background: 'rgba(255,255,255,.14)' }} />
@@ -38,7 +38,7 @@ function SaasPreview() {
         </div>
         <div style={{ height: 96, borderRadius: 9, background: 'rgba(255,255,255,.03)', border: '1px solid rgba(255,255,255,.05)', padding: 10, display: 'flex', alignItems: 'flex-end', gap: 6 }}>
           {bars.map((h, i) => (
-            <span key={i} style={{ flex: 1, height: `${h}%`, borderRadius: '3px 3px 0 0', background: h === 100 ? '#57B4FF' : `rgba(87,180,255,${0.4 + i * 0.04})` }} />
+            <span key={i} style={{ flex: 1, height: `${h}%`, borderRadius: '3px 3px 0 0', background: h === 100 ? '#4dd4a4' : `rgba(77, 212, 164,${0.4 + i * 0.04})` }} />
           ))}
         </div>
       </div>

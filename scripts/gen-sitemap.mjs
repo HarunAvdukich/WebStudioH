@@ -2,7 +2,7 @@
 import { writeFileSync, readdirSync } from 'node:fs'
 import { projects } from '../src/data.js'
 
-const BASE = 'https://webstudioh.ba'
+const BASE = 'https://hunar.ba'
 
 const postSlugs = readdirSync('src/content/posts')
   .filter((f) => f.endsWith('.md'))

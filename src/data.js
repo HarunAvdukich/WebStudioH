@@ -95,7 +95,7 @@ export const whyUs = [
 
 // Izvor: mrt.ba produkcija (wp post list, mrolx_listings) i Lighthouse 12 na računaru,
 // medijan tri mjerenja, 27. 9. 2026: 7.460 artikala, 4.373 aktivna OLX oglasa,
-// odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh 98 (jedno mjerenje).
+// odziv servera 52 ms, mrt.ba 87, SmartTime 89; webstudioh.netlify.app 98 (jedno mjerenje).
 export const homeStats = [
   { num: '7.400', sfx: '+', label: 'Artikala na mrt.ba' },
   { num: '4.300', sfx: '+', label: 'OLX oglasa, sinhronizovano' },
@@ -156,7 +156,7 @@ export const projects = [
       'urez.ba je naša vlastita trgovina personalizovanih graviranih proizvoda, trenutno u izradi.',
     highlights: [
       'Personalizovani gravirani proizvodi',
-      'Vlastita trgovina WebStudioH',
+      'Vlastita trgovina studija Hunar',
       'Uskoro online',
     ],
   },
@@ -248,7 +248,7 @@ export const valueProps = [
 ]
 
 export const contact = {
-  email: 'info@webstudioh.ba',
+  email: 'info@hunar.ba',
   phoneDisplay: '060 3000 751',
   phoneHref: 'tel:+387603000751',
   whatsapp: 'https://wa.me/387603000751',
@@ -266,7 +266,7 @@ export const navLinks = [
 
 // Recenzija ide ovdje tek kad je klijent potvrdi: tačno potvrđen tekst i ime,
 // sa `approved: true`. Oblik: { quote, name, role, initials, project, approved }.
-// Potvrđene 27. 9. 2026. (javio vlasnik WebStudioH); potpis je naziv firme dok
+// Potvrđene 27. 9. 2026. (javio vlasnik studija, tada WebStudioH, sada Hunar); potpis je naziv firme dok
 // klijent ne kaže drugačije.
 export const testimonials = [
   {
