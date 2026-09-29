@@ -4,6 +4,7 @@ import { Box3, Vector3, Mesh, BoxGeometry, MeshStandardMaterial, Group, Texture 
 import { KUKA, kukaDimenzije } from '../src/brand/kuka.js'
 import { znakGeometrija } from '../src/three/znak3d.js'
 import { uklopi, oslobodi } from '../src/three/model.js'
+import { ocistiTekst, GRAVURA_MAX } from '../src/three/gravura.js'
 
 test('dimenzije kuke su iste kao u hunar_logo.py', () => {
   const d = kukaDimenzije(KUKA)
@@ -55,4 +56,11 @@ test('oslobodi: geometrija, materijal i tekstura se oslobađaju', () => {
   g.add(new Mesh(geo, mat))
   oslobodi(g)
   assert.deepEqual(pozvano.sort(), ['geo', 'mat', 'tex'])
+})
+
+test('gravura: razmaci se sabiju, tekst se skrati na najviše 18 znakova', () => {
+  assert.equal(ocistiTekst('  Za   tatu  '), 'Za tatu')
+  assert.equal(ocistiTekst(undefined), '')
+  assert.equal(ocistiTekst('x'.repeat(40)).length, GRAVURA_MAX)
+  assert.equal(ocistiTekst('Čestitam, Đulsa!'), 'Čestitam, Đulsa!')
 })
