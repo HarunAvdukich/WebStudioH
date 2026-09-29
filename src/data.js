@@ -440,7 +440,7 @@ export const stories = [
     naslov: 'mrt.ba',
     podnaslov: 'Alati i oprema · WooCommerce',
     oznaka: null,
-    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Kosilica Stiga Combi 53 SQ u 3D' },
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Kosilica Stiga Combi 53 SQ u 3D', udaljenost: 4.2 },
     koraci: [
       { tip: '3d', naslov: 'Artikal iz ponude', tekst: 'Kosilica Stiga Combi 53 SQ, jedan od 7.400+ artikala. Okrenite je.' },
       { tip: 'video', naslov: 'Pod svjetlom', tekst: 'Svaki detalj koji kupac želi vidjeti prije narudžbe.',
@@ -457,7 +457,7 @@ export const stories = [
     naslov: 'SmartTime',
     podnaslov: 'Satovi · trgovina i zakazivanje',
     oznaka: null,
-    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Sat Casio F-91W u 3D' },
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Sat Casio F-91W u 3D', udaljenost: 4.6 },
     koraci: [
       { tip: '3d', naslov: 'Sat iz ponude', tekst: 'Casio F-91W, jedan od 500+ modela. Okrenite ga.' },
       { tip: 'ekran', naslov: 'Na stranici sata', tekst: 'Fotografije, cijena i opis na jednom ekranu telefona.',
@@ -474,7 +474,7 @@ export const stories = [
     naslov: 'urez.ba',
     podnaslov: 'Gravure po mjeri · vlastita trgovina',
     oznaka: 'u izradi',
-    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Drvena kasica za graviranje u 3D' },
+    model: { glb: 'model.glb', poster: 'model.webp', alt: 'Drvena kasica za graviranje u 3D', udaljenost: 5.2 },
     koraci: [
       { tip: '3d', naslov: 'Poklon koji nosi ime', tekst: 'Drvena kasica sa praznom pločicom za ime. Okrenite je.' },
       { tip: 'gravura', naslov: 'Vaš tekst na pločici', tekst: 'Upišite ime i pogledajte gravuru na kasici.',

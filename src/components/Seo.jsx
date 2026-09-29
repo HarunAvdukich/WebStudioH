@@ -3,7 +3,7 @@ import { Head } from 'vite-react-ssg'
 export const SITE_NAME = 'Hunar'
 export const SITE_URL = 'https://hunar.ba'
 const DEFAULT_DESC =
-  'Hunar gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima.'
+  'Hunar pravi web stranice, web trgovine i sisteme za zakazivanje za firme u BiH, povezane sa OLX-om, Ananasom i dobavljačima.'
 
 /**
  * Per-page <head> (title, description, canonical, Open Graph).
@@ -18,7 +18,7 @@ function ogImageFor(path) {
 export default function Seo({ title, description = DEFAULT_DESC, path = '', image, noindex = false }) {
   const fullTitle = title
     ? `${title} · ${SITE_NAME}`
-    : `${SITE_NAME} · Web trgovine za bh. prodavnice`
+    : `${SITE_NAME} · Web stranice, trgovine i sistemi`
   const url = SITE_URL + path
   const ogImage = SITE_URL + (image || ogImageFor(path))
 

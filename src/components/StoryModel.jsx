@@ -25,7 +25,9 @@ export default function StoryModel({ prica, aktivan, gravura }) {
         import('three'),
       ])
       if (otkazano || stanje.current !== s) return
-      s.scena = napraviScenu(platno, { udaljenost: 5 })
+      // Udaljenost kamere je u podacima priče: artikal dug u dubinu (kosilica)
+      // traži bližu kameru od širokog (kasica) da bi izgledali jednako krupno.
+      s.scena = napraviScenu(platno, { udaljenost: prica.model.udaljenost ?? 4.6 })
       s.model = await ucitajModel(`/price/${prica.id}/${prica.model.glb}`)
       if (otkazano || stanje.current !== s) {
         oslobodi(s.model)

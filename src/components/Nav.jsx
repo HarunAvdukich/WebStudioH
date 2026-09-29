@@ -1,12 +1,16 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import Brand from './Brand.jsx'
-import { navLinks } from '../data.js'
+import { navLinks, contact } from '../data.js'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { pathname } = useLocation()
+  // Početna je svijetla; unutrašnje stranice ostaju tamne do drugog dijela redizajna.
+  const svijetla = pathname === '/'
   const close = () => setOpen(false)
+  const wa = `${contact.whatsapp}?text=${encodeURIComponent(contact.whatsappText)}`
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -16,7 +20,7 @@ export default function Nav() {
   }, [])
 
   return (
-    <nav className={`nav${scrolled ? ' nav--scrolled' : ''}`}>
+    <nav className={`nav${scrolled ? ' nav--scrolled' : ''}${svijetla ? ' nav--svijetla' : ''}`}>
       <div className="container nav__inner">
         <Brand />
 
@@ -34,9 +38,9 @@ export default function Nav() {
           ))}
         </div>
 
-        <Link className="btn btn--nav btn--primary" to="/kontakt">
-          Započni projekat →
-        </Link>
+        <a className="btn btn--nav btn--primary" href={wa} target="_blank" rel="noopener noreferrer">
+          Pošalji upit
+        </a>
 
         <button
           type="button"
@@ -62,9 +66,9 @@ export default function Nav() {
             {l.label}
           </NavLink>
         ))}
-        <Link className="btn btn--md btn--primary" to="/kontakt" onClick={close}>
-          Započni projekat →
-        </Link>
+        <a className="btn btn--md btn--primary" href={wa} target="_blank" rel="noopener noreferrer" onClick={close}>
+          Pošalji upit
+        </a>
       </div>
     </nav>
   )

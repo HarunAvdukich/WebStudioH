@@ -54,7 +54,7 @@ export default function Story({ prica }) {
 
   return (
     <section ref={ref} id={`prica-${prica.id}`} className={`prica${ziva ? ' prica--ziva' : ''}`}
-      aria-labelledby={`prica-${prica.id}-naslov`}>
+      data-tip={prica.koraci[korak].tip} aria-labelledby={`prica-${prica.id}-naslov`}>
       <div className="prica__scena">
         <header className="prica__zaglavlje">
           <h3 id={`prica-${prica.id}-naslov`} className="prica__naslov">{prica.naslov}</h3>

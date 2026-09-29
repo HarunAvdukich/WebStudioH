@@ -37,8 +37,8 @@ export default function Footer() {
         <div style={{ maxWidth: 300 }}>
           <Brand compact />
           <p className="footer__blurb">
-            Web trgovine za bh. prodavnice, povezane sa OLX-om i vašim
-            dobavljačima.
+            Web stranice, trgovine i sistemi za zakazivanje za firme u
+            Bosni i Hercegovini.
           </p>
         </div>
 

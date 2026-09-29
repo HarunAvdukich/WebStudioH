@@ -8,7 +8,6 @@ export default function Hero() {
     <section id="top" className="uvod">
       <div className="container uvod__mreza">
         <div className="uvod__tekst">
-          <p className="uvod__oznaka" data-reveal>Studio za web · Bosna i Hercegovina</p>
           <h1 className="uvod__naslov" data-reveal data-reveal-delay="70">
             <span className="uvod__naglasak">Web stranice, trgovine i sistemi</span> koji rade za vaš posao.
           </h1>

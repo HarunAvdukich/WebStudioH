@@ -1,4 +1,6 @@
+import '@fontsource-variable/plus-jakarta-sans'
 import './index.css'
+import './styles/pocetna.css'
 import { ViteReactSSG } from 'vite-react-ssg'
 import { routes } from './routes.jsx'
 

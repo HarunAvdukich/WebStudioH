@@ -33,7 +33,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: 'Satoshi', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font-family: var(--font-tekst), system-ui, -apple-system, 'Segoe UI', sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -54,7 +54,7 @@ a { color: var(--blue-300); text-decoration: none; }
   padding-inline: var(--gutter);
 }
 
-.font-display { font-family: 'Clash Display', sans-serif; }
+.font-display { font-family: var(--font-naslov), sans-serif; }
 .grad-text {
   background: var(--grad-text);
   -webkit-background-clip: text;
@@ -293,7 +293,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   animation: wshDot 2.4s infinite;
 }
 .hero__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 74px;
   line-height: 1.04;
@@ -404,7 +404,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   color: var(--blue-300);
 }
 .section-title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 46px;
   line-height: 1.08;
@@ -473,7 +473,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   background: linear-gradient(180deg, rgba(18, 165, 121, 0.09), rgba(255, 255, 255, 0.012));
 }
 .service-card__n {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 500;
   font-size: 15px;
   color: var(--blue);
@@ -556,7 +556,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   margin-bottom: 8px;
 }
 .project__name {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 22px;
   color: var(--text);
@@ -618,7 +618,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 22px;
   color: var(--blue-300);
@@ -645,7 +645,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .why__aside { position: sticky; top: 100px; }
 .why__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 44px;
   line-height: 1.1;
@@ -661,7 +661,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .stats { display: flex; gap: 36px; flex-wrap: wrap; }
 .stat__num {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 38px;
   color: var(--text);
@@ -686,7 +686,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 15px;
   color: var(--blue-300);
@@ -741,7 +741,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   white-space: nowrap;
 }
 .plan__name {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 23px;
   color: var(--text);
@@ -757,7 +757,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .plan--featured .plan__label { color: var(--blue-200); }
 .plan__price {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 34px;
   color: var(--text);
@@ -815,7 +815,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .cta__inner { position: relative; }
 .cta__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 52px;
   line-height: 1.08;
@@ -932,7 +932,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
 }
 .page-hero__inner { position: relative; max-width: 760px; margin: 0 auto; }
 .page-hero__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 56px;
   line-height: 1.06;
@@ -966,7 +966,7 @@ a:focus-visible, .btn:focus-visible, button:focus-visible { outline-offset: 4px;
   align-items: start;
 }
 .contact__aside-title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 30px;
   letter-spacing: -0.02em;
@@ -1061,7 +1061,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   border: 1px solid rgba(18, 165, 121, 0.28);
 }
 .contact__done h2 {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 26px;
   color: var(--heading);
@@ -1130,7 +1130,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .notfound { padding-block: 140px 120px; text-align: center; }
 .notfound__inner { max-width: 520px; margin: 0 auto; }
 .notfound__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 46px;
   letter-spacing: -0.03em;
@@ -1177,7 +1177,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   justify-content: center;
   background: var(--grad-mark);
   color: #fff;
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 15px;
 }
@@ -1306,7 +1306,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 }
 .post-card__dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(255, 255, 255, 0.25); }
 .post-card__title {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 24px;
   line-height: 1.2;
@@ -1329,7 +1329,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   margin-bottom: 34px;
 }
 .post__body h2 {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 26px;
   letter-spacing: -0.02em;
@@ -1367,7 +1367,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
   border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 .post__body h3 {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 20px;
   color: var(--heading);
@@ -1459,7 +1459,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .case__quote .tst-card__stars { margin-bottom: 16px; }
 .case__quote blockquote {
   margin: 0 0 22px;
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 500;
   font-size: 22px;
   line-height: 1.4;
@@ -1496,7 +1496,7 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 }
 .about-panel__stats { display: grid; grid-template-columns: 1fr 1fr; gap: 34px 24px; }
 .about-stat__num {
-  font-family: 'Clash Display', sans-serif;
+  font-family: var(--font-naslov), sans-serif;
   font-weight: 600;
   font-size: 44px;
   line-height: 1;

@@ -40,10 +40,14 @@ export function znakGeometrija({ dubina = 40, zaobljenje = 6, velicina = 2 } = {
 export function napraviZnak({ boja = '#0E8A64' } = {}) {
   const mat = new MeshPhysicalMaterial({
     color: new Color(boja),
-    roughness: 0.32,
+    roughness: 0.34,
     metalness: 0.05,
-    clearcoat: 0.4,
-    clearcoatRoughness: 0.35,
+    specularIntensity: 0.3,
+    clearcoat: 0.5,
+    clearcoatRoughness: 0.12,
+    // Okruženje je svijetlo za artikle na tamnoj sceni; znak bi u njemu
+    // izblijedio u mint, a mora ostati smaragdni kao na logotipu.
+    envMapIntensity: 0.3,
   })
   return new Mesh(znakGeometrija(), mat)
 }

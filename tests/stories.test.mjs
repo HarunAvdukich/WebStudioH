@@ -38,6 +38,13 @@ test('snimak ekrana ima alt i izvor, video ima alt', () => {
       if (k.tip === 'video') assert.ok(k.alt, `${s.id}: ${k.video}`)
     }
 })
+test('udaljenost kamere, ako je zadana, drži artikal u kadru (3 do 8)', () => {
+  for (const s of stories) {
+    const u = s.model.udaljenost
+    if (u === undefined) continue
+    assert.ok(typeof u === 'number' && u >= 3 && u <= 8, `${s.id}: ${u}`)
+  }
+})
 test('urez nosi oznaku "u izradi", ostali ne', () => {
   assert.deepEqual(stories.map((s) => s.oznaka), [null, null, 'u izradi'])
 })

@@ -19,7 +19,10 @@ function Platno({ naSpremno }) {
         import('../three/znak3d.js'),
       ])
       if (otkazano || !ref.current) return
-      const s = napraviScenu(ref.current, { udaljenost: 5.4 })
+      const s = napraviScenu(ref.current, { udaljenost: 4.2 })
+      // Svjetla scene su podešena za artikle na tamnom; na krečnoj podlozi
+      // znak bi izblijedio, pa je izlaganje niže.
+      s.renderer.toneMappingExposure = 0.52
       const znak = napraviZnak()
       s.scena.add(znak)
 

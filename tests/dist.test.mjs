@@ -116,3 +116,12 @@ test('početna: sve priče su u HTML-u i bez JavaScripta', () => {
     }
   }
 })
+
+test('početna: redoslijed sekcija i bez Fontsharea', () => {
+  const html = readFileSync(new URL('../dist/index.html', import.meta.url), 'utf8')
+  const redom = ['class="uvod"', 'class="brojke"', 'id="price"', 'id="usluge"']
+  const mjesta = redom.map((r) => html.indexOf(r))
+  assert.ok(mjesta.every((m) => m > 0), JSON.stringify(mjesta))
+  assert.deepEqual([...mjesta].sort((a, b) => a - b), mjesta)
+  assert.ok(!html.includes('api.fontshare.com'))
+})
