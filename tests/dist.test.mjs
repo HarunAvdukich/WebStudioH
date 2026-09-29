@@ -3,6 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join } from 'node:path'
+import { stories } from '../src/data.js'
 
 const DIST = 'dist'
 
@@ -99,4 +100,19 @@ test('početna: četiri brojke sa izvorom i četiri grupe usluga', () => {
   assert.equal((html.match(/class="brojka__izvor"/g) || []).length, 4)
   for (const n of ['Stranice i trgovine', 'Sistemi i aplikacije', 'Integracije i AI', 'Održavanje i rast'])
     assert.ok(html.includes(n), n)
+})
+
+test('početna: sve priče su u HTML-u i bez JavaScripta', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  const tekst = html.replace(/<[^>]+>/g, '')
+  assert.ok(tekst.includes('Preskoči priče'))
+  assert.ok(tekst.includes('u izradi'))
+  for (const s of stories) {
+    assert.ok(html.includes(`id="prica-${s.id}"`), s.id)
+    assert.ok(html.includes(`/price/${s.id}/${s.model.poster}`), `${s.id} poster`)
+    for (const k of s.koraci) {
+      assert.ok(tekst.includes(k.naslov), `${s.id}: ${k.naslov}`)
+      if (k.tip === 'ekran') assert.ok(html.includes(k.alt), `${s.id}: ${k.alt}`)
+    }
+  }
 })
