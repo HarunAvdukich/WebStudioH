@@ -93,3 +93,10 @@ test('početna: novi naslov, WhatsApp dugme i ravni znak kao rezerva', () => {
   assert.match(html, /href="https:\/\/wa\.me\/387603000751\?text=[^"]+"[^>]*>Pošalji upit/)
   assert.match(html, /class="hero-znak__ravni"/)
 })
+
+test('početna: četiri brojke sa izvorom i četiri grupe usluga', () => {
+  const html = readFileSync(join(DIST, 'index.html'), 'utf8')
+  assert.equal((html.match(/class="brojka__izvor"/g) || []).length, 4)
+  for (const n of ['Stranice i trgovine', 'Sistemi i aplikacije', 'Integracije i AI', 'Održavanje i rast'])
+    assert.ok(html.includes(n), n)
+})
