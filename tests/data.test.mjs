@@ -47,8 +47,8 @@ test('objavljene recenzije su samo potvrđene', () => {
   assert.ok(data.publishedTestimonials.every((t) => t.approved === true))
 })
 
-test('brojke odgovaraju izmjerenim 27. 9. 2026.', () => {
-  assert.deepEqual(data.homeStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms'])
+test('brojke odgovaraju izmjerenim (27. i 29. 9. 2026.)', () => {
+  assert.deepEqual(data.homeStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms', '500+'])
   assert.deepEqual(data.aboutStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms', '98'])
 })
 
