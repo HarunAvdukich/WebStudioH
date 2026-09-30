@@ -48,23 +48,23 @@ export function raspored(W, H) {
   }
 
   // Potpis: logo se smanji i dobije "Izradio" ispred (široko) ili iznad (usko).
-  let sig, fin
+  let sig
   if (siroko) {
     const s = 0.5
     const f = (logoW * s * odnos) / 1.15
     const grupa = 3.15 * f + 0.4 * f + logoW * s
     const L = W / 2 - grupa / 2 + 3.55 * f
-    sig = { L, T: H * 0.17, s }
-    fin = { L, T: H * 0.107, s }
+    sig = { L, T: Math.max(96, H * 0.15), s }
   } else {
     sig = { L: pad, T: H * 0.2, s: 1 }
-    fin = sig
   }
+  // Donja ivica potpisa: ispod nje idu tekst i radovi.
+  const sigDno = sig.T + logoH * sig.s
 
   return {
     W, H, siroko, pad, logoW, logoH, logoL, logoT,
     kanalW, kanalL: W / 2 - kanalW / 2, zum, sred,
-    boxW, boxH, boxT, boxL: W / 2 - boxW / 2, sig, fin,
+    boxW, boxH, boxT, boxL: W / 2 - boxW / 2, sig, sigDno,
   }
 }
 
@@ -73,13 +73,13 @@ function org(P, left, top, s, logoW) {
   return { x: left + P.x * k, y: top + P.y * k }
 }
 
-// Kamera: ulaz u slovo u, prelet preko petlje u slovo n, izlaz, potpis.
+// Kamera: ulaz u slovo u, prelet preko petlje u slovo n, izlaz, potpis. Poslije
+// potpisa scena stoji, a poziv na kraju (van scene) naiđe preko nje.
 export function kamera(p, R) {
   const Z = R.zum
   const start = org(A, R.logoL, R.logoT, 1, R.logoW)
   const o1 = org(B, R.logoL, R.logoT, 1, R.logoW)
   const sig = org(B, R.sig.L, R.sig.T, R.sig.s, R.logoW)
-  const fin = org(B, R.fin.L, R.fin.T, R.fin.s, R.logoW)
   let e
   if (p < 0.14) {
     e = ez(seg(p, 0.04, 0.14))
@@ -100,12 +100,8 @@ export function kamera(p, R) {
     e = ez(seg(p, 0.82, 0.86))
     return { L: B, s: Math.pow(Z, 1 - e), x: lp(R.sred.x, o1.x, e), y: lp(R.sred.y, o1.y, e) }
   }
-  if (p < 0.93) {
-    e = ez(seg(p, 0.86, 0.9))
-    return { L: B, s: lp(1, R.sig.s, e), x: lp(o1.x, sig.x, e), y: lp(o1.y, sig.y, e) }
-  }
-  e = ez(seg(p, 0.93, 0.97))
-  return { L: B, s: R.fin.s, x: lp(sig.x, fin.x, e), y: lp(sig.y, fin.y, e) }
+  e = ez(seg(p, 0.86, 0.9))
+  return { L: B, s: lp(1, R.sig.s, e), x: lp(o1.x, sig.x, e), y: lp(o1.y, sig.y, e) }
 }
 
 // Transformacija grupe logotipa za kameru, u pikselima scene.
@@ -115,8 +111,8 @@ export function transformacija(c, R) {
 }
 
 export const VRIJEME = {
-  sat: { vidljiv: 0.19, sklapanje: [0.33, 0.42], nestaje: 0.47, prvaOznaka: 0.205, korak: 0.013 },
-  kosilica: { vidljiv: 0.58, sklapanje: [0.7, 0.785], nestaje: 0.82, prvaOznaka: 0.595, korak: 0.015 },
+  sat: { vidljiv: 0.19, sklapanje: [0.33, 0.41], nestaje: 0.47, prvaOznaka: 0.205, korak: 0.013 },
+  kosilica: { vidljiv: 0.58, sklapanje: [0.7, 0.775], nestaje: 0.82, prvaOznaka: 0.595, korak: 0.015 },
 }
 
 // Stanje jednog predmeta: kadar sklapanja, vidljivost, oznake i lista.
@@ -134,15 +130,16 @@ export function predmet(V, brojOznaka, brojStavki, brojKadrova, p) {
   return { t, kadar, vidljivost, oznake, aktivnaOznaka, lista, gotovo, posto: Math.round(t * 100) }
 }
 
+// Kraj sklapanja se pojavi tek kad lista i procenat nestanu, da se tekst ne
+// preklapa na istom mjestu.
 export const SLOJEVI = {
   uvod: (p) => 1 - cl((p - 0.02) / 0.05),
   uNajava: (p) => fade(p, 0.13, 0.15, 0.18, 0.195),
   kanal: (p) => Math.max(fade(p, 0.19, 0.21, 0.46, 0.48), fade(p, 0.58, 0.6, 0.81, 0.83)),
-  satKraj: (p) => fade(p, 0.425, 0.44, 0.465, 0.48),
+  satKraj: (p) => fade(p, 0.43, 0.442, 0.466, 0.478),
   prelaz: (p) => fade(p, 0.49, 0.5, 0.53, 0.54),
   nNajava: (p) => fade(p, 0.55, 0.565, 0.575, 0.59),
-  kosKraj: (p) => fade(p, 0.79, 0.8, 0.815, 0.825),
+  kosKraj: (p) => fade(p, 0.795, 0.805, 0.818, 0.826),
   izradio: (p) => ez(seg(p, 0.87, 0.9)),
-  potpis: (p) => fade(p, 0.895, 0.91, 0.925, 0.94),
-  finale: (p) => cl((p - 0.935) / 0.04),
+  potpis: (p) => cl((p - 0.895) / 0.017),
 }

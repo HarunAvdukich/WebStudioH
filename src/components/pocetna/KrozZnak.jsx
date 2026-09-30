@@ -19,7 +19,7 @@ function IkonaPoruka({ boja = 'currentColor' }) {
   )
 }
 
-function Dugme({ children = 'Pišite mi na WhatsApp' }) {
+function Dugme({ children = 'Pišite nam na WhatsApp' }) {
   return (
     <a className="kz-dugme" href={whatsappLink} target="_blank" rel="noopener">
       <IkonaPoruka />
@@ -115,12 +115,12 @@ export default function KrozZnak() {
           </svg>
 
           <header className="kz-zaglavlje">
-            <p className="kz-poglavlje" data-poglavlje aria-hidden="true">01 / 06 · Hunar</p>
+            <p className="kz-poglavlje" data-poglavlje aria-hidden="true">{`01 / ${String(poglavlja.length).padStart(2, '0')} · Hunar`}</p>
             <nav className="kz-meni" aria-label="Glavni meni">
               {meni.map((m) => (
                 <Link key={m.put} to={m.put}>{m.naziv}</Link>
               ))}
-              <a className="kz-meni__dugme" href={whatsappLink} target="_blank" rel="noopener">Pišite mi</a>
+              <a className="kz-meni__dugme" href={whatsappLink} target="_blank" rel="noopener">Pišite nam</a>
             </nav>
             <button
               type="button"
@@ -214,42 +214,41 @@ export default function KrozZnak() {
           <span className="kz-izradio" data-izradio aria-hidden="true">Izradio</span>
           <div className="kz-sloj kz-potpis" data-sloj="potpis">
             <p className="kz-potpis__tekst">{potpis.tekst}</p>
-            <div className="kz-potpis__primjeri">
-              {potpis.primjeri.map((x) => (
-                <figure key={x.naziv}>
-                  <figcaption className="kz-nad">{x.naziv}</figcaption>
-                  <div className="kz-potpis__slika">
-                    <img src={x.slika} alt={x.alt} width="560" height="64" loading="lazy" decoding="async" />
-                    <span
-                      className="kz-potpis__okvir"
-                      style={{ left: `${(x.okvir[0] / 560) * 100}%`, top: `${(x.okvir[1] / 64) * 100}%`, width: `${(x.okvir[2] / 560) * 100}%`, height: `${(x.okvir[3] / 64) * 100}%` }}
-                      aria-hidden="true"
-                    />
-                  </div>
-                </figure>
-              ))}
-            </div>
-          </div>
-
-          <div className="kz-sloj kz-finale" data-sloj="finale">
-            <h2>{finale.naslov}</h2>
-            <p className="kz-opis">{finale.opis}</p>
-            <ol className="kz-ponuda">
-              {finale.ponuda.map((x, i) => (
-                <li key={x.naslov}>
-                  <span className="kz-ponuda__vrh"><span className="kz-broj" aria-hidden="true">{i + 1}</span><strong>{x.naslov}</strong></span>
-                  <span className="kz-ponuda__opis">{x.opis}</span>
+            <ul className="kz-radovi">
+              {potpis.radovi.map((r) => (
+                <li key={r.put}>
+                  <Link className="kz-rad" to={r.put}>
+                    <span className="kz-rad__ime">{r.naziv}</span>
+                    <span className="kz-rad__opis">{r.opis}</span>
+                    <span className="kz-rad__vise">
+                      <span className="kz-rad__rijec">{potpis.vise}</span>
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
+                    </span>
+                  </Link>
                 </li>
               ))}
-            </ol>
-            <div className="kz-dugmad kz-dugmad--sredina">
-              <Dugme />
-              <a className="kz-tel" href={contact.phoneHref}>{contact.phoneDisplay}</a>
-              <a className="kz-tel" href={`mailto:${contact.email}`}>{contact.email}</a>
-            </div>
-            <p className="kz-finale__ispod">{finale.ispod}</p>
+            </ul>
           </div>
         </div>
+      </section>
+
+      <section className="kz-finale" aria-labelledby="kz-finale-naslov">
+        <h2 id="kz-finale-naslov">{finale.naslov}</h2>
+        <p className="kz-opis">{finale.opis}</p>
+        <ol className="kz-ponuda">
+          {finale.ponuda.map((x, i) => (
+            <li key={x.naslov}>
+              <span className="kz-ponuda__vrh"><span className="kz-broj" aria-hidden="true">{i + 1}</span><strong>{x.naslov}</strong></span>
+              <span className="kz-ponuda__opis">{x.opis}</span>
+            </li>
+          ))}
+        </ol>
+        <div className="kz-dugmad kz-dugmad--sredina">
+          <Dugme />
+          <a className="kz-tel" href={contact.phoneHref}>{contact.phoneDisplay}</a>
+          <a className="kz-tel" href={`mailto:${contact.email}`}>{contact.email}</a>
+        </div>
+        <p className="kz-finale__ispod">{finale.ispod}</p>
       </section>
 
       <div id="kz-meni-telefon" className={`kz-meni-telefon${otvoren ? ' je-otvoren' : ''}`} hidden={!otvoren}>

@@ -160,23 +160,6 @@ export const projects = [
       'Uskoro online',
     ],
   },
-  {
-    slug: 'uptos',
-    name: 'UPTOS Breza',
-    tag: 'Udruženje · Web stranica',
-    url: 'https://uptos.netlify.app',
-    image: '/project-uptos.webp',
-    variant: 'portfolio',
-    summary: 'Web stranica udruženja pedagoga tjelesnog odgoja i sporta.',
-    overview:
-      'UPTOS Breza je Udruženje pedagoga tjelesnog odgoja i sporta. Napravili smo modernu, preglednu web stranicu koja predstavlja rad udruženja, najavljuje takmičenja, škole skijanja i događaje, uz galeriju i kontakt formu.',
-    highlights: [
-      'Prezentacija udruženja',
-      'Događaji i takmičenja',
-      'Galerija i novosti',
-      'Kontakt forma',
-    ],
-  },
 ]
 
 export const pricing = [
@@ -285,15 +268,6 @@ export const testimonials = [
     role: 'Trgovina satova',
     initials: 'ST',
     project: 'smarttime',
-    approved: true,
-  },
-  {
-    quote:
-      'Dobili smo modernu i preglednu stranicu koja predstavlja rad udruženja, takmičenja i škole skijanja na jednom mjestu. Komunikacija tokom izrade je bila jednostavna.',
-    name: 'UPTOS Breza',
-    role: 'Udruženje pedagoga',
-    initials: 'UB',
-    project: 'uptos',
     approved: true,
   },
 ]

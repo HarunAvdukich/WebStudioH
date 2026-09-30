@@ -24,7 +24,7 @@ Hunar (ranije WebStudioH) pravi sve na webu za firme u BiH: web stranice, web tr
 Ono što lokalna agencija ili freelancer ne mogu iskreno tvrditi:
 
 - Veze koje radi samo bh. trgovina: OLX (oglasi se sami ažuriraju), Ananas feed, uvoz kataloga od dobavljača.
-- Sve od jedne osobe: dizajn, kod, hosting i održavanje kod istog čovjeka, bez prebacivanja.
+- Sve na jednom mjestu: dizajn, kod, hosting i održavanje u istom studiju, bez prebacivanja s firme na firmu.
 - AI u poslu: asistent Kobi na mrt.ba, opisi artikala, automatizacija.
 - Mjerena brzina: sajtovi čija se brzina može provjeriti.
 
@@ -44,7 +44,7 @@ Posjetilac poredi Hunar sa lokalnim agencijama i freelancerima, često na telefo
 ## Brand Commitments
 
 - Ime Hunar, logotip "petlja u+n" u smaragdnoj (#0E8A64); vektor se pravi skriptom `hunar_logo.py` u `Documents\Hunar\logo`, nikad ručno. Ostale boje stranice nisu vezane za logotip.
-- Iza studija radi jedna osoba; stranica ne pokazuje ime ni lice vlasnika i ne tvrdi da postoji tim.
+- Stranica govori glasom studija (mi, Hunar), a kupcu se obraća sa "Vi" (odluka vlasnika 30. 9. 2026). Ne pokazuje ime ni lice vlasnika i ne izmišlja tim: bez broja ljudi, imena i fotografija tima.
 - UPTOS Breza se ne prikazuje nigdje (vlasnik nije zadovoljan tim radom), ni kao rad, ni kao primjer, ni kao recenzija.
 - Nijedna brojka ni tvrdnja bez izvora i datuma; brzina uvijek sa uređajem na kojem je izmjerena.
 
@@ -62,6 +62,6 @@ Posjetilac poredi Hunar sa lokalnim agencijama i freelancerima, često na telefo
 
 1. Dokaz ispred obećanja: stvaran rad, stvarni artikli i izmjerene brojke nose stranicu.
 2. Jednako uvjerljivo za radnju koja hoće prvi sajt i za firmu koja traži sistem.
-3. Govoriti jezikom posla (OLX, pouzeće, dobavljač, zaliha, termin), ne jezikom agencije.
+3. Govoriti jezikom posla (OLX, pouzeće, dobavljač, zaliha, termin), bez agencijskog žargona.
 4. Put do upita je kratak i radi na telefonu, prvenstveno preko WhatsAppa.
 5. Iskrenost je dio ponude: ništa što klijent ili kupac ne može provjeriti.
