@@ -55,7 +55,7 @@ Posjetilac poredi Hunar sa lokalnim agencijama i freelancerima, često na telefo
 - urez.ba: vlastita trgovina gravura po mjeri, u izradi (lokalno), bez javnog linka.
 - Recenzije mrt.ba i SmartTime, potpisane nazivom firme.
 - Logotipi klijenata smiju na stranicu.
-- AI generisane scene, 3D i video smiju, ali kao ilustracija, nikad predstavljene kao stvaran snimak.
+- AI generisane scene, 3D i video smiju, ali kao ilustracija, nikad predstavljene kao stvaran snimak. Vidljiva oznaka "Ilustracija (AI)" nije potrebna (vlasnik, 30. 9. 2026); alt tekst slike kaže da je ilustracija, a tekst ne tvrdi da je fotografija.
 - Ne postoje: fotografije vlasnika ili tima, nagrade, medijski napisi, objavljene cijene. Ne izmišljati ih.
 
 ## Product Principles

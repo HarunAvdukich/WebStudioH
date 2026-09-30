@@ -16,26 +16,28 @@ const ZNAK = 0.38961 // razmjer znaka unutar logotipa
 // Priča je izmjerena u ekranima skrola (1 = jedna visina prozora), da svaki tekst
 // stoji dovoljno dugo da se pročita. p (0 do 1) je udio od UKUPNO ekrana, a
 // visina priče u pocetna.css je UKUPNO + 1 ekran (test to provjerava).
-export const UKUPNO = 17.8
+export const UKUPNO = 23.1
 const e = (ekran) => ekran / UKUPNO
 
 // Vremena u ekranima: [pojava, puno, počinje nestajati, nestalo] ili [od, do].
+// Poslije svakog predmeta dolazi prava stranica tog artikla (satSajt, kosSajt).
 export const T = {
   uvod: [0.2, 0.7],
   zumU: [0.4, 1.5],
-  uNajava: [1.35, 1.55, 2.35, 2.55].map(e),
-  kanalSat: [2.5, 2.7, 7.6, 7.8].map(e),
-  satKraj: [6.5, 6.7, 7.6, 7.8].map(e),
-  prelet: [7.85, 8.85],
-  prelaz: [7.95, 8.1, 8.6, 8.75].map(e),
-  nNajava: [8.8, 9.0, 9.8, 10.0].map(e),
-  kanalKos: [9.95, 10.15, 14.25, 14.45].map(e),
-  kosKraj: [13.25, 13.45, 14.25, 14.45].map(e),
-  kosSajt: [14.4, 14.65, 15.55, 15.75].map(e),
-  zumVan: [15.75, 16.3],
-  potpis: [16.3, 16.75],
-  izradio: [16.4, 16.75],
-  potpisTekst: [16.7, 16.9].map(e),
+  uNajava: [1.35, 1.55, 2.55, 2.75].map(e),
+  kanalSat: [2.7, 2.9, 9.9, 10.1].map(e),
+  satKraj: [8.6, 8.8, 9.9, 10.1].map(e),
+  satSajt: [10.0, 10.25, 11.25, 11.45].map(e),
+  prelet: [11.5, 12.5],
+  prelaz: [11.6, 11.75, 12.25, 12.4].map(e),
+  nNajava: [12.45, 12.65, 13.65, 13.85].map(e),
+  kanalKos: [13.8, 14.0, 19.4, 19.6].map(e),
+  kosKraj: [18.2, 18.4, 19.4, 19.6].map(e),
+  kosSajt: [19.55, 19.8, 20.8, 21.0].map(e),
+  zumVan: [21.0, 21.55],
+  potpis: [21.55, 22.0],
+  izradio: [21.65, 22.0],
+  potpisTekst: [21.95, 22.15].map(e),
 }
 for (const k of ['uvod', 'zumU', 'prelet', 'zumVan', 'potpis', 'izradio']) T[k] = T[k].map(e)
 
@@ -139,11 +141,11 @@ export function transformacija(c, R) {
   return { k, x: c.x - k * c.L.x, y: c.y - k * c.L.y }
 }
 
-// Oznake izlaze jedna po jedna (korak), pa se predmet sklopi. Kosilica nestaje kad
-// se pojavi snimak mrt.ba sa telefona.
+// Oznake izlaze jedna po jedna (korak), pa se predmet sklopi. Predmet nestaje kad
+// se pojavi snimak prave stranice tog artikla sa telefona.
 export const VRIJEME = {
-  sat: { vidljiv: e(2.5), sklapanje: [e(5.15), e(6.25)], nestaje: e(7.65), prvaOznaka: e(2.75), korak: e(0.24) },
-  kosilica: { vidljiv: e(9.95), sklapanje: [e(12.0), e(13.0)], nestaje: e(14.35), prvaOznaka: e(10.2), korak: e(0.27) },
+  sat: { vidljiv: e(2.7), sklapanje: [e(7.05), e(8.35)], nestaje: e(9.95), prvaOznaka: e(2.95), korak: e(0.45) },
+  kosilica: { vidljiv: e(13.8), sklapanje: [e(16.8), e(17.95)], nestaje: e(19.5), prvaOznaka: e(14.05), korak: e(0.45) },
 }
 const POJAVA = e(0.13) // oznaka se pojavi
 const PREDMET = e(0.22) // predmet se pojavi ili nestane
@@ -175,6 +177,7 @@ export const SLOJEVI = {
   prelaz: (p) => faza(p, T.prelaz),
   nNajava: (p) => faza(p, T.nNajava),
   kosKraj: (p) => faza(p, T.kosKraj),
+  satSajt: (p) => faza(p, T.satSajt),
   kosSajt: (p) => faza(p, T.kosSajt),
   izradio: (p) => ez(seg(p, T.izradio[0], T.izradio[1])),
   potpis: (p) => seg(p, T.potpisTekst[0], T.potpisTekst[1]),

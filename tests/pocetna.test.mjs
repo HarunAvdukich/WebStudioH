@@ -113,14 +113,15 @@ test('visina priče u CSS-u odgovara vremenima u motor.js', () => {
 test('svaki tekst stoji dovoljno dugo da se pročita', () => {
   // puno vidljiv, u ekranima skrola
   const ekrana = ([, a1, b0]) => (b0 - a1) * UKUPNO
-  for (const ime of ['uNajava', 'satKraj', 'nNajava', 'kosKraj', 'kosSajt']) {
-    assert.ok(ekrana(T[ime]) >= 0.75, `${ime}: ${ekrana(T[ime]).toFixed(2)} ekrana`)
+  for (const ime of ['uNajava', 'satKraj', 'satSajt', 'nNajava', 'kosKraj', 'kosSajt']) {
+    assert.ok(ekrana(T[ime]) >= 0.95, `${ime}: ${ekrana(T[ime]).toFixed(2)} ekrana`)
   }
   assert.ok(ekrana(T.prelaz) >= 0.45)
   // potpis stoji bar pola ekrana prije nego što ga poziv na kraju počne prekrivati
   assert.ok(UKUPNO - 0.4 - T.potpisTekst[1] * UKUPNO >= 0.45)
   for (const [ime, V] of Object.entries(VRIJEME)) {
-    assert.ok(V.korak * UKUPNO >= 0.22, `${ime}: oznake prebrzo`)
+    // vlasnik: oznake su se na računaru mijenjale prebrzo
+    assert.ok(V.korak * UKUPNO >= 0.4, `${ime}: oznake prebrzo`)
   }
 })
 
@@ -130,8 +131,8 @@ test('poglavlja idu redom i ima ih koliko imena', () => {
   for (let i = 1; i < POGLAVLJA.length; i++) assert.ok(POGLAVLJA[i] > POGLAVLJA[i - 1])
 })
 
-test('snimak mrt.ba postoji', () => {
-  assert.ok(existsSync(`public${pocetna.kosilica.sajt.slika}`))
+test('snimci pravih stranica postoje', () => {
+  for (const ime of ['sat', 'kosilica']) assert.ok(existsSync(`public${pocetna[ime].sajt.slika}`))
 })
 
 // Engleska početna: isti oblik i ista pravila kao bosanska.
@@ -159,4 +160,11 @@ test('engleski: isti raspored oznaka i ista struktura kao bosanski', () => {
   assert.match(english.whatsappLink, /^https:\/\/wa\.me\/387603000751\?text=/)
   assert.equal(english.drugiJezik.put, pocetna.put)
   assert.equal(pocetna.drugiJezik.put, english.put)
+})
+
+test('nema vidljive oznake AI ilustracije (vlasnik je ne želi); alt tekst je zadržava', () => {
+  const ai = /\(AI\)/
+  assert.deepEqual([...tekst, ...tekstEn].filter((s) => ai.test(s)), [])
+  assert.match(pocetna.sat.alt, /ilustracija/)
+  assert.match(english.kosilica.alt, /illustration/)
 })

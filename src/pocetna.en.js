@@ -83,8 +83,14 @@ export const sat = {
   kraj: {
     naslov: 'Runs like clockwork.',
     opis: 'Website, store, integrations and maintenance from the same hands. When you need something, you call one number, not three companies.',
-    uz: 'This Seiko 5 is one of 526 wristwatches on smarttime.ba (29 Sep 2026), a watch store we built in Bosnia. Customers find a watch on their phone, order it and book an engraving.',
-    izvor: 'Illustration (AI) based on the real product.',
+    uz: 'smarttime.ba is a watch store we built in Bosnia: 526 wristwatches in the catalogue (29 Sep 2026), ordering from a phone and engraving appointments.',
+  },
+  sajt: {
+    naslov: 'The same watch, live on smarttime.ba.',
+    opis: 'The Seiko 5 SNKE01K1, with photos taken in the shop. Customers look it over on their phone and order in a few taps.',
+    izvor: 'Phone screenshot, smarttime.ba, 30 Sep 2026.',
+    slika: '/kadrovi/smarttime-telefon.webp',
+    alt: 'The Seiko 5 SNKE01K1 product page on smarttime.ba, phone screenshot',
   },
 }
 
@@ -122,7 +128,6 @@ export const kosilica = {
     opis: 'mrt.ba has been live since 6 Sep 2026. In their words:',
     citat: '“Listings update themselves, and we edit the content ourselves in the admin panel.”',
     citatOd: 'mrt.ba, tools and equipment store (translated from Bosnian)',
-    izvor: 'Mower: illustration (AI) based on a real mrt.ba photo.',
   },
   sajt: {
     naslov: 'The same mower, live on mrt.ba.',

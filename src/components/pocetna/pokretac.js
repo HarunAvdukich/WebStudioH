@@ -11,9 +11,8 @@ function broj(n) {
 }
 
 export class Pokretac {
-  constructor({ prica, scena, svg, platno, sajt, podaci }) {
+  constructor({ prica, scena, svg, platno, podaci }) {
     this.prica = prica
-    this.sajt = sajt
     this.scena = scena
     this.svg = svg
     this.platno = platno
@@ -210,6 +209,7 @@ export class Pokretac {
     if (pr.vidljivost > 0) this.nacrtaj(aktivan, pr.kadar)
 
     this.vidljivost('satKraj', SLOJEVI.satKraj(p))
+    this.vidljivost('satSajt', SLOJEVI.satSajt(p))
     this.vidljivost('prelaz', SLOJEVI.prelaz(p))
     this.vidljivost('nNajava', SLOJEVI.nNajava(p))
     this.vidljivost('kosKraj', SLOJEVI.kosKraj(p))
@@ -271,7 +271,8 @@ export class Pokretac {
   }
 
   ucitajKadrove() {
-    if (this.sajt && !this.sajt.src) this.sajt.src = this.sajt.dataset.src
+    // Snimci pravih stranica (smarttime.ba, mrt.ba) idu sa kadrovima.
+    for (const img of this.scena.querySelectorAll('img[data-src]')) if (!img.src) img.src = img.dataset.src
     for (const ime of PREDMETI) {
       const d = this.podaci[ime]
       // Prvo krajnji kadrovi, pa ostali, da sklapanje odmah ima početak i kraj.

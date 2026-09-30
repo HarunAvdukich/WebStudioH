@@ -56,6 +56,22 @@ function Oznake({ ime, podaci }) {
   )
 }
 
+// Prava stranica artikla na telefonu; slika se učita tek poslije prve interakcije.
+function Sajt({ sloj, podaci }) {
+  return (
+    <figure className="kz-sloj kz-sajt" data-sloj={sloj}>
+      <div className="kz-sajt__telefon">
+        <img data-src={podaci.slika} alt={podaci.alt} width="780" height="1270" decoding="async" />
+      </div>
+      <figcaption className="kz-sajt__tekst">
+        <h3>{podaci.naslov}</h3>
+        <p>{podaci.opis}</p>
+        <p className="kz-izvor">{podaci.izvor}</p>
+      </figcaption>
+    </figure>
+  )
+}
+
 function Lista({ ime, podaci, ispod }) {
   return (
     <div className="kz-sloj kz-lista" data-sloj={`lista-${ime}`} aria-hidden="true">
@@ -86,14 +102,13 @@ export default function KrozZnak({ t = bosanski }) {
   const scena = useRef(null)
   const svg = useRef(null)
   const platno = useRef(null)
-  const sajt = useRef(null)
   const [otvoren, setOtvoren] = useState(false)
   const { ui, sat, kosilica, potpis, finale, podnozje, drugiJezik } = t
 
   useEffect(() => {
     if (!document.documentElement.classList.contains('pokret')) {
-      // Obična stranica: snimak mrt.ba se učita kao i svaka slika ispod prvog ekrana.
-      if (sajt.current && !sajt.current.src) sajt.current.src = sajt.current.dataset.src
+      // Obična stranica: snimci stranica se učitaju kao i svaka slika ispod prvog ekrana.
+      for (const img of prica.current.querySelectorAll('img[data-src]')) img.src = img.dataset.src
       return undefined
     }
     const pokretac = new Pokretac({
@@ -101,7 +116,6 @@ export default function KrozZnak({ t = bosanski }) {
       scena: scena.current,
       svg: svg.current,
       platno: platno.current,
-      sajt: sajt.current,
       podaci: { sat, kosilica, poglavlja: t.poglavlja },
     })
     pokretac.pokreni()
@@ -201,9 +215,10 @@ export default function KrozZnak({ t = bosanski }) {
             </div>
             <div className="kz-kraj__uz">
               <p>{sat.kraj.uz}</p>
-              <p className="kz-izvor">{sat.kraj.izvor}</p>
             </div>
           </div>
+
+          <Sajt sloj="satSajt" podaci={sat.sajt} />
 
           <div className="kz-sloj kz-prelaz" data-sloj="prelaz">
             <p className="kz-nad">{t.prelaz.nad}</p>
@@ -230,20 +245,10 @@ export default function KrozZnak({ t = bosanski }) {
                 <p>{kosilica.kraj.citat}</p>
                 <footer>{kosilica.kraj.citatOd}</footer>
               </blockquote>
-              <p className="kz-izvor">{kosilica.kraj.izvor}</p>
             </div>
           </div>
 
-          <figure className="kz-sloj kz-sajt" data-sloj="kosSajt">
-            <div className="kz-sajt__telefon">
-              <img ref={sajt} data-src={kosilica.sajt.slika} alt={kosilica.sajt.alt} width="780" height="1270" decoding="async" />
-            </div>
-            <figcaption className="kz-sajt__tekst">
-              <h3>{kosilica.sajt.naslov}</h3>
-              <p>{kosilica.sajt.opis}</p>
-              <p className="kz-izvor">{kosilica.sajt.izvor}</p>
-            </figcaption>
-          </figure>
+          <Sajt sloj="kosSajt" podaci={kosilica.sajt} />
 
           <span className="kz-izradio" data-izradio aria-hidden="true">{ui.izradio}</span>
           <div className="kz-sloj kz-potpis" data-sloj="potpis">

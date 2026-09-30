@@ -91,8 +91,15 @@ export const sat = {
   kraj: {
     naslov: 'Radi kao sat.',
     opis: 'Stranica, trgovina, veze i održavanje iz istih ruku. Kad nešto zatreba, zovete jedan broj, a ne tri firme.',
-    uz: 'Ovaj Seiko 5 je jedan od 526 ručnih satova na smarttime.ba (29. 9. 2026), trgovini koju smo napravili. Kupac nađe sat na telefonu, naruči ga i zakaže graviranje.',
-    izvor: 'Ilustracija (AI) po pravom artiklu.',
+    uz: 'smarttime.ba je trgovina satova koju smo napravili: 526 ručnih satova u katalogu (29. 9. 2026), narudžba sa telefona i termin za graviranje.',
+  },
+  // Poslije sklapanja sat pređe u pravu stranicu tog artikla na smarttime.ba.
+  sajt: {
+    naslov: 'Isti sat, uživo na smarttime.ba.',
+    opis: 'Seiko 5 SNKE01K1, sa fotografijama iz radnje. Kupac ga pogleda na telefonu i naruči u par dodira.',
+    izvor: 'Snimak ekrana sa telefona, smarttime.ba, 30. 9. 2026.',
+    slika: '/kadrovi/smarttime-telefon.webp',
+    alt: 'Stranica sata Seiko 5 SNKE01K1 na smarttime.ba, snimak ekrana sa telefona',
   },
 }
 
@@ -130,7 +137,6 @@ export const kosilica = {
     opis: 'mrt.ba radi od 6. 9. 2026. Šta kažu oni:',
     citat: '„Oglasi se sami ažuriraju, a sadržaj mijenjamo i sami iz administracije.“',
     citatOd: 'mrt.ba, trgovina alata i opreme',
-    izvor: 'Kosilica: ilustracija (AI) po pravoj fotografiji sa mrt.ba.',
   },
   // Poslije sklapanja kosilica pređe u pravu stranicu tog artikla na mrt.ba.
   sajt: {
