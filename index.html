@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0A0B0D" />
     <meta property="og:locale" content="bs_BA" />
+    <script>
+      // Živa priča na početnoj samo uz JavaScript i bez "smanji pokrete".
+      // Ako se pokretač ne javi za 6 s, stranica se vraća u običan izgled.
+      (function () {
+        var h = document.documentElement
+        h.classList.add('js')
+        if (window.matchMedia && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          h.classList.add('pokret')
+          setTimeout(function () {
+            if (!h.dataset.kz && document.querySelector('.kz-prica')) h.classList.remove('pokret')
+          }, 6000)
+        }
+      })()
+    </script>
 
     <!-- favicons -->
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -16,10 +30,19 @@
 
     <!-- title / description / Open Graph are managed per page via <Seo> (react-helmet-async) -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <!-- slova starih stranica; ne blokiraju prvo iscrtavanje (početna koristi Urbanist) -->
     <link
+      rel="preload"
+      as="style"
       href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <!-- Static form so Netlify Forms detects "kontakt" at build time (SPA submits to it) -->
