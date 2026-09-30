@@ -285,7 +285,7 @@ html.lenis { scroll-behavior: auto !important; }
   --box-t: calc(var(--kz-h) * 0.135);
 
   position: relative;
-  height: calc(var(--kz-h) * 24.1); /* UKUPNO + 1 iz motor.js */
+  height: calc(var(--kz-h) * 20); /* UKUPNO + 1 iz motor.js */
 }
 .pokret .kz-scena {
   position: sticky;

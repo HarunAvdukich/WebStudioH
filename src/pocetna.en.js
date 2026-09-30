@@ -63,7 +63,7 @@ export const sat = {
   kanal: 'U · what you get · every part is one service',
   kanalKratko: 'U · what you get',
   kadrovi: '/kadrovi/sat/',
-  broj: 42,
+  broj: 124,
   alt: 'A Seiko 5 watch from smarttime.ba assembling from its parts, illustration',
   oznake: [
     { y: 0.215, strana: 'L', pomak: 0, naslov: 'Google and speed', opis: 'Customers find you on Google, and the page opens before they give up.' },
@@ -109,7 +109,7 @@ export const kosilica = {
   kanal: 'N · how it works on mrt.ba · every part is part of the system',
   kanalKratko: 'N · how it works on mrt.ba',
   kadrovi: '/kadrovi/kosilica/',
-  broj: 42,
+  broj: 124,
   alt: 'A Villager EAGLE 6111 V lawn mower from mrt.ba assembling from its parts, illustration',
   oznake: [
     { y: 0.13, strana: 'L', pomak: 0, naslov: 'Management', opis: 'The owner edits the content with an AI editor. Wholesale buyers order through a B2B portal.' },

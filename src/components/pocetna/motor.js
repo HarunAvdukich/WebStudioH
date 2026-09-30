@@ -16,7 +16,7 @@ const ZNAK = 0.38961 // razmjer znaka unutar logotipa
 // Priča je izmjerena u ekranima skrola (1 = jedna visina prozora), da svaki tekst
 // stoji dovoljno dugo da se pročita. p (0 do 1) je udio od UKUPNO ekrana, a
 // visina priče u pocetna.css je UKUPNO + 1 ekran (test to provjerava).
-export const UKUPNO = 23.1
+export const UKUPNO = 19.0
 const e = (ekran) => ekran / UKUPNO
 
 // Vremena u ekranima: [pojava, puno, počinje nestajati, nestalo] ili [od, do].
@@ -24,20 +24,20 @@ const e = (ekran) => ekran / UKUPNO
 export const T = {
   uvod: [0.2, 0.7],
   zumU: [0.4, 1.5],
-  uNajava: [1.35, 1.55, 2.55, 2.75].map(e),
-  kanalSat: [2.7, 2.9, 9.9, 10.1].map(e),
-  satKraj: [8.6, 8.8, 9.9, 10.1].map(e),
-  satSajt: [10.0, 10.25, 11.25, 11.45].map(e),
-  prelet: [11.5, 12.5],
-  prelaz: [11.6, 11.75, 12.25, 12.4].map(e),
-  nNajava: [12.45, 12.65, 13.65, 13.85].map(e),
-  kanalKos: [13.8, 14.0, 19.4, 19.6].map(e),
-  kosKraj: [18.2, 18.4, 19.4, 19.6].map(e),
-  kosSajt: [19.55, 19.8, 20.8, 21.0].map(e),
-  zumVan: [21.0, 21.55],
-  potpis: [21.55, 22.0],
-  izradio: [21.65, 22.0],
-  potpisTekst: [21.95, 22.15].map(e),
+  uNajava: [1.35, 1.55, 2.35, 2.55].map(e),
+  kanalSat: [2.5, 2.7, 7.6, 7.8].map(e),
+  satKraj: [6.5, 6.7, 7.6, 7.8].map(e),
+  satSajt: [7.7, 7.95, 8.85, 9.05].map(e),
+  prelet: [9.05, 10.05],
+  prelaz: [9.15, 9.3, 9.8, 9.95].map(e),
+  nNajava: [10.0, 10.2, 11.0, 11.2].map(e),
+  kanalKos: [11.15, 11.35, 15.45, 15.65].map(e),
+  kosKraj: [14.45, 14.65, 15.45, 15.65].map(e),
+  kosSajt: [15.6, 15.85, 16.75, 16.95].map(e),
+  zumVan: [16.95, 17.5],
+  potpis: [17.5, 17.95],
+  izradio: [17.6, 17.95],
+  potpisTekst: [17.9, 18.1].map(e),
 }
 for (const k of ['uvod', 'zumU', 'prelet', 'zumVan', 'potpis', 'izradio']) T[k] = T[k].map(e)
 
@@ -46,6 +46,8 @@ export const POGLAVLJA = [0, T.uNajava[0], T.prelet[0], T.nNajava[0], T.zumVan[0
 
 export const cl = (x) => (x < 0 ? 0 : x > 1 ? 1 : x)
 export const ez = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
+// Blaža kriva za sklapanje: bez naglog ubrzanja u sredini.
+export const ezBlago = (t) => (1 - Math.cos(Math.PI * t)) / 2
 export const lp = (a, b, t) => a + (b - a) * t
 export const seg = (p, a, b) => cl((p - a) / (b - a))
 export const fade = (p, a0, a1, b0, b1) => cl((p - a0) / (a1 - a0)) * (1 - cl((p - b0) / (b1 - b0)))
@@ -144,8 +146,8 @@ export function transformacija(c, R) {
 // Oznake izlaze jedna po jedna (korak), pa se predmet sklopi. Predmet nestaje kad
 // se pojavi snimak prave stranice tog artikla sa telefona.
 export const VRIJEME = {
-  sat: { vidljiv: e(2.7), sklapanje: [e(7.05), e(8.35)], nestaje: e(9.95), prvaOznaka: e(2.95), korak: e(0.45) },
-  kosilica: { vidljiv: e(13.8), sklapanje: [e(16.8), e(17.95)], nestaje: e(19.5), prvaOznaka: e(14.05), korak: e(0.45) },
+  sat: { vidljiv: e(2.5), sklapanje: [e(5.15), e(6.25)], nestaje: e(7.65), prvaOznaka: e(2.75), korak: e(0.24) },
+  kosilica: { vidljiv: e(11.15), sklapanje: [e(13.2), e(14.2)], nestaje: e(15.55), prvaOznaka: e(11.4), korak: e(0.27) },
 }
 const POJAVA = e(0.13) // oznaka se pojavi
 const PREDMET = e(0.22) // predmet se pojavi ili nestane
@@ -153,8 +155,10 @@ const LISTA = [e(0.05), e(0.15)] // lista nestaje poslije sklapanja: zastoj, tra
 
 // Stanje jednog predmeta: kadar sklapanja, vidljivost, oznake i lista.
 export function predmet(V, brojOznaka, brojStavki, brojKadrova, p) {
-  const t = ez(seg(p, V.sklapanje[0], V.sklapanje[1]))
-  const kadar = Math.round(t * (brojKadrova - 1))
+  const t = ezBlago(seg(p, V.sklapanje[0], V.sklapanje[1]))
+  // kadarTacno ima i razlomak: platno pretapa dva susjedna kadra, pa nema skokova.
+  const kadarTacno = t * (brojKadrova - 1)
+  const kadar = Math.round(kadarTacno)
   const vidljivost = cl((p - V.vidljiv) / PREDMET) * (1 - cl((p - V.nestaje) / PREDMET))
   const oznake = []
   for (let i = 0; i < brojOznaka; i++) {
@@ -163,7 +167,7 @@ export function predmet(V, brojOznaka, brojStavki, brojKadrova, p) {
   const aktivnaOznaka = Math.max(0, Math.min(brojOznaka - 1, Math.floor((p - V.prvaOznaka) / V.korak)))
   const lista = cl((t - 0.02) / 0.08) * (1 - cl((p - (V.sklapanje[1] + LISTA[0])) / LISTA[1]))
   const gotovo = Math.min(brojStavki, Math.floor(t * (brojStavki + 0.5)))
-  return { t, kadar, vidljivost, oznake, aktivnaOznaka, lista, gotovo, posto: Math.round(t * 100) }
+  return { t, kadar, kadarTacno, vidljivost, oznake, aktivnaOznaka, lista, gotovo, posto: Math.round(t * 100) }
 }
 
 // Kraj sklapanja se pojavi tek kad lista i procenat nestanu, da se tekst ne
