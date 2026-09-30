@@ -1,7 +1,7 @@
 // Pokreće priču na stranici: mjeri scenu, prati skrol i piše stilove direktno u
 // elemente (bez ponovnog iscrtavanja Reacta), crta kadrove sklapanja na platnu.
 // GSAP, Lenis i kadrovi se učitavaju tek poslije prve interakcije.
-import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, cl, jeSiroko, LOGO_SIRINA } from './motor.js'
+import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, POGLAVLJA, cl, jeSiroko, LOGO_SIRINA } from './motor.js'
 import { poslijeInterakcije } from '../../lib/interakcija.js'
 
 const PREDMETI = ['sat', 'kosilica']
@@ -11,8 +11,9 @@ function broj(n) {
 }
 
 export class Pokretac {
-  constructor({ prica, scena, svg, platno, podaci }) {
+  constructor({ prica, scena, svg, platno, sajt, podaci }) {
     this.prica = prica
+    this.sajt = sajt
     this.scena = scena
     this.svg = svg
     this.platno = platno
@@ -212,6 +213,7 @@ export class Pokretac {
     this.vidljivost('prelaz', SLOJEVI.prelaz(p))
     this.vidljivost('nNajava', SLOJEVI.nNajava(p))
     this.vidljivost('kosKraj', SLOJEVI.kosKraj(p))
+    this.vidljivost('kosSajt', SLOJEVI.kosSajt(p))
 
     // "Izradio" uz logotip u potpisu.
     const io = SLOJEVI.izradio(p)
@@ -237,7 +239,9 @@ export class Pokretac {
 
     if (this.poglavlje) {
       let pg = this.podaci.poglavlja[0]
-      for (const x of this.podaci.poglavlja) if (p >= x.od) pg = x
+      this.podaci.poglavlja.forEach((x, i) => {
+        if (p >= POGLAVLJA[i]) pg = x
+      })
       const tekst = `${pg.broj} / ${broj(this.podaci.poglavlja.length)} · ${pg.ime}`
       if (this.poglavlje.textContent !== tekst) this.poglavlje.textContent = tekst
     }
@@ -267,6 +271,7 @@ export class Pokretac {
   }
 
   ucitajKadrove() {
+    if (this.sajt && !this.sajt.src) this.sajt.src = this.sajt.dataset.src
     for (const ime of PREDMETI) {
       const d = this.podaci[ime]
       // Prvo krajnji kadrovi, pa ostali, da sklapanje odmah ima početak i kraj.

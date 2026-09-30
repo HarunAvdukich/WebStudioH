@@ -15,7 +15,9 @@ function ogImageFor(path) {
   return `/og/${path.slice(1).replace(/\//g, '-')}.jpg`
 }
 
-export default function Seo({ title, punNaslov, description = DEFAULT_DESC, path = '', image, noindex = false }) {
+// jezik: jezik stranice (lang na <html>); verzije: ista stranica na drugim jezicima,
+// npr. [{ jezik: 'bs', path: '/' }, { jezik: 'en', path: '/en' }] (hreflang).
+export default function Seo({ title, punNaslov, description = DEFAULT_DESC, path = '', image, noindex = false, jezik = 'bs', verzije }) {
   const fullTitle = punNaslov
     ? punNaslov
     : title
@@ -26,11 +28,17 @@ export default function Seo({ title, punNaslov, description = DEFAULT_DESC, path
 
   return (
     <Head>
+      <html lang={jezik} />
       <title>{fullTitle}</title>
       <meta name="description" content={description} />
       {noindex && <meta name="robots" content="noindex" />}
       <link rel="canonical" href={url} />
+      {verzije?.map((v) => (
+        <link key={v.jezik} rel="alternate" hrefLang={v.jezik} href={SITE_URL + v.path} />
+      ))}
+      {verzije && <link rel="alternate" hrefLang="x-default" href={SITE_URL + verzije[0].path} />}
       <meta property="og:type" content="website" />
+      <meta property="og:locale" content={jezik === 'en' ? 'en_US' : 'bs_BA'} />
       <meta property="og:site_name" content={SITE_NAME} />
       <meta property="og:title" content={fullTitle} />
       <meta property="og:description" content={description} />

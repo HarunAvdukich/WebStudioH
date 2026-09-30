@@ -6,10 +6,7 @@ import { ZnakPutanje } from './Znak.jsx'
 import { LOGO_SIRINA, LOGO_VISINA } from './motor.js'
 import { Pokretac } from './pokretac.js'
 import { contact } from '../../data.js'
-import {
-  whatsappLink, meni, uvod, poglavlja, uNajava, sat, prelaz, nNajava, kosilica,
-  potpis, finale, podnozje,
-} from '../../pocetna.js'
+import * as bosanski from '../../pocetna.js'
 
 function IkonaPoruka({ boja = 'currentColor' }) {
   return (
@@ -19,11 +16,22 @@ function IkonaPoruka({ boja = 'currentColor' }) {
   )
 }
 
-function Dugme({ children = 'Pišite nam na WhatsApp' }) {
+// Unutrašnja ruta ide kroz router; sidro, mail i vanjski link su obični linkovi.
+function Veza({ to, children, ...ostalo }) {
+  if (to.startsWith('/')) return <Link to={to} {...ostalo}>{children}</Link>
+  const vanjski = to.startsWith('http')
   return (
-    <a className="kz-dugme" href={whatsappLink} target="_blank" rel="noopener">
-      <IkonaPoruka />
+    <a href={to} {...(vanjski ? { target: '_blank', rel: 'noopener' } : {})} {...ostalo}>
       {children}
+    </a>
+  )
+}
+
+function Dugme({ t }) {
+  return (
+    <a className="kz-dugme" href={t.whatsappLink} target="_blank" rel="noopener">
+      <IkonaPoruka />
+      {t.ui.dugme}
     </a>
   )
 }
@@ -48,7 +56,7 @@ function Oznake({ ime, podaci }) {
   )
 }
 
-function Lista({ ime, podaci }) {
+function Lista({ ime, podaci, ispod }) {
   return (
     <div className="kz-sloj kz-lista" data-sloj={`lista-${ime}`} aria-hidden="true">
       <div className="kz-lista__lijevo">
@@ -66,32 +74,39 @@ function Lista({ ime, podaci }) {
       </div>
       <div className="kz-lista__desno">
         <span className="kz-lista__posto" data-posto={ime}>0%</span>
-        <span className="kz-lista__ispod">sklopljeno</span>
+        <span className="kz-lista__ispod">{ispod}</span>
       </div>
       <p className="kz-lista__sad"><span className="kz-kvacica je-puna">✓</span><span data-sad={ime}>{podaci.lista.stavke[0]}</span></p>
     </div>
   )
 }
 
-export default function KrozZnak() {
+export default function KrozZnak({ t = bosanski }) {
   const prica = useRef(null)
   const scena = useRef(null)
   const svg = useRef(null)
   const platno = useRef(null)
+  const sajt = useRef(null)
   const [otvoren, setOtvoren] = useState(false)
+  const { ui, sat, kosilica, potpis, finale, podnozje, drugiJezik } = t
 
   useEffect(() => {
-    if (!document.documentElement.classList.contains('pokret')) return undefined
+    if (!document.documentElement.classList.contains('pokret')) {
+      // Obična stranica: snimak mrt.ba se učita kao i svaka slika ispod prvog ekrana.
+      if (sajt.current && !sajt.current.src) sajt.current.src = sajt.current.dataset.src
+      return undefined
+    }
     const pokretac = new Pokretac({
       prica: prica.current,
       scena: scena.current,
       svg: svg.current,
       platno: platno.current,
-      podaci: { sat, kosilica, poglavlja },
+      sajt: sajt.current,
+      podaci: { sat, kosilica, poglavlja: t.poglavlja },
     })
     pokretac.pokreni()
     return () => pokretac.ugasi()
-  }, [])
+  }, [t])
 
   useEffect(() => {
     if (!otvoren) return undefined
@@ -100,9 +115,15 @@ export default function KrozZnak() {
     return () => window.removeEventListener('keydown', zatvori)
   }, [otvoren])
 
+  const jezikVeza = (klasa) => (
+    <Link className={klasa} to={drugiJezik.put} hrefLang={drugiJezik.jezik} lang={drugiJezik.jezik} aria-label={drugiJezik.naziv}>
+      {drugiJezik.oznaka}
+    </Link>
+  )
+
   return (
     <div className="kz">
-      <section className="kz-prica" ref={prica} aria-label="Hunar, web stranice i trgovine za firme u BiH">
+      <section className="kz-prica" ref={prica} aria-label={ui.prica}>
         <div className="kz-scena" ref={scena}>
           <svg
             ref={svg}
@@ -115,19 +136,20 @@ export default function KrozZnak() {
           </svg>
 
           <header className="kz-zaglavlje">
-            <p className="kz-poglavlje" data-poglavlje aria-hidden="true">{`01 / ${String(poglavlja.length).padStart(2, '0')} · Hunar`}</p>
-            <nav className="kz-meni" aria-label="Glavni meni">
-              {meni.map((m) => (
-                <Link key={m.put} to={m.put}>{m.naziv}</Link>
+            <p className="kz-poglavlje" data-poglavlje aria-hidden="true">{`01 / ${String(t.poglavlja.length).padStart(2, '0')} · ${t.poglavlja[0].ime}`}</p>
+            <nav className="kz-meni" aria-label={ui.glavniMeni}>
+              {t.meni.map((m) => (
+                <Veza key={m.put} to={m.put}>{m.naziv}</Veza>
               ))}
-              <a className="kz-meni__dugme" href={whatsappLink} target="_blank" rel="noopener">Pišite nam</a>
+              {jezikVeza('kz-jezik')}
+              <a className="kz-meni__dugme" href={t.whatsappLink} target="_blank" rel="noopener">{ui.dugmeKratko}</a>
             </nav>
             <button
               type="button"
               className="kz-meni__otvori"
               aria-expanded={otvoren}
               aria-controls="kz-meni-telefon"
-              aria-label={otvoren ? 'Zatvori meni' : 'Otvori meni'}
+              aria-label={otvoren ? ui.zatvoriMeni : ui.otvoriMeni}
               onClick={() => setOtvoren((o) => !o)}
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
@@ -137,19 +159,19 @@ export default function KrozZnak() {
           </header>
 
           <div className="kz-sloj kz-uvod" data-sloj="uvod">
-            <p className="kz-nad kz-uvod__nad">{uvod.nad}</p>
+            <p className="kz-nad kz-uvod__nad">{t.uvod.nad}</p>
             <div className="kz-uvod__red">
               <div className="kz-uvod__glavno">
-                <h1>{uvod.naslov}</h1>
+                <h1>{t.uvod.naslov}</h1>
                 <div className="kz-dugmad">
-                  <Dugme />
-                  <a className="kz-tel" href={contact.phoneHref}>{contact.phoneDisplay}</a>
+                  <Dugme t={t} />
+                  <a className="kz-tel" href={contact.phoneHref}>{ui.telefon}</a>
                 </div>
               </div>
-              <p className="kz-uvod__opis">{uvod.opis}</p>
+              <p className="kz-uvod__opis">{t.uvod.opis}</p>
             </div>
             <p className="kz-skrol" aria-hidden="true">
-              Skrolajte
+              {ui.skrol}
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
             </p>
           </div>
@@ -161,16 +183,16 @@ export default function KrozZnak() {
           </div>
 
           <div className="kz-sloj kz-najava" data-sloj="uNajava">
-            <p className="kz-nad">{uNajava.nad}</p>
-            <h2>{uNajava.naslov}</h2>
-            <p className="kz-opis">{uNajava.opis}</p>
+            <p className="kz-nad">{t.uNajava.nad}</p>
+            <h2>{t.uNajava.naslov}</h2>
+            <p className="kz-opis">{t.uNajava.opis}</p>
           </div>
 
           <div className="kz-grupa kz-grupa--sat">
             <img className="kz-staticno" src="/kadrovi/sat/42.webp" alt={sat.alt} width="600" height="800" loading="lazy" decoding="async" />
             <Oznake ime="sat" podaci={sat} />
           </div>
-          <Lista ime="sat" podaci={sat} />
+          <Lista ime="sat" podaci={sat} ispod={ui.sklopljeno} />
 
           <div className="kz-sloj kz-kraj kz-kraj--sat" data-sloj="satKraj">
             <div className="kz-kraj__glavno">
@@ -184,47 +206,59 @@ export default function KrozZnak() {
           </div>
 
           <div className="kz-sloj kz-prelaz" data-sloj="prelaz">
-            <p className="kz-nad">{prelaz.nad}</p>
-            <p className="kz-prelaz__tekst">{prelaz.naslov}</p>
+            <p className="kz-nad">{t.prelaz.nad}</p>
+            <p className="kz-prelaz__tekst">{t.prelaz.naslov}</p>
           </div>
 
           <div className="kz-sloj kz-najava" data-sloj="nNajava">
-            <p className="kz-nad">{nNajava.nad}</p>
-            <h2>{nNajava.naslov}</h2>
-            <p className="kz-opis">{nNajava.opis}</p>
+            <p className="kz-nad">{t.nNajava.nad}</p>
+            <h2>{t.nNajava.naslov}</h2>
+            <p className="kz-opis">{t.nNajava.opis}</p>
           </div>
 
           <div className="kz-grupa kz-grupa--kosilica">
             <img className="kz-staticno" src="/kadrovi/kosilica/42.webp" alt={kosilica.alt} width="600" height="800" loading="lazy" decoding="async" />
             <Oznake ime="kosilica" podaci={kosilica} />
           </div>
-          <Lista ime="kosilica" podaci={kosilica} />
+          <Lista ime="kosilica" podaci={kosilica} ispod={ui.sklopljeno} />
 
           <div className="kz-sloj kz-kraj kz-kraj--kosilica" data-sloj="kosKraj">
             <div className="kz-kraj__glavno">
               <h3>{kosilica.kraj.naslov}</h3>
               <p>{kosilica.kraj.opis}</p>
-              <p className="kz-citat">{kosilica.kraj.citat}</p>
-            </div>
-            <div className="kz-kraj__uz">
+              <blockquote className="kz-citat">
+                <p>{kosilica.kraj.citat}</p>
+                <footer>{kosilica.kraj.citatOd}</footer>
+              </blockquote>
               <p className="kz-izvor">{kosilica.kraj.izvor}</p>
             </div>
           </div>
 
-          <span className="kz-izradio" data-izradio aria-hidden="true">Izradio</span>
+          <figure className="kz-sloj kz-sajt" data-sloj="kosSajt">
+            <div className="kz-sajt__telefon">
+              <img ref={sajt} data-src={kosilica.sajt.slika} alt={kosilica.sajt.alt} width="780" height="1270" decoding="async" />
+            </div>
+            <figcaption className="kz-sajt__tekst">
+              <h3>{kosilica.sajt.naslov}</h3>
+              <p>{kosilica.sajt.opis}</p>
+              <p className="kz-izvor">{kosilica.sajt.izvor}</p>
+            </figcaption>
+          </figure>
+
+          <span className="kz-izradio" data-izradio aria-hidden="true">{ui.izradio}</span>
           <div className="kz-sloj kz-potpis" data-sloj="potpis">
             <p className="kz-potpis__tekst">{potpis.tekst}</p>
             <ul className="kz-radovi">
               {potpis.radovi.map((r) => (
                 <li key={r.put}>
-                  <Link className="kz-rad" to={r.put}>
+                  <Veza className="kz-rad" to={r.put} data-kursor={potpis.vise}>
                     <span className="kz-rad__ime">{r.naziv}</span>
                     <span className="kz-rad__opis">{r.opis}</span>
                     <span className="kz-rad__vise">
                       <span className="kz-rad__rijec">{potpis.vise}</span>
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
                     </span>
-                  </Link>
+                  </Veza>
                 </li>
               ))}
             </ul>
@@ -232,7 +266,7 @@ export default function KrozZnak() {
         </div>
       </section>
 
-      <section className="kz-finale" aria-labelledby="kz-finale-naslov">
+      <section className="kz-finale" id="ponuda" aria-labelledby="kz-finale-naslov">
         <h2 id="kz-finale-naslov">{finale.naslov}</h2>
         <p className="kz-opis">{finale.opis}</p>
         <ol className="kz-ponuda">
@@ -244,20 +278,21 @@ export default function KrozZnak() {
           ))}
         </ol>
         <div className="kz-dugmad kz-dugmad--sredina">
-          <Dugme />
-          <a className="kz-tel" href={contact.phoneHref}>{contact.phoneDisplay}</a>
+          <Dugme t={t} />
+          <a className="kz-tel" href={contact.phoneHref}>{ui.telefon}</a>
           <a className="kz-tel" href={`mailto:${contact.email}`}>{contact.email}</a>
         </div>
         <p className="kz-finale__ispod">{finale.ispod}</p>
       </section>
 
       <div id="kz-meni-telefon" className={`kz-meni-telefon${otvoren ? ' je-otvoren' : ''}`} hidden={!otvoren}>
-        <nav aria-label="Meni">
-          {meni.map((m) => (
-            <Link key={m.put} to={m.put} onClick={() => setOtvoren(false)}>{m.naziv}</Link>
+        <nav aria-label={ui.meniTelefon}>
+          {t.meni.map((m) => (
+            <Veza key={m.put} to={m.put} onClick={() => setOtvoren(false)}>{m.naziv}</Veza>
           ))}
+          <Link to={drugiJezik.put} hrefLang={drugiJezik.jezik} lang={drugiJezik.jezik} onClick={() => setOtvoren(false)}>{drugiJezik.naziv}</Link>
         </nav>
-        <Dugme />
+        <Dugme t={t} />
       </div>
 
       <footer className="kz-podnozje">
@@ -268,14 +303,15 @@ export default function KrozZnak() {
           <p>{podnozje.opis}</p>
         </div>
         <div className="kz-podnozje__red kz-podnozje__red--linkovi">
-          <nav aria-label="Podnožje">
-            {meni.map((m) => (
-              <Link key={m.put} to={m.put}>{m.naziv}</Link>
+          <nav aria-label={ui.podnozjeMeni}>
+            {t.meni.map((m) => (
+              <Veza key={m.put} to={m.put}>{m.naziv}</Veza>
             ))}
-            <Link to="/politika-privatnosti">Politika privatnosti</Link>
+            <Link to={ui.privatnost.put}>{ui.privatnost.naziv}</Link>
+            <Link to={drugiJezik.put} hrefLang={drugiJezik.jezik} lang={drugiJezik.jezik}>{drugiJezik.naziv}</Link>
           </nav>
           <p>
-            <a href={whatsappLink} target="_blank" rel="noopener">WhatsApp</a> i <a href={contact.phoneHref}>telefon {contact.phoneDisplay}</a> · <a href={`mailto:${contact.email}`}>{contact.email}</a>
+            <a href={t.whatsappLink} target="_blank" rel="noopener">{ui.kontakt.whatsapp}</a> {ui.kontakt.veznik} <a href={contact.phoneHref}>{ui.kontakt.telefon} {ui.telefon}</a> · <a href={`mailto:${contact.email}`}>{contact.email}</a>
           </p>
         </div>
         <p className="kz-podnozje__dno">© 2026 Hunar · hunar.ba · {podnozje.znacenje}</p>

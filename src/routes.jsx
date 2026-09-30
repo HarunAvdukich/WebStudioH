@@ -1,5 +1,6 @@
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
+import HomeEn from './pages/HomeEn.jsx'
 import AboutPage from './pages/AboutPage.jsx'
 import ServicesPage from './pages/ServicesPage.jsx'
 import WorkPage from './pages/WorkPage.jsx'
@@ -20,6 +21,7 @@ export const routes = [
     entry: 'src/App.jsx',
     children: [
       { index: true, element: <Home /> },
+      { path: 'en', element: <HomeEn /> },
       { path: 'o-nama', element: <AboutPage /> },
       { path: 'usluge', element: <ServicesPage /> },
       { path: 'radovi', element: <WorkPage /> },
