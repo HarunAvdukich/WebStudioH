@@ -47,6 +47,8 @@ const FORBIDDEN = [
   ['$129', 'cijena u dolarima'],
   ['+142%', 'izmišljena brojka iz predloška'],
   ['Online za 4 sedmice', 'izmišljena tvrdnja iz predloška'],
+  ['UPTOS', 'vlasnik ne želi taj rad na stranici'],
+  ['uptos', 'vlasnik ne želi taj rad na stranici'],
 ]
 
 for (const [needle, why] of FORBIDDEN) {

@@ -87,6 +87,7 @@ export class Pokretac {
     s.setProperty('--box-t', px(R.boxT))
     s.setProperty('--box-w', px(R.boxW))
     s.setProperty('--box-h', px(R.boxH))
+    s.setProperty('--sig-dno', px(R.sigDno))
     this.prica.classList.toggle('kz--siroko', jeSiroko(W, H))
 
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -114,6 +115,24 @@ export class Pokretac {
           cs.setProperty('--dl', px(ivica - 4.5))
         })
       }
+      // Na niskom ekranu kartice sa opisom ne stanu jedna ispod druge: tada opis
+      // ostaje samo na zadnjoj kartici koja se pojavila.
+      this.prica.classList.remove('kz--zbijeno')
+      let zbijeno = false
+      for (const ime of PREDMETI) {
+        const oznake = this.podaci[ime].oznake
+        const visina = Math.max(...this.oznake[ime].map((el) => el.querySelector('.kz-oznaka__karta').offsetHeight))
+        for (const strana of ['L', 'D']) {
+          const ys = oznake
+            .filter((o) => o.strana === strana)
+            .map((o) => o.y * R.boxH + (o.pomak * R.boxH) / 820)
+            .sort((x, y) => x - y)
+          for (let i = 1; i < ys.length; i++) if (ys[i] - ys[i - 1] < visina + 10) zbijeno = true
+        }
+      }
+      this.prica.classList.toggle('kz--zbijeno', zbijeno)
+    } else {
+      this.prica.classList.remove('kz--zbijeno')
     }
     const dom = Math.max(1, this.prica.offsetHeight - H)
     this.pocetak = this.prica.getBoundingClientRect().top + window.scrollY
@@ -178,6 +197,7 @@ export class Pokretac {
           el.dataset.o = String(v)
           el.style.opacity = String(v)
         }
+        el.classList.toggle('je-aktivna', i === st.aktivnaOznaka)
       })
       this.vidljivost(`lista-${ime}`, st.lista)
       this.stavke[ime].forEach((el, i) => el.classList.toggle('je-gotovo', i < st.gotovo))
@@ -213,13 +233,12 @@ export class Pokretac {
         }
       }
     }
-    this.vidljivost('potpis', SLOJEVI.potpis(p))
-    this.vidljivost('finale', SLOJEVI.finale(p), true)
+    this.vidljivost('potpis', SLOJEVI.potpis(p), true)
 
     if (this.poglavlje) {
       let pg = this.podaci.poglavlja[0]
       for (const x of this.podaci.poglavlja) if (p >= x.od) pg = x
-      const tekst = `${pg.broj} / 06 · ${pg.ime}`
+      const tekst = `${pg.broj} / ${broj(this.podaci.poglavlja.length)} · ${pg.ime}`
       if (this.poglavlje.textContent !== tekst) this.poglavlje.textContent = tekst
     }
   }

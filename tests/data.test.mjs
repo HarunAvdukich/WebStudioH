@@ -15,8 +15,12 @@ const texts = strings(
   Object.fromEntries(Object.entries(data).filter(([, v]) => typeof v !== 'function')),
 )
 
-test('radovi: mrt, smarttime, urez, uptos, tim redom', () => {
-  assert.deepEqual(data.projects.map((p) => p.slug), ['mrt', 'smarttime', 'urez', 'uptos'])
+test('radovi: mrt, smarttime, urez, tim redom', () => {
+  assert.deepEqual(data.projects.map((p) => p.slug), ['mrt', 'smarttime', 'urez'])
+})
+
+test('UPTOS se ne pominje nigdje u sadržaju', () => {
+  assert.deepEqual(texts.filter(([, s]) => /uptos/i.test(s)).map(([p]) => p), [])
 })
 
 test('urez nema link ni sliku dok ne proradi', () => {

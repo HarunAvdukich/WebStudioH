@@ -1,6 +1,6 @@
 // Tekst i podaci nove početne ("Kroz znak"). Brojke imaju izvor i datum u tekstu;
-// prije objave se mjere ponovo. Glas: prvo lice (iza Hunara radi jedna osoba),
-// kupcu se obraća sa "Vi". Bez dugih crta.
+// prije objave se mjere ponovo. Glas: studio (mi, Hunar), kupcu se obraća sa "Vi".
+// Bez dugih crta.
 import { contact } from './data.js'
 
 export const whatsappPoruka = 'Zdravo, imam firmu i zanima me web stranica. Možemo li se čuti?'
@@ -17,13 +17,13 @@ export const meni = [
 
 export const seo = {
   naslov: 'Hunar · Web stranice, trgovine i sistemi za firme u BiH',
-  opis: 'Web stranice i trgovine povezane sa OLX-om, Ananasom i dobavljačima. Dizajn, kod, hosting i održavanje iz jedne ruke. Pišite mi na WhatsApp.',
+  opis: 'Web stranice i trgovine povezane sa OLX-om, Ananasom i dobavljačima. Dizajn, kod, hosting i održavanje na jednom mjestu. Pišite nam na WhatsApp.',
 }
 
 export const uvod = {
   nad: 'Hunar · vještina, umijeće',
   naslov: 'Web stranice i trgovine koje rade za vaš posao.',
-  opis: 'Za firme u BiH pravim sve na webu, od prve stranice do trgovine koja se sama drži ažurnom na OLX-u. Dizajn, kod, hosting i održavanje: sve kod mene.',
+  opis: 'Za firme u BiH pravimo sve na webu, od prve stranice do trgovine koja se sama drži ažurnom na OLX-u. Dizajn, kod, hosting i održavanje: sve kod nas.',
 }
 
 export const poglavlja = [
@@ -32,13 +32,12 @@ export const poglavlja = [
   { od: 0.47, broj: '03', ime: 'Iz u u n' },
   { od: 0.55, broj: '04', ime: 'N: kako radi' },
   { od: 0.82, broj: '05', ime: 'Potpis' },
-  { od: 0.93, broj: '06', ime: 'Vaš red' },
 ]
 
 export const uNajava = {
   nad: 'U · šta dobijate',
   naslov: 'Sve što vaša firma treba na webu. Složeno kao sat.',
-  opis: 'Svaki dio je jedna usluga. Uzmite jedan ili cijeli sklop, a ja pazim da svi rade zajedno.',
+  opis: 'Svaki dio je jedna usluga. Uzmite jedan ili cijeli sklop, a mi pazimo da svi rade zajedno.',
 }
 
 // y: položaj dijela na rastavljenom kadru (udio visine), strana: L lijevo, D desno,
@@ -56,18 +55,18 @@ export const sat = {
     { y: 0.4175, strana: 'D', pomak: 34, naslov: 'Web trgovina', opis: 'Kupac nađe artikal na telefonu i naruči u par dodira. Pouzeće ili uplata na račun.' },
     { y: 0.5675, strana: 'L', pomak: 10, naslov: 'Veze koje rade same', opis: 'OLX, feed za Ananas i zalihe od dobavljača. Kao automatik: navija se sam.' },
     { y: 0.5675, strana: 'D', pomak: 40, naslov: 'Sistemi po mjeri', opis: 'Zakazivanje termina, B2B portal za veleprodaju, aplikacija za vaš način rada.' },
-    { y: 0.725, strana: 'L', pomak: 20, naslov: 'Hosting i održavanje', opis: 'Ažuriranja, kopije i nadzor. Vi prodajete, ja pazim da sve radi.' },
+    { y: 0.725, strana: 'L', pomak: 20, naslov: 'Hosting i održavanje', opis: 'Ažuriranja, kopije i nadzor. Vi prodajete, mi pazimo da sve radi.' },
     { y: 0.725, strana: 'D', pomak: 50, naslov: 'AI alati', opis: 'Kažete šta da se promijeni, urednik uradi. Opisi artikala za vaš katalog.' },
-    { y: 0.905, strana: 'L', pomak: 10, naslov: 'Iz jedne ruke', opis: 'Dizajn, kod, hosting i održavanje kod istog čovjeka. Jedan broj telefona.' },
+    { y: 0.905, strana: 'L', pomak: 10, naslov: 'Iz jedne ruke', opis: 'Dizajn, kod, hosting i održavanje u istom studiju. Jedan broj telefona.' },
   ],
   lista: {
-    naslov: 'Sklapam vašu firmu:',
+    naslov: 'Sklapamo vašu firmu:',
     stavke: ['Dizajn po mjeri', 'Web stranica', 'Web trgovina', 'Veze: OLX, Ananas', 'Sistemi po mjeri', 'AI alati', 'Google i brzina', 'Hosting', 'Iz jedne ruke'],
   },
   kraj: {
     naslov: 'Sve sklopljeno. Sve radi zajedno.',
-    opis: 'Jedan majstor od prve skice do održavanja. Nema prebacivanja s firme na firmu.',
-    uz: 'Sat je Seiko 5 sa smarttime.ba, trgovine satova koju sam napravio. Tamo kupci naručuju i zakazuju graviranje.',
+    opis: 'Jedan studio od prve skice do održavanja. Nema prebacivanja s firme na firmu.',
+    uz: 'Sat je Seiko 5 sa smarttime.ba, trgovine satova koju smo napravili. Kupci tamo naručuju satove i zakazuju graviranje.',
     izvor: 'Ilustracija (AI) po pravom artiklu.',
   },
 }
@@ -80,7 +79,7 @@ export const prelaz = {
 export const nNajava = {
   nad: 'N · kako radi kod klijenta',
   naslov: 'mrt.ba: hiljade artikala, a OLX se drži ažurnim sam.',
-  opis: 'Kosilica Villager EAGLE 6111 V iz njihovog kataloga. Svaki njen dio je dio sistema koji sam napravio za mrt.ba.',
+  opis: 'Kosilica Villager EAGLE 6111 V iz njihovog kataloga. Svaki njen dio je dio sistema koji smo napravili za mrt.ba.',
 }
 
 export const kosilica = {
@@ -109,17 +108,19 @@ export const kosilica = {
   },
 }
 
+// Potpis "Izradio Hunar" stoji u podnožju ovih trgovina; redovi vode na rad.
 export const potpis = {
-  tekst: 'Ovaj potpis stoji na dnu mrt.ba i smarttime.ba. Sljedeći može stajati na vašoj stranici.',
-  primjeri: [
-    { naziv: 'mrt.ba · podnožje', slika: '/potpis/mrt.png', alt: 'Podnožje mrt.ba sa potpisom Izradio Hunar', okvir: [22, 26, 128, 34] },
-    { naziv: 'smarttime.ba · podnožje', slika: '/potpis/smarttime.png', alt: 'Podnožje smarttime.ba sa potpisom Izradio Hunar', okvir: [0, 12, 160, 42] },
+  tekst: 'Naš potpis stoji na dnu ovih trgovina. Sljedeći može stajati na vašoj.',
+  radovi: [
+    { naziv: 'mrt.ba', put: '/radovi/mrt', opis: 'Alati, kosilice i dijelovi. Katalog, korpa, OLX i Ananas.' },
+    { naziv: 'smarttime.ba', put: '/radovi/smarttime', opis: 'Ručni satovi. Narudžbe i zakazivanje graviranja.' },
   ],
+  vise: 'Pogledajte rad',
 }
 
 export const finale = {
   naslov: 'Vaša firma je sljedeća.',
-  opis: 'Napišite šta prodajete i šta vam treba. Odgovaram lično, a ponudu dajem u razgovoru.',
+  opis: 'Napišite nam šta prodajete i šta vam treba. Javljamo se lično, a ponudu dajemo u razgovoru.',
   ispod: 'Krenite od jednog dijela ili tražite cijeli sklop. Cijene su po dogovoru, prema onome što vam treba.',
   ponuda: [
     { naslov: 'Web stranica', opis: 'Firma koju kupci nađu i razumiju za pola minute. Tekst mijenjate sami.' },
@@ -127,9 +128,9 @@ export const finale = {
     { naslov: 'Veze', opis: 'OLX, Ananas i dobavljači rade sami. Manje kucanja, više vremena za kupce.' },
     { naslov: 'Sistemi', opis: 'Zakazivanje termina, B2B portal, aplikacija po vašoj mjeri.' },
     { naslov: 'AI alati', opis: 'Urednik kojem kažete šta da promijeni i opisi artikala za vaš katalog.' },
-    { naslov: 'Google i brzina', opis: 'Tehnički SEO i brzina koju mjerim i pokažem sa datumom.' },
-    { naslov: 'Hosting i održavanje', opis: 'Ažuriranja, kopije i nadzor. Vi prodajete, ja pazim.' },
-    { naslov: 'Iz jedne ruke', opis: 'Jedan čovjek, jedan broj. Isti koji je pravio i popravlja.' },
+    { naslov: 'Google i brzina', opis: 'Tehnički SEO i brzina koju mjerimo i pokažemo sa datumom.' },
+    { naslov: 'Hosting i održavanje', opis: 'Ažuriranja, kopije i nadzor. Vi prodajete, mi pazimo.' },
+    { naslov: 'Iz jedne ruke', opis: 'Jedan studio, jedan broj. Isti koji je pravio i popravlja.' },
   ],
 }
 

@@ -3,7 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import * as pocetna from '../src/pocetna.js'
-import { raspored, kamera, transformacija, predmet, VRIJEME, LOGO_SIRINA } from '../src/components/pocetna/motor.js'
+import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, LOGO_SIRINA } from '../src/components/pocetna/motor.js'
 
 function strings(value, out = []) {
   if (typeof value === 'string') out.push(value)
@@ -63,6 +63,34 @@ for (const [W, H] of [[1440, 900], [1920, 1080], [1280, 720], [390, 844], [360, 
     assert.ok(R.kanalL > 0 && R.kanalL + R.kanalW < W)
     assert.ok(R.boxL >= R.kanalL && R.boxL + R.boxW <= R.kanalL + R.kanalW)
     assert.ok(R.boxT >= 0 && R.boxT + R.boxH <= H)
+  })
+}
+
+test('tekst govori glasom studija, ne u prvom licu jednine', () => {
+  const ja = /\b(napravio|pravim|mjerim|pazim|dajem|odgovaram|sklapam|kod mene)\b/i
+  assert.deepEqual(tekst.filter((s) => ja.test(s)), [])
+})
+
+test('potpis vodi na stvarne radove', () => {
+  assert.deepEqual(pocetna.potpis.radovi.map((r) => r.put), ['/radovi/mrt', '/radovi/smarttime'])
+})
+
+test('kraj sklapanja se ne preklapa sa listom i procentom', () => {
+  for (const [ime, kraj] of [['sat', SLOJEVI.satKraj], ['kosilica', SLOJEVI.kosKraj]]) {
+    const d = pocetna[ime]
+    for (let p = 0; p <= 1; p += 0.0005) {
+      const lista = predmet(VRIJEME[ime], d.oznake.length, d.lista.stavke.length, d.broj, p).lista
+      assert.ok(!(lista > 0 && kraj(p) > 0), `${ime}: lista i kraj zajedno na p=${p.toFixed(4)}`)
+    }
+  }
+})
+
+for (const [W, H] of [[1536, 730], [1366, 657], [1280, 650], [1920, 960], [390, 700]]) {
+  test(`potpis sa radovima stane u ekran (${W}x${H})`, () => {
+    const R = raspored(W, H)
+    // tekst (2 reda) i dva reda radova ispod donje ivice potpisa
+    const visina = R.siroko ? 36 + 34 + 26 + 2 * 93 : 28 + 2 * 26 + 18 + 2 * 110
+    assert.ok(R.sigDno + visina < H - 20, `dno ${Math.round(R.sigDno + visina)} > ${H - 20}`)
   })
 }
 
