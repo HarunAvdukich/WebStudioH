@@ -203,7 +203,7 @@ export default function KrozZnak({ t = bosanski }) {
           </div>
 
           <div className="kz-grupa kz-grupa--sat">
-            <img className="kz-staticno" src="/kadrovi/sat/42.webp" alt={sat.alt} width="600" height="800" loading="lazy" decoding="async" />
+            <img className="kz-staticno" src={`${sat.kadrovi}${sat.broj}.webp`} alt={sat.alt} width="600" height="800" loading="lazy" decoding="async" />
             <Oznake ime="sat" podaci={sat} />
           </div>
           <Lista ime="sat" podaci={sat} ispod={ui.sklopljeno} />
@@ -232,7 +232,7 @@ export default function KrozZnak({ t = bosanski }) {
           </div>
 
           <div className="kz-grupa kz-grupa--kosilica">
-            <img className="kz-staticno" src="/kadrovi/kosilica/42.webp" alt={kosilica.alt} width="600" height="800" loading="lazy" decoding="async" />
+            <img className="kz-staticno" src={`${kosilica.kadrovi}${kosilica.broj}.webp`} alt={kosilica.alt} width="600" height="800" loading="lazy" decoding="async" />
             <Oznake ime="kosilica" podaci={kosilica} />
           </div>
           <Lista ime="kosilica" podaci={kosilica} ispod={ui.sklopljeno} />

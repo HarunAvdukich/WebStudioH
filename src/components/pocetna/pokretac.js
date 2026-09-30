@@ -10,6 +10,11 @@ function broj(n) {
   return String(n).padStart(2, '0')
 }
 
+// Kadrovi su numerisani 001 do 124 (svaki kadar videa).
+function kadar(n) {
+  return String(n).padStart(3, '0')
+}
+
 export class Pokretac {
   constructor({ prica, scena, svg, platno, podaci }) {
     this.prica = prica
@@ -50,8 +55,12 @@ export class Pokretac {
     window.addEventListener('scroll', this.naSkrol, { passive: true })
     window.addEventListener('resize', this.naVelicinu)
     this.otkazi = poslijeInterakcije(() => {
-      this.ucitajKadrove()
+      // Snimci pravih stranica (smarttime.ba, mrt.ba) su mali, idu odmah.
+      for (const img of this.scena.querySelectorAll('img[data-src]')) if (!img.src) img.src = img.dataset.src
+      this.ucitajKadrove('sat')
+      this.spreman = true
       this.ucitajGlatko()
+      this.zakazi()
     })
   }
 
@@ -204,9 +213,12 @@ export class Pokretac {
       if (this.posto[ime]) this.posto[ime].textContent = `${st.posto}%`
       if (this.sad[ime]) this.sad[ime].textContent = `${d.lista.stavke[Math.min(d.lista.stavke.length - 1, st.gotovo)]} · ${st.posto}%`
     }
+    // Kadrovi kosilice krenu tek kad počne sklapanje sata, da telefon ne vuče
+    // oba predmeta odjednom.
+    if (this.spreman && p >= VRIJEME.sat.sklapanje[0]) this.ucitajKadrove('kosilica')
     const pr = stanja[aktivan]
     this.vidljivost('predmet', Math.max(stanja.sat.vidljivost, stanja.kosilica.vidljivost))
-    if (pr.vidljivost > 0) this.nacrtaj(aktivan, pr.kadar)
+    if (pr.vidljivost > 0) this.nacrtaj(aktivan, pr.kadarTacno)
 
     this.vidljivost('satKraj', SLOJEVI.satKraj(p))
     this.vidljivost('satSajt', SLOJEVI.satSajt(p))
@@ -247,48 +259,56 @@ export class Pokretac {
     }
   }
 
-  nacrtaj(ime, i) {
+  // x je kadar sa razlomkom: crta se kadar ispod, a preko njega sljedeći sa
+  // prozirnošću razlomka, pa sklapanje teče bez skokova između kadrova.
+  nacrtaj(ime, x) {
     const lista = this.kadrovi[ime]
     if (!lista.length) return
+    const ucitan = (k) => k && k.complete && k.naturalWidth
+    const i = Math.floor(x)
     // Najbliži već učitan kadar, da se ne čeka mreža usred skrola.
-    let img = null
-    for (let d = 0; d < lista.length && !img; d++) {
+    let a = null
+    for (let d = 0; d < lista.length && !a; d++) {
       for (const j of [i - d, i + d]) {
-        const k = lista[j]
-        if (k && k.complete && k.naturalWidth) {
-          img = k
+        if (ucitan(lista[j])) {
+          a = lista[j]
           break
         }
       }
     }
-    if (!img) return
-    const kljuc = `${ime}:${img.src}`
+    if (!a) return
+    const b = a === lista[i] && ucitan(lista[i + 1]) ? lista[i + 1] : null
+    const f = b ? Math.round((x - i) * 24) / 24 : 0
+    const kljuc = `${ime}:${a.src}:${f}`
     if (kljuc === this.nacrtan) return
     this.nacrtan = kljuc
     const { width, height } = this.platno
-    this.ctx.clearRect(0, 0, width, height)
-    this.ctx.drawImage(img, 0, 0, width, height)
+    this.ctx.globalAlpha = 1
+    this.ctx.drawImage(a, 0, 0, width, height)
+    if (f > 0) {
+      this.ctx.globalAlpha = f
+      this.ctx.drawImage(b, 0, 0, width, height)
+      this.ctx.globalAlpha = 1
+    }
   }
 
-  ucitajKadrove() {
-    // Snimci pravih stranica (smarttime.ba, mrt.ba) idu sa kadrovima.
-    for (const img of this.scena.querySelectorAll('img[data-src]')) if (!img.src) img.src = img.dataset.src
-    for (const ime of PREDMETI) {
-      const d = this.podaci[ime]
-      // Prvo krajnji kadrovi, pa ostali, da sklapanje odmah ima početak i kraj.
-      const redoslijed = [1, d.broj]
-      for (let i = 2; i < d.broj; i++) redoslijed.push(i)
-      this.kadrovi[ime] = new Array(d.broj)
-      for (const n of redoslijed) {
-        const img = new Image()
-        img.decoding = 'async'
-        img.onload = () => {
-          this.nacrtan = ''
-          this.zakazi()
-        }
-        img.src = `${d.kadrovi}${broj(n)}.webp`
-        this.kadrovi[ime][n - 1] = img
+  ucitajKadrove(ime) {
+    if (this.kadrovi[ime].length) return
+    const d = this.podaci[ime]
+    // Prvo krajnji kadrovi, pa svaki osmi, četvrti, drugi i na kraju ostali:
+    // sklapanje odmah ima grub tok, a onda se popunjava do punog.
+    const redoslijed = new Set([1, d.broj])
+    for (const korak of [8, 4, 2, 1]) for (let i = 1; i <= d.broj; i += korak) redoslijed.add(i)
+    this.kadrovi[ime] = new Array(d.broj)
+    for (const n of redoslijed) {
+      const img = new Image()
+      img.decoding = 'async'
+      img.onload = () => {
+        this.nacrtan = ''
+        this.zakazi()
       }
+      img.src = `${d.kadrovi}${kadar(n)}.webp`
+      this.kadrovi[ime][n - 1] = img
     }
   }
 

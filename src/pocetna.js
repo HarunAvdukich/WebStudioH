@@ -71,7 +71,7 @@ export const sat = {
   kanal: 'U · šta dobijate · svaki dio je jedna usluga',
   kanalKratko: 'U · šta dobijate',
   kadrovi: '/kadrovi/sat/',
-  broj: 42,
+  broj: 124,
   alt: 'Sat Seiko 5 sa smarttime.ba se sklapa iz dijelova, ilustracija',
   oznake: [
     { y: 0.215, strana: 'L', pomak: 0, naslov: 'Google i brzina', opis: 'Kupci vas nađu na Googleu, a stranica se otvori prije nego što odustanu.' },
@@ -118,7 +118,7 @@ export const kosilica = {
   kanal: 'N · kako radi na mrt.ba · svaki dio je dio sistema',
   kanalKratko: 'N · kako radi na mrt.ba',
   kadrovi: '/kadrovi/kosilica/',
-  broj: 42,
+  broj: 124,
   alt: 'Kosilica Villager EAGLE 6111 V sa mrt.ba se sklapa iz dijelova, ilustracija',
   oznake: [
     { y: 0.13, strana: 'L', pomak: 0, naslov: 'Upravljanje', opis: 'Vlasnik sam mijenja sadržaj, uz AI urednika. Veleprodaja naručuje preko B2B portala.' },

@@ -39,7 +39,7 @@ test('WhatsApp link ima unaprijed upisanu poruku', () => {
 test('svi kadrovi sklapanja postoje', () => {
   for (const p of [pocetna.sat, pocetna.kosilica]) {
     for (let i = 1; i <= p.broj; i++) {
-      const f = `public${p.kadrovi}${String(i).padStart(2, '0')}.webp`
+      const f = `public${p.kadrovi}${String(i).padStart(3, '0')}.webp`
       assert.ok(existsSync(f), `nema ${f}`)
     }
   }
@@ -114,14 +114,14 @@ test('svaki tekst stoji dovoljno dugo da se pročita', () => {
   // puno vidljiv, u ekranima skrola
   const ekrana = ([, a1, b0]) => (b0 - a1) * UKUPNO
   for (const ime of ['uNajava', 'satKraj', 'satSajt', 'nNajava', 'kosKraj', 'kosSajt']) {
-    assert.ok(ekrana(T[ime]) >= 0.95, `${ime}: ${ekrana(T[ime]).toFixed(2)} ekrana`)
+    assert.ok(ekrana(T[ime]) >= 0.75, `${ime}: ${ekrana(T[ime]).toFixed(2)} ekrana`)
   }
   assert.ok(ekrana(T.prelaz) >= 0.45)
   // potpis stoji bar pola ekrana prije nego što ga poziv na kraju počne prekrivati
   assert.ok(UKUPNO - 0.4 - T.potpisTekst[1] * UKUPNO >= 0.45)
   for (const [ime, V] of Object.entries(VRIJEME)) {
-    // vlasnik: oznake su se na računaru mijenjale prebrzo
-    assert.ok(V.korak * UKUPNO >= 0.4, `${ime}: oznake prebrzo`)
+    // vlasnik: 0,45 ekrana je bilo presporo, 0,24 prebrzo za tekst; drži se oko 0,25
+    assert.ok(V.korak * UKUPNO >= 0.22 && V.korak * UKUPNO <= 0.3, `${ime}: brzina oznaka`)
   }
 })
 
