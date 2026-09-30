@@ -1,26 +1,12 @@
 import Seo from '../components/Seo.jsx'
-import Hero from '../components/Hero.jsx'
-import ValueStrip from '../components/ValueStrip.jsx'
-import Services from '../components/Services.jsx'
-import WhyUs from '../components/WhyUs.jsx'
-import Portfolio from '../components/Portfolio.jsx'
-import Testimonials from '../components/Testimonials.jsx'
-import FinalCta from '../components/FinalCta.jsx'
+import KrozZnak from '../components/pocetna/KrozZnak.jsx'
+import { seo } from '../pocetna.js'
 
 export default function Home() {
   return (
     <>
-      <Seo
-        path="/"
-        description="Hunar gradi WooCommerce trgovine za bh. prodavnice, povezane sa OLX-om, Ananasom i dobavljačima."
-      />
-      <Hero />
-      <ValueStrip />
-      <Services preview />
-      <WhyUs />
-      <Portfolio preview />
-      <Testimonials />
-      <FinalCta />
+      <Seo path="/" punNaslov={seo.naslov} description={seo.opis} />
+      <KrozZnak />
     </>
   )
 }

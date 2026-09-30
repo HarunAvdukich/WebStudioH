@@ -1,0 +1,449 @@
+/* ============================================================
+   Početna "Kroz znak" (dizajn G3 iz Claude Designa, 30. 9. 2026.)
+   Osnova je obična, čitljiva stranica (bez JavaScripta ili uz smanjene
+   pokrete). Klasa .pokret na <html> (inline skripta u index.html) pali
+   živu priču: scena se zakači, a slojevi se preklapaju i vodi ih skrol.
+   ============================================================ */
+
+.kz {
+  --zelena: #0f241d;
+  --zelena-dublja: #0a1a15;
+  --smaragd: #0e8a64;
+  --smaragd-tamni: #0b7a58;
+  --svijetli: #19b07e;
+  --krec: #f4f4f2;
+  --mint: #e3f1ea;
+  --siva: #a9bdb4;
+  --tekst2: #c9d6cf;
+  --pad: 24px;
+
+  background: var(--zelena);
+  color: var(--krec);
+  font-family: 'Urbanist Variable', 'Urbanist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.kz a { color: inherit; }
+.kz a:focus-visible,
+.kz button:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 6px; }
+.kz h1, .kz h2, .kz h3 { letter-spacing: -0.025em; }
+
+/* ---------- zajednički dijelovi ---------- */
+.kz-nad {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--siva);
+}
+.kz-opis { margin-top: 18px; font-size: 19px; line-height: 1.55; color: var(--tekst2); }
+.kz-dugmad { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; }
+.kz-dugmad--sredina { justify-content: center; }
+.kz-dugme {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 56px;
+  padding: 0 28px 0 22px;
+  border-radius: 28px;
+  background: var(--mint);
+  color: var(--zelena) !important;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 0.2s, transform 0.2s;
+}
+.kz-dugme:hover { background: #ffffff; transform: translateY(-1px); }
+.kz-tel { font-size: 17px; font-weight: 600; text-decoration: underline; text-decoration-color: rgba(244, 244, 242, 0.35); text-underline-offset: 4px; }
+.kz-broj {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--smaragd-tamni);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+}
+.kz-izvor { font-size: 13px; font-weight: 600; color: var(--mint); }
+
+/* ---------- zaglavlje ---------- */
+.kz-zaglavlje {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  min-height: 76px;
+  padding: 14px var(--pad);
+}
+.kz-poglavlje { display: none; margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.kz-meni { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 26px; font-size: 16px; font-weight: 600; }
+.kz-meni a { text-decoration: none; padding: 8px 0; }
+.kz-meni a:hover { color: var(--mint); }
+.kz-meni__dugme {
+  padding: 0 20px !important;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 22px;
+  background: var(--mint);
+  color: var(--zelena) !important;
+  font-weight: 700;
+}
+.kz-meni__otvori {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--krec);
+  border-radius: 22px;
+  background: var(--zelena);
+  color: var(--krec);
+  cursor: pointer;
+}
+.kz-meni-telefon {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  padding: 96px 28px 40px;
+  background: var(--zelena);
+}
+.kz-meni-telefon[hidden] { display: none; }
+.kz-meni-telefon nav { display: flex; flex-direction: column; gap: 6px; }
+.kz-meni-telefon nav a { padding: 10px 0; font-size: 30px; font-weight: 700; text-decoration: none; }
+
+/* ---------- obična stranica (osnova) ---------- */
+.kz-scena { max-width: 1240px; margin: 0 auto; padding-bottom: 40px; }
+.kz-znak { display: block; width: calc(100% - 2 * var(--pad)); max-width: 1200px; height: auto; margin: 72px auto 0; }
+.kz-sloj, .kz-grupa { padding: 0 var(--pad); margin-top: 72px; }
+.kz-uvod { margin-top: 48px; }
+.kz-uvod__nad { margin-bottom: 20px; }
+.kz-uvod__red { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 48px; }
+.kz-uvod__glavno { max-width: 720px; display: flex; flex-direction: column; gap: 24px; }
+.kz-uvod h1 { margin: 0; font-size: clamp(34px, 4.2vw, 50px); line-height: 1.04; font-weight: 700; }
+.kz-uvod__opis { max-width: 430px; margin: 0 0 6px; font-size: 19px; line-height: 1.55; color: var(--tekst2); }
+.kz-skrol { display: none; }
+.kz-kanal, .kz-predmet, .kz-lista, .kz-izradio, .kz-oznaka__crta, .kz-oznaka__tacka { display: none; }
+.kz-najava h2, .kz-finale h2 { margin: 12px 0 0; font-size: clamp(30px, 4vw, 54px); line-height: 1.04; font-weight: 700; max-width: 760px; }
+.kz-grupa { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 32px; align-items: start; }
+.kz-staticno { width: 100%; height: auto; border-radius: 20px; }
+.kz-oznake { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.kz-oznaka__karta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px 14px;
+  border: 1px solid rgba(227, 241, 234, 0.28);
+  border-radius: 14px;
+  background: var(--zelena);
+}
+.kz-oznaka__vrh { display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.kz-oznaka__opis { font-size: 14px; line-height: 1.4; color: var(--tekst2); }
+.kz-kraj h3 { margin: 0; font-size: 34px; line-height: 1.05; font-weight: 800; }
+.kz-kraj p { margin: 12px 0 0; font-size: 18px; line-height: 1.45; }
+.kz-citat { font-weight: 700; }
+.kz-prelaz__tekst { margin: 10px 0 0; font-size: 26px; font-weight: 700; }
+.kz-potpis__tekst { margin: 0; font-size: 21px; line-height: 1.5; color: var(--tekst2); }
+.kz-potpis__primjeri { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 24px; }
+.kz-potpis__primjeri figure { margin: 0; width: min(560px, 100%); }
+.kz-potpis__primjeri figcaption { margin-bottom: 10px; }
+.kz-potpis__slika { position: relative; border-radius: 12px; overflow: hidden; }
+.kz-potpis__slika img { width: 100%; height: auto; }
+.kz-potpis__okvir { position: absolute; border: 2px solid var(--svijetli); border-radius: 8px; }
+.kz-ponuda { margin: 32px 0 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+.kz-ponuda li { display: flex; flex-direction: column; gap: 8px; padding: 16px 18px; border: 1px solid rgba(227, 241, 234, 0.22); border-radius: 16px; }
+.kz-ponuda__vrh { display: flex; align-items: center; gap: 10px; font-size: 18px; }
+.kz-ponuda__opis { font-size: 14px; line-height: 1.45; color: var(--tekst2); }
+.kz-finale .kz-dugmad { margin-top: 32px; }
+.kz-finale__ispod { margin: 18px 0 0; font-size: 16px; color: var(--siva); }
+
+/* ---------- podnožje ---------- */
+.kz-podnozje { padding: 48px var(--pad) 32px; border-top: 1px solid rgba(227, 241, 234, 0.16); background: var(--zelena-dublja); color: var(--tekst2); font-size: 15px; }
+.kz-podnozje__red { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 40px; }
+.kz-podnozje__red + .kz-podnozje__red { margin-top: 24px; }
+.kz-podnozje__logo { width: 140px; height: auto; }
+.kz-podnozje__red p { margin: 0; max-width: 560px; line-height: 1.5; }
+.kz-podnozje nav { display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 600; }
+.kz-podnozje a { text-decoration: none; }
+.kz-podnozje a:hover { color: var(--mint); }
+.kz-podnozje__dno { max-width: 1200px; margin: 28px auto 0; font-size: 13px; color: var(--siva); }
+
+@media (max-width: 760px) {
+  .kz-meni { display: none; }
+  .kz-meni__otvori { display: inline-flex; }
+  .kz-grupa { grid-template-columns: 1fr; }
+  .kz-staticno { max-width: 320px; }
+}
+
+/* ============================================================
+   Živa priča
+   ============================================================ */
+/* Lenis sam glatko vodi skrol; globalni scroll-behavior bi mu smetao. */
+html.lenis { scroll-behavior: auto !important; }
+.pokret .kz-prica {
+  --kz-h: 100svh;
+  --pad: 24px;
+  --logo-w: calc(100vw - 48px);
+  --logo-h: calc(var(--logo-w) * 0.216141);
+  --logo-l: 24px;
+  --logo-t: calc(var(--kz-h) * 0.34);
+  --kanal-w: min(calc(100vw - 90px), 420px);
+  --kanal-l: calc((100vw - var(--kanal-w)) / 2);
+  --box-w: min(calc(var(--kanal-w) - 24px), calc(var(--kz-h) * 0.33));
+  --box-h: calc(var(--box-w) / 0.75);
+  --box-l: calc((100vw - var(--box-w)) / 2);
+  --box-t: calc(var(--kz-h) * 0.135);
+
+  position: relative;
+  height: calc(var(--kz-h) * 12);
+}
+.pokret .kz-scena {
+  position: sticky;
+  top: 0;
+  height: var(--kz-h);
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+@media (min-width: 1180px) and (min-height: 600px) {
+  .pokret .kz-prica {
+    --pad: min(120px, 8.3vw);
+    --logo-w: min(1200px, calc(100vw - 2 * var(--pad)), calc((var(--kz-h) - 390px) / 0.216141));
+    --logo-l: calc((100vw - var(--logo-w)) / 2);
+    --logo-t: max(130px, calc((var(--kz-h) - var(--logo-h)) / 2 - 60px));
+  }
+}
+
+/* logo: okvir stoji na mjestu iz prvog ekrana, kamera ga samo transformiše */
+.pokret .kz-znak { position: absolute; left: var(--logo-l); top: var(--logo-t); width: var(--logo-w); height: var(--logo-h); max-width: none; margin: 0; overflow: visible; transform-origin: 0 0; }
+
+.pokret .kz-zaglavlje { position: absolute; top: 0; left: 0; right: 0; z-index: 20; padding: 14px max(20px, 5.5vw); }
+.pokret .kz-poglavlje { display: block; }
+
+.pokret .kz-sloj,
+.pokret .kz-grupa { position: absolute; margin: 0; padding: 0; opacity: 0; pointer-events: none; will-change: opacity; }
+.pokret .kz-grupa { inset: 0; display: block; opacity: 1; pointer-events: none; }
+.pokret .kz-staticno { display: none; }
+
+/* 1 · prvi ekran */
+.pokret .kz-uvod { inset: 0; opacity: 1; pointer-events: auto; }
+.pokret .kz-uvod__nad { position: absolute; left: var(--logo-l); top: calc(var(--logo-t) - 58px); margin: 0; }
+.pokret .kz-uvod__red { position: absolute; left: var(--logo-l); top: calc(var(--logo-t) + var(--logo-h) + 48px); width: var(--logo-w); flex-wrap: nowrap; }
+.pokret .kz-skrol {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--siva);
+  animation: kzNagovjest 1.6s ease-in-out infinite;
+}
+@keyframes kzNagovjest { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(6px); } }
+
+/* naslovi u kanalu */
+.pokret .kz-kanal {
+  display: block;
+  left: var(--kanal-l);
+  width: var(--kanal-w);
+  top: 82px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--siva);
+}
+.pokret .kz-najava { left: var(--kanal-l); width: var(--kanal-w); top: calc(var(--kz-h) * 0.28); padding: 0 16px; box-sizing: border-box; text-align: center; }
+.pokret .kz-najava h2 { max-width: none; font-size: clamp(30px, 3.8vw, 54px); }
+
+/* predmet koji se sklapa */
+.pokret .kz-predmet { display: block; left: var(--box-l); top: var(--box-t); width: var(--box-w); height: var(--box-h); }
+.pokret .kz-predmet canvas { display: block; width: 100%; height: 100%; }
+
+/* oznake: na telefonu kartica ispod predmeta, jedna po jedna */
+.pokret .kz-oznake { position: absolute; inset: 0; display: block; }
+.pokret .kz-oznaka { position: absolute; inset: 0; opacity: 0; }
+.pokret .kz-oznaka__karta {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--box-t) + var(--box-h) + 22px);
+  width: min(320px, calc(100vw - 48px));
+  box-sizing: border-box;
+  transform: translateX(-50%);
+}
+
+/* lista tokom sklapanja: na telefonu samo trenutni dio i procenat */
+.pokret .kz-lista { display: block; inset: 0; pointer-events: none; }
+.pokret .kz-lista__lijevo, .pokret .kz-lista__desno { display: none; }
+.pokret .kz-lista__sad {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--box-t) + var(--box-h) + 22px);
+  width: min(320px, calc(100vw - 48px));
+  box-sizing: border-box;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid rgba(227, 241, 234, 0.28);
+  border-radius: 16px;
+  background: var(--zelena);
+  font-size: 18px;
+  font-weight: 700;
+}
+.kz-kvacica {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  box-sizing: border-box;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  font-size: 13px;
+  color: var(--zelena);
+}
+.kz-kvacica svg { opacity: 0; }
+.je-gotovo .kz-kvacica, .kz-kvacica.je-puna { background: var(--mint); border-color: var(--mint); }
+.je-gotovo .kz-kvacica svg { opacity: 1; }
+
+/* kraj sklapanja i ostali tekstovi */
+.pokret .kz-kraj { left: 50%; top: calc(var(--box-t) + var(--box-h) + 22px); width: min(320px, calc(100vw - 48px)); transform: translateX(-50%); }
+.pokret .kz-kraj h3 { font-size: 27px; }
+.pokret .kz-kraj p { font-size: 15px; color: var(--tekst2); }
+.pokret .kz-kraj__uz p:not(.kz-izvor) { display: none; }
+.pokret .kz-prelaz { left: var(--pad); right: var(--pad); top: calc(var(--kz-h) * 0.8); text-align: center; }
+.pokret .kz-prelaz__tekst { font-size: clamp(20px, 2vw, 26px); }
+
+/* potpis */
+.pokret .kz-izradio {
+  display: block;
+  position: absolute;
+  opacity: 0;
+  margin: 0;
+  line-height: 1;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  text-align: right;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.pokret .kz-potpis { left: var(--pad); right: var(--pad); top: calc(var(--kz-h) * 0.33); }
+.pokret .kz-potpis__tekst { font-size: 17px; }
+.pokret .kz-potpis__primjeri { flex-direction: column; gap: 18px; margin-top: 22px; }
+
+/* vaš red */
+.pokret .kz-finale { left: var(--pad); right: var(--pad); top: calc(var(--kz-h) * 0.3); }
+.pokret .kz-finale h2 { font-size: 30px; }
+.pokret .kz-finale .kz-opis { margin-top: 10px; font-size: 15px; }
+.pokret .kz-ponuda { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin-top: 18px; }
+.pokret .kz-ponuda li { flex-direction: row; align-items: center; padding: 10px; border-radius: 12px; }
+.pokret .kz-ponuda__vrh { font-size: 14px; gap: 8px; }
+.pokret .kz-ponuda__vrh .kz-broj { width: 22px; height: 22px; font-size: 12px; }
+.pokret .kz-ponuda__opis { display: none; }
+.pokret .kz-finale .kz-dugmad { margin-top: 20px; }
+.pokret .kz-finale .kz-dugme { width: 100%; justify-content: center; }
+.pokret .kz-finale .kz-tel { display: none; }
+.pokret .kz-finale__ispod { font-size: 14px; }
+
+/* ---------- široki ekran ---------- */
+@media (min-width: 1180px) and (min-height: 600px) {
+  .pokret .kz-prica {
+    --kanal-w: min(760px, max(560px, 51vw));
+    --box-h: min(calc(var(--kz-h) * 0.9), calc((var(--kanal-w) - 60px) / 0.75));
+    --box-w: calc(var(--box-h) * 0.75);
+    --box-t: calc((var(--kz-h) - var(--box-h)) / 2 + var(--kz-h) * 0.01);
+  }
+  .pokret .kz-uvod__red { align-items: flex-end; }
+
+  .pokret .kz-oznaka__crta { display: block; position: absolute; left: var(--cl); top: var(--cy); width: var(--cw); height: 1px; background: rgba(244, 244, 242, 0.6); }
+  .pokret .kz-oznaka__tacka { display: block; position: absolute; left: var(--dl); top: calc(var(--cy) - 4.5px); width: 9px; height: 9px; border-radius: 50%; background: var(--krec); box-shadow: 0 0 0 3px rgba(14, 138, 100, 0.9); }
+  .pokret .kz-oznaka__karta { left: var(--x); top: var(--y); width: var(--w); transform: none; }
+
+  .pokret .kz-lista__lijevo {
+    display: block;
+    position: absolute;
+    left: max(24px, calc(var(--kanal-l) - 32px - 272px));
+    width: min(272px, calc(var(--kanal-l) - 56px));
+    top: calc(var(--kz-h) * 0.26);
+    color: #fff;
+  }
+  .pokret .kz-lista__naslov { margin: 0; font-size: 20px; font-weight: 800; }
+  .pokret .kz-lista__lijevo ul { margin: 14px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .pokret .kz-lista__lijevo li { display: flex; align-items: center; gap: 12px; min-height: 30px; font-size: 19px; font-weight: 700; opacity: 0.55; }
+  .pokret .kz-lista__lijevo li.je-gotovo { opacity: 1; }
+  .pokret .kz-lista__desno {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: calc(var(--kanal-l) + var(--kanal-w) + 32px);
+    top: calc(var(--kz-h) * 0.62);
+    color: #fff;
+  }
+  .pokret .kz-lista__posto { font-size: 112px; font-weight: 800; line-height: 0.9; letter-spacing: -0.05em; }
+  .pokret .kz-lista__ispod { margin-top: 10px; font-size: 20px; font-weight: 700; }
+  .pokret .kz-lista__sad { display: none; }
+
+  .pokret .kz-kraj { inset: 0; width: auto; transform: none; }
+  .pokret .kz-kraj__glavno, .pokret .kz-kraj__uz { position: absolute; width: min(290px, calc(var(--kanal-l) - 64px)); color: #fff; }
+  .pokret .kz-kraj h3 { font-size: 42px; line-height: 1.02; letter-spacing: -0.03em; }
+  .pokret .kz-kraj p { font-size: 20px; font-weight: 700; color: #fff; }
+  .pokret .kz-kraj__uz p:not(.kz-izvor) { display: block; font-size: 19px; }
+  .pokret .kz-kraj .kz-izvor { font-size: 13px; font-weight: 600; color: var(--mint); }
+  .pokret .kz-kraj--sat .kz-kraj__glavno { left: max(24px, calc(var(--kanal-l) - 32px - 290px)); top: calc(var(--kz-h) * 0.32); }
+  .pokret .kz-kraj--sat .kz-kraj__uz { left: calc(var(--kanal-l) + var(--kanal-w) + 32px); top: calc(var(--kz-h) * 0.62); }
+  .pokret .kz-kraj--kosilica .kz-kraj__glavno { left: calc(var(--kanal-l) + var(--kanal-w) + 32px); top: calc(var(--kz-h) * 0.28); }
+  .pokret .kz-kraj--kosilica .kz-kraj__uz { left: max(24px, calc(var(--kanal-l) - 32px - 260px)); top: calc(var(--kz-h) * 0.14); }
+
+  .pokret .kz-potpis { top: calc(var(--kz-h) * 0.38); text-align: center; }
+  .pokret .kz-potpis__tekst { font-size: 23px; }
+  .pokret .kz-potpis__primjeri { flex-direction: row; justify-content: center; gap: 20px; margin-top: 36px; text-align: left; }
+
+  .pokret .kz-finale { top: calc(var(--kz-h) * 0.285); text-align: center; }
+  .pokret .kz-kanal { top: 92px; }
+  .pokret .kz-finale h2 { max-width: none; font-size: 56px; }
+  .pokret .kz-finale .kz-opis { font-size: 19px; }
+  .pokret .kz-ponuda { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; max-width: 1140px; margin: 36px auto 0; text-align: left; }
+  .pokret .kz-ponuda li { flex-direction: column; align-items: stretch; padding: 16px 18px; border-radius: 16px; }
+  .pokret .kz-ponuda__vrh { font-size: 18px; gap: 10px; }
+  .pokret .kz-ponuda__vrh .kz-broj { width: 26px; height: 26px; font-size: 13px; }
+  .pokret .kz-ponuda__opis { display: block; }
+  .pokret .kz-finale .kz-dugme { width: auto; }
+  .pokret .kz-finale .kz-tel { display: inline; }
+  .pokret .kz-finale .kz-dugmad { margin-top: 36px; }
+}
+
+/* telefon: meni kao dugme */
+@media (max-width: 1179px), (max-height: 599px) {
+  .pokret .kz-meni { display: none; }
+  .pokret .kz-meni__otvori { display: inline-flex; }
+  .pokret .kz-uvod__red { flex-direction: column; align-items: stretch; gap: 14px; }
+  .pokret .kz-uvod h1 { font-size: 34px; }
+  .pokret .kz-uvod__opis { font-size: 16px; order: 2; }
+  .pokret .kz-uvod__glavno { display: contents; }
+  .pokret .kz-uvod__glavno .kz-dugmad { order: 3; }
+  .pokret .kz-uvod__glavno .kz-dugme { width: 100%; justify-content: center; }
+  .pokret .kz-uvod__glavno .kz-tel { display: none; }
+  .pokret .kz-najava h2 { font-size: 31px; }
+  .pokret .kz-najava .kz-opis { font-size: 15px; }
+}

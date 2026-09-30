@@ -10,17 +10,19 @@ export default function App() {
   const { pathname } = useLocation()
   // re-run scroll-reveal whenever the page changes
   useReveal(pathname)
+  // Nova početna ima svoje zaglavlje i podnožje; ostale stranice su još u starom izgledu.
+  const pocetna = pathname === '/'
 
   return (
     <div className="page">
       <JsonLd />
       <ScrollToTop />
-      <Nav />
+      {!pocetna && <Nav />}
       <main>
         <Outlet />
       </main>
-      <Footer />
-      <WhatsAppFab />
+      {!pocetna && <Footer />}
+      {!pocetna && <WhatsAppFab />}
     </div>
   )
 }

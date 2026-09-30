@@ -15,10 +15,12 @@ function ogImageFor(path) {
   return `/og/${path.slice(1).replace(/\//g, '-')}.jpg`
 }
 
-export default function Seo({ title, description = DEFAULT_DESC, path = '', image, noindex = false }) {
-  const fullTitle = title
-    ? `${title} · ${SITE_NAME}`
-    : `${SITE_NAME} · Web trgovine za bh. prodavnice`
+export default function Seo({ title, punNaslov, description = DEFAULT_DESC, path = '', image, noindex = false }) {
+  const fullTitle = punNaslov
+    ? punNaslov
+    : title
+      ? `${title} · ${SITE_NAME}`
+      : `${SITE_NAME} · Web trgovine za bh. prodavnice`
   const url = SITE_URL + path
   const ogImage = SITE_URL + (image || ogImageFor(path))
 
