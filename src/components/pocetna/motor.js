@@ -13,6 +13,37 @@ export const B = { x: 127.26, y: 75.25 }
 const PROCJEP = 52.85 // širina procjepa u jedinicama znaka
 const ZNAK = 0.38961 // razmjer znaka unutar logotipa
 
+// Priča je izmjerena u ekranima skrola (1 = jedna visina prozora), da svaki tekst
+// stoji dovoljno dugo da se pročita. p (0 do 1) je udio od UKUPNO ekrana, a
+// visina priče u pocetna.css je UKUPNO + 1 ekran (test to provjerava).
+export const UKUPNO = 23.1
+const e = (ekran) => ekran / UKUPNO
+
+// Vremena u ekranima: [pojava, puno, počinje nestajati, nestalo] ili [od, do].
+// Poslije svakog predmeta dolazi prava stranica tog artikla (satSajt, kosSajt).
+export const T = {
+  uvod: [0.2, 0.7],
+  zumU: [0.4, 1.5],
+  uNajava: [1.35, 1.55, 2.55, 2.75].map(e),
+  kanalSat: [2.7, 2.9, 9.9, 10.1].map(e),
+  satKraj: [8.6, 8.8, 9.9, 10.1].map(e),
+  satSajt: [10.0, 10.25, 11.25, 11.45].map(e),
+  prelet: [11.5, 12.5],
+  prelaz: [11.6, 11.75, 12.25, 12.4].map(e),
+  nNajava: [12.45, 12.65, 13.65, 13.85].map(e),
+  kanalKos: [13.8, 14.0, 19.4, 19.6].map(e),
+  kosKraj: [18.2, 18.4, 19.4, 19.6].map(e),
+  kosSajt: [19.55, 19.8, 20.8, 21.0].map(e),
+  zumVan: [21.0, 21.55],
+  potpis: [21.55, 22.0],
+  izradio: [21.65, 22.0],
+  potpisTekst: [21.95, 22.15].map(e),
+}
+for (const k of ['uvod', 'zumU', 'prelet', 'zumVan', 'potpis', 'izradio']) T[k] = T[k].map(e)
+
+// Početak svakog poglavlja (broj i ime su u tekstu stranice).
+export const POGLAVLJA = [0, T.uNajava[0], T.prelet[0], T.nNajava[0], T.zumVan[0]]
+
 export const cl = (x) => (x < 0 ? 0 : x > 1 ? 1 : x)
 export const ez = (t) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2)
 export const lp = (a, b, t) => a + (b - a) * t
@@ -81,13 +112,13 @@ export function kamera(p, R) {
   const o1 = org(B, R.logoL, R.logoT, 1, R.logoW)
   const sig = org(B, R.sig.L, R.sig.T, R.sig.s, R.logoW)
   let e
-  if (p < 0.14) {
-    e = ez(seg(p, 0.04, 0.14))
+  if (p < T.zumU[1]) {
+    e = ez(seg(p, T.zumU[0], T.zumU[1]))
     return { L: A, s: Math.pow(Z, e), x: lp(start.x, R.sred.x, e), y: lp(start.y, R.sred.y, e) }
   }
-  if (p < 0.47) return { L: A, s: Z, x: R.sred.x, y: R.sred.y }
-  if (p < 0.55) {
-    e = ez(seg(p, 0.47, 0.55))
+  if (p < T.prelet[0]) return { L: A, s: Z, x: R.sred.x, y: R.sred.y }
+  if (p < T.prelet[1]) {
+    e = ez(seg(p, T.prelet[0], T.prelet[1]))
     return {
       L: { x: lp(A.x, B.x, e), y: lp(A.y, B.y, e) },
       s: Math.pow(Z, 1 - 0.62 * Math.sin(Math.PI * e)),
@@ -95,12 +126,12 @@ export function kamera(p, R) {
       y: R.sred.y,
     }
   }
-  if (p < 0.82) return { L: B, s: Z, x: R.sred.x, y: R.sred.y }
-  if (p < 0.86) {
-    e = ez(seg(p, 0.82, 0.86))
+  if (p < T.zumVan[0]) return { L: B, s: Z, x: R.sred.x, y: R.sred.y }
+  if (p < T.zumVan[1]) {
+    e = ez(seg(p, T.zumVan[0], T.zumVan[1]))
     return { L: B, s: Math.pow(Z, 1 - e), x: lp(R.sred.x, o1.x, e), y: lp(R.sred.y, o1.y, e) }
   }
-  e = ez(seg(p, 0.86, 0.9))
+  e = ez(seg(p, T.potpis[0], T.potpis[1]))
   return { L: B, s: lp(1, R.sig.s, e), x: lp(o1.x, sig.x, e), y: lp(o1.y, sig.y, e) }
 }
 
@@ -110,36 +141,44 @@ export function transformacija(c, R) {
   return { k, x: c.x - k * c.L.x, y: c.y - k * c.L.y }
 }
 
+// Oznake izlaze jedna po jedna (korak), pa se predmet sklopi. Predmet nestaje kad
+// se pojavi snimak prave stranice tog artikla sa telefona.
 export const VRIJEME = {
-  sat: { vidljiv: 0.19, sklapanje: [0.33, 0.41], nestaje: 0.47, prvaOznaka: 0.205, korak: 0.013 },
-  kosilica: { vidljiv: 0.58, sklapanje: [0.7, 0.775], nestaje: 0.82, prvaOznaka: 0.595, korak: 0.015 },
+  sat: { vidljiv: e(2.7), sklapanje: [e(7.05), e(8.35)], nestaje: e(9.95), prvaOznaka: e(2.95), korak: e(0.45) },
+  kosilica: { vidljiv: e(13.8), sklapanje: [e(16.8), e(17.95)], nestaje: e(19.5), prvaOznaka: e(14.05), korak: e(0.45) },
 }
+const POJAVA = e(0.13) // oznaka se pojavi
+const PREDMET = e(0.22) // predmet se pojavi ili nestane
+const LISTA = [e(0.05), e(0.15)] // lista nestaje poslije sklapanja: zastoj, trajanje
 
 // Stanje jednog predmeta: kadar sklapanja, vidljivost, oznake i lista.
 export function predmet(V, brojOznaka, brojStavki, brojKadrova, p) {
   const t = ez(seg(p, V.sklapanje[0], V.sklapanje[1]))
   const kadar = Math.round(t * (brojKadrova - 1))
-  const vidljivost = cl((p - V.vidljiv) / 0.02) * (1 - cl((p - V.nestaje) / 0.02))
+  const vidljivost = cl((p - V.vidljiv) / PREDMET) * (1 - cl((p - V.nestaje) / PREDMET))
   const oznake = []
   for (let i = 0; i < brojOznaka; i++) {
-    oznake.push(cl((p - (V.prvaOznaka + i * V.korak)) / 0.012) * (1 - cl(t / 0.12)))
+    oznake.push(cl((p - (V.prvaOznaka + i * V.korak)) / POJAVA) * (1 - cl(t / 0.12)))
   }
   const aktivnaOznaka = Math.max(0, Math.min(brojOznaka - 1, Math.floor((p - V.prvaOznaka) / V.korak)))
-  const lista = cl((t - 0.02) / 0.08) * (1 - cl((p - (V.sklapanje[1] + 0.005)) / 0.012))
+  const lista = cl((t - 0.02) / 0.08) * (1 - cl((p - (V.sklapanje[1] + LISTA[0])) / LISTA[1]))
   const gotovo = Math.min(brojStavki, Math.floor(t * (brojStavki + 0.5)))
   return { t, kadar, vidljivost, oznake, aktivnaOznaka, lista, gotovo, posto: Math.round(t * 100) }
 }
 
 // Kraj sklapanja se pojavi tek kad lista i procenat nestanu, da se tekst ne
 // preklapa na istom mjestu.
+const faza = (p, [a0, a1, b0, b1]) => fade(p, a0, a1, b0, b1)
 export const SLOJEVI = {
-  uvod: (p) => 1 - cl((p - 0.02) / 0.05),
-  uNajava: (p) => fade(p, 0.13, 0.15, 0.18, 0.195),
-  kanal: (p) => Math.max(fade(p, 0.19, 0.21, 0.46, 0.48), fade(p, 0.58, 0.6, 0.81, 0.83)),
-  satKraj: (p) => fade(p, 0.43, 0.442, 0.466, 0.478),
-  prelaz: (p) => fade(p, 0.49, 0.5, 0.53, 0.54),
-  nNajava: (p) => fade(p, 0.55, 0.565, 0.575, 0.59),
-  kosKraj: (p) => fade(p, 0.795, 0.805, 0.818, 0.826),
-  izradio: (p) => ez(seg(p, 0.87, 0.9)),
-  potpis: (p) => cl((p - 0.895) / 0.017),
+  uvod: (p) => 1 - seg(p, T.uvod[0], T.uvod[1]),
+  uNajava: (p) => faza(p, T.uNajava),
+  kanal: (p) => Math.max(faza(p, T.kanalSat), faza(p, T.kanalKos)),
+  satKraj: (p) => faza(p, T.satKraj),
+  prelaz: (p) => faza(p, T.prelaz),
+  nNajava: (p) => faza(p, T.nNajava),
+  kosKraj: (p) => faza(p, T.kosKraj),
+  satSajt: (p) => faza(p, T.satSajt),
+  kosSajt: (p) => faza(p, T.kosSajt),
+  izradio: (p) => ez(seg(p, T.izradio[0], T.izradio[1])),
+  potpis: (p) => seg(p, T.potpisTekst[0], T.potpisTekst[1]),
 }

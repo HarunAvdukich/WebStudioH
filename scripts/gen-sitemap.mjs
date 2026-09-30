@@ -9,7 +9,7 @@ const postSlugs = readdirSync('src/content/posts')
   .map((f) => f.replace(/\.md$/, ''))
 
 const staticPaths = [
-  '/', '/o-nama', '/usluge', '/radovi', '/cijene',
+  '/', '/en', '/o-nama', '/usluge', '/radovi', '/cijene',
   '/savjeti', '/kontakt', '/politika-privatnosti',
 ]
 const dynamicPaths = [

@@ -1,9 +1,10 @@
 // Provjere nove početne "Kroz znak": tekst, kadrovi i račun kamere.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import * as pocetna from '../src/pocetna.js'
-import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, LOGO_SIRINA } from '../src/components/pocetna/motor.js'
+import * as english from '../src/pocetna.en.js'
+import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, T, UKUPNO, POGLAVLJA, LOGO_SIRINA } from '../src/components/pocetna/motor.js'
 
 function strings(value, out = []) {
   if (typeof value === 'string') out.push(value)
@@ -96,8 +97,74 @@ for (const [W, H] of [[1536, 730], [1366, 657], [1280, 650], [1920, 960], [390, 
 
 test('sklapanje ide od prvog do zadnjeg kadra', () => {
   const V = VRIJEME.sat
-  assert.equal(predmet(V, 9, 9, 42, 0.2).kadar, 0)
-  assert.equal(predmet(V, 9, 9, 42, 0.45).kadar, 41)
-  assert.equal(predmet(V, 9, 9, 42, 0.1).vidljivost, 0)
-  assert.equal(predmet(V, 9, 9, 42, 0.45).gotovo, 9)
+  assert.equal(predmet(V, 9, 9, 42, V.sklapanje[0] - 0.001).kadar, 0)
+  assert.equal(predmet(V, 9, 9, 42, V.sklapanje[1] + 0.001).kadar, 41)
+  assert.equal(predmet(V, 9, 9, 42, V.vidljiv - 0.001).vidljivost, 0)
+  assert.equal(predmet(V, 9, 9, 42, V.sklapanje[1] + 0.001).gotovo, 9)
+})
+
+test('visina priče u CSS-u odgovara vremenima u motor.js', () => {
+  const css = readFileSync('src/components/pocetna/pocetna.css', 'utf8')
+  const m = css.match(/height: calc\(var\(--kz-h\) \* ([\d.]+)\)/)
+  assert.ok(m, 'nema visine priče')
+  assert.equal(Number(m[1]), Math.round((UKUPNO + 1) * 100) / 100)
+})
+
+test('svaki tekst stoji dovoljno dugo da se pročita', () => {
+  // puno vidljiv, u ekranima skrola
+  const ekrana = ([, a1, b0]) => (b0 - a1) * UKUPNO
+  for (const ime of ['uNajava', 'satKraj', 'satSajt', 'nNajava', 'kosKraj', 'kosSajt']) {
+    assert.ok(ekrana(T[ime]) >= 0.95, `${ime}: ${ekrana(T[ime]).toFixed(2)} ekrana`)
+  }
+  assert.ok(ekrana(T.prelaz) >= 0.45)
+  // potpis stoji bar pola ekrana prije nego što ga poziv na kraju počne prekrivati
+  assert.ok(UKUPNO - 0.4 - T.potpisTekst[1] * UKUPNO >= 0.45)
+  for (const [ime, V] of Object.entries(VRIJEME)) {
+    // vlasnik: oznake su se na računaru mijenjale prebrzo
+    assert.ok(V.korak * UKUPNO >= 0.4, `${ime}: oznake prebrzo`)
+  }
+})
+
+test('poglavlja idu redom i ima ih koliko imena', () => {
+  assert.equal(POGLAVLJA.length, pocetna.poglavlja.length)
+  assert.equal(POGLAVLJA.length, english.poglavlja.length)
+  for (let i = 1; i < POGLAVLJA.length; i++) assert.ok(POGLAVLJA[i] > POGLAVLJA[i - 1])
+})
+
+test('snimci pravih stranica postoje', () => {
+  for (const ime of ['sat', 'kosilica']) assert.ok(existsSync(`public${pocetna[ime].sajt.slika}`))
+})
+
+// Engleska početna: isti oblik i ista pravila kao bosanska.
+const tekstEn = strings(Object.fromEntries(Object.entries(english)))
+
+test('engleski: bez duge i srednje crte i bez UPTOS-a', () => {
+  assert.deepEqual(tekstEn.filter((s) => /[—–]/.test(s) || /uptos/i.test(s)), [])
+})
+
+test('engleski: brojke idu sa datumom mjerenja', () => {
+  for (const [broj, datum] of [['7,460', '29 Sep 2026'], ['4,453', '29 Sep 2026'], ['52 ms', '27 Sep 2026'], ['526', '29 Sep 2026']]) {
+    const red = tekstEn.find((s) => s.includes(broj))
+    assert.ok(red, `nema ${broj}`)
+    assert.ok(red.includes(datum), `${broj} bez datuma: ${red}`)
+  }
+})
+
+test('engleski: isti raspored oznaka i ista struktura kao bosanski', () => {
+  for (const ime of ['sat', 'kosilica']) {
+    assert.deepEqual(english[ime].oznake.map((o) => [o.y, o.strana]), pocetna[ime].oznake.map((o) => [o.y, o.strana]))
+    assert.equal(english[ime].lista.stavke.length, pocetna[ime].lista.stavke.length)
+  }
+  assert.deepEqual(Object.keys(english).sort(), Object.keys(pocetna).sort())
+  assert.deepEqual(Object.keys(english.ui).sort(), Object.keys(pocetna.ui).sort())
+  assert.match(english.whatsappLink, /^https:\/\/wa\.me\/387603000751\?text=/)
+  assert.equal(english.drugiJezik.put, pocetna.put)
+  assert.equal(pocetna.drugiJezik.put, english.put)
+})
+
+test('nema vidljive oznake AI ilustracije (vlasnik je ne želi); alt tekst je zadržava', () => {
+  const ai = /\(AI\)/
+  assert.deepEqual([...tekst, ...tekstEn].filter((s) => ai.test(s)), [])
+  assert.match(pocetna.sat.alt, /ilustracija/)
+  assert.match(english.kosilica.alt, /illustration/)
 })

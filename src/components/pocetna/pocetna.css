@@ -149,7 +149,42 @@
 .kz-oznaka__opis { font-size: 14px; line-height: 1.4; color: var(--tekst2); }
 .kz-kraj h3 { margin: 0; font-size: 34px; line-height: 1.05; font-weight: 800; }
 .kz-kraj p { margin: 12px 0 0; font-size: 18px; line-height: 1.45; }
-.kz-citat { font-weight: 700; }
+.kz-citat { margin: 16px 0 0; }
+.kz-citat p { margin: 0; font-weight: 700; }
+.kz-citat footer { margin-top: 8px; font-size: 14px; color: var(--siva); }
+
+/* snimak prave stranice artikla na mrt.ba */
+.kz-sajt { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 32px; align-items: center; }
+.kz-sajt__telefon {
+  overflow: hidden;
+  border: 1px solid rgba(244, 244, 242, 0.16);
+  border-radius: 30px;
+  background: #f7f7f8;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  -webkit-mask-image: linear-gradient(to bottom, #000 74%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 74%, transparent 100%);
+}
+.kz-sajt__telefon img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.kz-sajt__telefon img:not([src]) { display: none; }
+.kz-sajt h3 { margin: 0; font-size: 34px; line-height: 1.05; font-weight: 800; }
+.kz-sajt p { margin: 12px 0 0; font-size: 18px; line-height: 1.45; }
+
+/* prelaz na drugi jezik */
+.kz-jezik {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 0 12px !important;
+  border: 1.5px solid rgba(244, 244, 242, 0.45);
+  border-radius: 22px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+.kz-jezik:hover { border-color: var(--mint); }
 .kz-prelaz__tekst { margin: 10px 0 0; font-size: 26px; font-weight: 700; }
 .kz-potpis__tekst { margin: 0; font-size: 21px; line-height: 1.5; color: var(--tekst2); }
 
@@ -250,7 +285,7 @@ html.lenis { scroll-behavior: auto !important; }
   --box-t: calc(var(--kz-h) * 0.135);
 
   position: relative;
-  height: calc(var(--kz-h) * 12);
+  height: calc(var(--kz-h) * 24.1); /* UKUPNO + 1 iz motor.js */
 }
 .pokret .kz-scena {
   position: sticky;
@@ -378,6 +413,35 @@ html.lenis { scroll-behavior: auto !important; }
 .pokret .kz-kraj { left: 50%; top: calc(var(--box-t) + var(--box-h) + 22px); width: min(320px, calc(100vw - 48px)); box-sizing: border-box; padding: 14px 16px 16px; border: 1px solid rgba(227, 241, 234, 0.28); border-radius: 16px; background: var(--zelena); transform: translateX(-50%); }
 .pokret .kz-kraj h3 { font-size: 27px; }
 .pokret .kz-kraj p { font-size: 15px; color: var(--tekst2); }
+.pokret .kz-kraj .kz-citat p { color: var(--krec); }
+.pokret .kz-citat { margin-top: 10px; }
+.pokret .kz-citat footer { font-size: 13px; }
+
+/* snimak mrt.ba: telefon stoji tamo gdje je bila kosilica */
+.pokret .kz-sajt { inset: 0; display: block; }
+.pokret .kz-sajt__telefon {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--box-t) + var(--box-h) * 0.02);
+  height: calc(var(--box-h) * 0.96);
+  aspect-ratio: 780 / 1270;
+  transform: translateX(-50%);
+}
+.pokret .kz-sajt__tekst {
+  position: absolute;
+  left: 50%;
+  top: calc(var(--box-t) + var(--box-h) + 22px);
+  width: min(320px, calc(100vw - 48px));
+  box-sizing: border-box;
+  padding: 14px 16px 16px;
+  border: 1px solid rgba(227, 241, 234, 0.28);
+  border-radius: 16px;
+  background: var(--zelena);
+  transform: translateX(-50%);
+}
+.pokret .kz-sajt h3 { font-size: 27px; }
+.pokret .kz-sajt p { font-size: 15px; color: var(--tekst2); }
+.pokret .kz-kraj p.kz-izvor, .pokret .kz-sajt p.kz-izvor { font-size: 13px; font-weight: 600; color: var(--mint); }
 .pokret .kz-kraj__uz p:not(.kz-izvor) { display: none; }
 .pokret .kz-prelaz { left: var(--pad); right: var(--pad); top: calc(var(--kz-h) * 0.8); text-align: center; }
 .pokret .kz-prelaz__tekst { font-size: clamp(20px, 2vw, 26px); }
@@ -459,8 +523,28 @@ html.lenis { scroll-behavior: auto !important; }
   .pokret .kz-kraj .kz-izvor { font-size: 13px; font-weight: 600; color: var(--mint); }
   .pokret .kz-kraj--sat .kz-kraj__glavno { left: max(24px, calc(var(--kanal-l) - 32px - 290px)); top: calc(var(--kz-h) * 0.32); }
   .pokret .kz-kraj--sat .kz-kraj__uz { left: calc(var(--kanal-l) + var(--kanal-w) + 32px); top: calc(var(--kz-h) * 0.62); }
-  .pokret .kz-kraj--kosilica .kz-kraj__glavno { left: calc(var(--kanal-l) + var(--kanal-w) + 32px); top: calc(var(--kz-h) * 0.28); }
-  .pokret .kz-kraj--kosilica .kz-kraj__uz { left: max(24px, calc(var(--kanal-l) - 32px - 260px)); top: calc(var(--kz-h) * 0.14); }
+  .pokret .kz-kraj--kosilica .kz-kraj__glavno { left: calc(var(--kanal-l) + var(--kanal-w) + 32px); top: max(96px, calc(var(--kz-h) * 0.18)); }
+  .pokret .kz-kraj .kz-citat { margin-top: 18px; }
+  .pokret .kz-kraj .kz-citat p { margin: 0; font-size: 18px; font-weight: 700; }
+  .pokret .kz-kraj .kz-citat footer { font-size: 14px; color: var(--mint); }
+  .pokret .kz-kraj--kosilica .kz-izvor { margin-top: 18px; }
+
+  /* telefon krene ispod zaglavlja i izađe kroz dno ekrana (dno se pretapa) */
+  .pokret .kz-sajt__telefon { top: 112px; height: min(calc(var(--kz-h) - 112px), calc(var(--kz-h) * 0.86)); }
+  .pokret .kz-sajt__tekst {
+    left: max(24px, calc(var(--kanal-l) - 32px - 290px));
+    top: calc(var(--kz-h) * 0.24);
+    width: min(290px, calc(var(--kanal-l) - 64px));
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    transform: none;
+    color: #fff;
+  }
+  .pokret .kz-sajt h3 { font-size: clamp(32px, 2.9vw, 42px); line-height: 1.04; letter-spacing: -0.03em; }
+  .pokret .kz-sajt p { margin-top: 14px; font-size: 18px; font-weight: 600; line-height: 1.45; color: #fff; }
+  .pokret .kz-sajt .kz-izvor { font-size: 13px; font-weight: 600; color: var(--mint); }
 
   .pokret .kz-potpis { top: calc(var(--sig-dno) + 36px); text-align: center; }
   .pokret .kz-potpis__tekst { font-size: 21px; }
