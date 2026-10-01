@@ -8,7 +8,7 @@ export default function WorkPage() {
   return (
     <>
       <Seo
-        title="Radovi"
+        title="Radovi: mrt.ba, SmartTime i urez.ba"
         path="/radovi"
         description="Odabir projekata koje smo dizajnirali i izgradili: web trgovine i prezentacijske stranice."
       />

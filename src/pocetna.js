@@ -40,8 +40,8 @@ export const ui = {
 }
 
 export const seo = {
-  naslov: 'Hunar · Web stranice, trgovine i sistemi za firme u BiH',
-  opis: 'Web stranice i trgovine povezane sa OLX-om, Ananasom i dobavljačima. Dizajn, kod, hosting i održavanje na jednom mjestu. Pišite nam na WhatsApp.',
+  naslov: 'Izrada web stranica i web trgovina u BiH · Hunar',
+  opis: 'Izrađujemo web stranice, web shopove i sisteme po mjeri, povezane sa OLX-om, Ananasom i dobavljačima. Dizajn, kod, hosting i održavanje na jednom mjestu.',
 }
 
 export const uvod = {

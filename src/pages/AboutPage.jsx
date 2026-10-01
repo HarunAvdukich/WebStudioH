@@ -8,7 +8,7 @@ export default function AboutPage() {
   return (
     <>
       <Seo
-        title="O nama"
+        title="O nama: web studio iz BiH"
         path="/o-nama"
         description="Mali, posvećen studio koji gradi web trgovine za bh. prodavnice i povezuje ih sa OLX-om i dobavljačima."
       />

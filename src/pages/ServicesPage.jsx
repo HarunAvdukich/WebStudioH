@@ -10,7 +10,7 @@ export default function ServicesPage() {
   return (
     <>
       <Seo
-        title="Usluge"
+        title="Izrada web trgovina, OLX integracija i održavanje"
         path="/usluge"
         description="WooCommerce web trgovine, povezivanje sa OLX-om i dobavljačima, održavanje, SEO i AI alati na jednom mjestu."
       />
