@@ -5,6 +5,7 @@ import PageHero from '../components/PageHero.jsx'
 import FinalCta from '../components/FinalCta.jsx'
 import NotFound from './NotFound.jsx'
 import { projects, publishedTestimonials } from '../data.js'
+import { pricaRada } from '../radovi.js'
 
 export default function CaseStudyPage() {
   const { slug } = useParams()
@@ -12,6 +13,7 @@ export default function CaseStudyPage() {
   if (!project) return <NotFound />
 
   const testimonial = publishedTestimonials.find((t) => t.project === slug)
+  const prica = pricaRada(slug)
 
   return (
     <>
@@ -27,7 +29,11 @@ export default function CaseStudyPage() {
           ]),
         ]}
       />
-      <PageHero eyebrow={project.tag} title={project.name} subtitle={project.summary} />
+      <PageHero
+        eyebrow={project.tag}
+        title={project.naslov || project.name}
+        subtitle={project.uvod || project.summary}
+      />
 
       <section className="case">
         <div className="container">
@@ -74,6 +80,10 @@ export default function CaseStudyPage() {
               </div>
             </aside>
           </div>
+
+          {prica && (
+            <div className="case__prica post__body" dangerouslySetInnerHTML={{ __html: prica }} />
+          )}
 
           {testimonial && (
             <figure className="case__quote" data-reveal>

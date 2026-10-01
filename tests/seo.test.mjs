@@ -97,3 +97,31 @@ test('robots.txt pušta sve i pokazuje sitemap', () => {
   assert.doesNotMatch(robots, /Disallow:\s*\/\s*$/m)
   assert.match(robots, /Sitemap: https:\/\/hunar\.ba\/sitemap\.xml/)
 })
+
+// Studije slučaja su glavni dokaz i glavni sadržaj za pretragu: duga priča, slike sa alt
+// tekstom i dimenzijama (bez skakanja rasporeda), linkovi na usluge i kontakt.
+const tekstTijela = (html) =>
+  (html.split('<main>')[1] || '')
+    .replace(/<script[\s\S]*?<\/script>/g, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .split(/\s+/)
+    .filter(Boolean).length
+
+for (const slug of ['mrt', 'smarttime']) {
+  test(`/radovi/${slug}: duga priča, slike i linkovi`, () => {
+    const p = pages.find((x) => x.path === `/radovi/${slug}`)
+    assert.ok(p, `nema /radovi/${slug}`)
+    const rijeci = tekstTijela(p.html)
+    assert.ok(rijeci >= 800, `samo ${rijeci} riječi`)
+    assert.match(p.html, /<h2[\s>]/)
+    for (const [img] of p.html.matchAll(/<img\b[^>]*src="\/radovi\/[^"]+"[^>]*>/g)) {
+      assert.match(img, /alt="[^"]{20,}"/, img)
+      assert.match(img, /width="\d+"/, img)
+      assert.match(img, /height="\d+"/, img)
+      const src = img.match(/src="([^"]+)"/)[1]
+      assert.ok(existsSync(join(DIST, src)), `${src} ne postoji`)
+    }
+    assert.match(p.html, /href="\/kontakt"/)
+    assert.match(p.html, /href="\/usluge"/)
+  })
+}

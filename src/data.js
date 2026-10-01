@@ -114,7 +114,11 @@ export const projects = [
     tag: 'Alati i oprema · WooCommerce',
     seoNaslov: 'mrt.ba: web trgovina alata povezana sa OLX-om',
     seoOpis:
-      'Web trgovina alata, mašina i opreme sa 7.400+ artikala: sama objavljuje oglase na OLX-u, uvozi katalog od dobavljača i ima B2B portal.',
+      'Kako smo napravili mrt.ba: trgovina alata sa preko 7.400 artikala, OLX oglasima koji se sami ažuriraju, uvozom od dobavljača, Ananas feedom i B2B portalom.',
+    // Naslov i uvod stranice studije, sa platna "Tekst sajta" (glas studija).
+    naslov: 'mrt.ba: hiljade artikala, a OLX se drži ažurnim sam.',
+    uvod:
+      'Motor Remont Trade prodaje alate, mašine, vrtnu i poljoprivrednu opremu. Trebala im je trgovina koja nosi hiljade artikala od više dobavljača i sama ih drži ažurnim na OLX-u, a da je vlasnik uređuje bez programera.',
     url: 'https://mrt.ba',
     image: '/project-mrt.webp',
     variant: 'shop',
@@ -122,22 +126,25 @@ export const projects = [
     overview:
       'mrt.ba je trgovina alata, mašina, vrtne i poljoprivredne opreme. Izgradili smo WooCommerce trgovinu koja preuzima katalog od više dobavljača, sama objavljuje i ažurira artikle na OLX-u i ima feed za Ananas. Veleprodajni kupci imaju svoj B2B portal, a vlasnik sadržaj mijenja preko AI urednika u administraciji.',
     highlights: [
-      '7.400+ artikala u 278 kategorija',
-      'Automatska sinhronizacija sa OLX-om, 4.300+ aktivnih oglasa',
-      'Uvoz kataloga od više dobavljača',
-      'B2B portal za veleprodaju',
+      'WooCommerce trgovina sa temom pisanom za mrt.ba',
+      'Uvoz kataloga, cijena i zaliha od više dobavljača',
+      'OLX veza: artikli se sami objavljuju i ažuriraju',
       'Feed za Ananas',
-      'AI urednik u administraciji',
-      'Odziv servera 52 ms, PageSpeed 87 na računaru',
+      'B2B portal za veleprodaju, b2b.mrt.ba',
+      'AI urednik u administraciji i asistent Kobi na stranici',
+      'Hosting, keš i održavanje',
     ],
   },
   {
     slug: 'smarttime',
     name: 'SmartTime',
     tag: 'E-trgovina · WooCommerce',
-    seoNaslov: 'SmartTime: web trgovina satova, graviranje i servis',
+    seoNaslov: 'SmartTime: trgovina satova sa zakazivanjem termina',
     seoOpis:
-      'Web trgovina satova sa 500+ modela i 15+ brendova, uz posebne stranice za graviranje i servis. Izgradili smo je na WooCommerce.',
+      'Kako smo napravili SmartTime: trgovina sa preko 500 satova, stranice za graviranje i servis i zakazivanje termina direktno na stranici, bez telefoniranja.',
+    naslov: 'SmartTime: sat na telefonu, termin bez telefoniranja.',
+    uvod:
+      'SmartTime prodaje ručne satove i radi graviranje i servis. Trebala im je trgovina u kojoj kupac lako nađe sat na telefonu i sam zakaže termin.',
     url: 'https://smarttime.ba',
     image: '/project-smarttime.webp',
     variant: 'shop',
@@ -146,10 +153,10 @@ export const projects = [
       'SmartTime je online trgovina satova za bh. tržište. Izgradili smo brzu WooCommerce trgovinu s preglednim katalogom, filterima i sigurnom naplatom, te posebnim stranicama za usluge graviranja i popravke, a sve se jednostavno uređuje samostalno.',
     // Izvor: smarttime.ba, 27. 9. 2026: 17 brendova na početnoj, 527 artikala (Store API X-WP-Total).
     highlights: [
-      '15+ brendova · 500+ modela',
-      'Graviranje i servis satova',
-      'Sigurna WooCommerce naplata',
-      'PageSpeed 89 na računaru',
+      'WooCommerce trgovina sa katalogom i filterima',
+      'Zakazivanje termina za graviranje i popravku sata',
+      'Posebne stranice za graviranje i servis',
+      'Sigurna naplata i održavanje',
     ],
   },
   {
