@@ -10,7 +10,7 @@ export default function PricingPage() {
   return (
     <>
       <Seo
-        title="Cijene"
+        title="Cijene izrade web stranice i web trgovine"
         path="/cijene"
         description="Paketi za web trgovine i prezentacijske stranice, transparentno i bez skrivenih troškova."
       />

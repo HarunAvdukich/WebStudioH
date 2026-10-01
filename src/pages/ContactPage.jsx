@@ -51,7 +51,7 @@ export default function ContactPage() {
   return (
     <>
       <Seo
-        title="Kontakt"
+        title="Kontakt: WhatsApp, telefon i email"
         path="/kontakt"
         description="Započnimo vaš projekat. Pišite nam na WhatsApp ili email, javljamo se u roku od 24 sata."
       />

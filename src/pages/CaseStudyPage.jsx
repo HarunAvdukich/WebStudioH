@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
+import { mrvice } from '../components/JsonLd.jsx'
 import PageHero from '../components/PageHero.jsx'
 import FinalCta from '../components/FinalCta.jsx'
 import NotFound from './NotFound.jsx'
@@ -15,9 +16,16 @@ export default function CaseStudyPage() {
   return (
     <>
       <Seo
-        title={`${project.name} · ${project.tag}`}
+        title={project.seoNaslov || `${project.name} · ${project.tag}`}
         path={`/radovi/${project.slug}`}
-        description={project.summary}
+        description={project.seoOpis || project.summary}
+        podaci={[
+          mrvice([
+            { ime: 'Početna', path: '/' },
+            { ime: 'Radovi', path: '/radovi' },
+            { ime: project.name, path: `/radovi/${project.slug}` },
+          ]),
+        ]}
       />
       <PageHero eyebrow={project.tag} title={project.name} subtitle={project.summary} />
 

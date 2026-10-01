@@ -9,7 +9,7 @@ export default function BlogPage() {
   return (
     <>
       <Seo
-        title="Savjeti"
+        title="Savjeti o web stranicama i online prodaji"
         path="/savjeti"
         description="Savjeti i vodiči o web stranicama, online trgovinama, SEO-u i cijenama, jednostavnim jezikom."
       />

@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import Seo from '../components/Seo.jsx'
+import { clanak, mrvice } from '../components/JsonLd.jsx'
 import PageHero from '../components/PageHero.jsx'
 import FinalCta from '../components/FinalCta.jsx'
 import NotFound from './NotFound.jsx'
@@ -14,9 +15,21 @@ export default function BlogPostPage() {
 
   return (
     <>
-      <Seo title={post.title} path={`/savjeti/${post.slug}`} description={post.excerpt} />
+      <Seo
+        title={post.title}
+        path={`/savjeti/${post.slug}`}
+        description={post.excerpt}
+        tip="article"
+        podaci={[
+          clanak(post),
+          mrvice([
+            { ime: 'Početna', path: '/' },
+            { ime: 'Savjeti', path: '/savjeti' },
+            { ime: post.title, path: `/savjeti/${post.slug}` },
+          ]),
+        ]}
+      />
       <Head>
-        <meta property="og:type" content="article" />
         <meta property="article:published_time" content={post.date} />
       </Head>
 

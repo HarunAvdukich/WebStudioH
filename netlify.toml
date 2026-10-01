@@ -8,8 +8,13 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# SPA fallback for any path without a prerendered file (client renders it)
+# Stara Netlify adresa vodi na hunar.ba, da Google ne vidi dva ista sajta.
+# Pregledi (deploy-preview-N--webstudioh.netlify.app) su drugi host i ostaju.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "https://webstudioh.netlify.app/*"
+  to = "https://hunar.ba/:splat"
+  status = 301
+  force = true
+
+# Nema SPA preusmjerenja: sve stranice su unaprijed izgrađene, a adresa koja ne
+# postoji dobije dist/404.html sa statusom 404 (ranije je vraćala početnu sa 200).

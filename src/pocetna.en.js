@@ -35,7 +35,7 @@ export const ui = {
 }
 
 export const seo = {
-  naslov: 'Hunar · Websites, online stores and custom systems',
+  naslov: 'Web development studio in Bosnia and Herzegovina · Hunar',
   opis: 'A web studio from Bosnia and Herzegovina building fast websites, online stores and custom systems. Design, code, hosting and maintenance in one place.',
 }
 

@@ -112,6 +112,9 @@ export const projects = [
     slug: 'mrt',
     name: 'mrt.ba',
     tag: 'Alati i oprema · WooCommerce',
+    seoNaslov: 'mrt.ba: web trgovina alata povezana sa OLX-om',
+    seoOpis:
+      'Web trgovina alata, mašina i opreme sa 7.400+ artikala: sama objavljuje oglase na OLX-u, uvozi katalog od dobavljača i ima B2B portal.',
     url: 'https://mrt.ba',
     image: '/project-mrt.webp',
     variant: 'shop',
@@ -132,6 +135,9 @@ export const projects = [
     slug: 'smarttime',
     name: 'SmartTime',
     tag: 'E-trgovina · WooCommerce',
+    seoNaslov: 'SmartTime: web trgovina satova, graviranje i servis',
+    seoOpis:
+      'Web trgovina satova sa 500+ modela i 15+ brendova, uz posebne stranice za graviranje i servis. Izgradili smo je na WooCommerce.',
     url: 'https://smarttime.ba',
     image: '/project-smarttime.webp',
     variant: 'shop',
@@ -150,6 +156,8 @@ export const projects = [
     slug: 'urez',
     name: 'urez.ba',
     tag: 'Vlastita trgovina · u izradi',
+    seoNaslov: 'urez.ba: trgovina graviranih proizvoda, u izradi',
+    seoOpis: 'urez.ba je vlastita trgovina studija Hunar za personalizovane gravirane proizvode, trenutno u izradi.',
     variant: 'shop',
     summary: 'Trgovina personalizovanih graviranih proizvoda.',
     overview:
