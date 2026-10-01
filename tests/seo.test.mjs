@@ -125,3 +125,30 @@ for (const slug of ['mrt', 'smarttime']) {
     assert.match(p.html, /href="\/usluge"/)
   })
 }
+
+// GEO: llms.txt je kratak vodič za AI asistente; svaki link mora voditi na stranicu koja postoji.
+test('llms.txt postoji i vodi samo na stranice koje postoje', () => {
+  const txt = readFileSync(join(DIST, 'llms.txt'), 'utf8')
+  assert.match(txt, /^# Hunar/)
+  const adrese = [...txt.matchAll(/https:\/\/hunar\.ba(\/[^\s)]*)/g)].map((m) => m[1].replace(/\/$/, '') || '/')
+  assert.ok(adrese.length >= 8)
+  const postoje = new Set(pages.map((p) => p.path))
+  assert.deepEqual(adrese.filter((a) => !postoje.has(a)), [])
+})
+
+test('članci su sadržajni i vode na kontakt', () => {
+  for (const p of pages.filter((x) => x.path.startsWith('/savjeti/'))) {
+    const tekst = (p.html.split('<article')[1] || '').replace(/<script[\s\S]*?<\/script>/g, ' ').replace(/<[^>]+>/g, ' ')
+    const rijeci = tekst.split(/\s+/).filter(Boolean).length
+    assert.ok(rijeci >= 450, `${p.path}: samo ${rijeci} riječi`)
+    assert.match(p.html, /href="\/kontakt"/, p.path)
+  }
+})
+
+test('firma ima usluge i oblasti u JSON-LD', () => {
+  const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
+  assert.ok(org.knowsAbout.length >= 5)
+  const usluge = org.hasOfferCatalog.itemListElement.map((o) => o.itemOffered.url.replace('https://hunar.ba', ''))
+  const postoje = new Set(pages.map((p) => p.path))
+  assert.deepEqual(usluge.filter((u) => !postoje.has(u)), [])
+})

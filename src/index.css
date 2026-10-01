@@ -1376,6 +1376,28 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 .post__body a { color: var(--blue-300); text-decoration: underline; text-underline-offset: 3px; }
 .post__body a:hover { color: var(--blue-200); }
 .post__body strong { color: var(--text); font-weight: 700; }
+.post__body table {
+  width: 100%;
+  margin: 8px 0 26px;
+  border-collapse: collapse;
+  font-size: 15.5px;
+  line-height: 1.5;
+}
+.post__body th,
+.post__body td {
+  padding: 12px 14px 12px 0;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(244, 246, 248, 0.72);
+}
+.post__body th { color: var(--heading); font-weight: 700; }
+.post__body td:first-child { color: var(--text); font-weight: 600; }
+@media (max-width: 560px) {
+  .post__body table { font-size: 14px; }
+  .post__body th,
+  .post__body td { padding-right: 10px; }
+}
 .post__body blockquote {
   margin: 22px 0;
   padding: 6px 0 6px 20px;

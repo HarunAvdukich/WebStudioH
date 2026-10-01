@@ -16,7 +16,7 @@ export default function BlogPostPage() {
   return (
     <>
       <Seo
-        title={post.title}
+        title={post.seoTitle || post.title}
         path={`/savjeti/${post.slug}`}
         description={post.excerpt}
         tip="article"
@@ -31,6 +31,7 @@ export default function BlogPostPage() {
       />
       <Head>
         <meta property="article:published_time" content={post.date} />
+        {post.updated && <meta property="article:modified_time" content={post.updated} />}
       </Head>
 
       <PageHero eyebrow="Savjeti" title={post.title} subtitle={post.excerpt} />
@@ -38,7 +39,9 @@ export default function BlogPostPage() {
       <article className="post">
         <div className="container post__wrap">
           <div className="post__meta" data-reveal>
-            {formatDate(post.date)} · {post.read} čitanja
+            {formatDate(post.date)}
+            {post.updated && post.updated !== post.date && <> · dopunjeno {formatDate(post.updated)}</>} ·{' '}
+            {post.read} čitanja
           </div>
           <div
             className="post__body"
