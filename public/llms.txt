@@ -1,0 +1,35 @@
+# Hunar
+
+> Hunar (hunar.ba, ranije WebStudioH) je web studio iz Bosne i Hercegovine. Pravimo web stranice, web trgovine i sisteme po mjeri za firme u BiH: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale. Dizajn, kod, hosting i održavanje su na jednom mjestu. Cijene se daju po dogovoru, poslije razgovora.
+
+English: Hunar is a web studio from Bosnia and Herzegovina building websites, online stores and custom systems. English overview: https://hunar.ba/en
+
+## Kontakt
+
+- WhatsApp i telefon: +387 60 3000 751
+- E-mail: info@hunar.ba
+- Kontakt stranica: https://hunar.ba/kontakt
+
+## Radovi (stvarni, javni projekti)
+
+- [mrt.ba, trgovina alata povezana sa OLX-om](https://hunar.ba/radovi/mrt): WooCommerce trgovina sa temom po mjeri. 7.447 artikala u 262 kategorije (1. 10. 2026), 4.453 OLX oglasa koji se ažuriraju sami (29. 9. 2026), uvoz od više dobavljača, feed za Ananas, B2B portal b2b.mrt.ba, AI asistent Kobi. Odziv servera 52 ms (27. 9. 2026).
+- [SmartTime, trgovina satova sa zakazivanjem termina](https://hunar.ba/radovi/smarttime): WooCommerce trgovina sa 538 artikala, od toga 522 ručna sata (1. 10. 2026), stranice za graviranje i servis, zakazivanje termina na stranici.
+- [Svi radovi](https://hunar.ba/radovi)
+
+## Usluge
+
+- [Usluge](https://hunar.ba/usluge): izrada web stranica i web trgovina, integracije, hosting i održavanje.
+- [Cijene](https://hunar.ba/cijene): kako se formira cijena; iznosi se ne objavljuju.
+
+## Vodiči
+
+- [Kako povezati web shop sa OLX-om](https://hunar.ba/savjeti/povezivanje-web-shopa-sa-olx-om)
+- [Uvoz artikala od dobavljača u web shop](https://hunar.ba/savjeti/uvoz-artikala-od-dobavljaca)
+- [Online zakazivanje termina na web stranici](https://hunar.ba/savjeti/online-zakazivanje-termina)
+- [Koliko košta web stranica](https://hunar.ba/savjeti/koliko-kosta-web-stranica)
+- [WordPress ili izrada po mjeri](https://hunar.ba/savjeti/wordpress-ili-custom)
+
+## Napomene
+
+- Sve brojke na hunar.ba imaju datum i izvor; brzina je uvijek navedena uz uređaj na kojem je izmjerena.
+- Hunar ne objavljuje imena ni fotografije tima.

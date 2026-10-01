@@ -20,17 +20,19 @@ Nekoliko odluka se kupcu ne vidi, a vlasniku mnogo znači:
 - **Vlastiti opisi.** Dobavljačev opis ne prepisujemo svaki dan preko onoga što vlasnik napiše. Isti opis ima svaki preprodavač, a vlastiti tekst je ono po čemu Google razlikuje mrt.ba od ostalih.
 - **Provjera pri uvozu.** Barkod koji ne prolazi kontrolnu cifru se ne upisuje. Kad dobavljač umjesto slike artikla vrati svoj logo, uvoz to prepozna i takvu sliku odbije.
 
+Šta smo pri tome naučili opisali smo u vodiču [Uvoz artikala od dobavljača u web shop](/savjeti/uvoz-artikala-od-dobavljaca).
+
 Kupac traži po nazivu, po šifri ili po EAN barkodu sa kutije. Filteri se slažu iz karakteristika artikala, pa kod agregata, na primjer, može birati po naponu.
 
 ## OLX koji se drži ažurnim sam
 
-Trgovina je izvor istine, a OLX je prati. Kad vlasnik objavi artikal na mrt.ba, server ga u pozadini pripremi i pošalje na OLX. Kad promijeni cijenu, zalihu ili opis, promjena ode i na oglas. Artikal koji nestane sa zalihe sakrije se i na OLX-u.
+Trgovina je izvor istine, a OLX je prati. Kad vlasnik objavi artikal na mrt.ba, server ga u pozadini pripremi i pošalje na OLX. Kad promijeni cijenu, zalihu ili opis, promjena ode i na oglas.
 
 OLX za svaki oglas traži svoju kategoriju i svoje atribute. Zato za svaku kategoriju trgovine jednom ručno provjerimo jedan artikal i od njega napravimo pravilo. Svi sljedeći artikli te kategorije dobiju OLX kategoriju, atribute i brend sami. Ako pravilo ili obavezan podatak fali, artikal čeka, umjesto da ode na OLX napamet.
 
-Sve radi na serveru: ne treba upaljen računar i ne treba niko da klikne. Svakih 15 minuta provjera uhvati izmjene koje bi inače promakle, a novi oglasi idu s razmakom, da veliki uvoz ne zatrpa OLX.
+Sve radi na serveru: ne treba upaljen računar i ne treba niko da klikne. Svakih 15 minuta provjera uhvati izmjene koje bi inače promakle. OLX prima najviše 350 novih oglasa dnevno, pa velika objava sama nastavi sljedeći dan.
 
-Na dan 29. 9. 2026. mrt.ba je na OLX-u imao 4.453 oglasa koji se ovako ažuriraju.
+Na dan 29. 9. 2026. mrt.ba je na OLX-u imao 4.453 oglasa koji se ovako ažuriraju. Kako takva veza radi i šta treba pripremiti opisali smo u vodiču [Kako povezati web shop sa OLX-om](/savjeti/povezivanje-web-shopa-sa-olx-om).
 
 <figure class="case-snimci">
   <img src="/radovi/mrt-artikal.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Kosilica Stiga Combi 53 SQ na mrt.ba po cijeni od 799 KM, snimak ekrana telefona" />

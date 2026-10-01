@@ -32,7 +32,7 @@ Kupac tako zna šta ga čeka i koliko će platiti prije nego što dođe u radnju
 
 Na stranici Zakaži termin kupac bira uslugu, na primjer zamjenu baterije, graviranje ili popravku, pa slobodan dan i sat, upiše svoje podatke i potvrdi. Nudi se samo termin koji je slobodan.
 
-Isto zakazivanje stoji i na dnu stranica za graviranje i popravku, pa kupac termin može uzeti odmah, dok čita o usluzi.
+Isto zakazivanje stoji i na dnu stranica za graviranje i popravku, pa kupac termin može uzeti odmah, dok čita o usluzi. Sve što treba pripremiti za zakazivanje u svojoj radnji opisali smo u vodiču [Online zakazivanje termina na web stranici](/savjeti/online-zakazivanje-termina).
 
 ## Recenzije sa Googlea na stranici
 

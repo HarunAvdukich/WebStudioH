@@ -28,12 +28,18 @@ export const posts = Object.entries(files)
   .map(([path, raw]) => {
     const slug = path.split('/').pop().replace(/\.md$/, '')
     const { data, body } = parseFrontmatter(raw)
+    // Vrijeme čitanja iz broja riječi (oko 200 u minuti), da ne zastari kad se tekst dopuni.
+    const rijeci = body.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length
     return {
       slug,
       title: data.title || slug,
+      // Kraći naslov za <title> kad je naslov članka predug za rezultate pretrage.
+      seoTitle: data.seoTitle || '',
       date: data.date || '',
+      // Datum zadnje dopune; ide u dateModified i u zaglavlje članka.
+      updated: data.updated || '',
       excerpt: data.excerpt || '',
-      read: data.read || '',
+      read: `${Math.max(2, Math.round(rijeci / 200))} min`,
       html: marked.parse(body.trim()),
     }
   })
