@@ -1468,6 +1468,34 @@ a.contact__detail-value:hover { color: var(--blue-300); }
 }
 .case__quote .tst-card__author { justify-content: center; }
 .case__back { margin-top: 44px; }
+/* duga priča studije (src/content/radovi/<slug>.md), tipografija od članaka */
+.case__prica {
+  max-width: 760px;
+  margin: 72px auto 0;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.case-snimci {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  max-width: 520px;
+  margin: 30px 0 34px;
+}
+.case-snimci img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #fff;
+}
+.case-snimci figcaption {
+  grid-column: 1 / -1;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(244, 246, 248, 0.55);
+}
 
 /* ============================================================
    About page

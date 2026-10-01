@@ -26,7 +26,10 @@ const urls = [
   ['/savjeti', [...stara('BlogPage'), 'src/content/posts']],
   ['/kontakt', stara('ContactPage')],
   ['/politika-privatnosti', stara('PrivacyPage')],
-  ...projects.map((p) => [`/radovi/${p.slug}`, stara('CaseStudyPage')]),
+  ...projects.map((p) => [
+    `/radovi/${p.slug}`,
+    [`src/content/radovi/${p.slug}.md`, 'src/radovi.js', ...stara('CaseStudyPage')],
+  ]),
   ...postSlugs.map((s) => [`/savjeti/${s}`, [`src/content/posts/${s}.md`, ...stara('BlogPostPage')]]),
 ]
 
