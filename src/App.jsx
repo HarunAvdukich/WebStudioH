@@ -6,6 +6,7 @@ import '@fontsource-variable/urbanist'
 import './components/okvir/okvir.css'
 import Zaglavlje from './components/okvir/Zaglavlje.jsx'
 import Podnozje from './components/okvir/Podnozje.jsx'
+import Zavjesa from './components/okvir/Zavjesa.jsx'
 import JsonLd from './components/JsonLd.jsx'
 import { pokreniPokrete } from './lib/pokreti/pokretac.js'
 import './lib/pokreti/pokreti.css'
@@ -56,6 +57,7 @@ export default function App() {
         <Outlet />
       </main>
       {!pocetna && <Podnozje />}
+      <Zavjesa />
     </div>
   )
 }

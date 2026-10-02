@@ -86,3 +86,7 @@ test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balo
     assert.doesNotMatch(s.html, /wa-fab/, s.put)
   }
 })
+
+test('svaka stranica ima zavjesu za prelaz', () => {
+  for (const s of stranice) assert.match(s.html, /class="ok-zavjesa"/, s.put)
+})
