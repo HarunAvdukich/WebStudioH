@@ -26,7 +26,8 @@ test('druga verzija: par ako postoji, inače početna drugog jezika', () => {
   assert.equal(drugaVerzija('/en/contact/'), '/kontakt')
   assert.equal(drugaVerzija('/'), '/en')
   assert.equal(drugaVerzija('/en'), '/')
-  assert.equal(drugaVerzija('/radovi'), '/en')
+  assert.equal(drugaVerzija('/savjeti'), '/en')
+  assert.equal(drugaVerzija('/radovi/mrt'), '/en/work/mrt')
 })
 
 test('parovi idu sa bosanske na englesku adresu', () => {

@@ -1,12 +1,16 @@
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
 import HomeEn from './pages/HomeEn.jsx'
-import AboutPage from './pages/AboutPage.jsx'
+import ONama from './pages/ONama.jsx'
+import * as oHunaru from './stranice/o-hunaru.js'
+import * as oHunaruEn from './stranice/o-hunaru.en.js'
 import Usluge from './pages/Usluge.jsx'
 import * as usluge from './stranice/usluge.js'
 import * as uslugeEn from './stranice/usluge.en.js'
-import WorkPage from './pages/WorkPage.jsx'
-import CaseStudyPage from './pages/CaseStudyPage.jsx'
+import Radovi from './pages/Radovi.jsx'
+import Studija from './pages/Studija.jsx'
+import * as radovi from './stranice/radovi.js'
+import * as radoviEn from './stranice/radovi.en.js'
 import Cijene from './pages/Cijene.jsx'
 import * as cijene from './stranice/cijene.js'
 import * as cijeneEn from './stranice/cijene.en.js'
@@ -17,7 +21,6 @@ import BlogPage from './pages/BlogPage.jsx'
 import BlogPostPage from './pages/BlogPostPage.jsx'
 import PrivacyPage from './pages/PrivacyPage.jsx'
 import NotFound from './pages/NotFound.jsx'
-import { projects } from './data.js'
 import { posts } from './posts.js'
 
 export const routes = [
@@ -28,14 +31,21 @@ export const routes = [
     children: [
       { index: true, element: <Home /> },
       { path: 'en', element: <HomeEn /> },
-      { path: 'o-nama', element: <AboutPage /> },
+      { path: 'o-nama', element: <ONama t={oHunaru} /> },
+      { path: 'en/about', element: <ONama t={oHunaruEn} /> },
       { path: 'usluge', element: <Usluge t={usluge} /> },
       { path: 'en/services', element: <Usluge t={uslugeEn} /> },
-      { path: 'radovi', element: <WorkPage /> },
+      { path: 'radovi', element: <Radovi t={radovi} /> },
+      { path: 'en/work', element: <Radovi t={radoviEn} /> },
       {
         path: 'radovi/:slug',
-        element: <CaseStudyPage />,
-        getStaticPaths: () => projects.map((p) => `radovi/${p.slug}`),
+        element: <Studija t={radovi} />,
+        getStaticPaths: () => radovi.radovi.map((r) => `radovi/${r.slug}`),
+      },
+      {
+        path: 'en/work/:slug',
+        element: <Studija t={radoviEn} />,
+        getStaticPaths: () => radoviEn.radovi.map((r) => `en/work/${r.slug}`),
       },
       { path: 'cijene', element: <Cijene t={cijene} /> },
       { path: 'en/pricing', element: <Cijene t={cijeneEn} /> },

@@ -83,3 +83,23 @@ test('razgovor: broj poruka raste sa skrolom', () => {
     prije = v
   }
 })
+
+import { stanjeRuke } from '../src/lib/scene/ruka.js'
+
+test('ruka: kartice uđu raširene, skupe se, pa ostane jedna', () => {
+  const pocetak = stanjeRuke(0)
+  assert.equal(pocetak.naslov, 'obicno')
+  assert.equal(pocetak.razmak, 1)
+  assert.equal(pocetak.jedna, 0)
+  const rasirene = stanjeRuke(0.3)
+  assert.ok(rasirene.kartice.every((k) => k.vidljivost === 1))
+  assert.ok(rasirene.strelice > 0.9)
+  const spil = stanjeRuke(0.6)
+  assert.equal(spil.razmak, 0)
+  assert.equal(spil.strelice, 0)
+  const kraj = stanjeRuke(1)
+  assert.equal(kraj.naslov, 'kodNas')
+  assert.equal(kraj.jedna, 1)
+  assert.ok(kraj.kartice.every((k) => k.vidljivost === 0))
+  assert.ok(kraj.stavke.every(Boolean))
+})

@@ -34,12 +34,6 @@ Sve radi na serveru: ne treba upaljen računar i ne treba niko da klikne. Svakih
 
 Na dan 29. 9. 2026. mrt.ba je na OLX-u imao 4.453 oglasa koji se ovako ažuriraju. Kako takva veza radi i šta treba pripremiti opisali smo u vodiču [Kako povezati web shop sa OLX-om](/savjeti/povezivanje-web-shopa-sa-olx-om).
 
-<figure class="case-snimci">
-  <img src="/radovi/mrt-artikal.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Kosilica Stiga Combi 53 SQ na mrt.ba po cijeni od 799 KM, snimak ekrana telefona" />
-  <img src="/radovi/mrt-olx.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Ista kosilica Stiga Combi 53 SQ kao OLX oglas iz Brčkog, 799 KM, snimak ekrana telefona" />
-  <figcaption>Isti artikal, ista cijena: kosilica Stiga Combi 53 SQ na mrt.ba (lijevo) i kao OLX oglas (desno). Snimljeno na telefonu 29. 9. 2026.</figcaption>
-</figure>
-
 ## Feed za Ananas
 
 Ananas preuzima katalog mrt.ba iz feeda koji trgovina pravi sama: cijene, akcijske cijene i zalihu. Nema posebne tabele koju neko mora slati i ažurirati ručno.
@@ -66,14 +60,6 @@ Kad je katalog za nekoliko sedmica narastao sa oko 5.500 na preko 7.300 artikala
 
 Svaka izmjena ide prvo na probni sajt, uz sigurnosnu kopiju zatečenog stanja, pa tek onda na mrt.ba. Ako nešto krene po zlu, vraćanje je jedan korak.
 
-## Brojke
-
-- 7.447 artikala u 262 kategorije (provjereno 1. 10. 2026)
-- 4.453 OLX oglasa koji se sami ažuriraju (provjereno 29. 9. 2026)
-- Odziv servera 52 ms (mjereno 27. 9. 2026)
-- PageSpeed 87 na računaru (Lighthouse, srednje od tri mjerenja, 27. 9. 2026)
-- Trgovina javna od 6. 9. 2026, B2B portal od 25. 9. 2026
-
 ## Česta pitanja
 
 ### Može li i moja trgovina raditi sa OLX-om ovako?
@@ -91,7 +77,3 @@ Prvi katalog je uvezen 10. 8. 2026, a trgovina je javna od 6. 9. 2026. Posao se 
 ### Ko održava trgovinu?
 
 Mi: hosting, keš, sigurnosne kopije, izmjene i nove mogućnosti. Klijent javi šta treba, a izmjena ide prvo na probni sajt, pa na mrt.ba.
-
-## Prodajete i na OLX-u?
-
-Možemo i Vašu trgovinu povezati tako da oglasi rade sami. Otvorite [mrt.ba](https://mrt.ba) na telefonu, pogledajte [šta sve radimo](/usluge) ili nam [pišite](/kontakt).

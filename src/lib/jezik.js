@@ -7,6 +7,11 @@ export const PAROVI = {
   '/usluge': '/en/services',
   '/cijene': '/en/pricing',
   '/kontakt': '/en/contact',
+  '/radovi': '/en/work',
+  '/radovi/mrt': '/en/work/mrt',
+  '/radovi/smarttime': '/en/work/smarttime',
+  '/radovi/urez': '/en/work/urez',
+  '/o-nama': '/en/about',
 }
 
 const OBRNUTO = Object.fromEntries(Object.entries(PAROVI).map(([b, e]) => [e, b]))

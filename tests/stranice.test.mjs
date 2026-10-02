@@ -3,7 +3,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
-const STRANICE = ['usluge', 'cijene', 'kontakt']
+const STRANICE = ['usluge', 'cijene', 'kontakt', 'radovi', 'o-hunaru']
 
 // Oblik: ključevi objekata i dužine nizova, bez samih tekstova.
 function oblik(v) {
@@ -17,6 +17,8 @@ function strings(v, out = []) {
   else if (v && typeof v === 'object') Object.values(v).forEach((x) => strings(x, out))
   return out
 }
+// Citati klijenata su njihove riječi: brojka u citatu ne traži datum.
+const bezCitata = (v) => JSON.parse(JSON.stringify(v, (k, x) => (k === 'citat' ? undefined : x)))
 
 for (const ime of STRANICE) {
   const bs = await import(`../src/stranice/${ime}.js`)
@@ -41,7 +43,7 @@ for (const ime of STRANICE) {
 
   test(`${ime}: svaka velika brojka ima datum`, () => {
     const brojka = /\d[.,]\d{3}\b/
-    for (const s of [...strings(bs), ...strings(en)].filter((x) => brojka.test(x))) {
+    for (const s of [...strings(bezCitata(bs)), ...strings(bezCitata(en))].filter((x) => brojka.test(x))) {
       assert.match(s, /2026/, s)
     }
   })
@@ -69,5 +71,18 @@ test('cijene: razgovor jasno kaže da je primjer, koraci idu redom', async () =>
     const koraci = t.razgovor.poruke.map((p) => p.korak)
     assert.deepEqual(koraci, [...koraci].sort((a, b) => a - b))
     assert.match(t.razgovor.oznaka, /(Primjer|example)/i)
+  }
+})
+
+test('radovi: svaka brojka na kartici ima datum, UPTOS se ne pojavljuje', async () => {
+  for (const t of [await import('../src/stranice/radovi.js'), await import('../src/stranice/radovi.en.js')]) {
+    for (const r of t.radovi) for (const b of r.brojke || []) assert.match(b.datum, /2026/, `${r.slug}: ${b.opis}`)
+    assert.doesNotMatch(JSON.stringify(t), /uptos/i)
+  }
+})
+
+test('o hunaru: bez broja ljudi i bez "jednog čovjeka"', async () => {
+  for (const t of [await import('../src/stranice/o-hunaru.js'), await import('../src/stranice/o-hunaru.en.js')]) {
+    assert.doesNotMatch(JSON.stringify(t), /jednog (čovjeka|majstora)|jedan majstor|one-person|one person|solo/i)
   }
 })

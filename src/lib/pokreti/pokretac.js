@@ -5,7 +5,8 @@
 // - "slozi": slova se izmiješaju pa slože;
 // - "kvacice": stavke dobiju kvačice jedna za drugom (markup daje komponenta);
 // - "broji": brojka se odbroji do vrijednosti iz data-do;
-// - "pali": riječi se pale dok skrolate.
+// - "pali": riječi se pale dok skrolate;
+// - "otkrij": snimak se otkrije odozdo, kao zavjesa.
 // Kartice sa data-nagib se nagnu pod mišem.
 // Radi samo uz klasu .pokret na <html> (JavaScript i bez "smanji pokrete"). Ono što je vidljivo
 // odmah pri učitavanju ostaje kakvo jeste (osim "crtaj" i "slozi"), da prvi ekran ne treperi.

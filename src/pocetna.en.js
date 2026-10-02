@@ -12,7 +12,9 @@ export const whatsappLink = `${contact.whatsapp}?text=${encodeURIComponent(whats
 // English pages that exist so far; the rest get English when they get the new design.
 export const meni = [
   { naziv: 'Services', put: '/en/services' },
+  { naziv: 'Work', put: '/en/work' },
   { naziv: 'Pricing', put: '/en/pricing' },
+  { naziv: 'About', put: '/en/about' },
   { naziv: 'Contact', put: '/en/contact' },
 ]
 

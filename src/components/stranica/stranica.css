@@ -91,6 +91,8 @@
 .mj__trag { stroke: rgba(227, 241, 234, 0.12); }
 .mj__pun { stroke: var(--svijetli); stroke-dasharray: 1 1; stroke-dashoffset: calc(1 - var(--v)); }
 .mj__broj { grid-area: 1 / 1; align-self: end; margin-bottom: 2px; font-size: 60px; line-height: 1; font-weight: 800; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.mj--mali svg { width: 170px; }
+.mj--mali .mj__broj { font-size: 42px; }
 .mj figcaption { margin-top: 12px; font-size: 15px; color: var(--tekst2); }
 .mj figcaption small { display: block; margin-top: 3px; font-size: 13px; color: var(--siva); }
 .pokret [data-pokret='mjerac'].pk-spremno .mj__pun { stroke-dashoffset: 1; }
@@ -175,4 +177,35 @@
 @media (prefers-reduced-motion: reduce) {
   .smj__r { transition: none !important; }
   .pokret .st-vrh .st-h1, .pokret .st-vrh .st-nad, .pokret .st-vrh .st-uvod, .pokret .st-vrh .smj-red { animation: none; }
+}
+
+/* napredak čitanja (16) i oznaka dijela (24) za duge tekstove */
+.st-citanje { position: fixed; left: 0; right: 0; top: 0; z-index: 70; height: 3px; pointer-events: none; }
+.st-citanje span { display: block; height: 100%; background: var(--svijetli); transform-origin: 0 50%; transform: scaleX(0); }
+.st-oznaka { position: fixed; left: var(--rub); top: 86px; z-index: 40; opacity: 0; transform: translateY(-8px); transition: opacity 0.35s, transform 0.45s var(--e); pointer-events: none; }
+.st-oznaka.je-vidljiva { opacity: 1; transform: none; }
+.st-oznaka__in {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  max-width: min(640px, calc(100vw - 2 * var(--rub)));
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: rgba(10, 26, 21, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--linija);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--tekst2);
+  white-space: nowrap;
+}
+.st-oznaka__br { color: var(--svijetli); font-variant-numeric: tabular-nums; }
+.st-oznaka__od, .st-oznaka__min { color: var(--siva); }
+.st-oznaka__naslov { overflow: hidden; text-overflow: ellipsis; color: var(--krec); }
+.pokret .st-oznaka__br, .pokret .st-oznaka__naslov { animation: st-oznaka 0.5s var(--e) both; }
+@keyframes st-oznaka { from { opacity: 0; transform: translateY(60%); } }
+@media (max-width: 760px) {
+  .st-oznaka { top: 74px; }
+  .st-oznaka__min { display: none; }
 }

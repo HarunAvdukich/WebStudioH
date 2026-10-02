@@ -8,7 +8,9 @@ export { whatsappLink }
 
 export const meni = [
   { naziv: 'Services', put: '/en/services' },
+  { naziv: 'Work', put: '/en/work' },
   { naziv: 'Pricing', put: '/en/pricing' },
+  { naziv: 'About', put: '/en/about' },
   { naziv: 'Contact', put: '/en/contact' },
 ]
 

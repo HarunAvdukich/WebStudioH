@@ -58,16 +58,18 @@ export function Kvacice({ stavke, className = '' }) {
   )
 }
 
-// Mjerač brzine: kazaljka se popne do izmjerene brojke, sa uređajem i datumom.
-export function Mjerac({ vrijednost, opis, datum }) {
+// Mjerač brzine: kazaljka se popne do izmjerene brojke, sa uređajem i datumom. `udio` je
+// koliki dio luka je pun (podrazumijevano vrijednost / 100), `poslije` jedinica (npr. " ms").
+export function Mjerac({ vrijednost, opis, datum, udio, poslije = '', mali = false }) {
   return (
-    <figure className="mj" data-pokret="mjerac" style={{ '--v': vrijednost / 100 }}>
+    <figure className={`mj${mali ? ' mj--mali' : ''}`} data-pokret="mjerac" style={{ '--v': udio ?? vrijednost / 100 }}>
       <svg viewBox="0 0 220 124" aria-hidden="true">
         <path className="mj__trag" d="M20 112 A90 90 0 0 1 200 112" />
         <path className="mj__pun" d="M20 112 A90 90 0 0 1 200 112" pathLength="1" />
       </svg>
-      <span className="mj__broj" data-pokret="broji" data-do={vrijednost}>
+      <span className="mj__broj" data-pokret="broji" data-do={vrijednost} data-poslije={poslije || undefined}>
         {vrijednost}
+        {poslije}
       </span>
       <figcaption>
         {opis}

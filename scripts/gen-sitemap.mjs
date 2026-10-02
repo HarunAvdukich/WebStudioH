@@ -22,10 +22,12 @@ const nova = (stranica, tekst, dijelovi = []) => [`src/pages/${stranica}.jsx`, `
 const urls = [
   ['/', POCETNA],
   ['/en', ['src/components/pocetna', 'src/pocetna.en.js', 'src/pages/HomeEn.jsx']],
-  ['/o-nama', stara('AboutPage')],
+  ['/o-nama', nova('ONama', 'o-hunaru', ['src/components/onama'])],
+  ['/en/about', nova('ONama', 'o-hunaru.en', ['src/components/onama'])],
   ['/usluge', nova('Usluge', 'usluge', ['src/components/usluge', 'src/components/igre'])],
   ['/en/services', nova('Usluge', 'usluge.en', ['src/components/usluge', 'src/components/igre'])],
-  ['/radovi', stara('WorkPage')],
+  ['/radovi', nova('Radovi', 'radovi', ['src/components/radovi'])],
+  ['/en/work', nova('Radovi', 'radovi.en', ['src/components/radovi'])],
   ['/cijene', nova('Cijene', 'cijene', ['src/components/cijene'])],
   ['/en/pricing', nova('Cijene', 'cijene.en', ['src/components/cijene'])],
   ['/savjeti', [...stara('BlogPage'), 'src/content/posts']],
@@ -34,7 +36,11 @@ const urls = [
   ['/politika-privatnosti', stara('PrivacyPage')],
   ...projects.map((p) => [
     `/radovi/${p.slug}`,
-    [`src/content/radovi/${p.slug}.md`, 'src/radovi.js', ...stara('CaseStudyPage')],
+    [`src/content/radovi/${p.slug}.md`, 'src/radovi.js', ...nova('Studija', 'radovi', ['src/components/radovi'])],
+  ]),
+  ...projects.map((p) => [
+    `/en/work/${p.slug}`,
+    [`src/content/radovi/${p.slug}.en.md`, 'src/radovi.js', ...nova('Studija', 'radovi.en', ['src/components/radovi'])],
   ]),
   ...postSlugs.map((s) => [`/savjeti/${s}`, [`src/content/posts/${s}.md`, ...stara('BlogPostPage')]]),
 ]
