@@ -42,6 +42,10 @@ const organizacija = {
     'Online zakazivanje termina',
     'B2B portal za veleprodaju',
     'Brzina web stranica',
+    'SEO optimizacija',
+    'AI chatbot za web stranicu',
+    'Mobilne aplikacije',
+    'Redizajn web stranica',
   ],
   hasOfferCatalog: {
     '@type': 'OfferCatalog',
@@ -53,6 +57,10 @@ const organizacija = {
       ['Uvoz artikala od dobavljača', 'Uvoz kataloga, cijena, zaliha, slika i barkodova od više dobavljača.', '/savjeti/uvoz-artikala-od-dobavljaca'],
       ['Online zakazivanje termina', 'Zakazivanje usluga direktno na stranici.', '/savjeti/online-zakazivanje-termina'],
       ['B2B portal za veleprodaju', 'Poseban ulaz za partnere sa veleprodajnim cijenama i narudžbenicom.', '/radovi/mrt'],
+      ['SEO optimizacija', 'Brzina, naslovi i opisi, strukturirani podaci i Google Search Console.', '/usluge'],
+      ['AI chatbot', 'Asistent na stranici koji odgovara kupcima, kao Kobi na mrt.ba.', '/usluge'],
+      ['Mobilne aplikacije', 'Aplikacije za Android i iPhone, za kupce ili za tim.', '/usluge'],
+      ['Redizajn web stranica', 'Nova stranica umjesto stare, sa novim dizajnom, brzinom i tekstom.', '/usluge'],
       ['Hosting i održavanje', 'Hosting, keš, sigurnosne kopije i izmjene.', '/usluge'],
     ].map(([name, description, path]) => ({
       '@type': 'Offer',

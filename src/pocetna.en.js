@@ -9,10 +9,11 @@ export const put = '/en'
 export const whatsappPoruka = 'Hi, I run a company and I am interested in a website. Can we talk?'
 export const whatsappLink = `${contact.whatsapp}?text=${encodeURIComponent(whatsappPoruka)}`
 
-// The other pages are still Bosnian only, so the English menu stays on this page.
+// English pages that exist so far; the rest get English when they get the new design.
 export const meni = [
-  { naziv: 'Services', put: '#ponuda' },
-  { naziv: 'Contact', put: `mailto:${contact.email}` },
+  { naziv: 'Services', put: '/en/services' },
+  { naziv: 'Pricing', put: '/en/pricing' },
+  { naziv: 'Contact', put: '/en/contact' },
 ]
 
 export const drugiJezik = { oznaka: 'BS', naziv: 'Bosanski', jezik: 'bs', put: '/' }
