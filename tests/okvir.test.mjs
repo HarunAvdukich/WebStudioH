@@ -66,7 +66,7 @@ test('dist postoji za provjere okvira', () => {
 test('ostale stranice imaju novo zaglavlje sa menijem, a ne staro', () => {
   for (const s of ostale) {
     assert.match(s.html, /class="ok-zaglavlje/, s.put)
-    assert.match(s.html, /href="\/usluge"/, s.put)
+    assert.match(s.html, s.put.startsWith('en/') ? /href="\/en\/services"/ : /href="\/usluge"/, s.put)
     assert.doesNotMatch(s.html, /class="nav[ "]/, s.put)
   }
 })

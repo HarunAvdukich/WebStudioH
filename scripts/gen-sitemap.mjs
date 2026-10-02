@@ -14,17 +14,23 @@ const postSlugs = readdirSync('src/content/posts')
 const POCETNA = ['src/components/pocetna', 'src/pocetna.js', 'src/pages/Home.jsx']
 const STARE = ['src/data.js', 'src/components', 'src/index.css']
 const stara = (stranica) => [`src/pages/${stranica}.jsx`, ...STARE]
+// Stranice u novom izgledu: stranica, tekst (bs ili en) i zajednički dijelovi.
+const ZAJEDNICKO = ['src/components/stranica', 'src/components/okvir', 'src/lib']
+const nova = (stranica, tekst, dijelovi = []) => [`src/pages/${stranica}.jsx`, `src/stranice/${tekst}.js`, ...dijelovi, ...ZAJEDNICKO]
 
 // [adresa, izvori]
 const urls = [
   ['/', POCETNA],
   ['/en', ['src/components/pocetna', 'src/pocetna.en.js', 'src/pages/HomeEn.jsx']],
   ['/o-nama', stara('AboutPage')],
-  ['/usluge', stara('ServicesPage')],
+  ['/usluge', nova('Usluge', 'usluge', ['src/components/usluge', 'src/components/igre'])],
+  ['/en/services', nova('Usluge', 'usluge.en', ['src/components/usluge', 'src/components/igre'])],
   ['/radovi', stara('WorkPage')],
-  ['/cijene', stara('PricingPage')],
+  ['/cijene', nova('Cijene', 'cijene', ['src/components/cijene'])],
+  ['/en/pricing', nova('Cijene', 'cijene.en', ['src/components/cijene'])],
   ['/savjeti', [...stara('BlogPage'), 'src/content/posts']],
-  ['/kontakt', stara('ContactPage')],
+  ['/kontakt', nova('Kontakt', 'kontakt', ['src/components/kontakt'])],
+  ['/en/contact', nova('Kontakt', 'kontakt.en', ['src/components/kontakt'])],
   ['/politika-privatnosti', stara('PrivacyPage')],
   ...projects.map((p) => [
     `/radovi/${p.slug}`,

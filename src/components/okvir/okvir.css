@@ -275,3 +275,9 @@ html.ok-meni-otvoren { overflow: hidden; }
 .ok-404 h1 span { display: block; }
 .ok-404__vasa { color: var(--svijetli); }
 .ok-404__dugmad { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+/* prelaz na drugi jezik */
+.ok-meni-red a.ok-jezik { padding: 6px 10px; border-radius: 8px; border: 1.5px solid rgba(227, 241, 234, 0.3); font-size: 13px; font-weight: 800; letter-spacing: 0.08em; }
+.ok-meni-red a.ok-jezik::after { display: none; }
+.ok-meni-red a.ok-jezik:hover { border-color: var(--mint); }
+.ok-meni__red a.ok-meni__jezik { font-size: 22px; font-weight: 600; letter-spacing: 0; color: var(--siva); }

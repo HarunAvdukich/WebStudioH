@@ -57,3 +57,33 @@ test('magnet: daleko miruje, blizu se privuče', () => {
   assert.deepEqual(magnet(200, 0), { x: 0, y: 0 })
   assert.deepEqual(magnet(100, 50), { x: 30, y: 15 })
 })
+
+import { paljenje, formatBroj, nagib, napredakSkrola } from '../src/lib/pokreti/racun.js'
+
+test('paljenje: ispod ekrana 0, pri vrhu 1, između raste', () => {
+  assert.equal(paljenje(900, 800), 0)
+  assert.equal(paljenje(100, 800), 1)
+  const p = paljenje(500, 800)
+  assert.ok(p > 0 && p < 1)
+  assert.ok(paljenje(400, 800) > p)
+})
+
+test('formatBroj: bosanski tačka, engleski zarez', () => {
+  assert.equal(formatBroj(4453, 'bs'), '4.453')
+  assert.equal(formatBroj(4453, 'en'), '4,453')
+  assert.equal(formatBroj(52, 'bs'), '52')
+  assert.equal(formatBroj(7460.4, 'bs'), '7.460')
+})
+
+test('nagib: sredina ravna, uglovi do granice', () => {
+  assert.deepEqual(nagib(50, 50, 100, 100), { rx: 0, ry: 0 })
+  assert.deepEqual(nagib(100, 0, 100, 100, 6), { rx: 6, ry: 6 })
+  assert.deepEqual(nagib(0, 100, 100, 100, 6), { rx: -6, ry: -6 })
+})
+
+test('napredakSkrola: zakačena scena od 0 do 1', () => {
+  assert.equal(napredakSkrola({ top: 100, height: 3000 }, 800), 0)
+  assert.equal(napredakSkrola({ top: -2200, height: 3000 }, 800), 1)
+  assert.equal(napredakSkrola({ top: -1100, height: 3000 }, 800), 0.5)
+  assert.equal(napredakSkrola({ top: -50, height: 500 }, 800), 0)
+})

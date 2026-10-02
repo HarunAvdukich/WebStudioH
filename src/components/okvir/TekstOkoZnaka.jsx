@@ -1,11 +1,12 @@
 import { useEffect, useId, useRef } from 'react'
 import { SLOVO } from '../pocetna/Znak.jsx'
-import { okvir } from '../../okvir.js'
+import { useOkvir } from '../../lib/useOkvir.js'
 
 // Znak u podnožju: iscrta se kad dođe na ekran (data-pokret="crtaj"), a oko slova u i n
 // teče "vještina · umijeće · hunar"; pod mišem ubrza. Tekst ide po nevidljivoj putanji bez
 // pathLength, da startOffset bude u pravim jedinicama. Teče samo dok je znak na ekranu i uz .pokret.
 export default function TekstOkoZnaka() {
+  const { okvir } = useOkvir()
   const id = useId().replace(/:/g, '')
   const ref = useRef(null)
 

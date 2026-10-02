@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
-import { whatsappLink, okvir } from '../../okvir.js'
 import { contact } from '../../data.js'
+import { useOkvir } from '../../lib/useOkvir.js'
 import { smjerZaglavlja, vidljivaTraka } from '../../lib/pokreti/racun.js'
 
 // Traka na dnu telefona: "Pišite nam" i poziv. Izađe poslije prvog ekrana, skloni se dok
 // posjetilac skrola dolje i pri dnu stranice, vrati se kad krene gore. Na računaru je nema (CSS).
 export default function TrakaTelefon() {
+  const { whatsappLink, okvir } = useOkvir()
   const [vidljiva, setVidljiva] = useState(false)
 
   useEffect(() => {

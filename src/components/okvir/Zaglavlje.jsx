@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { ZnakPutanje } from '../pocetna/Znak.jsx'
 import { LOGO_SIRINA, LOGO_VISINA } from '../pocetna/motor.js'
-import { meni, whatsappLink, okvir } from '../../okvir.js'
+import { useOkvir } from '../../lib/useOkvir.js'
 import { smjerZaglavlja } from '../../lib/pokreti/racun.js'
 import { useMagnet } from '../../lib/magnet.js'
 import { glatko } from '../../lib/glatkiSkrol.js'
@@ -11,6 +11,7 @@ import { glatko } from '../../lib/glatkiSkrol.js'
 // vrati se gore. Na telefonu meni preko cijelog ekrana koji se raširi krugom iz dugmeta.
 export default function Zaglavlje() {
   const { pathname } = useLocation()
+  const { meni, whatsappLink, okvir, drugaVerzija } = useOkvir()
   const [otvoren, setOtvoren] = useState(false)
   const [stanje, setStanje] = useState({ skriveno: false, malo: false })
   const dugme = useRef(null)
@@ -66,7 +67,7 @@ export default function Zaglavlje() {
   return (
     <>
       <header className={klase.join(' ')}>
-        <Link className="ok-logo" to="/" aria-label={okvir.logo}>
+        <Link className="ok-logo" to={okvir.pocetna} aria-label={okvir.logo}>
           <svg viewBox={`0 0 ${LOGO_SIRINA} ${LOGO_VISINA}`} aria-hidden="true">
             <ZnakPutanje />
           </svg>
@@ -77,6 +78,9 @@ export default function Zaglavlje() {
               {m.naziv}
             </NavLink>
           ))}
+          <Link className="ok-jezik" to={drugaVerzija} hrefLang={okvir.jezik.kod} lang={okvir.jezik.kod} aria-label={okvir.jezik.naziv}>
+            {okvir.jezik.oznaka}
+          </Link>
           <a ref={pisite} className="ok-dugme ok-dugme--malo" href={whatsappLink} target="_blank" rel="noopener">
             {okvir.dugmeKratko}
           </a>
@@ -103,6 +107,11 @@ export default function Zaglavlje() {
               </Link>
             </span>
           ))}
+          <span className="ok-meni__red">
+            <Link to={drugaVerzija} style={{ '--i': meni.length }} hrefLang={okvir.jezik.kod} lang={okvir.jezik.kod} className="ok-meni__jezik" onClick={() => setOtvoren(false)}>
+              {okvir.jezik.naziv}
+            </Link>
+          </span>
         </nav>
         <a className="ok-dugme" href={whatsappLink} target="_blank" rel="noopener">
           {okvir.dugme}
