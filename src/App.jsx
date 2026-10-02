@@ -7,6 +7,8 @@ import './components/okvir/okvir.css'
 import Zaglavlje from './components/okvir/Zaglavlje.jsx'
 import Podnozje from './components/okvir/Podnozje.jsx'
 import Zavjesa from './components/okvir/Zavjesa.jsx'
+import TrakaTelefon from './components/okvir/TrakaTelefon.jsx'
+import NazadNaVrh from './components/okvir/NazadNaVrh.jsx'
 import JsonLd from './components/JsonLd.jsx'
 import { pokreniPokrete } from './lib/pokreti/pokretac.js'
 import './lib/pokreti/pokreti.css'
@@ -60,6 +62,8 @@ export default function App() {
         <Outlet />
       </main>
       {!pocetna && <Podnozje />}
+      {!pocetna && <TrakaTelefon />}
+      {!pocetna && <NazadNaVrh />}
       <Zavjesa />
     </div>
   )

@@ -90,3 +90,10 @@ test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balo
 test('svaka stranica ima zavjesu za prelaz', () => {
   for (const s of stranice) assert.match(s.html, /class="ok-zavjesa"/, s.put)
 })
+
+test('ostale stranice imaju traku za telefon i dugme za vrh', () => {
+  for (const s of ostale) {
+    assert.match(s.html, /class="ok-traka/, s.put)
+    assert.match(s.html, /class="ok-vrh/, s.put)
+  }
+})
