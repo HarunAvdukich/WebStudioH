@@ -2,7 +2,9 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import { useReveal } from './hooks/useReveal.js'
 import ScrollToTop from './components/ScrollToTop.jsx'
-import Nav from './components/Nav.jsx'
+import '@fontsource-variable/urbanist'
+import './components/okvir/okvir.css'
+import Zaglavlje from './components/okvir/Zaglavlje.jsx'
 import Footer from './components/Footer.jsx'
 import WhatsAppFab from './components/WhatsAppFab.jsx'
 import JsonLd from './components/JsonLd.jsx'
@@ -50,7 +52,7 @@ export default function App() {
     <div className="page">
       <JsonLd />
       <ScrollToTop />
-      {!pocetna && <Nav />}
+      {!pocetna && <Zaglavlje />}
       <main>
         <Outlet />
       </main>

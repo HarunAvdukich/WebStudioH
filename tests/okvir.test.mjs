@@ -1,7 +1,8 @@
 // Zajednički okvir: tekst, a poslije gradnje i markup u dist (dodaje se u kasnijim zadacima).
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { readFileSync, existsSync, readdirSync, statSync } from 'node:fs'
+import { join, relative, sep } from 'node:path'
 import * as okvir from '../src/okvir.js'
 
 function strings(value, out = []) {
@@ -39,4 +40,39 @@ test('index.html vraća običnu stranicu ako se pokreti ne jave', () => {
   const html = readFileSync('index.html', 'utf8')
   assert.match(html, /dataset\.pokreti/)
   assert.match(html, /dataset\.kz/)
+})
+
+// ---------- poslije gradnje (npm run build) ----------
+const DIST = 'dist'
+function htmlFiles(dir = DIST) {
+  const out = []
+  for (const name of readdirSync(dir)) {
+    const p = join(dir, name)
+    if (statSync(p).isDirectory()) {
+      if (p !== join(DIST, 'admin')) out.push(...htmlFiles(p))
+    } else if (name.endsWith('.html')) out.push(p)
+  }
+  return out
+}
+const stranice = existsSync(DIST)
+  ? htmlFiles().map((file) => ({ put: relative(DIST, file).split(sep).join('/'), html: readFileSync(file, 'utf8') }))
+  : []
+const ostale = stranice.filter((s) => s.put !== 'index.html' && s.put !== 'en.html')
+
+test('dist postoji za provjere okvira', () => {
+  assert.ok(ostale.length > 5, 'prvo pokreni npm run build')
+})
+
+test('ostale stranice imaju novo zaglavlje sa menijem, a ne staro', () => {
+  for (const s of ostale) {
+    assert.match(s.html, /class="ok-zaglavlje/, s.put)
+    assert.match(s.html, /href="\/usluge"/, s.put)
+    assert.doesNotMatch(s.html, /class="nav[ "]/, s.put)
+  }
+})
+
+test('početna i dalje ima svoje zaglavlje', () => {
+  for (const s of stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')) {
+    assert.doesNotMatch(s.html, /class="ok-zaglavlje/, s.put)
+  }
 })
