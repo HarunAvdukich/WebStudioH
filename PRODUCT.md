@@ -17,7 +17,9 @@ Posao posjetioca: procijeniti da li Hunar može napraviti ono što mu treba, pov
 
 ## Product Purpose
 
-Hunar (ranije WebStudioH) pravi sve na webu za firme u BiH: web stranice, web trgovine, sisteme za zakazivanje, B2B portale i integracije. Stranica hunar.ba vodi posjetioca do upita (WhatsApp, telefon, kontakt forma). Uspjeh je upit od firme koja je vidjela stvaran rad i povjerovala mu.
+Hunar (ranije WebStudioH) pravi sve na webu za firme u BiH: web stranice, web trgovine (web shop), sisteme za zakazivanje (online rezervacije), B2B portale i integracije (OLX, Ananas, dobavljači). Od 2. 10. 2026. nudi i mobilne aplikacije, SEO optimizaciju, AI chatbotove, redizajn postojećih stranica te održavanje i hosting (odluka vlasnika). Stranica hunar.ba vodi posjetioca do upita (WhatsApp, telefon, kontakt forma). Uspjeh je upit od firme koja je vidjela stvaran rad i povjerovala mu.
+
+Usluge za koje još nema urađenog primjera (mobilne aplikacije, redizajn) nude se, ali se nigdje ne predstavljaju kao urađen posao. Primjeri na stranici su ilustracije, a kao dokaz se pokazuju samo stvarni radovi (mrt.ba, SmartTime). Za AI chatbot postoji stvaran primjer: asistent Kobi na mrt.ba.
 
 ## Positioning
 

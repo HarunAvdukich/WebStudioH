@@ -1,0 +1,40 @@
+/* Male animacije (src/lib/pokreti). Skriveno stanje važi samo uz .pokret i tek kad je
+   JavaScript pripremio element (.pk-spremno), pa bez JavaScripta sve ostaje vidljivo.
+   Prelaz je samo na .pk-vidljiv: priprema sakrije element odmah, bez animacije unazad. */
+.pk-m { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.pk-w { display: inline-block; }
+
+.pokret [data-pokret='izroni'].pk-spremno .pk-w { transform: translateY(110%); }
+.pokret [data-pokret='izroni'].pk-vidljiv .pk-w {
+  transform: none;
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.1, 1);
+  transition-delay: calc(var(--i) * 55ms);
+}
+
+.pokret [data-pokret='pojavi'].pk-spremno { opacity: 0; transform: translateY(24px); }
+.pokret [data-pokret='pojavi'].pk-vidljiv {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s, transform 1s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+
+/* Linija se iscrta, pa se oboji ispuna. Po zadanom linija na kraju nestane i ostane puna
+   ispuna, pa je znak tačan; --pk-ispuna i --pk-linija mijenjaju kraj (npr. obris sa blagom ispunom).
+   Selektor je običan path: [pathLength] Chrome ne poklapa na SVG-u u HTML-u. */
+.pokret [data-pokret='crtaj'].pk-spremno path {
+  stroke: var(--pk-crta, #19b07e);
+  stroke-width: var(--pk-debljina, 5);
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  fill-opacity: 0;
+}
+.pokret [data-pokret='crtaj'].pk-vidljiv path {
+  stroke-dashoffset: 0;
+  fill-opacity: var(--pk-ispuna, 1);
+  stroke-opacity: var(--pk-linija, 0);
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1), fill-opacity 0.8s 1.3s, stroke-opacity 0.6s 1.9s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pk-w, [data-pokret], [data-pokret] path { transition: none !important; transform: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; fill-opacity: 1 !important; }
+}
