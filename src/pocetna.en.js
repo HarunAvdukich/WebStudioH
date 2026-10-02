@@ -32,7 +32,7 @@ export const ui = {
   skrol: 'Scroll',
   sklopljeno: 'assembled',
   izradio: 'Izradio',
-  privatnost: { naziv: 'Privacy policy (in Bosnian)', put: '/politika-privatnosti' },
+  privatnost: { naziv: 'Privacy policy', put: '/en/privacy' },
   kontakt: { whatsapp: 'WhatsApp', veznik: 'and', telefon: 'phone' },
   telefon: '+387 60 3000 751',
 }

@@ -12,8 +12,6 @@ const postSlugs = readdirSync('src/content/posts')
   .map((f) => f.replace(/\.md$/, ''))
 
 const POCETNA = ['src/components/pocetna', 'src/pocetna.js', 'src/pages/Home.jsx']
-const STARE = ['src/data.js', 'src/components', 'src/index.css']
-const stara = (stranica) => [`src/pages/${stranica}.jsx`, ...STARE]
 // Stranice u novom izgledu: stranica, tekst (bs ili en) i zajednički dijelovi.
 const ZAJEDNICKO = ['src/components/stranica', 'src/components/okvir', 'src/lib']
 const nova = (stranica, tekst, dijelovi = []) => [`src/pages/${stranica}.jsx`, `src/stranice/${tekst}.js`, ...dijelovi, ...ZAJEDNICKO]
@@ -30,10 +28,11 @@ const urls = [
   ['/en/work', nova('Radovi', 'radovi.en', ['src/components/radovi'])],
   ['/cijene', nova('Cijene', 'cijene', ['src/components/cijene'])],
   ['/en/pricing', nova('Cijene', 'cijene.en', ['src/components/cijene'])],
-  ['/savjeti', [...stara('BlogPage'), 'src/content/posts']],
+  ['/savjeti', ['src/pages/Savjeti.jsx', 'src/stranice/savjeti.js', 'src/components/savjeti', 'src/content/posts', ...ZAJEDNICKO]],
   ['/kontakt', nova('Kontakt', 'kontakt', ['src/components/kontakt'])],
   ['/en/contact', nova('Kontakt', 'kontakt.en', ['src/components/kontakt'])],
-  ['/politika-privatnosti', stara('PrivacyPage')],
+  ['/politika-privatnosti', nova('Privatnost', 'privatnost', ['src/components/savjeti'])],
+  ['/en/privacy', nova('Privatnost', 'privatnost.en', ['src/components/savjeti'])],
   ...projects.map((p) => [
     `/radovi/${p.slug}`,
     [`src/content/radovi/${p.slug}.md`, 'src/radovi.js', ...nova('Studija', 'radovi', ['src/components/radovi'])],
@@ -42,7 +41,7 @@ const urls = [
     `/en/work/${p.slug}`,
     [`src/content/radovi/${p.slug}.en.md`, 'src/radovi.js', ...nova('Studija', 'radovi.en', ['src/components/radovi'])],
   ]),
-  ...postSlugs.map((s) => [`/savjeti/${s}`, [`src/content/posts/${s}.md`, ...stara('BlogPostPage')]]),
+  ...postSlugs.map((s) => [`/savjeti/${s}`, [`src/content/posts/${s}.md`, 'src/pages/Clanak.jsx', 'src/posts.js', 'src/stranice/savjeti.js', ...ZAJEDNICKO]]),
 ]
 
 // Datum zadnjeg commita za izvore; bez gita (ili za fajl van gita) nema lastmod.

@@ -17,9 +17,11 @@ import * as cijeneEn from './stranice/cijene.en.js'
 import Kontakt from './pages/Kontakt.jsx'
 import * as kontakt from './stranice/kontakt.js'
 import * as kontaktEn from './stranice/kontakt.en.js'
-import BlogPage from './pages/BlogPage.jsx'
-import BlogPostPage from './pages/BlogPostPage.jsx'
-import PrivacyPage from './pages/PrivacyPage.jsx'
+import Savjeti from './pages/Savjeti.jsx'
+import Clanak from './pages/Clanak.jsx'
+import Privatnost from './pages/Privatnost.jsx'
+import * as privatnost from './stranice/privatnost.js'
+import * as privatnostEn from './stranice/privatnost.en.js'
 import NotFound from './pages/NotFound.jsx'
 import { posts } from './posts.js'
 
@@ -49,15 +51,16 @@ export const routes = [
       },
       { path: 'cijene', element: <Cijene t={cijene} /> },
       { path: 'en/pricing', element: <Cijene t={cijeneEn} /> },
-      { path: 'savjeti', element: <BlogPage /> },
+      { path: 'savjeti', element: <Savjeti /> },
       {
         path: 'savjeti/:slug',
-        element: <BlogPostPage />,
+        element: <Clanak />,
         getStaticPaths: () => posts.map((p) => `savjeti/${p.slug}`),
       },
       { path: 'kontakt', element: <Kontakt t={kontakt} /> },
       { path: 'en/contact', element: <Kontakt t={kontaktEn} /> },
-      { path: 'politika-privatnosti', element: <PrivacyPage /> },
+      { path: 'politika-privatnosti', element: <Privatnost t={privatnost} /> },
+      { path: 'en/privacy', element: <Privatnost t={privatnostEn} /> },
       { path: '*', element: <NotFound /> },
     ],
   },

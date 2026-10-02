@@ -113,9 +113,9 @@ export default function Studija({ t }) {
       </section>
 
       {prica.html && (
-        <section className="sd-prica-dio">
+        <section className="st-tekst-dio">
           <div className="st-sirina">
-            <article className="sd-prica" ref={clanak} dangerouslySetInnerHTML={{ __html: prica.html }} />
+            <article className="st-tekst" ref={clanak} dangerouslySetInnerHTML={{ __html: prica.html }} />
           </div>
         </section>
       )}

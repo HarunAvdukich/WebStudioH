@@ -17,7 +17,7 @@ const idOd = (tekst) =>
   tekst
     .toLowerCase()
     .normalize('NFD')
-    .replace(/[̀-ͯ]/g, '')
+    .replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/g, 'dj')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')

@@ -3,7 +3,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 
-const STRANICE = ['usluge', 'cijene', 'kontakt', 'radovi', 'o-hunaru']
+const STRANICE = ['usluge', 'cijene', 'kontakt', 'radovi', 'o-hunaru', 'privatnost']
 
 // Oblik: ključevi objekata i dužine nizova, bez samih tekstova.
 function oblik(v) {

@@ -1,0 +1,36 @@
+/* Savjeti: kartice vodiča; zaglavlje članka i politike privatnosti. */
+.sv-dio { padding-top: 0; }
+.sv-lista { display: grid; gap: 16px; transform-origin: 50% 0; }
+@media (min-width: 900px) {
+  .sv-lista { grid-template-columns: 1fr 1fr; }
+}
+.sv-k {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 26px;
+  background: rgba(227, 241, 234, 0.04);
+  border: 1px solid var(--linija);
+  text-decoration: none;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+.sv-k:hover { background: rgba(227, 241, 234, 0.07); border-color: rgba(227, 241, 234, 0.26); }
+.sv-k__br { font-size: 14px; font-weight: 800; color: var(--svijetli); }
+.sv-k__naslov { margin: 16px 0 0; font-size: clamp(24px, 2.3vw, 32px); line-height: 1.12; font-weight: 700; color: var(--krec); }
+.sv-k__opis { margin-top: 12px !important; font-size: 16px; line-height: 1.55; color: var(--tekst2); }
+.sv-k__dno { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; margin-top: auto; padding-top: 24px; }
+.sv-k__meta { font-size: 14px; color: var(--siva); }
+.sv-k__dalje { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700; color: var(--mint); }
+.sv-k__dalje svg { transition: transform 0.35s var(--e); }
+.sv-k:hover .sv-k__dalje svg { transform: translateX(5px); }
+
+/* zaglavlje članka i politike privatnosti */
+.cl-vrh { position: relative; padding: clamp(56px, 7vw, 110px) 0 clamp(28px, 4vw, 48px); overflow: hidden; }
+.cl-vrh__in { position: relative; max-width: 900px; }
+.cl-vrh__h1 { font-size: clamp(36px, 4.8vw, 68px); }
+.pokret .cl-vrh__h1 { animation: st-vrh-ulaz 1s var(--e) both; }
+.cl-vrh__uvod { max-width: 720px; }
+.cl-vrh__meta { margin-top: 20px !important; font-size: 14px; font-weight: 600; color: var(--siva); }
+/* tekst članka i politike počinje na istom lijevom rubu kao zaglavlje (900 px), a red ostaje čitljive širine */
+.st-clanak .st-tekst, .st-privatnost .st-tekst { margin: 0 auto 0 max(0px, calc((100% - 900px) / 2)); }

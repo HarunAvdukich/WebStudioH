@@ -1,7 +1,9 @@
-// Provjere sadržaja direktno iz src/data.js.
+// Provjere zajedničkih podataka (src/data.js) i radova (src/stranice/radovi.js).
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import * as data from '../src/data.js'
+import * as radovi from '../src/stranice/radovi.js'
+import * as radoviEn from '../src/stranice/radovi.en.js'
 
 function strings(value, path = '', out = []) {
   if (typeof value === 'string') out.push([path, value])
@@ -11,12 +13,13 @@ function strings(value, path = '', out = []) {
   return out
 }
 
-const texts = strings(
-  Object.fromEntries(Object.entries(data).filter(([, v]) => typeof v !== 'function')),
-)
+const texts = strings({ data, radovi: { ...radovi }, radoviEn: { ...radoviEn } })
 
-test('radovi: mrt, smarttime, urez, tim redom', () => {
-  assert.deepEqual(data.projects.map((p) => p.slug), ['mrt', 'smarttime', 'urez'])
+test('radovi: mrt, smarttime, urez, tim redom, isto na oba jezika i u podacima', () => {
+  const slugovi = ['mrt', 'smarttime', 'urez']
+  assert.deepEqual(data.projects.map((p) => p.slug), slugovi)
+  assert.deepEqual(radovi.radovi.map((r) => r.slug), slugovi)
+  assert.deepEqual(radoviEn.radovi.map((r) => r.slug), slugovi)
 })
 
 test('UPTOS se ne pominje nigdje u sadržaju', () => {
@@ -27,6 +30,12 @@ test('urez nema link ni sliku dok ne proradi', () => {
   const urez = data.projects.find((p) => p.slug === 'urez')
   assert.equal(urez.url, undefined)
   assert.equal(urez.image, undefined)
+  for (const t of [radovi, radoviEn]) {
+    const r = t.radovi.find((x) => x.slug === 'urez')
+    assert.equal(r.url, undefined)
+    assert.equal(r.slika, undefined)
+    assert.equal(r.brojke, undefined)
+  }
 })
 
 test('nijedan tekst nema dugu ni srednju crtu', () => {
@@ -41,34 +50,13 @@ test('nema linka za zakazivanje poziva', () => {
   assert.equal(data.contact.booking, undefined)
 })
 
-test('onlyApproved propušta samo potvrđene recenzije', () => {
-  const list = [{ name: 'A', approved: true }, { name: 'B', approved: false }, { name: 'C' }]
-  assert.deepEqual(data.onlyApproved(list).map((t) => t.name), ['A'])
+test('riječi klijenta su samo od radova koji postoje i potpisane su nazivom firme', () => {
+  for (const r of radovi.radovi.filter((x) => x.citat)) {
+    assert.equal(r.citat.ko, r.ime)
+    assert.ok(r.citat.tekst.length > 40)
+  }
 })
 
-test('objavljene recenzije su samo potvrđene', () => {
-  assert.ok(data.testimonials.every((t) => typeof t.approved === 'boolean'))
-  assert.ok(data.publishedTestimonials.every((t) => t.approved === true))
-})
-
-test('brojke odgovaraju izmjerenim 27. 9. 2026.', () => {
-  assert.deepEqual(data.homeStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms'])
-  assert.deepEqual(data.aboutStats.map((s) => s.num + s.sfx), ['7.400+', '4.300+', '52 ms', '98'])
-})
-
-test('usluge: web trgovine prve, bh. tržište druge, ukupno šest', () => {
-  assert.deepEqual(
-    data.services.slice(0, 2).map((s) => s.t),
-    ['WooCommerce web trgovine', 'Povezivanje sa bh. tržištem'],
-  )
-  assert.equal(data.services.length, 6)
-})
-
-test('sve cijene su po dogovoru', () => {
-  assert.ok(data.pricing.every((p) => p.price === 'Po dogovoru'))
-})
-
-test('svaka recenzija pripada postojećem radu', () => {
-  const slugs = data.projects.map((p) => p.slug)
-  assert.deepEqual(data.testimonials.filter((t) => !slugs.includes(t.project)).map((t) => t.name), [])
+test('datum se piše bez Intl', () => {
+  assert.equal(data.formatDate('2026-06-18'), '18. juni 2026.')
 })

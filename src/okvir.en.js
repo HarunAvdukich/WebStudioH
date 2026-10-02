@@ -22,7 +22,7 @@ export const okvir = {
   zatvoriMeni: 'Close menu',
   meniTelefon: 'Menu',
   podnozjeMeni: 'Footer',
-  privatnost: { naziv: 'Privacy policy (in Bosnian)', put: '/politika-privatnosti' },
+  privatnost: { naziv: 'Privacy policy', put: '/en/privacy' },
   kontakt: { whatsapp: 'WhatsApp', veznik: 'and', telefon: 'phone' },
   podnozje,
   logo: 'Hunar, home',
