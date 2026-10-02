@@ -12,6 +12,7 @@ import { pokreniPokrete } from './lib/pokreti/pokretac.js'
 import './lib/pokreti/pokreti.css'
 import { pratiNaslovKartice } from './lib/naslovKartice.js'
 import { naslovKartice } from './okvir.js'
+import { useGlatkiSkrol } from './lib/glatkiSkrol.js'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -26,6 +27,8 @@ export default function App() {
   useEffect(() => pokreniPokrete(document), [pathname])
   // Naslov kartice poziva nazad kad posjetilac ode na drugu karticu.
   useEffect(() => pratiNaslovKartice(document, engleski ? naslovKartice.en : naslovKartice.bs), [engleski])
+  // Glatki skrol na svim stranicama osim početne (početna ima svoj).
+  useGlatkiSkrol(!pocetna)
 
   // Vlastiti kursor samo za miš; kod se učita tek na prvi pokret miša.
   useEffect(() => {

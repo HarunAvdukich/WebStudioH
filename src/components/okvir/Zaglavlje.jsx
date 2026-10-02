@@ -5,6 +5,7 @@ import { LOGO_SIRINA, LOGO_VISINA } from '../pocetna/motor.js'
 import { meni, whatsappLink, okvir } from '../../okvir.js'
 import { smjerZaglavlja } from '../../lib/pokreti/racun.js'
 import { useMagnet } from '../../lib/magnet.js'
+import { glatko } from '../../lib/glatkiSkrol.js'
 
 // Zaglavlje ostalih stranica: znak, meni, "Pišite nam". Skloni se dok se skrola dolje,
 // vrati se gore. Na telefonu meni preko cijelog ekrana koji se raširi krugom iz dugmeta.
@@ -39,10 +40,13 @@ export default function Zaglavlje() {
     if (!otvoren) return undefined
     const html = document.documentElement
     const zatvori = (e) => e.key === 'Escape' && setOtvoren(false)
+    // Glatki skrol stoji dok je meni otvoren (uski prozor na računaru ima i meni i Lenis).
     html.classList.add('ok-meni-otvoren')
+    glatko.lenis?.stop()
     window.addEventListener('keydown', zatvori)
     return () => {
       html.classList.remove('ok-meni-otvoren')
+      glatko.lenis?.start()
       window.removeEventListener('keydown', zatvori)
     }
   }, [otvoren])
