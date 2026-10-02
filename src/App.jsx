@@ -5,8 +5,7 @@ import ScrollToTop from './components/ScrollToTop.jsx'
 import '@fontsource-variable/urbanist'
 import './components/okvir/okvir.css'
 import Zaglavlje from './components/okvir/Zaglavlje.jsx'
-import Footer from './components/Footer.jsx'
-import WhatsAppFab from './components/WhatsAppFab.jsx'
+import Podnozje from './components/okvir/Podnozje.jsx'
 import JsonLd from './components/JsonLd.jsx'
 import { pokreniPokrete } from './lib/pokreti/pokretac.js'
 import './lib/pokreti/pokreti.css'
@@ -17,8 +16,8 @@ export default function App() {
   const { pathname } = useLocation()
   // re-run scroll-reveal whenever the page changes
   useReveal(pathname)
-  // Nova početna (bosanska i engleska) ima svoje zaglavlje i podnožje; ostale stranice
-  // su još u starom izgledu.
+  // Nova početna (bosanska i engleska) ima svoje zaglavlje i podnožje, a ostale
+  // stranice zajednički okvir.
   const pocetna = pathname === '/' || pathname === '/en' || pathname === '/en/'
   const engleski = pathname === '/en' || pathname.startsWith('/en/')
 
@@ -56,8 +55,7 @@ export default function App() {
       <main>
         <Outlet />
       </main>
-      {!pocetna && <Footer />}
-      {!pocetna && <WhatsAppFab />}
+      {!pocetna && <Podnozje />}
     </div>
   )
 }

@@ -76,3 +76,13 @@ test('početna i dalje ima svoje zaglavlje', () => {
     assert.doesNotMatch(s.html, /class="ok-zaglavlje/, s.put)
   }
 })
+
+test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balona', () => {
+  for (const s of ostale) {
+    assert.match(s.html, /class="ok-podnozje/, s.put)
+    assert.match(s.html, /href="\/politika-privatnosti"/, s.put)
+    assert.match(s.html, /href="tel:\+387603000751"/, s.put)
+    assert.doesNotMatch(s.html, /class="footer[ "]/, s.put)
+    assert.doesNotMatch(s.html, /wa-fab/, s.put)
+  }
+})
