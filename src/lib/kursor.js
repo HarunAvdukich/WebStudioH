@@ -1,6 +1,6 @@
 // Vlastiti kursor: tačka prati miš tačno, prsten ide za njom sa malim zaostatkom.
 // Nad linkom i dugmetom prsten naraste, a element sa data-kursor="..." pokaže
-// natpis u prstenu. Učitava se tek na prvi pokret miša (App.jsx); na dodir i uz
+// natpis u prstenu. Nad tekstom za čitanje prsten postane tanka crta. Učitava se tek na prvi pokret miša (App.jsx); na dodir i uz
 // smanjene pokrete ostaje sistemski kursor.
 
 const STIL = `
@@ -35,9 +35,25 @@ html.ima-kursor input, html.ima-kursor textarea, html.ima-kursor select { cursor
 .hk.ima-natpis .hk__natpis { opacity: 1; }
 .hk.ima-natpis .hk__tacka::before { transform: scale(0); }
 .hk.je-pritisnut .hk__krug { transform: translate(-50%, -50%) scale(.86); }
+.hk.je-citanje .hk__krug { width: 3px; height: 28px; border-radius: 2px; border-color: transparent; background: #e3f1ea; }
+.hk.je-citanje .hk__tacka::before { transform: scale(0); }
 `
 
 const INTERAKTIVNO = 'a, button, [role="button"], [data-kursor], label, summary, input, textarea, select'
+// Tekst za čitanje: nad njim kursor postane tanka crta.
+const CITANJE = 'p, li, h1, h2, h3, h4, blockquote, figcaption'
+
+// Šta je ispod miša. Koristi samo closest, matches i getAttribute, pa ga test provjerava bez preglednika.
+export function vrstaCilja(el) {
+  if (!el || typeof el.closest !== 'function') return { vrsta: 'nista', natpis: '' }
+  const i = el.closest(INTERAKTIVNO)
+  if (i) {
+    if (i.matches('input, textarea, select')) return { vrsta: 'unos', natpis: '' }
+    return { vrsta: 'nad', natpis: i.getAttribute('data-kursor') || '' }
+  }
+  if (el.closest(CITANJE)) return { vrsta: 'citanje', natpis: '' }
+  return { vrsta: 'nista', natpis: '' }
+}
 
 export function pokreniKursor(prvi) {
   const html = document.documentElement
@@ -83,11 +99,10 @@ export function pokreniKursor(prvi) {
     pokreni()
   }
   const nad = (e) => {
-    const cilj = e.target instanceof Element ? e.target.closest(INTERAKTIVNO) : null
-    const tekst = !!cilj && cilj.matches('input, textarea, select')
-    const n = (!tekst && cilj?.getAttribute('data-kursor')) || ''
-    el.classList.toggle('je-tekst', tekst)
-    el.classList.toggle('je-nad', !!cilj && !tekst)
+    const { vrsta, natpis: n } = vrstaCilja(e.target instanceof Element ? e.target : null)
+    el.classList.toggle('je-tekst', vrsta === 'unos')
+    el.classList.toggle('je-nad', vrsta === 'nad')
+    el.classList.toggle('je-citanje', vrsta === 'citanje')
     el.classList.toggle('ima-natpis', !!n)
     if (natpis.textContent !== n) natpis.textContent = n
   }
