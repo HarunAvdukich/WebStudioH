@@ -6,6 +6,10 @@ import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 import WhatsAppFab from './components/WhatsAppFab.jsx'
 import JsonLd from './components/JsonLd.jsx'
+import { pokreniPokrete } from './lib/pokreti/pokretac.js'
+import './lib/pokreti/pokreti.css'
+import { pratiNaslovKartice } from './lib/naslovKartice.js'
+import { naslovKartice } from './okvir.js'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -14,6 +18,12 @@ export default function App() {
   // Nova početna (bosanska i engleska) ima svoje zaglavlje i podnožje; ostale stranice
   // su još u starom izgledu.
   const pocetna = pathname === '/' || pathname === '/en' || pathname === '/en/'
+  const engleski = pathname === '/en' || pathname.startsWith('/en/')
+
+  // Male animacije (data-pokret) poslije svake promjene stranice.
+  useEffect(() => pokreniPokrete(document), [pathname])
+  // Naslov kartice poziva nazad kad posjetilac ode na drugu karticu.
+  useEffect(() => pratiNaslovKartice(document, engleski ? naslovKartice.en : naslovKartice.bs), [engleski])
 
   // Vlastiti kursor samo za miš; kod se učita tek na prvi pokret miša.
   useEffect(() => {

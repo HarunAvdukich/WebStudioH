@@ -1,6 +1,7 @@
 // Zajednički okvir: tekst, a poslije gradnje i markup u dist (dodaje se u kasnijim zadacima).
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
+import { readFileSync } from 'node:fs'
 import * as okvir from '../src/okvir.js'
 
 function strings(value, out = []) {
@@ -32,4 +33,10 @@ test('404 tekst je sa platna', () => {
 test('naslov kartice postoji na oba jezika', () => {
   assert.ok(okvir.naslovKartice.bs.includes('Hunar'))
   assert.ok(okvir.naslovKartice.en.includes('Hunar'))
+})
+
+test('index.html vraća običnu stranicu ako se pokreti ne jave', () => {
+  const html = readFileSync('index.html', 'utf8')
+  assert.match(html, /dataset\.pokreti/)
+  assert.match(html, /dataset\.kz/)
 })

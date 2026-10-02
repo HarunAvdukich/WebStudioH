@@ -1,0 +1,33 @@
+/* Male animacije (src/lib/pokreti). Skriveno stanje važi samo uz .pokret i tek kad je
+   JavaScript pripremio element (.pk-spremno), pa bez JavaScripta sve ostaje vidljivo. */
+.pk-m { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: 0.1em; margin-bottom: -0.1em; }
+.pk-w { display: inline-block; }
+
+.pokret [data-pokret='izroni'].pk-spremno .pk-w {
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.1, 1);
+  transition-delay: calc(var(--i) * 55ms);
+}
+.pokret [data-pokret='izroni'].pk-vidljiv .pk-w { transform: none; }
+
+.pokret [data-pokret='pojavi'].pk-spremno {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s, transform 1s cubic-bezier(0.2, 0.7, 0.1, 1);
+}
+.pokret [data-pokret='pojavi'].pk-vidljiv { opacity: 1; transform: none; }
+
+/* Linija postoji samo dok se crta: na kraju ostaje samo ispuna, pa je znak tačan. */
+.pokret [data-pokret='crtaj'].pk-spremno path[pathLength] {
+  stroke: var(--pk-crta, #19b07e);
+  stroke-width: var(--pk-debljina, 5);
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  fill-opacity: 0;
+  transition: stroke-dashoffset 1.6s cubic-bezier(0.65, 0, 0.35, 1), fill-opacity 0.8s 1.3s, stroke-opacity 0.6s 1.9s;
+}
+.pokret [data-pokret='crtaj'].pk-vidljiv path[pathLength] { stroke-dashoffset: 0; fill-opacity: 1; stroke-opacity: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pk-w, [data-pokret], [data-pokret] path { transition: none !important; transform: none !important; opacity: 1 !important; stroke-dashoffset: 0 !important; fill-opacity: 1 !important; }
+}
