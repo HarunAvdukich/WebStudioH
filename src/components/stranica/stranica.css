@@ -59,6 +59,7 @@
 .st-vrh__dno .st-uvod, .st-vrh__dno .smj-red { margin-top: 0; }
 @media (min-width: 900px) {
   .st-vrh__dno { grid-template-columns: 1fr 1fr; align-items: start; gap: clamp(32px, 5vw, 80px); margin-top: 40px; }
+  .st-vrh__dno > .st-uvod:only-child { grid-column: 2; }
 }
 .pokret .st-vrh .st-h1 { animation: st-vrh-ulaz 1s var(--e) both; }
 .pokret .st-vrh .st-nad, .pokret .st-vrh .st-uvod, .pokret .st-vrh .smj-red { animation: st-vrh-blago 1.1s var(--e) 0.12s both; }
