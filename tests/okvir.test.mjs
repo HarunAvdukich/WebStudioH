@@ -97,3 +97,13 @@ test('ostale stranice imaju traku za telefon i dugme za vrh', () => {
     assert.match(s.html, /class="ok-vrh/, s.put)
   }
 })
+
+test('404: tekst sa platna, put nazad i WhatsApp', () => {
+  const s = stranice.find((x) => x.put === '404.html')
+  assert.ok(s, 'nema dist/404.html')
+  assert.match(s.html, /Ova stranica ne postoji\./)
+  assert.match(s.html, /Ali vaša može\./)
+  assert.match(s.html, /data-pokret="slozi"/)
+  assert.match(s.html, /href="\/"/)
+  assert.match(s.html, /wa\.me\/387603000751/)
+})

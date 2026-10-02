@@ -255,3 +255,22 @@ html.ok-meni-otvoren { overflow: hidden; }
 .ok-vrh__prsten .pr { stroke: var(--svijetli); stroke-dasharray: 1 1; stroke-linecap: round; }
 @media (max-width: 760px) { .ok-vrh { right: 16px; bottom: 92px; width: 48px; height: 48px; } }
 @media (prefers-reduced-motion: reduce) { .ok-traka, .ok-vrh { transition: none; } }
+
+/* 404 */
+.ok-404 {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 80px 24px;
+  background: var(--zelena);
+  color: var(--krec);
+  text-align: center;
+}
+.ok-404__znak { width: min(240px, 50vw); height: auto; overflow: visible; }
+.ok-404 h1 { margin: 0; font-size: clamp(36px, 6vw, 72px); line-height: 1.05; font-weight: 800; letter-spacing: -0.035em; font-variant-ligatures: none; }
+.ok-404 h1 span { display: block; }
+.ok-404__vasa { color: var(--svijetli); }
+.ok-404__dugmad { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
