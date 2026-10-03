@@ -1,5 +1,5 @@
 import { Head } from 'vite-react-ssg'
-import { contact } from '../data.js'
+import { contact, google } from '../data.js'
 import { SITE_URL, SITE_NAME, ogImageFor } from './Seo.jsx'
 
 // Strukturirani podaci (schema.org, JSON-LD). Firma je na svakoj stranici, a sajt,
@@ -24,6 +24,7 @@ const organizacija = {
     height: 512,
   },
   image: `${SITE_URL}/og/home.jpg`,
+  sameAs: [google.profil],
   description:
     'Web studio iz Bosne i Hercegovine. Pravimo web stranice, web trgovine i sisteme po mjeri: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale.',
   email: contact.email,

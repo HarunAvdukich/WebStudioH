@@ -145,6 +145,14 @@ test('članci su sadržajni i vode na kontakt', () => {
   }
 })
 
+test('firma u JSON-LD vodi na Google profil, a Kontakt na recenziju', () => {
+  const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
+  assert.ok(org.sameAs.some((u) => /^https:\/\/www\.google\.com\/maps\?cid=\d+$/.test(u)), 'nema Google profila u sameAs')
+  for (const path of ['/kontakt', '/en/contact']) {
+    assert.match(pages.find((p) => p.path === path).html, /href="https:\/\/g\.page\/r\/[\w-]+\/review"/, path)
+  }
+})
+
 test('firma ima usluge i oblasti u JSON-LD', () => {
   const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
   assert.ok(org.knowsAbout.length >= 5)
