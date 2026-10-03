@@ -2,6 +2,7 @@
 // česta pitanja i "Pitajte za ovo". Bez JavaScripta sve je vidljivo; pokrete pali
 // src/lib/pokreti (data-pokret) samo uz .pokret na <html>.
 import { waLink, popuni } from '../../lib/whatsapp.js'
+import { prati } from '../../lib/statistika.js'
 
 // Prvi ekran stranice. Naslov je vidljiv od prvog iscrtavanja; ulaz mu pomjera samo transform (CSS).
 export function Vrh({ nad, naslov, uvod, children, className = '' }) {
@@ -107,6 +108,7 @@ export function PitajteZaOvo({ usluga, pitaj }) {
       target="_blank"
       rel="noopener"
       data-kursor={pitaj.dugme}
+      onClick={() => prati('Pitajte za ovo', { usluga: usluga.uPoruci })}
     >
       <span className="st-pitaj__ime">{usluga.ime}</span>
       <span className="st-pitaj__dugme">

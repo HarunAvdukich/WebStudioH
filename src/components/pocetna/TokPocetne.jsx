@@ -10,6 +10,7 @@ import { CestaPitanja, DioNaslov } from '../stranica/dijelovi.jsx'
 import { igraj } from '../../lib/primjeri.js'
 import { popuni, waLink } from '../../lib/whatsapp.js'
 import { cl } from '../../lib/pokreti/racun.js'
+import { prati } from '../../lib/statistika.js'
 
 const zivo = () => typeof document !== 'undefined' && document.documentElement.classList.contains('pokret')
 
@@ -66,6 +67,7 @@ function KarticaUsluge({ u, i, t }) {
   const ponovo = (e) => {
     if (!zivo()) return
     igre.current += 1
+    prati('Primjer', { usluga: u.uPoruci })
     igraj(ref.current.querySelector('.pr'), u.id, { n: igre.current, cilj: e?.target, t: t.primjeri })
   }
 
@@ -90,7 +92,7 @@ function KarticaUsluge({ u, i, t }) {
       >
         <Primjer id={u.id} t={t.primjeri} aktivan={false} className="pr--veci" />
       </div>
-      <a className="tk-pitaj" href={waLink(popuni(t.sta.pitaj.poruka, { usluga: u.uPoruci }))} target="_blank" rel="noopener">
+      <a className="tk-pitaj" href={waLink(popuni(t.sta.pitaj.poruka, { usluga: u.uPoruci }))} target="_blank" rel="noopener" onClick={() => prati('Pitajte za ovo', { usluga: u.uPoruci })}>
         {t.sta.pitaj.dugme}
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
           <path d="M5 12h14M13 6l6 6-6 6" />
