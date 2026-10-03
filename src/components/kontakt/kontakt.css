@@ -1,0 +1,159 @@
+/* Kontakt: poruka koja se sama piše (prvi ekran), kanali i obrazac. */
+
+/* ---------- prvi ekran ---------- */
+.kt-poruka { position: relative; padding: clamp(48px, 6vw, 96px) 0 clamp(56px, 7vw, 100px); overflow: hidden; }
+.kt-poruka__sjaj {
+  position: absolute;
+  left: 30%;
+  top: -35%;
+  width: 1000px;
+  height: 900px;
+  background: radial-gradient(closest-side, rgba(14, 138, 100, 0.3), rgba(14, 138, 100, 0) 70%);
+  transform: translate(calc(var(--px, 0) * -40px), calc(var(--py, 0) * -30px));
+  transition: transform 0.6s var(--e);
+  pointer-events: none;
+}
+.kt-poruka__znak {
+  position: absolute;
+  right: -14%;
+  top: 4%;
+  width: min(640px, 56vw);
+  height: auto;
+  opacity: 0.045;
+  transform: translate(calc(var(--px, 0) * 26px), calc(var(--py, 0) * 18px));
+  transition: transform 0.8s var(--e);
+  pointer-events: none;
+}
+.kt-poruka__znak path { fill: none; stroke: var(--mint); stroke-width: 3; }
+.kt-poruka__in { position: relative; display: grid; gap: 48px; align-items: center; }
+@media (min-width: 960px) {
+  .kt-poruka__in { grid-template-columns: minmax(0, 1fr) auto; gap: clamp(48px, 7vw, 110px); }
+}
+.kt-poruka__h1 { font-size: clamp(40px, 4.8vw, 74px); }
+.pokret .kt-poruka__h1 { animation: st-vrh-ulaz 1s var(--e) both; }
+.kt-poruka .st-uvod { max-width: 560px; }
+.kt-poruka__pitanje { margin-top: 26px !important; font-size: 20px; font-weight: 600; color: var(--tekst2); }
+.kt-poruka__pitanje .smj__r { color: var(--svijetli); }
+.kt-izbori { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; max-width: 600px; }
+.kt-izbori button {
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 22px;
+  border: 1.5px solid var(--linija);
+  background: transparent;
+  color: var(--krec);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.25s, border-color 0.25s, color 0.25s, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.kt-izbori button:hover { border-color: var(--mint); }
+.kt-izbori button.je-izabran { background: var(--mint); border-color: var(--mint); color: var(--zelena); transform: scale(1.04); }
+
+/* telefon sa porukom */
+.kt-tel { position: relative; justify-self: center; width: 330px; max-width: 100%; height: min(520px, calc(100vh - 170px)); min-height: 420px; border-radius: 42px; border: 10px solid #1d332b; background: #0b1d17; overflow: hidden; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5); }
+.kt-tel__zag { display: flex; align-items: center; gap: 10px; padding: 18px 16px 12px; background: #13302a; border-bottom: 1px solid var(--linija); }
+.kt-tel__zag svg { width: 36px; height: auto; }
+.kt-tel__zag b { display: block; font-size: 16px; }
+.kt-tel__zag small { display: block; font-size: 12px; color: var(--svijetli); }
+.kt-tel__chat { position: absolute; left: 0; right: 0; top: 70px; bottom: 150px; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px; overflow: hidden; }
+.kt-tel__m { align-self: flex-end; max-width: 86%; padding: 10px 13px; border-radius: 18px 18px 4px 18px; background: var(--smaragd); color: #fff; font-size: 13.5px; line-height: 1.45; animation: kt-poslano 0.65s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.kt-tel__m small { display: block; margin-top: 3px; text-align: right; font-size: 11px; color: var(--mint); animation: kt-isporuceno 0.4s 0.7s both; }
+@keyframes kt-poslano { from { opacity: 0; transform: translateY(80px) scale(0.86); } }
+@keyframes kt-isporuceno { from { opacity: 0; } }
+.kt-tel__unos { position: absolute; left: 12px; right: 12px; bottom: 14px; display: flex; align-items: flex-end; gap: 8px; }
+.kt-tel__polje { flex: 1; min-height: 46px; max-height: 128px; padding: 11px 14px; border-radius: 22px; background: #1d3b31; font-size: 14px; line-height: 1.45; color: var(--krec); overflow: hidden; }
+.kt-tel__polje.je-pise::after { content: ''; display: inline-block; width: 1.5px; height: 15px; margin-left: 1px; vertical-align: -2px; background: var(--mint); animation: kt-kursor 1s steps(1) infinite; }
+@keyframes kt-kursor { 50% { opacity: 0; } }
+.kt-tel__salji { flex: none; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: var(--smaragd); transition: transform 0.2s; }
+.kt-tel__salji:active { transform: scale(0.9); }
+@media (prefers-reduced-motion: no-preference) {
+  .pokret .kt-tel__salji.je-spremno { animation: kt-puls 1.6s ease-out infinite; }
+}
+@keyframes kt-puls { 0% { box-shadow: 0 0 0 0 rgba(25, 176, 126, 0.55); } 100% { box-shadow: 0 0 0 16px rgba(25, 176, 126, 0); } }
+
+/* ---------- kanali ---------- */
+.kt-kanali { padding: 0 0 clamp(40px, 6vw, 80px); }
+.kt-kanali__red { display: grid; gap: 12px; margin-top: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.kt-kanal { display: flex; align-items: center; gap: 14px; height: 100%; padding: 18px 20px; border-radius: 22px; border: 1px solid var(--linija); background: rgba(227, 241, 234, 0.03); text-decoration: none; transition: border-color 0.25s, background-color 0.25s; }
+a.kt-kanal:hover { border-color: var(--mint); background: rgba(227, 241, 234, 0.06); }
+.kt-kanal__ik { display: flex; flex: none; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: var(--mint); color: var(--zelena); }
+.kt-kanal__ime { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--siva); }
+.kt-kanal__vr, .kt-kanal .ok-broj { margin-left: auto; font-size: 17px; font-weight: 700; color: var(--krec); }
+
+/* ---------- obrazac ---------- */
+.kt-obrazac { background: var(--zelena-dublja); }
+.kt-obrazac__in { display: grid; gap: 32px; }
+@media (min-width: 960px) {
+  .kt-obrazac__in { grid-template-columns: 1fr 1.25fr; gap: 72px; align-items: start; }
+}
+.ob { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.ob__zamka { position: absolute; left: -9999px; }
+.ob__p { position: relative; display: block; }
+.ob__p--cijelo { grid-column: 1 / -1; }
+.ob__p input, .ob__p textarea {
+  width: 100%;
+  padding: 26px 16px 10px;
+  border-radius: 16px;
+  border: 1.5px solid var(--linija);
+  background: rgba(227, 241, 234, 0.04);
+  color: var(--krec);
+  font: inherit;
+  font-size: 16px;
+  resize: vertical;
+  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+}
+.ob__p input:focus, .ob__p textarea:focus { outline: none; border-color: var(--svijetli); background: rgba(227, 241, 234, 0.07); box-shadow: 0 0 0 4px rgba(25, 176, 126, 0.15); }
+.ob__p > span { position: absolute; left: 17px; top: 18px; font-size: 16px; color: var(--siva); pointer-events: none; transform-origin: 0 0; transition: transform 0.3s var(--e), color 0.3s; }
+.ob__p input:focus + span, .ob__p input:not(:placeholder-shown) + span,
+.ob__p textarea:focus + span, .ob__p textarea:not(:placeholder-shown) + span { transform: translateY(-11px) scale(0.76); color: var(--svijetli); }
+.ob__primjer { display: block; margin-top: 6px; font-size: 13px; color: var(--siva); }
+.ob__izbor { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0; padding: 0; border: 0; }
+.ob__izbor legend { width: 100%; margin-bottom: 8px; font-size: 14px; font-weight: 700; color: var(--siva); }
+.ob__izbor label { position: relative; }
+.ob__izbor input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.ob__izbor span { display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 21px; border: 1.5px solid var(--linija); font-size: 15px; font-weight: 700; transition: background-color 0.25s, border-color 0.25s, color 0.25s, transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); }
+.ob__izbor label:hover span { border-color: var(--mint); }
+.ob__izbor input:checked + span { background: var(--mint); border-color: var(--mint); color: var(--zelena); transform: scale(1.04); }
+.ob__izbor input:focus-visible + span { outline: 2px solid var(--mint); outline-offset: 3px; }
+.ob__dno { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 6px; }
+.ob__dno small { font-size: 14px; color: var(--siva); }
+.ob__salji {
+  position: relative;
+  min-width: 170px;
+  height: 54px;
+  padding: 0 28px;
+  border-radius: 27px;
+  border: 0;
+  background: var(--mint);
+  color: var(--zelena);
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s, min-width 0.45s cubic-bezier(0.7, 0, 0.3, 1);
+}
+.ob__salji:hover { background: #fff; }
+.ob__krug { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; margin: -27px 0 0 -27px; opacity: 0; }
+.ob__krug circle { fill: none; stroke: var(--zelena); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 0.3 0.7; transform-origin: center; }
+.ob__salji.je-salje .ob__krug { opacity: 1; }
+.ob__salji.je-salje .ob__krug circle { animation: ob-vrti 0.8s linear infinite; }
+.ob__salji.je-salje .ob__salji-tx { opacity: 0; }
+@keyframes ob-vrti { to { transform: rotate(360deg); } }
+.ob__greska { grid-column: 1 / -1; padding: 12px 16px; border-radius: 14px; background: rgba(214, 80, 60, 0.14); border: 1px solid rgba(214, 80, 60, 0.4); font-size: 15px; color: #f3c9c0; }
+.ob-hvala { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 32px; border-radius: 28px; background: var(--zelena-svjetlija); border: 1px solid var(--linija); }
+.ob-hvala svg { width: 72px; height: 72px; }
+.ob-hvala circle { fill: var(--smaragd); }
+.ob-hvala path { fill: none; stroke: #fff; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1 1; animation: ob-kvacica 0.6s 0.2s ease-out both; }
+@keyframes ob-kvacica { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+.ob-hvala h3 { margin: 6px 0 0; font-size: 28px; }
+.ob-hvala p { font-size: 17px; color: var(--tekst2); }
+@media (max-width: 560px) {
+  .ob { grid-template-columns: 1fr; }
+  .kt-tel { height: 500px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .kt-poruka__sjaj, .kt-poruka__znak { transition: none; transform: none; }
+  .kt-tel__m, .kt-tel__m small, .ob-hvala path { animation: none; }
+}

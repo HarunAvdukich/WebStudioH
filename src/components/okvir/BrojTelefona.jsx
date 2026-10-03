@@ -1,16 +1,17 @@
 import { useRef, useState } from 'react'
 import { contact } from '../../data.js'
-import { okvir } from '../../okvir.js'
+import { useOkvir } from '../../lib/useOkvir.js'
 
 // Broj telefona: na računaru klik kopira broj i pokaže potvrdu, na telefonu zove.
 export default function BrojTelefona() {
+  const { okvir } = useOkvir()
   const [kopirano, setKopirano] = useState(false)
   const tajmer = useRef(0)
   const klik = (e) => {
     if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches || !navigator.clipboard) return
     e.preventDefault()
     navigator.clipboard
-      .writeText(contact.phoneDisplay)
+      .writeText(okvir.telefon)
       .then(() => {
         setKopirano(true)
         clearTimeout(tajmer.current)
@@ -23,7 +24,7 @@ export default function BrojTelefona() {
   return (
     <>
       <a className={`ok-broj${kopirano ? ' je-kopirano' : ''}`} href={contact.phoneHref} onClick={klik} data-kursor={okvir.kopiraj}>
-        {kopirano ? okvir.kopirano : contact.phoneDisplay}
+        {kopirano ? okvir.kopirano : okvir.telefon}
       </a>
       <span className={`ok-tost${kopirano ? ' je-vidljiv' : ''}`} role="status" aria-live="polite">
         {kopirano ? okvir.kopiranoDugo : ''}

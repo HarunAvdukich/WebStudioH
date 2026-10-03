@@ -50,3 +50,22 @@ export function magnet(dx, dy, { radijus = 140, snaga = 0.3 } = {}) {
   if (Math.hypot(dx, dy) > radijus) return { x: 0, y: 0 }
   return { x: dx * snaga, y: dy * snaga }
 }
+
+// Tekst koji se pali dok čitate: koliko je pasusa upaljeno (0 do 1) prema njegovom vrhu.
+// Počne kad vrh pređe 92% ekrana, a sve je upaljeno kad vrh dođe na 52% ekrana.
+export const paljenje = (vrh, ekran) => cl((ekran * 0.92 - vrh) / (ekran * 0.4))
+
+// Brojka sa razdjelnikom hiljada: bosanski tačka (4.453), engleski zarez (4,453).
+export const formatBroj = (n, jezik = 'bs') =>
+  String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, jezik === 'en' ? ',' : '.')
+
+// Nagib kartice pod mišem, u stepenima. x i y su položaj miša u kartici.
+export function nagib(x, y, sirina, visina, max = 6) {
+  return { rx: (0.5 - y / visina) * 2 * max, ry: (x / sirina - 0.5) * 2 * max }
+}
+
+// Napredak zakačene scene: 0 kad vrh dijela dođe na vrh ekrana, 1 kad dno dođe na dno.
+export function napredakSkrola({ top, height }, ekran) {
+  const max = height - ekran
+  return max > 0 ? cl(-top / max) : 0
+}

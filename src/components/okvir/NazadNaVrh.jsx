@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
-import { okvir } from '../../okvir.js'
+import { useOkvir } from '../../lib/useOkvir.js'
 import { procitano, vidljivVrh } from '../../lib/pokreti/racun.js'
 import { glatko } from '../../lib/glatkiSkrol.js'
 
 // Dugme za vrh na dugim stranicama. Prsten oko njega pokazuje koliko je pročitano.
 export default function NazadNaVrh() {
+  const { okvir } = useOkvir()
   const [stanje, setStanje] = useState({ vidljiv: false, p: 0 })
 
   useEffect(() => {

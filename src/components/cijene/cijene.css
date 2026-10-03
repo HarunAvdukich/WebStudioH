@@ -1,0 +1,92 @@
+/* Cijene: razgovor (zakačena scena na računaru, tok na telefonu), kartice koje se okrenu,
+   održavanje sa mjeračem i česta pitanja. */
+
+/* ---------- razgovor: poruke ---------- */
+.rz__m { max-width: 82%; padding: 10px 14px; font-size: 15px; line-height: 1.45; }
+.rz__m--vi { align-self: flex-end; border-radius: 18px 18px 4px 18px; background: var(--smaragd); color: #fff; }
+.rz__m--mi { align-self: flex-start; border-radius: 18px 18px 18px 4px; background: #1d3b31; color: var(--krec); }
+.rz__m--dok { display: flex; align-items: center; gap: 12px; }
+.rz__m--dok i { position: relative; flex: none; width: 34px; height: 42px; border-radius: 6px; background: var(--krec); }
+.rz__m--dok i::after { content: ''; position: absolute; left: 7px; right: 7px; top: 10px; height: 3px; border-radius: 2px; background: #a9bdb4; box-shadow: 0 8px 0 #a9bdb4, 0 16px 0 #a9bdb4; }
+.rz__m--dok span { font-weight: 700; }
+.rz__m--dok small { display: block; font-weight: 500; font-size: 12px; color: var(--siva); }
+.rz__oznaka { margin-top: 16px !important; font-size: 13px; line-height: 1.5; color: var(--siva); }
+
+/* tok (telefon i bez JavaScripta) */
+.rz__tok { display: flex; flex-direction: column; gap: 34px; max-width: 720px; }
+.rz__blok { display: flex; flex-direction: column; gap: 10px; }
+.rz__korak { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 6px; font-size: 16px; line-height: 1.5; color: var(--tekst2); }
+.rz__korak b { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--smaragd); color: #fff; font-size: 15px; }
+.rz__korak strong { color: var(--krec); }
+.rz--tok .rz__m { max-width: 88%; }
+
+/* zakačena scena */
+.rz--scena { position: relative; height: 380vh; }
+.rz__ekran {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: min(1200px, 100% - 2 * var(--rub));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+}
+.rz__naslov { margin: 12px 0 0; font-size: clamp(30px, 3.2vw, 46px); line-height: 1.05; font-weight: 700; }
+.rz__koraci { margin: 28px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.rz__koraci li { display: flex; gap: 16px; align-items: flex-start; padding: 12px 16px; border-radius: 18px; color: var(--siva); transition: background-color 0.4s, color 0.4s; }
+.rz__koraci li b { display: inline-flex; flex: none; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--linija); font-size: 14px; transition: background-color 0.4s, border-color 0.4s, color 0.4s; }
+.rz__koraci li span { font-size: 18px; font-weight: 700; line-height: 1.35; }
+.rz__koraci li small { display: block; margin-top: 2px; font-size: 14px; font-weight: 500; color: var(--siva); }
+.rz__koraci li.je-sad { background: rgba(227, 241, 234, 0.07); color: var(--krec); }
+.rz__koraci li.je-sad b, .rz__koraci li.je-bilo b { background: var(--smaragd); border-color: var(--smaragd); color: #fff; }
+.rz__koraci li.je-sad small { color: var(--tekst2); }
+.rz__desno { display: flex; flex-direction: column; align-items: center; }
+.rz__tel { position: relative; width: 320px; height: min(560px, calc(100vh - 150px)); border-radius: 42px; border: 10px solid #1d332b; background: #0b1d17; overflow: hidden; box-shadow: 0 32px 80px rgba(0, 0, 0, 0.5); }
+.rz__zag { display: flex; align-items: center; gap: 10px; padding: 18px 16px 12px; background: #13302a; border-bottom: 1px solid var(--linija); }
+.rz__zag svg { width: 36px; height: auto; }
+.rz__zag b { display: block; font-size: 16px; }
+.rz__zag small { display: block; font-size: 12px; color: var(--svijetli); }
+.rz__poruke { position: absolute; left: 0; right: 0; top: 70px; bottom: 0; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 14px; overflow: hidden; }
+.rz--scena .rz__m { font-size: 13.5px; animation: rz-poruka 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+.rz--scena .rz__m--vi { transform-origin: 100% 100%; }
+.rz--scena .rz__m--mi { transform-origin: 0 100%; }
+@keyframes rz-poruka { from { opacity: 0; transform: translateY(16px) scale(0.9); } }
+.rz__pise { align-self: flex-start; display: flex; gap: 4px; padding: 12px 14px; border-radius: 18px 18px 18px 4px; background: #1d3b31; }
+.rz__pise i { width: 7px; height: 7px; border-radius: 50%; background: var(--siva); animation: rz-skok 1s infinite; }
+.rz__pise i:nth-child(2) { animation-delay: 0.15s; }
+.rz__pise i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes rz-skok { 50% { transform: translateY(-4px); opacity: 0.6; } }
+.rz--scena .rz__oznaka { max-width: 320px; text-align: center; }
+
+/* ---------- kartice koje se okrenu ---------- */
+.ci-kartice { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.fk-mjesto { perspective: 1200px; }
+.fk { display: block; width: 100%; height: 300px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.fk__in { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
+.fk.je-okrenuta .fk__in, .fk:focus-visible .fk__in { transform: rotateY(180deg); }
+@media (hover: hover) and (pointer: fine) {
+  .fk:hover .fk__in { transform: rotateY(180deg); }
+}
+.fk__s { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 26px; border-radius: 26px; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.fk__s--pr { justify-content: flex-end; background: linear-gradient(160deg, #1b4637, #122f25); border: 1px solid var(--linija); }
+.fk__br { margin-bottom: auto; font-size: 15px; font-weight: 800; color: var(--svijetli); }
+.fk__s--pr b { font-size: 28px; line-height: 1.08; letter-spacing: -0.02em; }
+.fk__s--pr small { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--siva); }
+.fk__s--za { gap: 12px; background: var(--mint); color: var(--zelena); transform: rotateY(180deg); font-size: 16px; line-height: 1.5; }
+.fk__s--za b { font-size: 20px; letter-spacing: -0.02em; }
+
+/* ---------- održavanje i pitanja ---------- */
+.ci-odrzavanje { background: var(--zelena-dublja); }
+.ci-odrzavanje__in { display: grid; gap: 40px; align-items: center; }
+.ci-odrzavanje .st-dn { margin-bottom: 0; }
+.ci-pitanja__in { display: grid; gap: 24px; }
+@media (min-width: 900px) {
+  .ci-odrzavanje__in { grid-template-columns: 1.3fr 1fr; justify-items: start; }
+  .ci-pitanja__in { grid-template-columns: 1fr 1.5fr; gap: 64px; align-items: start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fk__in, .rz__koraci li { transition: none; }
+  .rz--scena .rz__m, .rz__pise i { animation: none; }
+}

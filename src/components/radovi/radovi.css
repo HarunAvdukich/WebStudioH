@@ -1,0 +1,135 @@
+/* Radovi: dubina na vrhu, vodoravna galerija (zakačena na širokom ekranu, lista na telefonu),
+   lepeza snimaka pod mišem i sloj kartice koja se raširi u studiju. */
+
+/* ---------- vrh sa dubinom ---------- */
+.rd-vrh { position: relative; overflow: hidden; }
+.rd-vrh .st-h1 { max-width: 760px; }
+.rd-vrh .st-vrh__dno > .st-uvod:only-child { grid-column: 1; }
+.rd-dubina { display: none; }
+@media (min-width: 1024px) {
+  .rd-dubina { display: block; position: absolute; inset: 0; pointer-events: none; }
+  .rd-dubina img { position: absolute; border-radius: 18px; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45); }
+  .rd-dubina__1 {
+    right: 4%;
+    top: 16%;
+    width: min(440px, 32vw);
+    height: auto;
+    opacity: 0.85;
+    transform: translate(calc(var(--mx, 0) * -24px), calc(var(--sy, 0) * -0.12px + var(--my, 0) * -16px)) rotate(-3deg);
+  }
+  .rd-dubina__2 {
+    right: 26%;
+    top: 44%;
+    width: min(150px, 11vw);
+    height: auto;
+    border-radius: 22px;
+    transform: translate(calc(var(--mx, 0) * 30px), calc(var(--sy, 0) * -0.3px + var(--my, 0) * 20px)) rotate(5deg);
+  }
+  .rd-dubina__3 {
+    right: 2%;
+    top: 52%;
+    width: min(140px, 10vw);
+    height: auto;
+    border-radius: 22px;
+    opacity: 0.9;
+    transform: translate(calc(var(--mx, 0) * 44px), calc(var(--sy, 0) * -0.45px + var(--my, 0) * 30px)) rotate(-6deg);
+  }
+}
+
+/* ---------- vodoravna galerija: lista (telefon i bez JavaScripta) ---------- */
+.vg { position: relative; }
+.vg__traka { display: flex; flex-direction: column; }
+.vg__ploca {
+  position: relative;
+  display: grid;
+  gap: 28px;
+  width: min(1200px, 100% - 2 * var(--rub));
+  margin: 0 auto;
+  padding: clamp(64px, 9vw, 120px) 0;
+  border-top: 1px solid var(--linija);
+}
+.vg__br { font-size: 13px; font-weight: 800; letter-spacing: 0.14em; color: var(--svijetli); }
+.vg__tekst .st-nad { margin-top: 10px; }
+.vg__ime { margin: 8px 0 0; font-size: clamp(44px, 6vw, 88px); line-height: 0.95; font-weight: 800; letter-spacing: -0.045em; }
+.vg__opis { margin-top: 16px; max-width: 520px; font-size: 18px; line-height: 1.55; color: var(--tekst2); }
+.vg__brojke { display: grid; gap: 14px; margin: 24px 0 0; }
+.vg__brojke div { display: flex; align-items: baseline; gap: 14px; }
+.vg__brojke dt { min-width: 3.6em; font-size: clamp(30px, 3vw, 40px); font-weight: 800; letter-spacing: -0.03em; color: var(--krec); font-variant-numeric: tabular-nums; }
+.vg__brojke dd { margin: 0; font-size: 16px; line-height: 1.35; color: var(--tekst2); }
+.vg__brojke small { display: block; font-size: 12px; color: var(--siva); }
+.vg__izrada { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; padding: 8px 14px; border-radius: 18px; background: rgba(227, 241, 234, 0.08); font-size: 14px; font-weight: 700; color: var(--mint); }
+.vg__izrada::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #f0b44c; }
+.vg__linkovi { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px; margin-top: 26px; }
+.vg__kako { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 24px; background: var(--mint); color: var(--zelena) !important; font-weight: 700; text-decoration: none; }
+.vg__kako svg { transition: transform 0.35s var(--e); }
+.vg__kako:hover svg { transform: translateX(4px); }
+.vg__otvori { font-weight: 700; color: var(--tekst2); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: rgba(227, 241, 234, 0.35); }
+
+/* vizual: snimak sa računara i dva telefona, lepeza pod mišem (23) */
+.vg__vizual { position: relative; display: block; aspect-ratio: 16 / 11; text-decoration: none; }
+.vg__racunar, .vg__tel { position: absolute; display: block; overflow: hidden; background: var(--zelena-svjetlija); box-shadow: 0 26px 60px rgba(0, 0, 0, 0.45); }
+.vg__racunar { left: 0; top: 4%; width: 82%; border-radius: 16px; }
+.vg__racunar img, .vg__tel img { display: block; width: 100%; height: auto; }
+.vg__tel { width: 24%; border-radius: 18px; border: 4px solid #1d332b; transition: rotate 0.6s cubic-bezier(0.22, 1, 0.36, 1), translate 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
+.vg__tel--1 { right: 14%; top: 22%; rotate: -4deg; }
+.vg__tel--2 { right: 0; top: 34%; rotate: 5deg; }
+@media (hover: hover) and (pointer: fine) {
+  .vg__vizual:hover .vg__tel--1 { rotate: -12deg; translate: -22% -4%; }
+  .vg__vizual:hover .vg__tel--2 { rotate: 13deg; translate: 14% 2%; }
+}
+.vg__vizual.je-dodir .vg__tel--1 { rotate: -12deg; translate: -22% -4%; }
+.vg__vizual.je-dodir .vg__tel--2 { rotate: 13deg; translate: 14% 2%; }
+.vg__gravura { position: absolute; inset: 6% 0; display: flex; align-items: center; justify-content: center; border-radius: 22px; border: 1px dashed rgba(227, 241, 234, 0.25); background: repeating-linear-gradient(135deg, rgba(227, 241, 234, 0.03) 0 10px, transparent 10px 20px); }
+.vg__gravura span { font-size: clamp(56px, 8vw, 120px); font-weight: 800; letter-spacing: -0.04em; color: transparent; -webkit-text-stroke: 1.5px rgba(227, 241, 234, 0.45); }
+.vg__citat { margin: 0; padding: 22px 24px; border-left: 3px solid var(--svijetli); border-radius: 0 18px 18px 0; background: rgba(227, 241, 234, 0.05); }
+.vg__citat p { font-size: 17px; line-height: 1.55; color: var(--krec); }
+.vg__citat cite { display: block; margin-top: 10px; font-size: 14px; font-style: normal; font-weight: 700; color: var(--svijetli); }
+.vg__napredak { display: none; }
+@media (min-width: 900px) {
+  .vg__ploca { grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr); align-items: center; column-gap: clamp(40px, 5vw, 80px); }
+  .vg__citat { grid-column: 1 / -1; max-width: 760px; }
+}
+
+/* ---------- vodoravna galerija: zakačena (širok ekran, uz .pokret) ---------- */
+.vg.je-vodoravno { height: calc(100vh + (var(--n) - 1) * 100vw); }
+.vg.je-vodoravno .vg__ekran { position: sticky; top: 0; height: 100vh; overflow: hidden; }
+.vg.je-vodoravno .vg__traka { flex-direction: row; width: max-content; height: 100%; will-change: transform; }
+.vg.je-vodoravno .vg__ploca {
+  flex: none;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 96px var(--rub) 64px;
+  border-top: 0;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  grid-template-rows: 1fr auto;
+  align-content: center;
+  row-gap: 18px;
+}
+.vg.je-vodoravno .vg__ime { font-size: clamp(48px, 5.4vw, 84px); }
+.vg.je-vodoravno .vg__opis { font-size: 17px; }
+.vg.je-vodoravno .vg__brojke { gap: 10px; margin-top: 18px; }
+.vg.je-vodoravno .vg__brojke dt { font-size: clamp(26px, 2.4vw, 34px); }
+.vg.je-vodoravno .vg__vizual { width: min(100%, calc((100vh - 220px) * 1.45)); justify-self: center; }
+.vg.je-vodoravno .vg__racunar { translate: calc(var(--o, 0) * -90px) 0; }
+.vg.je-vodoravno .vg__tel--1 { translate: calc(var(--o, 0) * 60px) 0; }
+.vg.je-vodoravno .vg__tel--2 { translate: calc(var(--o, 0) * 140px) 0; }
+.vg.je-vodoravno .vg__vizual:hover .vg__tel--1 { translate: calc(var(--o, 0) * 60px - 22%) -4%; }
+.vg.je-vodoravno .vg__vizual:hover .vg__tel--2 { translate: calc(var(--o, 0) * 140px + 14%) 2%; }
+.vg.je-vodoravno .vg__citat { grid-column: 1; grid-row: 2; align-self: end; padding: 14px 18px; }
+@media (max-height: 759px) {
+  .vg.je-vodoravno .vg__citat { display: none; }
+}
+.vg.je-vodoravno .vg__citat p { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.vg.je-vodoravno .vg__tekst { grid-row: 1; align-self: center; }
+.vg.je-vodoravno .vg__vizual { grid-row: 1 / span 2; }
+.vg.je-vodoravno .vg__napredak { display: block; position: absolute; left: var(--rub); right: var(--rub); bottom: 22px; height: 2px; background: var(--linija); }
+.vg.je-vodoravno .vg__napredak span { display: block; height: 100%; background: var(--svijetli); transform-origin: 0 50%; transform: scaleX(var(--vg-p, 0)); }
+
+/* ---------- kartica koja se raširi u studiju (31) ---------- */
+.rasiri { position: fixed; inset: 0; z-index: 2147481000; background: #0f241d; pointer-events: none; }
+.rasiri__slika { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .vg__tel { transition: none; }
+}

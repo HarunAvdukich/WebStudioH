@@ -1,0 +1,330 @@
+/* ============================================================
+   Prvi ekran početne: "Radimo [riječ] za firme u BiH." i živ primjer usluge
+   (izbor vlasnika 2. 10. 2026, animacije-10 za telefon i animacije-12 za računar).
+   Osnova je tok (telefon, uski prozor, bez JavaScripta). Na širokom ekranu uz .pokret
+   ovo je prvi sloj priče: znak gore lijevo, riječ ispod, primjer desno, svjetlo prati miš.
+   ============================================================ */
+
+.pe {
+  --pe-grad: linear-gradient(100deg, #e3f1ea 0%, #86e3bf 45%, #19b07e 100%);
+  --pe-e: cubic-bezier(0.2, 0.7, 0.1, 1);
+  --pe-polje: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-40 -40 250 204'%3E%3Cg transform='translate(2%2C2) scale(0.38961)' fill='%2319b07e'%3E%3Cpath d='M0.000%2C0 V159.000 A149.000%2C149.000 0 0 0 298.000%2C159.000 V96.009 A57.000%2C57.000 0 0 0 220.000%2C149.000 V159.000 A71.000%2C71.000 0 0 1 78.000%2C159.000 V0 Z'/%3E%3Cpath d='M0.000%2C0 V159.000 A149.000%2C149.000 0 0 0 298.000%2C159.000 V96.009 A57.000%2C57.000 0 0 0 220.000%2C149.000 V159.000 A71.000%2C71.000 0 0 1 78.000%2C159.000 V0 Z' transform='rotate(180 213 154)'/%3E%3C/g%3E%3C/svg%3E");
+  position: relative;
+  overflow: hidden;
+  padding: 26px var(--pad) 34px;
+}
+
+/* pozadina: dva tiha svjetla (tok); polje sitnih znakova i sjaj (priča na računaru) */
+.pe-pozadina { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+.pe-aura { position: absolute; border-radius: 50%; filter: blur(70px); }
+.pe-aura--1 { left: -150px; top: -60px; width: 380px; height: 380px; background: #0e8a64; opacity: 0.42; }
+.pe-aura--2 { right: -150px; top: 340px; width: 320px; height: 320px; background: #19b07e; opacity: 0.22; }
+.pokret .pe-aura--1 { animation: pe-aura1 15s ease-in-out infinite alternate; }
+.pokret .pe-aura--2 { animation: pe-aura2 18s ease-in-out infinite alternate; }
+@keyframes pe-aura1 { to { transform: translate(150px, 170px) scale(1.2); } }
+@keyframes pe-aura2 { to { transform: translate(-150px, -120px) scale(0.9); } }
+.pe-polje, .pe-sjaj { display: none; }
+
+.pe-tekst { position: relative; }
+
+/* "Primamo nove projekte" ili pozdrav sa trgovine koju smo napravili */
+.pe-cip {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 14px 7px 11px;
+  border: 1px solid rgba(227, 241, 234, 0.14);
+  border-radius: 18px;
+  background: rgba(227, 241, 234, 0.07);
+  color: var(--mint);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+.pe-cip i { flex: none; width: 9px; height: 9px; border-radius: 50%; background: #3ddc97; }
+.pokret .pe-cip i { animation: pe-ziv 1.8s infinite; }
+@keyframes pe-ziv { 0% { box-shadow: 0 0 0 0 rgba(61, 220, 151, 0.6); } 70%, 100% { box-shadow: 0 0 0 8px rgba(61, 220, 151, 0); } }
+.pe-cip--pozdrav { border-color: rgba(25, 176, 126, 0.5); background: rgba(25, 176, 126, 0.16); transition: background-color 0.25s; }
+.pe-cip--pozdrav:hover { background: rgba(25, 176, 126, 0.26); }
+
+/* naslov: mali red, velika riječ, mali red */
+.pe-naslov { margin: 16px 0 0; font-weight: 600; letter-spacing: -0.02em; }
+.pe-mali, .pe-dole { display: block; font-size: 28px; line-height: 1.15; font-weight: 600; letter-spacing: -0.02em; }
+.pe-mali { color: var(--siva); }
+.pe-dole { margin-top: 4px; }
+.pe-vel { position: relative; display: block; height: 158px; margin-top: 2px; container-type: inline-size; }
+.pe-vel b {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: block;
+  visibility: hidden;
+  font-size: min(74px, calc(100cqw / (var(--n2) * 0.56)));
+  line-height: 1.02;
+  font-weight: 800;
+  letter-spacing: -0.055em;
+  white-space: nowrap;
+}
+.pe-vel b.je-sad, .pe-vel b.je-bilo { visibility: visible; }
+.pe-red { display: block; overflow: hidden; padding: 0 0.04em 0.07em 0; }
+.pe-razmak { display: none; }
+.pe-slovo {
+  display: inline-block;
+  background: var(--pe-grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transform: translateY(110%);
+}
+.je-sad .pe-slovo { transform: none; }
+.je-bilo .pe-slovo { transform: translateY(-110%); opacity: 0; }
+.pokret .je-sad .pe-slovo { transition: transform 0.75s var(--pe-e) calc(220ms + var(--i) * 22ms); }
+.pokret .je-bilo .pe-slovo { transition: transform 0.55s cubic-bezier(0.6, 0, 0.4, 1) calc(var(--i) * 18ms), opacity 0.55s calc(var(--i) * 18ms); }
+
+.pe-br { position: absolute; right: 0; top: 62px; color: #86e3bf; font-size: 13px; font-weight: 800; font-variant-numeric: tabular-nums; }
+
+.pe-dugmad { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 20px; }
+.pe-dugme { transition: background-color 0.2s, transform 0.7s cubic-bezier(0.3, 1.5, 0.4, 1); }
+.pe-dugme.ok-magnet--prati { transition: background-color 0.2s, transform 0.15s linear; }
+
+/* kartica sa primjerom */
+.pe-kartica { position: relative; margin-top: 24px; }
+.pe-poruka { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 0 0 10px; color: var(--siva); font-size: 13px; line-height: 1.35; }
+.pe-poruka b { color: var(--mint); font-weight: 700; }
+.pokret .pe-poruka__tekst { animation: pe-udji 0.4s ease-out; }
+@keyframes pe-udji { from { opacity: 0; } }
+.pe-dodir {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: rgba(227, 241, 234, 0.1);
+  color: #86e3bf;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.pe-dodir i { width: 6px; height: 6px; border-radius: 50%; background: #86e3bf; }
+.pokret .pe-dodir i { animation: pe-ziv 1.6s infinite; }
+.pe-scena {
+  position: relative;
+  height: 210px;
+  overflow: hidden;
+  border: 1px solid rgba(227, 241, 234, 0.12);
+  border-radius: 28px;
+  background: #0f2a20;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+.pe-scena:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; }
+.pe-scena .pr { position: absolute; inset: 0; padding: 16px; opacity: 0; transform: translateY(18px) scale(0.97); pointer-events: none; }
+.pe-scena .pr.je-akt { opacity: 1; transform: none; }
+.pokret .pe-scena .pr { transition: opacity 0.5s, transform 0.7s var(--pe-e); }
+.pe-pilule { display: flex; gap: 4px; margin-top: 12px; }
+.pe-pilule button { position: relative; flex: 1; height: 24px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.pe-pilule button::before, .pe-pilule i { content: ''; position: absolute; left: 0; right: 0; top: 10px; height: 4px; border-radius: 2px; }
+.pe-pilule button::before { background: rgba(227, 241, 234, 0.18); }
+.pe-pilule i { background: #19b07e; transform: scaleX(0); transform-origin: 0 50%; }
+.pe-pilule .je-bilo i, .pe-pilule .je-sad i { transform: scaleX(1); }
+.pokret .pe-pilule .je-sad i { animation: pe-puni 4.2s linear both; }
+@keyframes pe-puni { from { transform: scaleX(0); } }
+.pe-pilule button:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; border-radius: 4px; }
+
+/* "Listajte" sa strelicama */
+.pe-listaj { display: none; }
+.pokret .pe-listaj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  margin: 26px 0 0;
+  color: var(--siva);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.pe-listaj__rac { display: none; }
+.pe-listaj i { width: 9px; height: 9px; margin-top: -3px; border-right: 2px solid var(--mint); border-bottom: 2px solid var(--mint); transform: rotate(45deg); animation: pe-strelica 1.3s infinite; }
+.pe-listaj i + i { animation-delay: 0.18s; }
+@keyframes pe-strelica { 0% { opacity: 0; translate: 0 -4px; } 50% { opacity: 1; } 100% { opacity: 0; translate: 0 5px; } }
+
+/* uski telefon: dugme preko cijele širine, poziv je u traci na dnu */
+@media (max-width: 559px) {
+  .pe-dugme { width: 100%; justify-content: center; }
+  .pe-dugmad .kz-tel { display: none; }
+}
+
+/* tok na širem prozoru (tablet, računar bez JavaScripta): tekst lijevo, primjer desno */
+@media (min-width: 900px) {
+  .pe { display: grid; grid-template-columns: minmax(0, 1fr) minmax(320px, 400px); gap: 24px 56px; align-items: start; padding: 56px max(24px, 5.5vw) 64px; }
+  .pe-kartica { margin-top: 0; }
+  .pe-mali, .pe-dole { font-size: 30px; }
+  .pe-vel { height: 96px; }
+  .pe-vel b { font-size: min(86px, calc(100cqw / (var(--n1) * 0.56))); line-height: 1.05; }
+  .pe-red { display: inline-block; vertical-align: top; }
+  .pe-razmak { display: inline; }
+  .pe-br { display: none; }
+  .pe-scena { height: 286px; }
+  .pe-listaj { grid-column: 1 / -1; }
+}
+
+/* ---------- priča na širokom ekranu ---------- */
+@media (min-width: 1180px) and (min-height: 600px) {
+  .pokret .kz-prica {
+    --pe-kartica-w: min(400px, calc(100vw - var(--logo-l) - var(--logo-w) - var(--pad) - 56px));
+    --pe-tekst-w: min(800px, calc(100vw - var(--logo-l) - var(--pad) - var(--pe-kartica-w) - 28px));
+  }
+  .pokret .pe { position: absolute; inset: 0; display: block; padding: 0; overflow: hidden; opacity: 1; pointer-events: auto; }
+  .pokret .pe-aura { display: none; }
+  .pokret .pe-polje { display: block; position: absolute; inset: 0; background-image: var(--pe-polje); background-size: 58px 48px; opacity: 0.045; }
+  .pokret .pe-polje--svjetlo {
+    opacity: 0;
+    -webkit-mask-image: radial-gradient(circle 190px at var(--mx, 70%) var(--my, 40%), #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 100%);
+    mask-image: radial-gradient(circle 190px at var(--mx, 70%) var(--my, 40%), #000 0%, rgba(0, 0, 0, 0.45) 45%, transparent 100%);
+    transition: opacity 0.5s;
+  }
+  .pokret .pe-sjaj {
+    display: block;
+    position: absolute;
+    left: var(--mx, 70%);
+    top: var(--my, 40%);
+    width: 520px;
+    height: 520px;
+    margin: -260px 0 0 -260px;
+    border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(25, 176, 126, 0.18), transparent);
+    opacity: 0;
+    transition: opacity 0.5s;
+  }
+  .pokret .pe.je-svjetlo .pe-polje--svjetlo { opacity: 0.55; }
+  .pokret .pe.je-svjetlo .pe-sjaj { opacity: 1; }
+
+  .pokret .pe-tekst { position: absolute; left: var(--logo-l); top: calc(var(--logo-t) + var(--logo-h) + 34px); width: var(--pe-tekst-w); }
+  .pokret .pe-naslov { margin-top: 14px; }
+  .pokret .pe-dugmad { margin-top: 22px; }
+  .pokret .pe-kartica { position: absolute; right: var(--pad); top: var(--logo-t); width: var(--pe-kartica-w); margin: 0; }
+  .pokret .pe-kartica .pr-sajt { height: 200px; }
+  .pokret .pe-listaj { position: absolute; left: 0; right: 0; bottom: 18px; margin: 0; }
+  .pokret .pe-listaj__tel { display: none; }
+  .pokret .pe-listaj__rac { display: inline; }
+}
+
+/* ============================================================
+   Živi primjeri usluga (ilustracije). Bez .pokret stoje u završnom stanju.
+   ============================================================ */
+.pr { --pr-e: cubic-bezier(0.2, 0.7, 0.1, 1); color: var(--krec); }
+.pr-oznaka { display: block; color: #86e3bf; font-size: 12px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+
+/* web stranica: složi se */
+.pr-sajt { height: 142px; margin-top: 10px; padding: 10px; border-radius: 14px; background: #f4f4f2; color: #0f241d; }
+.pr-sajt__vrh { display: flex; align-items: center; justify-content: space-between; }
+.pr-sajt__vrh > i { display: block; width: 46px; height: 9px; border-radius: 5px; background: #0e8a64; }
+.pr-sajt__vrh span { display: flex; gap: 5px; }
+.pr-sajt__vrh span i { display: block; width: 20px; height: 9px; border-radius: 5px; background: #c9d6cf; }
+.pr-crta { display: block; height: 10px; margin-top: 9px; border-radius: 5px; background: #0f241d; transform-origin: 0 50%; }
+.pr-crta--tanka { height: 7px; background: #a9bdb4; }
+.pr-sajt__dugme { display: inline-block; margin-top: 10px; padding: 6px 11px; border-radius: 11px; background: #0e8a64; color: #fff; font-size: 10px; font-weight: 800; }
+.pokret .pr-crta { transform: scaleX(0); transition: transform 0.7s var(--pr-e); }
+.pokret .je-akt .pr-crta { transform: scaleX(1); }
+.pokret .je-akt .pr-crta:nth-of-type(2) { transition-delay: 0.15s; }
+.pokret .je-akt .pr-crta:nth-of-type(3) { transition-delay: 0.3s; }
+.pokret .pr-sajt__dugme { transform: scale(0); transition: transform 0.5s 0.55s var(--pr-e); }
+.pokret .je-akt .pr-sajt__dugme { transform: none; }
+
+/* web shop: artikli, korpa koja se puni, plaćanje */
+.pr-korpa { position: absolute; right: 16px; top: 14px; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: rgba(227, 241, 234, 0.08); color: var(--mint); }
+.pr-korpa em { position: absolute; right: -4px; top: -4px; min-width: 20px; height: 20px; border-radius: 10px; background: #19b07e; color: #06110d; font-size: 12px; font-style: normal; font-weight: 800; line-height: 20px; text-align: center; }
+.pr-artikli { display: flex; gap: 8px; margin-top: 14px; }
+.pr-artikli span, .pr-leti { flex: 1; height: 78px; border-radius: 12px; background: linear-gradient(135deg, #1d4436, #14362b); }
+.pr-leti { position: absolute; z-index: 4; pointer-events: none; }
+.pokret .pr-artikli span { opacity: 0; transform: scale(0.7); transition: opacity 0.6s, transform 0.6s var(--pr-e); }
+.pokret .je-akt .pr-artikli span { opacity: 1; transform: none; }
+.pokret .je-akt .pr-artikli span:nth-child(2) { transition-delay: 0.12s; }
+.pokret .je-akt .pr-artikli span:nth-child(3) { transition-delay: 0.24s; }
+.pr-cipovi, .pr-app__cipovi { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.pr-cipovi span, .pr-app__cipovi span { padding: 5px 10px; border-radius: 11px; background: rgba(227, 241, 234, 0.08); color: #c9d6cf; font-size: 12px; font-weight: 700; }
+
+/* mobilna aplikacija: stigne obavijest */
+.pr-app { display: flex; align-items: flex-start; gap: 14px; margin-top: 10px; }
+.pr-app__tel { position: relative; flex: none; width: 92px; height: 148px; overflow: hidden; border: 4px solid #1b2b25; border-radius: 18px; background: #f4f4f2; }
+.pr-app__tel > i { display: block; height: 8px; margin: 8px 8px 0; border-radius: 4px; background: #c9d6cf; }
+.pr-app__tel > i:first-child { height: 22px; margin-top: 14px; background: #0e8a64; }
+.pr-app__tel > b { display: block; height: 34px; margin: 8px; border-radius: 8px; background: linear-gradient(135deg, #dfe7e3, #c9d6cf); }
+.pr-obavijest { position: absolute; left: 5px; right: 5px; top: 6px; padding: 6px 7px; border-radius: 9px; background: #0f241d; color: #e3f1ea; font-size: 9px; font-weight: 800; line-height: 1.25; }
+.pr-obavijest span { display: block; }
+.pr-app__cipovi { flex-direction: column; align-items: flex-start; margin-top: 0; }
+.pokret .pr-obavijest { transform: translateY(-140%); transition: transform 0.6s var(--pr-e); }
+.pokret .je-akt .pr-obavijest { transform: none; transition-delay: 0.7s; }
+.pokret .pr-app__cipovi span { opacity: 0; transform: translateX(10px); transition: opacity 0.5s, transform 0.5s var(--pr-e); }
+.pokret .je-akt .pr-app__cipovi span { opacity: 1; transform: none; }
+.pokret .je-akt .pr-app__cipovi span:nth-child(2) { transition-delay: 0.15s; }
+.pokret .je-akt .pr-app__cipovi span:nth-child(3) { transition-delay: 0.3s; }
+
+/* SEO: pretraga se otkuca, pojavi se vaša firma */
+.pr-trazi { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding: 10px 14px; border-radius: 22px; background: #f4f4f2; color: #0f241d; font-size: 14px; font-weight: 600; }
+.pr-upit { min-height: 1.2em; }
+.pokret .pr-upit::after { content: ''; display: inline-block; width: 2px; height: 14px; margin-left: 1px; vertical-align: -2px; background: #0e8a64; animation: pe-trep 1s steps(1) infinite; }
+@keyframes pe-trep { 50% { opacity: 0; } }
+.pr-rezultat { margin-top: 8px; padding: 10px 12px; border-radius: 14px; background: rgba(227, 241, 234, 0.06); }
+.pr-rezultat small { display: block; color: #86e3bf; font-size: 11px; }
+.pr-rezultat b { display: block; color: #cfe9ff; font-size: 16px; }
+.pr-rezultat span { display: flex; gap: 6px; margin-top: 6px; }
+.pr-rezultat i { padding: 3px 8px; border-radius: 8px; background: rgba(227, 241, 234, 0.1); font-size: 10px; font-style: normal; font-weight: 700; }
+.pokret .pr-rezultat { opacity: 0; transform: translateY(10px); transition: opacity 0.5s, transform 0.5s var(--pr-e); }
+.pokret .pr-rezultat.je-vid { opacity: 1; transform: none; }
+
+/* online rezervacije: termin se rezerviše */
+.pr-sati { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-top: 12px; }
+.pr-sati span { display: flex; align-items: center; justify-content: center; height: 34px; border: 1px solid rgba(227, 241, 234, 0.16); border-radius: 10px; font-size: 12px; font-weight: 700; transition: background-color 0.35s, border-color 0.35s, transform 0.35s var(--pr-e); }
+.pr-sati .je-zauzet { opacity: 0.3; text-decoration: line-through; }
+.pr-sati .je-da { border-color: #0e8a64; background: #0e8a64; transform: scale(1.06); }
+.pr-potvrda { margin: 10px 0 0; padding: 8px 12px; border-radius: 12px; background: #e3f1ea; color: #0f241d; font-size: 12px; font-weight: 800; }
+.pokret .pr-potvrda { opacity: 0; transform: translateY(8px); transition: opacity 0.5s, transform 0.5s var(--pr-e); }
+.pokret .pr-potvrda.je-vid { opacity: 1; transform: none; }
+
+/* AI chatbot: pitanje, "piše", odgovor */
+.pr-chat { display: flex; flex-direction: column; gap: 7px; margin-top: 10px; }
+.pr-chat p { max-width: 84%; margin: 0; padding: 8px 11px; font-size: 12.5px; line-height: 1.35; }
+.pr-kupac { align-self: flex-end; border-radius: 13px 13px 3px 13px; background: #0e8a64; color: #fff; }
+.pr-bot { align-self: flex-start; border-radius: 13px 13px 13px 3px; background: #1d3b31; color: #e3f1ea; }
+.pr-pise { display: none; align-self: flex-start; gap: 4px; padding: 10px 12px !important; border-radius: 13px; background: #1d3b31; }
+.pr-pise.je-vid { display: flex; }
+.pr-pise i { width: 6px; height: 6px; border-radius: 50%; background: #a9bdb4; animation: pe-skok 1s infinite; }
+.pr-pise i:nth-child(2) { animation-delay: 0.15s; }
+.pr-pise i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes pe-skok { 0%, 60%, 100% { transform: none; opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+.pokret .pr-kupac, .pokret .pr-bot { opacity: 0; transform: translateY(8px) scale(0.95); transition: opacity 0.45s, transform 0.45s var(--pr-e); }
+.pokret .pr-kupac.je-vid, .pokret .pr-bot.je-vid { opacity: 1; transform: none; }
+
+/* redizajn: nova stranica prekrije staru */
+.pr-rz { position: relative; height: 136px; margin-top: 10px; overflow: hidden; border-radius: 14px; }
+.pr-rz > div { position: absolute; inset: 0; padding: 10px; }
+.pr-rz__staro { background: #d9d9d4; }
+.pr-rz__staro i { display: inline-block; width: 28%; height: 16px; margin: 4px 2%; background: #b5b5ad; }
+.pr-rz__staro b { display: block; height: 24px; margin: 6px 0; background: #9d9d95; }
+.pr-rz__novo { background: #f4f4f2; }
+.pr-rz__logo { display: block; width: 46px; height: 9px; border-radius: 5px; background: #0e8a64; }
+.pr-rz__novo i { display: block; height: 12px; margin-top: 10px; border-radius: 6px; background: #0f241d; }
+.pr-rz__novo i + i { width: 60%; height: 8px; background: #a9bdb4; }
+.pr-rz__dugme { display: inline-block; margin-top: 12px; padding: 6px 11px; border-radius: 11px; background: #0e8a64; color: #fff; font-size: 10px; font-weight: 800; }
+.pr-rz__oz { position: absolute; z-index: 2; top: 8px; padding: 3px 8px; border-radius: 8px; background: rgba(15, 36, 29, 0.8); color: #fff; font-size: 10px; font-weight: 800; }
+.pr-rz__oz--prije { left: 8px; }
+.pr-rz__oz--poslije { right: 8px; }
+.pokret .pr-rz__novo { clip-path: inset(0 0 0 100%); transition: clip-path 1.4s 0.4s cubic-bezier(0.7, 0, 0.2, 1); }
+.pokret .je-akt .pr-rz__novo { clip-path: inset(0); }
+
+/* održavanje i hosting: sve radi */
+.pr-stanje { display: flex; flex-direction: column; gap: 6px; margin: 10px 0 0; padding: 0; list-style: none; }
+.pr-stanje li { display: flex; justify-content: space-between; padding: 9px 12px; border-radius: 12px; background: rgba(227, 241, 234, 0.06); font-size: 13px; font-weight: 700; }
+.pr-stanje span { display: inline-flex; align-items: center; gap: 6px; color: #86e3bf; }
+.pr-stanje span::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: #3ddc97; }
+.pokret .pr-stanje li { opacity: 0; transform: translateX(-14px); transition: opacity 0.5s, transform 0.5s var(--pr-e); }
+.pokret .je-akt .pr-stanje li { opacity: 1; transform: none; }
+.pokret .je-akt .pr-stanje li:nth-child(2) { transition-delay: 0.15s; }
+.pokret .je-akt .pr-stanje li:nth-child(3) { transition-delay: 0.3s; }
+
+/* veći primjeri u karticama "Šta pravimo" */
+.pr--veci .pr-sajt { height: 150px; }

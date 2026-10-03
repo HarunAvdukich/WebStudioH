@@ -2,6 +2,7 @@
 // dugme za vrh i 404. Meni i WhatsApp poruka su isti kao na početnoj (pocetna.js).
 // Glas studija (mi), kupcu "Vi". Bez dugih crta.
 import { meni, whatsappLink, ui, podnozje } from './pocetna.js'
+import { contact } from './data.js'
 
 export { meni, whatsappLink }
 
@@ -17,6 +18,10 @@ export const okvir = {
   kontakt: ui.kontakt,
   podnozje,
   logo: 'Hunar, početna',
+  pocetna: '/',
+  jezik: { oznaka: 'EN', naziv: 'English', kod: 'en' },
+  telefon: contact.phoneDisplay,
+  email: contact.email,
   znakTekst: 'vještina · umijeće · hunar · ',
   kopiraj: 'Kopiraj',
   kopirano: 'Kopirano ✓',

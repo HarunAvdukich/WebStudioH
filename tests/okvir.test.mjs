@@ -66,21 +66,30 @@ test('dist postoji za provjere okvira', () => {
 test('ostale stranice imaju novo zaglavlje sa menijem, a ne staro', () => {
   for (const s of ostale) {
     assert.match(s.html, /class="ok-zaglavlje/, s.put)
-    assert.match(s.html, /href="\/usluge"/, s.put)
+    assert.match(s.html, s.put.startsWith('en/') ? /href="\/en\/services"/ : /href="\/usluge"/, s.put)
     assert.doesNotMatch(s.html, /class="nav[ "]/, s.put)
   }
 })
 
-test('početna i dalje ima svoje zaglavlje', () => {
-  for (const s of stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')) {
-    assert.doesNotMatch(s.html, /class="ok-zaglavlje/, s.put)
+test('početna ima zaglavlje priče (računar) i zajednički okvir za tok (telefon)', () => {
+  const pocetne = stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')
+  assert.equal(pocetne.length, 2)
+  for (const s of pocetne) {
+    assert.match(s.html, /class="kz-zaglavlje/, s.put)
+    assert.match(s.html, /class="page page--pocetna"/, s.put)
+    assert.match(s.html, /class="ok-zaglavlje/, s.put)
+    assert.match(s.html, /class="ok-podnozje/, s.put)
+    assert.match(s.html, /class="ok-traka/, s.put)
+    assert.doesNotMatch(s.html, /class="kz-podnozje/, s.put)
+    // jedan naslov h1 na stranici
+    assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1, s.put)
   }
 })
 
 test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balona', () => {
   for (const s of ostale) {
     assert.match(s.html, /class="ok-podnozje/, s.put)
-    assert.match(s.html, /href="\/politika-privatnosti"/, s.put)
+    assert.match(s.html, s.put.startsWith('en/') ? /href="\/en\/privacy"/ : /href="\/politika-privatnosti"/, s.put)
     assert.match(s.html, /href="tel:\+387603000751"/, s.put)
     assert.doesNotMatch(s.html, /class="footer[ "]/, s.put)
     assert.doesNotMatch(s.html, /wa-fab/, s.put)

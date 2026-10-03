@@ -57,12 +57,15 @@ export const jeSiroko = (W, H) => W >= 1180 && H >= 600
 
 export function raspored(W, H) {
   const siroko = jeSiroko(W, H)
-  const pad = siroko ? Math.min(120, W * 0.083) : 24
+  // Prvi ekran na širokom ekranu (izbor vlasnika 2. 10. 2026): manji znak gore lijevo,
+  // ispod njega "Radimo [riječ] za firme u BiH.", desno živ primjer usluge.
+  const pad = siroko ? Math.max(20, W * 0.055) : 24
   const odnos = LOGO_VISINA / LOGO_SIRINA
-  const logoW = siroko ? Math.min(1200, W - 2 * pad, (H - 390) / odnos) : W - 2 * pad
+  // Ispod znaka mora stati riječ sa dugmetom (oko 290 px) i "Skrolajte" na dnu.
+  const logoW = siroko ? Math.min(900, W * 0.556, (H * 0.86 - 380) / odnos) : W - 2 * pad
   const logoH = logoW * odnos
-  const logoL = siroko ? (W - logoW) / 2 : pad
-  const logoT = siroko ? Math.max(130, (H - logoH) / 2 - 60) : H * 0.34
+  const logoL = pad
+  const logoT = siroko ? Math.max(88, H * 0.14) : H * 0.34
 
   const kanalW = siroko ? Math.min(760, Math.max(560, W * 0.51)) : Math.min(W - 90, 420)
   const jedinica = (logoW / LOGO_SIRINA) * ZNAK
@@ -83,7 +86,8 @@ export function raspored(W, H) {
   // Potpis: logo se smanji i dobije "Izradio" ispred (široko) ili iznad (usko).
   let sig
   if (siroko) {
-    const s = 0.5
+    // Potpis ostaje iste veličine kao prije manjeg znaka: oko 570 px širine.
+    const s = Math.min(1, 570 / logoW)
     const f = (logoW * s * odnos) / 1.15
     const grupa = 3.15 * f + 0.4 * f + logoW * s
     const L = W / 2 - grupa / 2 + 3.55 * f

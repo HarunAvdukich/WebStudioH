@@ -24,6 +24,27 @@ function parseFrontmatter(raw) {
 
 marked.setOptions({ mangle: false, headerIds: false })
 
+const idOd = (tekst) =>
+  tekst
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'dj')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+
+// Naslovi dijelova (h2) dobiju id (za oznaku dijela i link) i izranjaju (data-pokret).
+function naslovi(html) {
+  const lista = []
+  const sa = html.replace(/<h2>(.*?)<\/h2>/g, (m, t) => {
+    const tekst = t.replace(/<[^>]+>/g, '').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;/g, "'")
+    const id = idOd(tekst)
+    lista.push({ id, tekst })
+    return `<h2 id="${id}" data-pokret="izroni">${t}</h2>`
+  })
+  return { html: sa, naslovi: lista }
+}
+
 export const posts = Object.entries(files)
   .map(([path, raw]) => {
     const slug = path.split('/').pop().replace(/\.md$/, '')
@@ -40,7 +61,8 @@ export const posts = Object.entries(files)
       updated: data.updated || '',
       excerpt: data.excerpt || '',
       read: `${Math.max(2, Math.round(rijeci / 200))} min`,
-      html: marked.parse(body.trim()),
+      minuta: Math.max(2, Math.round(rijeci / 200)),
+      ...naslovi(marked.parse(body.trim())),
     }
   })
   .sort((a, b) => b.date.localeCompare(a.date))

@@ -46,7 +46,11 @@ test('svi kadrovi sklapanja postoje', () => {
 })
 
 test('broj stavki u listi i oznaka odgovara crtežu', () => {
-  assert.equal(pocetna.sat.oznake.length, 9)
+  // osam usluga (R13, odluka vlasnika od 2. 10. 2026)
+  assert.equal(pocetna.sat.oznake.length, 8)
+  assert.equal(pocetna.sat.lista.stavke.length, 8)
+  assert.equal(pocetna.finale.ponuda.length, 8)
+  assert.equal(pocetna.usluge.length, 8)
   assert.equal(pocetna.kosilica.oznake.length, 6)
 })
 

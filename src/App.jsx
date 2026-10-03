@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-import { useReveal } from './hooks/useReveal.js'
 import ScrollToTop from './components/ScrollToTop.jsx'
 import '@fontsource-variable/urbanist'
 import './components/okvir/okvir.css'
@@ -18,10 +17,8 @@ import { useGlatkiSkrol } from './lib/glatkiSkrol.js'
 
 export default function App() {
   const { pathname } = useLocation()
-  // re-run scroll-reveal whenever the page changes
-  useReveal(pathname)
-  // Nova početna (bosanska i engleska) ima svoje zaglavlje i podnožje, a ostale
-  // stranice zajednički okvir.
+  // Početna (bosanska i engleska) na širokom ekranu ima svoje zaglavlje u priči; u toku
+  // (telefon, uski prozor, bez JavaScripta) koristi zajednički okvir kao i ostale stranice.
   const pocetna = pathname === '/' || pathname === '/en' || pathname === '/en/'
   const engleski = pathname === '/en' || pathname.startsWith('/en/')
 
@@ -54,16 +51,16 @@ export default function App() {
   }, [])
 
   return (
-    <div className="page">
+    <div className={pocetna ? 'page page--pocetna' : 'page'}>
       <JsonLd />
       <ScrollToTop />
-      {!pocetna && <Zaglavlje />}
+      <Zaglavlje />
       <main>
         <Outlet />
       </main>
-      {!pocetna && <Podnozje />}
-      {!pocetna && <TrakaTelefon />}
-      {!pocetna && <NazadNaVrh />}
+      <Podnozje />
+      <TrakaTelefon />
+      <NazadNaVrh />
       <Zavjesa />
     </div>
   )
