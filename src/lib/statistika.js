@@ -4,7 +4,7 @@
 // i učita se tek kad se stranica učita, da ne usporava prvi ekran.
 
 // ID sajta iz Umami Clouda (Settings → Websites → hunar.ba). Prazno: statistika je ugašena.
-export const UMAMI_ID = ''
+export const UMAMI_ID = 'c548514d-f942-47aa-89d3-65acfd096109'
 export const DOMEN = 'hunar.ba'
 const SKRIPTA = 'https://cloud.umami.is/script.js'
 
