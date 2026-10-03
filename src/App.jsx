@@ -14,6 +14,7 @@ import './lib/pokreti/pokreti.css'
 import { pratiNaslovKartice } from './lib/naslovKartice.js'
 import { naslovKartice } from './okvir.js'
 import { useGlatkiSkrol } from './lib/glatkiSkrol.js'
+import { pokreniStatistiku } from './lib/statistika.js'
 
 export default function App() {
   const { pathname } = useLocation()
@@ -21,6 +22,11 @@ export default function App() {
   // (telefon, uski prozor, bez JavaScripta) koristi zajednički okvir kao i ostale stranice.
   const pocetna = pathname === '/' || pathname === '/en' || pathname === '/en/'
   const engleski = pathname === '/en' || pathname.startsWith('/en/')
+
+  // Statistika bez kolačića (Umami), samo na hunar.ba; učita se poslije stranice.
+  useEffect(() => {
+    pokreniStatistiku()
+  }, [])
 
   // Male animacije (data-pokret) poslije svake promjene stranice.
   useEffect(() => pokreniPokrete(document), [pathname])
