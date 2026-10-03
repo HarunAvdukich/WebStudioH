@@ -6,10 +6,12 @@
   "description": "Stranica studija Hunar (hunar.ba), ranije WebStudioH.",
   "scripts": {
     "dev": "vite",
-    "build": "vite-react-ssg build && node scripts/gen-sitemap.mjs",
+    "build": "vite-react-ssg build && node scripts/gen-sitemap.mjs && node scripts/llms.mjs",
     "preview": "vite preview",
     "test": "node --test tests/*.test.mjs",
-    "indexnow": "node scripts/indexnow.mjs"
+    "indexnow": "node scripts/indexnow.mjs",
+    "prebuild": "node scripts/brojke.mjs",
+    "brojke": "node scripts/brojke.mjs --osvjezi"
   },
   "dependencies": {
     "@fontsource-variable/urbanist": "^5.3.0",

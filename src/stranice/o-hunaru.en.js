@@ -47,7 +47,7 @@ export const kako = {
     { naslov: 'Honest.', opis: 'We promise nothing that you or your customers cannot check.' },
     { naslov: 'A short path.', opis: 'You message us on WhatsApp, we answer personally.' },
   ],
-  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026' },
+  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026', izmjeri: 'https://hunar.ba/' },
 }
 
 export const trake = [

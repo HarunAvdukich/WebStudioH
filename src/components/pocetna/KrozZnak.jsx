@@ -15,6 +15,7 @@ import PrviEkran from './PrviEkran.jsx'
 import TokPocetne from './TokPocetne.jsx'
 import LinijaPrice from './LinijaPrice.jsx'
 import ZavrsniPoziv from '../stranica/ZavrsniPoziv.jsx'
+import StatusUzivo from '../radovi/StatusUzivo.jsx'
 import { useMagnet } from '../../lib/magnet.js'
 import { projects } from '../../data.js'
 import * as bosanski from '../../pocetna.js'
@@ -187,7 +188,10 @@ function RadoviPotpis({ potpis }) {
         {potpis.radovi.map((r) => (
           <li key={r.put}>
             <Veza className="kz-rad" to={r.put} data-kursor={potpis.vise} data-rad={r.put.split('/').pop()}>
-              <span className="kz-rad__ime">{r.naziv}</span>
+              <span className="kz-rad__ime">
+                {r.naziv}
+                <StatusUzivo url={`https://${r.naziv}`} className="su--blok" />
+              </span>
               <span className="kz-rad__opis">{r.opis}</span>
               <span className="kz-rad__vise">
                 <span className="kz-rad__rijec">{potpis.vise}</span>

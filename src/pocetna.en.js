@@ -3,11 +3,17 @@
 // delivery) are explained. Numbers carry their date. No long dashes.
 import { contact } from './data.js'
 import { pitanja as pitanjaCijene } from './stranice/cijene.en.js'
+import { katalogMrt, oglasiMrt, satoviSmarttime } from './brojke.js'
 import { radovi as radoviStranice, studija } from './stranice/radovi.en.js'
 
 // Same text as Services (guide) and About (one point of contact, the mark).
 export { vodic, stepenice } from './stranice/usluge.en.js'
 export { ruka, znak } from './stranice/o-hunaru.en.js'
+
+// Store figures (P1): refreshed at build time, each with the date it was checked.
+const kat = katalogMrt('en')
+const olx = oglasiMrt('en')
+const st = satoviSmarttime('en')
 
 export const jezik = 'en'
 export const put = '/en'
@@ -149,7 +155,7 @@ export const sat = {
   kraj: {
     naslov: 'Runs like clockwork.',
     opis: 'Website, store, integrations and maintenance from the same hands. When you need something, you call one number, not three companies.',
-    uz: 'smarttime.ba is a watch store we built in Bosnia: 526 wristwatches in the catalogue (29 Sep 2026), ordering from a phone and engraving appointments.',
+    uz: `smarttime.ba is a watch store we built in Bosnia: ${st.s.broj} ${st.satovi} in the catalogue (${st.s.datum}), ordering from a phone and engraving appointments.`,
   },
   sajt: {
     naslov: 'The same watch, live on smarttime.ba.',
@@ -181,8 +187,8 @@ export const kosilica = {
     { y: 0.13, strana: 'L', pomak: 0, naslov: 'Management', opis: 'The owner edits the content with an AI editor. Wholesale buyers order through a B2B portal.' },
     { y: 0.35, strana: 'L', pomak: 0, naslov: 'Cart', opis: 'Customers order from their phone and pay by bank transfer or cash on delivery.' },
     { y: 0.5, strana: 'D', pomak: 0, naslov: 'Suppliers', opis: 'Prices and stock arrive on their own from several suppliers. No retyping.' },
-    { y: 0.64, strana: 'L', pomak: 0, naslov: 'Catalogue', opis: '7,460 products in 278 categories, checked 29 Sep 2026.' },
-    { y: 0.865, strana: 'L', pomak: 10, naslov: 'OLX and Ananas', opis: '4,453 listings on OLX, the biggest marketplace in Bosnia, publish and update themselves (29 Sep 2026). The catalogue also feeds the Ananas marketplace.' },
+    { y: 0.64, strana: 'L', pomak: 0, naslov: 'Catalogue', opis: `${kat.a.broj} ${kat.imenica}, checked ${kat.a.datum}.` },
+    { y: 0.865, strana: 'L', pomak: 10, naslov: 'OLX and Ananas', opis: `${olx.o.broj} listings on OLX, the biggest marketplace in Bosnia, publish and update themselves (${olx.o.datum}). The catalogue also feeds the Ananas marketplace.` },
     { y: 0.865, strana: 'D', pomak: -20, naslov: 'Speed', opis: 'The server responds in 52 ms, measured 27 Sep 2026. Nobody waits.' },
   ],
   lista: {
@@ -261,8 +267,8 @@ export const film = {
   kosilica: {
     oznaka: 'How it works on mrt.ba',
     kartice: [
-      { do: 7460, opis: 'products in 278 categories, checked 29 Sep 2026.' },
-      { do: 4453, opis: 'listings on OLX, the biggest marketplace in Bosnia, publish and update themselves, 29 Sep 2026.' },
+      { do: kat.a.vrijednost, opis: `${kat.imenica}, checked ${kat.a.datum}.` },
+      { do: olx.o.vrijednost, opis: `listings on OLX, the biggest marketplace in Bosnia, publish and update themselves, ${olx.o.datum}.` },
       { do: 52, poslije: ' ms', opis: 'server response time, measured 27 Sep 2026.' },
       { naslov: 'Assembled. And selling.', opis: 'mrt.ba has been live since 6 Sep 2026.' },
     ],

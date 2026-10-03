@@ -3,11 +3,17 @@
 // Bez dugih crta. Engleska verzija je u pocetna.en.js, istog oblika.
 import { contact } from './data.js'
 import { pitanja as pitanjaCijene } from './stranice/cijene.js'
+import { katalogMrt, oglasiMrt, satoviSmarttime } from './brojke.js'
 import { radovi as radoviStranice, studija } from './stranice/radovi.js'
 
 // Isti tekst kao na Uslugama (vodič) i O Hunaru (iz jedne ruke, znak), da se ne razilazi.
 export { vodic, stepenice } from './stranice/usluge.js'
 export { ruka, znak } from './stranice/o-hunaru.js'
+
+// Brojke sa trgovina (P1): osvježe se pri gradnji, svaka sa datumom provjere.
+const kat = katalogMrt('bs')
+const olx = oglasiMrt('bs')
+const st = satoviSmarttime('bs')
 
 export const jezik = 'bs'
 export const put = '/'
@@ -159,7 +165,7 @@ export const sat = {
   kraj: {
     naslov: 'Radi kao sat.',
     opis: 'Stranica, trgovina, veze i održavanje iz istih ruku. Kad nešto zatreba, zovete jedan broj, a ne tri firme.',
-    uz: 'smarttime.ba je trgovina satova koju smo napravili: 526 ručnih satova u katalogu (29. 9. 2026), narudžba sa telefona i termin za graviranje.',
+    uz: `smarttime.ba je trgovina satova koju smo napravili: ${st.s.broj} ${st.satovi} u katalogu (${st.s.datum}), narudžba sa telefona i termin za graviranje.`,
   },
   // Poslije sklapanja sat pređe u pravu stranicu tog artikla na smarttime.ba.
   sajt: {
@@ -192,8 +198,8 @@ export const kosilica = {
     { y: 0.13, strana: 'L', pomak: 0, naslov: 'Upravljanje', opis: 'Vlasnik sam mijenja sadržaj, uz AI urednika. Veleprodaja naručuje preko B2B portala.' },
     { y: 0.35, strana: 'L', pomak: 0, naslov: 'Korpa', opis: 'Kupac naruči sa telefona: pouzeće ili uplata na račun.' },
     { y: 0.5, strana: 'D', pomak: 0, naslov: 'Dobavljači', opis: 'Cijene i zalihe stižu same od više dobavljača, bez prepisivanja.' },
-    { y: 0.64, strana: 'L', pomak: 0, naslov: 'Katalog', opis: '7.460 artikala u 278 kategorija, provjereno 29. 9. 2026.' },
-    { y: 0.865, strana: 'L', pomak: 10, naslov: 'OLX i Ananas', opis: '4.453 OLX oglasa se sami objavljuju i ažuriraju, 29. 9. 2026. Katalog ide i na Ananas.' },
+    { y: 0.64, strana: 'L', pomak: 0, naslov: 'Katalog', opis: `${kat.a.broj} ${kat.imenica}, provjereno ${kat.a.datum}.` },
+    { y: 0.865, strana: 'L', pomak: 10, naslov: 'OLX i Ananas', opis: `${olx.o.broj} ${olx.imenica} se sami objavljuju i ažuriraju, ${olx.o.datum}. Katalog ide i na Ananas.` },
     { y: 0.865, strana: 'D', pomak: -20, naslov: 'Brzina', opis: 'Server odgovori za 52 ms, mjereno 27. 9. 2026. Kupac ne čeka.' },
   ],
   lista: {
@@ -276,8 +282,8 @@ export const film = {
   kosilica: {
     oznaka: 'Kako radi na mrt.ba',
     kartice: [
-      { do: 7460, opis: 'artikala u 278 kategorija, provjereno 29. 9. 2026.' },
-      { do: 4453, opis: 'OLX oglasa se sami objavljuju i ažuriraju, 29. 9. 2026.' },
+      { do: kat.a.vrijednost, opis: `${kat.imenica}, provjereno ${kat.a.datum}.` },
+      { do: olx.o.vrijednost, opis: `${olx.imenica} se sami objavljuju i ažuriraju, ${olx.o.datum}.` },
       { do: 52, poslije: ' ms', opis: 'odziv servera, mjereno 27. 9. 2026.' },
       { naslov: 'Sklopljeno. I prodaje.', opis: 'mrt.ba radi od 6. 9. 2026.' },
     ],

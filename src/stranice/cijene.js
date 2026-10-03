@@ -1,7 +1,11 @@
 // Tekst stranice Cijene (/cijene). Engleska verzija je cijene.en.js, istog oblika.
 // Izvor je platno "Tekst sajta" (T-cijene), prebačeno u "mi". Cijene se ne objavljuju.
 
+import { oglasiMrt } from '../brojke.js'
+
 export const jezik = 'bs'
+
+const olx = oglasiMrt('bs')
 export const put = '/cijene'
 
 export const seo = {
@@ -56,7 +60,7 @@ export const odrzavanje = {
   nad: 'Održavanje',
   naslov: 'Mjesečno, po dogovoru.',
   opis: 'Ažuriranja, sigurnosne kopije, keš i praćenje brzine, nadzor maila i narudžbi, manje izmjene i pomoć kad nešto zapne.',
-  mjerac: { vrijednost: 100, opis: 'Lighthouse, računar, početna hunar.ba', datum: 'mjereno 29. 9. 2026' },
+  mjerac: { vrijednost: 100, opis: 'Lighthouse, računar, početna hunar.ba', datum: 'mjereno 29. 9. 2026', izmjeri: 'https://hunar.ba/' },
 }
 
 export const pitanja = {
@@ -68,7 +72,7 @@ export const pitanja = {
     { p: 'Da li je stranica moja?', o: 'Da. Stranica i materijali su vaši.' },
     { p: 'Mogu li sam mijenjati sadržaj?', o: 'Da. Tekst, slike i artikle mijenjate sami, a uz predaju dobijete kratku obuku.' },
     { p: 'Radite li redizajn postojeće stranice?', o: 'Da. Pošaljite link, pa vam kažemo šta bismo promijenili i zašto.' },
-    { p: 'Možete li povezati trgovinu sa OLX-om?', o: 'Da. Na mrt.ba tako radi 4.453 oglasa (provjereno 29. 9. 2026).' },
+    { p: 'Možete li povezati trgovinu sa OLX-om?', o: `Da. Na mrt.ba tako radi ${olx.o.broj} ${olx.imenica} (provjereno ${olx.o.datum}).` },
   ],
 }
 

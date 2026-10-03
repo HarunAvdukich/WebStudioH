@@ -1,7 +1,11 @@
 // English Pricing page (/en/pricing), same shape as cijene.js. Prices are not published;
 // every quote is made for the job.
 
+import { oglasiMrt } from '../brojke.js'
+
 export const jezik = 'en'
+
+const olx = oglasiMrt('en')
 export const put = '/en/pricing'
 
 export const seo = {
@@ -55,7 +59,7 @@ export const odrzavanje = {
   nad: 'Maintenance',
   naslov: 'Monthly, by agreement.',
   opis: 'Updates, backups, caching and speed monitoring, email and order monitoring, small changes and help when something gets stuck.',
-  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026' },
+  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026', izmjeri: 'https://hunar.ba/' },
 }
 
 export const pitanja = {
@@ -67,7 +71,7 @@ export const pitanja = {
     { p: 'Is the website mine?', o: 'Yes. The website and the materials are yours.' },
     { p: 'Can I change the content myself?', o: 'Yes. You edit text, images and products yourself, and you get a short training at handover.' },
     { p: 'Do you redesign existing websites?', o: 'Yes. Send us the link and we tell you what we would change and why.' },
-    { p: 'Can you connect a store to OLX?', o: 'Yes. On mrt.ba this runs 4,453 listings (checked 29 Sep 2026). OLX is the largest classifieds site in Bosnia and Herzegovina.' },
+    { p: 'Can you connect a store to OLX?', o: `Yes. On mrt.ba this runs ${olx.o.broj} listings (checked ${olx.o.datum}). OLX is the largest classifieds site in Bosnia and Herzegovina.` },
   ],
 }
 

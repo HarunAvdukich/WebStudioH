@@ -27,6 +27,8 @@ export const okvir = {
   kopirano: 'Kopirano ✓',
   kopiranoDugo: 'Broj je kopiran. Zalijepite ga u Viber ili poruku.',
   nazadNaVrh: 'Nazad na vrh',
+  // P2: uz brojku brzine, otvara PageSpeed Insights za tu stranicu.
+  izmjerite: 'Izmjerite sami',
   traka: { pisite: 'Pišite nam', licno: 'odgovaramo lično', pozovite: 'Pozovite' },
 }
 

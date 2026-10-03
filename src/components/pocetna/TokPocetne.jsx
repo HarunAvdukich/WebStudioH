@@ -5,6 +5,7 @@ import Film from './Film.jsx'
 import IzJedneRuke from '../onama/IzJedneRuke.jsx'
 import TekstOkoZnaka from '../okvir/TekstOkoZnaka.jsx'
 import GalerijaSnimaka from '../radovi/GalerijaSnimaka.jsx'
+import StatusUzivo from '../radovi/StatusUzivo.jsx'
 import Vodic from '../igre/Vodic.jsx'
 import { CestaPitanja, DioNaslov } from '../stranica/dijelovi.jsx'
 import { igraj } from '../../lib/primjeri.js'
@@ -263,7 +264,9 @@ export default function TokPocetne({ t }) {
               {t.potpis.radovi.map((r) => (
                 <li key={r.put}>
                   <Link className="tk-rad" to={r.put} data-kursor={t.potpis.vise}>
-                    <b>{r.naziv}</b>
+                    <b>
+                      {r.naziv} <StatusUzivo url={`https://${r.naziv}`} />
+                    </b>
                     <span>{r.opis}</span>
                     <span className="tk-rad__vise">
                       {t.potpis.vise}
