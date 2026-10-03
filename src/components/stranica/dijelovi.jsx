@@ -2,6 +2,10 @@
 // česta pitanja i "Pitajte za ovo". Bez JavaScripta sve je vidljivo; pokrete pali
 // src/lib/pokreti (data-pokret) samo uz .pokret na <html>.
 import { waLink, popuni } from '../../lib/whatsapp.js'
+import { useOkvir } from '../../lib/useOkvir.js'
+
+// PageSpeed Insights za stranicu, na računaru (tako su mjerene brojke na sajtu).
+export const pageSpeed = (url, uredjaj = 'desktop') => `https://pagespeed.web.dev/analysis?url=${encodeURIComponent(url)}&form_factor=${uredjaj}`
 
 // Prvi ekran stranice. Naslov je vidljiv od prvog iscrtavanja; ulaz mu pomjera samo transform (CSS).
 export function Vrh({ nad, naslov, uvod, children, className = '' }) {
@@ -60,7 +64,9 @@ export function Kvacice({ stavke, className = '' }) {
 
 // Mjerač brzine: kazaljka se popne do izmjerene brojke, sa uređajem i datumom. `udio` je
 // koliki dio luka je pun (podrazumijevano vrijednost / 100), `poslije` jedinica (npr. " ms").
-export function Mjerac({ vrijednost, opis, datum, udio, poslije = '', mali = false }) {
+// `izmjeri` je adresa koju posjetilac može sam izmjeriti (P2).
+export function Mjerac({ vrijednost, opis, datum, udio, poslije = '', mali = false, izmjeri }) {
+  const { okvir } = useOkvir()
   return (
     <figure className={`mj${mali ? ' mj--mali' : ''}`} data-pokret="mjerac" style={{ '--v': udio ?? vrijednost / 100 }}>
       <svg viewBox="0 0 220 124" aria-hidden="true">
@@ -74,6 +80,14 @@ export function Mjerac({ vrijednost, opis, datum, udio, poslije = '', mali = fal
       <figcaption>
         {opis}
         <small>{datum}</small>
+        {izmjeri && (
+          <a className="mj__izmjeri" href={pageSpeed(izmjeri)} target="_blank" rel="noopener" data-kursor={okvir.izmjerite}>
+            {okvir.izmjerite}
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M7 17L17 7M9 7h8v8" />
+            </svg>
+          </a>
+        )}
       </figcaption>
     </figure>
   )

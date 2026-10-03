@@ -4,6 +4,7 @@ import assert from 'node:assert/strict'
 import { existsSync, readFileSync } from 'node:fs'
 import * as pocetna from '../src/pocetna.js'
 import * as english from '../src/pocetna.en.js'
+import { brojka } from '../src/brojke.js'
 import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, T, UKUPNO, POGLAVLJA, LOGO_SIRINA } from '../src/components/pocetna/motor.js'
 
 function strings(value, out = []) {
@@ -13,6 +14,8 @@ function strings(value, out = []) {
   return out
 }
 const tekst = strings(Object.fromEntries(Object.entries(pocetna)))
+// Broj kao zasebna riječ (520 ne smije pogoditi 5.520 ni 52).
+const imaBroj = (s, broj) => new RegExp(String.raw`(^|[\s(])` + broj.replace(/\./g, String.raw`\.`) + String.raw`(?![\d.,]\d)`).test(s)
 
 test('nijedan tekst početne nema dugu ni srednju crtu', () => {
   assert.deepEqual(tekst.filter((s) => /[—–]/.test(s)), [])
@@ -24,8 +27,10 @@ test('UPTOS se ne pominje', () => {
 
 test('brojke idu sa datumom mjerenja', () => {
   const sve = tekst.join(' \n ')
-  for (const [broj, datum] of [['7.460', '29. 9. 2026'], ['4.453', '29. 9. 2026'], ['52 ms', '27. 9. 2026']]) {
-    const red = tekst.find((s) => s.includes(broj))
+  // brojke sa trgovina dolaze iz src/brojke-podaci.js (P1), brzina je izmjerena ručno
+  const parovi = ['mrtArtikli', 'mrtOlx', 'smarttimeSatovi'].map((k) => [brojka(k).broj, brojka(k).datum])
+  for (const [broj, datum] of [...parovi, ['52 ms', '27. 9. 2026']]) {
+    const red = tekst.find((s) => imaBroj(s, broj))
     assert.ok(red, `nema ${broj}`)
     assert.ok(red.includes(datum), `${broj} bez datuma: ${red}`)
   }
@@ -147,8 +152,9 @@ test('engleski: bez duge i srednje crte i bez UPTOS-a', () => {
 })
 
 test('engleski: brojke idu sa datumom mjerenja', () => {
-  for (const [broj, datum] of [['7,460', '29 Sep 2026'], ['4,453', '29 Sep 2026'], ['52 ms', '27 Sep 2026'], ['526', '29 Sep 2026']]) {
-    const red = tekstEn.find((s) => s.includes(broj))
+  const parovi = ['mrtArtikli', 'mrtOlx', 'smarttimeSatovi'].map((k) => [brojka(k, 'en').broj, brojka(k, 'en').datum])
+  for (const [broj, datum] of [...parovi, ['52 ms', '27 Sep 2026']]) {
+    const red = tekstEn.find((s) => imaBroj(s, broj))
     assert.ok(red, `nema ${broj}`)
     assert.ok(red.includes(datum), `${broj} bez datuma: ${red}`)
   }

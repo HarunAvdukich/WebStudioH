@@ -3,7 +3,11 @@
 // od 2. 10. 2026: usluge bez urađenog primjera (mobilne aplikacije, redizajn) se nude, ali
 // se ne predstavljaju kao urađen posao. Svaka brojka ima datum.
 
+import { oglasiMrt } from '../brojke.js'
+
 export const jezik = 'bs'
+
+const olx = oglasiMrt('bs')
 export const put = '/usluge'
 
 export const seo = {
@@ -74,7 +78,7 @@ export const stepenice = [
       'Artikli se sami objavljuju i ažuriraju na OLX-u kad promijenite cijenu ili zalihu',
       'Katalog ide u feed za Ananas',
       'Cijene i zalihe se preuzimaju od dobavljača, bez prepisivanja',
-      'Na mrt.ba tako radi 4.453 OLX oglasa (provjereno 29. 9. 2026)',
+      `Na mrt.ba tako radi ${olx.o.broj} ${olx.imenica} (provjereno ${olx.o.datum})`,
     ],
     usluge: [{ ime: 'SEO optimizacija', uPoruci: 'SEO optimizacija' }],
     igra: 'olx',
@@ -114,7 +118,7 @@ export const odrzavanje = {
     'Pomoć kad nešto zapne, od studija koji je stranicu i pravio',
   ],
   usluge: [{ ime: 'Održavanje i hosting', uPoruci: 'održavanje i hosting' }],
-  mjerac: { vrijednost: 100, opis: 'Lighthouse, računar, početna hunar.ba', datum: 'mjereno 29. 9. 2026' },
+  mjerac: { vrijednost: 100, opis: 'Lighthouse, računar, početna hunar.ba', datum: 'mjereno 29. 9. 2026', izmjeri: 'https://hunar.ba/' },
 }
 
 // Scena "Sajt koji raste": jedan izmišljen sajt koji raste kroz stepenice. Ilustracija.
@@ -160,7 +164,7 @@ export const igre = {
     azurirano: 'ažurirano upravo',
     manje: 'Smanji',
     vise: 'Povećaj',
-    napomena: 'Ilustracija. Na mrt.ba ovako radi 4.453 oglasa (provjereno 29. 9. 2026).',
+    napomena: `Ilustracija. Na mrt.ba ovako radi ${olx.o.broj} ${olx.imenica} (provjereno ${olx.o.datum}).`,
   },
   termin: {
     nad: 'Probajte sami',

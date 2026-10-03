@@ -2,6 +2,7 @@ import { useCallback, useRef } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useKaci, useScena } from '../../lib/scena.js'
 import { formatBroj } from '../../lib/pokreti/racun.js'
+import StatusUzivo from './StatusUzivo.jsx'
 import { popuni } from '../../lib/whatsapp.js'
 import { rasiri } from '../../lib/rasiri.js'
 
@@ -55,6 +56,7 @@ function Ploca({ r, i, n, t, prefiks, navigate }) {
               {popuni(t.kartica.otvori, { ime: r.ime })} ↗
             </a>
           )}
+          {r.url && <StatusUzivo url={r.url} />}
         </div>
       </div>
       <Link to={put} ref={vizual} className="vg__vizual" data-kursor={t.kartica.kursor} data-bez-zavjese onClick={otvori} aria-label={`${t.kartica.kako}: ${r.ime}`}>

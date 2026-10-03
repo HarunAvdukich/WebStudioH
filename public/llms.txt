@@ -17,8 +17,8 @@ English: Hunar is a web studio from Bosnia and Herzegovina building websites, on
 
 ## Radovi (stvarni, javni projekti)
 
-- [mrt.ba, trgovina alata povezana sa OLX-om](https://hunar.ba/radovi/mrt): WooCommerce trgovina sa temom po mjeri. 7.447 artikala u 262 kategorije (1. 10. 2026), 4.453 OLX oglasa koji se ažuriraju sami (29. 9. 2026), uvoz od više dobavljača, feed za Ananas, B2B portal b2b.mrt.ba, AI asistent Kobi. Odziv servera 52 ms (27. 9. 2026).
-- [SmartTime, trgovina satova sa zakazivanjem termina](https://hunar.ba/radovi/smarttime): WooCommerce trgovina sa 538 artikala, od toga 522 ručna sata (1. 10. 2026), stranice za graviranje i servis, zakazivanje termina na stranici.
+- [mrt.ba, trgovina alata povezana sa OLX-om](https://hunar.ba/radovi/mrt): WooCommerce trgovina sa temom po mjeri. {mrt-katalog}, {mrt-olx}, uvoz od više dobavljača, feed za Ananas, B2B portal b2b.mrt.ba, AI asistent Kobi. Odziv servera 52 ms (27. 9. 2026).
+- [SmartTime, trgovina satova sa zakazivanjem termina](https://hunar.ba/radovi/smarttime): WooCommerce trgovina sa {smarttime-katalog}, stranice za graviranje i servis, zakazivanje termina na stranici.
 - [Svi radovi](https://hunar.ba/radovi)
 
 ## Usluge

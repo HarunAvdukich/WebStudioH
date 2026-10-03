@@ -35,6 +35,7 @@ export const okvir = {
   kopirano: 'Copied ✓',
   kopiranoDugo: 'Number copied. Paste it into WhatsApp or Viber.',
   nazadNaVrh: 'Back to top',
+  izmjerite: 'Measure it yourself',
   traka: { pisite: 'Message us', licno: 'we answer personally', pozovite: 'Call' },
 }
 
