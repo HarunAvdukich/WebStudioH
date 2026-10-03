@@ -3,6 +3,10 @@
 // GSAP, Lenis i kadrovi se učitavaju tek poslije prve interakcije.
 import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, POGLAVLJA, cl, jeSiroko, LOGO_SIRINA } from './motor.js'
 import { poslijeInterakcije } from '../../lib/interakcija.js'
+import { formatBroj } from '../../lib/pokreti/racun.js'
+
+// Slojevi čiji naslov izroni kad sloj uđe (R6).
+const IZRONI = ['uNajava', 'nNajava', 'satKraj', 'kosKraj', 'satSajt', 'kosSajt']
 
 const PREDMETI = ['sat', 'kosilica']
 
@@ -38,8 +42,15 @@ export class Pokretac {
     this.posto = { sat: this.scena.querySelector('[data-posto="sat"]'), kosilica: this.scena.querySelector('[data-posto="kosilica"]') }
     this.sad = { sat: this.scena.querySelector('[data-sad="sat"]'), kosilica: this.scena.querySelector('[data-sad="kosilica"]') }
     this.izradio = this.scena.querySelector('[data-izradio]')
-    this.poglavlje = this.scena.querySelector('[data-poglavlje]')
+    this.poglavlje = this.scena.querySelector('[data-poglavlje-tekst]')
+    this.tacke = q('.kz-linija__tacka')
     this.ctx = this.platno.getContext('2d')
+    // Brojke u oznakama kosilice (R5) krenu od nule i odbroje se kad oznaka izađe.
+    this.jezik = document.documentElement.lang === 'en' ? 'en' : 'bs'
+    this.odbroj = q('[data-oznaka="kosilica"] [data-do]').map((el) => {
+      el.textContent = formatBroj(0, this.jezik) + (el.dataset.poslije || '')
+      return { el, oznaka: el.closest('[data-oznaka]'), gotovo: false }
+    })
 
     document.documentElement.dataset.kz = 'radi'
     this.izmjeri(true)
@@ -73,6 +84,27 @@ export class Pokretac {
     if (this.tik) this.gsap?.ticker.remove(this.tik)
     this.lenis?.destroy()
     delete document.documentElement.dataset.kz
+    // Prozor je postao uzak: stranica teče, pa se brišu stilovi koje je priča upisala.
+    this.svg.style.transform = ''
+    for (const el of Object.values(this.slojevi)) {
+      el.style.opacity = ''
+      el.style.pointerEvents = ''
+      el.inert = false
+      el.classList.remove('je-usao')
+    }
+    for (const el of [...this.oznake.sat, ...this.oznake.kosilica]) {
+      el.style.opacity = ''
+      delete el.dataset.o
+    }
+    for (const b of this.odbroj) b.el.textContent = formatBroj(Number(b.el.dataset.do), this.jezik) + (b.el.dataset.poslije || '')
+    this.zadnje = {}
+  }
+
+  // Skok na poglavlje i (klik na tačku linije priče, R4).
+  skoci(i) {
+    const y = Math.round(this.pocetak + POGLAVLJA[i] * this.domet + (i ? this.domet * 0.004 : 0))
+    if (this.lenis) this.lenis.scrollTo(y, { duration: 1.6 })
+    else window.scrollTo({ top: y, behavior: 'smooth' })
   }
 
   izmjeri(prvi) {
@@ -168,6 +200,7 @@ export class Pokretac {
     if (this.zadnje[ime] === v) return
     this.zadnje[ime] = v
     el.style.opacity = String(v)
+    if (IZRONI.includes(ime)) el.classList.toggle('je-usao', v > 0.02)
     if (interaktivan) {
       const skriven = v < 0.5
       el.inert = skriven
@@ -221,11 +254,11 @@ export class Pokretac {
     if (pr.vidljivost > 0) this.nacrtaj(aktivan, pr.kadarTacno)
 
     this.vidljivost('satKraj', SLOJEVI.satKraj(p))
-    this.vidljivost('satSajt', SLOJEVI.satSajt(p))
+    this.vidljivost('satSajt', SLOJEVI.satSajt(p), true)
     this.vidljivost('prelaz', SLOJEVI.prelaz(p))
     this.vidljivost('nNajava', SLOJEVI.nNajava(p))
     this.vidljivost('kosKraj', SLOJEVI.kosKraj(p))
-    this.vidljivost('kosSajt', SLOJEVI.kosSajt(p))
+    this.vidljivost('kosSajt', SLOJEVI.kosSajt(p), true)
 
     // "Izradio" uz logotip u potpisu.
     const io = SLOJEVI.izradio(p)
@@ -249,14 +282,53 @@ export class Pokretac {
     }
     this.vidljivost('potpis', SLOJEVI.potpis(p), true)
 
-    if (this.poglavlje) {
-      let pg = this.podaci.poglavlja[0]
-      this.podaci.poglavlja.forEach((x, i) => {
-        if (p >= POGLAVLJA[i]) pg = x
-      })
-      const tekst = `${pg.broj} / ${broj(this.podaci.poglavlja.length)} · ${pg.ime}`
-      if (this.poglavlje.textContent !== tekst) this.poglavlje.textContent = tekst
+    // Odbrojavanje u oznakama kosilice kad oznaka izađe.
+    for (const b of this.odbroj) {
+      if (b.gotovo || Number(b.oznaka.dataset.o || 0) < 0.15) continue
+      b.gotovo = true
+      this.broji(b.el)
     }
+
+    // Linija priče (R4): koliko je pređeno i koja poglavlja su prošla.
+    this.prica.style.setProperty('--kz-p', p.toFixed(4))
+    let sadasnje = 0
+    POGLAVLJA.forEach((x, i) => {
+      if (p >= x) sadasnje = i
+    })
+    this.tacke.forEach((el, i) => {
+      el.classList.toggle('je-prosla', i <= sadasnje)
+      el.classList.toggle('je-sad', i === sadasnje)
+    })
+
+    // Brojčanik poglavlja (R3): novo ime se okrene odozdo.
+    if (this.poglavlje) {
+      const pg = this.podaci.poglavlja[sadasnje]
+      const tekst = `${pg.broj} / ${broj(this.podaci.poglavlja.length)} · ${pg.ime}`
+      if (this.poglavlje.textContent !== tekst) {
+        const naprijed = sadasnje >= (this.zadnjePoglavlje ?? 0)
+        this.zadnjePoglavlje = sadasnje
+        this.poglavlje.textContent = tekst
+        this.poglavlje.animate?.(
+          [
+            { transform: `translateY(${naprijed ? 110 : -110}%)`, opacity: 0 },
+            { transform: 'none', opacity: 1 },
+          ],
+          { duration: 450, easing: 'cubic-bezier(0.2, 0.7, 0.1, 1)' },
+        )
+      }
+    }
+  }
+
+  broji(el) {
+    const cilj = Number(el.dataset.do)
+    const poslije = el.dataset.poslije || ''
+    const t0 = performance.now()
+    const korak = (t) => {
+      const q = Math.min(1, (t - t0) / 1400)
+      el.textContent = formatBroj(cilj * (1 - Math.pow(1 - q, 3)), this.jezik) + poslije
+      if (q < 1) requestAnimationFrame(korak)
+    }
+    requestAnimationFrame(korak)
   }
 
   // x je kadar sa razlomkom: crta se kadar ispod, a preko njega sljedeći sa

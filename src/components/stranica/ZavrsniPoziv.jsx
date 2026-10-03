@@ -6,8 +6,9 @@ import BrojTelefona from '../okvir/BrojTelefona.jsx'
 
 // Završni poziv na dnu stranice. Živa pozadina (svjetla i zrno) i, za miš, svjetlo koje prati
 // miš i otkriva polje sitnih znakova. Naslov izranja, dugme se privlači mišu, broj se kopira.
-// `poruka` je tekst za WhatsApp; bez nje ide opšta poruka sa jezika stranice.
-export default function ZavrsniPoziv({ nad, naslov, opis, dugme, ili, poruka }) {
+// `poruka` je tekst za WhatsApp; bez nje ide opšta poruka sa jezika stranice. Početna ubaci
+// ponudu (children) između opisa i dugmeta i rečenicu ispod (ispod).
+export default function ZavrsniPoziv({ nad, naslov, opis, dugme, ili, poruka, children, ispod, id, className = '' }) {
   const { whatsappLink } = useOkvir()
   const ref = useRef(null)
   const dug = useRef(null)
@@ -43,7 +44,7 @@ export default function ZavrsniPoziv({ nad, naslov, opis, dugme, ili, poruka }) 
   }, [])
 
   return (
-    <section className="zp" ref={ref}>
+    <section className={`zp ${className}`} ref={ref} id={id}>
       <div className="zp__pozadina" aria-hidden="true">
         <i className="zp__s zp__s--1" />
         <i className="zp__s zp__s--2" />
@@ -53,19 +54,21 @@ export default function ZavrsniPoziv({ nad, naslov, opis, dugme, ili, poruka }) 
         <span className="zp__zrno" />
       </div>
       <div className="st-sirina zp__in">
-        <p className="st-nad">{nad}</p>
+        {nad && <p className="st-nad">{nad}</p>}
         <h2 className="zp__h" data-pokret="izroni">
           {naslov}
         </h2>
         {opis && <p className="zp__opis">{opis}</p>}
+        {children}
         <div className="zp__dugmad">
-          <a ref={dug} className="ok-dugme" href={poruka ? waLink(poruka) : whatsappLink} target="_blank" rel="noopener">
+          <a ref={dug} className="ok-dugme zp__dugme" href={poruka ? waLink(poruka) : whatsappLink} target="_blank" rel="noopener">
             {dugme}
           </a>
           <span className="zp__ili">
             {ili} <BrojTelefona />
           </span>
         </div>
+        {ispod && <p className="zp__ispod">{ispod}</p>}
       </div>
     </section>
   )

@@ -71,9 +71,18 @@ test('ostale stranice imaju novo zaglavlje sa menijem, a ne staro', () => {
   }
 })
 
-test('početna i dalje ima svoje zaglavlje', () => {
-  for (const s of stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')) {
-    assert.doesNotMatch(s.html, /class="ok-zaglavlje/, s.put)
+test('početna ima zaglavlje priče (računar) i zajednički okvir za tok (telefon)', () => {
+  const pocetne = stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')
+  assert.equal(pocetne.length, 2)
+  for (const s of pocetne) {
+    assert.match(s.html, /class="kz-zaglavlje/, s.put)
+    assert.match(s.html, /class="page page--pocetna"/, s.put)
+    assert.match(s.html, /class="ok-zaglavlje/, s.put)
+    assert.match(s.html, /class="ok-podnozje/, s.put)
+    assert.match(s.html, /class="ok-traka/, s.put)
+    assert.doesNotMatch(s.html, /class="kz-podnozje/, s.put)
+    // jedan naslov h1 na stranici
+    assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1, s.put)
   }
 })
 
