@@ -9,6 +9,13 @@ export const contact = {
   whatsapp: 'https://wa.me/387603000751',
 }
 
+// Google profil firme (Business Profile): stranica na Mapama i link za recenziju.
+// cid je iz linka za recenziju; Google ih daje u profilu, pod "Zatražite recenzije".
+export const google = {
+  profil: 'https://www.google.com/maps?cid=15998770561478667953',
+  recenzija: 'https://g.page/r/CbGu6X8PDQfeECE/review',
+}
+
 // Radovi koji imaju svoju stranicu (/radovi/<slug>). urez.ba je u izradi: bez linka i slike.
 export const projects = [
   { slug: 'mrt', name: 'mrt.ba', url: 'https://mrt.ba', image: '/project-mrt.webp' },

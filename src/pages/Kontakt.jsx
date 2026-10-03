@@ -5,6 +5,7 @@ import Obrazac from '../components/kontakt/Obrazac.jsx'
 import BrojTelefona from '../components/okvir/BrojTelefona.jsx'
 import { useOkvir } from '../lib/useOkvir.js'
 import { PAROVI } from '../lib/jezik.js'
+import { google } from '../data.js'
 import '../components/stranica/stranica.css'
 import '../components/kontakt/kontakt.css'
 
@@ -73,6 +74,12 @@ export default function Kontakt({ t }) {
               </div>
             ))}
           </div>
+          <p className="kt-recenzija">
+            {t.kanali.recenzija.pitanje}{' '}
+            <a href={google.recenzija} target="_blank" rel="noopener">
+              {t.kanali.recenzija.link}
+            </a>
+          </p>
         </div>
       </section>
 

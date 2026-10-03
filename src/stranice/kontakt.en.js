@@ -36,6 +36,7 @@ export const kanali = {
     { ime: 'Phone', vrijednost: '+387 60 3000 751', vrsta: 'telefon' },
     { ime: 'Email', vrijednost: 'info@hunar.ba', vrsta: 'mail' },
   ],
+  recenzija: { pitanje: 'Worked with us?', link: 'Leave a review on Google' },
 }
 
 export const obrazac = {
