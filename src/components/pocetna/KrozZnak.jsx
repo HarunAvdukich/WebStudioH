@@ -10,6 +10,7 @@ import './prvi.css'
 import './tok.css'
 import { ZnakPutanje } from './Znak.jsx'
 import { LOGO_SIRINA, LOGO_VISINA, POGLAVLJA } from './motor.js'
+import { velicina } from '../../lib/velicina.js'
 import { Pokretac } from './pokretac.js'
 import PrviEkran from './PrviEkran.jsx'
 import TokPocetne from './TokPocetne.jsx'
@@ -111,10 +112,11 @@ function pratiLupom(e) {
   const r = okvir.getBoundingClientRect()
   const x = e.clientX - r.left
   const y = e.clientY - r.top
-  lupa.style.transform = `translate(${x - 90}px, ${y - 90}px)`
+  const pola = lupa.offsetWidth / 2
+  lupa.style.transform = `translate(${x - pola}px, ${y - pola}px)`
   lupa.style.backgroundImage = `url(${img.src})`
   lupa.style.backgroundSize = `${r.width * UVECANJE}px ${img.offsetHeight * UVECANJE}px`
-  lupa.style.backgroundPosition = `${90 - x * UVECANJE}px ${90 - y * UVECANJE}px`
+  lupa.style.backgroundPosition = `${pola - x * UVECANJE}px ${pola - y * UVECANJE}px`
   okvir.classList.add('je-lupa')
 }
 const skloniLupu = (e) => e.currentTarget.classList.remove('je-lupa')
@@ -178,7 +180,8 @@ function RadoviPotpis({ potpis }) {
       el.style.backgroundImage = `url(${src})`
     }
     const r = el.parentElement.getBoundingClientRect()
-    el.style.transform = `translate(${e.clientX - r.left + 28}px, ${e.clientY - r.top - 90}px) rotate(-3deg)`
+    const k = velicina()
+    el.style.transform = `translate(${e.clientX - r.left + 28 * k}px, ${e.clientY - r.top - 90 * k}px) rotate(-3deg)`
     el.classList.add('je-vid')
   }
   return (

@@ -3,6 +3,7 @@
 // GSAP, Lenis i kadrovi se učitavaju tek poslije prve interakcije.
 import { raspored, kamera, transformacija, predmet, VRIJEME, SLOJEVI, POGLAVLJA, cl, jeSiroko, LOGO_SIRINA } from './motor.js'
 import { poslijeInterakcije } from '../../lib/interakcija.js'
+import { velicina } from '../../lib/velicina.js'
 import { formatBroj } from '../../lib/pokreti/racun.js'
 
 // Slojevi čiji naslov izroni kad sloj uđe (R6).
@@ -113,7 +114,7 @@ export class Pokretac {
     // Na telefonu traka adrese mijenja visinu pri skrolu; male promjene visine se
     // ignorišu da stranica ne skače.
     if (!prvi && this.R && W === this.R.W && Math.abs(H - this.R.H) < 140) H = this.R.H
-    const R = raspored(W, H)
+    const R = raspored(W, H, velicina())
     this.R = R
     const s = this.prica.style
     const px = (v) => `${v}px`
@@ -138,17 +139,18 @@ export class Pokretac {
 
     // Kartice oznaka na krakovima znaka (samo na širokom ekranu).
     if (R.siroko) {
-      const karta = Math.min(290, R.kanalL - 64)
+      // Razmaci su u pikselima laptopa, pa se na velikom ekranu uvećaju za R.k.
+      const karta = Math.min(290 * R.k, R.kanalL - 64 * R.k)
       for (const ime of PREDMETI) {
         this.oznake[ime].forEach((el, i) => {
           const o = this.podaci[ime].oznake[i]
           const y = R.boxT + o.y * R.boxH
           const lijevo = o.strana === 'L'
-          const x = lijevo ? R.kanalL - 32 - karta : R.kanalL + R.kanalW + 32
+          const x = lijevo ? R.kanalL - 32 * R.k - karta : R.kanalL + R.kanalW + 32 * R.k
           const ivica = lijevo ? R.W / 2 - R.boxW * 0.24 : R.W / 2 + R.boxW * 0.24
           const cs = el.style
           cs.setProperty('--x', px(x))
-          cs.setProperty('--y', px(y - 40 + (o.pomak * R.boxH) / 820))
+          cs.setProperty('--y', px(y - 40 * R.k + (o.pomak * R.boxH) / 820))
           cs.setProperty('--w', px(karta))
           cs.setProperty('--cl', px(lijevo ? x + karta : ivica))
           cs.setProperty('--cw', px(Math.max(0, lijevo ? ivica - x - karta : x - ivica)))
@@ -168,7 +170,7 @@ export class Pokretac {
             .filter((o) => o.strana === strana)
             .map((o) => o.y * R.boxH + (o.pomak * R.boxH) / 820)
             .sort((x, y) => x - y)
-          for (let i = 1; i < ys.length; i++) if (ys[i] - ys[i - 1] < visina + 10) zbijeno = true
+          for (let i = 1; i < ys.length; i++) if (ys[i] - ys[i - 1] < visina + 10 * R.k) zbijeno = true
         }
       }
       this.prica.classList.toggle('kz--zbijeno', zbijeno)
@@ -355,6 +357,8 @@ export class Pokretac {
     if (kljuc === this.nacrtan) return
     this.nacrtan = kljuc
     const { width, height } = this.platno
+    // Kadar (768 x 1024) se skalira na veličinu kutije; nova veličina platna vraća kvalitet na nizak.
+    this.ctx.imageSmoothingQuality = 'high'
     this.ctx.globalAlpha = 1
     this.ctx.drawImage(a, 0, 0, width, height)
     if (f > 0) {
