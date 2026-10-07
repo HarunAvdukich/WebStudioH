@@ -55,7 +55,24 @@ export const fade = (p, a0, a1, b0, b1) => cl((p - a0) / (a1 - a0)) * (1 - cl((p
 // Isti uslov kao media upit u pocetna.css.
 export const jeSiroko = (W, H) => W >= 1180 && H >= 600
 
-export function raspored(W, H) {
+// Na ekranu većem od laptopa sajt je uvećan za k (src/lib/velicina.js): raspored se računa
+// za ekran k puta manji, pa se sve dužine uvećaju za k. Priča izgleda kao na laptopu, samo
+// veća, a isto radi i CSS u pocetna.css (pikseli su tamo rem).
+export function raspored(W, H, k = 1) {
+  const R = rasporedZa(W / k, H / k)
+  if (k === 1) return { ...R, k }
+  const d = (v) => v * k
+  return {
+    ...R,
+    W, H, k,
+    pad: d(R.pad), logoW: d(R.logoW), logoH: d(R.logoH), logoL: d(R.logoL), logoT: d(R.logoT),
+    kanalW: d(R.kanalW), kanalL: d(R.kanalL), sred: { x: d(R.sred.x), y: d(R.sred.y) },
+    boxW: d(R.boxW), boxH: d(R.boxH), boxT: d(R.boxT), boxL: d(R.boxL),
+    sig: { ...R.sig, L: d(R.sig.L), T: d(R.sig.T) }, sigDno: d(R.sigDno),
+  }
+}
+
+function rasporedZa(W, H) {
   const siroko = jeSiroko(W, H)
   // Prvi ekran na širokom ekranu (izbor vlasnika 2. 10. 2026): manji znak gore lijevo,
   // ispod njega "Radimo [riječ] za firme u BiH.", desno živ primjer usluge.

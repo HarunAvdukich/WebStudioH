@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { velicina } from '../../lib/velicina.js'
 
 const UVECANJE = 2.5
 const LUPA = 180
@@ -33,7 +34,7 @@ function Snimak({ s, onOtvori, vukao, t }) {
             top: lupa.y,
             backgroundImage: `url(${s.src})`,
             backgroundSize: `${lupa.w * UVECANJE}px ${lupa.h * UVECANJE}px`,
-            backgroundPosition: `${LUPA / 2 - lupa.x * UVECANJE}px ${LUPA / 2 - lupa.y * UVECANJE}px`,
+            backgroundPosition: `${(LUPA / 2) * velicina() - lupa.x * UVECANJE}px ${(LUPA / 2) * velicina() - lupa.y * UVECANJE}px`,
           }}
         />
       )}

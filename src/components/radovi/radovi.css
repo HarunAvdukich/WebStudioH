@@ -117,7 +117,10 @@
 .vg.je-vodoravno .vg__vizual:hover .vg__tel--1 { translate: calc(var(--o, 0) * 60px - 22%) -4%; }
 .vg.je-vodoravno .vg__vizual:hover .vg__tel--2 { translate: calc(var(--o, 0) * 140px + 14%) 2%; }
 .vg.je-vodoravno .vg__citat { grid-column: 1; grid-row: 2; align-self: end; padding: 14px 18px; }
-@media (max-height: 759px) {
+/* Nizak ekran: ispod 760 px visine u razmjeru laptopa. Na velikom ekranu je sve uvećano za k
+   (src/index.css), pa je to visina/k ispod 760: odnos strana širi od 1536/759 dok k raste sa
+   širinom, a visina ispod 1140 px kad je k na najviše 1,5 (od 2304 px širine). */
+@media (max-height: 759px), (min-width: 1537px) and (max-width: 2303px) and (min-aspect-ratio: 1536/759), (min-width: 2304px) and (max-height: 1139px) {
   .vg.je-vodoravno .vg__citat { display: none; }
 }
 .vg.je-vodoravno .vg__citat p { font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }

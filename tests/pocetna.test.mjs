@@ -54,9 +54,17 @@ test('broj stavki u listi i oznaka odgovara crtežu', () => {
   assert.equal(pocetna.kosilica.oznake.length, 6)
 })
 
-for (const [W, H] of [[1440, 900], [1920, 1080], [1280, 720], [390, 844], [360, 640]]) {
+// Isti razmjer kao slovo na <html> u src/index.css: laptop (1536 x 730) je 1, najviše 1,5.
+const razmjer = (W, H) => Math.min(1.5, Math.max(1, Math.min(W / 1536, H / 730)))
+
+test('razmjer u testu je isti kao u src/index.css', () => {
+  const css = readFileSync('src/index.css', 'utf8')
+  assert.match(css, /html \{ font-size: clamp\(16px, min\(100vw \* 16 \/ 1536, 100vh \* 16 \/ 730\), 24px\); \}/)
+})
+
+for (const [W, H] of [[1440, 900], [1920, 1080], [1280, 720], [390, 844], [360, 640], [1920, 945], [2560, 1305], [3440, 1300]]) {
   test(`logo na prvom ekranu stoji tačno gdje ga crta CSS (${W}x${H})`, () => {
-    const R = raspored(W, H)
+    const R = raspored(W, H, razmjer(W, H))
     const t = transformacija(kamera(0, R), R)
     assert.ok(Math.abs(t.x - R.logoL) < 0.01)
     assert.ok(Math.abs(t.y - R.logoT) < 0.01)
@@ -64,7 +72,7 @@ for (const [W, H] of [[1440, 900], [1920, 1080], [1280, 720], [390, 844], [360, 
   })
 
   test(`kanal i predmet stanu u ekran (${W}x${H})`, () => {
-    const R = raspored(W, H)
+    const R = raspored(W, H, razmjer(W, H))
     assert.ok(R.kanalL > 0 && R.kanalL + R.kanalW < W)
     assert.ok(R.boxL >= R.kanalL && R.boxL + R.boxW <= R.kanalL + R.kanalW)
     assert.ok(R.boxT >= 0 && R.boxT + R.boxH <= H)
@@ -90,12 +98,26 @@ test('kraj sklapanja se ne preklapa sa listom i procentom', () => {
   }
 })
 
-for (const [W, H] of [[1536, 730], [1366, 657], [1280, 650], [1920, 960], [390, 700]]) {
+for (const [W, H] of [[1536, 730], [1366, 657], [1280, 650], [1920, 960], [390, 700], [1920, 945], [2560, 1305], [3440, 1300]]) {
   test(`potpis sa radovima stane u ekran (${W}x${H})`, () => {
-    const R = raspored(W, H)
-    // tekst (2 reda) i dva reda radova ispod donje ivice potpisa
-    const visina = R.siroko ? 36 + 34 + 26 + 2 * 93 : 28 + 2 * 26 + 18 + 2 * 110
-    assert.ok(R.sigDno + visina < H - 20, `dno ${Math.round(R.sigDno + visina)} > ${H - 20}`)
+    const R = raspored(W, H, razmjer(W, H))
+    // tekst (2 reda) i dva reda radova ispod donje ivice potpisa, u pikselima laptopa
+    const visina = (R.siroko ? 36 + 34 + 26 + 2 * 93 : 28 + 2 * 26 + 18 + 2 * 110) * R.k
+    assert.ok(R.sigDno + visina < H - 20 * R.k, `dno ${Math.round(R.sigDno + visina)} > ${H - 20 * R.k}`)
+  })
+}
+
+for (const [W, H] of [[1920, 945], [2560, 1305], [1680, 950]]) {
+  test(`na velikom ekranu priča je laptop uvećan za k (${W}x${H})`, () => {
+    const k = razmjer(W, H)
+    assert.ok(k > 1)
+    const R = raspored(W, H, k)
+    const L = raspored(W / k, H / k)
+    for (const ime of ['pad', 'logoW', 'logoL', 'logoT', 'kanalW', 'kanalL', 'boxW', 'boxH', 'boxL', 'boxT', 'sigDno']) {
+      assert.ok(Math.abs(R[ime] - L[ime] * k) < 1e-6, ime)
+    }
+    assert.equal(R.zum, L.zum)
+    assert.equal(R.siroko, true)
   })
 }
 
