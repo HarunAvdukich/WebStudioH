@@ -1,6 +1,6 @@
 # Hunar
 
-> Hunar (hunar.ba, ranije WebStudioH) je web studio iz Bosne i Hercegovine. Pravimo web stranice, web trgovine i sisteme po mjeri za firme u BiH: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale. Dizajn, kod, hosting i održavanje su na jednom mjestu. Cijene se daju po dogovoru, poslije razgovora.
+> Hunar (hunar.ba, ranije WebStudioH) je web studio iz Bosne i Hercegovine, otvoren 1. 6. 2026. Pravimo web stranice, web trgovine i sisteme po mjeri za firme u BiH: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale. Dizajn, kod, hosting i održavanje su na jednom mjestu. Cijene se daju po dogovoru, poslije razgovora.
 
 English: Hunar is a web studio from Bosnia and Herzegovina building websites, online stores and custom systems.
 
@@ -14,6 +14,8 @@ English: Hunar is a web studio from Bosnia and Herzegovina building websites, on
 - WhatsApp i telefon: +387 60 3000 751
 - E-mail: info@hunar.ba
 - Kontakt stranica: https://hunar.ba/kontakt
+- O firmi: https://hunar.ba/o-nama
+- Google profil: https://www.google.com/maps?cid=15998770561478667953
 
 ## Radovi (stvarni, javni projekti)
 
