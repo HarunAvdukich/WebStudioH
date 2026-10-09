@@ -1,5 +1,5 @@
 import { Head } from 'vite-react-ssg'
-import { contact, google } from '../data.js'
+import { contact, profili, osnovano } from '../data.js'
 import { SITE_URL, SITE_NAME, ogImageFor } from './Seo.jsx'
 
 // Strukturirani podaci (schema.org, JSON-LD). Firma je na svakoj stranici, a sajt,
@@ -15,7 +15,7 @@ const organizacija = {
   '@type': 'Organization',
   '@id': ORGANIZACIJA_ID,
   name: SITE_NAME,
-  alternateName: 'WebStudioH',
+  alternateName: ['Hunar web studio', 'hunar.ba', 'WebStudioH'],
   url: `${SITE_URL}/`,
   logo: {
     '@type': 'ImageObject',
@@ -24,11 +24,16 @@ const organizacija = {
     height: 512,
   },
   image: `${SITE_URL}/og/home.jpg`,
-  sameAs: [google.profil],
+  sameAs: profili,
   description:
-    'Web studio iz Bosne i Hercegovine. Pravimo web stranice, web trgovine i sisteme po mjeri: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale.',
+    'Hunar je web studio iz Bosne i Hercegovine (hunar.ba, ranije WebStudioH). Pravimo web stranice, web trgovine i sisteme po mjeri: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina i B2B portale.',
+  // "hunar" je i riječ (vještina); ovo kaže da je ovdje riječ o firmi.
+  disambiguatingDescription: 'Web studio iz Bosne i Hercegovine na adresi hunar.ba.',
+  foundingDate: osnovano,
   email: contact.email,
   telephone: telefon,
+  // Firma radi na terenu (Google profil bez adrese), pa je adresa samo država.
+  address: { '@type': 'PostalAddress', addressCountry: 'BA' },
   areaServed: { '@type': 'Country', name: 'Bosna i Hercegovina' },
   knowsLanguage: ['bs', 'en'],
   // Čime se bavimo, za pretraživače i AI asistente; svaka stavka ima stranicu ili rad koji je dokazuje.
@@ -88,6 +93,21 @@ export function sajt(jezik = 'bs') {
     url: `${SITE_URL}/`,
     inLanguage: jezik,
     publisher: { '@id': ORGANIZACIJA_ID },
+  }
+}
+
+// Stranica O Hunaru: kaže pretraživaču da je ova stranica o firmi iz Organization.
+export function oFirmi({ path, naslov, opis, jezik = 'bs' }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    '@id': `${SITE_URL}${path}#stranica`,
+    url: SITE_URL + path,
+    name: naslov,
+    description: opis,
+    inLanguage: jezik,
+    about: { '@id': ORGANIZACIJA_ID },
+    mainEntity: { '@id': ORGANIZACIJA_ID },
   }
 }
 

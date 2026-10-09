@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
+import { oFirmi } from '../components/JsonLd.jsx'
 import { DioNaslov, Mjerac } from '../components/stranica/dijelovi.jsx'
 import Trake from '../components/stranica/Trake.jsx'
 import ZavrsniPoziv from '../components/stranica/ZavrsniPoziv.jsx'
@@ -10,7 +12,8 @@ import '../components/stranica/stranica.css'
 import '../components/onama/onama.css'
 
 // O Hunaru (/o-nama i /en/about): naslov čija se slova podebljaju pod mišem, veliki trenutak
-// "Iz jedne ruke", znak sa tekstom oko njega, četiri pravila rada, trake i završni poziv.
+// "Iz jedne ruke", znak sa tekstom oko njega, četiri pravila rada, činjenice o firmi ("Ukratko"),
+// trake i završni poziv.
 // Bez imena, lica i broja ljudi (PRODUCT.md).
 export default function ONama({ t }) {
   return (
@@ -24,6 +27,7 @@ export default function ONama({ t }) {
           { jezik: 'bs', path: '/o-nama' },
           { jezik: 'en', path: PAROVI['/o-nama'] },
         ]}
+        podaci={[oFirmi({ path: t.put, naslov: t.seo.naslov, opis: t.seo.opis, jezik: t.jezik })]}
       />
       <header className="st-vrh on-vrh">
         <div className="st-vrh__sjaj" aria-hidden="true" />
@@ -66,6 +70,34 @@ export default function ONama({ t }) {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="st-dio on-ukratko">
+        <div className="st-sirina">
+          <DioNaslov nad={t.ukratko.nad} naslov={t.ukratko.naslov} />
+          <dl className="on-u">
+            {t.ukratko.stavke.map((s, i) => (
+              <div key={s.pojam} className="on-u__red" data-pokret="pojavi" style={{ '--i': i }}>
+                <dt>{s.pojam}</dt>
+                <dd>
+                  {s.opis.map((d, j) =>
+                    typeof d === 'string' ? (
+                      d
+                    ) : d.put ? (
+                      <Link key={j} to={d.put}>
+                        {d.tekst}
+                      </Link>
+                    ) : (
+                      <a key={j} href={d.href}>
+                        {d.tekst}
+                      </a>
+                    ),
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </section>
 

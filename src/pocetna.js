@@ -49,7 +49,8 @@ export const ui = {
 
 export const seo = {
   naslov: 'Izrada web stranica i web trgovina u BiH · Hunar',
-  opis: 'Izrađujemo web stranice, web shopove i sisteme po mjeri, povezane sa OLX-om, Ananasom i dobavljačima. Dizajn, kod, hosting i održavanje na jednom mjestu.',
+  // Počinje imenom, da Google i AI asistenti čitaju Hunar kao firmu (vidi o-hunaru.js).
+  opis: 'Hunar je web studio iz BiH. Pravimo web stranice, web shopove i sisteme po mjeri, povezane sa OLX-om, Ananasom i dobavljačima, i održavamo ih.',
 }
 
 // Prvi ekran: "Radimo [riječ] za firme u BiH." Riječ se smjenjuje kroz osam usluga
@@ -244,7 +245,7 @@ export const finale = {
 }
 
 export const podnozje = {
-  opis: 'Hunar pravi web stranice, trgovine i sisteme za firme u BiH. Dizajn, kod, hosting i održavanje iz jedne ruke.',
+  opis: 'Hunar je web studio iz Bosne i Hercegovine. Pravimo web stranice, trgovine i sisteme za firme u BiH; dizajn, kod, hosting i održavanje iz jedne ruke.',
   znacenje: 'hunar: vještina, umijeće',
 }
 

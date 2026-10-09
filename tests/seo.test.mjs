@@ -126,6 +126,23 @@ for (const slug of ['mrt', 'smarttime']) {
   })
 }
 
+// Entitet: Googleov AI odgovor za "hunar.ba" je 9. 10. 2026 rekao da takva firma ne postoji i
+// objasnio riječ hunar. Opisi zato počinju sa "Hunar je web studio", a O Hunaru je AboutPage firme.
+test('Hunar je opisan kao firma: opis, osnivanje, profili i AboutPage', () => {
+  const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
+  assert.match(org.description, /^Hunar je web studio/)
+  assert.match(org.foundingDate, /^\d{4}-\d{2}-\d{2}$/)
+  assert.ok(org.sameAs.length >= 1)
+  for (const path of ['/', '/en', '/o-nama', '/en/about']) {
+    const p = pages.find((x) => x.path === path)
+    assert.match(meta(p.html, /<meta[^>]*name="description"[^>]*content="([^"]*)"/), /^Hunar (je|is a) web studio/, path)
+  }
+  for (const path of ['/o-nama', '/en/about']) {
+    const o = jsonLd(pages.find((x) => x.path === path).html).find((d) => d['@type'] === 'AboutPage')
+    assert.equal(o?.mainEntity['@id'], org['@id'], path)
+  }
+})
+
 // GEO: llms.txt je kratak vodič za AI asistente; svaki link mora voditi na stranicu koja postoji.
 test('llms.txt postoji i vodi samo na stranice koje postoje', () => {
   const txt = readFileSync(join(DIST, 'llms.txt'), 'utf8')
