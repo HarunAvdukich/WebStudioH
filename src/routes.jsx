@@ -18,6 +18,7 @@ import Kontakt from './pages/Kontakt.jsx'
 import * as kontakt from './stranice/kontakt.js'
 import * as kontaktEn from './stranice/kontakt.en.js'
 import Savjeti from './pages/Savjeti.jsx'
+import Olx from './pages/Olx.jsx'
 import Clanak from './pages/Clanak.jsx'
 import Privatnost from './pages/Privatnost.jsx'
 import * as privatnost from './stranice/privatnost.js'
@@ -52,6 +53,7 @@ export const routes = [
       { path: 'cijene', element: <Cijene t={cijene} /> },
       { path: 'en/pricing', element: <Cijene t={cijeneEn} /> },
       { path: 'savjeti', element: <Savjeti /> },
+      { path: 'olx', element: <Olx /> },
       {
         path: 'savjeti/:slug',
         element: <Clanak />,

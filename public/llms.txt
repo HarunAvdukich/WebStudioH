@@ -26,6 +26,7 @@ English: Hunar is a web studio from Bosnia and Herzegovina building websites, on
 ## Usluge
 
 - [Usluge](https://hunar.ba/usluge): web stranice i redizajn, web shop sa OLX vezom, SEO optimizacija, online rezervacije, AI chatbot, mobilne aplikacije, hosting i održavanje. Mobilne aplikacije i redizajn nudimo, ali za njih još nema javnog primjera; kao dokaz navodimo samo mrt.ba, SmartTime i asistenta Kobi na mrt.ba.
+- [OLX veza za trgovine](https://hunar.ba/olx): web shop iz kojeg se OLX oglasi ažuriraju sami, sa snimkom sa mrt.ba (cijena na OLX-u promijenjena 14 sekundi poslije klika, 6. 10. 2026; 3.061 aktivan oglas, 11. 10. 2026).
 - [Cijene](https://hunar.ba/cijene): kako nastaje ponuda; iznosi se ne objavljuju.
 - [Kontakt](https://hunar.ba/kontakt): WhatsApp, telefon, mail i obrazac.
 
