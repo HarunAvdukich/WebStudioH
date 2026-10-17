@@ -27,7 +27,9 @@ function adresa(file) {
 const pages = existsSync(DIST)
   ? htmlFiles().map((file) => ({ file, path: adresa(file), html: readFileSync(file, 'utf8') }))
   : []
-const indeksirane = pages.filter((p) => p.path !== '/404')
+// /sati je skrivena evidencija rada za klijenta: otvara se samo linkom sa ključem.
+const NEINDEKSIRANE = ['/404', '/sati']
+const indeksirane = pages.filter((p) => !NEINDEKSIRANE.includes(p.path))
 const meta = (html, re) => (html.match(re) || [])[1]
 const jsonLd = (html) =>
   [...html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]))
@@ -37,6 +39,17 @@ test('404.html postoji, ne indeksira se i nema canonical', () => {
   assert.ok(p, 'dist/404.html nije izgrađen')
   assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
   assert.doesNotMatch(p.html, /rel="canonical"/)
+})
+
+test('/sati se ne indeksira, nema okvira sajta i nije nigdje naveden', () => {
+  const p = pages.find((x) => x.path === '/sati')
+  assert.ok(p, 'dist/sati.html nije izgrađen')
+  assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
+  assert.doesNotMatch(p.html, /rel="canonical"/)
+  assert.doesNotMatch(p.html, /ok-zaglavlje|ok-podnozje|ok-traka/)
+  assert.doesNotMatch(readFileSync(join(DIST, 'sitemap.xml'), 'utf8'), /\/sati/)
+  assert.doesNotMatch(readFileSync('public/llms.txt', 'utf8'), /\/sati/)
+  for (const q of indeksirane) assert.doesNotMatch(q.html, /href="\/sati/, `${q.path} vodi na /sati`)
 })
 
 test('netlify ne vraća početnu za nepostojeće adrese', () => {
