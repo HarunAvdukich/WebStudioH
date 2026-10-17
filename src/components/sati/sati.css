@@ -1,0 +1,223 @@
+/* Skrivena evidencija rada (/sati). Boje i slovo su kao na ostatku sajta; stranica je alat,
+   pa je mirna: jedan naglasak (zbir mjeseca), brojevi u tabularnim ciframa, stubići dana. */
+.sati {
+  --zelena: #0f241d;
+  --zelena-dublja: #0a1a15;
+  --polje: #143128;
+  --linija: rgba(227, 241, 234, 0.12);
+  --smaragd: #0e8a64;
+  --stub: #15a273;
+  --svijetli: #19b07e;
+  --krec: #f4f4f2;
+  --mint: #e3f1ea;
+  --tekst2: #c9d6cf;
+  --siva: #a9bdb4;
+  --e: cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 56px;
+  font-variant-numeric: tabular-nums;
+  color: var(--krec);
+}
+
+.sati__vrh {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  margin-bottom: 40px;
+}
+.sati__znak {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.sati__znak svg { width: 34px; height: auto; }
+.sati__azurirano { font-size: 13px; color: var(--siva); text-align: right; }
+
+.sati__naslov {
+  font-size: 32px;
+  line-height: 1.1;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* birač mjeseca: red dugmadi, na telefonu klizi vodoravno */
+.sati__mjeseci {
+  display: flex;
+  gap: 8px;
+  margin: 24px -20px 0;
+  padding: 2px 20px 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.sati__mjeseci::-webkit-scrollbar { display: none; }
+.sati__mjesec-dugme {
+  flex: none;
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.22);
+  color: var(--tekst2);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.sati__mjesec-dugme[aria-pressed='true'] { background: var(--mint); color: var(--zelena); box-shadow: none; }
+
+/* zbir mjeseca */
+.sati__mjesec { margin-top: 32px; }
+.sati__zbir { display: grid; gap: 6px; }
+.sati__broj {
+  font-size: 52px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+.sati__zbir-tekst { font-size: 17px; color: var(--tekst2); }
+
+.sati__brojke {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 28px;
+  margin: 20px 0 0;
+}
+.sati__brojke div { display: grid; gap: 2px; }
+.sati__brojke dt { font-size: 13px; color: var(--siva); }
+.sati__brojke dd { margin: 0; font-size: 20px; font-weight: 700; }
+
+/* traka dana: stubić po danu, visina je radno vrijeme */
+.sati__traka-okvir { margin-top: 32px; }
+.sati__traka-opis { min-height: 20px; font-size: 14px; color: var(--siva); }
+.sati__traka {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  height: 84px;
+  margin-top: 10px;
+  border-bottom: 1px solid var(--linija);
+}
+.sati__stub {
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  display: flex;
+  align-items: flex-end;
+  cursor: pointer;
+}
+.sati__stub span {
+  display: block;
+  width: 100%;
+  height: calc(var(--v) * 100%);
+  border-radius: 4px 4px 0 0;
+  background: var(--stub);
+  transform-origin: bottom;
+  animation: sati-raste 0.5s var(--e) both;
+  transition: background-color 0.15s;
+}
+.sati__stub:hover span, .sati__stub:focus-visible span { background: var(--mint); }
+.sati__stub:focus-visible { outline-offset: 1px; border-radius: 3px; }
+.sati__stub--prazan { cursor: default; }
+.sati__stub--prazan span { height: 2px; border-radius: 1px; background: var(--linija); animation: none; }
+.sati__traka-ose {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--siva);
+}
+@keyframes sati-raste { from { transform: scaleY(0); } }
+
+/* dani */
+.sati__dani { list-style: none; margin: 28px 0 0; padding: 0; }
+.sati__dan {
+  padding: 16px 0;
+  border-top: 1px solid var(--linija);
+  scroll-margin: 24px;
+}
+.sati__dan-red { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.sati__datum { font-size: 17px; font-weight: 600; }
+.sati__trajanje { font-size: 17px; font-weight: 700; white-space: nowrap; }
+.sati__teme { margin-top: 6px; font-size: 15px; line-height: 1.45; color: var(--tekst2); max-width: 60ch; }
+.sati__detalji { margin-top: 6px; font-size: 13px; color: var(--siva); }
+
+.sati__napomena {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--linija);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--siva);
+  max-width: 62ch;
+}
+
+/* poruke: bez ključa, pogrešan ključ, prazno, greška */
+.sati__poruka { display: grid; gap: 14px; justify-items: start; padding-top: 24px; }
+.sati__poruka p { font-size: 17px; line-height: 1.55; color: var(--tekst2); max-width: 48ch; }
+.sati__dugme {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  margin-top: 8px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 24px;
+  background: var(--mint);
+  color: var(--zelena);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s;
+}
+.sati__dugme:hover { background: #fff; }
+
+/* učitavanje: kostur na mjestu zbira, trake i dana */
+.sati__ucitava { display: grid; gap: 14px; }
+.sati__ucitava .sati__naslov { margin-bottom: 18px; }
+.sati__kostur { display: block; height: 18px; border-radius: 6px; background: var(--polje); animation: sati-disanje 1.4s ease-in-out infinite; }
+.sati__kostur--broj { width: 62%; height: 52px; }
+.sati__kostur--red { width: 100%; }
+.sati__kostur--traka { height: 84px; margin: 14px 0; }
+@keyframes sati-disanje { 50% { opacity: 0.55; } }
+
+@media (hover: hover) {
+  .sati__mjesec-dugme:not([aria-pressed='true']):hover { color: var(--krec); box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.5); }
+}
+
+@media (min-width: 768px) {
+  .sati { padding: 32px 32px 80px; }
+  .sati__vrh { margin-bottom: 56px; }
+  .sati__naslov { font-size: 44px; }
+  .sati__mjeseci { margin: 28px 0 0; padding: 2px 0 6px; flex-wrap: wrap; overflow: visible; }
+  .sati__broj { font-size: 68px; }
+  .sati__traka { height: 120px; }
+  .sati__kostur--traka { height: 120px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sati__stub span, .sati__kostur { animation: none; }
+}
+
+/* štampa: izvještaj na bijelom papiru, bez dugmadi */
+@media print {
+  body { background: #fff; }
+  .sati { color: #111; max-width: none; padding: 0; }
+  .sati__mjeseci, .sati__traka-opis { display: none; }
+  .sati__zbir-tekst, .sati__teme, .sati__detalji, .sati__napomena, .sati__azurirano, .sati__brojke dt, .sati__traka-ose { color: #444; }
+  .sati__dan, .sati__napomena { border-color: #ccc; }
+  .sati__stub span { background: #0e8a64; animation: none; }
+  .sati__traka { border-color: #ccc; }
+}

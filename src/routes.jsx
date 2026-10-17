@@ -24,6 +24,7 @@ import Privatnost from './pages/Privatnost.jsx'
 import * as privatnost from './stranice/privatnost.js'
 import * as privatnostEn from './stranice/privatnost.en.js'
 import NotFound from './pages/NotFound.jsx'
+import Sati from './pages/Sati.jsx'
 import { posts } from './posts.js'
 
 export const routes = [
@@ -54,6 +55,8 @@ export const routes = [
       { path: 'en/pricing', element: <Cijene t={cijeneEn} /> },
       { path: 'savjeti', element: <Savjeti /> },
       { path: 'olx', element: <Olx /> },
+      // Skrivena evidencija rada za klijenta: van menija, sitemapa i indeksa (vidi src/pages/Sati.jsx).
+      { path: 'sati', element: <Sati /> },
       {
         path: 'savjeti/:slug',
         element: <Clanak />,

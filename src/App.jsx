@@ -22,18 +22,23 @@ export default function App() {
   // (telefon, uski prozor, bez JavaScripta) koristi zajednički okvir kao i ostale stranice.
   const pocetna = pathname === '/' || pathname === '/en' || pathname === '/en/'
   const engleski = pathname === '/en' || pathname.startsWith('/en/')
+  // Evidencija rada (/sati) je alat za klijenta: bez okvira, statistike i naslova koji zove nazad.
+  const bezOkvira = pathname === '/sati' || pathname === '/sati/'
 
   // Statistika bez kolačića (Umami), samo na hunar.ba; učita se poslije stranice.
   useEffect(() => {
-    pokreniStatistiku()
+    if (!bezOkvira) pokreniStatistiku()
   }, [])
 
   // Male animacije (data-pokret) poslije svake promjene stranice.
   useEffect(() => pokreniPokrete(document), [pathname])
   // Naslov kartice poziva nazad kad posjetilac ode na drugu karticu.
-  useEffect(() => pratiNaslovKartice(document, engleski ? naslovKartice.en : naslovKartice.bs), [engleski])
-  // Glatki skrol na svim stranicama osim početne (početna ima svoj).
-  useGlatkiSkrol(!pocetna)
+  useEffect(
+    () => (bezOkvira ? undefined : pratiNaslovKartice(document, engleski ? naslovKartice.en : naslovKartice.bs)),
+    [engleski, bezOkvira],
+  )
+  // Glatki skrol na svim stranicama osim početne (početna ima svoj) i evidencije rada.
+  useGlatkiSkrol(!pocetna && !bezOkvira)
 
   // Vlastiti kursor samo za miš; kod se učita tek na prvi pokret miša.
   useEffect(() => {
@@ -55,6 +60,17 @@ export default function App() {
       ugasi?.()
     }
   }, [])
+
+  if (bezOkvira) {
+    return (
+      <div className="page page--sati">
+        <JsonLd />
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    )
+  }
 
   return (
     <div className={pocetna ? 'page page--pocetna' : 'page'}>
