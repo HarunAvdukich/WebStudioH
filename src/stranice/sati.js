@@ -10,9 +10,17 @@ export const naslov = (projekat) => (projekat ? `Rad za ${projekat}` : 'Evidenci
 
 export const azurirano = 'Ažurirano'
 export const mjeseciOznaka = 'Mjeseci'
-export const traka = 'Sati po danima u mjesecu'
+export const traka = 'Sati po danima'
 export const radnoVrijeme = 'radnog vremena'
-export const oznake = { sati: 'Sati', dana: 'Radnih dana', claude: 'Claude', poruke: 'Poruke' }
+export const oznake = { sati: 'Sati', dana: 'Radnih dana', klijent: 'Za klijenta', claude: 'Claude', poruke: 'Poruke' }
+
+// Obračunski period: od 15. do 15. sljedećeg mjeseca, oba dana uključena.
+export const periodDugme = 'Period'
+export const obracunOznaka = 'Obračun od 15. do 15.'
+export const obracun = { prosli: 'Prošli obračun', tekuci: 'Tekući obračun' }
+export const polja = { od: 'Od', do: 'Do' }
+export const periodObrnut = 'Početni datum je poslije krajnjeg. Zamijenite ih.'
+export const nemaRada = 'U ovom periodu nema zabilježenog rada.'
 
 export const stanja = {
   bezKljuca: {
@@ -39,7 +47,7 @@ export const napomena = {
   klijent:
     'Radno vrijeme je vrijeme rada na Vašem projektu, sabrano po danima. Sati se upisuju sami, poslije svakog završenog zadatka.',
   vlasnik:
-    'Radno vrijeme: dok Claude radi, plus pauze između poruka do 15 minuta. Claude: samo vrijeme odgovora. Ovaj link je samo tvoj; klijentov link pokazuje radno vrijeme i teme, bez Claude brojki.',
+    'Radno vrijeme: dok Claude radi, plus pauze između poruka do 15 minuta. Za klijenta: sati koje klijent vidi, bez sesija označenih sa - u teme-za-klijenta.txt; po tome se fakturiše. Claude: samo vrijeme odgovora. Ovaj link je samo tvoj; klijentov link pokazuje radno vrijeme i teme, bez Claude brojki.',
 }
 
 // Mjesec u lokativu ("u oktobru 2026") i oznaka na dugmetu ("Oktobar 2026").
@@ -81,6 +89,24 @@ export const decimalno = (sek) => (sek / 3600).toFixed(2).replace('.', ',')
 export function dan(datum) {
   const [g, m, d] = datum.split('-').map(Number)
   return `${DANI[new Date(g, m - 1, d).getDay()]} ${d}. ${m}.`
+}
+
+// "15. 9." i "od 15. 9. do 15. 10. 2026." (godina kod oba datuma kad se razlikuje)
+export function kratkiDatum(datum) {
+  const [, m, d] = datum.split('-').map(Number)
+  return `${d}. ${m}.`
+}
+
+export function kratkoOdDo(p) {
+  return `${kratkiDatum(p.od)} do ${kratkiDatum(p.do)}`
+}
+
+export function opisPerioda(p) {
+  const go = p.od.slice(0, 4)
+  const gd = p.do.slice(0, 4)
+  return go === gd
+    ? `od ${kratkiDatum(p.od)} do ${kratkiDatum(p.do)} ${gd}.`
+    : `od ${kratkiDatum(p.od)} ${go}. do ${kratkiDatum(p.do)} ${gd}.`
 }
 
 export function vrijemeAzuriranja(iso) {
