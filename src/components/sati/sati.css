@@ -12,6 +12,7 @@
   --mint: #e3f1ea;
   --tekst2: #c9d6cf;
   --siva: #a9bdb4;
+  --smaragd-tamni: #0b7a58;
   --e: cubic-bezier(0.16, 1, 0.3, 1);
   max-width: 720px;
   margin: 0 auto;
@@ -73,6 +74,49 @@
   transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
 }
 .sati__mjesec-dugme[aria-pressed='true'] { background: var(--mint); color: var(--zelena); box-shadow: none; }
+
+/* period: obračun od 15. do 15. jednim dodirom, ili bilo koji raspon kroz polja */
+.sati__period { display: grid; gap: 16px; margin-top: 20px; }
+.sati__obracuni { display: flex; flex-wrap: wrap; gap: 8px; }
+.sati__obracun {
+  display: grid;
+  gap: 2px;
+  min-height: 52px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: 14px;
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.22);
+  color: var(--krec);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.18s, color 0.18s, box-shadow 0.18s;
+}
+.sati__obracun-ime { font-size: 12px; color: var(--siva); transition: color 0.18s; }
+.sati__obracun-datumi { font-size: 15px; font-weight: 700; }
+.sati__obracun[aria-pressed='true'] { background: var(--mint); color: var(--zelena); box-shadow: none; }
+.sati__obracun[aria-pressed='true'] .sati__obracun-ime { color: var(--smaragd-tamni, #0b7a58); }
+.sati__polja { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; max-width: 420px; }
+.sati__polje { display: grid; gap: 6px; }
+.sati__polje span { font-size: 13px; color: var(--siva); }
+.sati__polje input {
+  min-width: 0;
+  min-height: 46px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--polje);
+  box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.16);
+  color: var(--krec);
+  color-scheme: dark;
+  font: inherit;
+  font-size: 16px;
+  font-variant-numeric: tabular-nums;
+}
+.sati__polje input:focus-visible { outline: 2px solid var(--mint); outline-offset: 2px; }
+.sati__obavijest { margin-top: 28px; font-size: 16px; line-height: 1.5; color: var(--tekst2); }
+.sati__brojka-klijent dd { color: var(--svijetli); }
 
 /* zbir mjeseca */
 .sati__mjesec { margin-top: 32px; }
@@ -195,6 +239,7 @@
 
 @media (hover: hover) {
   .sati__mjesec-dugme:not([aria-pressed='true']):hover { color: var(--krec); box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.5); }
+  .sati__obracun:not([aria-pressed='true']):hover { box-shadow: inset 0 0 0 1.5px rgba(227, 241, 234, 0.5); }
 }
 
 @media (min-width: 768px) {
@@ -215,7 +260,7 @@
 @media print {
   body { background: #fff; }
   .sati { color: #111; max-width: none; padding: 0; }
-  .sati__mjeseci, .sati__traka-opis { display: none; }
+  .sati__mjeseci, .sati__traka-opis, .sati__period { display: none; }
   .sati__zbir-tekst, .sati__teme, .sati__detalji, .sati__napomena, .sati__azurirano, .sati__brojke dt, .sati__traka-ose { color: #444; }
   .sati__dan, .sati__napomena { border-color: #ccc; }
   .sati__stub span { background: #0e8a64; animation: none; }
