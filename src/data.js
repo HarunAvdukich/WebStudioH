@@ -19,7 +19,11 @@ export const google = {
 // Profili firme na drugim mjestima (sameAs u JSON-LD): po njima Google i AI asistenti znaju da
 // je Hunar firma, a ne samo riječ. Samo profili firme Hunar; lični profili vlasnika ne idu ovdje
 // (PRODUCT.md: bez imena vlasnika).
-export const profili = [google.profil]
+export const profili = [
+  google.profil,
+  'https://www.facebook.com/hunarwebstudio',
+  'https://www.instagram.com/hunarwebstudio/',
+]
 
 // Datum otvaranja, isti kao na Google profilu (odluka vlasnika 9. 10. 2026).
 export const osnovano = '2026-06-01'

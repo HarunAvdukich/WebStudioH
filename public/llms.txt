@@ -16,6 +16,8 @@ English: Hunar is a web studio from Bosnia and Herzegovina building websites, on
 - Kontakt stranica: https://hunar.ba/kontakt
 - O firmi: https://hunar.ba/o-nama
 - Google profil: https://www.google.com/maps?cid=15998770561478667953
+- Facebook: https://www.facebook.com/hunarwebstudio
+- Instagram: https://www.instagram.com/hunarwebstudio/
 
 ## Radovi (stvarni, javni projekti)
 
