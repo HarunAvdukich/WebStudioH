@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kalkulator registracije BiH</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Obračun troškova registracije vozila za FBiH, Republiku Srpsku i Brčko distrikt, po stavkama.">
+<meta name="robots" content="noindex">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<style>
+/* Layout: obrazac lijevo, obračun desno kao isprintan račun stanice (sticky); na telefonu jedno ispod drugog + traka s ukupnim iznosom. */
+:root {
+  color-scheme: light;
+  --bg: #EDF0F3;
+  --surface: #FFFFFF;
+  --paper: #FFFFFF;
+  --ink: #15202B;
+  --muted: #566272;
+  --line: #D2D9E1;
+  --field: #F6F8FA;
+  --brand: #1F4E9E;
+  --accent: var(--brand);
+  --accent-ink: #FFFFFF;
+  --accent-soft: color-mix(in oklab, var(--brand) 12%, transparent);
+  --ok: #276B43;
+  --ok-bg: #E1F0E6;
+  --est: #855400;
+  --est-bg: #FAEFD6;
+  --err: #B3261E;
+  --shadow: 0 1px 2px rgba(21, 32, 43, .06), 0 8px 24px rgba(21, 32, 43, .08);
+  --font: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #0E141A;
+    --surface: #161E27;
+    --paper: #1A2430;
+    --ink: #E5EAEF;
+    --muted: #9AA6B3;
+    --line: #2B3744;
+    --field: #111921;
+    --accent: color-mix(in oklab, var(--brand) 55%, white);
+    --accent-ink: #0E141A;
+    --accent-soft: color-mix(in oklab, var(--brand) 30%, transparent);
+    --ok: #8FD3A8;
+    --ok-bg: #1C3326;
+    --est: #F0C46A;
+    --est-bg: #3A2D12;
+    --err: #FF8A80;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #0E141A;
+  --surface: #161E27;
+  --paper: #1A2430;
+  --ink: #E5EAEF;
+  --muted: #9AA6B3;
+  --line: #2B3744;
+  --field: #111921;
+  --accent: color-mix(in oklab, var(--brand) 55%, white);
+  --accent-ink: #0E141A;
+  --accent-soft: color-mix(in oklab, var(--brand) 30%, transparent);
+  --ok: #8FD3A8;
+  --ok-bg: #1C3326;
+  --est: #F0C46A;
+  --est-bg: #3A2D12;
+  --err: #FF8A80;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .35);
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 96px;
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+h1, h2, h3 { font-stretch: 78%; font-weight: 760; line-height: 1.1; text-wrap: balance; margin: 0; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Demo traka */
+.demo {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between;
+  padding-block: 10px; font-size: 14px; color: var(--muted);
+  border-bottom: 1px dashed var(--line);
+}
+.demo strong { color: var(--ink); font-weight: 650; }
+.btn-ghost {
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--accent);
+  background: transparent; border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--accent); }
+
+/* Zaglavlje stanice */
+.station {
+  display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between;
+  padding-block: 20px 8px;
+}
+.station-id { display: flex; gap: 12px; align-items: center; min-width: 0; }
+.logo {
+  width: 44px; height: 44px; border-radius: 10px; flex: none;
+  background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center; font-weight: 800; font-stretch: 75%; font-size: 20px;
+}
+.station-name { font-size: 20px; font-weight: 750; font-stretch: 82%; line-height: 1.15; }
+.station-sub { font-size: 14px; color: var(--muted); }
+.station-call {
+  display: inline-flex; gap: 8px; align-items: center; text-decoration: none;
+  font-weight: 650; color: var(--ink); padding: 10px 16px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line);
+}
+.station-call svg { width: 18px; height: 18px; fill: var(--accent); }
+
+.intro { padding-block: 20px 24px; max-width: 62ch; }
+.intro h1 { font-size: clamp(30px, 5vw, 46px); }
+.intro p { margin: 10px 0 0; color: var(--muted); font-size: 17px; }
+
+/* Glavni raspored */
+.grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 28px; align-items: start; }
+@media (max-width: 880px) { .grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* Obrazac */
+.form { display: grid; gap: 20px; }
+fieldset {
+  margin: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface);
+  padding: 18px 18px 20px; display: grid; gap: 16px; min-width: 0;
+}
+legend { font-weight: 720; font-stretch: 82%; font-size: 18px; padding: 0 6px; }
+.row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 480px) { .row { grid-template-columns: minmax(0, 1fr); } }
+.field { display: grid; gap: 6px; min-width: 0; }
+label, .label { font-size: 14px; font-weight: 620; }
+.hint { font-size: 13px; color: var(--muted); }
+input[type="number"], input[type="text"], input[type="tel"], select, textarea {
+  width: 100%; font: inherit; color: var(--ink); background: var(--field);
+  border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; min-height: 44px;
+}
+input[type="number"] { font-variant-numeric: tabular-nums; }
+input:focus, select:focus, textarea:focus { border-color: var(--accent); outline: none; box-shadow: 0 0 0 3px var(--accent-soft); }
+input[aria-invalid="true"] { border-color: var(--err); }
+.err { font-size: 13px; color: var(--err); min-height: 0; }
+.err:empty { display: none; }
+
+.seg { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; padding: 4px; background: var(--field); border: 1px solid var(--line); border-radius: 10px; }
+.seg input { position: absolute; opacity: 0; pointer-events: none; }
+.seg label {
+  text-align: center; padding: 9px 6px; border-radius: 7px; cursor: pointer; font-weight: 650; font-size: 15px;
+  color: var(--muted); line-height: 1.2;
+}
+.seg label small { display: block; font-weight: 500; font-size: 12px; }
+.seg input:checked + label { background: var(--surface); color: var(--ink); box-shadow: var(--shadow); }
+.seg input:focus-visible + label { outline: 3px solid var(--accent); outline-offset: 1px; }
+
+.bm-out { font-size: 14px; color: var(--muted); }
+input[type="range"] { width: 100%; accent-color: var(--accent); min-height: 32px; }
+
+/* Obračun kao račun */
+.receipt-col { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); }
+@media (max-width: 880px) { .receipt-col { position: static; } }
+.receipt {
+  background: var(--paper); border-radius: 4px 4px var(--radius) var(--radius); box-shadow: var(--shadow);
+  padding: 26px 22px 22px; position: relative;
+}
+.receipt::before {
+  content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 8px;
+  background:
+    radial-gradient(circle at 6px 8px, var(--paper) 5.5px, transparent 6px) 0 0 / 12px 8px repeat-x;
+}
+.r-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+.r-head h2 { font-size: 22px; }
+.r-meta { font-size: 13px; color: var(--muted); }
+.r-vehicle { margin: 6px 0 14px; font-size: 14px; color: var(--muted); }
+.r-group { border-top: 1px dashed var(--line); padding-block: 12px 4px; }
+.r-group h3 { font-size: 15px; font-stretch: 85%; font-weight: 700; color: var(--muted); margin-bottom: 6px; display: flex; justify-content: space-between; gap: 8px; }
+.r-item { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 10px; padding-block: 5px; }
+.r-name { display: flex; align-items: baseline; gap: 8px; min-width: 0; }
+.r-name span:first-child { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.r-name::after { content: ""; flex: 1; border-bottom: 1px dotted var(--line); transform: translateY(-4px); min-width: 12px; }
+.r-amt { font-variant-numeric: tabular-nums; font-weight: 620; text-align: right; }
+.r-note { grid-column: 1 / -1; font-size: 12.5px; color: var(--muted); display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.chip { font-size: 11.5px; font-weight: 650; padding: 1px 7px; border-radius: 999px; white-space: nowrap; }
+.chip.propis { color: var(--ok); background: var(--ok-bg); }
+.chip.okvirno { color: var(--est); background: var(--est-bg); }
+.chip.stanica { color: var(--accent); background: var(--accent-soft); }
+.r-total { border-top: 2px solid var(--ink); margin-top: 12px; padding-top: 14px; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 4px 12px; }
+.r-total .lbl { font-weight: 700; font-stretch: 85%; font-size: 17px; }
+.r-total .big { font-size: clamp(30px, 6vw, 38px); font-weight: 800; font-stretch: 80%; font-variant-numeric: tabular-nums; line-height: 1; }
+.r-total .per { grid-column: 1 / -1; text-align: right; font-size: 13px; color: var(--muted); }
+.r-disclaimer { font-size: 12.5px; color: var(--muted); margin: 14px 0 0; }
+.r-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.btn {
+  font: inherit; font-weight: 700; font-size: 15px; border-radius: 10px; padding: 12px 14px; cursor: pointer;
+  text-align: center; text-decoration: none; min-height: 46px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+}
+.btn-primary { background: var(--accent); color: var(--accent-ink); border: 1px solid var(--accent); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-secondary { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn-secondary:hover { border-color: var(--accent); }
+
+.lead { margin-top: 16px; border-top: 1px dashed var(--line); padding-top: 14px; display: grid; gap: 12px; }
+.lead[hidden] { display: none; }
+.lead textarea { min-height: 84px; resize: vertical; }
+.lead-done { font-size: 14px; background: var(--accent-soft); border-radius: 8px; padding: 12px; }
+
+.legend-row { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 13px; color: var(--muted); margin-top: 14px; align-items: center; }
+
+/* Izvori */
+.sources { margin-top: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.sources summary { cursor: pointer; padding: 16px 18px; font-weight: 700; font-stretch: 85%; font-size: 17px; }
+.sources-body { padding: 0 18px 18px; font-size: 14px; color: var(--muted); max-width: 80ch; }
+.sources-body table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.sources-body th, .sources-body td { text-align: left; padding: 7px 8px 7px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.sources-body th { color: var(--ink); font-weight: 650; }
+.tbl { overflow-x: auto; }
+
+/* Traka na telefonu */
+.mbar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: none; align-items: center; justify-content: space-between; gap: 12px;
+  background: var(--surface); border-top: 1px solid var(--line); box-shadow: 0 -6px 18px rgba(0,0,0,.08);
+  padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+}
+.mbar .t { font-size: 13px; color: var(--muted); line-height: 1.2; }
+.mbar .t b { display: block; font-size: 22px; color: var(--ink); font-stretch: 80%; font-variant-numeric: tabular-nums; }
+@media (max-width: 880px) { .mbar.show { display: flex; } }
+
+/* Prilagodi dijalog */
+dialog { border: 1px solid var(--line); border-radius: 14px; background: var(--surface); color: var(--ink); padding: 0; width: min(520px, calc(100vw - 32px)); }
+dialog::backdrop { background: rgba(10, 16, 22, .5); }
+.dlg { padding: 20px; display: grid; gap: 14px; }
+.dlg h2 { font-size: 22px; }
+.dlg p { margin: 0; font-size: 14px; color: var(--muted); }
+.dlg-actions { display: flex; gap: 10px; justify-content: flex-end; flex-wrap: wrap; }
+input[type="color"] { width: 100%; height: 44px; border: 1px solid var(--line); border-radius: 8px; background: var(--field); padding: 4px; }
+
+footer { margin-top: 28px; font-size: 13px; color: var(--muted); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .r-total .big { transition: color .2s; }
+  .flash { animation: flash .5s ease-out; }
+  @keyframes flash { from { color: var(--accent); } to { color: var(--ink); } }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="demo" role="note">
+    <span><strong>Demo kalkulatora.</strong> Iznosi su orijentacioni, prema tarifama za 2026. Stanica postavlja svoje cijene. Izradio <a href="/">Hunar</a>.</span>
+    <button class="btn-ghost" type="button" id="openCustomize">Prilagodi za svoju stanicu</button>
+  </div>
+
+  <header class="station">
+    <div class="station-id">
+      <div class="logo" id="logo" aria-hidden="true">VS</div>
+      <div>
+        <div class="station-name" id="stName">Vaša stanica</div>
+        <div class="station-sub" id="stSub">Tehnički pregled i registracija vozila</div>
+      </div>
+    </div>
+    <a class="station-call" id="stCall" href="tel:+38700000000">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg>
+      <span id="stPhone">+387 00 000 000</span>
+    </a>
+  </header>
+
+  <section class="intro">
+    <h1>Koliko košta registracija vašeg vozila?</h1>
+    <p>Unesite podatke iz potvrde o registraciji. Obračun se mijenja odmah, stavku po stavku, pa tačno vidite šta plaćate i kome.</p>
+  </section>
+
+  <div class="grid">
+    <form class="form" id="form" novalidate>
+      <fieldset>
+        <legend>Gdje registrujete vozilo</legend>
+        <div class="seg" role="radiogroup" aria-label="Entitet">
+          <input type="radio" name="entitet" id="e-fbih" value="fbih" checked><label for="e-fbih">FBiH</label>
+          <input type="radio" name="entitet" id="e-rs" value="rs"><label for="e-rs">Republika Srpska</label>
+          <input type="radio" name="entitet" id="e-bd" value="bd"><label for="e-bd">Brčko distrikt</label>
+        </div>
+        <div class="field" id="kantonField">
+          <label for="kanton">Kanton prebivališta vlasnika</label>
+          <select id="kanton"></select>
+          <span class="hint">Porez na motorno vozilo u FBiH propisuje kanton.</span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Vozilo</legend>
+        <div class="field">
+          <label for="gorivo">Pogon</label>
+          <select id="gorivo"></select>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="ccm">Zapremina motora (cm³)</label>
+            <input type="number" id="ccm" inputmode="numeric" min="50" max="8000" step="1" value="1598">
+            <span class="hint">Polje P.1 na potvrdi o registraciji</span>
+            <span class="err" id="ccmErr"></span>
+          </div>
+          <div class="field">
+            <label for="kw">Snaga motora (kW)</label>
+            <input type="number" id="kw" inputmode="numeric" min="1" max="600" step="1" value="85">
+            <span class="hint">Polje P.2, u kW (ne KS)</span>
+            <span class="err" id="kwErr"></span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="godina">Godina prve registracije</label>
+          <input type="number" id="godina" inputmode="numeric" min="1960" step="1" value="2016">
+          <span class="hint">Polje B. Od nje zavise porez i rok tehničkog pregleda.</span>
+          <span class="err" id="godinaErr"></span>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Osiguranje od autoodgovornosti</legend>
+        <div class="field">
+          <label for="bm">Bonus-malus klasa</label>
+          <input type="range" id="bm" min="1" max="14" step="1" value="6" aria-describedby="bmOut">
+          <span class="bm-out" id="bmOut">P6 / R-06: osnovna premija, bez popusta</span>
+          <span class="hint">Klasa piše na prošlogodišnjoj polisi. Bez historije šteta počinjete u klasi 6.</span>
+        </div>
+      </fieldset>
+    </form>
+
+    <aside class="receipt-col" aria-label="Obračun">
+      <div class="receipt" id="receipt">
+        <div class="r-head">
+          <h2>Obračun registracije</h2>
+          <span class="r-meta num" id="rDate"></span>
+        </div>
+        <div class="r-vehicle" id="rVehicle"></div>
+        <div id="rItems"></div>
+        <div class="r-total">
+          <span class="lbl">Ukupno</span>
+          <span class="big" id="rTotal" aria-live="polite">0,00 KM</span>
+          <span class="per" id="rPer"></span>
+        </div>
+        <p class="r-disclaimer">Informativni obračun. Konačan iznos potvrđujemo na šalteru, prema vašim dokumentima i važećim propisima.</p>
+        <div class="r-cta">
+          <button class="btn btn-primary" type="button" id="leadBtn" aria-expanded="false" aria-controls="lead">Pošalji upit</button>
+          <a class="btn btn-secondary" id="callBtn" href="tel:+38700000000">Nazovi stanicu</a>
+        </div>
+        <form class="lead" id="lead" hidden novalidate>
+          <div class="field">
+            <label for="lName">Ime i prezime</label>
+            <input type="text" id="lName" autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="lPhone">Broj telefona</label>
+            <input type="tel" id="lPhone" autocomplete="tel" placeholder="06x xxx xxx">
+            <span class="err" id="lPhoneErr"></span>
+          </div>
+          <div class="field">
+            <label for="lMsg">Poruka stanici</label>
+            <textarea id="lMsg"></textarea>
+          </div>
+          <button class="btn btn-primary" type="submit">Pošalji upit</button>
+          <div class="lead-done" id="leadDone" hidden></div>
+        </form>
+        <div class="legend-row">
+          <span class="chip propis">Propis</span><span>iznos iz važećeg propisa</span>
+          <span class="chip okvirno">Okvirno</span><span>javni podaci, provjeriti</span>
+          <span class="chip stanica">Cijena stanice</span><span>postavlja stanica</span>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <details class="sources">
+    <summary>Odakle su iznosi</summary>
+    <div class="sources-body">
+      <p>Svaka stavka u obračunu ima oznaku izvora. Iznose označene kao okvirne stanica potvrđuje ili mijenja u podešavanjima kalkulatora.</p>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Stavka</th><th>Izvor</th><th>Status</th></tr></thead>
+          <tbody id="srcBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </details>
+
+  <footer>Kalkulator ne čuva i ne šalje podatke o vozilu. Tarife: stanje oktobar 2026.</footer>
+</div>
+
+<div class="mbar" id="mbar">
+  <div class="t">Ukupno, okvirno <b id="mTotal">0,00 KM</b></div>
+  <a class="btn btn-primary" href="#receipt">Pogledaj obračun</a>
+</div>
+
+<dialog id="customize" aria-labelledby="cTitle">
+  <form class="dlg" method="dialog" id="cForm">
+    <h2 id="cTitle">Prilagodi za svoju stanicu</h2>
+    <p>Ovako bi kalkulator izgledao na vašem sajtu. Promjene vrijede samo u ovom prozoru.</p>
+    <div class="field"><label for="cName">Naziv stanice</label><input type="text" id="cName"></div>
+    <div class="field"><label for="cSub">Opis ispod naziva</label><input type="text" id="cSub"></div>
+    <div class="row">
+      <div class="field"><label for="cPhone">Telefon</label><input type="tel" id="cPhone"></div>
+      <div class="field"><label for="cColor">Boja</label><input type="color" id="cColor"></div>
+    </div>
+    <div class="field">
+      <label for="cTp">Cijena tehničkog pregleda (KM, bez EKO testa)</label>
+      <input type="number" id="cTp" min="0" step="0.5">
+    </div>
+    <div class="dlg-actions">
+      <button class="btn btn-secondary" value="cancel" type="submit">Odustani</button>
+      <button class="btn btn-primary" value="apply" type="submit" id="cApply">Primijeni</button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+// ── Konfiguracija stanice: ovo se mijenja za svakog klijenta ────────────────
+const STANICA = {
+  naziv: 'Vaša stanica',
+  opis: 'Tehnički pregled i registracija vozila',
+  telefon: '+387 00 000 000',
+  email: 'info@vasastanica.ba',
+  boja: '#1F4E9E',
+  cijenaTehnickog: 55,          // KM, cijena pregleda putničkog vozila bez EKO testa
+  zadaniEntitet: 'fbih',
+  zadaniKanton: 'sarajevo',
+  // Osnovna godišnja premija AO u FBiH (klasa P6) po razredu snage, cjenovnik osiguravača s kojim stanica radi.
+  // Razredi: do 22, 22-33, 33-44, 44-55, 55-66, 66-84, 84-110, preko 110 kW. Ovdje: orijentacioni iznosi.
+  aoFbih: [230, 328, 396, 461, 525, 578, 692, 831],
+  aoFbihPartner: '',            // npr. naziv osiguravača; prazno = orijentacioni iznosi
+};
+
+// CALC-START
+const BM_RAZREDI = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 180, 200]; // % osnovne premije, klase 1-14
+const KW_GRANICE = [22, 33, 44, 55, 66, 84, 110, Infinity];
+const RS_AO = { osnova: 426.86, stope: [71.9, 85.9, 100, 114.1, 128.1, 146.9, 175, 207.8] }; // % osnove po razredu snage
+
+const IZVOR = {
+  rsAo: 'Tarifa obaveznog osiguranja od autoodgovornosti za 2026, Sl. glasnik RS 41/25',
+  fbihAo: 'Cjenovnik osiguravača; od Sl. novina FBiH 35/26 svako društvo ima vlastitu tarifu',
+  fbihCeste: 'Uredba o visini godišnje naknade za javne ceste, Sl. novine FBiH 9/16',
+  fbihEko: 'Pravilnik o ispitivanju ispušnih plinova (EKO test), Sl. novine FBiH 102/16',
+  fbihOkolis: 'Uredba o posebnoj naknadi za okoliš, Sl. novine FBiH 14/11, 26/11',
+  tp: 'Pravilnik o tehničkim pregledima vozila, Sl. glasnik BiH 33/19',
+  pregled2019: 'Istraživanje PS BiH br. 295 (2019), iznos za 2026. nije potvrđen u službenom glasilu',
+  rsPutevi: 'Uredba o visini godišnje naknade za javne puteve, Sl. glasnik RS 55/16, 90/16',
+  rsPorez: 'Zakon o porezima na upotrebu, držanje i nošenje dobara, Sl. glasnik RS 37/01 s izmjenama',
+  rsEko: 'Odluka o jediničnim naknadama za zagađivanje, Sl. glasnik RS 116/18, 119/18',
+  bdPutevi: 'Odluka o visini godišnje naknade za upotrebu puteva, Sl. glasnik BD 41/13',
+};
+
+const GORIVA = {
+  benzin:      { naziv: 'Benzin, s reguliranim katalizatorom', eko: 32, plus25: false },
+  'benzin-bk': { naziv: 'Benzin, bez reguliranog katalizatora', eko: 22, plus25: false },
+  dizel:       { naziv: 'Dizel', eko: 36, plus25: false },
+  plin:        { naziv: 'Benzin + plin (LPG/CNG)', eko: 32, plus25: true },
+  hibrid:      { naziv: 'Hibrid', eko: 0, plus25: true },
+};
+
+// Porez na motorna vozila po kantonu: fn(ccm, kw, starost) -> { iznos, status, napomena }
+const zakon = iznos => ({ iznos, status: 'propis' });
+const nijePropisano = () => ({ iznos: 0, status: 'okvirno', napomena: 'Kantonalni zakon ne propisuje porez za vozila starija od 10 godina.' });
+const KANTONI = {
+  sarajevo: { naziv: 'Kanton Sarajevo', izvor: 'Zakon o porezu na promet nepokretnosti i motornih vozila KS, Sl. novine KS 7/09, čl. 6', minimum: true,
+    porez: (ccm, kw, s) => zakon(s > 7 ? 50 : ccm <= 1600 ? 80 : ccm <= 1800 ? 100 : ccm <= 2000 ? 150 : 250) },
+  zdk: { naziv: 'Zeničko-dobojski kanton', izvor: 'Zakon o porezu na imovinu, naslijeđe i poklon ZDK, Sl. novine ZDK 24/25, čl. 5',
+    porez: (ccm, kw, s) => zakon(ccm <= 1600 ? (s < 2 ? 60 : s <= 5 ? 40 : s <= 10 ? 30 : 20) : (s < 2 ? 120 : s <= 5 ? 80 : s <= 10 ? 60 : 30)) },
+  tk: { naziv: 'Tuzlanski kanton', izvor: 'Zakon o porezu na imovinu, nasljeđe i poklon TK, čl. 5',
+    porez: (ccm, kw, s) => zakon(s > 8 ? 20 : ccm <= 1600 ? 30 : ccm <= 1800 ? 50 : ccm <= 2000 ? 70 : 200) },
+  usk: { naziv: 'Unsko-sanski kanton', izvor: 'Zakon o porezu na imovinu, naslijeđe i poklon USK, čl. 5',
+    porez: (ccm, kw, s) => zakon(ccm <= 1600 ? (s < 2 ? 50 : s <= 5 ? 35 : s <= 10 ? 25 : 10) : (s < 2 ? 70 : s <= 5 ? 50 : s <= 10 ? 40 : 20)) },
+  hnk: { naziv: 'Hercegovačko-neretvanski kanton', izvor: 'Zakon o porezima HNK (osnovica je snaga motora u kW)',
+    porez: (ccm, kw, s) => {
+      const i = s < 3 ? 0 : s <= 7 ? 1 : s <= 10 ? 2 : 3;
+      const t = kw <= 55 ? [100, 70, 30, 10] : kw <= 70 ? [120, 90, 40, 20] : kw <= 100 ? [150, 110, 60, 30] : kw <= 130 ? [200, 130, 80, 40] : [250, 150, 100, 50];
+      return zakon(t[i]);
+    } },
+  sbk: { naziv: 'Srednjobosanski kanton', izvor: 'Zakon o porezima SBK, Sl. novine SBK 6/09, 7/09, 3/10, 5/18, čl. 6',
+    porez: (ccm, kw, s) => zakon(s > 7 ? (ccm <= 1600 ? 30 : 50) : ccm <= 1600 ? 60 : ccm <= 1800 ? 80 : ccm <= 2000 ? 100 : ccm <= 3000 ? 200 : 300) },
+  pk: { naziv: 'Posavski kanton', izvor: 'Zakon o porezima Županije Posavske, Narodne novine ŽP 9/08',
+    porez: (ccm, kw, s) => s > 10 ? nijePropisano() : zakon(ccm <= 1600 ? (s <= 2 ? 50 : s <= 5 ? 35 : 25) : (s <= 2 ? 100 : s <= 5 ? 70 : 50)) },
+  k10: { naziv: 'Kanton 10 (Livanjski)', izvor: 'Zakon o porezima HBŽ, Narodne novine HBŽ 13/17',
+    porez: (ccm, kw, s) => s > 10 ? nijePropisano() : zakon(ccm > 1900 ? (s <= 2 ? 100 : s <= 5 ? 75 : 50) : (s <= 2 ? 80 : s <= 5 ? 20 : 10)) },
+  bpk: { naziv: 'Bosansko-podrinjski kanton Goražde', izvor: 'Zakon o porezima BPK, Sl. novine BPK 7/09, 4/13, 15/14, čl. 9 i 10', minimum: true,
+    porez: (ccm, kw, s) => ccm <= 2000 ? { iznos: 0, status: 'propis', napomena: 'Vozila do 2.000 cm³ ne plaćaju ovaj porez.' }
+      : s > 15 ? { iznos: 0, status: 'okvirno', napomena: 'Zakon ne propisuje porez za vozila starija od 15 godina.' }
+      : zakon(s <= 5 ? 200 : s <= 10 ? 150 : 100) },
+  zhk: { naziv: 'Zapadnohercegovački kanton', izvor: 'Zakon o porezima Županije Zapadnohercegovačke',
+    porez: (ccm, kw, s) => s > 10 ? nijePropisano() : zakon(ccm <= 1900 ? (s <= 2 ? 40 : s <= 5 ? 30 : 20) : (s <= 2 ? 100 : s <= 5 ? 75 : 50)) },
+};
+
+const r2 = x => Math.round(x * 100) / 100;
+
+function fbihCeste(ccm, plus25) {
+  const k100 = ccm <= 1000 ? 160 : ccm <= 1600 ? 200 : ccm <= 2000 ? 250 : ccm <= 2500 ? 467 : 700; // koeficijent x100, osnovica 30 KM
+  return Math.round(30 * k100 * (plus25 ? 125 : 100) / 100) / 100;
+}
+function rsPutevi(ccm) { return ccm <= 1100 ? 35 : ccm <= 1600 ? 70 : ccm <= 2000 ? 85 : ccm <= 2500 ? 140 : ccm <= 3000 ? 210 : 350; }
+function rsPorez(ccm) { return ccm <= 1150 ? 30 : ccm <= 1300 ? 40 : ccm <= 1600 ? 50 : ccm <= 2000 ? 75 : ccm <= 2500 ? 200 : ccm <= 3000 ? 650 : 1000; }
+function rsEko(ccm, s) {
+  const k = s <= 16 ? 1 : s <= 21 ? 1.2 : s <= 25 ? 1.5 : s <= 29 ? 1.7 : 2; // približno prema euro normi iz starosti
+  return Math.round((ccm <= 2000 ? 5 : 6) * k * 10) / 10;
+}
+function bdPutevi(ccm) { return ccm <= 900 ? 15 : ccm <= 1350 ? 20 : ccm <= 1800 ? 50 : ccm <= 2500 ? 80 : ccm <= 3150 ? 130 : 230; }
+function kwRazred(kw) { return KW_GRANICE.findIndex(m => kw <= m); }
+
+function rsAo(kw, bm) {
+  const fen = Math.round(RS_AO.osnova * 100) * Math.round(RS_AO.stope[kwRazred(kw)] * 10) * BM_RAZREDI[bm - 1];
+  return Math.round(fen / 100000) / 100;
+}
+
+// v: { entitet, kanton, gorivo, ccm, kw, godina, bm }, s: STANICA, godinaSada: broj
+function obracun(v, s, godinaSada) {
+  const g = GORIVA[v.gorivo];
+  const starost = Math.max(0, godinaSada - v.godina);
+  const stavke = [];
+  const add = (grupa, naziv, iznos, status, izvor, napomena) => stavke.push({ grupa, naziv, iznos: r2(iznos), status, izvor, napomena: napomena || '' });
+  const okvirno2019 = IZVOR.pregled2019;
+
+  if (v.entitet === 'fbih') {
+    const k = KANTONI[v.kanton];
+    const p = k.porez(v.ccm, v.kw, starost);
+    add('takse', 'Porez na motorno vozilo', p.iznos, p.status, k.izvor, p.napomena || (k.minimum ? 'Zakonski minimum; općina može propisati veći iznos.' : ''));
+    add('takse', 'Naknada za ceste', fbihCeste(v.ccm, g.plus25), 'propis', IZVOR.fbihCeste, g.plus25 ? 'Uvećano 25 % za vozila na plin i hibride.' : '');
+    add('takse', 'Naknada za vode', 20, 'okvirno', okvirno2019);
+    add('takse', 'Naknada za okoliš', 16.5, 'okvirno', IZVOR.fbihOkolis, 'Tačan iznos zavisi od goriva, zapremine i starosti.');
+    add('takse', 'Služba pomoć-informacije', 8, 'okvirno', okvirno2019);
+    add('takse', 'Administrativna taksa', 10, 'okvirno', okvirno2019, 'Kantonalna taksa, od 3 do 10 KM.');
+  } else if (v.entitet === 'rs') {
+    add('takse', 'Porez na upotrebu vozila', rsPorez(v.ccm), 'okvirno', IZVOR.rsPorez);
+    add('takse', 'Naknada za javne puteve', rsPutevi(v.ccm), 'okvirno', IZVOR.rsPutevi);
+    add('takse', 'Naknada za vode', 19.2, 'okvirno', okvirno2019, 'Zavisi od snage motora.');
+    add('takse', 'Ekološka naknada', rsEko(v.ccm, starost), 'okvirno', IZVOR.rsEko);
+    add('takse', 'Služba pomoć-informacije', 8, 'okvirno', okvirno2019);
+    add('takse', 'Administrativna taksa', 2, 'okvirno', okvirno2019);
+  } else {
+    add('takse', 'Naknada za upotrebu puteva', bdPutevi(v.ccm), 'okvirno', IZVOR.bdPutevi);
+    add('takse', 'Naknada za vode', 9.6, 'okvirno', okvirno2019);
+    add('takse', 'Administrativna taksa', 5, 'okvirno', okvirno2019, 'Brčko distrikt nema poreza na vozila ni naknade za okoliš.');
+  }
+  add('takse', 'Registarska naljepnica', 5, 'okvirno', okvirno2019);
+  add('takse', 'Zeleni karton', 4, 'okvirno', okvirno2019);
+
+  const pregledPotreban = starost >= 4 || starost === 2;
+  if (pregledPotreban) {
+    add('pregled', 'Tehnički pregled', s.cijenaTehnickog, 'stanica', 'Cjenovnik stanice');
+    if (v.entitet === 'fbih' && g.eko > 0) add('pregled', 'EKO test', g.eko, 'propis', IZVOR.fbihEko);
+    if (v.entitet === 'fbih' && g.eko === 0) add('pregled', 'EKO test', 0, 'propis', IZVOR.fbihEko, 'Hibridi su oslobođeni EKO testa.');
+  } else {
+    add('pregled', 'Tehnički pregled', 0, 'propis', IZVOR.tp, starost < 2 ? 'Prvi pregled je na 24 mjeseca od prve registracije.' : 'Drugi pregled je na 48 mjeseci; ove godine nije potreban.');
+  }
+
+  const faktor = BM_RAZREDI[v.bm - 1];
+  if (v.entitet === 'fbih') {
+    const osnova = s.aoFbih[kwRazred(v.kw)];
+    const partner = s.aoFbihPartner;
+    add('osiguranje', 'Obavezno osiguranje (AO)', osnova * faktor / 100, partner ? 'stanica' : 'okvirno', partner ? 'Cjenovnik: ' + partner : IZVOR.fbihAo,
+      partner ? '' : 'Svaki osiguravač u FBiH ima svoju tarifu; stanica upisuje cijene svog osiguravača.');
+  } else if (v.entitet === 'rs') {
+    add('osiguranje', 'Obavezno osiguranje (AO)', rsAo(v.kw, v.bm), 'propis', IZVOR.rsAo);
+  } else {
+    add('osiguranje', 'Obavezno osiguranje (AO)', rsAo(v.kw, v.bm), 'okvirno', IZVOR.rsAo, 'Računato po tarifi RS; tarifa za Brčko distrikt nije potvrđena.');
+  }
+
+  const ukupno = r2(stavke.reduce((a, x) => a + x.iznos, 0));
+  return { stavke, ukupno, starost, pregledPotreban };
+}
+
+function validiraj(v, godinaSada) {
+  const e = {};
+  if (!Number.isFinite(v.ccm) || v.ccm < 50 || v.ccm > 8000) e.ccm = 'Upišite zapreminu između 50 i 8.000 cm³.';
+  if (!Number.isFinite(v.kw) || v.kw < 1 || v.kw > 600) e.kw = 'Upišite snagu između 1 i 600 kW.';
+  if (!Number.isFinite(v.godina) || v.godina < 1960 || v.godina > godinaSada) e.godina = 'Upišite godinu od 1960. do ' + godinaSada + '.';
+  return e;
+}
+// CALC-END
+
+// ── Prikaz ─────────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id);
+// Format 1.234,56 KM, nezavisno od jezičkih podataka browsera
+function fmt(x) {
+  const [cijeli, dec] = Math.abs(x).toFixed(2).split('.');
+  return (x < 0 ? '−' : '') + cijeli.replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ',' + dec + ' KM';
+}
+const GODINA = new Date().getFullYear();
+const STATUS_TXT = { propis: 'Propis', okvirno: 'Okvirno', stanica: 'Cijena stanice' };
+const GRUPE = [['takse', 'Takse i naknade'], ['pregled', 'Tehnički pregled'], ['osiguranje', 'Osiguranje']];
+const ENTITET_TXT = { fbih: 'FBiH', rs: 'Republika Srpska', bd: 'Brčko distrikt' };
+
+function esc(t) { return String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c])); }
+
+function initials(name) {
+  const w = name.trim().split(/\s+/).filter(Boolean);
+  return ((w[0] || 'V')[0] + (w[1] ? w[1][0] : (w[0] || 'S')[1] || '')).toUpperCase();
+}
+
+function primijeniStanicu() {
+  document.documentElement.style.setProperty('--brand', STANICA.boja);
+  $('stName').textContent = STANICA.naziv;
+  $('stSub').textContent = STANICA.opis;
+  $('stPhone').textContent = STANICA.telefon;
+  const tel = 'tel:' + STANICA.telefon.replace(/[^\d+]/g, '');
+  $('stCall').href = tel;
+  $('callBtn').href = tel;
+  $('logo').textContent = initials(STANICA.naziv);
+}
+
+function popuniIzbore() {
+  $('kanton').innerHTML = Object.entries(KANTONI).map(([k, x]) => `<option value="${k}">${esc(x.naziv)}</option>`).join('');
+  $('kanton').value = STANICA.zadaniKanton;
+  $('gorivo').innerHTML = Object.entries(GORIVA).map(([k, x]) => `<option value="${k}">${esc(x.naziv)}</option>`).join('');
+  $('gorivo').value = 'dizel';
+  $('godina').max = GODINA;
+  const e = document.querySelector(`input[name="entitet"][value="${STANICA.zadaniEntitet}"]`);
+  if (e) e.checked = true;
+}
+
+function ulaz() {
+  return {
+    entitet: document.querySelector('input[name="entitet"]:checked').value,
+    kanton: $('kanton').value,
+    gorivo: $('gorivo').value,
+    ccm: parseInt($('ccm').value, 10),
+    kw: parseInt($('kw').value, 10),
+    godina: parseInt($('godina').value, 10),
+    bm: parseInt($('bm').value, 10),
+  };
+}
+
+function bmTekst(bm) {
+  const p = BM_RAZREDI[bm - 1] - 100;
+  const kl = 'P' + bm + ' / R-' + String(bm).padStart(2, '0');
+  if (p === 0) return kl + ': osnovna premija, bez popusta';
+  return kl + ': ' + (p < 0 ? 'popust ' + (-p) : 'doplata ' + p) + ' %';
+}
+
+let zadnjiUkupno = null;
+function osvjezi() {
+  const v = ulaz();
+  $('kantonField').hidden = v.entitet !== 'fbih';
+  $('bmOut').textContent = bmTekst(v.bm);
+  const greske = validiraj(v, GODINA);
+  ['ccm', 'kw', 'godina'].forEach(f => {
+    $(f + 'Err').textContent = greske[f] || '';
+    $(f).setAttribute('aria-invalid', greske[f] ? 'true' : 'false');
+  });
+  if (Object.keys(greske).length) {
+    $('rItems').innerHTML = '<p class="hint">Ispravite označena polja i obračun će se pojaviti.</p>';
+    $('rTotal').textContent = '…';
+    $('mTotal').textContent = '…';
+    $('rPer').textContent = '';
+    return;
+  }
+  const r = obracun(v, STANICA, GODINA);
+  const mjesto = v.entitet === 'fbih' ? KANTONI[v.kanton].naziv : ENTITET_TXT[v.entitet];
+  $('rVehicle').textContent = `${GORIVA[v.gorivo].naziv} · ${v.ccm} cm³ · ${v.kw} kW · ${r.starost} god. · ${mjesto}`;
+  $('rItems').innerHTML = GRUPE.map(([g, naslov]) => {
+    const st = r.stavke.filter(x => x.grupa === g);
+    const zbir = st.reduce((a, x) => a + x.iznos, 0);
+    return `<div class="r-group"><h3><span>${naslov}</span><span class="num">${fmt(zbir)}</span></h3>` + st.map(x => `
+      <div class="r-item">
+        <div class="r-name"><span>${esc(x.naziv)}</span></div>
+        <div class="r-amt">${fmt(x.iznos)}</div>
+        <div class="r-note"><span class="chip ${x.status}">${STATUS_TXT[x.status]}</span>${x.napomena ? '<span>' + esc(x.napomena) + '</span>' : ''}</div>
+      </div>`).join('') + '</div>';
+  }).join('');
+  $('rTotal').textContent = fmt(r.ukupno);
+  $('mTotal').textContent = fmt(r.ukupno);
+  $('rPer').textContent = 'oko ' + fmt(r.ukupno / 12) + ' mjesečno';
+  if (zadnjiUkupno !== null && zadnjiUkupno !== r.ukupno) {
+    const el = $('rTotal'); el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash');
+  }
+  zadnjiUkupno = r.ukupno;
+  $('srcBody').innerHTML = r.stavke.map(x => `<tr><td>${esc(x.naziv)}</td><td>${esc(x.izvor)}</td><td><span class="chip ${x.status}">${STATUS_TXT[x.status]}</span></td></tr>`).join('');
+  if (!$('lMsg').dataset.edited) {
+    $('lMsg').value = `Zanima me registracija: ${$('rVehicle').textContent}. Okvirni obračun ${fmt(r.ukupno)}. Kada mogu doći?`;
+  }
+}
+
+function init() {
+  primijeniStanicu();
+  popuniIzbore();
+  const d = new Date();
+  $('rDate').textContent = `${d.getDate()}. ${d.getMonth() + 1}. ${d.getFullYear()}.`;
+  $('form').addEventListener('input', osvjezi);
+  $('form').addEventListener('change', osvjezi);
+  $('form').addEventListener('submit', e => e.preventDefault());
+
+  $('leadBtn').addEventListener('click', () => {
+    const l = $('lead');
+    l.hidden = !l.hidden;
+    $('leadBtn').setAttribute('aria-expanded', String(!l.hidden));
+    if (!l.hidden) $('lName').focus();
+  });
+  $('lMsg').addEventListener('input', () => { $('lMsg').dataset.edited = '1'; });
+  $('lead').addEventListener('submit', e => {
+    e.preventDefault();
+    const tel = $('lPhone').value.replace(/[^\d+]/g, '');
+    if (tel.length < 8) { $('lPhoneErr').textContent = 'Upišite broj telefona da vas stanica može nazvati.'; $('lPhone').focus(); return; }
+    $('lPhoneErr').textContent = '';
+    const done = $('leadDone');
+    done.hidden = false;
+    done.textContent = `Upit je spreman. U demo verziji se ne šalje; na vašem sajtu stiže na ${STANICA.email}, a vama javljamo na ${$('lPhone').value}.`;
+  });
+
+  const dlg = $('customize');
+  $('openCustomize').addEventListener('click', () => {
+    $('cName').value = STANICA.naziv; $('cSub').value = STANICA.opis; $('cPhone').value = STANICA.telefon;
+    $('cColor').value = STANICA.boja; $('cTp').value = STANICA.cijenaTehnickog;
+    if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');
+  });
+  dlg.addEventListener('close', () => {
+    if (dlg.returnValue !== 'apply') return;
+    STANICA.naziv = $('cName').value.trim() || STANICA.naziv;
+    STANICA.opis = $('cSub').value.trim();
+    STANICA.telefon = $('cPhone').value.trim() || STANICA.telefon;
+    STANICA.boja = $('cColor').value;
+    const tp = parseFloat($('cTp').value);
+    if (Number.isFinite(tp) && tp >= 0) STANICA.cijenaTehnickog = tp;
+    primijeniStanicu();
+    osvjezi();
+  });
+
+  const mbar = $('mbar');
+  mbar.classList.add('show');
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(([e]) => mbar.classList.toggle('show', !e.isIntersecting), { threshold: 0.25 }).observe($('receipt'));
+  }
+  osvjezi();
+}
+init();
+</script>
+</body>
+</html>

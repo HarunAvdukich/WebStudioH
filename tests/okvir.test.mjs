@@ -58,7 +58,9 @@ const stranice = existsSync(DIST)
   ? htmlFiles().map((file) => ({ put: relative(DIST, file).split(sep).join('/'), html: readFileSync(file, 'utf8') }))
   : []
 // sati.html je skrivena evidencija rada za klijenta: namjerno bez okvira sajta (tests/seo.test.mjs).
-const saOkvirom = stranice.filter((s) => s.put !== 'sati.html')
+// kalkulator-registracije.html je demo koji izgleda kao sajt stanice, pa je i on bez okvira.
+const BEZ_OKVIRA = ['sati.html', 'kalkulator-registracije.html']
+const saOkvirom = stranice.filter((s) => !BEZ_OKVIRA.includes(s.put))
 const ostale = saOkvirom.filter((s) => s.put !== 'index.html' && s.put !== 'en.html')
 
 test('dist postoji za provjere okvira', () => {
