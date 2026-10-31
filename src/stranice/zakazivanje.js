@@ -1,11 +1,11 @@
 // Tekst stranice /zakazivanje: online zakazivanje za berbernice i frizerske salone. Na nju vode
 // poruke berbernicama, pa je samo na bosanskom (kao /olx). Uz nju ide živi demo
-// /demo-berbernica (public/demo-berbernica.html), koji u linku može nositi ime berbernice.
+// /demo-termini (public/demo-termini.html), koji u linku može nositi ime berbernice.
 // Dokaz je SmartTime (src/content/radovi/smarttime.md), gdje kupci termin zakazuju sami.
 
 export const jezik = 'bs'
 export const put = '/zakazivanje'
-export const demo = '/demo-berbernica'
+export const demo = '/demo-termini'
 
 export const seo = {
   naslov: 'Online zakazivanje za berbernice i salone · Hunar',

@@ -10,7 +10,7 @@ import '../components/olx/olx.css'
 import '../components/zakazivanje/zakazivanje.css'
 
 // Zakazivanje (/zakazivanje): stranica za berbernice i frizerske salone, na koju vode poruke.
-// Demo je statičan fajl (public/demo-berbernica.html), pa linkovi na njega idu bez zavjese.
+// Demo je statičan fajl (public/demo-termini.html), pa linkovi na njega idu bez zavjese.
 export default function Zakazivanje() {
   return (
     <div className="st st-olx st-zak">
