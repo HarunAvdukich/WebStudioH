@@ -1,0 +1,1018 @@
+<!doctype html>
+<html lang="bs" data-izgled="moderna">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Zakažite termin</title>
+<meta name="description" content="Online zakazivanje termina u berbernici: usluga, berber, slobodan termin i podsjetnik na Viber.">
+<meta name="robots" content="noindex">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Fraunces:opsz,wght@9..144,500..700&display=swap">
+<script>
+// Izgled se bira prije crtanja, da stranica ne trepne: ?izgled=klasika | moderna | aplikacija.
+(function () {
+  var i = new URLSearchParams(location.search).get('izgled')
+  if (i === 'klasika' || i === 'moderna' || i === 'aplikacija') document.documentElement.dataset.izgled = i
+})()
+</script>
+<style>
+/* Demo zakazivanja za berbernice. Glumi sajt berbernice ("Vaša berbernica" ili ime iz linka).
+   Tri izgleda dijele isti markup: moderna (svijetla, crvena), klasika (tamna, mesing, serif)
+   i aplikacija (kao aplikacija na telefonu, sa trakom dolje i tamnim načinom). */
+:root {
+  color-scheme: light;
+  --bg: #F3F2EE;
+  --surface: #FFFFFF;
+  --surface-2: #F7F6F2;
+  --ink: #15171C;
+  --muted: #5D6169;
+  --line: #E1DFD8;
+  --accent: #C8102E;
+  --accent-ink: #FFFFFF;
+  --soft: color-mix(in oklab, var(--accent) 9%, transparent);
+  --ok: #1F7A4D;
+  --font: "Archivo", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --display: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --display-weight: 800;
+  --display-stretch: 112%;
+  --r: 16px;
+  --r-s: 10px;
+  --shadow: 0 1px 2px rgba(20, 20, 20, .05), 0 10px 30px rgba(20, 20, 20, .06);
+  --viber: #7360F2;
+}
+:root[data-izgled="klasika"] {
+  color-scheme: dark;
+  --bg: #110F0C;
+  --surface: #1A1713;
+  --surface-2: #211D18;
+  --ink: #F2EADC;
+  --muted: #A89B87;
+  --line: #3A3229;
+  --accent: #C9A15A;
+  --accent-ink: #15110B;
+  --soft: color-mix(in oklab, var(--accent) 14%, transparent);
+  --ok: #9BCB8F;
+  --display: "Fraunces", Georgia, "Times New Roman", serif;
+  --display-weight: 600;
+  --display-stretch: 100%;
+  --r: 3px;
+  --r-s: 2px;
+  --shadow: none;
+}
+:root[data-izgled="aplikacija"] {
+  --bg: #F2F2F7;
+  --surface: #FFFFFF;
+  --surface-2: #F2F2F7;
+  --ink: #000000;
+  --muted: #6C6C70;
+  --line: #D8D8DC;
+  --accent: #0E7C66;
+  --accent-ink: #FFFFFF;
+  --ok: #0E7C66;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, system-ui, sans-serif;
+  --display-weight: 700;
+  --display-stretch: 100%;
+  --r: 12px;
+  --r-s: 9px;
+  --shadow: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root[data-izgled="aplikacija"] {
+    color-scheme: dark;
+    --bg: #000000;
+    --surface: #1C1C1E;
+    --surface-2: #2C2C2E;
+    --ink: #FFFFFF;
+    --muted: #98989F;
+    --line: #38383A;
+    --accent: #30C9A6;
+    --accent-ink: #00241B;
+    --ok: #30C9A6;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.45 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+[hidden] { display: none !important; }
+
+.app { max-width: 1080px; margin: 0 auto; padding: 0 16px 32px; }
+:root[data-izgled="aplikacija"] .app { max-width: 540px; padding-bottom: 110px; }
+
+/* ── Zaglavlje berbernice ─────────────────────────────────────────────── */
+.zag { display: flex; align-items: center; gap: 14px; padding: 22px 0 18px; }
+.zag__znak {
+  flex: none;
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--ink); color: var(--bg);
+  font: 800 17px/1 var(--display);
+  letter-spacing: .02em;
+}
+.zag__ime { min-width: 0; flex: 1; }
+.zag__nad { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
+.zag h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: var(--display-weight);
+  font-stretch: var(--display-stretch);
+  font-size: clamp(24px, 5vw, 34px);
+  line-height: 1.05;
+  letter-spacing: -.01em;
+  overflow-wrap: anywhere;
+}
+.zag__otvoreno { margin: 0; font-size: 14px; color: var(--muted); text-align: right; }
+.zag__otvoreno b { color: var(--ok); font-weight: 600; }
+
+:root[data-izgled="klasika"] .zag { flex-direction: column; text-align: center; padding: 34px 0 22px; gap: 10px; }
+:root[data-izgled="klasika"] .zag__znak {
+  width: 64px; height: 64px;
+  background: transparent; color: var(--accent);
+  border: 1px solid var(--accent);
+  font-family: var(--display); font-weight: 600; font-size: 22px;
+}
+:root[data-izgled="klasika"] .zag__nad {
+  display: flex; align-items: center; justify-content: center; gap: 12px;
+  color: var(--accent); letter-spacing: .3em; font-size: 12px;
+}
+:root[data-izgled="klasika"] .zag__nad::before,
+:root[data-izgled="klasika"] .zag__nad::after { content: ""; width: 36px; height: 1px; background: currentColor; opacity: .6; }
+:root[data-izgled="klasika"] .zag h1 { font-size: clamp(34px, 8vw, 56px); font-variation-settings: "opsz" 144; }
+:root[data-izgled="klasika"] .zag__otvoreno { text-align: center; }
+
+:root[data-izgled="aplikacija"] .zag { padding: 18px 0 12px; }
+:root[data-izgled="aplikacija"] .zag__znak { width: 40px; height: 40px; font-size: 15px; background: var(--accent); color: var(--accent-ink); }
+:root[data-izgled="aplikacija"] .zag h1 { font-size: 30px; letter-spacing: -.02em; }
+:root[data-izgled="aplikacija"] .zag__nad { text-transform: none; letter-spacing: 0; font-size: 14px; }
+:root[data-izgled="aplikacija"] .zag__otvoreno { display: none; }
+
+/* ── Kartice: mušterija / berber ──────────────────────────────────────── */
+.tabovi {
+  display: inline-flex; gap: 4px; padding: 4px;
+  margin: 0 0 18px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 999px;
+}
+.tabovi button {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 0; background: transparent;
+  padding: 9px 16px; border-radius: 999px;
+  font-weight: 600; font-size: 15px; color: var(--muted);
+}
+.tabovi button[aria-selected="true"] { background: var(--ink); color: var(--bg); }
+.tabovi svg { width: 18px; height: 18px; flex: none; }
+.tabovi small { font-weight: 500; opacity: .75; }
+
+:root[data-izgled="klasika"] .tabovi { display: flex; justify-content: center; border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: none; padding: 0; gap: 26px; margin-bottom: 26px; }
+:root[data-izgled="klasika"] .tabovi button { border-radius: 0; padding: 12px 2px; letter-spacing: .14em; text-transform: uppercase; font-size: 13px; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+:root[data-izgled="klasika"] .tabovi button[aria-selected="true"] { background: none; color: var(--accent); border-color: var(--accent); }
+:root[data-izgled="klasika"] .tabovi small { display: none; }
+
+:root[data-izgled="aplikacija"] .tabovi {
+  position: fixed; z-index: 20; left: 0; right: 0; bottom: 0;
+  display: flex; justify-content: center; gap: 0;
+  margin: 0; padding: 6px 12px calc(6px + env(safe-area-inset-bottom));
+  border: 0; border-top: 1px solid var(--line); border-radius: 0;
+  background: color-mix(in oklab, var(--surface) 82%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px);
+}
+:root[data-izgled="aplikacija"] .tabovi button {
+  flex: 0 1 180px; flex-direction: column; gap: 2px;
+  padding: 4px 8px; border-radius: 8px;
+  font-size: 11px; font-weight: 500;
+}
+:root[data-izgled="aplikacija"] .tabovi svg { width: 26px; height: 26px; }
+:root[data-izgled="aplikacija"] .tabovi button[aria-selected="true"] { background: none; color: var(--accent); }
+:root[data-izgled="aplikacija"] .tabovi small { display: none; }
+
+/* ── Mušterija: info lijevo, tok desno (široko) ───────────────────────── */
+.musterija { display: grid; gap: 18px; }
+.musterija > * { min-width: 0; }
+@media (min-width: 880px) {
+  :root:not([data-izgled="aplikacija"]) .musterija { grid-template-columns: 300px minmax(0, 1fr); align-items: start; gap: 28px; }
+  :root:not([data-izgled="aplikacija"]) .info { position: sticky; top: 20px; }
+}
+/* Na telefonu prvo zakazivanje, pa adresa i radno vrijeme. */
+@media (max-width: 879px) { .info { order: 2; } }
+:root[data-izgled="aplikacija"] .info { order: 2; }
+
+.kartica { background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); box-shadow: var(--shadow); }
+:root[data-izgled="aplikacija"] .kartica { border: 0; }
+
+.info { padding: 18px; font-size: 15px; }
+.info h2 { margin: 0 0 10px; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+.info p { margin: 0 0 14px; }
+.info table { width: 100%; border-collapse: collapse; }
+.info td { padding: 5px 0; border-top: 1px solid var(--line); }
+.info td + td { text-align: right; color: var(--muted); }
+.info tr.danas td { font-weight: 700; color: var(--ink); }
+.info__poziv { display: inline-flex; margin-top: 14px; color: var(--accent); font-weight: 600; text-decoration: none; }
+
+.tok { padding: 20px; min-height: 420px; }
+@media (min-width: 560px) { .tok { padding: 26px; } }
+:root[data-izgled="aplikacija"] .tok { padding: 0; background: none; border: 0; box-shadow: none; min-height: 0; }
+
+.traka { display: flex; gap: 6px; margin: 0 0 20px; padding: 0; list-style: none; }
+.traka li { flex: 1; height: 4px; border-radius: 4px; background: var(--line); }
+.traka li.gotov, .traka li[aria-current] { background: var(--accent); }
+.traka li[aria-current] { opacity: .55; }
+
+.korak-glava { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 4px; }
+.nazad { border: 0; background: none; padding: 6px 0; color: var(--accent); font-weight: 600; font-size: 15px; }
+.korak-br { color: var(--muted); font-size: 13px; }
+.tok h2 {
+  margin: 0 0 16px;
+  font-family: var(--display); font-weight: var(--display-weight); font-stretch: var(--display-stretch);
+  font-size: clamp(24px, 4.4vw, 30px); line-height: 1.1; letter-spacing: -.01em;
+}
+.tok h2:focus { outline: none; }
+:root[data-izgled="klasika"] .tok h2 { font-weight: 500; font-variation-settings: "opsz" 96; }
+
+.izabrano { display: flex; flex-wrap: wrap; gap: 6px; margin: -6px 0 18px; padding: 0; list-style: none; }
+.izabrano li { padding: 5px 10px; border-radius: 999px; background: var(--soft); color: var(--ink); font-size: 13px; font-weight: 500; }
+:root[data-izgled="klasika"] .izabrano li { border-radius: var(--r-s); border: 1px solid var(--line); background: none; color: var(--muted); }
+
+/* Liste izbora (usluge, berberi) */
+.izbori { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.izbor {
+  width: 100%;
+  display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px;
+  padding: 14px 16px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-s);
+  text-align: left;
+  transition: border-color .15s, background-color .15s, transform .1s;
+}
+.izbor:hover { border-color: var(--accent); }
+.izbor:active { transform: scale(.99); }
+.izbor__ikona {
+  width: 42px; height: 42px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--surface); border: 1px solid var(--line);
+  font-weight: 700; font-size: 15px; color: var(--accent);
+}
+.izbor__ikona svg { width: 20px; height: 20px; }
+.izbor__tekst { min-width: 0; }
+.izbor__naziv { display: block; font-weight: 650; font-size: 16px; }
+.izbor__opis { display: block; color: var(--muted); font-size: 14px; }
+.izbor__desno { text-align: right; white-space: nowrap; }
+.izbor__cijena { display: block; font-weight: 700; font-size: 16px; }
+.izbor__min { display: block; color: var(--muted); font-size: 13px; }
+:root[data-izgled="klasika"] .izbor { background: transparent; border-width: 0 0 1px; border-radius: 0; padding: 16px 2px; }
+:root[data-izgled="klasika"] .izbor:hover { border-color: var(--accent); background: var(--soft); }
+:root[data-izgled="klasika"] .izbor__naziv { font-family: var(--display); font-weight: 500; font-size: 19px; }
+:root[data-izgled="klasika"] .izbor__cijena { color: var(--accent); }
+:root[data-izgled="klasika"] .izbor__ikona { border-color: var(--accent); background: none; }
+:root[data-izgled="klasika"] .izbori { gap: 0; border-top: 1px solid var(--line); }
+:root[data-izgled="aplikacija"] .izbori { gap: 0; background: var(--surface); border-radius: var(--r); overflow: hidden; }
+:root[data-izgled="aplikacija"] .izbori li + li .izbor { border-top: 1px solid var(--line); }
+:root[data-izgled="aplikacija"] .izbor { background: none; border: 0; border-radius: 0; }
+:root[data-izgled="aplikacija"] .izbor:active { background: var(--surface-2); transform: none; }
+
+/* Dani */
+.dani {
+  display: flex; gap: 8px;
+  margin: 0 -20px 18px; padding: 2px 20px 6px;
+  overflow-x: auto; scroll-snap-type: x proximity; scroll-padding-inline: 16px; scrollbar-width: none;
+}
+.dani::-webkit-scrollbar { display: none; }
+@media (min-width: 560px) { .dani { margin: 0 -26px 18px; padding: 2px 26px 6px; } }
+:root[data-izgled="aplikacija"] .dani { margin: 0 -16px 18px; padding: 2px 16px 6px; }
+.dan {
+  flex: none; scroll-snap-align: start;
+  width: 64px; padding: 9px 0 8px;
+  display: grid; justify-items: center; gap: 1px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-s);
+}
+.dan__ime { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.dan__br { font-size: 21px; font-weight: 700; line-height: 1.15; }
+.dan__mj { font-size: 11px; color: var(--muted); }
+:root .dan[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.dan[aria-pressed="true"] .dan__ime, .dan[aria-pressed="true"] .dan__mj { color: inherit; opacity: .85; }
+.dan:disabled { opacity: .4; cursor: default; }
+.dan:disabled .dan__br { text-decoration: line-through; text-decoration-thickness: 1px; }
+:root[data-izgled="aplikacija"] .dan:not([aria-pressed="true"]) { background: var(--surface); border: 0; }
+
+.grupa { margin: 0 0 16px; }
+.grupa h3 { margin: 0 0 8px; font-size: 13px; font-weight: 600; color: var(--muted); letter-spacing: .04em; text-transform: uppercase; }
+.termini { display: grid; grid-template-columns: repeat(auto-fill, minmax(78px, 1fr)); gap: 8px; }
+.termin {
+  padding: 11px 0; border-radius: var(--r-s);
+  background: var(--surface-2); border: 1px solid var(--line);
+  font-weight: 650; font-variant-numeric: tabular-nums;
+}
+.termin:hover { border-color: var(--accent); color: var(--accent); }
+:root[data-izgled="aplikacija"] .termin { background: var(--surface); border: 0; }
+:root[data-izgled="klasika"] .termin { background: none; }
+.prazno { padding: 18px; border: 1px dashed var(--line); border-radius: var(--r-s); color: var(--muted); }
+.prazno button { margin-top: 10px; }
+
+/* Forma */
+.polje { display: grid; gap: 6px; margin-bottom: 14px; }
+.polje span { font-size: 14px; font-weight: 600; }
+.polje small { color: var(--muted); font-weight: 400; }
+.polje input, .polje textarea {
+  width: 100%; padding: 13px 14px;
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-s);
+  font-size: 16px;
+}
+.polje input:focus, .polje textarea:focus { outline: 2px solid var(--accent); outline-offset: 0; border-color: transparent; }
+.polje textarea { min-height: 72px; resize: vertical; }
+:root[data-izgled="aplikacija"] .polje input, :root[data-izgled="aplikacija"] .polje textarea { background: var(--surface); border: 0; }
+.napomena-mala { margin: 2px 0 16px; color: var(--muted); font-size: 13px; }
+
+.dugme {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 14px 22px; border: 0; border-radius: var(--r-s);
+  background: var(--accent); color: var(--accent-ink);
+  font-weight: 700; font-size: 16px; text-decoration: none;
+}
+.dugme--puno { width: 100%; }
+.dugme--sporedno { background: var(--surface-2); color: var(--ink); border: 1px solid var(--line); }
+:root[data-izgled="klasika"] .dugme { text-transform: uppercase; letter-spacing: .12em; font-size: 14px; }
+:root[data-izgled="aplikacija"] .dugme { border-radius: 14px; }
+:root[data-izgled="aplikacija"] .dugme--sporedno { background: var(--surface); border: 0; color: var(--accent); }
+
+/* Sažetak i potvrda */
+.sazetak { margin: 0 0 18px; padding: 14px 16px; background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--r-s); }
+.sazetak div { display: flex; justify-content: space-between; gap: 12px; padding: 4px 0; }
+.sazetak dt { color: var(--muted); }
+.sazetak dd { margin: 0; font-weight: 600; text-align: right; }
+:root[data-izgled="aplikacija"] .sazetak { background: var(--surface); border: 0; }
+
+.potvrda__znak {
+  width: 56px; height: 56px; display: grid; place-items: center;
+  border-radius: 50%; background: var(--ok); color: var(--bg); margin-bottom: 12px;
+  animation: iskoci .45s cubic-bezier(.2, 1.3, .4, 1) both;
+}
+.potvrda__znak svg { width: 28px; height: 28px; }
+@keyframes iskoci { from { transform: scale(.4); opacity: 0; } }
+.potvrda__dugmad { display: grid; gap: 10px; margin: 0 0 26px; }
+@media (min-width: 560px) { .potvrda__dugmad { grid-template-columns: 1fr 1fr; } }
+
+.poruke { margin: 0 0 18px; padding: 16px; border-radius: var(--r); background: color-mix(in oklab, var(--viber) 10%, var(--surface)); }
+.poruke__glava { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.poruke__glava b { display: block; font-size: 15px; }
+.poruke__glava span { font-size: 13px; color: var(--muted); }
+.poruke__ikona { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: var(--viber); color: #fff; }
+.poruke__ikona svg { width: 18px; height: 18px; }
+.poruka { max-width: 92%; margin: 0 0 10px; }
+.poruka__kad { display: block; margin: 0 0 4px 4px; font-size: 12px; color: var(--muted); }
+.poruka p { margin: 0; padding: 10px 13px; border-radius: 4px 16px 16px 16px; background: var(--surface); font-size: 15px; box-shadow: 0 1px 1px rgba(0, 0, 0, .06); }
+:root[data-izgled="klasika"] .poruke { background: var(--surface-2); border: 1px solid var(--line); }
+.mali-link { border: 0; background: none; padding: 0; color: var(--accent); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ── Raspored za berbera ──────────────────────────────────────────────── */
+.raspored { display: grid; gap: 16px; }
+.raspored > * { min-width: 0; }
+.r-glava { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 10px 20px; }
+.r-glava h2 { margin: 0; font-family: var(--display); font-weight: var(--display-weight); font-stretch: var(--display-stretch); font-size: clamp(24px, 4.4vw, 30px); line-height: 1.1; }
+.r-glava p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+:root .r-dani .dani { margin: 0 -16px; padding: 2px 16px 6px; }
+.brojke { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.brojke div { padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-s); }
+.brojke dt { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.brojke dd { margin: 2px 0 0; font-size: clamp(18px, 4vw, 24px); font-weight: 750; font-variant-numeric: tabular-nums; }
+:root[data-izgled="aplikacija"] .brojke div { border: 0; }
+:root[data-izgled="klasika"] .brojke dd { font-family: var(--display); font-weight: 500; color: var(--accent); }
+
+.berberi-izbor { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.berberi-izbor button {
+  flex: none; padding: 8px 14px; border-radius: 999px;
+  background: var(--surface); border: 1px solid var(--line); font-weight: 600; font-size: 14px;
+}
+.berberi-izbor button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+:root[data-izgled="klasika"] .berberi-izbor button { border-radius: var(--r-s); }
+:root[data-izgled="klasika"] .berberi-izbor button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+
+.kolone { display: grid; gap: 14px; }
+.kolona[data-aktivna="false"] { display: none; }
+/* Široko su svi berberi jedan pored drugog; aplikacija je uska, pa ostaje po jedan. */
+@media (min-width: 880px) {
+  :root:not([data-izgled="aplikacija"]) .berberi-izbor { display: none; }
+  :root:not([data-izgled="aplikacija"]) .kolone { grid-template-columns: repeat(var(--kolona, 3), minmax(0, 1fr)); }
+  :root:not([data-izgled="aplikacija"]) .kolona[data-aktivna="false"] { display: block; }
+}
+.kolona { padding: 14px; }
+.kolona h3 { display: flex; justify-content: space-between; align-items: baseline; margin: 0 0 10px; font-size: 16px; }
+.kolona h3 small { color: var(--muted); font-weight: 500; font-size: 13px; }
+:root[data-izgled="klasika"] .kolona h3 { font-family: var(--display); font-weight: 500; font-size: 19px; }
+.stavke { display: grid; gap: 6px; margin: 0; padding: 0; list-style: none; }
+
+.stavka {
+  width: 100%;
+  display: grid; grid-template-columns: 54px 1fr; gap: 10px; align-items: start;
+  padding: 10px 12px; text-align: left;
+  background: var(--soft); border: 0; border-left: 3px solid var(--accent); border-radius: 6px;
+}
+.stavka__vr { font-weight: 700; font-variant-numeric: tabular-nums; font-size: 14px; line-height: 1.3; }
+.stavka__vr small { display: block; color: var(--muted); font-weight: 500; }
+.stavka__ime { display: block; font-weight: 650; }
+.stavka__usl { display: block; color: var(--muted); font-size: 14px; }
+.znacka { display: inline-block; margin-left: 6px; padding: 1px 7px; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font-size: 11px; font-weight: 700; vertical-align: 2px; }
+.znacka--siva { background: var(--line); color: var(--muted); }
+.stavka.prosla { opacity: .5; }
+.stavka.nije-dosao .stavka__ime { text-decoration: line-through; }
+.stavka.nova { animation: zasvijetli 2.4s ease-out both; }
+@keyframes zasvijetli { 0%, 30% { box-shadow: 0 0 0 3px var(--accent); } 100% { box-shadow: 0 0 0 0 transparent; } }
+.slobodno { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 8px 12px; border: 1px dashed var(--line); border-radius: 6px; color: var(--muted); font-size: 14px; }
+.slobodno b { color: var(--ok); font-weight: 600; }
+.pauza { display: grid; grid-template-columns: 54px 1fr; gap: 10px; padding: 7px 12px; border-radius: 6px; background: var(--surface-2); color: var(--muted); font-size: 14px; }
+.akcije { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px 0 4px 66px; }
+.akcije button { padding: 8px 12px; border-radius: var(--r-s); background: var(--surface); border: 1px solid var(--line); font-size: 14px; font-weight: 600; }
+.akcije button.opasno { color: #C0362C; }
+:root[data-izgled="klasika"] .akcije button.opasno, :root[data-izgled="aplikacija"] .akcije button.opasno { color: #FF7A6E; }
+@media (prefers-color-scheme: light) { :root[data-izgled="aplikacija"] .akcije button.opasno { color: #C0362C; } }
+.zatvoreno { padding: 22px; text-align: center; color: var(--muted); }
+
+/* ── Traka demoa i poruka ─────────────────────────────────────────────── */
+.demo {
+  margin: 36px 0 0; padding: 16px 0 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted); font-size: 13px; line-height: 1.5;
+}
+.demo a { color: var(--ink); font-weight: 600; }
+:root[data-izgled="klasika"] .demo { text-align: center; }
+
+.tost {
+  position: fixed; z-index: 30; left: 50%; bottom: 24px;
+  width: min(440px, calc(100% - 32px));
+  padding: 13px 16px; border-radius: 12px;
+  background: var(--ink); color: var(--bg);
+  font-size: 15px; box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+  transform: translate(-50%, 20px); opacity: 0; pointer-events: none;
+  transition: transform .25s, opacity .25s;
+}
+.tost.vidljiv { transform: translate(-50%, 0); opacity: 1; }
+:root[data-izgled="aplikacija"] .tost { bottom: calc(86px + env(safe-area-inset-bottom)); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="zag">
+    <div class="zag__znak" id="znak" aria-hidden="true"></div>
+    <div class="zag__ime">
+      <p class="zag__nad" id="nad">Berbernica</p>
+      <h1 id="naziv">Vaša berbernica</h1>
+    </div>
+    <p class="zag__otvoreno" id="otvoreno"></p>
+  </header>
+
+  <div class="tabovi" role="tablist" aria-label="Pogled">
+    <button type="button" role="tab" id="tab-m" aria-selected="true" aria-controls="pogled-m">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg>
+      Zakaži termin
+    </button>
+    <button type="button" role="tab" id="tab-b" aria-selected="false" aria-controls="pogled-b" tabindex="-1">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4M7.5 13.5h3M7.5 17h6"/></svg>
+      Raspored <small>za berbera</small>
+    </button>
+  </div>
+
+  <main>
+    <section class="musterija" id="pogled-m" role="tabpanel" aria-labelledby="tab-m">
+      <aside class="info kartica" aria-label="O berbernici">
+        <h2>Adresa</h2>
+        <p id="adresa"></p>
+        <h2>Radno vrijeme</h2>
+        <table><tbody id="radno"></tbody></table>
+        <a class="info__poziv" id="poziv" hidden></a>
+      </aside>
+      <div class="tok kartica" id="tok"></div>
+    </section>
+
+    <section class="raspored" id="pogled-b" role="tabpanel" aria-labelledby="tab-b" hidden></section>
+  </main>
+
+  <footer class="demo">
+    <span id="demoTekst">Ovo je demo zakazivanja koji je napravio Hunar. Termini i mušterije su izmišljeni, cijene su primjer, a poruke se ne šalju.</span>
+    <a href="/zakazivanje" id="demoLink">Kako ovo radi za Vašu berbernicu</a>
+  </footer>
+</div>
+<div class="tost" id="tost" role="status" aria-live="polite"></div>
+
+<script>
+// ── Berbernica: ime, grad i berberi dolaze iz linka ──────────────────────────
+// hunar.ba/demo-berbernica?ime=Berbernica+Kenan&grad=Tuzla&berberi=Kenan,Edo&adresa=...&tel=...
+const P = new URLSearchParams(location.search)
+const cisto = (s, max) => (s || '').replace(/\s+/g, ' ').trim().slice(0, max)
+
+const BERBERNICA = {
+  naziv: cisto(P.get('ime'), 40) || 'Vaša berbernica',
+  grad: cisto(P.get('grad'), 30),
+  adresa: cisto(P.get('adresa'), 60),
+  telefon: cisto(P.get('tel'), 20),
+  berberi: (cisto(P.get('berberi'), 80) || 'Amar,Nikola,Dino').split(',').map((s) => cisto(s, 16)).filter(Boolean).slice(0, 4),
+  // Trajanje je u minutama i djeljivo sa 15, jer se termini nude svakih 15 minuta.
+  usluge: [
+    { id: 'sisanje', naziv: 'Šišanje', opis: 'Mašinica i makaze, pranje', min: 30, km: 15 },
+    { id: 'fade', naziv: 'Fade', opis: 'Prelaz do kože, oblikovanje', min: 45, km: 20 },
+    { id: 'brada', naziv: 'Brada', opis: 'Oblikovanje i topli peškir', min: 30, km: 10 },
+    { id: 'komplet', naziv: 'Šišanje i brada', opis: 'Kompletno uređivanje', min: 60, km: 25 },
+    { id: 'djeca', naziv: 'Dječije šišanje', opis: 'Do 12 godina', min: 30, km: 10 },
+  ],
+  // Indeks je getDay(): 0 je nedjelja. [od, do] u satima, null je zatvoreno.
+  radno: [null, [9, 20], [9, 20], [9, 20], [9, 20], [9, 20], [8, 16]],
+}
+
+const MUSTERIJE = ['Emir H.', 'Nikola P.', 'Haris M.', 'Dženan K.', 'Marko J.', 'Adnan S.', 'Igor T.', 'Tarik B.', 'Stefan V.', 'Edin O.', 'Benjamin Č.', 'Luka R.', 'Armin D.', 'Vedran Š.', 'Kerim A.', 'Mirza L.', 'Ognjen M.', 'Faruk Z.']
+const DANI = ['Nedjelja', 'Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota']
+const DANI_K = ['Ned', 'Pon', 'Uto', 'Sri', 'Čet', 'Pet', 'Sub']
+const MJESECI = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'avg', 'sep', 'okt', 'nov', 'dec']
+const PRVI_SLOBODAN = -1
+
+const $ = (id) => document.getElementById(id)
+const pad = (n) => String(n).padStart(2, '0')
+const kljuc = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+const izKljuca = (k) => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d) }
+const danas = () => { const d = new Date(); d.setHours(0, 0, 0, 0); return d }
+const plusDana = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x }
+const razlikaDana = (d) => Math.round((d - danas()) / 864e5)
+const sat = (m) => `${Math.floor(m / 60)}:${pad(m % 60)}`
+const sadMin = () => { const d = new Date(); return d.getHours() * 60 + d.getMinutes() }
+const usluga = (id) => BERBERNICA.usluge.find((u) => u.id === id)
+const radnoVrijeme = (d) => BERBERNICA.radno[d.getDay()]
+const trajanje = (min) => (min >= 60 ? `${Math.floor(min / 60)} h${min % 60 ? ` ${min % 60} min` : ''}` : `${min} min`)
+function opisDana(d) {
+  const n = razlikaDana(d)
+  if (n === 0) return 'danas'
+  if (n === 1) return 'sutra'
+  return `${DANI[d.getDay()].toLowerCase()} ${d.getDate()}. ${d.getMonth() + 1}.`
+}
+
+// Element sa atributima i djecom; tekst uvijek ide kao textContent.
+function h(tag, a, ...djeca) {
+  const el = document.createElement(tag)
+  for (const [k, v] of Object.entries(a || {})) {
+    if (v == null || v === false) continue
+    if (k === 'class') el.className = v
+    else if (k.startsWith('on')) el.addEventListener(k.slice(2), v)
+    else el.setAttribute(k, v === true ? '' : v)
+  }
+  for (const d of djeca.flat()) if (d != null && d !== false) el.append(d.nodeType ? d : String(d))
+  return el
+}
+const svg = (put, sirina) => {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg')
+  s.setAttribute('viewBox', '0 0 24 24'); s.setAttribute('fill', 'none'); s.setAttribute('stroke', 'currentColor')
+  s.setAttribute('stroke-width', sirina || '2'); s.setAttribute('stroke-linecap', 'round'); s.setAttribute('stroke-linejoin', 'round')
+  s.setAttribute('aria-hidden', 'true'); s.innerHTML = put
+  return s
+}
+const inicijali = (s) => s.split(/\s+/).filter((w) => /\p{L}/u.test(w[0] || '')).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || 'B'
+
+// ── Stanje: termini sa ovog sajta i izmjene berbera, samo u ovom pregledniku ──
+const SPREMI = 'hunar-demo-berbernica'
+let stanje = { moji: [], otkazani: [], nijeDosao: [] }
+try { stanje = { ...stanje, ...JSON.parse(localStorage.getItem(SPREMI) || '{}') } } catch (e) {}
+const sacuvaj = () => { try { localStorage.setItem(SPREMI, JSON.stringify(stanje)) } catch (e) {} }
+
+// ── Izmišljeni termini: uvijek isti za isti dan i berbera ───────────────────
+function slucajno(seme) {
+  let x = 2166136261
+  for (const c of seme) { x ^= c.charCodeAt(0); x = Math.imul(x, 16777619) }
+  return () => { x ^= x << 13; x ^= x >>> 17; x ^= x << 5; return ((x >>> 0) % 10000) / 10000 }
+}
+function izmisljeni(k, b) {
+  const d = izKljuca(k), r = radnoVrijeme(d)
+  if (!r) return []
+  const rnd = slucajno(`${k}|${b}`)
+  const puno = Math.max(0.25, 0.86 - razlikaDana(d) * 0.07)
+  const pauza = r[1] - r[0] > 8 ? 12 * 60 + 30 + (b % 3) * 30 : null
+  const lista = pauza ? [{ id: `${k}|${b}|p`, pauza: true, od: pauza, do: pauza + 30, berber: b }] : []
+  let t = r[0] * 60
+  while (t < r[1] * 60) {
+    if (pauza && t >= pauza && t < pauza + 30) { t = pauza + 30; continue }
+    if (rnd() < puno) {
+      const u = BERBERNICA.usluge[Math.floor(rnd() * BERBERNICA.usluge.length)]
+      const kraj = t + u.min
+      if (kraj > r[1] * 60 || (pauza && t < pauza && kraj > pauza)) { t += 15; continue }
+      lista.push({ id: `${k}|${b}|${t}`, od: t, do: kraj, usluga: u.id, ime: MUSTERIJE[Math.floor(rnd() * MUSTERIJE.length)], berber: b })
+      t = kraj
+    } else t += rnd() < 0.5 ? 15 : 30
+  }
+  return lista
+}
+function zauzeto(k, b) {
+  return izmisljeni(k, b)
+    .filter((t) => !stanje.otkazani.includes(t.id))
+    .concat(stanje.moji.filter((t) => t.datum === k && t.berber === b))
+    .sort((a, c) => a.od - c.od)
+}
+function slobodni(k, b, min) {
+  const d = izKljuca(k), r = radnoVrijeme(d)
+  if (!r) return []
+  const z = zauzeto(k, b)
+  const najranije = razlikaDana(d) === 0 ? Math.ceil((sadMin() + 30) / 15) * 15 : 0
+  const out = []
+  for (let t = r[0] * 60; t + min <= r[1] * 60; t += 15) {
+    if (t < najranije) continue
+    if (z.every((a) => t + min <= a.od || t >= a.do)) out.push(t)
+  }
+  return out
+}
+// Za "prvi slobodan" spoji termine svih berbera; svaki termin pamti ko je slobodan.
+function terminiZa(k, b, min) {
+  if (b !== PRVI_SLOBODAN) return slobodni(k, b, min).map((t) => ({ t, b }))
+  const mapa = new Map()
+  BERBERNICA.berberi.forEach((_, i) => slobodni(k, i, min).forEach((t) => { if (!mapa.has(t)) mapa.set(t, i) }))
+  return [...mapa].sort((a, c) => a[0] - c[0]).map(([t, b2]) => ({ t, b: b2 }))
+}
+function prviSlobodanDan(b, min, od = 0) {
+  for (let n = od; n < 21; n++) {
+    const k = kljuc(plusDana(danas(), n)), t = terminiZa(k, b, min)
+    if (t.length) return { k, t: t[0].t }
+  }
+  return null
+}
+
+// ── Zaglavlje, adresa i radno vrijeme ───────────────────────────────────────
+function crtajBerbernicu() {
+  document.title = `Zakažite termin · ${BERBERNICA.naziv}`
+  $('naziv').textContent = BERBERNICA.naziv
+  $('nad').textContent = BERBERNICA.grad ? `Berbernica · ${BERBERNICA.grad}` : 'Berbernica'
+  $('znak').textContent = inicijali(BERBERNICA.naziv.replace(/^(berbernica|barber ?shop|barber|frizerski salon|salon)\s+/i, '') || BERBERNICA.naziv)
+  $('adresa').textContent = [BERBERNICA.adresa || 'Adresa berbernice', BERBERNICA.grad].filter(Boolean).join(', ')
+  if (BERBERNICA.telefon) {
+    $('poziv').hidden = false
+    $('poziv').textContent = `Pozovite ${BERBERNICA.telefon}`
+    $('poziv').href = 'tel:' + BERBERNICA.telefon.replace(/[^\d+]/g, '')
+  }
+  if (BERBERNICA.naziv !== 'Vaša berbernica') $('demoTekst').textContent = `Ovo je demo zakazivanja koji je Hunar napravio za ${BERBERNICA.naziv}. Termini i mušterije su izmišljeni, cijene su primjer, a poruke se ne šalju.`
+
+  const redovi = [[1, 5, 'Ponedjeljak do petak'], [6, 6, 'Subota'], [0, 0, 'Nedjelja']]
+  const dan = new Date().getDay()
+  $('radno').replaceChildren(...redovi.map(([od, dO, ime]) => {
+    const r = BERBERNICA.radno[od]
+    const jeDanas = od === 0 ? dan === 0 : dan >= od && dan <= dO
+    return h('tr', { class: jeDanas ? 'danas' : null }, h('td', null, ime), h('td', null, r ? `${r[0]}:00 do ${r[1]}:00` : 'zatvoreno'))
+  }))
+
+  const r = radnoVrijeme(new Date()), m = sadMin()
+  const ot = $('otvoreno')
+  ot.replaceChildren()
+  if (r && m >= r[0] * 60 && m < r[1] * 60) ot.append(h('b', null, 'Otvoreno'), ` do ${r[1]}:00`)
+  else ot.append('Sada zatvoreno')
+}
+
+// ── Mušterija: usluga, berber, termin, podaci, potvrda ──────────────────────
+const KORACI = ['usluga', 'berber', 'termin', 'podaci']
+const tok = { korak: 'usluga', usluga: null, berber: null, datum: null, vrijeme: null, berberTermina: null, zadnji: null }
+const jedanBerber = () => BERBERNICA.berberi.length === 1
+
+function idi(korak) {
+  tok.korak = korak
+  crtajTok(true)
+}
+
+function crtajTok(fokus) {
+  const kut = $('tok')
+  kut.replaceChildren()
+  if (tok.korak === 'gotovo') kut.append(potvrda())
+  else {
+    const i = KORACI.indexOf(tok.korak)
+    kut.append(h('ol', { class: 'traka', 'aria-hidden': 'true' }, KORACI.map((_, j) => h('li', { class: j < i ? 'gotov' : null, 'aria-current': j === i ? 'step' : null }))))
+    const nazad = i > 0 ? h('button', { type: 'button', class: 'nazad', onclick: () => idi(tok.korak === 'termin' && jedanBerber() ? 'usluga' : KORACI[i - 1]) }, '‹ Nazad') : h('span')
+    kut.append(h('div', { class: 'korak-glava' }, nazad, h('span', { class: 'korak-br' }, `Korak ${i + 1} od 4`)))
+    kut.append({ usluga: korakUsluga, berber: korakBerber, termin: korakTermin, podaci: korakPodaci }[tok.korak]())
+  }
+  if (fokus) {
+    const naslov = kut.querySelector('h2')
+    naslov && naslov.focus({ preventScroll: true })
+    const vrh = kut.getBoundingClientRect().top
+    if (vrh < 0 || vrh > innerHeight * 0.4) kut.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
+  }
+}
+
+function izabrano() {
+  const u = usluga(tok.usluga)
+  const stavke = []
+  if (u) stavke.push(`${u.naziv} · ${trajanje(u.min)} · ${u.km} KM`)
+  if (tok.berber != null && tok.korak !== 'berber') stavke.push(tok.berber === PRVI_SLOBODAN ? 'Prvi slobodan berber' : BERBERNICA.berberi[tok.berber])
+  return stavke.length ? h('ul', { class: 'izabrano' }, stavke.map((s) => h('li', null, s))) : null
+}
+
+function korakUsluga() {
+  return h('div', null,
+    h('h2', { tabindex: '-1' }, 'Šta radimo?'),
+    h('ul', { class: 'izbori' }, BERBERNICA.usluge.map((u) => h('li', null,
+      h('button', { type: 'button', class: 'izbor', onclick: () => {
+        tok.usluga = u.id
+        if (jedanBerber()) { tok.berber = 0; idi('termin') } else idi('berber')
+      } },
+        h('span', { class: 'izbor__ikona' }, svg('<circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/>', '1.8')),
+        h('span', { class: 'izbor__tekst' }, h('span', { class: 'izbor__naziv' }, u.naziv), h('span', { class: 'izbor__opis' }, u.opis)),
+        h('span', { class: 'izbor__desno' }, h('span', { class: 'izbor__cijena' }, `${u.km} KM`), h('span', { class: 'izbor__min' }, trajanje(u.min))),
+      ),
+    ))),
+  )
+}
+
+function korakBerber() {
+  const min = usluga(tok.usluga).min
+  const sljedeci = (b) => {
+    const p = prviSlobodanDan(b, min)
+    return p ? `Prvi slobodan: ${opisDana(izKljuca(p.k))} u ${sat(p.t)}` : 'Nema slobodnih termina'
+  }
+  const izbori = [{ b: PRVI_SLOBODAN, ime: 'Prvi slobodan', ikona: '★' }].concat(BERBERNICA.berberi.map((ime, b) => ({ b, ime, ikona: inicijali(ime) })))
+  return h('div', null,
+    h('h2', { tabindex: '-1' }, 'Kod koga?'),
+    izabrano(),
+    h('ul', { class: 'izbori' }, izbori.map((x) => h('li', null,
+      h('button', { type: 'button', class: 'izbor', onclick: () => { tok.berber = x.b; tok.datum = null; idi('termin') } },
+        h('span', { class: 'izbor__ikona', 'aria-hidden': 'true' }, x.ikona),
+        h('span', { class: 'izbor__tekst' }, h('span', { class: 'izbor__naziv' }, x.ime), h('span', { class: 'izbor__opis' }, sljedeci(x.b))),
+        h('span', { class: 'izbor__desno', 'aria-hidden': 'true' }, '›'),
+      ),
+    ))),
+  )
+}
+
+function trakaDana(izabran, naKlik, opcije) {
+  const { dana = 14, pokaziPuno = false, min = 30, b = 0 } = opcije || {}
+  const dugmad = []
+  for (let n = 0; n < dana; n++) {
+    const d = plusDana(danas(), n), k = kljuc(d)
+    const zatvoreno = !radnoVrijeme(d)
+    const puno = pokaziPuno && !zatvoreno && terminiZa(k, b, min).length === 0
+    dugmad.push(h('button', {
+      type: 'button', class: 'dan', 'aria-pressed': String(k === izabran), disabled: zatvoreno || puno,
+      'aria-label': `${n === 0 ? 'Danas, ' : n === 1 ? 'Sutra, ' : ''}${DANI[d.getDay()]} ${d.getDate()}. ${d.getMonth() + 1}.${zatvoreno ? ', zatvoreno' : puno ? ', nema slobodnih termina' : ''}`,
+      onclick: () => naKlik(k),
+    },
+      h('span', { class: 'dan__ime' }, n === 0 ? 'Danas' : DANI_K[d.getDay()]),
+      h('span', { class: 'dan__br' }, d.getDate()),
+      h('span', { class: 'dan__mj' }, zatvoreno ? 'zatv.' : puno ? 'puno' : MJESECI[d.getMonth()]),
+    ))
+  }
+  return h('div', { class: 'dani', role: 'group', 'aria-label': 'Dan' }, dugmad)
+}
+
+function korakTermin() {
+  const min = usluga(tok.usluga).min
+  if (!tok.datum || !terminiZa(tok.datum, tok.berber, min).length) {
+    const p = prviSlobodanDan(tok.berber, min)
+    tok.datum = p ? p.k : kljuc(danas())
+  }
+  const termini = terminiZa(tok.datum, tok.berber, min)
+  const grupe = [['Prijepodne', 0, 12 * 60], ['Poslijepodne', 12 * 60, 17 * 60], ['Uveče', 17 * 60, 24 * 60]]
+  const sadrzaj = termini.length
+    ? grupe.map(([ime, od, dO]) => {
+      const t = termini.filter((x) => x.t >= od && x.t < dO)
+      return t.length ? h('div', { class: 'grupa' }, h('h3', null, ime), h('div', { class: 'termini' }, t.map((x) => h('button', {
+        type: 'button', class: 'termin', 'aria-label': `${sat(x.t)}${tok.berber === PRVI_SLOBODAN ? `, kod ${BERBERNICA.berberi[x.b]}` : ''}`,
+        onclick: () => { tok.vrijeme = x.t; tok.berberTermina = x.b; idi('podaci') },
+      }, sat(x.t))))) : null
+    })
+    : h('p', { class: 'prazno' }, 'Za ovaj dan više nema slobodnih termina.')
+  return h('div', null,
+    h('h2', { tabindex: '-1' }, 'Kada Vam odgovara?'),
+    izabrano(),
+    trakaDana(tok.datum, (k) => { tok.datum = k; crtajTok() }, { pokaziPuno: true, min, b: tok.berber }),
+    sadrzaj,
+  )
+}
+
+function sazetak(t) {
+  const u = usluga(t.usluga), d = izKljuca(t.datum)
+  const red = (a, b) => h('div', null, h('dt', null, a), h('dd', null, b))
+  return h('dl', { class: 'sazetak' },
+    red('Usluga', `${u.naziv}, ${trajanje(u.min)}`),
+    red('Berber', BERBERNICA.berberi[t.berber]),
+    red('Termin', `${DANI[d.getDay()]} ${d.getDate()}. ${d.getMonth() + 1}. u ${sat(t.od)}`),
+    red('Cijena', `${u.km} KM, plaća se u berbernici`),
+  )
+}
+
+function korakPodaci() {
+  const u = usluga(tok.usluga)
+  const nacrt = { usluga: tok.usluga, berber: tok.berberTermina, datum: tok.datum, od: tok.vrijeme }
+  const forma = h('form', { novalidate: true, onsubmit: (e) => {
+    e.preventDefault()
+    const f = e.target
+    const ime = cisto(f.ime.value, 40), tel = cisto(f.tel.value, 20)
+    if (!ime) { f.ime.focus(); f.ime.setCustomValidity('Upišite ime'); f.ime.reportValidity(); return }
+    if ((tel.match(/\d/g) || []).length < 6) { f.tel.focus(); f.tel.setCustomValidity('Upišite broj telefona'); f.tel.reportValidity(); return }
+    if (!slobodni(tok.datum, tok.berberTermina, u.min).includes(tok.vrijeme)) {
+      tost('Ovaj termin je u međuvremenu zauzet. Izaberite drugi.')
+      return idi('termin')
+    }
+    const t = { id: `moj-${Date.now()}`, datum: tok.datum, berber: tok.berberTermina, od: tok.vrijeme, do: tok.vrijeme + u.min, usluga: u.id, ime, tel, napomena: cisto(f.napomena.value, 120), sajt: true }
+    stanje.moji.push(t)
+    sacuvaj()
+    tok.zadnji = t
+    try { window.umami && umami.track('demo-berbernica-zakazano', { izgled: document.documentElement.dataset.izgled }) } catch (e2) {}
+    idi('gotovo')
+  } },
+    h('label', { class: 'polje' }, h('span', null, 'Ime i prezime'), h('input', { name: 'ime', autocomplete: 'name', required: true, oninput: (e) => e.target.setCustomValidity('') })),
+    h('label', { class: 'polje' }, h('span', null, 'Broj telefona ', h('small', null, '(Viber ili SMS)')), h('input', { name: 'tel', type: 'tel', inputmode: 'tel', autocomplete: 'tel', placeholder: '06x xxx xxx', required: true, oninput: (e) => e.target.setCustomValidity('') })),
+    h('label', { class: 'polje' }, h('span', null, 'Napomena ', h('small', null, '(nije obavezno)')), h('textarea', { name: 'napomena', rows: '2', placeholder: 'Npr. kratko sa strane, duže gore' })),
+    h('p', { class: 'napomena-mala' }, 'Broj koristimo samo za potvrdu i podsjetnik. Termin možete otkazati iz poruke.'),
+    h('button', { type: 'submit', class: 'dugme dugme--puno' }, `Potvrdi termin u ${sat(tok.vrijeme)}`),
+  )
+  return h('div', null, h('h2', { tabindex: '-1' }, 'Još samo Vaše ime'), sazetak(nacrt), forma)
+}
+
+function poruke(t) {
+  const u = usluga(t.usluga), d = izKljuca(t.datum), berber = BERBERNICA.berberi[t.berber]
+  const kad = `${DANI[d.getDay()].toLowerCase()} ${d.getDate()}. ${d.getMonth() + 1}. u ${sat(t.od)}`
+  const gdje = [BERBERNICA.adresa, BERBERNICA.grad].filter(Boolean).join(', ')
+  const lista = [['Odmah', `Termin je potvrđen: ${u.naziv}, ${kad}, berber ${berber}. Ako ne možete doći, otkažite ovdje: hunar.ba/t/4KX9`]]
+  if (razlikaDana(d) >= 1) lista.push(['Dan prije, u 18:00', `Podsjetnik: sutra u ${sat(t.od)} imate termin (${u.naziv}, berber ${berber}). Ne možete? Otkažite jednim klikom: hunar.ba/t/4KX9`])
+  lista.push(['Sat prije termina', `Vidimo se u ${sat(t.od)}. ${BERBERNICA.naziv}${gdje ? `, ${gdje}` : ''}.`])
+  return h('section', { class: 'poruke', 'aria-label': 'Poruke koje mušterija dobije' },
+    h('div', { class: 'poruke__glava' },
+      h('span', { class: 'poruke__ikona' }, svg('<path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.4L3 21l2.1-5.7A8.4 8.4 0 1 1 21 11.5Z"/>')),
+      h('span', null, h('b', null, BERBERNICA.naziv), h('span', null, 'Poruke koje mušterija dobije na Viber ili SMS')),
+    ),
+    lista.map(([kada, tekst]) => h('div', { class: 'poruka' }, h('span', { class: 'poruka__kad' }, kada), h('p', null, tekst))),
+  )
+}
+
+function potvrda() {
+  const t = tok.zadnji
+  return h('div', null,
+    h('div', { class: 'potvrda__znak' }, svg('<path d="M5 12.5 10 17.5 19 7"/>', '2.6')),
+    h('h2', { tabindex: '-1' }, 'Termin je zakazan.'),
+    sazetak(t),
+    h('div', { class: 'potvrda__dugmad' },
+      h('button', { type: 'button', class: 'dugme', onclick: () => { prikazi('b', t) } }, 'Pogledajte kako ovo vidi berber'),
+      h('button', { type: 'button', class: 'dugme dugme--sporedno', onclick: () => kalendar(t) }, 'Dodaj u kalendar'),
+    ),
+    poruke(t),
+    h('button', { type: 'button', class: 'mali-link', onclick: () => { Object.assign(tok, { usluga: null, berber: null, datum: null, vrijeme: null }); idi('usluga') } }, 'Zakaži još jedan termin'),
+  )
+}
+
+function kalendar(t) {
+  const u = usluga(t.usluga), d = izKljuca(t.datum)
+  const f = (m) => { const x = new Date(d); x.setHours(0, m, 0, 0); return `${x.getFullYear()}${pad(x.getMonth() + 1)}${pad(x.getDate())}T${pad(x.getHours())}${pad(x.getMinutes())}00` }
+  const esc = (s) => s.replace(/[\\,;]/g, (z) => '\\' + z)
+  const n = new Date()
+  const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Hunar//Demo berbernice//BS', 'BEGIN:VEVENT',
+    `UID:${t.id}@hunar.ba`, `DTSTAMP:${n.getUTCFullYear()}${pad(n.getUTCMonth() + 1)}${pad(n.getUTCDate())}T${pad(n.getUTCHours())}${pad(n.getUTCMinutes())}00Z`,
+    `DTSTART:${f(t.od)}`, `DTEND:${f(t.do)}`, `SUMMARY:${esc(`${u.naziv} · ${BERBERNICA.naziv}`)}`,
+    `LOCATION:${esc([BERBERNICA.adresa, BERBERNICA.grad].filter(Boolean).join(', ') || BERBERNICA.naziv)}`,
+    'BEGIN:VALARM', 'TRIGGER:-PT1H', 'ACTION:DISPLAY', 'DESCRIPTION:Termin za sat vremena', 'END:VALARM',
+    'END:VEVENT', 'END:VCALENDAR'].join('\r\n')
+  const a = h('a', { href: URL.createObjectURL(new Blob([ics], { type: 'text/calendar' })), download: 'termin.ics' })
+  document.body.append(a); a.click(); a.remove()
+}
+
+// ── Raspored za berbera ─────────────────────────────────────────────────────
+const ras = { datum: null, berber: 0, otvoren: null, istakni: null }
+
+function crtajRaspored() {
+  const kut = $('pogled-b')
+  if (!ras.datum) {
+    let n = 0
+    while (!radnoVrijeme(plusDana(danas(), n)) && n < 7) n++
+    ras.datum = kljuc(plusDana(danas(), n))
+  }
+  const d = izKljuca(ras.datum), r = radnoVrijeme(d)
+  const jeDanas = razlikaDana(d) === 0, sad = sadMin()
+
+  let termina = 0, slobodnoMin = 0, promet = 0
+  const kolone = BERBERNICA.berberi.map((ime, b) => {
+    const z = r ? zauzeto(ras.datum, b) : []
+    const stavke = []
+    let t = r ? r[0] * 60 : 0
+    for (const a of z) {
+      if (a.od - t >= 15) {
+        const od = Math.max(t, jeDanas ? Math.ceil(sad / 15) * 15 : t)
+        if (a.od - od >= 15) slobodnoMin += a.od - od
+        stavke.push(slobodnoRed(t, a.od))
+      }
+      if (a.pauza) stavke.push(h('li', { class: 'pauza' }, h('span', null, sat(a.od)), h('span', null, 'Pauza')))
+      else {
+        termina++
+        if (!stanje.nijeDosao.includes(a.id)) promet += usluga(a.usluga).km
+        stavke.push(stavkaRed(a, jeDanas && a.do <= sad))
+      }
+      t = Math.max(t, a.do)
+    }
+    if (r && r[1] * 60 - t >= 15) {
+      const od = Math.max(t, jeDanas ? Math.ceil(sad / 15) * 15 : t)
+      if (r[1] * 60 - od >= 15) slobodnoMin += r[1] * 60 - od
+      stavke.push(slobodnoRed(t, r[1] * 60))
+    }
+    const broj = z.filter((a) => !a.pauza).length
+    return h('section', { class: 'kolona kartica', 'data-aktivna': String(b === ras.berber), 'aria-label': ime },
+      h('h3', null, ime, h('small', null, `${broj} ${broj === 1 ? 'termin' : broj % 10 >= 2 && broj % 10 <= 4 && (broj < 12 || broj > 14) ? 'termina' : 'termina'}`)),
+      r ? h('ul', { class: 'stavke' }, stavke) : h('p', { class: 'zatvoreno' }, 'Zatvoreno'),
+    )
+  })
+
+  const sati = Math.floor(slobodnoMin / 60), minute = slobodnoMin % 60
+  kut.replaceChildren(
+    h('div', { class: 'r-glava' },
+      h('div', null,
+        h('h2', null, `${jeDanas ? 'Danas' : razlikaDana(d) === 1 ? 'Sutra' : DANI[d.getDay()]}, ${d.getDate()}. ${d.getMonth() + 1}.`),
+        h('p', null, 'Ovako berber vidi dan. Termini sa sajta stižu sami, a telefonske upisuje ovdje.'),
+      ),
+    ),
+    h('div', { class: 'r-dani' }, trakaDana(ras.datum, (k) => { ras.datum = k; ras.otvoren = null; crtajRaspored() }, { dana: 7 })),
+    r ? h('dl', { class: 'brojke' },
+      h('div', null, h('dt', null, 'Termina'), h('dd', null, termina)),
+      h('div', null, h('dt', null, jeDanas ? 'Još slobodno' : 'Slobodno'), h('dd', null, slobodnoMin ? `${sati ? `${sati} h ` : ''}${minute ? `${minute} min` : ''}`.trim() : jeDanas && sad >= r[1] * 60 ? 'kraj dana' : 'puno')),
+      h('div', null, h('dt', null, 'Promet'), h('dd', null, `${promet} KM`)),
+    ) : null,
+    BERBERNICA.berberi.length > 1 ? h('div', { class: 'berberi-izbor', role: 'group', 'aria-label': 'Berber' }, BERBERNICA.berberi.map((ime, b) => h('button', {
+      type: 'button', 'aria-pressed': String(b === ras.berber), onclick: () => { ras.berber = b; crtajRaspored() },
+    }, ime))) : null,
+    h('div', { class: 'kolone', style: `--kolona: ${BERBERNICA.berberi.length}` }, kolone),
+  )
+  if (ras.istakni) {
+    const el = kut.querySelector(`[data-id="${CSS.escape(ras.istakni)}"]`)
+    ras.istakni = null
+    if (el) requestAnimationFrame(() => el.scrollIntoView({ block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }))
+  }
+}
+
+function slobodnoRed(od, dO) {
+  const m = dO - od
+  return h('li', { class: 'slobodno' }, h('span', null, sat(od)), h('span', null, h('b', null, 'Slobodno'), ` ${trajanje(m)}`))
+}
+
+function stavkaRed(a, prosla) {
+  const u = usluga(a.usluga)
+  const otvoren = ras.otvoren === a.id
+  const nijeDosao = stanje.nijeDosao.includes(a.id)
+  const klase = ['stavka', prosla && 'prosla', nijeDosao && 'nije-dosao', a.sajt && a.id === tok.zadnji?.id && 'nova'].filter(Boolean).join(' ')
+  const li = h('li', null,
+    h('button', { type: 'button', class: klase, 'data-id': a.id, 'aria-expanded': String(otvoren), onclick: () => { ras.otvoren = otvoren ? null : a.id; crtajRaspored() } },
+      h('span', { class: 'stavka__vr' }, sat(a.od), h('small', null, sat(a.do))),
+      h('span', null,
+        h('span', { class: 'stavka__ime' }, a.ime, a.sajt ? h('span', { class: 'znacka' }, 'sa sajta') : null, nijeDosao ? h('span', { class: 'znacka znacka--siva' }, 'nije došao') : null),
+        h('span', { class: 'stavka__usl' }, `${u.naziv} · ${u.km} KM${a.napomena ? ` · ${a.napomena}` : ''}`),
+      ),
+    ),
+  )
+  if (otvoren) li.append(h('div', { class: 'akcije' },
+    h('button', { type: 'button', onclick: () => tost(a.tel ? `Poziv na ${a.tel}. U demou se ne zove.` : 'U pravom sistemu ovo zove mušteriju.') }, 'Pozovi'),
+    h('button', { type: 'button', onclick: () => {
+      stanje.nijeDosao = nijeDosao ? stanje.nijeDosao.filter((x) => x !== a.id) : stanje.nijeDosao.concat(a.id)
+      sacuvaj(); crtajRaspored()
+    } }, nijeDosao ? 'Ipak je došao' : 'Nije došao'),
+    h('button', { type: 'button', class: 'opasno', onclick: () => {
+      if (a.sajt) stanje.moji = stanje.moji.filter((x) => x.id !== a.id)
+      else stanje.otkazani.push(a.id)
+      sacuvaj(); ras.otvoren = null; crtajRaspored()
+      tost('Termin je otkazan. Mušterija je dobila poruku, a termin je opet slobodan na sajtu.')
+    } }, 'Otkaži'),
+  ))
+  return li
+}
+
+// ── Kartice i poruke ────────────────────────────────────────────────────────
+let tostTajmer
+function tost(tekst) {
+  const el = $('tost')
+  el.textContent = tekst
+  el.classList.add('vidljiv')
+  clearTimeout(tostTajmer)
+  tostTajmer = setTimeout(() => el.classList.remove('vidljiv'), 3600)
+}
+
+function prikazi(koji, termin) {
+  const b = koji === 'b'
+  $('tab-m').setAttribute('aria-selected', String(!b)); $('tab-m').tabIndex = b ? -1 : 0
+  $('tab-b').setAttribute('aria-selected', String(b)); $('tab-b').tabIndex = b ? 0 : -1
+  $('pogled-m').hidden = b
+  $('pogled-b').hidden = !b
+  if (b) {
+    if (termin) { ras.datum = termin.datum; ras.berber = termin.berber; ras.otvoren = null; ras.istakni = termin.id }
+    crtajRaspored()
+    if (!termin) scrollTo({ top: 0 })
+    try { window.umami && umami.track('demo-berbernica-raspored') } catch (e) {}
+  } else crtajTok()
+}
+$('tab-m').addEventListener('click', () => prikazi('m'))
+$('tab-b').addEventListener('click', () => prikazi('b'))
+document.querySelector('.tabovi').addEventListener('keydown', (e) => {
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+  const drugi = document.activeElement === $('tab-m') ? $('tab-b') : $('tab-m')
+  drugi.focus(); drugi.click()
+})
+
+crtajBerbernicu()
+// Link sa #raspored (sa stranice /zakazivanje) otvara odmah raspored berbera.
+if (location.hash === '#raspored') prikazi('b')
+else crtajTok()
+</script>
+</body>
+</html>
