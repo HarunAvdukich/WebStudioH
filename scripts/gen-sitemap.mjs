@@ -31,6 +31,7 @@ const urls = [
   ['/en/pricing', nova('Cijene', 'cijene.en', ['src/components/cijene'])],
   ['/savjeti', ['src/pages/Savjeti.jsx', 'src/stranice/savjeti.js', 'src/components/savjeti', 'src/content/posts']],
   ['/olx', nova('Olx', 'olx', ['src/components/olx', 'src/components/igre', 'public/olx'])],
+  ['/zakazivanje', nova('Zakazivanje', 'zakazivanje', ['src/components/zakazivanje', 'src/components/olx', 'public/demo-berbernica.html'])],
   ['/kontakt', nova('Kontakt', 'kontakt', ['src/components/kontakt'])],
   ['/en/contact', nova('Kontakt', 'kontakt.en', ['src/components/kontakt'])],
   ['/politika-privatnosti', nova('Privatnost', 'privatnost', ['src/components/savjeti'])],

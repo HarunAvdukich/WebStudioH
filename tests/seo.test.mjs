@@ -28,9 +28,10 @@ const pages = existsSync(DIST)
   ? htmlFiles().map((file) => ({ file, path: adresa(file), html: readFileSync(file, 'utf8') }))
   : []
 // /sati je skrivena evidencija rada za klijenta: otvara se samo linkom sa ključem.
-// /kalkulator-registracije je demo za stanice tehničkog pregleda: statična stranica iz public/, bez okvira sajta.
-const DEMO = '/kalkulator-registracije'
-const NEINDEKSIRANE = ['/404', '/sati', DEMO]
+// Demoi su statične stranice iz public/, bez okvira sajta: kalkulator za stanice tehničkog pregleda
+// zakazivanje za berbernice i red vožnje sa kartama za autobuskog prevoznika.
+const DEMOI = ['/kalkulator-registracije', '/demo-berbernica', '/demo-prevoz']
+const NEINDEKSIRANE = ['/404', '/sati', ...DEMOI]
 const indeksirane = pages.filter((p) => !NEINDEKSIRANE.includes(p.path))
 const meta = (html, re) => (html.match(re) || [])[1]
 const jsonLd = (html) =>
@@ -54,14 +55,16 @@ test('/sati se ne indeksira, nema okvira sajta i nije nigdje naveden', () => {
   for (const q of indeksirane) assert.doesNotMatch(q.html, /href="\/sati/, `${q.path} vodi na /sati`)
 })
 
-test('demo kalkulatora se ne indeksira i nije nigdje naveden', () => {
-  const p = pages.find((x) => x.path === DEMO)
-  assert.ok(p, 'dist/kalkulator-registracije.html nije izgrađen')
-  assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
-  assert.doesNotMatch(p.html, /rel="canonical"/)
-  assert.doesNotMatch(readFileSync(join(DIST, 'sitemap.xml'), 'utf8'), /kalkulator-registracije/)
-  assert.doesNotMatch(readFileSync('public/llms.txt', 'utf8'), /kalkulator-registracije/)
-})
+for (const demo of DEMOI) {
+  test(`demo ${demo} se ne indeksira i nije nigdje naveden`, () => {
+    const p = pages.find((x) => x.path === demo)
+    assert.ok(p, `dist${demo}.html nije izgrađen`)
+    assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
+    assert.doesNotMatch(p.html, /rel="canonical"/)
+    assert.doesNotMatch(readFileSync(join(DIST, 'sitemap.xml'), 'utf8'), new RegExp(demo))
+    assert.doesNotMatch(readFileSync('public/llms.txt', 'utf8'), new RegExp(demo))
+  })
+}
 
 test('netlify ne vraća početnu za nepostojeće adrese', () => {
   const toml = readFileSync('netlify.toml', 'utf8')
@@ -92,7 +95,7 @@ test('naslovi stranica se ne ponavljaju', () => {
 })
 
 test('JSON-LD je ispravan; firma na svakoj stranici, sajt na početnoj', () => {
-  for (const p of pages.filter((x) => x.path !== DEMO)) {
+  for (const p of pages.filter((x) => !DEMOI.includes(x.path))) {
     const tipovi = jsonLd(p.html).map((d) => d['@type'])
     assert.ok(tipovi.includes('Organization'), `${p.path} nema Organization`)
   }
