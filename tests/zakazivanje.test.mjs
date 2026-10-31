@@ -1,4 +1,4 @@
-// Stranica /zakazivanje i demo /demo-berbernica: tekst po pravilima sajta, linkovi na demo bez
+// Stranica /zakazivanje i demo /demo-termini: tekst po pravilima sajta, linkovi na demo bez
 // zavjese (demo je statičan fajl) i stranica u sitemapu. Dio testova čita dist, pa ide poslije `npm run build`.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
@@ -12,7 +12,7 @@ function strings(v, out = []) {
   return out
 }
 const tekst = strings(t)
-const demo = readFileSync('public/demo-berbernica.html', 'utf8')
+const demo = readFileSync('public/demo-termini.html', 'utf8')
 
 test('zakazivanje: bez dugih crta, ni na stranici ni u demu', () => {
   assert.deepEqual(tekst.filter((s) => /[—–]/.test(s)), [])
@@ -40,7 +40,7 @@ test('zakazivanje: demo postoji i otvara raspored na #raspored', () => {
 
 test('zakazivanje (dist): linkovi na demo idu bez zavjese, stranica je u sitemapu', () => {
   const html = readFileSync('dist/zakazivanje.html', 'utf8')
-  const linkovi = [...html.matchAll(/<a\b[^>]*href="\/demo-berbernica[^"]*"[^>]*>/g)].map((m) => m[0])
+  const linkovi = [...html.matchAll(/<a\b[^>]*href="\/demo-termini[^"]*"[^>]*>/g)].map((m) => m[0])
   assert.ok(linkovi.length >= 4, `samo ${linkovi.length} linkova na demo`)
   for (const a of linkovi) assert.match(a, /data-bez-zavjese/, a)
   assert.match(html, /<link[^>]*rel="canonical"[^>]*href="https:\/\/hunar\.ba\/zakazivanje"/)

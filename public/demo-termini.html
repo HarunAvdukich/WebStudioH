@@ -508,7 +508,7 @@ button { cursor: pointer; }
 
 <script>
 // ── Berbernica: ime, grad i berberi dolaze iz linka ──────────────────────────
-// hunar.ba/demo-berbernica?ime=Berbernica+Kenan&grad=Tuzla&berberi=Kenan,Edo&adresa=...&tel=...
+// hunar.ba/demo-termini?ime=Berbernica+Kenan&grad=Tuzla&berberi=Kenan,Edo&adresa=...&tel=...
 const P = new URLSearchParams(location.search)
 const cisto = (s, max) => (s || '').replace(/\s+/g, ' ').trim().slice(0, max)
 
@@ -577,7 +577,7 @@ const svg = (put, sirina) => {
 const inicijali = (s) => s.split(/\s+/).filter((w) => /\p{L}/u.test(w[0] || '')).slice(0, 2).map((w) => w[0].toUpperCase()).join('') || 'B'
 
 // ── Stanje: termini sa ovog sajta i izmjene berbera, samo u ovom pregledniku ──
-const SPREMI = 'hunar-demo-berbernica'
+const SPREMI = 'hunar-demo-termini'
 let stanje = { moji: [], otkazani: [], nijeDosao: [] }
 try { stanje = { ...stanje, ...JSON.parse(localStorage.getItem(SPREMI) || '{}') } } catch (e) {}
 const sacuvaj = () => { try { localStorage.setItem(SPREMI, JSON.stringify(stanje)) } catch (e) {} }
@@ -818,7 +818,7 @@ function korakPodaci() {
     stanje.moji.push(t)
     sacuvaj()
     tok.zadnji = t
-    try { window.umami && umami.track('demo-berbernica-zakazano', { izgled: document.documentElement.dataset.izgled }) } catch (e2) {}
+    try { window.umami && umami.track('demo-termini-zakazano', { izgled: document.documentElement.dataset.izgled }) } catch (e2) {}
     idi('gotovo')
   } },
     h('label', { class: 'polje' }, h('span', null, 'Ime i prezime'), h('input', { name: 'ime', autocomplete: 'name', required: true, oninput: (e) => e.target.setCustomValidity('') })),
@@ -1001,7 +1001,7 @@ function prikazi(koji, termin) {
     if (termin) { ras.datum = termin.datum; ras.berber = termin.berber; ras.otvoren = null; ras.istakni = termin.id }
     crtajRaspored()
     if (!termin) scrollTo({ top: 0 })
-    try { window.umami && umami.track('demo-berbernica-raspored') } catch (e) {}
+    try { window.umami && umami.track('demo-termini-raspored') } catch (e) {}
   } else crtajTok()
 }
 $('tab-m').addEventListener('click', () => prikazi('m'))
