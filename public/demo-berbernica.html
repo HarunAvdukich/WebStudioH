@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Zakažite termin</title>
-<meta name="description" content="Online zakazivanje termina u berbernici: usluga, berber, slobodan termin i podsjetnik na Viber.">
+<meta name="description" content="Online zakazivanje termina: usluga, berber, slobodan termin i podsjetnik na Viber.">
 <meta name="robots" content="noindex">
 <script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
 })()
 </script>
 <style>
-/* Demo zakazivanja za berbernice. Glumi sajt berbernice ("Vaša berbernica" ili ime iz linka).
+/* Demo zakazivanja za berbernice. Glumi sajt berbernice ("Vaš salon" ili ime iz linka).
    Tri izgleda dijele isti markup: moderna (svijetla, crvena), klasika (tamna, mesing, serif)
    i aplikacija (kao aplikacija na telefonu, sa trakom dolje i tamnim načinom). */
 :root {
@@ -123,6 +123,7 @@ button { cursor: pointer; }
   letter-spacing: .02em;
 }
 .zag__ime { min-width: 0; flex: 1; }
+.zag__nad[hidden] { display: none !important; }
 .zag__nad { margin: 0; color: var(--muted); font-size: 13px; letter-spacing: .04em; text-transform: uppercase; }
 .zag h1 {
   margin: 0;
@@ -466,8 +467,8 @@ button { cursor: pointer; }
   <header class="zag">
     <div class="zag__znak" id="znak" aria-hidden="true"></div>
     <div class="zag__ime">
-      <p class="zag__nad" id="nad">Berbernica</p>
-      <h1 id="naziv">Vaša berbernica</h1>
+      <p class="zag__nad" id="nad" hidden></p>
+      <h1 id="naziv">Vaš salon</h1>
     </div>
     <p class="zag__otvoreno" id="otvoreno"></p>
   </header>
@@ -485,7 +486,7 @@ button { cursor: pointer; }
 
   <main>
     <section class="musterija" id="pogled-m" role="tabpanel" aria-labelledby="tab-m">
-      <aside class="info kartica" aria-label="O berbernici">
+      <aside class="info kartica" aria-label="O nama">
         <h2>Adresa</h2>
         <p id="adresa"></p>
         <h2>Radno vrijeme</h2>
@@ -500,7 +501,7 @@ button { cursor: pointer; }
 
   <footer class="demo">
     <span id="demoTekst">Ovo je demo zakazivanja koji je napravio Hunar. Termini i mušterije su izmišljeni, cijene su primjer, a poruke se ne šalju.</span>
-    <a href="/zakazivanje" id="demoLink">Kako ovo radi za Vašu berbernicu</a>
+    <a href="/zakazivanje" id="demoLink">Kako ovo radi za Vas</a>
   </footer>
 </div>
 <div class="tost" id="tost" role="status" aria-live="polite"></div>
@@ -512,7 +513,7 @@ const P = new URLSearchParams(location.search)
 const cisto = (s, max) => (s || '').replace(/\s+/g, ' ').trim().slice(0, max)
 
 const BERBERNICA = {
-  naziv: cisto(P.get('ime'), 40) || 'Vaša berbernica',
+  naziv: cisto(P.get('ime'), 40) || 'Vaš salon',
   grad: cisto(P.get('grad'), 30),
   adresa: cisto(P.get('adresa'), 60),
   telefon: cisto(P.get('tel'), 20),
@@ -644,15 +645,17 @@ function prviSlobodanDan(b, min, od = 0) {
 function crtajBerbernicu() {
   document.title = `Zakažite termin · ${BERBERNICA.naziv}`
   $('naziv').textContent = BERBERNICA.naziv
-  $('nad').textContent = BERBERNICA.grad ? `Berbernica · ${BERBERNICA.grad}` : 'Berbernica'
+  // Iznad imena stoji samo grad, bez vrste radnje: firma ostaje onako kako se zove.
+  $('nad').textContent = BERBERNICA.grad
+  $('nad').hidden = !BERBERNICA.grad
   $('znak').textContent = inicijali(BERBERNICA.naziv.replace(/^(berbernica|barber ?shop|barber|frizerski salon|salon)\s+/i, '') || BERBERNICA.naziv)
-  $('adresa').textContent = [BERBERNICA.adresa || 'Adresa berbernice', BERBERNICA.grad].filter(Boolean).join(', ')
+  $('adresa').textContent = [BERBERNICA.adresa || 'Ulica i broj', BERBERNICA.grad].filter(Boolean).join(', ')
   if (BERBERNICA.telefon) {
     $('poziv').hidden = false
     $('poziv').textContent = `Pozovite ${BERBERNICA.telefon}`
     $('poziv').href = 'tel:' + BERBERNICA.telefon.replace(/[^\d+]/g, '')
   }
-  if (BERBERNICA.naziv !== 'Vaša berbernica') $('demoTekst').textContent = `Ovo je demo zakazivanja koji je Hunar napravio za ${BERBERNICA.naziv}. Termini i mušterije su izmišljeni, cijene su primjer, a poruke se ne šalju.`
+  if (BERBERNICA.naziv !== 'Vaš salon') $('demoTekst').textContent = `Ovo je demo zakazivanja koji je Hunar napravio za ${BERBERNICA.naziv}. Termini i mušterije su izmišljeni, cijene su primjer, a poruke se ne šalju.`
 
   const redovi = [[1, 5, 'Ponedjeljak do petak'], [6, 6, 'Subota'], [0, 0, 'Nedjelja']]
   const dan = new Date().getDay()
@@ -794,7 +797,7 @@ function sazetak(t) {
     red('Usluga', `${u.naziv}, ${trajanje(u.min)}`),
     red('Berber', BERBERNICA.berberi[t.berber]),
     red('Termin', `${DANI[d.getDay()]} ${d.getDate()}. ${d.getMonth() + 1}. u ${sat(t.od)}`),
-    red('Cijena', `${u.km} KM, plaća se u berbernici`),
+    red('Cijena', `${u.km} KM, plaća se na licu mjesta`),
   )
 }
 
