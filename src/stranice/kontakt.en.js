@@ -33,6 +33,7 @@ export const kanali = {
   naslov: 'Or reach us like this',
   lista: [
     { ime: 'WhatsApp', vrijednost: '+387 60 3000 751', vrsta: 'whatsapp' },
+    { ime: 'Viber', vrijednost: '+387 60 3000 751', vrsta: 'viber' },
     { ime: 'Phone', vrijednost: '+387 60 3000 751', vrsta: 'telefon' },
     { ime: 'Email', vrijednost: 'info@hunar.ba', vrsta: 'mail' },
   ],
