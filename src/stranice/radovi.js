@@ -3,7 +3,14 @@
 // prebačeno u "mi". Brojke su iz studija (src/content/radovi), svaka sa datumom.
 // Duga priča studije je u src/content/radovi/<slug>.md.
 
+import { katalogMrt, oglasiMrt, satoviSmarttime } from '../brojke.js'
+
 export const jezik = 'bs'
+
+// Brojke sa trgovina (P1): osvježe se pri gradnji, svaka sa datumom provjere.
+const kat = katalogMrt('bs')
+const olx = oglasiMrt('bs')
+const st = satoviSmarttime('bs')
 export const put = '/radovi'
 
 export const seo = {
@@ -48,11 +55,11 @@ export const radovi = [
       'Hosting, keš i održavanje',
     ],
     brojke: [
-      { do: 7447, opis: 'artikala u 262 kategorije', datum: 'provjereno 1. 10. 2026' },
-      { do: 4453, opis: 'OLX oglasa koji se sami ažuriraju', datum: 'provjereno 29. 9. 2026' },
+      { do: kat.a.vrijednost, opis: kat.imenica, datum: `provjereno ${kat.a.datum}` },
+      { do: olx.o.vrijednost, opis: `${olx.imenica} koji se sami ažuriraju`, datum: `provjereno ${olx.o.datum}` },
       { do: 52, poslije: ' ms', opis: 'odziv servera', datum: 'mjereno 27. 9. 2026' },
     ],
-    mjerac: { vrijednost: 52, poslije: ' ms', udio: 0.9, opis: 'Odziv servera, mrt.ba (manje je bolje)', datum: 'mjereno 27. 9. 2026' },
+    mjerac: { vrijednost: 52, poslije: ' ms', udio: 0.9, opis: 'Odziv servera, mrt.ba (manje je bolje)', datum: 'mjereno 27. 9. 2026', izmjeri: 'https://mrt.ba/' },
     citat: {
       tekst: 'Trebala nam je trgovina koja može nositi hiljade artikala i sama ih držati ažurnim na OLX-u. Danas imamo preko 7.400 artikala, oglasi se sami ažuriraju, a sadržaj mijenjamo i sami iz administracije.',
       ko: 'mrt.ba',
@@ -87,11 +94,11 @@ export const radovi = [
       'Sigurnu naplatu i održavanje',
     ],
     brojke: [
-      { do: 538, opis: 'artikala, od toga 522 ručna sata', datum: 'provjereno 1. 10. 2026' },
+      { do: st.a.vrijednost, opis: `${st.artikli}, od toga ${st.s.broj} ${st.satovi}`, datum: `provjereno ${st.a.datum}` },
       { do: 17, opis: 'brendova satova', datum: 'provjereno 1. 10. 2026' },
       { do: 35, opis: 'recenzija sa Googlea na početnoj', datum: 'provjereno 1. 10. 2026' },
     ],
-    mjerac: { vrijednost: 89, poslije: '', udio: 0.89, opis: 'PageSpeed, računar, smarttime.ba', datum: 'Lighthouse, srednje od tri mjerenja, 27. 9. 2026' },
+    mjerac: { vrijednost: 89, poslije: '', udio: 0.89, opis: 'PageSpeed, računar, smarttime.ba', datum: 'Lighthouse, srednje od tri mjerenja, 27. 9. 2026', izmjeri: 'https://smarttime.ba/' },
     citat: {
       tekst: 'Web trgovina izgleda profesionalno, a kupci na telefonu lako pronađu i naruče sat. Uz katalog od preko 500 modela imamo i posebne stranice za graviranje i servis.',
       ko: 'SmartTime',

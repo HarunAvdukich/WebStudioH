@@ -2,7 +2,14 @@
 // Local terms are explained: OLX is the largest classifieds site in Bosnia and Herzegovina,
 // Ananas a large online marketplace in the region. Every number carries its date.
 
+import { katalogMrt, oglasiMrt, satoviSmarttime } from '../brojke.js'
+
 export const jezik = 'en'
+
+// Store figures (P1): refreshed at build time, each with the date it was checked.
+const kat = katalogMrt('en')
+const olx = oglasiMrt('en')
+const st = satoviSmarttime('en')
 export const put = '/en/work'
 
 export const seo = {
@@ -47,11 +54,11 @@ export const radovi = [
       'Hosting, caching and maintenance',
     ],
     brojke: [
-      { do: 7447, opis: 'products in 262 categories', datum: 'checked 1 Oct 2026' },
-      { do: 4453, opis: 'OLX listings that update themselves', datum: 'checked 29 Sep 2026' },
+      { do: kat.a.vrijednost, opis: kat.imenica, datum: `checked ${kat.a.datum}` },
+      { do: olx.o.vrijednost, opis: `${olx.imenica} that update themselves`, datum: `checked ${olx.o.datum}` },
       { do: 52, poslije: ' ms', opis: 'server response', datum: 'measured 27 Sep 2026' },
     ],
-    mjerac: { vrijednost: 52, poslije: ' ms', udio: 0.9, opis: 'Server response, mrt.ba (lower is better)', datum: 'measured 27 Sep 2026' },
+    mjerac: { vrijednost: 52, poslije: ' ms', udio: 0.9, opis: 'Server response, mrt.ba (lower is better)', datum: 'measured 27 Sep 2026', izmjeri: 'https://mrt.ba/' },
     citat: {
       tekst: 'We needed a store that could carry thousands of products and keep them current on OLX by itself. Today we have over 7,400 products, the listings update themselves, and we change the content ourselves from the admin.',
       ko: 'mrt.ba (translated from Bosnian)',
@@ -86,11 +93,11 @@ export const radovi = [
       'Secure checkout and maintenance',
     ],
     brojke: [
-      { do: 538, opis: 'products, 522 of them wristwatches', datum: 'checked 1 Oct 2026' },
+      { do: st.a.vrijednost, opis: `products, ${st.s.broj} of them wristwatches`, datum: `checked ${st.a.datum}` },
       { do: 17, opis: 'watch brands', datum: 'checked 1 Oct 2026' },
       { do: 35, opis: 'Google reviews on the home page', datum: 'checked 1 Oct 2026' },
     ],
-    mjerac: { vrijednost: 89, poslije: '', udio: 0.89, opis: 'PageSpeed, desktop, smarttime.ba', datum: 'Lighthouse, median of three runs, 27 Sep 2026' },
+    mjerac: { vrijednost: 89, poslije: '', udio: 0.89, opis: 'PageSpeed, desktop, smarttime.ba', datum: 'Lighthouse, median of three runs, 27 Sep 2026', izmjeri: 'https://smarttime.ba/' },
     citat: {
       tekst: 'The online store looks professional, and customers easily find and order a watch on their phones. Next to a catalogue of over 500 models we also have dedicated pages for engraving and repairs.',
       ko: 'SmartTime (translated from Bosnian)',

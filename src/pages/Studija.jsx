@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
 import { mrvice } from '../components/JsonLd.jsx'
 import { DioNaslov, Kvacice, Mjerac } from '../components/stranica/dijelovi.jsx'
+import StatusUzivo from '../components/radovi/StatusUzivo.jsx'
 import Citanje from '../components/stranica/Citanje.jsx'
 import ZavrsniPoziv from '../components/stranica/ZavrsniPoziv.jsx'
 import GalerijaSnimaka from '../components/radovi/GalerijaSnimaka.jsx'
@@ -71,6 +72,7 @@ export default function Studija({ t }) {
                 <a className="ok-dugme ok-dugme--malo" href={r.url} target="_blank" rel="noopener">
                   {popuni(s.otvori, { ime: r.ime })} ↗
                 </a>
+                <StatusUzivo url={r.url} />
               </p>
             )}
             {r.uIzradi && <span className="vg__izrada">{r.uIzradi}</span>}

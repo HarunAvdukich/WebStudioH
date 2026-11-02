@@ -28,6 +28,8 @@ export const okvir = {
   kopiranoDugo: 'Broj je kopiran. Zalijepite ga u Viber ili poruku.',
   viberKopirano: 'Broj je kopiran, ako se Viber ne otvori.',
   nazadNaVrh: 'Nazad na vrh',
+  // P2: uz brojku brzine, otvara PageSpeed Insights za tu stranicu.
+  izmjerite: 'Izmjerite sami',
   traka: { pisite: 'Pišite nam', licno: 'odgovaramo lično', pozovite: 'Pozovite' },
 }
 

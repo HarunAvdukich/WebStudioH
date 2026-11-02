@@ -95,6 +95,8 @@
 .mj--mali .mj__broj { font-size: 42px; }
 .mj figcaption { margin-top: 12px; font-size: 15px; color: var(--tekst2); }
 .mj figcaption small { display: block; margin-top: 3px; font-size: 13px; color: var(--siva); }
+.mj__izmjeri { display: inline-flex; align-items: center; gap: 6px; margin-top: 12px; padding: 7px 12px; border: 1.5px solid rgba(227, 241, 234, 0.3); border-radius: 18px; color: var(--mint); font-size: 13px; font-weight: 700; text-decoration: none; transition: background-color 0.2s, border-color 0.2s, color 0.2s; }
+.mj__izmjeri:hover { border-color: var(--mint); background: var(--mint); color: var(--zelena); }
 .pokret [data-pokret='mjerac'].pk-spremno .mj__pun { stroke-dashoffset: 1; }
 .pokret [data-pokret='mjerac'].pk-vidljiv .mj__pun { stroke-dashoffset: calc(1 - var(--v)); transition: stroke-dashoffset 1.8s cubic-bezier(0.22, 1, 0.36, 1); }
 

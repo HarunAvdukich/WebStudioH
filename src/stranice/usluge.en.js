@@ -3,7 +3,11 @@
 // explained. Services without a finished example (mobile apps, redesign) are offered,
 // never presented as done work. Every number carries its date.
 
+import { oglasiMrt } from '../brojke.js'
+
 export const jezik = 'en'
+
+const olx = oglasiMrt('en')
 export const put = '/en/services'
 
 export const seo = {
@@ -73,7 +77,7 @@ export const stepenice = [
       'Products are posted and updated on OLX by themselves when you change a price or stock',
       'The catalogue feeds Ananas, a large online marketplace in the region',
       'Prices and stock are imported from suppliers, no retyping',
-      'On mrt.ba this runs 4,453 OLX listings (checked 29 Sep 2026)',
+      `On mrt.ba this runs ${olx.o.broj} ${olx.imenica} (checked ${olx.o.datum})`,
     ],
     usluge: [{ ime: 'SEO', uPoruci: 'SEO' }],
     igra: 'olx',
@@ -113,7 +117,7 @@ export const odrzavanje = {
     'Help when something gets stuck, from the studio that built the site',
   ],
   usluge: [{ ime: 'Hosting and maintenance', uPoruci: 'hosting and maintenance' }],
-  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026' },
+  mjerac: { vrijednost: 100, opis: 'Lighthouse, desktop, hunar.ba home page', datum: 'measured 29 Sep 2026', izmjeri: 'https://hunar.ba/' },
 }
 
 export const scena = {
@@ -158,7 +162,7 @@ export const igre = {
     azurirano: 'updated just now',
     manje: 'Decrease',
     vise: 'Increase',
-    napomena: 'Illustration. On mrt.ba this runs 4,453 listings (checked 29 Sep 2026).',
+    napomena: `Illustration. On mrt.ba this runs ${olx.o.broj} listings (checked ${olx.o.datum}).`,
   },
   termin: {
     nad: 'Try it',
