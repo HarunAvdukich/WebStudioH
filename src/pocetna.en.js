@@ -39,7 +39,7 @@ export const ui = {
   sklopljeno: 'assembled',
   izradio: 'Izradio',
   privatnost: { naziv: 'Privacy policy', put: '/en/privacy' },
-  kontakt: { whatsapp: 'WhatsApp', veznik: 'and', telefon: 'phone' },
+  kontakt: { whatsapp: 'WhatsApp', viber: 'Viber', veznik: 'and', telefon: 'phone' },
   telefon: '+387 60 3000 751',
   poglavlja: 'Story chapters',
   uvecaj: 'Zoom',

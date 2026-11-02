@@ -41,7 +41,7 @@ export const ui = {
   sklopljeno: 'sklopljeno',
   izradio: 'Izradio',
   privatnost: { naziv: 'Politika privatnosti', put: '/politika-privatnosti' },
-  kontakt: { whatsapp: 'WhatsApp', veznik: 'i', telefon: 'telefon' },
+  kontakt: { whatsapp: 'WhatsApp', viber: 'Viber', veznik: 'i', telefon: 'telefon' },
   telefon: contact.phoneDisplay,
   poglavlja: 'Poglavlja priče',
   uvecaj: 'Uvećaj',

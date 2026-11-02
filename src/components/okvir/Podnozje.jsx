@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { useOkvir } from '../../lib/useOkvir.js'
 import TekstOkoZnaka from './TekstOkoZnaka.jsx'
 import BrojTelefona from './BrojTelefona.jsx'
+import ViberLink from './ViberLink.jsx'
 
 // Podnožje ostalih stranica, isti tekst kao na početnoj.
 export default function Podnozje() {
@@ -27,8 +28,8 @@ export default function Podnozje() {
         <p>
           <a href={whatsappLink} target="_blank" rel="noopener">
             {okvir.kontakt.whatsapp}
-          </a>{' '}
-          {okvir.kontakt.veznik} {okvir.kontakt.telefon} <BrojTelefona /> · <a href={`mailto:${okvir.email}`}>{okvir.email}</a>
+          </a>
+          , <ViberLink>{okvir.kontakt.viber}</ViberLink> {okvir.kontakt.veznik} {okvir.kontakt.telefon} <BrojTelefona /> · <a href={`mailto:${okvir.email}`}>{okvir.email}</a>
         </p>
       </div>
       <p className="ok-podnozje__dno">© 2026 Hunar · hunar.ba · {okvir.podnozje.znacenje}</p>

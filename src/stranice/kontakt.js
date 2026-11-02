@@ -35,6 +35,7 @@ export const kanali = {
   naslov: 'Ili nas nađite ovako',
   lista: [
     { ime: 'WhatsApp', vrijednost: '060 3000 751', vrsta: 'whatsapp' },
+    { ime: 'Viber', vrijednost: '060 3000 751', vrsta: 'viber' },
     { ime: 'Telefon', vrijednost: '060 3000 751', vrsta: 'telefon' },
     { ime: 'Mail', vrijednost: 'info@hunar.ba', vrsta: 'mail' },
   ],

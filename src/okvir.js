@@ -26,6 +26,7 @@ export const okvir = {
   kopiraj: 'Kopiraj',
   kopirano: 'Kopirano ✓',
   kopiranoDugo: 'Broj je kopiran. Zalijepite ga u Viber ili poruku.',
+  viberKopirano: 'Broj je kopiran, ako se Viber ne otvori.',
   nazadNaVrh: 'Nazad na vrh',
   traka: { pisite: 'Pišite nam', licno: 'odgovaramo lično', pozovite: 'Pozovite' },
 }
