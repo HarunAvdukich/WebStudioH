@@ -92,6 +92,7 @@ export default function Film({ vrsta, predmet, dio, film, jezik }) {
       c.height = h
     }
     const ctx = c.getContext('2d')
+    ctx.imageSmoothingQuality = 'high'
     ctx.globalAlpha = 1
     ctx.drawImage(a, 0, 0, w, h)
     if (q > 0) {
@@ -172,7 +173,7 @@ export default function Film({ vrsta, predmet, dio, film, jezik }) {
           </span>
         )}
         <div className="fm__kadar">
-          <img src={`${predmet.kadrovi}${kadar(predmet.broj)}.webp`} alt={predmet.alt} width="600" height="800" loading="lazy" decoding="async" />
+          <img src={`${predmet.kadrovi}${kadar(predmet.broj)}.webp`} alt={predmet.alt} width="768" height="1024" loading="lazy" decoding="async" />
           <canvas ref={platno} aria-hidden="true" />
         </div>
         <ol className="fm__kartice">

@@ -103,6 +103,17 @@
 .on-k p { margin-top: 10px; font-size: 16px; line-height: 1.55; color: var(--tekst2); }
 .on-k .mj { margin-top: 18px; }
 
+/* ---------- ukratko: činjenice o firmi (pojam lijevo, opis desno; na telefonu jedno ispod drugog) ---------- */
+.on-u { margin: 40px 0 0; border-top: 1px solid var(--linija); }
+.on-u__red { display: grid; gap: 6px; padding: 20px 0; border-bottom: 1px solid var(--linija); }
+.on-u dt { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--siva); }
+.on-u dd { margin: 0; max-width: 760px; font-size: clamp(17px, 1.5vw, 20px); line-height: 1.55; color: var(--tekst2); }
+.on-u a { color: var(--krec); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(227, 241, 234, 0.4); transition: text-decoration-color 0.2s; }
+.on-u a:hover { text-decoration-color: currentColor; }
+@media (min-width: 760px) {
+  .on-u__red { grid-template-columns: 200px 1fr; gap: 32px; align-items: baseline; padding: 24px 0; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .ps-s, .ir__jedna li, .ir.je-scena .ir__naslov span { transition: none; }
 }

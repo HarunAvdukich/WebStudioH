@@ -2,6 +2,7 @@
 // česta pitanja i "Pitajte za ovo". Bez JavaScripta sve je vidljivo; pokrete pali
 // src/lib/pokreti (data-pokret) samo uz .pokret na <html>.
 import { waLink, popuni } from '../../lib/whatsapp.js'
+import { prati } from '../../lib/statistika.js'
 import { useOkvir } from '../../lib/useOkvir.js'
 
 // PageSpeed Insights za stranicu, na računaru (tako su mjerene brojke na sajtu).
@@ -121,6 +122,7 @@ export function PitajteZaOvo({ usluga, pitaj }) {
       target="_blank"
       rel="noopener"
       data-kursor={pitaj.dugme}
+      onClick={() => prati('Pitajte za ovo', { usluga: usluga.uPoruci })}
     >
       <span className="st-pitaj__ime">{usluga.ime}</span>
       <span className="st-pitaj__dugme">

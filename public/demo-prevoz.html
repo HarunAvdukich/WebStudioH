@@ -1,0 +1,678 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Red vožnje i karte</title>
+<meta name="description" content="Red vožnje autobuskog prevoznika, rezervacija karte sa izborom sjedišta i pregled polazaka za prevoznika.">
+<meta name="robots" content="noindex">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+:root {
+  --noc: #0b1b2b;
+  --noc2: #12283e;
+  --linija-tamna: rgba(234, 240, 246, 0.12);
+  --zuta: #ffc629;
+  --papir: #eef1f4;
+  --bijela: #fff;
+  --tekst: #13202d;
+  --tekst2: #4d5b69;
+  --siva: #8a97a5;
+  --linija: #d5dbe1;
+  --zeleno: #1d7a4f;
+  --crveno: #b3261e;
+  --mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --r: 16px;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papir);
+  color: var(--tekst);
+  font: 400 16px/1.5 Archivo, system-ui, sans-serif;
+  font-variation-settings: 'wdth' 100;
+}
+button, input, select { font: inherit; color: inherit; }
+button { cursor: pointer; }
+.sir { width: min(100%, 1040px); margin: 0 auto; padding: 0 16px; }
+.vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* vrh: firma i tabla polazaka kao na stanici */
+.vrh { background: var(--noc); color: #eaf0f6; padding: 18px 0 22px; }
+.vrh .sir { display: grid; gap: 18px; }
+@media (min-width: 880px) { .vrh .sir { grid-template-columns: 1fr 1.25fr; align-items: center; gap: 40px; } }
+.firma { display: flex; align-items: center; gap: 14px; }
+.firma__znak { flex: none; width: 48px; height: 48px; border-radius: 12px; background: var(--zuta); color: var(--noc); display: grid; place-items: center; }
+.firma strong { display: block; font-size: 24px; line-height: 1.1; font-weight: 800; font-variation-settings: 'wdth' 112; letter-spacing: -0.01em; }
+.firma span { font-size: 14px; color: #aebbc8; }
+.tabla { background: #050d16; border-radius: 14px; padding: 14px 16px 10px; border: 1px solid var(--linija-tamna); }
+.tabla h2 { margin: 0 0 8px; font: 600 12px/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: #aebbc8; display: flex; justify-content: space-between; }
+.tabla ol { list-style: none; margin: 0; padding: 0; }
+.tabla li { display: grid; grid-template-columns: 58px 1fr auto; gap: 10px; align-items: baseline; padding: 7px 0; border-top: 1px solid var(--linija-tamna); font-family: var(--mono); font-size: 15px; }
+.tabla li:first-child { border-top: 0; }
+.tabla__sat { color: var(--zuta); font-weight: 600; }
+.tabla__kuda { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #f1f4f8; }
+.tabla__stanje { font-size: 12px; color: #7fd1a8; text-transform: uppercase; letter-spacing: 0.06em; }
+.tabla__stanje.ukrcaj { color: var(--zuta); animation: trep 1.4s steps(2, start) infinite; }
+.tabla li.tabla__prazno { display: block; color: #aebbc8; font-size: 14px; padding: 8px 0; }
+@keyframes trep { to { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .tabla__stanje.ukrcaj { animation: none; } }
+
+/* tabovi */
+.tabovi { position: sticky; top: 0; z-index: 5; background: var(--papir); border-bottom: 1px solid var(--linija); }
+.tabovi .sir { display: flex; gap: 4px; overflow-x: auto; }
+.tabovi button { border: 0; background: none; padding: 15px 12px 13px; font-weight: 700; color: var(--tekst2); border-bottom: 3px solid transparent; white-space: nowrap; }
+.tabovi button[aria-selected="true"] { color: var(--tekst); border-bottom-color: var(--zuta); }
+.tabovi .broj[hidden] { display: none; }
+.tabovi .broj { display: inline-grid; place-items: center; min-width: 22px; height: 22px; margin-left: 6px; padding: 0 6px; border-radius: 99px; background: var(--noc); color: #fff; font-size: 12px; }
+
+main { padding: 22px 16px 40px; }
+h1, h2, h3 { font-variation-settings: 'wdth' 108; letter-spacing: -0.01em; }
+
+/* pretraga */
+.trazi { background: var(--bijela); border: 1px solid var(--linija); border-radius: var(--r); padding: 16px; display: grid; gap: 14px; }
+.trazi__mjesta { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end; }
+.polje { display: grid; gap: 6px; min-width: 0; }
+.polje > span { font-size: 13px; font-weight: 700; color: var(--tekst2); }
+select, input[type="text"], input[type="tel"] {
+  width: 100%; min-height: 48px; padding: 10px 12px; border: 1px solid #c3ccd5; border-radius: 12px; background: #fff;
+}
+select:focus-visible, input:focus-visible, button:focus-visible, a:focus-visible { outline: 3px solid var(--zuta); outline-offset: 2px; }
+.zamijeni { width: 48px; height: 48px; border-radius: 12px; border: 1px solid #c3ccd5; background: #fff; display: grid; place-items: center; }
+.dani { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px; scroll-padding-inline: 16px; }
+.dan { flex: none; min-width: 64px; border: 1px solid #c3ccd5; background: #fff; border-radius: 12px; padding: 8px 10px; text-align: center; line-height: 1.2; }
+.dan small { display: block; font-size: 12px; color: var(--tekst2); }
+.dan b { font-size: 17px; }
+.dan[aria-pressed="true"] { background: var(--noc); border-color: var(--noc); color: #fff; }
+.dan[aria-pressed="true"] small { color: #c8d3de; }
+
+.naslov-dio { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; margin: 26px 0 12px; }
+.naslov-dio h2 { margin: 0; font-size: 22px; }
+.naslov-dio p { margin: 0; color: var(--tekst2); font-size: 14px; }
+
+/* polasci */
+.polasci { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.polazak { width: 100%; text-align: left; border: 1px solid var(--linija); background: var(--bijela); border-radius: var(--r); padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 6px 14px; }
+.polazak:hover:not(:disabled) { border-color: var(--noc); }
+.polazak:disabled { opacity: 0.55; cursor: default; }
+.polazak__vrijeme { font: 600 22px/1.1 var(--mono); display: flex; align-items: center; gap: 10px; }
+.polazak__vrijeme i { flex: 1; min-width: 20px; max-width: 120px; height: 2px; background: repeating-linear-gradient(90deg, var(--siva) 0 6px, transparent 6px 10px); }
+.polazak__cijena { font-size: 22px; font-weight: 800; text-align: right; }
+.polazak__info { color: var(--tekst2); font-size: 14px; }
+.polazak__mjesta { font-size: 14px; font-weight: 700; text-align: right; }
+.malo { color: var(--crveno); }
+.prazno { background: var(--bijela); border: 1px dashed #c3ccd5; border-radius: var(--r); padding: 22px; color: var(--tekst2); }
+
+/* detalj i sjedišta */
+.nazad { border: 0; background: none; padding: 8px 0; font-weight: 700; color: var(--tekst2); display: inline-flex; gap: 6px; align-items: center; }
+.rez { display: grid; gap: 16px; }
+@media (min-width: 880px) { .rez { grid-template-columns: 1fr 380px; align-items: start; } }
+.kartica { background: var(--bijela); border: 1px solid var(--linija); border-radius: var(--r); padding: 18px; min-width: 0; }
+.kartica h2 { margin: 0 0 4px; font-size: 22px; }
+.kartica h3 { margin: 0 0 12px; font-size: 17px; }
+.stanice { list-style: none; margin: 14px 0 0; padding: 0; }
+.stanice li { position: relative; display: flex; justify-content: space-between; gap: 12px; padding: 4px 0 4px 22px; color: var(--siva); font-size: 15px; }
+.stanice li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 8px; height: 8px; border-radius: 50%; border: 2px solid currentColor; background: var(--bijela); }
+.stanice li::after { content: ''; position: absolute; left: 8px; top: 21px; bottom: -11px; width: 2px; background: currentColor; opacity: 0.4; }
+.stanice li:last-child::after { display: none; }
+.stanice li.na-putu { color: var(--tekst); font-weight: 600; }
+.stanice li.na-putu::before { background: var(--zuta); border-color: var(--noc); }
+.stanice time { font-family: var(--mono); }
+
+.bus { margin-top: 16px; width: 100%; border: 2px solid #c3ccd5; border-radius: 28px 28px 14px 14px; padding: 14px 12px 12px; max-width: 250px; }
+.bus__prednji { display: flex; justify-content: space-between; font-size: 12px; color: var(--tekst2); margin: 0 4px 10px; }
+.sjedista { display: grid; grid-template-columns: repeat(2, 1fr) 18px repeat(2, 1fr); gap: 6px; }
+.sjediste { aspect-ratio: 1; border-radius: 9px 9px 5px 5px; border: 1px solid #aab5c0; background: #fff; font: 600 12px/1 var(--mono); padding: 0; }
+.sjediste:disabled { background: #dde3e9; border-color: #dde3e9; color: #98a3ae; cursor: not-allowed; }
+.sjediste[aria-pressed="true"] { background: var(--zuta); border-color: var(--noc); }
+.legenda { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 13px; color: var(--tekst2); }
+.legenda span::before { content: ''; display: inline-block; width: 12px; height: 12px; margin-right: 6px; vertical-align: -2px; border-radius: 3px; border: 1px solid #aab5c0; background: #fff; }
+.legenda .l-zauzeto::before { background: #dde3e9; border-color: #dde3e9; }
+.legenda .l-vase::before { background: var(--zuta); border-color: var(--noc); }
+
+.forma { display: grid; gap: 12px; }
+.tipovi { display: grid; gap: 8px; border: 0; padding: 0; margin: 0; }
+.tipovi legend { font-size: 13px; font-weight: 700; color: var(--tekst2); margin-bottom: 6px; }
+.tip { display: flex; align-items: center; gap: 10px; border: 1px solid #c3ccd5; border-radius: 12px; padding: 10px 12px; }
+.tip:has(input:checked) { border-color: var(--noc); background: #fff8dc; }
+.tip b { margin-left: auto; font-family: var(--mono); }
+.ukupno { display: flex; justify-content: space-between; align-items: baseline; padding-top: 12px; border-top: 1px dashed #c3ccd5; font-weight: 800; font-size: 20px; }
+.dugme { min-height: 52px; border: 0; border-radius: 14px; background: var(--noc); color: #fff; font-weight: 800; font-size: 17px; padding: 0 20px; }
+.dugme:disabled { background: #9aa4ae; cursor: not-allowed; }
+.dugme--svijetlo { background: #fff; color: var(--tekst); border: 1px solid #c3ccd5; }
+.napomena { margin: 0; font-size: 13px; color: var(--tekst2); }
+
+/* karta */
+.karta-omot { display: grid; gap: 16px; }
+@media (min-width: 880px) { .karta-omot { grid-template-columns: 420px 1fr; align-items: start; } }
+.karta { background: var(--bijela); border-radius: 18px; overflow: hidden; box-shadow: 0 1px 0 #cfd7df, 0 10px 24px -16px rgba(0, 0, 0, 0.3); }
+.karta__vrh { background: var(--noc); color: #fff; padding: 14px 18px; display: flex; justify-content: space-between; align-items: center; }
+.karta__vrh b { color: var(--zuta); font-family: var(--mono); letter-spacing: 0.08em; }
+.karta__tijelo { padding: 18px; display: grid; gap: 14px; }
+.karta__put { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end; }
+.karta__put div:last-child { text-align: right; }
+.karta__put small { display: block; color: var(--tekst2); font-size: 13px; }
+.karta__put strong { display: block; margin: 4px 0; font: 600 28px/1 var(--mono); }
+.karta__put span { font-weight: 700; }
+.karta__podaci { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0; }
+.karta__podaci div { min-width: 0; }
+.karta__podaci dt { font-size: 12px; color: var(--tekst2); }
+.karta__podaci dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.karta__rez { position: relative; height: 0; border-top: 2px dashed #cfd7df; margin: 0 18px; }
+.karta__rez::before, .karta__rez::after { content: ''; position: absolute; top: -12px; width: 22px; height: 22px; border-radius: 50%; background: var(--papir); }
+.karta__rez::before { left: -30px; }
+.karta__rez::after { right: -30px; }
+.karta__dno { padding: 18px; display: flex; gap: 16px; align-items: center; }
+.karta__dno canvas { width: 112px; height: 112px; image-rendering: pixelated; flex: none; }
+.karta__dno p { margin: 0; font-size: 14px; color: var(--tekst2); }
+
+.viber { background: #ece8f7; border-radius: var(--r); padding: 16px; }
+.viber h3 { margin: 0 0 10px; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.poruka { background: #fff; border-radius: 16px 16px 16px 4px; padding: 10px 12px; font-size: 15px; max-width: 34em; box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06); }
+.poruka + .poruka { margin-top: 8px; }
+.poruka small { display: block; margin-top: 4px; font-size: 12px; color: var(--siva); }
+.akcije { display: flex; flex-wrap: wrap; gap: 10px; }
+
+/* moje karte i prevoznik */
+.lista { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.red { background: var(--bijela); border: 1px solid var(--linija); border-radius: var(--r); padding: 14px 16px; display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; align-items: center; }
+.red b { font-family: var(--mono); }
+.red small { color: var(--tekst2); }
+.statistika { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 0 0 16px; }
+.statistika div { background: var(--noc); color: #fff; border-radius: var(--r); padding: 14px; min-width: 0; }
+.statistika dt { font-size: 12px; color: #aebbc8; }
+.statistika dd { margin: 4px 0 0; font: 600 26px/1 var(--mono); color: var(--zuta); }
+.puno { grid-column: 1 / -1; height: 8px; border-radius: 99px; background: #dfe5eb; overflow: hidden; }
+.puno i { display: block; height: 100%; background: var(--noc); border-radius: inherit; }
+.puno i.vise { background: var(--zuta); }
+.red--dugme { width: 100%; text-align: left; font: inherit; }
+.putnici { grid-column: 1 / -1; margin: 8px 0 0; padding: 10px 0 0; border-top: 1px dashed #c3ccd5; list-style: none; font-size: 14px; display: grid; gap: 4px; }
+.putnici li { display: grid; grid-template-columns: 34px 1fr auto; gap: 8px; }
+.putnici li span:first-child { font-family: var(--mono); color: var(--tekst2); }
+.putnici .online { font-size: 12px; font-weight: 700; color: var(--zeleno); }
+.jos { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+.jos li { background: var(--bijela); border: 1px solid var(--linija); border-radius: 99px; padding: 8px 14px; font-size: 14px; font-weight: 600; }
+
+footer.demo { border-top: 1px solid var(--linija); padding: 22px 0 32px; font-size: 14px; color: var(--tekst2); }
+footer.demo a { color: var(--tekst); font-weight: 700; }
+.tost { position: fixed; left: 50%; bottom: 20px; transform: translate(-50%, calc(100% + 40px)); visibility: hidden; background: var(--noc); color: #fff; padding: 12px 18px; border-radius: 12px; font-weight: 600; transition: transform 0.25s, visibility 0.25s; max-width: calc(100% - 32px); z-index: 10; }
+.tost.vidljiv { transform: translate(-50%, 0); visibility: visible; }
+@media (prefers-reduced-motion: reduce) { .tost { transition: none; } }
+</style>
+</head>
+<body>
+<header class="vrh">
+  <div class="sir">
+    <div class="firma">
+      <span class="firma__znak" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="15" rx="3"/><path d="M4 11h16M8 18v3M16 18v3"/><circle cx="8" cy="14.5" r="0.8" fill="currentColor"/><circle cx="16" cy="14.5" r="0.8" fill="currentColor"/></svg>
+      </span>
+      <div><strong id="ime"></strong><span>Autobuski prevoz · Brčko</span></div>
+    </div>
+    <section class="tabla" aria-labelledby="tabla-naslov">
+      <h2 id="tabla-naslov"><span>Polasci iz Brčkog</span><span id="sad"></span></h2>
+      <ol id="tabla"></ol>
+    </section>
+  </div>
+</header>
+
+<nav class="tabovi" aria-label="Dijelovi">
+  <div class="sir" role="tablist">
+    <button type="button" role="tab" id="tab-k" aria-selected="true" aria-controls="pogled-k">Karte</button>
+    <button type="button" role="tab" id="tab-m" aria-selected="false" aria-controls="pogled-m" tabindex="-1">Moje karte<span class="broj" id="broj-karata" hidden></span></button>
+    <button type="button" role="tab" id="tab-p" aria-selected="false" aria-controls="pogled-p" tabindex="-1">Za prevoznika</button>
+  </div>
+</nav>
+
+<main class="sir">
+  <section id="pogled-k" role="tabpanel" aria-labelledby="tab-k">
+    <form class="trazi" id="trazi" onsubmit="return false">
+      <div class="trazi__mjesta">
+        <label class="polje"><span>Od</span><select id="od"></select></label>
+        <button type="button" class="zamijeni" id="zamijeni" aria-label="Zamijeni mjesta">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg>
+        </button>
+        <label class="polje"><span>Do</span><select id="do"></select></label>
+      </div>
+      <div class="polje">
+        <span id="dani-naslov">Dan</span>
+        <div class="dani" id="dani" role="group" aria-labelledby="dani-naslov"></div>
+      </div>
+    </form>
+    <div id="rezultati"></div>
+  </section>
+  <section id="pogled-m" role="tabpanel" aria-labelledby="tab-m" hidden></section>
+  <section id="pogled-p" role="tabpanel" aria-labelledby="tab-p" hidden></section>
+</main>
+
+<footer class="demo">
+  <div class="sir">Demo koji je napravio <a href="/">Hunar</a>. Red vožnje, cijene i putnici su izmišljeni, a karte ne važe za vožnju. <a href="/kontakt">Pišite nam</a></div>
+</footer>
+<div class="tost" id="tost" role="status" aria-live="polite"></div>
+
+<script>
+// Demo za autobuskog prevoznika: red vožnje, rezervacija karte sa sjedištem i pregled za prevoznika.
+// Ime firme ide u link: hunar.ba/demo-prevoz?ime=Viena. Bez imena piše "Vaš prevoznik".
+// Linije, vremena i cijene su primjer; zauzeta mjesta se izmisle iz polaska i datuma (uvijek ista).
+const P = new URLSearchParams(location.search)
+const FIRMA = (P.get('ime') || 'Vaš prevoznik').trim().slice(0, 40)
+const KAPACITET = 48
+const KLJUC = 'hunar-demo-prevoz'
+
+// Stanice sa minutama od polaska sa prve stanice.
+const LINIJE = [
+  { id: 'SA', stanice: [['Brčko', 0], ['Lopare', 35], ['Tuzla', 75], ['Kladanj', 135], ['Olovo', 165], ['Sarajevo', 225]], tamo: ['05:30', '08:00', '12:30', '16:00'], nazad: ['07:00', '10:30', '15:00', '18:00'] },
+  { id: 'BN', stanice: [['Brčko', 0], ['Bijeljina', 50]], tamo: ['06:15', '09:00', '11:30', '14:00', '17:30'], nazad: ['07:30', '10:15', '13:00', '15:30', '19:00'] },
+  { id: 'BL', stanice: [['Brčko', 0], ['Modriča', 55], ['Doboj', 95], ['Banja Luka', 200]], tamo: ['06:00', '13:00'], nazad: ['06:30', '14:30'] },
+  { id: 'ZG', stanice: [['Brčko', 0], ['Županja', 35], ['Zagreb', 225]], tamo: ['07:00'], nazad: ['16:00'], medjunarodna: true },
+]
+const TIPOVI = [
+  { id: 'odrasli', naziv: 'Odrasli', faktor: 1 },
+  { id: 'student', naziv: 'Student ili penzioner', faktor: 0.8 },
+  { id: 'dijete', naziv: 'Dijete do 12 godina', faktor: 0.5 },
+]
+const DANI = ['ned', 'pon', 'uto', 'sri', 'čet', 'pet', 'sub']
+const IMENA = ['Amra H.', 'Mirza K.', 'Jelena P.', 'Adnan S.', 'Ivana M.', 'Dženan B.', 'Selma A.', 'Nikola T.', 'Lejla O.', 'Haris Č.', 'Marija Đ.', 'Emir R.', 'Sara V.', 'Kenan M.', 'Ana L.', 'Tarik Z.']
+
+const $ = (id) => document.getElementById(id)
+const pad = (n) => String(n).padStart(2, '0')
+const uMin = (s) => { const [h, m] = s.split(':').map(Number); return h * 60 + m }
+const sat = (m) => `${pad(Math.floor(m / 60) % 24)}:${pad(m % 60)}`
+const trajanje = (m) => (m >= 60 ? `${Math.floor(m / 60)} h ${m % 60 ? (m % 60) + ' min' : ''}` : `${m} min`).trim()
+const km = (n) => `${n.toFixed(2).replace('.', ',')} KM`
+const esc = (s) => String(s).replace(/[&<>"']/g, (z) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[z])
+const sadMin = () => { const n = new Date(); return n.getHours() * 60 + n.getMinutes() }
+
+function datumZa(i) {
+  const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + i)
+  return d
+}
+const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
+const lijepDatum = (d) => `${DANI[d.getDay()]} ${d.getDate()}. ${d.getMonth() + 1}.`
+
+// Isti polazak i datum uvijek daju ista zauzeta mjesta.
+function hes(s) { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0 }
+function slucajno(seed) { let a = seed; return () => { a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296 } }
+
+function cijena(minuta, medjunarodna) {
+  return Math.round((3 + minuta * 0.115) * (medjunarodna ? 1.6 : 1))
+}
+
+// Svi polasci za par mjesta, u oba smjera linije.
+function polasci(od, doo) {
+  const out = []
+  for (const l of LINIJE) {
+    const ukupno = l.stanice[l.stanice.length - 1][1]
+    for (const smjer of ['tamo', 'nazad']) {
+      const st = smjer === 'tamo' ? l.stanice : l.stanice.slice().reverse().map(([ime, m]) => [ime, ukupno - m])
+      const i = st.findIndex((s) => s[0] === od)
+      const j = st.findIndex((s) => s[0] === doo)
+      if (i < 0 || j < 0 || i >= j) continue
+      for (const v of l[smjer]) {
+        const kreni = uMin(v)
+        out.push({
+          id: `${l.id}-${smjer}-${v}`,
+          linija: l, stanice: st, i, j, kreni,
+          polazak: kreni + st[i][1], dolazak: kreni + st[j][1],
+          cijena: cijena(st[j][1] - st[i][1], l.medjunarodna),
+          kraj: st[st.length - 1][0], pocetak: st[0][0],
+        })
+      }
+    }
+  }
+  return out.sort((a, b) => a.polazak - b.polazak)
+}
+
+function moje() { try { return JSON.parse(localStorage.getItem(KLJUC)) || [] } catch (e) { return [] } }
+function sacuvaj(lista) { try { localStorage.setItem(KLJUC, JSON.stringify(lista)) } catch (e) {} }
+
+function zauzeta(p, datum) {
+  const d = new Date(datum + 'T12:00:00')
+  const r = slucajno(hes(p.id + datum))
+  const vikend = d.getDay() === 5 || d.getDay() === 0
+  const rano = p.kreni < 7 * 60
+  const udio = Math.min(0.94, (vikend ? 0.68 : 0.36) + r() * 0.22 - (rano ? 0.1 : 0))
+  const sva = Array.from({ length: KAPACITET }, (_, k) => k + 1)
+  for (let k = sva.length - 1; k > 0; k--) { const z = Math.floor(r() * (k + 1)); [sva[k], sva[z]] = [sva[z], sva[k]] }
+  const set = new Set(sva.slice(0, Math.round(KAPACITET * udio)))
+  for (const k of moje()) if (k.polazakId === p.id && k.datum === datum) set.add(k.sjediste)
+  return set
+}
+
+const stanje = { od: 'Brčko', do: 'Tuzla', dan: 0, odabran: null, sjediste: null, tip: 'odrasli', karta: null, otvoren: null }
+
+function popuniMjesta() {
+  const sve = []
+  for (const l of LINIJE) for (const [ime] of l.stanice) if (!sve.includes(ime)) sve.push(ime)
+  const opcije = sve.map((s) => `<option>${esc(s)}</option>`).join('')
+  $('od').innerHTML = opcije; $('do').innerHTML = opcije
+  $('od').value = stanje.od; $('do').value = stanje.do
+}
+
+function crtajDane() {
+  $('dani').innerHTML = Array.from({ length: 7 }, (_, i) => {
+    const d = datumZa(i)
+    const ime = i === 0 ? 'danas' : i === 1 ? 'sutra' : DANI[d.getDay()]
+    return `<button type="button" class="dan" data-dan="${i}" aria-pressed="${i === stanje.dan}"><small>${ime}</small><b>${d.getDate()}. ${d.getMonth() + 1}.</b></button>`
+  }).join('')
+}
+
+function crtajRezultate() {
+  const kut = $('rezultati')
+  if (stanje.karta) return crtajKartu(kut)
+  if (stanje.odabran) return crtajRezervaciju(kut)
+  const datum = iso(datumZa(stanje.dan))
+  if (stanje.od === stanje.do) { kut.innerHTML = '<div class="naslov-dio"></div><p class="prazno">Izaberite dva različita mjesta.</p>'; return }
+  const lista = polasci(stanje.od, stanje.do)
+  const naslov = `<div class="naslov-dio"><h2>${esc(stanje.od)} → ${esc(stanje.do)}</h2><p>${lijepDatum(datumZa(stanje.dan))}</p></div>`
+  if (!lista.length) { kut.innerHTML = naslov + '<p class="prazno">Između ova dva mjesta nemamo direktan polazak. Probajte preko Brčkog.</p>'; return }
+  const sad = sadMin()
+  kut.innerHTML = naslov + '<ul class="polasci">' + lista.map((p) => {
+    const slobodno = KAPACITET - zauzeta(p, datum).size
+    const otisao = stanje.dan === 0 && p.polazak <= sad
+    const puno = slobodno === 0
+    const info = otisao ? 'Otišao' : puno ? 'Popunjeno' : `${slobodno} slobodnih`
+    return `<li><button type="button" class="polazak" data-polazak="${p.id}" ${otisao || puno ? 'disabled' : ''}>
+      <span class="polazak__vrijeme">${sat(p.polazak)}<i></i>${sat(p.dolazak)}</span>
+      <span class="polazak__cijena">${km(p.cijena)}</span>
+      <span class="polazak__info">${trajanje(p.dolazak - p.polazak)} · linija ${esc(p.pocetak)} → ${esc(p.kraj)}</span>
+      <span class="polazak__mjesta ${slobodno < 8 && !otisao ? 'malo' : ''}">${info}</span>
+    </button></li>`
+  }).join('') + '</ul>'
+}
+
+function crtajRezervaciju(kut) {
+  const p = stanje.odabran
+  const datum = iso(datumZa(stanje.dan))
+  const zauz = zauzeta(p, datum)
+  const tip = TIPOVI.find((t) => t.id === stanje.tip)
+  const iznos = p.cijena * tip.faktor
+  let sjedista = ''
+  for (let red = 0; red < KAPACITET / 4; red++) {
+    for (let k = 0; k < 4; k++) {
+      if (k === 2) sjedista += '<span></span>'
+      const br = red * 4 + k + 1
+      const z = zauz.has(br)
+      sjedista += `<button type="button" class="sjediste" data-sjediste="${br}" aria-pressed="${stanje.sjediste === br}" ${z ? 'disabled' : ''} aria-label="Sjedište ${br}${z ? ', zauzeto' : ''}">${br}</button>`
+    }
+  }
+  kut.innerHTML = `
+    <button type="button" class="nazad" data-akcija="nazad">← Svi polasci</button>
+    <div class="rez">
+      <div class="kartica">
+        <h2>${sat(p.polazak)} ${esc(stanje.od)} → ${sat(p.dolazak)} ${esc(stanje.do)}</h2>
+        <p class="napomena">${lijepDatum(datumZa(stanje.dan))} · ${trajanje(p.dolazak - p.polazak)} · ${KAPACITET - zauz.size} slobodnih mjesta</p>
+        <ol class="stanice">${p.stanice.map((s, k) => `<li class="${k >= p.i && k <= p.j ? 'na-putu' : ''}"><span>${esc(s[0])}</span><time>${sat(p.kreni + s[1])}</time></li>`).join('')}</ol>
+        <div class="bus" role="group" aria-label="Izbor sjedišta">
+          <div class="bus__prednji"><span>Vozač</span><span>Ulaz</span></div>
+          <div class="sjedista">${sjedista}</div>
+        </div>
+        <div class="legenda"><span>Slobodno</span><span class="l-zauzeto">Zauzeto</span><span class="l-vase">Vaše</span></div>
+      </div>
+      <form class="kartica forma" id="putnik" novalidate>
+        <h3>Putnik</h3>
+        <label class="polje"><span>Ime i prezime</span><input type="text" name="ime" autocomplete="name" required></label>
+        <label class="polje"><span>Broj telefona (za Viber)</span><input type="tel" name="tel" autocomplete="tel" inputmode="tel" placeholder="061 234 567" required></label>
+        <fieldset class="tipovi"><legend>Karta</legend>
+          ${TIPOVI.map((t) => `<label class="tip"><input type="radio" name="tip" value="${t.id}" ${t.id === stanje.tip ? 'checked' : ''}>${t.naziv}<b>${km(p.cijena * t.faktor)}</b></label>`).join('')}
+        </fieldset>
+        <div class="ukupno"><span>Sjedište ${stanje.sjediste || 'nije izabrano'}</span><span>${km(iznos)}</span></div>
+        <button class="dugme" type="submit" ${stanje.sjediste ? '' : 'disabled'}>Rezerviši kartu</button>
+        <p class="napomena">Kartu platite vozaču ili na stanici. U demu se ništa ne šalje.</p>
+      </form>
+    </div>`
+  const forma = $('putnik')
+  forma.addEventListener('submit', (e) => {
+    e.preventDefault()
+    const ime = forma.ime.value.trim()
+    const tel = forma.tel.value.replace(/[^\d+]/g, '')
+    if (!ime) { forma.ime.focus(); tost('Upišite ime putnika.'); return }
+    if (tel.length < 6) { forma.tel.focus(); tost('Upišite broj telefona.'); return }
+    const r = slucajno(hes(p.id + datum + stanje.sjediste + ime))
+    const znakovi = 'ABCDEFGHJKLMNPRSTUVZ23456789'
+    const kod = Array.from({ length: 6 }, () => znakovi[Math.floor(r() * znakovi.length)]).join('')
+    const karta = { kod, polazakId: p.id, datum, od: stanje.od, do: stanje.do, polazak: p.polazak, dolazak: p.dolazak, sjediste: stanje.sjediste, tip: tip.naziv, iznos, ime, peron: 1 + (hes(p.id) % 6) }
+    sacuvaj([karta, ...moje()])
+    stanje.karta = karta
+    stanje.odabran = null; stanje.sjediste = null
+    crtajBrojKarata()
+    crtajRezultate()
+    scrollTo({ top: $('rezultati').offsetTop - 70 })
+    try { window.umami && umami.track('demo-prevoz-karta') } catch (e2) {}
+  })
+  forma.addEventListener('change', (e) => {
+    if (e.target.name === 'tip') {
+      const ime = forma.ime.value, tel = forma.tel.value
+      stanje.tip = e.target.value; crtajRezultate()
+      $('putnik').ime.value = ime; $('putnik').tel.value = tel
+    }
+  })
+}
+
+function crtajKartu(kut) {
+  const k = stanje.karta
+  const d = new Date(k.datum + 'T12:00:00')
+  kut.innerHTML = `
+    <div class="naslov-dio"><h2>Karta je rezervisana</h2><p>Pokažite kod vozaču</p></div>
+    <div class="karta-omot">
+      <article class="karta" aria-label="Karta ${k.kod}">
+        <div class="karta__vrh"><span>${esc(FIRMA)}</span><b>${k.kod}</b></div>
+        <div class="karta__tijelo">
+          <div class="karta__put">
+            <div><small>${lijepDatum(d)}</small><strong>${sat(k.polazak)}</strong><span>${esc(k.od)}</span></div>
+            <span aria-hidden="true">→</span>
+            <div><small>dolazak</small><strong>${sat(k.dolazak)}</strong><span>${esc(k.do)}</span></div>
+          </div>
+          <dl class="karta__podaci">
+            <div><dt>Putnik</dt><dd>${esc(k.ime)}</dd></div>
+            <div><dt>Sjedište</dt><dd>${k.sjediste}</dd></div>
+            <div><dt>Peron</dt><dd>${k.peron}</dd></div>
+            <div><dt>Karta</dt><dd>${esc(k.tip)}</dd></div>
+            <div><dt>Cijena</dt><dd>${km(k.iznos)}</dd></div>
+          </dl>
+        </div>
+        <div class="karta__rez" aria-hidden="true"></div>
+        <div class="karta__dno"><canvas id="qr" width="29" height="29" aria-hidden="true"></canvas><p>Vozač skenira kod sa telefona. Ovo je primjer i ne važi za vožnju.</p></div>
+      </article>
+      <div class="viber">
+        <h3><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7360f2" stroke-width="2.2" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5.2A8.5 8.5 0 1 1 21 12Z"/></svg>Putnik dobije na Viber</h3>
+        <div class="poruka">Karta ${k.kod}: ${esc(k.od)} ${sat(k.polazak)} → ${esc(k.do)} ${sat(k.dolazak)}, ${lijepDatum(d)}, sjedište ${k.sjediste}, peron ${k.peron}. Kartu pokažite vozaču.<small>odmah</small></div>
+        <div class="poruka">Podsjetnik: Vaš autobus za ${esc(k.do)} kreće za sat vremena, u ${sat(k.polazak)} sa perona ${k.peron}. Ne putujete? Odgovorite OTKAŽI i mjesto se oslobodi.<small>sat prije polaska</small></div>
+        <div class="akcije" style="margin-top:14px">
+          <button type="button" class="dugme" data-akcija="nova">Nova karta</button>
+          <button type="button" class="dugme dugme--svijetlo" data-akcija="moje">Moje karte</button>
+        </div>
+      </div>
+    </div>`
+  crtajQr($('qr'), k.kod)
+}
+
+// Izgleda kao QR kod (tri oka i šara iz koda karte), ali se ne može skenirati: demo je.
+function crtajQr(c, kod) {
+  const x = c.getContext('2d'), n = 29, r = slucajno(hes(kod))
+  x.fillStyle = '#fff'; x.fillRect(0, 0, n, n); x.fillStyle = '#0b1b2b'
+  for (let i = 0; i < n; i++) for (let j = 0; j < n; j++) if (r() > 0.52) x.fillRect(i, j, 1, 1)
+  for (const [a, b] of [[0, 0], [n - 7, 0], [0, n - 7]]) {
+    x.fillStyle = '#fff'; x.fillRect(a - (a ? 1 : 0), b - (b ? 1 : 0), 8, 8)
+    x.fillStyle = '#0b1b2b'; x.fillRect(a, b, 7, 7)
+    x.fillStyle = '#fff'; x.fillRect(a + 1, b + 1, 5, 5)
+    x.fillStyle = '#0b1b2b'; x.fillRect(a + 2, b + 2, 3, 3)
+  }
+}
+
+function crtajMoje() {
+  const lista = moje()
+  const kut = $('pogled-m')
+  if (!lista.length) { kut.innerHTML = '<div class="naslov-dio"><h2>Moje karte</h2></div><p class="prazno">Još nemate karata. Rezervišite kartu u dijelu Karte.</p>'; return }
+  kut.innerHTML = '<div class="naslov-dio"><h2>Moje karte</h2><p>Čuvaju se na ovom telefonu</p></div><ul class="lista">' + lista.map((k, i) => {
+    const d = new Date(k.datum + 'T12:00:00')
+    return `<li class="red"><span><b>${sat(k.polazak)}</b> ${esc(k.od)} → ${esc(k.do)}</span><b>${k.kod}</b>
+      <small>${lijepDatum(d)} · sjedište ${k.sjediste} · ${esc(k.ime)}</small>
+      <span class="akcije"><button type="button" class="dugme dugme--svijetlo" data-pokazi="${i}" style="min-height:40px">Pokaži</button><button type="button" class="dugme dugme--svijetlo" data-otkazi="${i}" style="min-height:40px">Otkaži</button></span></li>`
+  }).join('') + '</ul>'
+}
+
+function crtajBrojKarata() {
+  const n = moje().length
+  $('broj-karata').hidden = !n
+  $('broj-karata').textContent = n
+}
+
+// Pogled prevoznika: svi polasci sa početnih stanica za izabrani dan, popunjenost i spisak putnika.
+function crtajPrevoznika() {
+  const datum = iso(datumZa(stanje.dan))
+  const svi = []
+  for (const l of LINIJE) {
+    const prva = l.stanice[0][0], zadnja = l.stanice[l.stanice.length - 1][0]
+    for (const p of polasci(prva, zadnja)) svi.push(p)
+    for (const p of polasci(zadnja, prva)) svi.push(p)
+  }
+  svi.sort((a, b) => a.polazak - b.polazak)
+  let mjesta = 0
+  const redovi = svi.map((p) => {
+    const z = zauzeta(p, datum)
+    mjesta += z.size
+    const udio = z.size / KAPACITET
+    const otvoren = stanje.otvoren === p.id
+    let putnici = ''
+    if (otvoren) {
+      const r = slucajno(hes(p.id + datum + 'putnici'))
+      const vase = moje().filter((k) => k.polazakId === p.id && k.datum === datum)
+      const lista = [...z].sort((a, b) => a - b).slice(0, 12).map((s) => {
+        const v = vase.find((k) => k.sjediste === s)
+        const ime = v ? v.ime : IMENA[Math.floor(r() * IMENA.length)]
+        const ulaz = v ? v.od : p.stanice[Math.floor(r() * (p.stanice.length - 1))][0]
+        const online = v || r() > 0.45
+        return `<li><span>${s}</span><span>${esc(ime)} · ulazi ${esc(ulaz)}</span>${online ? '<span class="online">online</span>' : '<span></span>'}</li>`
+      }).join('')
+      putnici = `<ul class="putnici" aria-label="Putnici">${lista}${z.size > 12 ? `<li><span></span><span>i još ${z.size - 12} putnika</span><span></span></li>` : ''}</ul>`
+    }
+    return `<li><button type="button" class="red red--dugme" data-otvori="${p.id}" aria-expanded="${otvoren}">
+      <span><b>${sat(p.polazak)}</b> ${esc(p.pocetak)} → ${esc(p.kraj)}</span><b>${z.size}/${KAPACITET}</b>
+      <span class="puno" aria-hidden="true"><i class="${udio > 0.8 ? 'vise' : ''}" style="width:${Math.round(udio * 100)}%"></i></span>
+      ${putnici}</button></li>`
+  }).join('')
+  $('pogled-p').innerHTML = `
+    <div class="naslov-dio"><h2>Polasci, ${lijepDatum(datumZa(stanje.dan))}</h2><p>Dodirnite polazak za spisak putnika</p></div>
+    <dl class="statistika">
+      <div><dt>Polazaka</dt><dd>${svi.length}</dd></div>
+      <div><dt>Rezervisano</dt><dd>${mjesta}</dd></div>
+      <div><dt>Popunjenost</dt><dd>${Math.round((mjesta / (svi.length * KAPACITET)) * 100)}%</dd></div>
+    </dl>
+    <ul class="lista">${redovi}</ul>
+    <div class="naslov-dio"><h2>Može se dodati</h2></div>
+    <ul class="jos"><li>Plaćanje karticom</li><li>Povratna karta</li><li>Mjesečne karte za đake i radnike</li><li>Prodaja na šalteru u isti sistem</li><li>Paketi i pošiljke</li><li>Autobus uživo na mapi</li><li>Engleski i njemački za dijasporu</li></ul>`
+}
+
+function crtajTablu() {
+  const sad = sadMin()
+  const lista = []
+  for (const l of LINIJE) for (const v of l.tamo) {
+    const m = uMin(v)
+    if (m >= sad - 2) lista.push({ m, kuda: l.stanice[l.stanice.length - 1][0], peron: 1 + (hes(`${l.id}-tamo-${v}`) % 6) })
+  }
+  lista.sort((a, b) => a.m - b.m)
+  $('sad').textContent = sat(sad)
+  $('tabla').innerHTML = lista.length
+    ? lista.slice(0, 4).map((x) => {
+      const ukrcaj = x.m - sad <= 10
+      return `<li><span class="tabla__sat">${sat(x.m)}</span><span class="tabla__kuda">${esc(x.kuda)} · peron ${x.peron}</span><span class="tabla__stanje ${ukrcaj ? 'ukrcaj' : ''}">${ukrcaj ? 'ukrcavanje' : 'na vrijeme'}</span></li>`
+    }).join('')
+    : '<li class="tabla__prazno">Za danas nema više polazaka. Prvi sutra u 05:30.</li>'
+}
+
+let tostTajmer
+function tost(tekst) {
+  const el = $('tost')
+  el.textContent = tekst
+  el.classList.add('vidljiv')
+  clearTimeout(tostTajmer)
+  tostTajmer = setTimeout(() => el.classList.remove('vidljiv'), 3200)
+}
+
+function prikazi(koji) {
+  for (const k of ['k', 'm', 'p']) {
+    $('tab-' + k).setAttribute('aria-selected', String(k === koji)); $('tab-' + k).tabIndex = k === koji ? 0 : -1
+    $('pogled-' + k).hidden = k !== koji
+  }
+  if (koji === 'm') crtajMoje()
+  if (koji === 'p') { crtajPrevoznika(); try { window.umami && umami.track('demo-prevoz-prevoznik') } catch (e) {} }
+  if (koji === 'k') crtajRezultate()
+}
+
+$('od').addEventListener('change', (e) => { stanje.od = e.target.value; stanje.odabran = null; stanje.karta = null; crtajRezultate() })
+$('do').addEventListener('change', (e) => { stanje.do = e.target.value; stanje.odabran = null; stanje.karta = null; crtajRezultate() })
+$('zamijeni').addEventListener('click', () => {
+  [stanje.od, stanje.do] = [stanje.do, stanje.od]
+  $('od').value = stanje.od; $('do').value = stanje.do
+  stanje.odabran = null; stanje.karta = null; crtajRezultate()
+})
+$('dani').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-dan]')
+  if (!b) return
+  stanje.dan = Number(b.dataset.dan); stanje.odabran = null; stanje.karta = null; stanje.otvoren = null
+  crtajDane(); crtajRezultate()
+  if (!$('pogled-p').hidden) crtajPrevoznika()
+})
+$('rezultati').addEventListener('click', (e) => {
+  const p = e.target.closest('[data-polazak]')
+  if (p) {
+    stanje.odabran = polasci(stanje.od, stanje.do).find((x) => x.id === p.dataset.polazak)
+    stanje.sjediste = null
+    crtajRezultate(); scrollTo({ top: $('rezultati').offsetTop - 70 })
+    return
+  }
+  const s = e.target.closest('[data-sjediste]')
+  if (s) {
+    const f = $('putnik'), ime = f.ime.value, tel = f.tel.value
+    stanje.sjediste = Number(s.dataset.sjediste); crtajRezultate()
+    $('putnik').ime.value = ime; $('putnik').tel.value = tel
+    return
+  }
+  const a = e.target.closest('[data-akcija]')
+  if (!a) return
+  if (a.dataset.akcija === 'nazad') { stanje.odabran = null; crtajRezultate() }
+  if (a.dataset.akcija === 'nova') { stanje.karta = null; crtajRezultate() }
+  if (a.dataset.akcija === 'moje') { stanje.karta = null; prikazi('m') }
+})
+$('pogled-m').addEventListener('click', (e) => {
+  const lista = moje()
+  const pok = e.target.closest('[data-pokazi]')
+  if (pok) { stanje.karta = lista[Number(pok.dataset.pokazi)]; stanje.odabran = null; prikazi('k'); return }
+  const otk = e.target.closest('[data-otkazi]')
+  if (otk) {
+    lista.splice(Number(otk.dataset.otkazi), 1); sacuvaj(lista)
+    crtajBrojKarata(); crtajMoje(); tost('Karta je otkazana i mjesto je opet slobodno.')
+  }
+})
+$('pogled-p').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-otvori]')
+  if (!b) return
+  stanje.otvoren = stanje.otvoren === b.dataset.otvori ? null : b.dataset.otvori
+  crtajPrevoznika()
+})
+for (const k of ['k', 'm', 'p']) $('tab-' + k).addEventListener('click', () => prikazi(k))
+document.querySelector('[role="tablist"]').addEventListener('keydown', (e) => {
+  if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+  const tabovi = ['k', 'm', 'p'].map((k) => $('tab-' + k))
+  const i = tabovi.indexOf(document.activeElement)
+  const sljedeci = tabovi[(i + (e.key === 'ArrowRight' ? 1 : 2)) % 3]
+  sljedeci.focus(); sljedeci.click()
+})
+
+$('ime').textContent = FIRMA
+document.title = `${FIRMA}: red vožnje i karte`
+popuniMjesta()
+crtajDane()
+crtajTablu()
+crtajBrojKarata()
+crtajRezultate()
+setInterval(crtajTablu, 30000)
+</script>
+</body>
+</html>

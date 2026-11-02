@@ -1,0 +1,30 @@
+/* /zakazivanje: kartice živog dema i izbor izgleda. Ostatak dijeli sa /olx (olx.css). */
+.zk-kartice { margin: 0; padding: 0; list-style: none; display: grid; gap: 18px; }
+@media (min-width: 900px) { .zk-kartice { grid-template-columns: repeat(3, 1fr); gap: 22px; } }
+.zk-kartice li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: clamp(24px, 3vw, 34px);
+  border-radius: 26px;
+  background: rgba(227, 241, 234, 0.04);
+  border: 1px solid var(--linija);
+}
+.zk-kartice h3 { margin: 0; font-size: clamp(22px, 2vw, 27px); line-height: 1.15; font-weight: 700; }
+.zk-kartice p { margin: 0; flex: 1; font-size: 17px; line-height: 1.55; color: var(--tekst2); }
+
+.zk-izgledi { margin-top: clamp(28px, 4vw, 44px); display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.zk-izgledi .st-nad { margin: 0; }
+.zk-izgledi div { display: flex; flex-wrap: wrap; gap: 10px; }
+.zk-izgledi a {
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--linija);
+  color: var(--svijetli);
+  font-weight: 600;
+  text-decoration: none;
+}
+.zk-izgledi a:hover { background: rgba(227, 241, 234, 0.08); }
+
+.zk-dokaz h3 { margin: 14px 0 0; font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; font-weight: 700; color: var(--svijetli); }
+.zk-dokaz p:not(.st-nad) { margin: 12px 0 18px; font-size: 17px; line-height: 1.55; color: var(--tekst2); }

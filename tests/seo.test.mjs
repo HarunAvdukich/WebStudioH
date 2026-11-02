@@ -27,7 +27,12 @@ function adresa(file) {
 const pages = existsSync(DIST)
   ? htmlFiles().map((file) => ({ file, path: adresa(file), html: readFileSync(file, 'utf8') }))
   : []
-const indeksirane = pages.filter((p) => p.path !== '/404')
+// /sati je skrivena evidencija rada za klijenta: otvara se samo linkom sa ključem.
+// Demoi su statične stranice iz public/, bez okvira sajta: kalkulator za stanice tehničkog pregleda
+// zakazivanje za berbernice i red vožnje sa kartama za autobuskog prevoznika.
+const DEMOI = ['/kalkulator-registracije', '/demo-termini', '/demo-prevoz']
+const NEINDEKSIRANE = ['/404', '/sati', ...DEMOI]
+const indeksirane = pages.filter((p) => !NEINDEKSIRANE.includes(p.path))
 const meta = (html, re) => (html.match(re) || [])[1]
 const jsonLd = (html) =>
   [...html.matchAll(/<script[^>]*application\/ld\+json[^>]*>([\s\S]*?)<\/script>/g)].map((m) => JSON.parse(m[1]))
@@ -38,6 +43,28 @@ test('404.html postoji, ne indeksira se i nema canonical', () => {
   assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
   assert.doesNotMatch(p.html, /rel="canonical"/)
 })
+
+test('/sati se ne indeksira, nema okvira sajta i nije nigdje naveden', () => {
+  const p = pages.find((x) => x.path === '/sati')
+  assert.ok(p, 'dist/sati.html nije izgrađen')
+  assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
+  assert.doesNotMatch(p.html, /rel="canonical"/)
+  assert.doesNotMatch(p.html, /ok-zaglavlje|ok-podnozje|ok-traka/)
+  assert.doesNotMatch(readFileSync(join(DIST, 'sitemap.xml'), 'utf8'), /\/sati/)
+  assert.doesNotMatch(readFileSync('public/llms.txt', 'utf8'), /\/sati/)
+  for (const q of indeksirane) assert.doesNotMatch(q.html, /href="\/sati/, `${q.path} vodi na /sati`)
+})
+
+for (const demo of DEMOI) {
+  test(`demo ${demo} se ne indeksira i nije nigdje naveden`, () => {
+    const p = pages.find((x) => x.path === demo)
+    assert.ok(p, `dist${demo}.html nije izgrađen`)
+    assert.match(p.html, /<meta[^>]*name="robots"[^>]*content="noindex"/)
+    assert.doesNotMatch(p.html, /rel="canonical"/)
+    assert.doesNotMatch(readFileSync(join(DIST, 'sitemap.xml'), 'utf8'), new RegExp(demo))
+    assert.doesNotMatch(readFileSync('public/llms.txt', 'utf8'), new RegExp(demo))
+  })
+}
 
 test('netlify ne vraća početnu za nepostojeće adrese', () => {
   const toml = readFileSync('netlify.toml', 'utf8')
@@ -68,7 +95,7 @@ test('naslovi stranica se ne ponavljaju', () => {
 })
 
 test('JSON-LD je ispravan; firma na svakoj stranici, sajt na početnoj', () => {
-  for (const p of pages) {
+  for (const p of pages.filter((x) => !DEMOI.includes(x.path))) {
     const tipovi = jsonLd(p.html).map((d) => d['@type'])
     assert.ok(tipovi.includes('Organization'), `${p.path} nema Organization`)
   }
@@ -126,6 +153,23 @@ for (const slug of ['mrt', 'smarttime']) {
   })
 }
 
+// Entitet: Googleov AI odgovor za "hunar.ba" je 9. 10. 2026 rekao da takva firma ne postoji i
+// objasnio riječ hunar. Opisi zato počinju sa "Hunar je web studio", a O Hunaru je AboutPage firme.
+test('Hunar je opisan kao firma: opis, osnivanje, profili i AboutPage', () => {
+  const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
+  assert.match(org.description, /^Hunar je web studio/)
+  assert.match(org.foundingDate, /^\d{4}-\d{2}-\d{2}$/)
+  assert.ok(org.sameAs.length >= 1)
+  for (const path of ['/', '/en', '/o-nama', '/en/about']) {
+    const p = pages.find((x) => x.path === path)
+    assert.match(meta(p.html, /<meta[^>]*name="description"[^>]*content="([^"]*)"/), /^Hunar (je|is a) web studio/, path)
+  }
+  for (const path of ['/o-nama', '/en/about']) {
+    const o = jsonLd(pages.find((x) => x.path === path).html).find((d) => d['@type'] === 'AboutPage')
+    assert.equal(o?.mainEntity['@id'], org['@id'], path)
+  }
+})
+
 // GEO: llms.txt je kratak vodič za AI asistente; svaki link mora voditi na stranicu koja postoji.
 test('llms.txt postoji i vodi samo na stranice koje postoje', () => {
   const txt = readFileSync(join(DIST, 'llms.txt'), 'utf8')
@@ -142,6 +186,14 @@ test('članci su sadržajni i vode na kontakt', () => {
     const rijeci = tekst.split(/\s+/).filter(Boolean).length
     assert.ok(rijeci >= 450, `${p.path}: samo ${rijeci} riječi`)
     assert.match(p.html, /href="\/kontakt"/, p.path)
+  }
+})
+
+test('firma u JSON-LD vodi na Google profil, a Kontakt na recenziju', () => {
+  const org = jsonLd(pages.find((p) => p.path === '/').html).find((d) => d['@type'] === 'Organization')
+  assert.ok(org.sameAs.some((u) => /^https:\/\/www\.google\.com\/maps\?cid=\d+$/.test(u)), 'nema Google profila u sameAs')
+  for (const path of ['/kontakt', '/en/contact']) {
+    assert.match(pages.find((p) => p.path === path).html, /href="https:\/\/g\.page\/r\/[\w-]+\/review"/, path)
   }
 })
 

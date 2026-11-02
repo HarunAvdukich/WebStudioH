@@ -164,8 +164,10 @@
 @media (min-width: 900px) {
   .us-korak__in { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(40px, 6vw, 96px); align-items: start; }
 }
-/* Lijeva kolona se kači samo kad stane cijela ispod zaglavlja i oznake dijela. */
-@media (min-width: 900px) and (min-height: 820px) {
+/* Lijeva kolona se kači samo kad stane cijela ispod zaglavlja i oznake dijela: 820 px visine
+   u razmjeru laptopa. Na velikom ekranu (uvećanje k iz src/index.css) to je visina/k od 820:
+   odnos strana najviše 1536/820, a od 2304 px širine (k = 1,5) visina od 1230 px. */
+@media (min-width: 900px) and (min-height: 820px) and (max-aspect-ratio: 1536/820), (min-width: 2304px) and (min-height: 1230px) {
   .us-korak__lijevo { position: sticky; top: 150px; }
 }
 .us-korak__broj { margin-top: 28px; font-size: clamp(64px, 9vw, 128px); line-height: 0.9; font-weight: 800; letter-spacing: -0.05em; color: transparent; -webkit-text-stroke: 1.5px rgba(227, 241, 234, 0.28); }

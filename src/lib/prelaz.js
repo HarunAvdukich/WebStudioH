@@ -8,5 +8,7 @@ export function putZaZavjesu(dogadjaj, link, lokacija) {
   const url = new URL(link.href, lokacija.href)
   if (url.origin !== lokacija.origin) return null
   if (url.pathname === lokacija.pathname) return null
+  // Fajl (snimak, slika, PDF) nije stranica sajta: otvara ga preglednik, ne router.
+  if (/\.[a-z0-9]{2,5}$/i.test(url.pathname)) return null
   return url.pathname + url.search + url.hash
 }

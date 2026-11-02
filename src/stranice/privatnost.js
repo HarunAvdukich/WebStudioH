@@ -14,7 +14,7 @@ export const vrh = {
   nad: 'Pravno',
   naslov: 'Politika privatnosti',
   uvod: 'Kako prikupljamo, koristimo i štitimo vaše lične podatke.',
-  azurirano: 'Posljednje ažuriranje: 2. 10. 2026.',
+  azurirano: 'Posljednje ažuriranje: 3. 10. 2026.',
 }
 
 export const dijelovi = [
@@ -27,6 +27,7 @@ export const dijelovi = [
     ul: [
       'Podaci iz obrasca: ime, firma (nije obavezno), telefon ili mail, šta vam treba i sadržaj poruke koju pošaljete.',
       'Komunikacija: poruke koje razmijenimo putem maila, telefona ili WhatsAppa.',
+      'Statistika posjeta, bez ličnih podataka (vidi dio Statistika posjeta).',
     ],
   },
   {
@@ -39,11 +40,18 @@ export const dijelovi = [
   },
   {
     naslov: 'Dijeljenje s trećim stranama',
-    p: ['Vaše podatke ne prodajemo. Obrazac prima i čuva naša hosting platforma Netlify (Netlify Forms), isključivo u gore navedene svrhe. Poruke na WhatsAppu idu preko usluge WhatsApp (Meta), prema njihovim pravilima.'],
+    p: ['Vaše podatke ne prodajemo. Obrazac prima i čuva naša hosting platforma Netlify (Netlify Forms), isključivo u gore navedene svrhe. Poruke na WhatsAppu idu preko usluge WhatsApp (Meta), prema njihovim pravilima. Statistiku posjeta, bez ličnih podataka, vodi Umami Software (Umami Cloud).'],
+  },
+  {
+    naslov: 'Statistika posjeta',
+    p: [
+      'Da znamo koje stranice i usluge zanimaju posjetioce, posjete brojimo alatom Umami. Bilježi se koja je stranica otvorena, odakle ste došli (link ili pretraga), država, vrsta uređaja i preglednika, te klikovi na dugmad kao što su WhatsApp, poziv i „Pitajte za ovo“.',
+      'Umami ne koristi kolačiće, ne čuva vašu IP adresu i ne prati vas na drugim sajtovima, pa iz tih podataka ne možemo saznati ko ste. Podatke čuvamo najviše šest mjeseci.',
+    ],
   },
   {
     naslov: 'Kolačići',
-    p: ['Ne koristimo kolačiće za praćenje ni oglašavanje. Zbog toga nema ni trake za pristanak na kolačiće.'],
+    p: ['Ne koristimo kolačiće za praćenje, oglašavanje ni statistiku. Zbog toga nema ni trake za pristanak na kolačiće.'],
   },
   {
     naslov: 'Koliko dugo čuvamo podatke',

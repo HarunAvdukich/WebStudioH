@@ -23,3 +23,9 @@ test('vanjski link, nova kartica, tipke, ista stranica i preuzimanje idu normaln
   assert.equal(putZaZavjesu(klik(), link('/radovi', { atributi: ['download'] }), lok), null)
   assert.equal(putZaZavjesu(klik(), link('/radovi', { atributi: ['data-bez-zavjese'] }), lok), null)
 })
+
+test('link na fajl (snimak, PDF) ne ide kroz zavjesu ni router', () => {
+  assert.equal(putZaZavjesu(klik(), link('/olx/mrt-olx.mp4'), lok), null)
+  assert.equal(putZaZavjesu(klik(), link('/ponuda.pdf'), lok), null)
+  assert.equal(putZaZavjesu(klik(), link('/savjeti/povezivanje-web-shopa-sa-olx-om'), lok), '/savjeti/povezivanje-web-shopa-sa-olx-om')
+})

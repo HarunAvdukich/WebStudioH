@@ -7,7 +7,29 @@ export const contact = {
   phoneDisplay: '060 3000 751',
   phoneHref: 'tel:+387603000751',
   whatsapp: 'https://wa.me/387603000751',
+  // Otvara chat na Viberu sa istim brojem. Kad firma dobije Viber poslovni nalog, ovdje ide
+  // njegov link https://viber.me/387603000751 (Viber > More > Business Account > Share Business).
+  viber: 'viber://chat?number=%2B387603000751',
 }
+
+// Google profil firme (Business Profile): stranica na Mapama i link za recenziju.
+// cid je iz linka za recenziju; Google ih daje u profilu, pod "Zatražite recenzije".
+export const google = {
+  profil: 'https://www.google.com/maps?cid=15998770561478667953',
+  recenzija: 'https://g.page/r/CbGu6X8PDQfeECE/review',
+}
+
+// Profili firme na drugim mjestima (sameAs u JSON-LD): po njima Google i AI asistenti znaju da
+// je Hunar firma, a ne samo riječ. Samo profili firme Hunar; lični profili vlasnika ne idu ovdje
+// (PRODUCT.md: bez imena vlasnika).
+export const profili = [
+  google.profil,
+  'https://www.facebook.com/hunarwebstudio',
+  'https://www.instagram.com/hunarwebstudio/',
+]
+
+// Datum otvaranja, isti kao na Google profilu (odluka vlasnika 9. 10. 2026).
+export const osnovano = '2026-06-01'
 
 // Radovi koji imaju svoju stranicu (/radovi/<slug>). urez.ba je u izradi: bez linka i slike.
 export const projects = [

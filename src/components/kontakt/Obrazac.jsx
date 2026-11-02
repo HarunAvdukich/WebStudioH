@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { prati } from '../../lib/statistika.js'
 
 const IME_OBRASCA = 'kontakt'
 const kodiraj = (podaci) =>
@@ -24,6 +25,7 @@ export default function Obrazac({ t }) {
       ])
       if (!odgovor.ok) throw new Error(String(odgovor.status))
       setStanje('poslano')
+      prati('Obrazac')
     } catch {
       setStanje('greska')
     }

@@ -5,6 +5,7 @@ import { contact } from '../../data.js'
 import { popuni, waLink } from '../../lib/whatsapp.js'
 import { useMagnet } from '../../lib/magnet.js'
 import { igraj, izvorDolaska, ODMOR, PAUZA, porukaZa, redniBroj, redoviRijeci } from '../../lib/primjeri.js'
+import { prati } from '../../lib/statistika.js'
 
 const useIzomorfniEfekat = typeof window === 'undefined' ? useEffect : useLayoutEffect
 
@@ -93,6 +94,7 @@ export default function PrviEkran({ t }) {
     const el = scena.current.children[k]
     igre.current[k] += 1
     zakazi(PAUZA)
+    prati('Primjer', { usluga: usluge[k].uPoruci })
     igraj(el, usluge[k].id, { n: igre.current[k], cilj: e?.target, jos: () => iRef.current === k, t: primjeri })
   }
 
@@ -247,7 +249,10 @@ export default function PrviEkran({ t }) {
               className={k === stanje.i ? 'je-sad' : k < stanje.i ? 'je-bilo' : undefined}
               aria-label={popuni(prvi.pokazi, { usluga: u.ime })}
               aria-pressed={k === stanje.i}
-              onClick={() => idi(k)}
+              onClick={() => {
+                idi(k)
+                prati('Usluga', { usluga: u.uPoruci })
+              }}
             >
               <i />
             </button>

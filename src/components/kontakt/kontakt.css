@@ -81,6 +81,9 @@ a.kt-kanal:hover { border-color: var(--mint); background: rgba(227, 241, 234, 0.
 .kt-kanal__ik { display: flex; flex: none; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 50%; background: var(--mint); color: var(--zelena); }
 .kt-kanal__ime { font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--siva); }
 .kt-kanal__vr, .kt-kanal .ok-broj { margin-left: auto; font-size: 17px; font-weight: 700; color: var(--krec); }
+.kt-recenzija { margin: 18px 0 0; font-size: 15px; color: var(--siva); }
+.kt-recenzija a { color: var(--svijetli); font-weight: 700; text-underline-offset: 3px; }
+.kt-recenzija a:hover { color: var(--mint); }
 
 /* ---------- obrazac ---------- */
 .kt-obrazac { background: var(--zelena-dublja); }

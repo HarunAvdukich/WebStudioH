@@ -7,6 +7,18 @@
 html, body { margin: 0; }
 html { scroll-behavior: smooth; }
 
+/* Veliki ekran: sajt se uveća u razmjeru sa laptopom (1536 × 730), najviše 1,5 puta. Stilovi
+   su poslije builda u rem (scripts/pikseli-u-rem.mjs), pa rastu sa ovim slovom. Na laptopu i
+   telefonu ostaje 16 px. JavaScript isti razmjer čita iz src/lib/velicina.js. */
+html { font-size: clamp(16px, min(100vw * 16 / 1536, 100vh * 16 / 730), 24px); }
+
+/* Ikone imaju veličinu u atributu; ista veličina u CSS-u ih uveća zajedno sa sajtom. */
+svg[width="14"] { width: 14px; height: 14px; }
+svg[width="16"] { width: 16px; height: 16px; }
+svg[width="18"] { width: 18px; height: 18px; }
+svg[width="20"] { width: 20px; height: 20px; }
+svg[width="22"] { width: 22px; height: 22px; }
+
 body {
   background: #0f241d;
   color: #f4f4f2;

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { preporukaVodica, porukaVodica } from '../../lib/igre.js'
 import { waLink, popuni } from '../../lib/whatsapp.js'
+import { prati } from '../../lib/statistika.js'
 
 // Vodič "koja stepenica vam treba" (40): dva pitanja, pa preporuka sa stepenicom koja
 // zasvijetli. Dugme šalje odgovore na WhatsApp, pa posjetilac ne mora kucati. Bez cijena.
@@ -28,7 +29,13 @@ export default function Vodic({ t, stepenice }) {
             <h3 className="vd__pitanje">{pitanje.pitanje}</h3>
             <div className="vd__odgovori">
               {pitanje.odgovori.map((o) => (
-                <button key={o.id} type="button" onClick={() => (korak === 0 ? setPrvo(o.id) : setDrugo(o.id))}>
+                <button key={o.id} type="button" onClick={() => {
+                    if (korak === 0) setPrvo(o.id)
+                    else {
+                      setDrugo(o.id)
+                      prati('Vodič', { preporuka: t.preporuke[preporukaVodica(prvo, o.id)].ime })
+                    }
+                  }}>
                   {o.tekst}
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                     <path d="M5 12h14M13 6l6 6-6 6" />

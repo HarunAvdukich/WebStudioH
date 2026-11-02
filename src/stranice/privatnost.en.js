@@ -12,7 +12,7 @@ export const vrh = {
   nad: 'Legal',
   naslov: 'Privacy policy',
   uvod: 'How we collect, use and protect your personal data.',
-  azurirano: 'Last updated: 2 Oct 2026.',
+  azurirano: 'Last updated: 3 Oct 2026.',
 }
 
 export const dijelovi = [
@@ -25,6 +25,7 @@ export const dijelovi = [
     ul: [
       'Form data: your name, company (optional), phone or email, what you need and the content of the message you send.',
       'Communication: messages we exchange by email, phone or WhatsApp.',
+      'Visit statistics, with no personal data (see Visit statistics).',
     ],
   },
   {
@@ -37,11 +38,18 @@ export const dijelovi = [
   },
   {
     naslov: 'Sharing with third parties',
-    p: ['We do not sell your data. The form is received and stored by our hosting platform Netlify (Netlify Forms), only for the purposes above. WhatsApp messages go through the WhatsApp service (Meta), under its own rules.'],
+    p: ['We do not sell your data. The form is received and stored by our hosting platform Netlify (Netlify Forms), only for the purposes above. WhatsApp messages go through the WhatsApp service (Meta), under its own rules. Visit statistics, with no personal data, are run by Umami Software (Umami Cloud).'],
+  },
+  {
+    naslov: 'Visit statistics',
+    p: [
+      'To know which pages and services interest visitors, we count visits with Umami. It records which page was opened, where you came from (a link or a search), the country, the type of device and browser, and clicks on buttons such as WhatsApp, call and “Ask about this”.',
+      'Umami uses no cookies, does not store your IP address and does not follow you to other websites, so this data cannot tell us who you are. We keep it for at most six months.',
+    ],
   },
   {
     naslov: 'Cookies',
-    p: ['We do not use cookies for tracking or advertising. That is why there is no cookie consent banner.'],
+    p: ['We do not use cookies for tracking, advertising or statistics. That is why there is no cookie consent banner.'],
   },
   {
     naslov: 'How long we keep data',

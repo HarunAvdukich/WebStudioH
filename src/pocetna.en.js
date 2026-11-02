@@ -45,7 +45,7 @@ export const ui = {
   sklopljeno: 'assembled',
   izradio: 'Izradio',
   privatnost: { naziv: 'Privacy policy', put: '/en/privacy' },
-  kontakt: { whatsapp: 'WhatsApp', veznik: 'and', telefon: 'phone' },
+  kontakt: { whatsapp: 'WhatsApp', viber: 'Viber', veznik: 'and', telefon: 'phone' },
   telefon: '+387 60 3000 751',
   poglavlja: 'Story chapters',
   uvecaj: 'Zoom',
@@ -53,7 +53,7 @@ export const ui = {
 
 export const seo = {
   naslov: 'Web development studio in Bosnia and Herzegovina · Hunar',
-  opis: 'A web studio from Bosnia and Herzegovina building fast websites, online stores and custom systems. Design, code, hosting and maintenance in one place.',
+  opis: 'Hunar is a web studio from Bosnia and Herzegovina building fast websites, online stores and custom systems. Design, code, hosting and maintenance in one place.',
 }
 
 // First screen: "We build [word] for businesses like yours." The word cycles through

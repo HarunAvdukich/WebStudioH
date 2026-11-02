@@ -57,7 +57,11 @@ function htmlFiles(dir = DIST) {
 const stranice = existsSync(DIST)
   ? htmlFiles().map((file) => ({ put: relative(DIST, file).split(sep).join('/'), html: readFileSync(file, 'utf8') }))
   : []
-const ostale = stranice.filter((s) => s.put !== 'index.html' && s.put !== 'en.html')
+// sati.html je skrivena evidencija rada za klijenta: namjerno bez okvira sajta (tests/seo.test.mjs).
+// Demoi (kalkulator-registracije.html, demo-termini.html) glume sajt kupca, pa su i oni bez okvira.
+const BEZ_OKVIRA = ['sati.html', 'kalkulator-registracije.html', 'demo-termini.html', 'demo-prevoz.html']
+const saOkvirom = stranice.filter((s) => !BEZ_OKVIRA.includes(s.put))
+const ostale = saOkvirom.filter((s) => s.put !== 'index.html' && s.put !== 'en.html')
 
 test('dist postoji za provjere okvira', () => {
   assert.ok(ostale.length > 5, 'prvo pokreni npm run build')
@@ -97,7 +101,7 @@ test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balo
 })
 
 test('svaka stranica ima zavjesu za prelaz', () => {
-  for (const s of stranice) assert.match(s.html, /class="ok-zavjesa"/, s.put)
+  for (const s of saOkvirom) assert.match(s.html, /class="ok-zavjesa"/, s.put)
 })
 
 test('ostale stranice imaju traku za telefon i dugme za vrh', () => {
