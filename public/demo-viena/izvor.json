@@ -1,0 +1,21 @@
+{
+  "opis": "Slike i podaci za prototip stranice Viena Tour (demo-viena.html).",
+  "preuzeto": "2026-11-03",
+  "slike": {
+    "setra-zlatna.webp": "https://vienatour.net/images/eksterne/Photo-02-775cc4.jpg",
+    "setra-srebrna.webp": "https://vienatour.net/images/eksterne/Photo-01-b01029.jpg",
+    "mercedes.webp": "https://vienatour.net/images/eksterne/Photo-05-d0bd94.jpg",
+    "stanica.webp": "https://vienatour.net/images/eksterne/Photo-06-d8007e.jpg",
+    "kombiji.webp": "https://vienatour.net/images/eksterne/Photo-11-332dc0.jpg",
+    "sprinteri.webp": "https://vienatour.net/images/eksterne/about-us-web-d3bcfc.jpg",
+    "poslovnica-bijeljina.webp": "https://vienatour.net/images/eksterne/Photo-office-01-4d5506.jpg",
+    "poslovnica-brcko.webp": "https://vienatour.net/images/eksterne/Photo-oofice-02-9eef78.jpg"
+  },
+  "podaci": {
+    "redVoznje": "vienatour.net, prozori 'Vrijeme i lokacija polaska' (Austrija, Njemačka, Crna Gora). Prava su samo vremena polazaka; dolasci su okvirni (12go.asia, rome2rio, checkmybus).",
+    "kontakti": "vienatour.net (Kontakt) i Facebook stranica 100037192406133",
+    "pratioci": "Instagram @vienatour 12,2 hiljade, Facebook 10.661 (3. 11. 2026)",
+    "novost": "Facebook objava 27. 10. 2026: doček Nove 2027. godine u Milanu",
+    "cijene": "Najniže cijene sa vienatour.net (Austrija od 45 €, Njemačka od 55 €, Crna Gora od 60 €); ostale cijene u prototipu su primjer."
+  }
+}

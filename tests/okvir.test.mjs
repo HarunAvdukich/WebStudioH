@@ -59,7 +59,7 @@ const stranice = existsSync(DIST)
   : []
 // sati.html je skrivena evidencija rada za klijenta: namjerno bez okvira sajta (tests/seo.test.mjs).
 // Demoi (kalkulator-registracije.html, demo-termini.html) glume sajt kupca, pa su i oni bez okvira.
-const BEZ_OKVIRA = ['sati.html', 'kalkulator-registracije.html', 'demo-termini.html', 'demo-prevoz.html']
+const BEZ_OKVIRA = ['sati.html', 'kalkulator-registracije.html', 'demo-termini.html', 'demo-prevoz.html', 'demo-viena.html']
 const saOkvirom = stranice.filter((s) => !BEZ_OKVIRA.includes(s.put))
 const ostale = saOkvirom.filter((s) => s.put !== 'index.html' && s.put !== 'en.html')
 
