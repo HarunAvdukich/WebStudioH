@@ -14,7 +14,7 @@
   "dizajn": {
     "pravac": "D, Album, odobrena varijanta iz Claude Designa",
     "izvor": "https://claude.ai/artifact/8huaMMRCBSqSaCJdXhoNgd",
-    "napomena": "U pokretnom zidu su samo destinacije. Isječci plakata ostaju prema odluci vlasnika. Utisci putnika su jasno označeni primjeri rasporeda."
+    "napomena": "U pokretnom zidu su samo destinacije. Isječci plakata ostaju prema odluci vlasnika. Primjeri utisaka zamijenjeni su javno objavljenim odlomcima sa linkom na izvor."
   },
   "instagramObjave": {
     "plakat-venecija.webp": "https://www.instagram.com/p/DexM-skoulC/",
@@ -36,5 +36,26 @@
     "pratioci": "Instagram @vienatour 12,2 hiljade, Facebook 10.661 (3. 11. 2026)",
     "novost": "Facebook objava 27. 10. 2026: doček Nove 2027. godine u Milanu",
     "cijene": "Najniže cijene sa vienatour.net (Austrija od 45 €, Njemačka od 55 €, Crna Gora od 60 €); ostale cijene u prototipu su primjer."
-  }
+  },
+  "recenzije": [
+    {
+      "izvor": "CheckMyBus",
+      "url": "https://www.checkmybus.hr/autobusni-prijevoznici/viena-tour#ratings",
+      "autor": "Tatjana",
+      "objavljeno": "2026-06-16",
+      "putovanje": "2026-06-12",
+      "relacija": "Bijeljina - Budva",
+      "ocjena": 5,
+      "od": 5,
+      "provjereno": "2026-11-03",
+      "provjera": "gstack browse, izvorni HTML: ratingsFirstPage i review-item-more-6a30e982b1670642ccec4c4a."
+    },
+    {
+      "izvor": "Traveling.com",
+      "url": "https://traveling.com/hr/bus/orasje/bec",
+      "relacija": "Orašje - Beč",
+      "provjereno": "2026-11-03",
+      "provjera": "Exa indeks izvorne stranice preko agent-reach. Direktan pristup Traveling.com traži provjeru preglednika. Autor, datum i pojedinačna ocjena nisu dodani jer ih izvorni odlomak ne potvrđuje."
+    }
+  ]
 }

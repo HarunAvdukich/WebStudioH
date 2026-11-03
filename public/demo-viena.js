@@ -481,18 +481,15 @@ function crtajSjedista() {
   sjedista += '<div class="vrata wc">WC</div><span></span><div class="vrata">vrata</div>'
   for (let i = 0; i < 5; i++) sjedista += red()
   sjedista += Array.from({ length: 5 }, () => sjediste(broj++, z)).join('')
-  $('dlg-tijelo').innerHTML = `<div class="sjedista-omot">
+  $('dlg-tijelo').innerHTML = `<div class="d-sjedista-uputa"><p>Izaberite ${putnika === 1 ? 'jedno sjedište' : `${putnika} sjedišta`}.</p><div class="legenda-s"><span><i></i>slobodno</span><span><i class="z"></i>zauzeto</span><span><i class="t"></i>Vaše</span></div></div><div class="sjedista-omot">
     <div class="autobus" id="autobus" role="group" aria-label="Sjedišta u autobusu"><div class="vozac">vozač</div>${sjedista}</div>
     <div class="sazetak">
-      <p>Izaberite ${putnika === 1 ? 'jedno sjedište' : `${putnika} sjedišta`}. Broj putnika mijenjate u pretrazi.</p>
-      <div class="legenda-s"><span><i></i>slobodno</span><span><i class="z"></i>zauzeto</span><span><i class="t"></i>Vaše</span></div>
-      <div class="stavka"><span>Sjedišta</span><span id="s-izabrana">nijedno</span></div>
       <div class="stavka"><span>Dolazak</span><span>${p.okvirno ? 'oko ' : ''}${sat(p.stigni % 1440)}, ${esc(p.doo)}</span></div>
       <div class="stavka"><span>Cijena</span><span>${putnika} × ${eura(p.cijena)}</span></div>
-      <div class="stavka" style="border:0"><span>Ukupno</span><span class="ukupno">${eura(p.cijena * putnika)}</span></div>
-      <button class="glavno" type="button" id="dalje" disabled>Dalje na podatke</button>
     </div>
   </div>`
+  $('rez-dno').innerHTML = `<div class="rez-izbor" aria-live="polite"><div><small>Sjedišta</small><strong id="s-izabrana">nijedno</strong></div><div><small>Ukupno</small><b>${eura(p.cijena * putnika)}</b></div></div><button class="glavno" type="button" id="dalje" disabled>Dalje <span aria-hidden="true">→</span></button>`
+  $('rez-dno').hidden = false
   // Zadnji red ima pet mjesta u jednom nizu.
   const bus = $('autobus')
   bus.addEventListener('click', (e) => {
@@ -513,6 +510,7 @@ function sjediste(n, z) {
 }
 
 function crtajPodatke() {
+  $('rez-dno').hidden = true
   $('dlg-tijelo').scrollTop = 0
   const { p } = rez
   korak(2)
@@ -559,6 +557,7 @@ function kodSlika(tekst) {
 }
 
 function crtajKartu(r, p) {
+  $('rez-dno').hidden = true
   document.querySelector('.koraci').hidden = false
   $('dlg-tijelo').onclick = null
   $('dlg-tijelo').scrollTop = 0
@@ -682,7 +681,7 @@ function crtajDane(el, izabran, naKlik, oznaci = false) {
   el.onclick = e => { const b = e.target.closest('[data-dan]'); if (b) naKlik(b.dataset.dan) }
 }
 function crtajDanePretrage() {
-  crtajDane($('dani'), stanje.dan, d => { stanje.dan = d; osvjeziPretragu() }, true)
+  crtajDane($('dani'), stanje.dan, d => { stanje.dan = d; osvjeziPretragu(); document.querySelector('.d-brzi-dani').open = false }, true)
   $('datum').value = stanje.dan
 }
 function osvjeziNajblizi() {
@@ -713,6 +712,7 @@ $('vise').onclick = () => postaviPutnike(stanje.putnika + 1)
 postaviPutnike(1); osvjeziPretragu()
 $('trazi').onsubmit = e => { e.preventDefault(); prikaziRezultate() }
 function postaviPanel(naslov, opis, html, koraci = false) {
+  $('rez-dno').hidden = true
   $('dlg-naslov').textContent = naslov
   $('dlg-opis').textContent = opis
   document.querySelector('.koraci').hidden = !koraci
@@ -764,9 +764,18 @@ function crtajLiniju() {
   const l = LINIJE.find(x => x.id === `${zemlja}-${smjer}`), vremena = l.polasci.map((_, k) => vremenaPolaska(l, k))
   const prvi = l.stanice[0][0], zadnji = l.stanice.at(-1)[0]
   $('linija-tabovi').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.zemlja === zemlja))
-  $('linija-prikaz').innerHTML = `<figure class="d-trasa-foto"><img src="/demo-viena/${LINIJA_FOTO[zemlja]}" loading="lazy" alt="Autobus Viena Tour"><figcaption><p class="d-naslov" style="font-size:34px;margin:0">${prvi} → ${zadnji}</p><p>${l.naziv}</p><p class="d-naslov" style="font-size:30px;color:#f2b33d;margin:12px 0 0">od ${zemlja === 'at' ? 45 : zemlja === 'de' ? 55 : 60} €</p></figcaption></figure>
-  <div class="d-karta">${mapaLinije(l)}<p style="font-size:13px;color:#5d6b78;margin:0">Karta je pojednostavljena. Crveno: izabrana linija.</p></div>
-  <div class="d-stanice"><div class="d-cipovi" role="group" aria-label="Smjer"><button class="d-cip" type="button" data-smjer="t" aria-pressed="${smjer === 't'}">Iz BiH</button><button class="d-cip" type="button" data-smjer="n" aria-pressed="${smjer === 'n'}">Povratak</button></div><p style="font-size:14px;color:#5d6b78">${l.napomena}</p><div class="d-tabela-omot"><table class="d-tabela"><caption class="sr">${l.naziv}, red vožnje</caption><thead><tr><th scope="col">Stanica</th>${l.polasci.map(p => `<th scope="col">${p.naziv}</th>`).join('')}</tr></thead><tbody>${l.stanice.map((s, i) => `<tr><th scope="row">${s[0]}</th>${vremena.map(v => `<td>${v[i].okvirno ? '~' : ''}${sat(v[i].m % 1440)}${Math.floor(v[i].m / 1440) ? '<small>+1 dan</small>' : ''}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p style="font-size:13px;color:#5d6b78">~ okvirni dolazak, zavisi od granice i saobraćaja. Cijene karata u rezervaciji su primjer.</p><button class="d-dugme" type="button" id="rezervisi-liniju">Pronađite polazak</button></div>`
+  $('linija-prikaz').innerHTML = `<div class="d-stanice">
+    <h3 class="d-linija-naslov">${prvi} → ${zadnji}</h3>
+    <div class="d-cipovi" role="group" aria-label="Smjer"><button class="d-cip" type="button" data-smjer="t" aria-pressed="${smjer === 't'}">Iz BiH</button><button class="d-cip" type="button" data-smjer="n" aria-pressed="${smjer === 'n'}">Povratak</button></div>
+    <p class="d-linija-napomena">${l.napomena}</p>
+    <button class="d-dugme" type="button" id="rezervisi-liniju">Pronađite polazak</button>
+    <div class="d-tabela-omot"><table class="d-tabela"><caption class="sr">${l.naziv}, red vožnje</caption><thead><tr><th scope="col">Stanica</th>${l.polasci.map(p => `<th scope="col">${p.naziv}</th>`).join('')}</tr></thead><tbody>${l.stanice.map((s, i) => `<tr><th scope="row">${s[0]}</th>${vremena.map(v => `<td>${v[i].okvirno ? '~' : ''}${sat(v[i].m % 1440)}${Math.floor(v[i].m / 1440) ? '<small>+1 dan</small>' : ''}</td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <p class="d-linija-fusnota">~ okvirni dolazak, zavisi od granice i saobraćaja. Cijene karata u rezervaciji su primjer.</p>
+  </div>
+  <details class="d-trasa-vizual"${matchMedia('(min-width:901px)').matches ? ' open' : ''}>
+    <summary>Pogledajte trasu i autobus</summary>
+    <div class="d-trasa-slike"><figure class="d-trasa-foto"><img src="/demo-viena/${LINIJA_FOTO[zemlja]}" loading="lazy" alt="Autobus Viena Tour"><figcaption><p class="d-naslov" style="font-size:30px;margin:0">${prvi} → ${zadnji}</p><p>${l.naziv}</p><p class="d-naslov" style="font-size:28px;color:#f2b33d;margin:12px 0 0">od ${zemlja === 'at' ? 45 : zemlja === 'de' ? 55 : 60} €</p></figcaption></figure><div class="d-karta">${mapaLinije(l)}<p class="d-linija-fusnota">Karta je pojednostavljena. Crveno: izabrana linija.</p></div></div>
+  </details>`
   $('linija-prikaz').querySelectorAll('[data-smjer]').forEach(b => b.onclick = () => { smjer = b.dataset.smjer; crtajLiniju() })
   $('rezervisi-liniju').onclick = () => {
     stanje.od = smjer === 't' ? (l.stanice.some(s => s[0] === stanje.od) && BIH.includes(stanje.od) ? stanje.od : 'Brčko') : prvi
@@ -776,6 +785,7 @@ function crtajLiniju() {
 }
 $('linija-tabovi').onclick = e => { const b = e.target.closest('[data-zemlja]'); if (b) { zemlja = b.dataset.zemlja; crtajLiniju() } }
 crtajLiniju()
+matchMedia('(min-width:901px)').addEventListener('change', e => { document.querySelector('.d-trasa-vizual').open = e.matches })
 // Excursions and original Instagram posters from the approved Album direction.
 function prikaziIzlet(id) {
   const z = SADRZAJ.izleti.find(x => x.id === id)

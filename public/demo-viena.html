@@ -16,18 +16,18 @@
 <main id="glavno"><section id="vrh" class="d-omot">
 <div class="d-hero">
 <div>
-<h1 class="d-naslov d-h1" style="font-size: 70px; margin: 0">Za Beč, Minhen i more. Polasci iz Vašeg mjesta.</h1>
-<p class="d-uvod" style="font-size: 20px; color: #4a5866; margin: 22px 0 30px; max-width: 34ch">Izaberite polazak i sjedište na stranici. Kartu platite vozaču ili u poslovnici.</p>
+<h1 class="d-naslov d-h1">Za Beč, Minhen i more.</h1>
+<p class="d-uvod">Polasci iz Vašeg mjesta. Izaberite sjedište, platite vozaču ili u poslovnici.</p>
 <form class="d-trazi" id="trazi">
 <label class="d-polje" for="od">Polazim iz<select id="od"></select></label>
 <label class="d-polje" for="kuda">Putujem u<select id="kuda"></select></label>
-<div class="d-polje" style="grid-column:1/-1"><span id="dani-ime">Datum polaska <small>• ima polazak</small></span><div class="d-dani" id="dani" role="group" aria-labelledby="dani-ime"></div><label class="d-drugi-datum" for="datum">Drugi datum<input id="datum" type="date" required></label></div>
+<label class="d-polje" for="datum">Datum polaska<input id="datum" type="date" required></label>
 <div class="d-polje d-putnici"><span id="putnici-ime">Putnici</span><div class="d-koracnik" role="group" aria-labelledby="putnici-ime"><button type="button" class="d-krug-dugme" id="manje" aria-label="Jedan putnik manje">−</button><output id="broj" aria-live="polite">1</output><button type="button" class="d-krug-dugme" id="vise" aria-label="Jedan putnik više">+</button></div></div>
-<button type="submit" class="d-dugme d-trazi-dugme">Prikaži polaske</button>
-<button type="button" class="d-zamijeni" id="zamijeni" style="grid-column:1/-1">⇄ Zamijeni smjer</button>
+<button type="submit" class="d-dugme d-trazi-dugme">Prikažite polaske</button>
+<div class="d-trazi-alati"><details class="d-brzi-dani"><summary id="dani-ime">Sljedećih 7 dana</summary><div class="d-dani" id="dani" role="group" aria-labelledby="dani-ime"></div></details><button type="button" class="d-zamijeni" id="zamijeni">⇄ Zamijenite smjer</button></div>
 </form>
-<p style="display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; font-size: 15px; font-weight: 600; color: #4a5866">
-<span style="color: #14202b"><span id="najblizi"></span></span><span>Sjedište birate sami</span><span>Karta se plaća vozaču</span>
+<p class="d-prvi-polazak">
+<span id="najblizi"></span>
 </p>
 </div>
 <div class="d-zid-omot"><div class="d-zid" aria-label="Fotografije destinacija">
@@ -332,9 +332,9 @@
 
 <section style="padding: 72px 0">
 <div class="d-omot">
-<div style="position: relative; border-radius: 32px; overflow: hidden; min-height: 560px; display: flex; align-items: flex-end">
+<div style="position: relative; border-radius: 12px; overflow: hidden; min-height: 560px; display: flex; align-items: flex-end">
 <img loading="lazy" decoding="async" src="/demo-viena/foto-tri-autobusa.webp" alt="Tri autobusa Viena Toura na stanici u inostranstvu" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
-<div style="position: relative; margin: 28px; padding: 30px 32px; max-width: 520px; border-radius: 24px; background: rgba(255,255,255,.94)">
+<div style="position: relative; margin: 28px; padding: 30px 32px; max-width: 520px; border-radius: 12px; background: rgba(255,255,255,.94)">
 <p class="d-naslov" style="font-size: clamp(22px,3vw,40px); overflow-wrap:anywhere; margin: 0 0 12px; color: #d2202f">#zakilometarispredsvih</p>
 <p style="margin: 0; font-size: 18px; color: #2c3a47">Tako potpisujemo svaku objavu, i tako vozimo: polazak na vrijeme, sjedište koje ste izabrali i karta koju plaćate vozaču.</p>
 </div>
@@ -373,45 +373,21 @@
 </div>
 </section>
 
-<section style="padding: 72px 0; background: #ffffff">
+<section id="utisci" class="d-recenzije">
 <div class="d-omot">
-<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0">Šta kažu putnici</h2>
-<p style="margin: 10px 0 32px; color: #5d6b78; font-size: 15px">Primjer rasporeda. Ovdje idu prave ocjene sa Googlea i Facebooka, uz dozvolu putnika.</p>
+<h2 class="d-naslov d-h2">Šta kažu putnici</h2>
+<p class="d-recenzije-uvod">Odlomci javno objavljenih recenzija. Cijeli tekst pročitajte na izvoru.</p>
 <div class="d-utisci">
-
-<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
-<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
-</div>
-<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Autobus krenuo tačno u minut, vozači ljubazni, a sjedište je bilo baš ono koje sam izabrala.</blockquote>
-<figcaption style="display: flex; align-items: center; gap: 12px">
-<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">A</span>
-<span style="display: flex; flex-direction: column"><b>Putnica iz Brčkog</b><span style="font-size: 14px; color: #5d6b78">Brčko do Beča</span></span>
-</figcaption>
+<figure class="d-recenzija">
+<div class="d-recenzija-ocjena" aria-label="Ocjena 5 od 5">5 / 5 <span aria-hidden="true">★★★★★</span></div>
+<blockquote>Zahvaljujem se na usluzi...za vozače sve pohvale vrlo vrlo ljubazni i ekspeditivni...</blockquote>
+<figcaption><b>Tatjana</b><span>Bijeljina → Budva · <time datetime="2026-06-16">16. 6. 2026.</time></span><a href="https://www.checkmybus.hr/autobusni-prijevoznici/viena-tour#ratings" target="_blank" rel="noopener">Pročitajte na CheckMyBusu ↗</a></figcaption>
 </figure>
-
-<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
-<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
-</div>
-<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Sve organizovano od polaska do povratka. Idemo opet na proljeće.</blockquote>
-<figcaption style="display: flex; align-items: center; gap: 12px">
-<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">M</span>
-<span style="display: flex; flex-direction: column"><b>Putnik iz Bijeljine</b><span style="font-size: 14px; color: #5d6b78">Izlet u Veneciju</span></span>
-</figcaption>
+<figure class="d-recenzija">
+<p class="d-recenzija-izvor">Iskustvo putnika sa Traveling.com</p>
+<blockquote>Sve pohvale za vozače Viena Tour! Vrlo ugodni i raspoloženi, sve se lako s njima dogovoriti.</blockquote>
+<figcaption><b>Orašje → Beč</b><a href="https://traveling.com/hr/bus/orasje/bec" target="_blank" rel="noopener">Pročitajte na Traveling.com ↗</a></figcaption>
 </figure>
-
-<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
-<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
-<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
-</div>
-<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Čist autobus, Wi-Fi radi cijelim putem i punjač kod sjedišta. Preporučujem.</blockquote>
-<figcaption style="display: flex; align-items: center; gap: 12px">
-<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">S</span>
-<span style="display: flex; flex-direction: column"><b>Putnica iz Orašja</b><span style="font-size: 14px; color: #5d6b78">Minhen i nazad</span></span>
-</figcaption>
-</figure>
-
 </div>
 </div>
 </section>
@@ -478,6 +454,7 @@
   </div>
   <div class="koraci" aria-hidden="true"><span id="k1">Sjedište</span><span id="k2">Podaci</span><span id="k3">Karta</span></div>
   <div class="dlg-tijelo" id="dlg-tijelo"></div>
+  <div class="rez-dno" id="rez-dno" hidden></div>
 </dialog>
 
 <div class="tost" id="tost" role="status" aria-live="polite"></div>
