@@ -11,6 +11,25 @@
     "poslovnica-bijeljina.webp": "https://vienatour.net/images/eksterne/Photo-office-01-4d5506.jpg",
     "poslovnica-brcko.webp": "https://vienatour.net/images/eksterne/Photo-oofice-02-9eef78.jpg"
   },
+  "dizajn": {
+    "pravac": "D, Album, odobrena varijanta iz Claude Designa",
+    "izvor": "https://claude.ai/artifact/8huaMMRCBSqSaCJdXhoNgd",
+    "napomena": "U pokretnom zidu su samo destinacije. Isječci plakata ostaju prema odluci vlasnika. Utisci putnika su jasno označeni primjeri rasporeda."
+  },
+  "instagramObjave": {
+    "plakat-venecija.webp": "https://www.instagram.com/p/DexM-skoulC/",
+    "plakat-trst.webp": "https://www.instagram.com/p/De7dpvWIREj/",
+    "plakat-transilvanija.webp": "https://www.instagram.com/p/De7k3GfoxVH/",
+    "plakat-graz.webp": "https://www.instagram.com/p/Derx5ckI0_M/",
+    "plakat-ljubljana.webp": "https://www.instagram.com/p/DeryI2WIh_n/",
+    "plakat-halstat.webp": "https://www.instagram.com/p/DeryVDPoGZv/",
+    "plakat-temisvar.webp": "https://www.instagram.com/p/DeucnUKIq5W/",
+    "plakat-bec-bozic.webp": "https://www.instagram.com/p/Derzfv_Is1m/",
+    "plakat-milano.webp": "https://www.instagram.com/p/DfAvJY0oub2/",
+    "plakat-cg.webp": "https://www.instagram.com/p/DM0n025oE4X/",
+    "plakat-wien.webp": "https://www.instagram.com/p/DN3wJqw2Iik/",
+    "napomena": "Plakati, reel i fotografski isječci su preuzeti u prethodnoj sesiji 3. 11. 2026. Fotografije destinacija su isječci odgovarajućih plakata; nisu zamijenjene generisanim slikama. Fotografija tri autobusa je sa Facebook profila navedenog u kontaktima."
+  },
   "podaci": {
     "redVoznje": "vienatour.net, prozori 'Vrijeme i lokacija polaska' (Austrija, Njemačka, Crna Gora). Prava su samo vremena polazaka; dolasci su okvirni (12go.asia, rome2rio, checkmybus).",
     "kontakti": "vienatour.net (Kontakt) i Facebook stranica 100037192406133",
