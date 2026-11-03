@@ -1,645 +1,458 @@
-<!doctype html>
-<html lang="bs">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Viena Tour: red vožnje i karte (prototip)</title>
-<meta name="description" content="Prototip nove stranice za Viena Tour: polasci za Austriju, Njemačku i Crnu Goru, karta sa izborom sjedišta i pregled rezervacija za prevoznika.">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#fbfbf9">
-<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,500;0,600;0,700;1,700;1,800&family=Barlow:wght@400;500;600&display=swap">
-<link rel="preload" as="image" href="/demo-viena/setra-zlatna.webp">
-<style>
-:root {
-  --karoserija: #fbfbf9;
-  --lim: #eceef0;
-  --lim2: #d3d8dd;
-  --asfalt: #1e2a35;
-  --asfalt2: #56636e;
-  --crvena: #d7222f;
-  --crvena2: #b01a26;
-  --noc: #14304a;
-  --more: #0d7480;
-  --zeleno: #1f7a4c;
-  --uski: 'Barlow Condensed', 'Arial Narrow', sans-serif;
-  --r: 14px;
-  color-scheme: light;
-}
-* { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 76px; }
-body {
-  margin: 0;
-  background: var(--karoserija);
-  color: var(--asfalt);
-  font: 400 17px/1.55 Barlow, system-ui, sans-serif;
-  font-variant-numeric: tabular-nums;
-}
-button, input, select, textarea { font: inherit; color: inherit; }
-button { cursor: pointer; }
-img { display: block; max-width: 100%; height: auto; }
-a { color: inherit; }
-:focus-visible { outline: 3px solid var(--crvena); outline-offset: 2px; border-radius: 4px; }
-.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.omot { width: min(1180px, 100% - 32px); margin-inline: auto; }
-h1, h2, h3 { font-family: var(--uski); font-weight: 700; line-height: 1.02; margin: 0; letter-spacing: -0.005em; }
-h2 { font-size: clamp(34px, 4.4vw, 52px); }
-h3 { font-size: 24px; }
-p { margin: 0; }
+<!doctype html><html lang="bs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Viena Tour: putovanja i red vožnje (prototip)</title><meta name="description" content="Prijedlog nove stranice za Viena Tour: izleti, redovne linije za Austriju, Njemačku i Crnu Goru te probna rezervacija sjedišta."><meta name="robots" content="noindex"><meta name="theme-color" content="#f4f6f9"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/demo-viena.css"><script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script></head><body>
+<div class="d"><div class="d-prototip"><div class="d-omot"><span>Prijedlog stranice za Viena Tour. Rezervacije su probne i čuvaju se na ovom uređaju.</span><a href="https://hunar.ba/?utm_source=demo-viena">Izradio Hunar</a><a href="#moje-karte">Moje karte</a><a href="#za-vienu">Za Vienu</a></div></div>
 
-/* Traka prototipa: jasno piše ko je napravio stranicu i da rezervacije nisu prave. */
-.proto {
-  background: var(--asfalt);
-  color: #dfe5ea;
-  font-size: 14px;
-  line-height: 1.35;
-}
-.proto .omot { display: flex; gap: 8px 18px; align-items: center; justify-content: space-between; padding: 8px 0; flex-wrap: wrap; }
-.proto a { color: #fff; text-underline-offset: 3px; }
-.proto .dugmad { display: flex; gap: 14px; }
-
-/* Zaglavlje sa natpisom kao na boku autobusa. */
-.zaglavlje {
-  position: sticky; top: 0; z-index: 20;
-  background: rgba(251, 251, 249, 0.94);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--lim2);
-}
-.zaglavlje .omot { display: flex; align-items: center; gap: 24px; height: 64px; }
-.znak {
-  font: italic 800 30px/1 var(--uski);
-  color: var(--crvena);
-  text-decoration: none;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-  transform: skewX(-4deg);
-}
-.meni { display: flex; gap: 22px; margin-left: auto; font-weight: 500; font-size: 16px; }
-.meni a { text-decoration: none; padding: 6px 0; border-bottom: 2px solid transparent; }
-.meni a:hover { border-color: var(--crvena); }
-.tel {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 9px 16px; border-radius: 999px;
-  background: var(--crvena); color: #fff; text-decoration: none; font-weight: 600; white-space: nowrap;
-}
-.tel:hover { background: var(--crvena2); }
-.tel svg { width: 17px; height: 17px; }
-
-/* Prvi ekran */
-.prvi { padding: 28px 0 56px; position: relative; overflow: hidden; }
-.prvi::before {
-  /* Pruga kao na karoseriji, ide kroz cijeli prvi ekran iza sadržaja. */
-  content: ''; position: absolute; left: -5%; right: -5%; top: 63%; height: 64px;
-  background: linear-gradient(var(--crvena) 0 22px, transparent 22px 34px, var(--lim2) 34px 40px, transparent 40px);
-  transform: skewY(-3deg); opacity: 0.9; z-index: -1;
-}
-.prvi .omot { display: grid; grid-template-columns: 1.02fr 1fr; gap: 48px; align-items: start; }
-.prvi h1 { font-size: clamp(42px, 4.3vw, 62px); max-width: 15ch; }
-.prvi .uvod { margin-top: 12px; font-size: 19px; color: var(--asfalt2); max-width: 46ch; }
-.vijest {
-  display: inline-flex; gap: 10px; align-items: center; margin-bottom: 14px;
-  background: #fff; border: 1px solid var(--lim2); border-radius: 999px; padding: 6px 14px 6px 6px; font-size: 15px;
-}
-.vijest b { background: var(--asfalt); color: #fff; border-radius: 999px; padding: 2px 10px; font-weight: 600; font-size: 13px; }
-
-/* Pretraga */
-.trazi {
-  margin-top: 20px;
-  background: #fff;
-  border: 1px solid var(--lim2);
-  border-radius: 18px;
-  padding: 18px;
-  box-shadow: 0 18px 40px -26px rgba(30, 42, 53, 0.45);
-}
-.relacija { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: end; }
-.polje label, .polje .ime { display: block; font-size: 14px; font-weight: 600; color: var(--asfalt2); margin-bottom: 5px; }
-select, input[type=text], input[type=tel], input[type=date], input[type=number], textarea {
-  width: 100%; border: 1px solid var(--lim2); border-radius: 10px; background: var(--karoserija);
-  padding: 11px 12px; font-size: 17px; min-height: 48px;
-}
-select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2356636e' stroke-width='2'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 34px; font-weight: 600; }
-.zamijeni {
-  width: 44px; height: 48px; border-radius: 10px; border: 1px solid var(--lim2); background: #fff;
-  display: grid; place-items: center;
-}
-.zamijeni svg { width: 20px; height: 20px; }
-.dani { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; margin-top: 14px; }
-.dan {
-  border: 1px solid var(--lim2); background: var(--karoserija); border-radius: 10px; padding: 7px 2px; line-height: 1.15;
-  display: grid; justify-items: center; font-size: 13px; color: var(--asfalt2);
-}
-.dan b { font: 600 20px/1.1 var(--uski); color: var(--asfalt); }
-.dan[aria-pressed=true] { background: var(--asfalt); border-color: var(--asfalt); color: #c9d2da; }
-.dan[aria-pressed=true] b { color: #fff; }
-.dan:disabled { opacity: 0.4; cursor: default; }
-.dno { display: flex; gap: 12px; align-items: end; margin-top: 14px; }
-.putnici { display: flex; align-items: center; border: 1px solid var(--lim2); border-radius: 10px; height: 48px; background: var(--karoserija); }
-.putnici button { width: 42px; height: 46px; border: 0; background: none; font-size: 22px; }
-.putnici output { min-width: 26px; text-align: center; font-weight: 600; }
-.glavno {
-  flex: 1; height: 50px; border: 0; border-radius: 12px; background: var(--crvena); color: #fff;
-  font: 700 21px/1 var(--uski); letter-spacing: 0.01em;
-}
-.glavno:hover { background: var(--crvena2); }
-
-/* Tabla polazaka preko slike autobusa */
-.slika-autobusa { position: relative; margin-top: 8px; }
-.slika-autobusa img { border-radius: 18px; aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-.tabla {
-  position: relative; margin: -110px 0 0 -28px; width: calc(100% + 4px);
-  background: var(--asfalt); color: #fff; border-radius: 16px; padding: 16px 18px 10px;
-  box-shadow: 0 24px 50px -24px rgba(20, 30, 40, 0.7);
-}
-.tabla-vrh { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 6px; }
-.tabla-vrh h2 { font-size: 22px; font-weight: 600; color: #fff; }
-.tabla-vrh select { width: auto; min-height: 36px; padding: 5px 30px 5px 10px; background-color: #2b3a47; border-color: #3b4b59; color: #fff; font-size: 16px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23c9d2da' stroke-width='2'/%3E%3C/svg%3E"); }
-.sat { font: 600 15px/1 var(--uski); color: #9fb0bf; }
-.red-table { display: grid; grid-template-columns: 74px 1fr auto; gap: 2px 14px; align-items: center; width: 100%; padding: 10px 0; border: 0; border-top: 1px solid #33424f; background: none; color: inherit; text-align: left; }
-.red-table:hover .kuda { text-decoration: underline; text-underline-offset: 3px; }
-.red-table .vr { font: 700 32px/1 var(--uski); letter-spacing: 0.01em; }
-.red-table .kuda { font-weight: 600; font-size: 17px; line-height: 1.2; }
-.red-table .kad { font-size: 14px; color: #9fb0bf; }
-.red-table .za { font: 600 16px/1.1 var(--uski); text-align: right; color: #fff; }
-.red-table .za small { display: block; font: 400 13px/1.3 Barlow, sans-serif; color: #9fb0bf; }
-.tabla-dno { font-size: 13px; color: #9fb0bf; padding: 8px 0 4px; border-top: 1px solid #33424f; }
-.prazno { padding: 18px 0; color: #c9d2da; }
-@keyframes preklop { from { transform: rotateX(-90deg); opacity: 0; } to { transform: none; opacity: 1; } }
-.pokret .red-table { animation: preklop 0.45s cubic-bezier(.2,.7,.2,1) both; transform-origin: top; }
-@media (prefers-reduced-motion: reduce) { .pokret .red-table { animation: none; } html { scroll-behavior: auto; } }
-
-/* Rezultati pretrage */
-.sekcija { padding: 72px 0; }
-.sekcija.siva { background: var(--lim); }
-.naslov { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
-.naslov p { color: var(--asfalt2); max-width: 52ch; margin-top: 10px; }
-#rezultati[hidden] { display: none; }
-.lista { display: grid; gap: 12px; }
-.polazak {
-  display: grid; grid-template-columns: 1.3fr 1fr auto; gap: 18px; align-items: center;
-  background: #fff; border: 1px solid var(--lim2); border-radius: var(--r); padding: 18px 20px;
-}
-.vremena { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; }
-.vremena b { font: 700 36px/1 var(--uski); }
-.vremena .okv { color: var(--asfalt2); }
-.vremena small { display: block; font-size: 14px; color: var(--asfalt2); margin-top: 3px; }
-.crta { height: 2px; background: repeating-linear-gradient(90deg, var(--lim2) 0 6px, transparent 6px 10px); position: relative; }
-.crta span { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); background: #fff; padding: 0 8px; font-size: 14px; color: var(--asfalt2); white-space: nowrap; }
-.detalji { font-size: 15px; color: var(--asfalt2); }
-.detalji strong { color: var(--asfalt); font-weight: 600; }
-.mjesta-malo { color: var(--crvena2); font-weight: 600; }
-.cijena { text-align: right; }
-.cijena b { font: 700 30px/1 var(--uski); display: block; }
-.cijena small { font-size: 13px; color: var(--asfalt2); }
-.dugme {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  min-height: 46px; padding: 0 20px; border-radius: 12px; border: 0;
-  background: var(--asfalt); color: #fff; font-weight: 600; text-decoration: none; white-space: nowrap;
-}
-.dugme:hover { background: #2c3b49; }
-.dugme.crveno { background: var(--crvena); }
-.dugme.crveno:hover { background: var(--crvena2); }
-.dugme.svijetlo { background: #fff; color: var(--asfalt); border: 1px solid var(--lim2); }
-.dugme.svijetlo:hover { background: var(--lim); }
-.oznaka { display: inline-block; font: 600 13px/1 Barlow, sans-serif; padding: 4px 9px; border-radius: 999px; background: var(--lim); color: var(--asfalt); }
-.oznaka.at { background: #fbe3e5; color: var(--crvena2); }
-.oznaka.de { background: #dfe7ef; color: var(--noc); }
-.oznaka.cg { background: #dbefef; color: var(--more); }
-.nema { background: #fff; border: 1px dashed var(--lim2); border-radius: var(--r); padding: 22px; }
-.nema p + p { margin-top: 8px; color: var(--asfalt2); }
-
-/* Red vožnje */
-.kartice { display: flex; gap: 6px; background: #fff; border: 1px solid var(--lim2); border-radius: 12px; padding: 4px; width: max-content; max-width: 100%; overflow-x: auto; }
-.kartice button { border: 0; background: none; border-radius: 9px; padding: 9px 16px; font-weight: 600; white-space: nowrap; }
-.kartice button[aria-selected=true] { background: var(--asfalt); color: #fff; }
-.vozni { display: grid; grid-template-columns: 1fr 360px; gap: 32px; align-items: start; }
-.smjerovi { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.smjer { background: #fff; border: 1px solid var(--lim2); border-radius: var(--r); padding: 18px; }
-.smjer h3 { font-size: 22px; margin-bottom: 4px; }
-.smjer .kada { font-size: 15px; color: var(--asfalt2); }
-.sedmica { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; margin: 14px 0 6px; }
-.sedmica div { text-align: center; font-size: 12px; color: var(--asfalt2); }
-.sedmica i { display: block; height: 8px; border-radius: 3px; margin-top: 3px; background: var(--lim); }
-.sedmica i.j { background: #f0b14a; }
-.sedmica i.v { background: var(--noc); }
-.sedmica .danas { color: var(--asfalt); font-weight: 600; }
-.legenda { display: flex; gap: 14px; font-size: 13px; color: var(--asfalt2); margin-bottom: 10px; }
-.legenda span::before { content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 5px; vertical-align: -1px; background: #f0b14a; }
-.legenda span.v::before { background: var(--noc); }
-table.stanice { width: 100%; border-collapse: collapse; font-size: 16px; }
-table.stanice th { text-align: left; font-size: 13px; font-weight: 600; color: var(--asfalt2); padding: 6px 0; }
-table.stanice td { padding: 7px 0; border-top: 1px solid var(--lim); vertical-align: top; }
-table.stanice td:not(:first-child), table.stanice th:not(:first-child) { text-align: right; width: 70px; font-weight: 600; }
-table.stanice .okv { color: var(--asfalt2); font-weight: 400; }
-table.stanice .mjesto { display: block; font-size: 13px; color: var(--asfalt2); }
-table.stanice tr.granica td { border-top: 2px solid var(--asfalt); }
-.napomena { font-size: 14px; color: var(--asfalt2); margin-top: 12px; }
-.mapa { background: #fff; border: 1px solid var(--lim2); border-radius: var(--r); padding: 14px; position: sticky; top: 84px; }
-.mapa svg { width: 100%; height: auto; display: block; }
-.mapa figcaption { font-size: 13px; color: var(--asfalt2); margin-top: 8px; }
-.mapa .ruta { fill: none; stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; opacity: 0.18; transition: opacity .3s; }
-.mapa .ruta.aktivna { opacity: 1; }
-.mapa .grad { font: 600 11px Barlow, sans-serif; fill: var(--asfalt); }
-.mapa .grad.mali { font-weight: 400; fill: var(--asfalt2); font-size: 10px; }
-
-/* Vozni park */
-.park { display: grid; grid-template-columns: 1.4fr 1fr 1fr; grid-template-rows: auto auto; gap: 14px; }
-.park figure { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; background: var(--lim2); }
-.park figure:first-child { grid-row: span 2; }
-.park img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 3 / 2; }
-.park figcaption { position: absolute; left: 10px; bottom: 10px; background: rgba(251, 251, 249, 0.94); padding: 5px 10px; border-radius: 8px; font-size: 14px; font-weight: 600; }
-.cinjenice { display: flex; flex-wrap: wrap; gap: 10px 34px; margin-top: 26px; font-size: 17px; }
-.cinjenice b { font: 700 28px/1 var(--uski); display: block; }
-
-/* Najam */
-.najam { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-.vozila { display: grid; gap: 10px; margin-top: 22px; }
-.vozilo { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: center; background: #fff; border: 1px solid var(--lim2); border-radius: 12px; padding: 10px; }
-.vozilo img { border-radius: 8px; aspect-ratio: 3 / 2; object-fit: cover; }
-.vozilo b { display: block; font-weight: 600; }
-.vozilo span { font-size: 15px; color: var(--asfalt2); }
-form.upit { background: #fff; border: 1px solid var(--lim2); border-radius: 18px; padding: 22px; display: grid; gap: 14px; }
-.dva { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-.izbor { display: flex; gap: 6px; flex-wrap: wrap; }
-.izbor label { border: 1px solid var(--lim2); border-radius: 999px; padding: 7px 14px; font-weight: 500; cursor: pointer; background: var(--karoserija); }
-.izbor input { position: absolute; opacity: 0; pointer-events: none; }
-.izbor input:checked + span { color: #fff; }
-.izbor label:has(input:checked) { background: var(--asfalt); border-color: var(--asfalt); color: #fff; }
-.izbor label:has(input:focus-visible) { outline: 3px solid var(--crvena); outline-offset: 2px; }
-
-/* Poslovnice */
-.poslovnice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.poslovnica { background: #fff; border: 1px solid var(--lim2); border-radius: var(--r); overflow: hidden; display: flex; flex-direction: column; }
-.poslovnica img { aspect-ratio: 16 / 10; object-fit: cover; width: 100%; }
-.poslovnica .tijelo { padding: 18px; display: grid; gap: 10px; }
-.poslovnica .adresa { color: var(--asfalt2); font-size: 15px; }
-.brojevi { display: flex; flex-wrap: wrap; gap: 6px; }
-.brojevi a { text-decoration: none; border: 1px solid var(--lim2); border-radius: 999px; padding: 5px 12px; font-weight: 600; font-size: 15px; }
-.brojevi a:hover { border-color: var(--asfalt); }
-.bez-slike { aspect-ratio: 16 / 10; background: var(--crvena); color: #fff; display: grid; place-items: center; font: italic 800 34px/1 var(--uski); }
-
-/* Podnožje */
-.podnozje { background: var(--asfalt); color: #c9d2da; padding: 46px 0 30px; font-size: 15px; }
-.podnozje .omot { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 30px; }
-.podnozje .znak { color: #fff; font-size: 34px; display: inline-block; margin-bottom: 10px; }
-.podnozje a { color: #fff; }
-.podnozje h3 { color: #fff; font-size: 20px; margin-bottom: 10px; }
-.mreze { display: grid; gap: 8px; }
-.mreze a { display: inline-flex; gap: 10px; align-items: center; text-decoration: none; }
-.mreze svg { width: 20px; height: 20px; flex: none; }
-.hunar { grid-column: 1 / -1; border-top: 1px solid #33424f; padding-top: 18px; display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
-
-/* Rezervacija */
-dialog {
-  border: 0; padding: 0; border-radius: 20px; width: min(760px, 100% - 24px); max-height: calc(100dvh - 24px);
-  background: var(--karoserija); color: var(--asfalt); box-shadow: 0 30px 80px -20px rgba(10, 20, 30, 0.5);
-}
-dialog::backdrop { background: rgba(20, 30, 40, 0.55); backdrop-filter: blur(3px); }
-.dlg-vrh { display: flex; justify-content: space-between; align-items: start; gap: 12px; padding: 20px 22px 14px; border-bottom: 1px solid var(--lim2); position: sticky; top: 0; background: var(--karoserija); z-index: 2; }
-.dlg-vrh h2 { font-size: 30px; }
-.dlg-vrh p { color: var(--asfalt2); font-size: 15px; margin-top: 4px; }
-.zatvori { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--lim2); background: #fff; font-size: 22px; line-height: 1; flex: none; }
-.koraci { display: flex; gap: 6px; padding: 12px 22px 0; font-size: 14px; color: var(--asfalt2); }
-.koraci span { flex: 1; border-top: 3px solid var(--lim2); padding-top: 6px; }
-.koraci span.da { border-color: var(--crvena); color: var(--asfalt); font-weight: 600; }
-.dlg-tijelo { padding: 18px 22px 22px; }
-.sjedista-omot { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: start; }
-.autobus {
-  border: 2px solid var(--lim2); border-radius: 40px 40px 16px 16px; padding: 18px 14px 14px; background: #fff;
-  display: grid; grid-template-columns: repeat(5, 38px); gap: 6px; width: max-content;
-}
-.autobus .vozac { grid-column: 4 / 6; height: 30px; border-radius: 8px; background: var(--lim); font-size: 11px; display: grid; place-items: center; color: var(--asfalt2); margin-bottom: 8px; }
-.autobus .vrata.wc { grid-column: 1 / 3; }
-.autobus .vrata { grid-column: 4 / 6;font-size: 11px; color: var(--asfalt2); display: grid; place-items: center; border: 1px dashed var(--lim2); border-radius: 6px; }
-.sjediste {
-  width: 38px; height: 36px; border-radius: 8px 8px 5px 5px; border: 1px solid var(--lim2); background: var(--karoserija);
-  font: 600 13px/1 Barlow, sans-serif; padding: 0;
-}
-.sjediste:hover:not(:disabled) { border-color: var(--asfalt); }
-.sjediste:disabled { background: var(--lim2); color: #8a96a1; cursor: not-allowed; border-color: var(--lim2); }
-.sjediste[aria-pressed=true] { background: var(--crvena); border-color: var(--crvena); color: #fff; }
-.sazetak { display: grid; gap: 12px; position: sticky; top: 90px; }
-.sazetak .stavka { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px solid var(--lim); padding-bottom: 8px; font-size: 15px; }
-.sazetak .stavka span:first-child { color: var(--asfalt2); }
-.sazetak .ukupno { font: 700 30px/1 var(--uski); }
-.legenda-s { display: flex; gap: 12px; font-size: 13px; color: var(--asfalt2); flex-wrap: wrap; }
-.legenda-s i { display: inline-block; width: 14px; height: 14px; border-radius: 4px; border: 1px solid var(--lim2); background: var(--karoserija); vertical-align: -2px; margin-right: 4px; }
-.legenda-s i.z { background: var(--lim2); }
-.legenda-s i.t { background: var(--crvena); border-color: var(--crvena); }
-.forma { display: grid; gap: 14px; }
-.provjera { display: flex; gap: 10px; align-items: start; font-size: 15px; }
-.provjera input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--crvena); }
-.greska { color: var(--crvena2); font-size: 14px; font-weight: 600; }
-.dlg-dno { display: flex; justify-content: space-between; gap: 10px; margin-top: 18px; }
-
-/* Karta */
-.karta {
-  background: #fff; border-radius: 16px; border: 1px solid var(--lim2); overflow: hidden;
-  display: grid; grid-template-columns: 1fr 170px;
-}
-.karta-glava { grid-column: 1 / -1; background: var(--crvena); color: #fff; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; }
-.karta-glava .znak { color: #fff; font-size: 26px; }
-.karta-tijelo { padding: 18px; display: grid; gap: 14px; }
-.karta-relacija { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: center; }
-.karta-relacija b { font: 700 34px/1 var(--uski); display: block; }
-.karta-relacija div:last-child { text-align: right; }
-.karta-podaci { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 14px; color: var(--asfalt2); }
-.karta-podaci b { display: block; color: var(--asfalt); font-size: 17px; font-weight: 600; }
-.karta-kod { border-left: 2px dashed var(--lim2); padding: 18px; display: grid; justify-items: center; align-content: center; gap: 8px; text-align: center; font-size: 13px; color: var(--asfalt2); }
-.karta-kod b { font: 700 22px/1 var(--uski); color: var(--asfalt); letter-spacing: 0.04em; }
-.potvrda { margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: #e3f1e9; color: #134a2f; font-size: 15px; }
-
-/* Pogled za Vienu */
-#za-vienu[hidden], main[hidden] { display: none; }
-.uprava-vrh { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 22px; }
-.uprava-vrh p { color: var(--asfalt2); margin-top: 8px; max-width: 60ch; }
-.brojke { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 18px; }
-.brojke div { background: #fff; border: 1px solid var(--lim2); border-radius: 12px; padding: 14px 16px; font-size: 14px; color: var(--asfalt2); }
-.brojke b { display: block; font: 700 34px/1 var(--uski); color: var(--asfalt); margin-bottom: 4px; }
-.voznja { background: #fff; border: 1px solid var(--lim2); border-radius: var(--r); margin-bottom: 10px; }
-.voznja summary { list-style: none; display: grid; grid-template-columns: 70px 1fr 200px 24px; gap: 16px; align-items: center; padding: 14px 18px; cursor: pointer; }
-.voznja summary::-webkit-details-marker { display: none; }
-.voznja summary .vr { font: 700 30px/1 var(--uski); }
-.voznja summary .opis small { display: block; color: var(--asfalt2); font-size: 14px; }
-.popunjenost { font-size: 14px; color: var(--asfalt2); }
-.popunjenost .traka { height: 8px; border-radius: 4px; background: var(--lim); margin-top: 5px; overflow: hidden; }
-.popunjenost .traka i { display: block; height: 100%; background: var(--asfalt); border-radius: 4px; }
-.voznja summary .strelica { transition: transform .2s; }
-.voznja[open] summary .strelica { transform: rotate(180deg); }
-.spisak { padding: 0 18px 16px; }
-.spisak table { width: 100%; border-collapse: collapse; font-size: 15px; }
-.spisak th { text-align: left; font-size: 13px; color: var(--asfalt2); font-weight: 600; padding: 6px 8px 6px 0; }
-.spisak td { border-top: 1px solid var(--lim); padding: 8px 8px 8px 0; }
-.spisak tr.nova td { background: #fdf0f1; }
-.spisak .akcije { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
-
-.tost {
-  position: fixed; left: 50%; bottom: 22px; transform: translate(-50%, 140%); z-index: 50;
-  background: var(--asfalt); color: #fff; padding: 12px 18px; border-radius: 12px; font-weight: 500;
-  transition: transform .3s cubic-bezier(.2,.7,.2,1), visibility 0s .3s; max-width: calc(100% - 32px); visibility: hidden;
-}
-.tost.vidljiv { transform: translate(-50%, 0); visibility: visible; transition-delay: 0s; }
-
-@media (max-width: 1020px) {
-  .meni { display: none; }
-  .tel { margin-left: auto; }
-  .prvi .omot { grid-template-columns: 1fr; gap: 30px; }
-  .prvi h1 { max-width: 14ch; }
-  .tabla { margin: -90px 12px 0; width: auto; }
-  .vozni { grid-template-columns: 1fr; }
-  .mapa { position: static; max-width: 420px; }
-  .najam { grid-template-columns: 1fr; }
-  .podnozje .omot { grid-template-columns: 1fr 1fr; }
-}
-@media (max-width: 760px) {
-  body { font-size: 16px; }
-  .zaglavlje .omot { height: 58px; }
-  .znak { font-size: 26px; }
-  .tel span { display: none; }
-  .tel { padding: 10px; }
-  .prvi { padding-top: 26px; }
-  .prvi::before { top: 34%; }
-  .relacija { grid-template-columns: 1fr; }
-  .zamijeni { justify-self: end; margin: -6px 0 -6px; transform: rotate(90deg); height: 40px; width: 40px; }
-  .dani { gap: 4px; }
-  .dan { font-size: 12px; }
-  .dan b { font-size: 18px; }
-  .tabla { margin: -60px 8px 0; padding: 14px 14px 8px; }
-  .red-table { grid-template-columns: 62px 1fr auto; gap: 2px 10px; }
-  .red-table .vr { font-size: 28px; }
-  .sekcija { padding: 54px 0; }
-  .polazak { grid-template-columns: 1fr auto; }
-  .polazak .vremena { grid-column: 1 / -1; }
-  .cijena { text-align: left; }
-  .smjerovi { grid-template-columns: 1fr; }
-  .park { grid-template-columns: 1fr 1fr; }
-  .park figure:first-child { grid-column: 1 / -1; grid-row: auto; }
-  .poslovnice { grid-template-columns: 1fr; }
-  .dva { grid-template-columns: 1fr; }
-  .podnozje .omot { grid-template-columns: 1fr; }
-  .sjedista-omot { grid-template-columns: 1fr; justify-items: center; }
-  .sazetak { position: static; width: 100%; }
-  .karta { grid-template-columns: 1fr; }
-  .karta-kod { border-left: 0; border-top: 2px dashed var(--lim2); }
-  .karta-podaci { grid-template-columns: 1fr 1fr; }
-  .brojke { grid-template-columns: 1fr 1fr; }
-  .voznja summary { grid-template-columns: 58px 1fr 24px; }
-  .voznja summary .popunjenost { grid-column: 2 / 3; }
-  .spisak { overflow-x: auto; }
-  .dlg-tijelo, .dlg-vrh { padding-left: 16px; padding-right: 16px; }
-}
-@media print {
-  .proto, .zaglavlje, .podnozje, .uprava-vrh .dugmad, .spisak .akcije, .tost { display: none !important; }
-  .voznja { break-inside: avoid; border: 0; }
-  .voznja:not([open]) { display: none; }
-}
-</style>
-</head>
-<body>
-<div class="proto">
-  <div class="omot">
-    <span>Prototip nove stranice za Viena Tour koji je napravio <a href="https://hunar.ba/?utm_source=demo-viena">Hunar</a>. Rezervacije su probne.</span>
-    <span class="dugmad"><a href="#za-vienu" id="link-uprava">Pogled za Vienu: rezervacije</a></span>
-  </div>
+<header style="position: sticky; top: 0; z-index: 20; background: rgba(244,246,249,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px)">
+<div class="d-omot d-glava" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px">
+<a href="#vrh" class="d-znak" style="font-size: 30px">VIENA TOUR</a>
+<a class="sr preskoci" href="#trazi">Preskočite na pretragu</a><nav class="d-meni" aria-label="Glavni meni">
+<a href="#izleti">Izleti</a><a href="#linije">Redovne linije</a><a href="#flota">Autobusi</a><a href="#poslovnice">Poslovnice</a>
+</nav>
+<a href="tel:+38765402900" class="d-dugme d-zovi" aria-label="Pozovite 065 402 900" style="min-height: 46px; padding: 0 18px; font-size: 16px">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+<span class="d-sakrij-usko">065 402 900</span></a>
 </div>
-
-<header class="zaglavlje">
-  <div class="omot">
-    <a class="znak" href="#glavno" aria-label="Viena Tour, početak">VIENA TOUR</a>
-    <nav class="meni" aria-label="Glavni meni">
-      <a href="#red-voznje">Red vožnje</a>
-      <a href="#vozni-park">Vozni park</a>
-      <a href="#najam">Najam vozila</a>
-      <a href="#poslovnice">Poslovnice</a>
-    </nav>
-    <a class="tel" href="tel:+38765402900"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span>065 402 900</span></a>
-  </div>
 </header>
 
-<main id="glavno">
-  <section class="prvi">
-    <div class="omot">
-      <div>
-        <a class="vijest" href="#poslovnice"><b>Novo</b> Doček Nove 2027. godine u Milanu</a>
-        <h1>Iz Vašeg mjesta do Beča, Minhena i mora</h1>
-        <p class="uvod">Polazimo iz Zvornika, Bijeljine, Brčkog, Lončara, Orašja i Šamca. Izaberite polazak i sjedište, a kartu platite vozaču ili u poslovnici.</p>
+<main id="glavno"><section id="vrh" class="d-omot">
+<div class="d-hero">
+<div>
+<h1 class="d-naslov d-h1" style="font-size: 70px; margin: 0">Za Beč, Minhen i more. Polasci iz Vašeg mjesta.</h1>
+<p class="d-uvod" style="font-size: 20px; color: #4a5866; margin: 22px 0 30px; max-width: 34ch">Izaberite polazak i sjedište na stranici. Kartu platite vozaču ili u poslovnici.</p>
+<form class="d-trazi" id="trazi">
+<label class="d-polje" for="od">Polazim iz<select id="od"></select></label>
+<label class="d-polje" for="kuda">Putujem u<select id="kuda"></select></label>
+<div class="d-polje" style="grid-column:1/-1"><span id="dani-ime">Datum polaska <small>• ima polazak</small></span><div class="d-dani" id="dani" role="group" aria-labelledby="dani-ime"></div><label class="d-drugi-datum" for="datum">Drugi datum<input id="datum" type="date" required></label></div>
+<div class="d-polje d-putnici"><span id="putnici-ime">Putnici</span><div class="d-koracnik" role="group" aria-labelledby="putnici-ime"><button type="button" class="d-krug-dugme" id="manje" aria-label="Jedan putnik manje">−</button><output id="broj" aria-live="polite">1</output><button type="button" class="d-krug-dugme" id="vise" aria-label="Jedan putnik više">+</button></div></div>
+<button type="submit" class="d-dugme d-trazi-dugme">Prikaži polaske</button>
+<button type="button" class="d-zamijeni" id="zamijeni" style="grid-column:1/-1">⇄ Zamijeni smjer</button>
+</form>
+<p style="display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 22px 0 0; font-size: 15px; font-weight: 600; color: #4a5866">
+<span style="color: #14202b"><span id="najblizi"></span></span><span>Sjedište birate sami</span><span>Karta se plaća vozaču</span>
+</p>
+</div>
+<div class="d-zid-omot"><div class="d-zid" aria-label="Fotografije destinacija">
 
-        <form class="trazi" id="trazi" novalidate>
-          <div class="relacija">
-            <div class="polje"><label for="od">Odakle</label><select id="od"></select></div>
-            <button type="button" class="zamijeni" id="zamijeni" aria-label="Zamijeni odakle i kuda"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M7 4 3 8l4 4M3 8h14M17 20l4-4-4-4M21 16H7"/></svg></button>
-            <div class="polje"><label for="kuda">Kuda</label><select id="kuda"></select></div>
-          </div>
-          <div class="polje" style="margin-top:14px"><span class="ime" id="dani-ime">Dan polaska</span>
-            <div class="dani" id="dani" role="group" aria-labelledby="dani-ime"></div>
-          </div>
-          <div class="dno">
-            <div class="polje"><span class="ime" id="putnici-ime">Putnika</span>
-              <div class="putnici" role="group" aria-labelledby="putnici-ime">
-                <button type="button" id="manje" aria-label="Jedan putnik manje">−</button>
-                <output id="broj" aria-live="polite">1</output>
-                <button type="button" id="vise" aria-label="Jedan putnik više">+</button>
-              </div>
-            </div>
-            <button class="glavno" type="submit">Pronađi polaske</button>
-          </div>
-        </form>
-      </div>
+<div class="d-kol"><div class="d-traka">
 
-      <div class="slika-autobusa">
-        <img src="/demo-viena/setra-zlatna.webp" width="800" height="533" alt="Autobus Viena Tour, Setra sa crvenim natpisom firme">
-        <section class="tabla" aria-labelledby="tabla-naslov">
-          <div class="tabla-vrh">
-            <h2 id="tabla-naslov">Sljedeći polasci iz</h2>
-            <label class="sr" for="tabla-od">Mjesto polaska</label>
-            <select id="tabla-od"></select>
-          </div>
-          <div id="tabla-redovi" aria-live="polite"></div>
-          <div class="tabla-dno">Ažurirano u <span class="sat" id="sat"></span> Dodirnite polazak da izaberete sjedište.</div>
-        </section>
-      </div>
-    </div>
-  </section>
+<figure class="d-slika" style="height: 230px"><img loading="lazy" decoding="async" src="/demo-viena/foto-venecija.webp" alt="Most Rialto u Veneciji" style="object-position: center"><figcaption>Venecija, 6. 11.</figcaption></figure>
 
-  <section class="sekcija siva" id="rezultati" hidden aria-labelledby="rez-naslov">
-    <div class="omot">
-      <div class="naslov">
-        <div><h2 id="rez-naslov">Polasci</h2><p id="rez-opis"></p></div>
-      </div>
-      <div class="lista" id="rez-lista"></div>
-    </div>
-  </section>
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-halstat.webp" alt="Halštat na jezeru" style="object-position: center 20%"><figcaption>Halštat i Salzburg</figcaption></figure>
 
-  <section class="sekcija" id="red-voznje" aria-labelledby="rv-naslov">
-    <div class="omot">
-      <div class="naslov">
-        <div>
-          <h2 id="rv-naslov">Red vožnje</h2>
-          <p>Vremena polazaka su sa naše stanice za svako mjesto. Dolasci u inostranstvu su okvirni, jer zavise od granice i saobraćaja.</p>
-        </div>
-        <div class="kartice" role="tablist" aria-label="Zemlja">
-          <button role="tab" aria-selected="true" data-zemlja="at" id="tab-at">Austrija</button>
-          <button role="tab" aria-selected="false" data-zemlja="de" id="tab-de">Njemačka</button>
-          <button role="tab" aria-selected="false" data-zemlja="cg" id="tab-cg">Crna Gora</button>
-        </div>
-      </div>
-      <div class="vozni">
-        <div role="tabpanel" id="rv-panel" aria-labelledby="tab-at">
-          <div class="smjerovi" id="smjerovi"></div>
-          <p class="napomena" id="rv-napomena"></p>
-        </div>
-        <figure class="mapa">
-          <svg id="mapa" viewBox="0 0 400 420" role="img" aria-label="Mapa linija Viena Tour"></svg>
-          <figcaption id="mapa-opis"></figcaption>
-        </figure>
-      </div>
-    </div>
-  </section>
+<figure class="d-slika" style="height: 230px"><img loading="lazy" decoding="async" src="/demo-viena/foto-transilvanija.webp" alt="Dvorac Bran u Transilvaniji" style="object-position: center"><figcaption>Transilvanija, 27. 11.</figcaption></figure>
 
-  <section class="sekcija siva" id="vozni-park" aria-labelledby="vp-naslov">
-    <div class="omot">
-      <div class="naslov">
-        <div>
-          <h2 id="vp-naslov">Naši autobusi i kombiji</h2>
-          <p>Vozimo putnike više od 39 godina. Autobusi se redovno održavaju, a od 2023. imamo i deset novih kombija sa 8 sjedišta.</p>
-        </div>
-      </div>
-      <div class="park">
-        <figure><img src="/demo-viena/stanica.webp" width="800" height="533" loading="lazy" alt="Bijeli autobus Viena Tour na stanici"><figcaption>Na liniji za Beč</figcaption></figure>
-        <figure><img src="/demo-viena/setra-srebrna.webp" width="800" height="533" loading="lazy" alt="Srebrna Setra Viena Tour"><figcaption>Setra</figcaption></figure>
-        <figure><img src="/demo-viena/mercedes.webp" width="800" height="533" loading="lazy" alt="Mercedes autobus Viena Tour"><figcaption>Mercedes</figcaption></figure>
-        <figure><img src="/demo-viena/kombiji.webp" width="800" height="533" loading="lazy" alt="Novi bijeli kombiji Viena Tour ispred zgrade firme"><figcaption>Kombiji za najam</figcaption></figure>
-        <figure><img src="/demo-viena/sprinteri.webp" width="960" height="540" loading="lazy" alt="Mini-busevi Viena Tour u nizu"><figcaption>Mini-busevi</figcaption></figure>
-      </div>
-      <div class="cinjenice">
-        <div><b>50+</b>autobusa</div>
-        <div><b>70+</b>destinacija</div>
-        <div><b>50.000+</b>zadovoljnih putnika</div>
-        <div><b>12,2 hiljade</b>prati nas na Instagramu</div>
-      </div>
-    </div>
-  </section>
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-ljubljana.webp" alt="Božićna Ljubljana" style="object-position: center 20%"><figcaption>Ljubljana, 5. 12.</figcaption></figure>
 
-  <section class="sekcija" id="najam" aria-labelledby="najam-naslov">
-    <div class="omot najam">
-      <div>
-        <h2 id="najam-naslov">Najam vozila za grupe</h2>
-        <p style="margin-top:12px;color:var(--asfalt2);max-width:48ch">Za ekskurzije, svadbe, firme i transfere sa aerodroma. Vozimo i za druge turističke agencije. Pošaljite upit, a mi Vam javimo cijenu.</p>
-        <div class="vozila">
-          <div class="vozilo"><img src="/demo-viena/stanica.webp" alt="" loading="lazy" width="96" height="64"><div><b>Autobus</b><span>Za veće grupe, ekskurzije i putovanja po Evropi</span></div></div>
-          <div class="vozilo"><img src="/demo-viena/sprinteri.webp" alt="" loading="lazy" width="96" height="64"><div><b>Mini-bus</b><span>Za manje grupe, porodice i poslovne sastanke</span></div></div>
-          <div class="vozilo"><img src="/demo-viena/kombiji.webp" alt="" loading="lazy" width="96" height="64"><div><b>Kombi sa 8 sjedišta</b><span>Rent a car, sa vozačem ili bez, za aerodrom i obilaske</span></div></div>
-        </div>
-      </div>
-      <form class="upit" id="upit" novalidate>
-        <h3>Upit za najam</h3>
-        <div class="polje"><span class="ime" id="vozilo-ime">Vozilo</span>
-          <div class="izbor" role="radiogroup" aria-labelledby="vozilo-ime">
-            <label><input type="radio" name="vozilo" value="autobus" checked><span>Autobus</span></label>
-            <label><input type="radio" name="vozilo" value="minibus"><span>Mini-bus</span></label>
-            <label><input type="radio" name="vozilo" value="kombi"><span>Kombi</span></label>
-          </div>
-        </div>
-        <div class="dva">
-          <div class="polje"><label for="u-datum">Datum</label><input type="date" id="u-datum"></div>
-          <div class="polje"><label for="u-osoba">Broj osoba</label><input type="number" id="u-osoba" min="1" max="80" value="20" inputmode="numeric"></div>
-        </div>
-        <div class="polje"><label for="u-kuda">Odakle i kuda</label><input type="text" id="u-kuda" placeholder="npr. Brčko do Aerodroma Tuzla i nazad"></div>
-        <div class="dva">
-          <div class="polje"><label for="u-ime">Ime i prezime</label><input type="text" id="u-ime" autocomplete="name"></div>
-          <div class="polje"><label for="u-tel">Telefon ili Viber</label><input type="tel" id="u-tel" autocomplete="tel" inputmode="tel"></div>
-        </div>
-        <p class="greska" id="u-greska" hidden></p>
-        <button class="glavno" type="submit">Pošalji upit</button>
-      </form>
-    </div>
-  </section>
+<figure class="d-slika" style="height: 230px"><img loading="lazy" decoding="async" src="/demo-viena/foto-venecija.webp" alt="Most Rialto u Veneciji" style="object-position: center"><figcaption>Venecija, 6. 11.</figcaption></figure>
 
-  <section class="sekcija siva" id="poslovnice" aria-labelledby="pos-naslov">
-    <div class="omot">
-      <div class="naslov">
-        <div>
-          <h2 id="pos-naslov">Poslovnice</h2>
-          <p>Karte za sve linije kupite u poslovnicama na autobuskim stanicama u Brčkom i Bijeljini, ili nas pozovite. Tu se javljate i za doček Nove 2027. godine u Milanu.</p>
-        </div>
-      </div>
-      <div class="poslovnice">
-        <article class="poslovnica">
-          <img src="/demo-viena/poslovnica-brcko.webp" width="500" height="500" loading="lazy" alt="Poslovnica Viena Tour na autobuskoj stanici u Brčkom">
-          <div class="tijelo">
-            <h3>Brčko</h3>
-            <p class="adresa">Autobuska stanica Brčko</p>
-            <div class="brojevi"><a href="tel:+38754859110">054 859 110</a><a href="tel:+38754859111">054 859 111</a></div>
-          </div>
-        </article>
-        <article class="poslovnica">
-          <img src="/demo-viena/poslovnica-bijeljina.webp" width="500" height="500" loading="lazy" alt="Poslovnica Viena Tour u Bijeljini">
-          <div class="tijelo">
-            <h3>Bijeljina</h3>
-            <p class="adresa">Autobuska stanica Bijeljina</p>
-            <div class="brojevi"><a href="tel:+38765309308">065 309 308</a></div>
-          </div>
-        </article>
-        <article class="poslovnica">
-          <div class="bez-slike" aria-hidden="true">VIENA TOUR</div>
-          <div class="tijelo">
-            <h3>Lončari i Austrija</h3>
-            <p class="adresa">Sjedište: Cara Lazara 26, Lončari. U Austriji zovite brojeve sa +43.</p>
-            <div class="brojevi"><a href="tel:+38765511211">065 511 211</a><a href="tel:+38765650666">065 650 666</a><a href="tel:+38765402900">065 402 900</a><a href="tel:+436643023940">+43 664 302 3940</a> <a href="tel:+436677976555">+43 667 797 6555</a></div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-</main>
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-halstat.webp" alt="Halštat na jezeru" style="object-position: center 20%"><figcaption>Halštat i Salzburg</figcaption></figure>
 
-<section class="sekcija" id="za-vienu" hidden aria-labelledby="uprava-naslov">
+<figure class="d-slika" style="height: 230px"><img loading="lazy" decoding="async" src="/demo-viena/foto-transilvanija.webp" alt="Dvorac Bran u Transilvaniji" style="object-position: center"><figcaption>Transilvanija, 27. 11.</figcaption></figure>
+
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-ljubljana.webp" alt="Božićna Ljubljana" style="object-position: center 20%"><figcaption>Ljubljana, 5. 12.</figcaption></figure>
+
+</div></div>
+
+<div class="d-kol"><div class="d-traka">
+
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/foto-milano.webp" alt="Katedrala u Milanu" style="object-position: center"><figcaption>Milano za Novu godinu</figcaption></figure>
+
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-graz.webp" alt="Božićni Graz" style="object-position: center 20%"><figcaption>Graz, 5. 12.</figcaption></figure>
+
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/foto-trst.webp" alt="Dvorac Miramare kod Trsta" style="object-position: center 30%"><figcaption>Trst, 20. 11.</figcaption></figure>
+
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-cg.webp" alt="Obala Crne Gore" style="object-position: center 25%"><figcaption>More, ljeti svaki dan</figcaption></figure>
+
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/foto-milano.webp" alt="Katedrala u Milanu" style="object-position: center"><figcaption>Milano za Novu godinu</figcaption></figure>
+
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-graz.webp" alt="Božićni Graz" style="object-position: center 20%"><figcaption>Graz, 5. 12.</figcaption></figure>
+
+<figure class="d-slika" style="height: 280px"><img loading="lazy" decoding="async" src="/demo-viena/foto-trst.webp" alt="Dvorac Miramare kod Trsta" style="object-position: center 30%"><figcaption>Trst, 20. 11.</figcaption></figure>
+
+<figure class="d-slika" style="height: 260px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-cg.webp" alt="Obala Crne Gore" style="object-position: center 25%"><figcaption>More, ljeti svaki dan</figcaption></figure>
+
+</div></div>
+
+<div class="d-kol"><div class="d-traka">
+
+<figure class="d-slika" style="height: 240px"><img loading="lazy" decoding="async" src="/demo-viena/foto-bec.webp" alt="Beč: Schönbrunn, katedrala i Prater" style="object-position: center"><figcaption>Beč, svaki dan</figcaption></figure>
+
+<figure class="d-slika" style="height: 270px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-temisvar.webp" alt="Božićni Temišvar" style="object-position: center 20%"><figcaption>Temišvar, 5. 12.</figcaption></figure>
+
+<figure class="d-slika" style="height: 270px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-minhen.webp" alt="Minhen" style="object-position: center 30%"><figcaption>Minhen, tri puta sedmično</figcaption></figure>
+
+<figure class="d-slika" style="height: 250px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-wien.webp" alt="Beč i Graz" style="object-position: center 20%"><figcaption>Wien i Graz</figcaption></figure>
+
+<figure class="d-slika" style="height: 240px"><img loading="lazy" decoding="async" src="/demo-viena/foto-bec.webp" alt="Beč: Schönbrunn, katedrala i Prater" style="object-position: center"><figcaption>Beč, svaki dan</figcaption></figure>
+
+<figure class="d-slika" style="height: 270px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-temisvar.webp" alt="Božićni Temišvar" style="object-position: center 20%"><figcaption>Temišvar, 5. 12.</figcaption></figure>
+
+<figure class="d-slika" style="height: 270px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-minhen.webp" alt="Minhen" style="object-position: center 30%"><figcaption>Minhen, tri puta sedmično</figcaption></figure>
+
+<figure class="d-slika" style="height: 250px"><img loading="lazy" decoding="async" src="/demo-viena/plakat-wien.webp" alt="Beč i Graz" style="object-position: center 20%"><figcaption>Wien i Graz</figcaption></figure>
+
+</div></div>
+
+</div><button type="button" class="d-tekst-dugme" id="zid-pauza" aria-pressed="false">Zaustavite fotografije</button></div>
+</div>
+</section>
+
+<section aria-label="Priče sa Instagrama" style="background: #ffffff; padding: 26px 0">
+<div class="d-omot" style="display: flex; align-items: center; gap: 36px; min-width:0">
+<p class="d-sakrij-usko" style="margin: 0; font-weight: 700; font-size: 18px; max-width: 11ch; line-height: 1.25">Kao na našem Instagramu</p>
+<div class="d-price">
+
+<button type="button" class="d-krug" data-prica="0"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/foto-tri-autobusa.webp" alt=""></span><span>Redovne linije</span></button>
+
+<button type="button" class="d-krug" data-prica="1"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/foto-milano.webp" alt=""></span><span>Doček u Milanu</span></button>
+
+<button type="button" class="d-krug" data-prica="2"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/plakat-graz.webp" alt=""></span><span>Božićni izleti</span></button>
+
+<button type="button" class="d-krug" data-prica="3"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/foto-bec.webp" alt=""></span><span>Wien</span></button>
+
+<button type="button" class="d-krug" data-prica="4"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/plakat-cg.webp" alt=""></span><span>Crna Gora</span></button>
+
+<button type="button" class="d-krug" data-prica="5"><span class="d-krug-prsten"><img loading="lazy" decoding="async" src="/demo-viena/setra-zlatna.webp" alt=""></span><span>Flota</span></button>
+
+</div>
+</div>
+</section>
+
+<section id="izleti" style="padding: 88px 0 40px">
+<div class="d-omot">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; margin-bottom: 28px">
+<div>
+<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0">Izleti ove zime</h2>
+<p style="margin: 10px 0 0; color: #4a5866; max-width: 52ch">Polasci iz Brčkog, Bijeljine, Zvornika, Doboja i Posavine. Dodirnite izlet za detalje.</p>
+</div>
+<div class="d-cipovi" role="group" aria-label="Vrsta izleta">
+
+<button type="button" class="d-cip" data-filter="Svi" style="background: #14202b; color: #ffffff; border-color: #14202b" aria-pressed="true">Svi</button>
+
+<button type="button" class="d-cip" data-filter="Jednodnevni" style="" aria-pressed="false">Jednodnevni</button>
+
+<button type="button" class="d-cip" data-filter="Sa noćenjem" style="" aria-pressed="false">Sa noćenjem</button>
+
+<button type="button" class="d-cip" data-filter="Božićni" style="" aria-pressed="false">Božićni</button>
+
+</div>
+</div>
+<div class="d-sina" id="izleti-lista">
+
+<button type="button" class="d-kartica" data-izlet="venecija" style="border: 2px solid #d2202f">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-venecija.webp" alt="Most Rialto u Veneciji" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">6. i 7. 11.</span>
+<span style="position: absolute; right: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #d2202f; color: #ffffff; font-weight: 700; font-size: 14px">Za 3 dana</span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Venecija</span>
+<span style="font-size: 14px; color: #5d6b78">Jednodnevno putovanje</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">159 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="trst" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-trst.webp" alt="Dvorac Miramare kod Trsta" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 30%">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">20. i 21. 11.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Trst</span>
+<span style="font-size: 14px; color: #5d6b78">Jednodnevni izlet</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">90 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="transilvanija" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-transilvanija.webp" alt="Dvorac Bran u Transilvaniji" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">27. do 29. 11.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Transilvanija</span>
+<span style="font-size: 14px; color: #5d6b78">Bušteni, Brašov, Bran, Sighisoara</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">2 noćenja</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">189 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="graz" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/plakat-graz.webp" alt="Božićni plakat za Graz" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 8%">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">5. i 12. 12.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Graz</span>
+<span style="font-size: 14px; color: #5d6b78">Božićni sajam</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">80 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="ljubljana" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/plakat-ljubljana.webp" alt="Božićni plakat za Ljubljanu" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 8%">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">5. 12.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Ljubljana</span>
+<span style="font-size: 14px; color: #5d6b78">Božićna Ljubljana</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">80 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="halstat" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/plakat-halstat.webp" alt="Božićni plakat za Halštat i Salzburg" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 8%">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">5., 12. i 26. 12.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Halštat i Salzburg</span>
+<span style="font-size: 14px; color: #5d6b78">Jezero i Mozartov grad</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">100 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="temisvar" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/plakat-temisvar.webp" alt="Božićni plakat za Temišvar" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 8%">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">5. i 12. 12.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Temišvar</span>
+<span style="font-size: 14px; color: #5d6b78">Božićni sajam</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">Jednodnevni</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">70 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="bec" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-bec.webp" alt="Beč: Schönbrunn, katedrala i Prater" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">18. do 20. 12.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Beč</span>
+<span style="font-size: 14px; color: #5d6b78">Božićni Beč sa noćenjem</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">1 noćenje</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">259 KM</span>
+</span>
+</span>
+</button>
+
+<button type="button" class="d-kartica" data-izlet="milano" style="border: 2px solid transparent">
+<span style="position: relative; display: block; height: 220px">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-milano.webp" alt="Katedrala u Milanu uz vatromet" style="display: block; width: 100%; height: 100%; object-fit: cover; object-position: center">
+<span style="position: absolute; left: 12px; top: 12px; padding: 6px 12px; border-radius: 999px; background: #ffffff; font-weight: 700; font-size: 14px">30. 12. do 2. 1.</span>
+<span style="display: none"></span>
+</span>
+<span style="display: flex; flex-direction: column; gap: 6px; padding: 16px 18px 18px">
+<span class="d-naslov" style="font-size: 26px">Milano</span>
+<span style="font-size: 14px; color: #5d6b78">Como, Lugano, Đenova</span>
+<span style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<span style="font-size: 14px; font-weight: 600; color: #4a5866">2 noćenja</span>
+<span class="d-naslov" style="font-size: 28px; color: #d2202f">379 KM</span>
+</span>
+</span>
+</button>
+
+</div>
+
+<div id="izlet-detalj" aria-live="polite">
+<article class="d-detalj" style="margin-top: 18px">
+<img loading="lazy" decoding="async" src="/demo-viena/plakat-venecija.webp" alt="Plakat sa Instagrama: Venecija" style="width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 18px">
+<div>
+<p style="margin: 0; font-weight: 700; color: #d2202f">Petak 6. 11. ili subota 7. 11. 2026.</p>
+<h3 class="d-naslov" style="font-size: 54px; margin: 8px 0 6px">Venecija</h3>
+<p style="margin: 0 0 22px; font-size: 19px; color: #4a5866">Noćna vožnja, dan u Veneciji i povratak iste noći.</p>
+<div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px">
+<span class="d-naslov" style="font-size: 48px">159 KM</span><span style="color: #5d6b78">po osobi</span>
+</div>
+<p style="margin: 0 0 10px; font-weight: 700">Polasci iz</p>
+<div class="d-cipovi" style="margin-bottom: 28px">
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Zvornik</span>
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Bijeljina</span>
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Brčko</span>
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Modriča</span>
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Doboj</span>
+
+<span style="display: inline-flex; align-items: center; min-height: 38px; padding: 0 14px; border-radius: 999px; background: #f4f6f9; font-weight: 600; font-size: 15px">Šamac</span>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<a href="tel:+38766511211" class="d-dugme">Rezervišite: 066 511 211</a>
+<a href="tel:+38765650666" class="d-dugme d-dugme-svijetlo">065 650 666</a>
+<a href="https://www.instagram.com/p/DexM-skoulC/" target="_blank" rel="noopener" class="d-dugme d-dugme-svijetlo">Objava na Instagramu</a>
+</div>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section id="linije" style="padding:80px 0 40px"><div class="d-omot">
+<h2 class="d-naslov d-h2" style="font-size:52px;margin:0">Redovne linije</h2><p>Izaberite zemlju, smjer i dan polaska. Vremena dolaska su okvirna.</p>
+<div class="d-tabovi" id="linija-tabovi" role="group" aria-label="Linija">
+<button class="d-tab" type="button" data-zemlja="at" aria-pressed="true"><img loading="lazy" decoding="async" src="/demo-viena/foto-bec.webp" loading="lazy" alt=""><span><b>Austrija</b><small>Beč preko Graza</small></span></button><button class="d-tab" type="button" data-zemlja="de" aria-pressed="false"><img loading="lazy" decoding="async" src="/demo-viena/foto-minhen.webp" loading="lazy" alt=""><span><b>Njemačka</b><small>Ljubljana i Minhen</small></span></button><button class="d-tab" type="button" data-zemlja="cg" aria-pressed="false"><img loading="lazy" decoding="async" src="/demo-viena/plakat-cg.webp" loading="lazy" alt=""><span><b>Crna Gora</b><small>Budva i Ulcinj</small></span></button>
+</div><div class="d-trasa" id="linija-prikaz"></div>
+<noscript><p>Red vožnje možete provjeriti na <a href="https://vienatour.net/">vienatour.net</a> ili pozivom na <a href="tel:+38765402900">065 402 900</a>.</p></noscript>
+</div></section>
+
+<section style="padding: 72px 0">
+<div class="d-omot">
+<div style="position: relative; border-radius: 32px; overflow: hidden; min-height: 560px; display: flex; align-items: flex-end">
+<img loading="lazy" decoding="async" src="/demo-viena/foto-tri-autobusa.webp" alt="Tri autobusa Viena Toura na stanici u inostranstvu" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+<div style="position: relative; margin: 28px; padding: 30px 32px; max-width: 520px; border-radius: 24px; background: rgba(255,255,255,.94)">
+<p class="d-naslov" style="font-size: clamp(22px,3vw,40px); overflow-wrap:anywhere; margin: 0 0 12px; color: #d2202f">#zakilometarispredsvih</p>
+<p style="margin: 0; font-size: 18px; color: #2c3a47">Tako potpisujemo svaku objavu, i tako vozimo: polazak na vrijeme, sjedište koje ste izabrali i karta koju plaćate vozaču.</p>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 56px 0 80px">
+<div class="d-omot d-insta">
+<div class="d-telefon">
+<video src="/demo-viena/reel.mp4" controls muted loop playsinline preload="none" poster="/demo-viena/plakat-minhen.webp" aria-label="Reels Viena Toura: Minhen i Rosenheim"></video>
+</div>
+<div>
+<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0">Novi izleti prvo izađu na Instagramu</h2>
+<p style="margin: 12px 0 26px; color: #4a5866; max-width: 50ch">Prati nas 12,2 hiljade ljudi na Instagramu i 10 hiljada na Facebooku. Tu objavljujemo akcije, izlete i promjene reda vožnje.</p>
+<div class="d-mreza">
+
+<a href="https://www.instagram.com/p/DfAvJY0oub2/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-milano.webp" alt="Objava: Milano za Novu godinu"></a>
+
+<a href="https://www.instagram.com/p/DexM-skoulC/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-venecija.webp" alt="Objava: Venecija"></a>
+
+<a href="https://www.instagram.com/p/De7k3GfoxVH/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-transilvanija.webp" alt="Objava: Transilvanija"></a>
+
+<a href="https://www.instagram.com/p/DM0n025oE4X/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-cg.webp" alt="Objava: Crna Gora"></a>
+
+<a href="https://www.instagram.com/p/DN3wJqw2Iik/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-wien.webp" alt="Objava: Wien i Graz"></a>
+
+<a href="https://www.instagram.com/p/DeryVDPoGZv/" target="_blank" rel="noopener"><img loading="lazy" decoding="async" src="/demo-viena/plakat-halstat.webp" alt="Objava: Halštat i Salzburg"></a>
+
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px">
+<a href="https://www.instagram.com/vienatour/" target="_blank" rel="noopener" class="d-dugme">Instagram @vienatour</a>
+<a href="https://www.facebook.com/profile.php?id=100037192406133" target="_blank" rel="noopener" class="d-dugme d-dugme-svijetlo">Facebook</a>
+</div>
+</div>
+</div>
+</section>
+
+<section style="padding: 72px 0; background: #ffffff">
+<div class="d-omot">
+<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0">Šta kažu putnici</h2>
+<p style="margin: 10px 0 32px; color: #5d6b78; font-size: 15px">Primjer rasporeda. Ovdje idu prave ocjene sa Googlea i Facebooka, uz dozvolu putnika.</p>
+<div class="d-utisci">
+
+<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
+<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
+</div>
+<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Autobus krenuo tačno u minut, vozači ljubazni, a sjedište je bilo baš ono koje sam izabrala.</blockquote>
+<figcaption style="display: flex; align-items: center; gap: 12px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">A</span>
+<span style="display: flex; flex-direction: column"><b>Putnica iz Brčkog</b><span style="font-size: 14px; color: #5d6b78">Brčko do Beča</span></span>
+</figcaption>
+</figure>
+
+<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
+<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
+</div>
+<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Sve organizovano od polaska do povratka. Idemo opet na proljeće.</blockquote>
+<figcaption style="display: flex; align-items: center; gap: 12px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">M</span>
+<span style="display: flex; flex-direction: column"><b>Putnik iz Bijeljine</b><span style="font-size: 14px; color: #5d6b78">Izlet u Veneciju</span></span>
+</figcaption>
+</figure>
+
+<figure style="margin: 0; padding: 28px; border-radius: 24px; background: #f4f6f9">
+<div style="display: flex; gap: 3px; color: #f2b33d; margin-bottom: 14px" aria-label="5 od 5">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.9 7.5.6-5.7 4.9 1.8 7.3L12 17.8 5.4 21.7l1.8-7.3L1.5 9.5 9 8.9z"></path></svg>
+</div>
+<blockquote style="margin: 0 0 20px; font-size: 20px; line-height: 1.45; font-weight: 500">Čist autobus, Wi-Fi radi cijelim putem i punjač kod sjedišta. Preporučujem.</blockquote>
+<figcaption style="display: flex; align-items: center; gap: 12px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; background: #14202b; color: #ffffff; font-weight: 700">S</span>
+<span style="display: flex; flex-direction: column"><b>Putnica iz Orašja</b><span style="font-size: 14px; color: #5d6b78">Minhen i nazad</span></span>
+</figcaption>
+</figure>
+
+</div>
+</div>
+</section>
+
+<section id="flota" style="padding: 88px 0 40px">
+<div class="d-omot">
+<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0">Naši autobusi</h2>
+<p style="margin: 10px 0 30px; color: #4a5866; max-width: 56ch">Setre i Mercedesi za duge linije, sprinteri i kombiji za manje grupe. Wi-Fi i punjač kod sjedišta.</p>
+<div class="d-flota">
+<figure class="d-slika" style="grid-row: 1 / 3; margin: 0"><img loading="lazy" decoding="async" src="/demo-viena/setra-zlatna.webp" alt="Zlatna Setra Viena Toura"><figcaption>Setra za Austriju i Njemačku</figcaption></figure>
+<figure class="d-slika" style="margin: 0"><img loading="lazy" decoding="async" src="/demo-viena/setra-srebrna.webp" alt="Srebrna Setra Viena Toura"><figcaption>Srebrna Setra</figcaption></figure>
+<figure class="d-slika" style="margin: 0"><img loading="lazy" decoding="async" src="/demo-viena/mercedes.webp" alt="Mercedes autobus Viena Toura"><figcaption>Mercedes za izlete</figcaption></figure>
+<figure class="d-slika" style="margin: 0"><img loading="lazy" decoding="async" src="/demo-viena/sprinteri.webp" alt="Sprinteri Viena Toura"><figcaption>Sprinteri</figcaption></figure>
+<figure class="d-slika" style="margin: 0"><img loading="lazy" decoding="async" src="/demo-viena/kombiji.webp" alt="Kombiji Viena Toura"><figcaption>Kombiji sa 8 sjedišta</figcaption></figure>
+</div>
+</div>
+</section>
+
+<section id="poslovnice" style="padding: 80px 0 96px">
+<div class="d-omot">
+<h2 class="d-naslov d-h2" style="font-size: 52px; margin: 0 0 30px">Gdje kupiti kartu</h2>
+<div class="d-poslovnice">
+<div><img loading="lazy" decoding="async" src="/demo-viena/kombiji.webp" alt="Sjedište Viena Toura u Lončarima" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px"><p style="margin: 16px 0 2px; font-weight: 700; font-size: 20px">Lončari, sjedište</p><p style="margin: 0 0 6px; color: #5d6b78">Cara Lazara 26</p><a href="tel:+38765402900" style="font-weight: 700; color: #d2202f">065 402 900</a></div>
+<div><img loading="lazy" decoding="async" src="/demo-viena/poslovnica-brcko.webp" alt="Šalter Viena Toura na stanici Brčko" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px"><p style="margin: 16px 0 2px; font-weight: 700; font-size: 20px">Brčko</p><p style="margin: 0 0 6px; color: #5d6b78">Autobuska stanica</p><a href="tel:+38754859110" style="font-weight: 700; color: #d2202f">054 859 110</a></div>
+<div><img loading="lazy" decoding="async" src="/demo-viena/poslovnica-bijeljina.webp" alt="Šalter Viena Toura u Bijeljini" style="width: 100%; height: 200px; object-fit: cover; border-radius: 20px"><p style="margin: 16px 0 2px; font-weight: 700; font-size: 20px">Bijeljina</p><p style="margin: 0 0 6px; color: #5d6b78">Autobuska stanica</p><a href="tel:+38765309308" style="font-weight: 700; color: #d2202f">065 309 308</a></div>
+<div style="display: flex; flex-direction: column; justify-content: center; padding: 28px; border-radius: 20px; background: #ffffff">
+<p style="margin: 0 0 6px; font-weight: 700; font-size: 20px">U Austriji</p>
+<p style="margin: 0 0 14px; color: #5d6b78">Za povratak iz Beča i Graza</p>
+<a href="tel:+436643023940" style="font-weight: 700; color: #d2202f">+43 664 302 3940</a>
+<a href="tel:+436677976555" style="font-weight: 700; color: #d2202f; margin-top: 6px">+43 667 797 6555</a>
+</div>
+</div>
+</div>
+</section>
+
+</main><section class="sekcija" id="za-vienu" hidden aria-labelledby="uprava-naslov">
   <div class="omot">
     <div class="uprava-vrh">
       <div>
         <h2 id="uprava-naslov">Rezervacije</h2>
-        <p>Ovo vidi samo Viena Tour. Svaki polazak ima spisak putnika sa sjedištem i stanicom ulaska, spreman za vozača. Rezervacija koju napravite na stranici se odmah pojavi ovdje.</p>
+        <p>Primjer pogleda za prevoznika. Podaci su probni, a rezervacije koje napravite na ovom uređaju odmah se pojave ovdje. U stvarnom sistemu ovom pregledu pristupa samo prevoznik.</p>
       </div>
       <div class="dugmad" style="display:flex;gap:8px;flex-wrap:wrap">
         <a class="dugme svijetlo" href="#glavno">Nazad na stranicu</a>
@@ -651,30 +464,14 @@ dialog::backdrop { background: rgba(20, 30, 40, 0.55); backdrop-filter: blur(3px
   </div>
 </section>
 
-<footer class="podnozje">
-  <div class="omot">
-    <div>
-      <span class="znak">VIENA TOUR</span>
-      <p>Drumski putnički saobraćaj iz BiH za Austriju, Njemačku i Crnu Goru, najam autobusa, mini-buseva i kombija.</p>
-    </div>
-    <div>
-      <h3>Kontakt</h3>
-      <p>Cara Lazara 26, 76278 Lončari<br><a href="tel:+38754859110">054 859 110</a><br><a href="mailto:vienatour@live.com">vienatour@live.com</a></p>
-    </div>
-    <div class="mreze">
-      <h3>Pratite nas</h3>
-      <a href="https://www.instagram.com/vienatour" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>Instagram, 12,2 hiljade pratilaca</a>
-      <a href="https://www.facebook.com/profile.php?id=100037192406133" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg>Facebook, 10,6 hiljada pratilaca</a>
-      <a href="viber://chat?number=%2B38765402900"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3c5 0 8 2.5 8 7.5S17 18 12 18l-4 3v-3.5C5.5 16.5 4 14 4 10.5 4 5.5 7 3 12 3z"/></svg>Viber 065 402 900</a>
-    </div>
-    <div class="hunar">
-      <span>Prototip: Hunar, izrada web stranica za firme u BiH</span>
-      <a href="https://hunar.ba/?utm_source=demo-viena">hunar.ba</a>
-    </div>
-  </div>
+<section class="sekcija" id="moje-karte" hidden aria-labelledby="moje-naslov"><div class="d-omot"><a href="#vrh">← Nazad na stranicu</a><h2 id="moje-naslov">Moje karte</h2><p>Probne rezervacije sa ovog uređaja. Ne važe za putovanje.</p><div id="moje-lista"></div></div></section><footer style="background: #ffffff; padding: 48px 0">
+<div class="d-omot" style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 24px; align-items: center">
+<div><span class="d-znak" style="font-size: 28px">VIENA TOUR</span><p style="margin: 8px 0 0; color: #5d6b78">Cara Lazara 26, 76278 Lončari. vienatour@live.com</p></div>
+<div style="display: flex; gap: 22px; font-weight: 600"><a href="https://www.instagram.com/vienatour/" target="_blank" rel="noopener">Instagram</a><a href="https://www.facebook.com/profile.php?id=100037192406133" target="_blank" rel="noopener">Facebook</a><a href="#za-vienu">Za Viena Tour</a></div>
+</div>
 </footer>
 
-<dialog id="rezervacija" aria-labelledby="dlg-naslov">
+<div class="d-dno"><button class="d-dugme" type="button" id="polasci-telefon">Polasci i karte</button><a href="tel:+38765402900" class="d-dugme d-dugme-svijetlo">Pozovite</a></div><dialog id="rezervacija" aria-labelledby="dlg-naslov">
   <div class="dlg-vrh">
     <div><h2 id="dlg-naslov">Izaberite sjedište</h2><p id="dlg-opis"></p></div>
     <button class="zatvori" type="button" id="zatvori" aria-label="Zatvori">×</button>
@@ -685,591 +482,4 @@ dialog::backdrop { background: rgba(20, 30, 40, 0.55); backdrop-filter: blur(3px
 
 <div class="tost" id="tost" role="status" aria-live="polite"></div>
 
-<script>
-// Prototip za Viena Tour: pretraga polazaka, tabla sljedećih polazaka, red vožnje sa mapom,
-// karta sa izborom sjedišta i pogled za prevoznika (#za-vienu).
-// Vremena polazaka su sa vienatour.net (3. 11. 2026). Vrijeme sa "+" je okvirni dolazak:
-// minute od prethodne stanice. Cijene osim najnižih ("od 45 €" i slično) su primjer.
-document.documentElement.classList.toggle('pokret', !matchMedia('(prefers-reduced-motion: reduce)').matches)
-
-const KAPACITET = 49
-const KLJUC = 'hunar-demo-viena'
-const BIH = ['Modriča', 'Šamac', 'Domaljevac', 'Orašje', 'Lončari', 'Brčko', 'Bijeljina', 'Zvornik', 'Milići', 'Vlasenica', 'Sokolac', 'Rogatica']
-const ZEMLJE = {
-  'Graz': 'Austrija', 'Oeynhausen': 'Austrija', 'Beč': 'Austrija',
-  'Ljubljana': 'Slovenija', 'Rosenheim': 'Njemačka', 'Minhen': 'Njemačka',
-  'Herceg Novi': 'Crna Gora', 'Tivat': 'Crna Gora', 'Budva': 'Crna Gora', 'Petrovac': 'Crna Gora', 'Sutomore': 'Crna Gora', 'Bar': 'Crna Gora', 'Ulcinj': 'Crna Gora',
-}
-const MJESTO = {
-  'Beč': 'Südtiroler Platz', 'Graz': 'Webling', 'Minhen': 'ZOB Hackerbrücke', 'Rosenheim': 'Eisstadion, Briançonstraße',
-}
-const CIJENE = { 'Graz': 45, 'Oeynhausen': 50, 'Beč': 50, 'Ljubljana': 45, 'Rosenheim': 55, 'Minhen': 60 }
-const sezonaCG = (d) => { const m = d.getMonth() + 1, dan = d.getDate(); return (m === 6 && dan >= 15) || m === 7 || m === 8 || m === 9 }
-const SVI = [0, 1, 2, 3, 4, 5, 6]
-
-// Svaka linija: stanice sa vremenom za svaki polazak (jutarnji, večernji) i dani kad polazak vozi (0 = nedjelja).
-const LINIJE = [
-  { id: 'at-t', zemlja: 'at', naziv: 'Iz BiH za Austriju',
-    polasci: [{ naziv: 'Jutarnji', dani: () => [0, 1, 2, 3, 4, 5] }, { naziv: 'Večernji', dani: () => [0, 2, 3, 4, 5, 6] }],
-    stanice: [['Zvornik', '06:00', '18:30'], ['Bijeljina', '07:30', '19:30'], ['Brčko', '08:15', '20:15'], ['Lončari', '08:40', '20:40'], ['Orašje', '08:50', '20:50'], ['Domaljevac', '09:00', '21:00'], ['Šamac', '09:20', '21:20'], ['Graz', '+375', '+375'], ['Oeynhausen', '+90', '+90'], ['Beč', '+30', '+30']],
-    napomena: 'Ponedjeljkom vozi samo jutarnji polazak, subotom samo večernji. Ostalim danima dva polaska.' },
-  { id: 'at-n', zemlja: 'at', naziv: 'Iz Austrije za BiH',
-    polasci: [{ naziv: 'Jutarnji', dani: () => SVI }, { naziv: 'Večernji', dani: () => [0, 1, 3, 4, 5] }],
-    stanice: [['Beč', '10:30', '17:30'], ['Oeynhausen', '11:00', '18:00'], ['Graz', '12:45', '19:45'], ['Šamac', '+345', '+345'], ['Domaljevac', '+20', '+20'], ['Orašje', '+10', '+10'], ['Lončari', '+10', '+10'], ['Brčko', '+25', '+25'], ['Bijeljina', '+50', '+50'], ['Zvornik', '+60', '+60']],
-    napomena: 'Utorkom i subotom vozi samo jutarnji polazak, ostalim danima dva.' },
-  { id: 'de-t', zemlja: 'de', naziv: 'Iz BiH za Njemačku',
-    polasci: [{ naziv: 'Popodnevni', dani: () => [0, 3, 4] }],
-    stanice: [['Bijeljina', '16:40'], ['Brčko', '17:40'], ['Lončari', '18:00'], ['Orašje', '18:15'], ['Šamac', '18:50'], ['Ljubljana', '00:10'], ['Rosenheim', '+260'], ['Minhen', '+50']],
-    napomena: 'Polasci iz BiH srijedom, četvrtkom i nedjeljom, preko Ljubljane i Rosenheima.' },
-  { id: 'de-n', zemlja: 'de', naziv: 'Iz Njemačke za BiH',
-    polasci: [{ naziv: 'Popodnevni', dani: () => [1, 4, 5] }],
-    stanice: [['Minhen', '17:00'], ['Rosenheim', '17:45'], ['Ljubljana', '22:45'], ['Šamac', '+330'], ['Orašje', '+30'], ['Lončari', '+15'], ['Brčko', '+20'], ['Bijeljina', '+60']],
-    napomena: 'Povratak iz Njemačke ponedjeljkom, četvrtkom i petkom.' },
-  { id: 'cg-t', zemlja: 'cg', naziv: 'Iz BiH za Crnu Goru',
-    polasci: [{ naziv: 'Večernji', dani: (d) => sezonaCG(d) ? SVI : [0, 4] }],
-    stanice: [['Modriča', '19:40'], ['Šamac', '20:10'], ['Lončari', '20:40'], ['Brčko', '21:05'], ['Bijeljina', '22:00'], ['Zvornik', '23:10'], ['Milići', '23:55'], ['Vlasenica', '00:15'], ['Sokolac', '01:20'], ['Rogatica', '01:55'], ['Herceg Novi', '+330'], ['Tivat', '+45'], ['Budva', '+50'], ['Petrovac', '+45'], ['Sutomore', '+30'], ['Bar', '+20'], ['Ulcinj', '+40']],
-    napomena: 'Van sezone polasci iz BiH četvrtkom i nedjeljom. Od sredine juna do kraja septembra svaki dan.' },
-  { id: 'cg-n', zemlja: 'cg', naziv: 'Iz Crne Gore za BiH',
-    polasci: [{ naziv: 'Večernji', dani: (d) => sezonaCG(d) ? SVI : [1, 5] }],
-    stanice: [['Ulcinj', '19:35'], ['Bar', '20:15'], ['Sutomore', '20:35'], ['Petrovac', '21:05'], ['Budva', '21:55'], ['Tivat', '22:20'], ['Herceg Novi', '22:55'], ['Rogatica', '+300'], ['Sokolac', '+35'], ['Vlasenica', '+65'], ['Milići', '+20'], ['Zvornik', '+45'], ['Bijeljina', '+70'], ['Brčko', '+55'], ['Lončari', '+25'], ['Šamac', '+30'], ['Modriča', '+30']],
-    napomena: 'Van sezone polasci iz Crne Gore petkom i ponedjeljkom. U sezoni svaki dan. Svi polasci su uveče.' },
-]
-const BOJA = { at: '#d7222f', de: '#14304a', cg: '#0d7480' }
-const ZEMLJA_IME = { at: 'Austrija', de: 'Njemačka', cg: 'Crna Gora' }
-
-const $ = (id) => document.getElementById(id)
-const pad = (n) => String(n).padStart(2, '0')
-const sat = (m) => `${pad(Math.floor(m / 60) % 24)}:${pad(m % 60)}`
-const esc = (s) => String(s).replace(/[&<>"']/g, (z) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[z])
-const DANI = ['ned', 'pon', 'uto', 'sri', 'čet', 'pet', 'sub']
-const DANI_PUNO = ['nedjelja', 'ponedjeljak', 'utorak', 'srijeda', 'četvrtak', 'petak', 'subota']
-const danas = () => { const d = new Date(); d.setHours(12, 0, 0, 0); return d }
-const plusDana = (d, n) => { const x = new Date(d); x.setDate(x.getDate() + n); return x }
-const iso = (d) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`
-const izIso = (s) => { const [g, m, d] = s.split('-').map(Number); return new Date(g, m - 1, d, 12) }
-const lijepDatum = (d) => `${DANI_PUNO[d.getDay()]}, ${d.getDate()}. ${d.getMonth() + 1}.`
-const trajanje = (m) => { const h = Math.floor(m / 60), r = m % 60; return h ? `${h} h${r ? ` ${r} min` : ''}` : `${r} min` }
-const eura = (n) => `${n} €`
-const velikoSlovo = (s) => s[0].toUpperCase() + s.slice(1)
-const strana = (st) => (BIH.includes(st) ? 'bih' : 'van')
-
-// Minute od ponoći dana polaska sa prve stanice; prelaz preko ponoći se dodaje na 24 h.
-function vremenaPolaska(linija, k) {
-  const out = []
-  let pret = -1, dodaj = 0
-  for (const red of linija.stanice) {
-    const v = red[1 + k] ?? red[1]
-    let m
-    if (v.startsWith('+')) m = pret + Number(v.slice(1))
-    else {
-      const [h, mi] = v.split(':').map(Number)
-      m = h * 60 + mi + dodaj
-      if (m < pret) { dodaj += 1440; m += 1440 }
-    }
-    out.push({ ime: red[0], m, okvirno: v.startsWith('+') })
-    pret = m
-  }
-  return out
-}
-
-function cijena(od, doo) {
-  const van = strana(od) === 'van' ? od : doo
-  return CIJENE[van] ?? 60
-}
-
-// Svi polasci sa stanice "od" do "doo" kojima je polazak sa stanice "od" na dati dan.
-function nadjiPolaske(od, doo, dan) {
-  const out = []
-  for (const l of LINIJE) {
-    l.polasci.forEach((p, k) => {
-      const v = vremenaPolaska(l, k)
-      const i = v.findIndex((s) => s.ime === od)
-      const j = v.findIndex((s) => s.ime === doo)
-      if (i < 0 || j < 0 || i >= j) return
-      const pomak = Math.floor(v[i].m / 1440)
-      const start = plusDana(dan, -pomak)
-      if (!p.dani(start).includes(start.getDay())) return
-      out.push({
-        id: `${l.id}-${k}-${iso(start)}`, linija: l, polazak: p, k, start, dan,
-        od, doo, kreni: v[i].m, stigni: v[j].m, okvirno: v[j].okvirno, put: v, i, j,
-        cijena: cijena(od, doo),
-      })
-    })
-  }
-  return out.sort((a, b) => (a.kreni % 1440) - (b.kreni % 1440))
-}
-
-// Zauzeta mjesta su izmišljena, ali uvijek ista za isti polazak.
-function hes(s) { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0 }
-function slucajno(seed) { let a = seed; return () => { a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296 } }
-function zauzetaIzmisljena(id) {
-  const r = slucajno(hes(id))
-  const koliko = 12 + Math.floor(r() * 26)
-  const s = new Set()
-  while (s.size < koliko) s.add(1 + Math.floor(r() * KAPACITET))
-  return s
-}
-function ucitaj() { try { return JSON.parse(localStorage.getItem(KLJUC)) || [] } catch { return [] } }
-function sacuvaj(lista) { try { localStorage.setItem(KLJUC, JSON.stringify(lista)) } catch {} }
-let REZERVACIJE = ucitaj()
-function zauzeta(id) {
-  const s = zauzetaIzmisljena(id)
-  for (const r of REZERVACIJE) if (r.voznja === id) r.sjedista.forEach((x) => s.add(x))
-  return s
-}
-const slobodnih = (id) => KAPACITET - zauzeta(id).size
-
-function tost(t) {
-  const el = $('tost'); el.textContent = t; el.classList.add('vidljiv')
-  clearTimeout(tost.t); tost.t = setTimeout(() => el.classList.remove('vidljiv'), 3200)
-}
-
-// ---------- Izbornici mjesta ----------
-const SVE_STANICE = [...new Set(LINIJE.flatMap((l) => l.stanice.map((s) => s[0])))]
-function opcije(lista, izabrano) {
-  const grupe = {}
-  for (const s of lista) (grupe[BIH.includes(s) ? 'Bosna i Hercegovina' : ZEMLJE[s]] ||= []).push(s)
-  const red = ['Bosna i Hercegovina', 'Austrija', 'Njemačka', 'Slovenija', 'Crna Gora']
-  return red.filter((g) => grupe[g]).map((g) => `<optgroup label="${g}">${grupe[g].sort((a, b) => a.localeCompare(b, 'bs')).map((s) => `<option${s === izabrano ? ' selected' : ''}>${esc(s)}</option>`).join('')}</optgroup>`).join('')
-}
-function dostupnaOdredista(od) {
-  const s = new Set()
-  for (const l of LINIJE) {
-    const imena = l.stanice.map((x) => x[0])
-    const i = imena.indexOf(od)
-    if (i < 0) continue
-    imena.slice(i + 1).forEach((x) => { if (strana(x) !== strana(od)) s.add(x) })
-  }
-  return [...s]
-}
-const stanje = { od: 'Brčko', kuda: 'Beč', dan: iso(danas()), putnika: 1 }
-
-function popuniKuda() {
-  const moguce = dostupnaOdredista(stanje.od)
-  if (!moguce.includes(stanje.kuda)) stanje.kuda = moguce.includes('Beč') ? 'Beč' : moguce[0]
-  $('kuda').innerHTML = opcije(moguce, stanje.kuda)
-}
-$('od').innerHTML = opcije(SVE_STANICE, stanje.od)
-popuniKuda()
-$('od').addEventListener('change', (e) => { stanje.od = e.target.value; popuniKuda() })
-$('kuda').addEventListener('change', (e) => { stanje.kuda = e.target.value })
-$('zamijeni').addEventListener('click', () => {
-  const novoOd = stanje.kuda, novoKuda = stanje.od
-  stanje.od = novoOd; $('od').innerHTML = opcije(SVE_STANICE, stanje.od)
-  stanje.kuda = novoKuda; popuniKuda()
-})
-
-function crtajDane(el, izabran, naKlik) {
-  el.innerHTML = Array.from({ length: 7 }, (_, n) => {
-    const d = plusDana(danas(), n)
-    const ime = n === 0 ? 'danas' : n === 1 ? 'sutra' : DANI[d.getDay()]
-    return `<button type="button" class="dan" data-dan="${iso(d)}" aria-pressed="${iso(d) === izabran}" aria-label="${lijepDatum(d)}">${ime}<b>${d.getDate()}.</b></button>`
-  }).join('')
-  el.onclick = (e) => { const b = e.target.closest('.dan'); if (b) naKlik(b.dataset.dan) }
-}
-const crtajDanePretrage = () => crtajDane($('dani'), stanje.dan, (d) => { stanje.dan = d; crtajDanePretrage() })
-crtajDanePretrage()
-
-function postaviPutnike(n) {
-  stanje.putnika = Math.max(1, Math.min(8, n))
-  $('broj').textContent = stanje.putnika
-  $('manje').disabled = stanje.putnika === 1
-  $('vise').disabled = stanje.putnika === 8
-}
-$('manje').onclick = () => postaviPutnike(stanje.putnika - 1)
-$('vise').onclick = () => postaviPutnike(stanje.putnika + 1)
-postaviPutnike(1)
-
-// ---------- Rezultati ----------
-function karticaPolaska(p, putnika) {
-  const slob = slobodnih(p.id)
-  const dolazakDan = Math.floor(p.stigni / 1440) - Math.floor(p.kreni / 1440)
-  const mjestaTekst = slob < putnika ? '<span class="mjesta-malo">Nema dovoljno mjesta</span>'
-    : slob <= 8 ? `<span class="mjesta-malo">Još ${slob} slobodnih mjesta</span>` : `${slob} slobodnih mjesta`
-  return `<article class="polazak">
-    <div class="vremena">
-      <div><b>${sat(p.kreni % 1440)}</b><small>${esc(p.od)}</small></div>
-      <div class="crta"><span>${p.okvirno ? 'oko ' : ''}${trajanje(p.stigni - p.kreni)}</span></div>
-      <div style="text-align:right"><b class="${p.okvirno ? 'okv' : ''}">${p.okvirno ? '~' : ''}${sat(p.stigni % 1440)}</b><small>${esc(p.doo)}${dolazakDan ? ', sljedeći dan' : ''}</small></div>
-    </div>
-    <div class="detalji">
-      <span class="oznaka ${p.linija.zemlja}">${ZEMLJA_IME[p.linija.zemlja]}</span>
-      <div style="margin-top:6px"><strong>${p.polazak.naziv} polazak</strong>, ${mjestaTekst}</div>
-      ${MJESTO[p.od] ? `<div>Stanica: ${esc(MJESTO[p.od])}</div>` : ''}
-    </div>
-    <div class="cijena">
-      <b>${eura(p.cijena * putnika)}</b><small>${putnika > 1 ? `${putnika} × ${eura(p.cijena)}, ` : ''}jedan smjer</small>
-      <div style="margin-top:10px"><button class="dugme crveno" type="button" data-polazak="${p.id}" data-od="${esc(p.od)}" data-kuda="${esc(p.doo)}" data-dan="${iso(p.dan)}" ${slob < putnika ? 'disabled' : ''}>Izaberi sjedište</button></div>
-    </div>
-  </article>`
-}
-
-function prikaziRezultate(skroluj) {
-  const dan = izIso(stanje.dan)
-  const sad = new Date(), sadMin = sad.getHours() * 60 + sad.getMinutes()
-  // Današnji polasci koji su već otišli se ne nude.
-  const lista = nadjiPolaske(stanje.od, stanje.kuda, dan).filter((p) => stanje.dan !== iso(danas()) || p.kreni % 1440 > sadMin)
-  $('rez-naslov').textContent = `${stanje.od} do ${stanje.kuda}`
-  $('rez-opis').textContent = `${velikoSlovo(lijepDatum(dan))} ${stanje.putnika === 1 ? 'Jedan putnik' : `${stanje.putnika} putnika`}. Kartu plaćate vozaču ili u poslovnici.`
-  if (lista.length) {
-    $('rez-lista').innerHTML = lista.map((p) => karticaPolaska(p, stanje.putnika)).join('')
-  } else {
-    // Prvi sljedeći dan sa polaskom, da prazan rezultat odmah nudi izlaz.
-    let sljedeci = null
-    for (let n = 1; n < 14 && !sljedeci; n++) { const d = plusDana(dan, n); if (nadjiPolaske(stanje.od, stanje.kuda, d).length) sljedeci = d }
-    $('rez-lista').innerHTML = `<div class="nema"><p><strong>Tog dana nema polaska na ovoj relaciji.</strong></p>
-      ${sljedeci ? `<p>Prvi sljedeći polazak je u ${DANI_PUNO[sljedeci.getDay()]}, ${sljedeci.getDate()}. ${sljedeci.getMonth() + 1}.</p><p><button class="dugme" type="button" id="idi-sljedeci" data-dan="${iso(sljedeci)}">Prikaži polaske za taj dan</button></p>` : '<p>Pozovite nas na 065 402 900 za vanredne polaske.</p>'}</div>`
-    const b = $('idi-sljedeci')
-    if (b) b.onclick = () => { stanje.dan = b.dataset.dan; crtajDanePretrage(); prikaziRezultate(false) }
-  }
-  $('rezultati').hidden = false
-  if (skroluj) $('rezultati').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' })
-}
-$('trazi').addEventListener('submit', (e) => { e.preventDefault(); prikaziRezultate(true) })
-$('rez-lista').addEventListener('click', (e) => {
-  const b = e.target.closest('[data-polazak]')
-  if (b) otvoriRezervaciju(b.dataset.od, b.dataset.kuda, b.dataset.dan, b.dataset.polazak, stanje.putnika)
-})
-
-// ---------- Tabla sljedećih polazaka ----------
-let tablaOd = 'Brčko'
-$('tabla-od').innerHTML = opcije(SVE_STANICE, tablaOd)
-$('tabla-od').addEventListener('change', (e) => { tablaOd = e.target.value; crtajTablu(true) })
-
-function sljedeciPolasci(od, koliko) {
-  const sad = new Date()
-  const sadMin = sad.getHours() * 60 + sad.getMinutes()
-  const out = []
-  for (let n = 0; n < 8 && out.length < koliko; n++) {
-    const dan = plusDana(danas(), n)
-    const dnevni = []
-    for (const l of LINIJE) {
-      l.polasci.forEach((p, k) => {
-        const v = vremenaPolaska(l, k)
-        const i = v.findIndex((s) => s.ime === od)
-        if (i < 0 || i === v.length - 1) return
-        // Krajnja stanica u drugoj zemlji je cilj koji se prikazuje na tabli.
-        const cilj = v[v.length - 1]
-        if (strana(cilj.ime) === strana(od)) return
-        const pomak = Math.floor(v[i].m / 1440)
-        const start = plusDana(dan, -pomak)
-        if (!p.dani(start).includes(start.getDay())) return
-        const kreni = v[i].m % 1440
-        if (n === 0 && kreni <= sadMin) return
-        dnevni.push({ id: `${l.id}-${k}-${iso(start)}`, l, p, kreni, n, dan, cilj: cilj.ime, prekoDo: l.zemlja === 'at' && cilj.ime === 'Beč' ? 'Graz i Beč' : l.zemlja === 'de' ? 'Ljubljana i Minhen' : l.zemlja === 'cg' && cilj.ime === 'Ulcinj' ? 'Budva i Ulcinj' : cilj.ime })
-      })
-    }
-    dnevni.sort((a, b) => a.kreni - b.kreni).forEach((x) => out.push(x))
-  }
-  return out.slice(0, koliko)
-}
-
-function zaKoliko(x) {
-  const sad = new Date()
-  const cilj = new Date(x.dan); cilj.setHours(0, x.kreni, 0, 0)
-  const min = Math.round((cilj - sad) / 60000)
-  if (x.n === 0) return min < 60 ? `za ${min} min` : `za ${trajanje(Math.floor(min / 60) * 60 + (min % 60))}`
-  if (x.n === 1) return 'sutra'
-  return `${DANI_PUNO[x.dan.getDay()]}`
-}
-
-function crtajTablu(animiraj) {
-  const lista = sljedeciPolasci(tablaOd, 4)
-  const el = $('tabla-redovi')
-  if (!lista.length) { el.innerHTML = '<p class="prazno">Iz ovog mjesta nema polazaka u narednih sedam dana.</p>'; return }
-  el.innerHTML = lista.map((x, i) => `<button type="button" class="red-table" data-i="${i}" style="animation-delay:${animiraj ? i * 90 : 0}ms${animiraj ? '' : ';animation:none'}">
-    <span class="vr">${sat(x.kreni)}</span>
-    <span><span class="kuda">${esc(x.prekoDo)}</span><br><span class="kad">${ZEMLJA_IME[x.l.zemlja]}, ${x.p.naziv.toLowerCase()}${x.n > 1 ? `, ${x.dan.getDate()}. ${x.dan.getMonth() + 1}.` : ''}</span></span>
-    <span class="za">${zaKoliko(x)}<small>${slobodnih(x.id)} mjesta</small></span>
-  </button>`).join('')
-  el.querySelectorAll('.red-table').forEach((b) => b.addEventListener('click', () => {
-    const x = lista[Number(b.dataset.i)]
-    otvoriRezervaciju(tablaOd, x.cilj, iso(x.dan), x.id, 1)
-  }))
-}
-function crtajSat() { const d = new Date(); $('sat').textContent = `${pad(d.getHours())}:${pad(d.getMinutes())}.` }
-crtajTablu(true); crtajSat()
-setInterval(() => { crtajSat(); crtajTablu(false) }, 30000)
-
-// ---------- Red vožnje i mapa ----------
-const KOORD = {
-  'Zvornik': [19.10, 44.39], 'Bijeljina': [19.21, 44.76], 'Brčko': [18.81, 44.87], 'Lončari': [18.67, 44.94], 'Orašje': [18.69, 45.04],
-  'Domaljevac': [18.59, 45.06], 'Šamac': [18.47, 45.06], 'Modriča': [18.30, 44.96], 'Graz': [15.44, 47.07], 'Oeynhausen': [16.29, 47.99],
-  'Beč': [16.37, 48.21], 'Ljubljana': [14.51, 46.06], 'Rosenheim': [12.13, 47.86], 'Minhen': [11.56, 48.14], 'Milići': [19.08, 44.17],
-  'Vlasenica': [18.94, 44.18], 'Sokolac': [18.80, 43.94], 'Rogatica': [19.00, 43.80], 'Herceg Novi': [18.54, 42.45], 'Tivat': [18.70, 42.43],
-  'Budva': [18.84, 42.29], 'Petrovac': [18.94, 42.21], 'Sutomore': [19.05, 42.14], 'Bar': [19.10, 42.09], 'Ulcinj': [19.22, 41.93],
-}
-const tacka = ([lon, lat]) => [16 + (lon - 11.2) * 0.72 * 58, 18 + (48.5 - lat) * 58]
-const VELIKI = ['Beč', 'Graz', 'Minhen', 'Ljubljana', 'Brčko', 'Bijeljina', 'Budva', 'Zvornik', 'Šamac', 'Ulcinj', 'Rosenheim']
-function crtajMapu() {
-  const rute = ['at-t', 'de-t', 'cg-t'].map((id) => {
-    const l = LINIJE.find((x) => x.id === id)
-    const d = l.stanice.map((s, i) => `${i ? 'L' : 'M'}${tacka(KOORD[s[0]]).map((n) => n.toFixed(1)).join(' ')}`).join(' ')
-    return `<path class="ruta" data-zemlja="${l.zemlja}" d="${d}" stroke="${BOJA[l.zemlja]}"/>`
-  }).join('')
-  const gradovi = Object.entries(KOORD).map(([ime, k]) => {
-    const [x, y] = tacka(k)
-    const veliki = VELIKI.includes(ime)
-    const lijevo = ['Lončari', 'Šamac', 'Modriča', 'Domaljevac', 'Herceg Novi', 'Tivat', 'Vlasenica', 'Sokolac', 'Graz', 'Ljubljana', 'Rosenheim', 'Minhen'].includes(ime)
-    const sakrij = ['Domaljevac', 'Lončari', 'Orašje', 'Modriča', 'Milići', 'Vlasenica', 'Sokolac', 'Tivat', 'Petrovac', 'Sutomore', 'Bar', 'Oeynhausen', 'Herceg Novi'].includes(ime)
-    return `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${veliki ? 3.6 : 2.3}" fill="#fff" stroke="#1e2a35" stroke-width="1.4"/>` +
-      (sakrij ? '' : `<text class="grad${veliki ? '' : ' mali'}" x="${(x + (lijevo ? -7 : 7)).toFixed(1)}" y="${(y + 4).toFixed(1)}" text-anchor="${lijevo ? 'end' : 'start'}">${esc(ime)}</text>`)
-  }).join('')
-  $('mapa').innerHTML = `<rect x="0" y="0" width="400" height="420" rx="10" fill="#f3f5f6"/>` +
-    `<text x="300" y="210" fill="#c3cad1" font-family="Barlow Condensed" font-weight="700" font-size="30">BiH</text>` +
-    `<text x="150" y="70" fill="#c3cad1" font-family="Barlow Condensed" font-weight="700" font-size="22">Austrija</text>` +
-    `<text x="250" y="390" fill="#c3cad1" font-family="Barlow Condensed" font-weight="700" font-size="20">Crna Gora</text>` +
-    rute + gradovi
-}
-
-function tabelaSmjera(l) {
-  const v = l.polasci.map((_, k) => vremenaPolaska(l, k))
-  const d = danas()
-  const sedmica = [1, 2, 3, 4, 5, 6, 0].map((dan) => {
-    const dd = plusDana(d, (dan - d.getDay() + 7) % 7)
-    const kl = l.polasci.map((p, k) => p.dani(dd).includes(dan) ? (l.polasci.length > 1 ? (k === 0 ? 'j' : 'v') : (p.naziv === 'Večernji' ? 'v' : 'j')) : '')
-    return `<div class="${dan === d.getDay() ? 'danas' : ''}">${DANI[dan]}${kl.map((c) => `<i class="${c}"></i>`).join('')}</div>`
-  }).join('')
-  const kolone = l.polasci.map((p) => `<th scope="col">${p.naziv === 'Popodnevni' ? 'Polazak' : p.naziv}</th>`).join('')
-  let prethodna = null
-  const redovi = l.stanice.map((s, i) => {
-    const granica = prethodna && strana(prethodna) !== strana(s[0])
-    prethodna = s[0]
-    return `<tr${granica ? ' class="granica"' : ''}><td>${esc(s[0])}${MJESTO[s[0]] ? `<span class="mjesto">${esc(MJESTO[s[0]])}</span>` : ''}</td>${v.map((x) => `<td class="${x[i].okvirno ? 'okv' : ''}">${x[i].okvirno ? '~' : ''}${sat(x[i].m % 1440)}</td>`).join('')}</tr>`
-  }).join('')
-  return `<div class="smjer">
-    <h3>${l.naziv}</h3>
-    <div class="sedmica" aria-label="Dani kad vozi">${sedmica}</div>
-    <div class="legenda">${l.polasci.some((p) => p.naziv === 'Jutarnji' || p.naziv === 'Popodnevni') ? '<span>' + (l.zemlja === 'de' ? 'popodne' : 'jutro') + '</span>' : ''}${l.polasci.some((p) => p.naziv === 'Večernji') ? '<span class="v">veče</span>' : ''}</div>
-    <table class="stanice"><thead><tr><th scope="col">Stanica</th>${kolone}</tr></thead><tbody>${redovi}</tbody></table>
-    <p class="napomena">${esc(l.napomena)}</p>
-  </div>`
-}
-function prikaziZemlju(z) {
-  document.querySelectorAll('.kartice button').forEach((b) => b.setAttribute('aria-selected', b.dataset.zemlja === z))
-  $('rv-panel').setAttribute('aria-labelledby', `tab-${z}`)
-  $('smjerovi').innerHTML = LINIJE.filter((l) => l.zemlja === z).map(tabelaSmjera).join('')
-  $('rv-napomena').textContent = `Znak ~ znači okvirno vrijeme dolaska. ${z === 'at' ? 'Karta za Austriju od 45 €.' : z === 'de' ? 'Karta za Njemačku od 55 €.' : 'Karta za Crnu Goru od 60 €.'}`
-  document.querySelectorAll('#mapa .ruta').forEach((r) => r.classList.toggle('aktivna', r.dataset.zemlja === z))
-  $('mapa-opis').textContent = z === 'at' ? 'Linija za Austriju: od Zvornika preko Posavine do Graza i Beča.' : z === 'de' ? 'Linija za Njemačku: preko Ljubljane i Rosenheima do Minhena.' : 'Linija za Crnu Goru: od Modriče preko istočne Bosne do primorja.'
-}
-document.querySelector('.kartice').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) prikaziZemlju(b.dataset.zemlja) })
-document.querySelector('.kartice').addEventListener('keydown', (e) => {
-  if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return
-  const t = [...document.querySelectorAll('.kartice button')]
-  const i = t.indexOf(document.activeElement)
-  const n = t[(i + (e.key === 'ArrowRight' ? 1 : t.length - 1)) % t.length]
-  n.focus(); prikaziZemlju(n.dataset.zemlja)
-})
-crtajMapu(); prikaziZemlju('at')
-
-// ---------- Rezervacija ----------
-const dlg = $('rezervacija')
-let rez = null
-function korak(n) { [1, 2, 3].forEach((i) => $(`k${i}`).classList.toggle('da', i <= n)) }
-
-function otvoriRezervaciju(od, kuda, danIso, voznjaId, putnika) {
-  const p = nadjiPolaske(od, kuda, izIso(danIso)).find((x) => x.id === voznjaId)
-  if (!p) return
-  rez = { p, putnika, sjedista: [] }
-  crtajSjedista()
-  dlg.showModal()
-}
-$('zatvori').onclick = () => dlg.close()
-dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close() })
-
-function opisPolaska(p) {
-  return `${lijepDatum(p.dan)}, polazak u ${sat(p.kreni % 1440)} iz mjesta ${p.od}`
-}
-
-function crtajSjedista() {
-  const { p, putnika } = rez
-  korak(1)
-  $('dlg-naslov').textContent = `${p.od} do ${p.doo}`
-  $('dlg-opis').textContent = opisPolaska(p)
-  const z = zauzeta(p.id)
-  let sjedista = ''
-  // Raspored 2 + 2: šest redova, pa WC preko puta srednjih vrata, pa još pet redova i zadnji red od 5 mjesta.
-  let broj = 1
-  const red = () => { const r = sjediste(broj++, z) + sjediste(broj++, z) + '<span></span>'; return r + sjediste(broj++, z) + sjediste(broj++, z) }
-  for (let i = 0; i < 6; i++) sjedista += red()
-  sjedista += '<div class="vrata wc">WC</div><span></span><div class="vrata">vrata</div>'
-  for (let i = 0; i < 5; i++) sjedista += red()
-  sjedista += Array.from({ length: 5 }, () => sjediste(broj++, z)).join('')
-  $('dlg-tijelo').innerHTML = `<div class="sjedista-omot">
-    <div class="autobus" id="autobus" role="group" aria-label="Sjedišta u autobusu"><div class="vozac">vozač</div>${sjedista}</div>
-    <div class="sazetak">
-      <p>Izaberite ${putnika === 1 ? 'jedno sjedište' : `${putnika} sjedišta`}. Broj putnika mijenjate u pretrazi.</p>
-      <div class="legenda-s"><span><i></i>slobodno</span><span><i class="z"></i>zauzeto</span><span><i class="t"></i>Vaše</span></div>
-      <div class="stavka"><span>Sjedišta</span><span id="s-izabrana">nijedno</span></div>
-      <div class="stavka"><span>Dolazak</span><span>${p.okvirno ? 'oko ' : ''}${sat(p.stigni % 1440)}, ${esc(p.doo)}</span></div>
-      <div class="stavka"><span>Cijena</span><span>${putnika} × ${eura(p.cijena)}</span></div>
-      <div class="stavka" style="border:0"><span>Ukupno</span><span class="ukupno">${eura(p.cijena * putnika)}</span></div>
-      <button class="glavno" type="button" id="dalje" disabled>Dalje na podatke</button>
-    </div>
-  </div>`
-  // Zadnji red ima pet mjesta u jednom nizu.
-  const bus = $('autobus')
-  bus.addEventListener('click', (e) => {
-    const b = e.target.closest('.sjediste')
-    if (!b || b.disabled) return
-    const n = Number(b.dataset.n)
-    const i = rez.sjedista.indexOf(n)
-    if (i >= 0) rez.sjedista.splice(i, 1)
-    else { if (rez.sjedista.length >= putnika) rez.sjedista.shift(); rez.sjedista.push(n) }
-    bus.querySelectorAll('.sjediste').forEach((s) => s.setAttribute('aria-pressed', rez.sjedista.includes(Number(s.dataset.n))))
-    $('s-izabrana').textContent = rez.sjedista.length ? rez.sjedista.slice().sort((a, b) => a - b).join(', ') : 'nijedno'
-    $('dalje').disabled = rez.sjedista.length !== putnika
-  })
-  $('dalje').onclick = crtajPodatke
-}
-function sjediste(n, z) {
-  return `<button type="button" class="sjediste" data-n="${n}" aria-pressed="false" ${z.has(n) ? 'disabled aria-label="Sjedište ' + n + ', zauzeto"' : `aria-label="Sjedište ${n}"`}>${n}</button>`
-}
-
-function crtajPodatke() {
-  const { p } = rez
-  korak(2)
-  $('dlg-naslov').textContent = 'Podaci putnika'
-  $('dlg-tijelo').innerHTML = `<form class="forma" id="podaci" novalidate>
-    <div class="polje"><label for="r-ime">Ime i prezime</label><input type="text" id="r-ime" autocomplete="name" required></div>
-    <div class="polje"><label for="r-tel">Broj telefona za Viber</label><input type="tel" id="r-tel" autocomplete="tel" inputmode="tel" placeholder="npr. 065 123 456" required></div>
-    <label class="provjera"><input type="checkbox" id="r-prtljag"><span>Nosim veći prtljag ili paket (prijavite ga unaprijed, da vozač zna)</span></label>
-    <p style="font-size:15px;color:var(--asfalt2)">Kartu plaćate vozaču pri ulasku ili u poslovnici. Potvrdu i podsjetnik dan prije polaska šaljemo na Viber.</p>
-    <p class="greska" id="r-greska" hidden></p>
-    <div class="dlg-dno"><button class="dugme svijetlo" type="button" id="nazad">Nazad na sjedišta</button><button class="dugme crveno" type="submit">Rezerviši ${rez.sjedista.length === 1 ? 'sjedište' : 'sjedišta'}</button></div>
-  </form>`
-  $('r-ime').focus()
-  $('nazad').onclick = () => { const s = rez.sjedista; crtajSjedista(); rez.sjedista = s; s.forEach((n) => document.querySelector(`.sjediste[data-n="${n}"]`)?.setAttribute('aria-pressed', 'true')); $('s-izabrana').textContent = s.join(', '); $('dalje').disabled = false }
-  $('podaci').addEventListener('submit', (e) => {
-    e.preventDefault()
-    const ime = $('r-ime').value.trim(), tel = $('r-tel').value.trim()
-    const g = $('r-greska')
-    if (ime.length < 3) { g.textContent = 'Upišite ime i prezime putnika.'; g.hidden = false; $('r-ime').focus(); return }
-    if (tel.replace(/\D/g, '').length < 8) { g.textContent = 'Upišite broj telefona, npr. 065 123 456.'; g.hidden = false; $('r-tel').focus(); return }
-    const kod = 'VT-' + (hes(p.id + ime + Date.now()) % 90000 + 10000)
-    const r = { kod, voznja: p.id, od: p.od, doo: p.doo, dan: iso(p.dan), kreni: p.kreni % 1440, sjedista: rez.sjedista.slice(), ime, tel, prtljag: $('r-prtljag').checked, cijena: p.cijena * rez.putnika, kad: Date.now() }
-    REZERVACIJE.push(r); sacuvaj(REZERVACIJE)
-    crtajKartu(r, p)
-    crtajTablu(false)
-    if (!$('rezultati').hidden) prikaziRezultate(false)
-  })
-}
-
-// Kod na karti je ukras u obliku QR koda, napravljen iz broja rezervacije.
-function kodSlika(tekst) {
-  const r = slucajno(hes(tekst)), n = 21, c = 4
-  let s = ''
-  const oko = (x, y) => `<rect x="${x * c}" y="${y * c}" width="${7 * c}" height="${7 * c}" fill="#1e2a35"/><rect x="${(x + 1) * c}" y="${(y + 1) * c}" width="${5 * c}" height="${5 * c}" fill="#fff"/><rect x="${(x + 2) * c}" y="${(y + 2) * c}" width="${3 * c}" height="${3 * c}" fill="#1e2a35"/>`
-  for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
-    const uOku = (x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12)
-    if (!uOku && r() > 0.52) s += `<rect x="${x * c}" y="${y * c}" width="${c}" height="${c}" fill="#1e2a35"/>`
-  }
-  return `<svg viewBox="0 0 ${n * c} ${n * c}" width="120" height="120" aria-hidden="true">${s}${oko(0, 0)}${oko(14, 0)}${oko(0, 14)}</svg>`
-}
-
-function crtajKartu(r, p) {
-  korak(3)
-  $('dlg-naslov').textContent = 'Rezervacija je potvrđena'
-  $('dlg-opis').textContent = 'Pokažite ovu kartu vozaču na telefonu.'
-  $('dlg-tijelo').innerHTML = `<div class="karta">
-    <div class="karta-glava"><span class="znak">VIENA TOUR</span><span>${esc(lijepDatum(p.dan))}</span></div>
-    <div class="karta-tijelo">
-      <div class="karta-relacija">
-        <div><b>${sat(p.kreni % 1440)}</b>${esc(p.od)}</div>
-        <svg width="40" height="14" viewBox="0 0 40 14" aria-hidden="true"><path d="M0 7h36m-6-6 6 6-6 6" fill="none" stroke="#56636e" stroke-width="2"/></svg>
-        <div><b>${p.okvirno ? '~' : ''}${sat(p.stigni % 1440)}</b>${esc(p.doo)}</div>
-      </div>
-      <div class="karta-podaci">
-        <div>Putnik<b>${esc(r.ime)}</b></div>
-        <div>Sjedište<b>${r.sjedista.slice().sort((a, b) => a - b).join(', ')}</b></div>
-        <div>Za platiti<b>${eura(r.cijena)}</b></div>
-      </div>
-    </div>
-    <div class="karta-kod">${kodSlika(r.kod)}<b>${r.kod}</b>broj rezervacije</div>
-  </div>
-  <p class="potvrda">Potvrdu smo poslali na Viber ${esc(r.tel)}. Dan prije polaska stiže podsjetnik sa vremenom i stanicom.</p>
-  <div class="dlg-dno"><a class="dugme svijetlo" href="#za-vienu" id="vidi-upravu">Kako ovo vidi Viena Tour</a><button class="dugme" type="button" id="gotovo">Gotovo</button></div>`
-  $('gotovo').onclick = () => dlg.close()
-  $('vidi-upravu').onclick = () => { uprava.dan = r.dan; uprava.otvori = r.voznja; dlg.close() }
-}
-
-// ---------- Upit za najam ----------
-$('u-datum').value = iso(plusDana(danas(), 14))
-$('upit').addEventListener('submit', (e) => {
-  e.preventDefault()
-  const g = $('u-greska')
-  if ($('u-ime').value.trim().length < 3 || $('u-tel').value.replace(/\D/g, '').length < 8) {
-    g.textContent = 'Upišite ime i broj telefona, da Vam možemo javiti cijenu.'; g.hidden = false; return
-  }
-  g.hidden = true
-  e.target.reset(); $('u-datum').value = iso(plusDana(danas(), 14))
-  tost('Upit je poslan. Javljamo Vam cijenu na Viber, obično isti dan.')
-})
-
-// ---------- Pogled za Vienu ----------
-const IMENA = ['Amir H.', 'Jelena P.', 'Mirsad K.', 'Dragana S.', 'Edin B.', 'Snježana T.', 'Ivan M.', 'Selma A.', 'Nedžad O.', 'Milica R.', 'Hasan Č.', 'Marko Đ.', 'Azra V.', 'Goran L.', 'Fata M.', 'Zoran J.', 'Lejla Z.', 'Stevo N.']
-const uprava = { dan: iso(danas()), otvori: null }
-
-function voznjeZaDan(danIso) {
-  const dan = izIso(danIso)
-  const out = []
-  for (const l of LINIJE) l.polasci.forEach((p, k) => {
-    if (!p.dani(dan).includes(dan.getDay())) return
-    const v = vremenaPolaska(l, k)
-    out.push({ id: `${l.id}-${k}-${danIso}`, l, p, v })
-  })
-  return out.sort((a, b) => a.v[0].m - b.v[0].m)
-}
-
-function putniciVoznje(x) {
-  const ulazne = x.v.filter((s, i) => i < x.v.length - 1 && strana(s.ime) === strana(x.v[0].ime))
-  const r = slucajno(hes(x.id + 'p'))
-  const izmisljeni = [...zauzetaIzmisljena(x.id)].sort((a, b) => a - b).map((n) => {
-    const st = ulazne[Math.floor(r() * ulazne.length)]
-    return { sjediste: n, ime: IMENA[Math.floor(r() * IMENA.length)], ulaz: st.ime, vrijeme: sat(st.m % 1440), tel: `06${Math.floor(r() * 7)} ${100 + Math.floor(r() * 900)} ***`, izlaz: x.v[x.v.length - 1 - Math.floor(r() * 2)].ime }
-  })
-  const pravi = REZERVACIJE.filter((q) => q.voznja === x.id).flatMap((q) => q.sjedista.map((n) => ({ sjediste: n, ime: q.ime, ulaz: q.od, vrijeme: sat(q.kreni), tel: q.tel, izlaz: q.doo, nova: true, prtljag: q.prtljag })))
-  return [...izmisljeni, ...pravi].sort((a, b) => a.sjediste - b.sjediste)
-}
-
-function crtajUpravu() {
-  crtajDane($('u-dani'), uprava.dan, (d) => { uprava.dan = d; uprava.otvori = null; crtajUpravu() })
-  const voznje = voznjeZaDan(uprava.dan)
-  const svi = voznje.map((x) => ({ x, putnici: putniciVoznje(x) }))
-  const ukupno = svi.reduce((s, v) => s + v.putnici.length, 0)
-  const novih = REZERVACIJE.filter((q) => voznje.some((x) => x.id === q.voznja)).length
-  const prihod = svi.reduce((s, v) => s + v.putnici.reduce((t, q) => t + cijena(q.ulaz, q.izlaz), 0), 0)
-  $('u-brojke').innerHTML = `<div><b>${voznje.length}</b>polazaka</div><div><b>${ukupno}</b>putnika</div><div><b>${Math.round(ukupno / (voznje.length * KAPACITET || 1) * 100)}%</b>popunjenost</div><div><b>${prihod.toLocaleString('bs')} €</b>za naplatu${novih ? `, ${novih} sa stranice` : ''}</div>`
-  $('u-voznje').innerHTML = svi.length ? svi.map(({ x, putnici }) => `<details class="voznja"${uprava.otvori === x.id ? ' open' : ''}>
-    <summary>
-      <span class="vr">${sat(x.v[0].m % 1440)}</span>
-      <span class="opis"><b>${esc(x.l.naziv)}</b> <span class="oznaka ${x.l.zemlja}">${x.p.naziv}</span><small>${esc(x.v[0].ime)} do ${esc(x.v[x.v.length - 1].ime)}</small></span>
-      <span class="popunjenost">${putnici.length} od ${KAPACITET} mjesta<span class="traka"><i style="width:${putnici.length / KAPACITET * 100}%"></i></span></span>
-      <svg class="strelica" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
-    </summary>
-    <div class="spisak">
-      <table><thead><tr><th>Sjed.</th><th>Putnik</th><th>Ulazi</th><th>Izlazi</th><th>Telefon</th></tr></thead>
-      <tbody>${putnici.map((q) => `<tr${q.nova ? ' class="nova"' : ''}><td><b>${q.sjediste}</b></td><td>${esc(q.ime)}${q.nova ? ' <span class="oznaka at">sa stranice</span>' : ''}${q.prtljag ? ' <span class="oznaka">prtljag</span>' : ''}</td><td>${esc(q.ulaz)}, ${q.vrijeme}</td><td>${esc(q.izlaz)}</td><td>${esc(q.tel)}</td></tr>`).join('')}</tbody></table>
-      <div class="akcije"><button class="dugme" type="button" data-akcija="viber">Pošalji podsjetnik svima na Viber</button><button class="dugme svijetlo" type="button" data-akcija="stampa">Štampaj spisak za vozača</button></div>
-    </div>
-  </details>`).join('') : '<div class="nema"><p><strong>Tog dana nema polazaka.</strong></p></div>'
-}
-$('u-voznje').addEventListener('click', (e) => {
-  const b = e.target.closest('[data-akcija]')
-  if (!b) return
-  if (b.dataset.akcija === 'viber') tost('Podsjetnik je poslan putnicima ovog polaska na Viber.')
-  else { b.closest('details').open = true; window.print() }
-})
-
-function ruta() {
-  const uprava_ = location.hash === '#za-vienu'
-  $('glavno').hidden = uprava_
-  $('za-vienu').hidden = !uprava_
-  if (uprava_) { crtajUpravu(); window.scrollTo(0, 0) }
-}
-addEventListener('hashchange', ruta)
-ruta()
-</script>
-</body>
-</html>
+<dialog id="prica" aria-labelledby="prica-naslov"><div class="d-prica" id="prica-tijelo"></div><button type="button" class="d-prica-zatvori" id="prica-zatvori" aria-label="Zatvorite priču">×</button><div class="d-prica-kontrole"><button type="button" id="prica-nazad" aria-label="Prethodna priča">←</button><button type="button" id="prica-pauza" aria-pressed="false">Pauza</button><button type="button" id="prica-dalje" aria-label="Sljedeća priča">→</button></div></dialog></div><noscript><p class="d-omot">Za pretragu i probnu rezervaciju uključite JavaScript. Informacije i rezervacije telefonom: <a href="tel:+38765402900">065 402 900</a>.</p></noscript><script type="module" src="/demo-viena.js"></script></body></html>
