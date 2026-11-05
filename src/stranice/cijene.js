@@ -9,13 +9,13 @@ const olx = oglasiMrt('bs')
 export const put = '/cijene'
 
 export const seo = {
-  naslov: 'Cijene · po dogovoru, prema vašem poslu · Hunar',
+  naslov: 'Cijena izrade web stranice i web shopa · Hunar',
   opis: 'Cijena web stranice ili trgovine zavisi od toga šta vam treba. Evo kako nastaje ponuda i šta dobijate.',
 }
 
 export const vrh = {
   nad: 'Cijene',
-  naslov: 'Cijena po dogovoru. Evo zašto i kako.',
+  naslov: 'Cijena izrade web stranice i web shopa.',
   uvod: 'Radnji kojoj treba stranica i trgovini sa hiljadama artikala i OLX vezom ne treba isti posao, pa ni ista cijena. Umjesto cjenovnika koji ne odgovara nikome, ponudu pravimo za vaš posao.',
 }
 

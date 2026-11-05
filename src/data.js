@@ -24,7 +24,7 @@ export const google = {
 // (PRODUCT.md: bez imena vlasnika).
 export const profili = [
   google.profil,
-  'https://www.facebook.com/hunarwebstudio',
+  'https://www.facebook.com/hunarweb',
   'https://www.instagram.com/hunarwebstudio/',
 ]
 

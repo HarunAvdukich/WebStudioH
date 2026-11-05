@@ -1,7 +1,7 @@
 ---
 title: "Koliko zaista košta web stranica u 2026?"
 date: "2026-06-18"
-updated: "2026-10-01"
+updated: "2026-11-05"
 excerpt: "Cijena web stranice ide od nekoliko stotina do nekoliko hiljada KM. Od čega zavisi, šta se plaća jednom a šta svake godine, i kako izbjeći skrivene troškove."
 ---
 
@@ -97,4 +97,4 @@ Prezentacijska stranica traje kraće od trgovine. Kod mrt.ba, velike trgovine sa
 
 ## Zanima Vas cijena za Vašu stranicu?
 
-[Pišite nam](/kontakt) šta radite i šta biste htjeli da stranica radi. Pogledajte i [naše radove](/radovi) i [šta sve radimo](/usluge).
+[Pišite nam](/kontakt) šta radite i šta biste htjeli da stranica radi. Pogledajte ponudu za [izradu web stranice](/izrada-web-stranica) ili [izradu web shopa](/izrada-web-shopa), te [naše radove](/radovi).

@@ -4,6 +4,7 @@
 import { writeFileSync, readdirSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { projects } from '../src/data.js'
+import { izrada } from '../src/stranice/izrada.js'
 
 const BASE = 'https://hunar.ba'
 
@@ -25,6 +26,7 @@ const urls = [
   ['/en/about', nova('ONama', 'o-hunaru.en', ['src/components/onama'])],
   ['/usluge', nova('Usluge', 'usluge', ['src/components/usluge', 'src/components/igre'])],
   ['/en/services', nova('Usluge', 'usluge.en', ['src/components/usluge', 'src/components/igre'])],
+  ...izrada.map(t => [t.put, ['src/pages/Izrada.jsx', 'src/stranice/izrada.js', `src/content/usluge/${t.put.slice(1)}.md`]]),
   ['/radovi', nova('Radovi', 'radovi', ['src/components/radovi'])],
   ['/en/work', nova('Radovi', 'radovi.en', ['src/components/radovi'])],
   ['/cijene', nova('Cijene', 'cijene', ['src/components/cijene'])],
@@ -36,11 +38,11 @@ const urls = [
   ['/en/contact', nova('Kontakt', 'kontakt.en', ['src/components/kontakt'])],
   ['/politika-privatnosti', nova('Privatnost', 'privatnost', ['src/components/savjeti'])],
   ['/en/privacy', nova('Privatnost', 'privatnost.en', ['src/components/savjeti'])],
-  ...projects.map((p) => [
+  ...projects.filter((p) => p.url).map((p) => [
     `/radovi/${p.slug}`,
     [`src/content/radovi/${p.slug}.md`, 'src/radovi.js', ...nova('Studija', 'radovi', ['src/components/radovi'])],
   ]),
-  ...projects.map((p) => [
+  ...projects.filter((p) => p.url).map((p) => [
     `/en/work/${p.slug}`,
     [`src/content/radovi/${p.slug}.en.md`, 'src/radovi.js', ...nova('Studija', 'radovi.en', ['src/components/radovi'])],
   ]),

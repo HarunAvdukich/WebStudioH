@@ -5,6 +5,8 @@ import ONama from './pages/ONama.jsx'
 import * as oHunaru from './stranice/o-hunaru.js'
 import * as oHunaruEn from './stranice/o-hunaru.en.js'
 import Usluge from './pages/Usluge.jsx'
+import Izrada from './pages/Izrada.jsx'
+import { izrada } from './stranice/izrada.js'
 import * as usluge from './stranice/usluge.js'
 import * as uslugeEn from './stranice/usluge.en.js'
 import Radovi from './pages/Radovi.jsx'
@@ -39,6 +41,7 @@ export const routes = [
       { path: 'o-nama', element: <ONama t={oHunaru} /> },
       { path: 'en/about', element: <ONama t={oHunaruEn} /> },
       { path: 'usluge', element: <Usluge t={usluge} /> },
+      ...izrada.map(t => ({ path: t.put.slice(1), element: <Izrada t={t} /> })),
       { path: 'en/services', element: <Usluge t={uslugeEn} /> },
       { path: 'radovi', element: <Radovi t={radovi} /> },
       { path: 'en/work', element: <Radovi t={radoviEn} /> },

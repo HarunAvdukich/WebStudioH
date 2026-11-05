@@ -3,10 +3,11 @@ import { useOkvir } from '../../lib/useOkvir.js'
 import TekstOkoZnaka from './TekstOkoZnaka.jsx'
 import BrojTelefona from './BrojTelefona.jsx'
 import ViberLink from './ViberLink.jsx'
+import { uslugeLinkovi } from '../../uslugeLinkovi.js'
 
 // Podnožje ostalih stranica, isti tekst kao na početnoj.
 export default function Podnozje() {
-  const { meni, whatsappLink, okvir, drugaVerzija } = useOkvir()
+  const { jezik, meni, whatsappLink, okvir, drugaVerzija } = useOkvir()
   return (
     <footer className="ok-podnozje">
       <div className="ok-podnozje__red">
@@ -19,6 +20,9 @@ export default function Podnozje() {
             <Link key={m.put} to={m.put}>
               {m.naziv}
             </Link>
+          ))}
+          {jezik === 'bs' && uslugeLinkovi.map(l => (
+            <Link key={l.put} to={l.put}>{l.naziv}</Link>
           ))}
           <Link to={okvir.privatnost.put}>{okvir.privatnost.naziv}</Link>
           <Link to={drugaVerzija} hrefLang={okvir.jezik.kod} lang={okvir.jezik.kod}>

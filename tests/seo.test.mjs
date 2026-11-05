@@ -31,7 +31,8 @@ const pages = existsSync(DIST)
 // Demoi su statične stranice iz public/, bez okvira sajta: kalkulator za stanice tehničkog pregleda
 // zakazivanje za berbernice i red vožnje sa kartama za autobuskog prevoznika.
 const DEMOI = ['/kalkulator-registracije', '/demo-termini', '/demo-prevoz', '/demo-viena']
-const NEINDEKSIRANE = ['/404', '/sati', ...DEMOI]
+const U_IZRADI = ['/radovi/urez', '/en/work/urez']
+const NEINDEKSIRANE = ['/404', '/sati', ...DEMOI, ...U_IZRADI]
 const indeksirane = pages.filter((p) => !NEINDEKSIRANE.includes(p.path))
 const meta = (html, re) => (html.match(re) || [])[1]
 const jsonLd = (html) =>
@@ -70,6 +71,41 @@ test('netlify ne vraća početnu za nepostojeće adrese', () => {
   const toml = readFileSync('netlify.toml', 'utf8')
   assert.doesNotMatch(toml, /to\s*=\s*"\/index\.html"/)
   assert.match(toml, /from = "https:\/\/webstudioh\.netlify\.app\/\*"/)
+})
+
+test('radovi u izradi ostaju dostupni, ali bez indeksa, canonicala i hreflanga', () => {
+  const sitemap = readFileSync(join(DIST, 'sitemap.xml'), 'utf8')
+  for (const path of U_IZRADI) {
+    const p = pages.find(p => p.path === path)
+    assert.ok(p, path)
+    assert.match(p.html, /name="robots"[^>]*content="noindex"/)
+    assert.doesNotMatch(p.html.split('</head>')[0], /rel="canonical"|hrefLang=|hreflang=/)
+    assert.ok(!sitemap.includes(BASE + path))
+  }
+})
+
+test('ključne usluge imaju interne linkove sa početne i iz ponude', () => {
+  for (const path of ['/izrada-web-stranica', '/izrada-web-shopa', '/olx', '/zakazivanje']) {
+    for (const izvor of ['/', '/usluge']) {
+      assert.ok(pages.find(p => p.path === izvor).html.includes(`href="${path}"`), `${izvor} ne vodi na ${path}`)
+    }
+    const p = pages.find(p => p.path === path)
+    const service = jsonLd(p.html).find(d => d['@type'] === 'Service')
+    assert.equal(service?.url, BASE + path, path)
+    assert.equal(service?.provider['@id'], BASE + '/#organizacija', path)
+  }
+})
+
+test('nove usluge imaju sadržaj, stvaran rad i jasan put do upita u statičnom HTML-u', () => {
+  for (const path of ['/izrada-web-stranica', '/izrada-web-shopa']) {
+    const p = pages.find(p => p.path === path)
+    const article = p.html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1] || ''
+    assert.ok(article.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length >= 500, path)
+    assert.match(article, /href="\/radovi\/(mrt|smarttime)"/)
+    assert.match(article, /href="\/cijene"/)
+    assert.match(article, /href="\/kontakt"/)
+    assert.match(p.html, /href="https:\/\/wa\.me\/387603000751\?text=/)
+  }
 })
 
 for (const p of indeksirane) {

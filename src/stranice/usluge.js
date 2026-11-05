@@ -17,7 +17,7 @@ export const seo = {
 
 export const vrh = {
   nad: 'Usluge',
-  naslov: 'Od prve stranice do sistema koji radi sam.',
+  naslov: 'Web stranice, web shopovi i sistemi za firme.',
   smjena: {
     prije: 'Za firme u BiH radimo',
     rijeci: ['web stranice', 'web shopove', 'mobilne aplikacije', 'SEO optimizaciju', 'online rezervacije', 'AI chatbotove', 'redizajn stranica', 'održavanje i hosting'],

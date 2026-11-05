@@ -42,6 +42,7 @@ export default function Studija({ t }) {
         description={r.seo.opis}
         path={`${svi}/${slug}`}
         jezik={t.jezik}
+        noindex={!r.url}
         tip="article"
         verzije={[
           { jezik: 'bs', path: `/radovi/${slug}` },
