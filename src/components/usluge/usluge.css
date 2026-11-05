@@ -1,3 +1,6 @@
+.us-detalji { list-style: none; padding: 0; margin: 22px 0; display: grid; gap: 12px; }
+.us-detalji a { text-underline-offset: 5px; font-size: 18px; }
+
 /* Usluge: zakačena scena "Sajt koji raste", stepenice sa bojom po dijelu i oznakom dijela,
    igre, održavanje i vodič. Preglednik je mjeren u em, pa se isti markup skalira:
    na računaru prema visini ekrana, na telefonu prema širini (container query). */

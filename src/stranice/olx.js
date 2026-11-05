@@ -6,13 +6,13 @@ export const jezik = 'bs'
 export const put = '/olx'
 
 export const seo = {
-  naslov: 'Web shop koji sam drži OLX oglase ažurnim · Hunar',
+  naslov: 'Povezivanje web shopa sa OLX-om u BiH · Hunar',
   opis: 'Promijenite cijenu u web shopu, a OLX oglas se ispravi sam. Snimak sa mrt.ba, koji ovako drži preko 3.000 oglasa (11. 10. 2026).',
 }
 
 export const vrh = {
   nad: 'OLX veza za trgovine',
-  naslov: 'Promijenite cijenu na sajtu. OLX oglas se ispravi sam.',
+  naslov: 'Povezivanje web shopa sa OLX-om.',
   uvod: 'Za trgovinu mrt.ba smo napravili web shop koji sam drži njihove OLX oglase ažurnim. Pogledajte snimak od 40 sekundi sa stvarnim artiklom.',
   snimak: 'Pogledajte snimak',
   pitaj: 'Pitajte za svoju trgovinu',

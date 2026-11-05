@@ -57,11 +57,11 @@ const organizacija = {
     '@type': 'OfferCatalog',
     name: 'Usluge',
     itemListElement: [
-      ['Izrada web stranica', 'Prezentacijske stranice za firme, sa kontaktom i po potrebi zakazivanjem termina.', '/usluge'],
-      ['Izrada web trgovina', 'WooCommerce trgovine sa katalogom, korpom, naplatom i dostavom.', '/usluge'],
-      ['Povezivanje sa OLX-om i Ananasom', 'OLX oglasi i Ananas feed koji se ažuriraju iz trgovine.', '/savjeti/povezivanje-web-shopa-sa-olx-om'],
+      ['Izrada web stranica', 'Prezentacijske stranice za firme, sa kontaktom i po potrebi zakazivanjem termina.', '/izrada-web-stranica'],
+      ['Izrada web trgovina', 'WooCommerce trgovine sa katalogom, korpom, naplatom i dostavom.', '/izrada-web-shopa'],
+      ['Povezivanje sa OLX-om i Ananasom', 'OLX oglasi i Ananas feed koji se ažuriraju iz trgovine.', '/olx'],
       ['Uvoz artikala od dobavljača', 'Uvoz kataloga, cijena, zaliha, slika i barkodova od više dobavljača.', '/savjeti/uvoz-artikala-od-dobavljaca'],
-      ['Online zakazivanje termina', 'Zakazivanje usluga direktno na stranici.', '/savjeti/online-zakazivanje-termina'],
+      ['Online zakazivanje termina', 'Zakazivanje usluga direktno na stranici.', '/zakazivanje'],
       ['B2B portal za veleprodaju', 'Poseban ulaz za partnere sa veleprodajnim cijenama i narudžbenicom.', '/radovi/mrt'],
       ['SEO optimizacija', 'Brzina, naslovi i opisi, strukturirani podaci i Google Search Console.', '/usluge'],
       ['AI chatbot', 'Asistent na stranici koji odgovara kupcima, kao Kobi na mrt.ba.', '/usluge'],
@@ -122,6 +122,22 @@ export function mrvice(koraci) {
       name: k.ime,
       item: SITE_URL + k.path,
     })),
+  }
+}
+
+// Usluga na vlastitoj stranici, sa istim pružaocem iz zajedničkog JSON-LD-a.
+export function usluga({ path, naziv, opis }) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    '@id': `${SITE_URL}${path}#usluga`,
+    name: naziv,
+    serviceType: naziv,
+    description: opis,
+    url: SITE_URL + path,
+    provider: { '@id': ORGANIZACIJA_ID },
+    areaServed: { '@type': 'Country', name: 'Bosna i Hercegovina' },
+    availableChannel: { '@type': 'ServiceChannel', serviceUrl: `${SITE_URL}/kontakt` },
   }
 }
 

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
-import { mrvice } from '../components/JsonLd.jsx'
+import { mrvice, usluga } from '../components/JsonLd.jsx'
 import { Vrh, DioNaslov, Kvacice, CestaPitanja } from '../components/stranica/dijelovi.jsx'
 import ZavrsniPoziv from '../components/stranica/ZavrsniPoziv.jsx'
 import { waLink } from '../lib/whatsapp.js'
@@ -19,6 +19,7 @@ export default function Zakazivanje() {
         description={t.seo.opis}
         path={t.put}
         podaci={[
+          usluga({ path: t.put, naziv: 'Online zakazivanje termina', opis: t.seo.opis }),
           mrvice([
             { ime: 'Početna', path: '/' },
             { ime: 'Zakazivanje termina', path: t.put },

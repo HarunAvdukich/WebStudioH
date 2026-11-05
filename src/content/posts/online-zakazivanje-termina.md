@@ -2,6 +2,7 @@
 title: "Online zakazivanje termina na web stranici: vodič za radnje i servise"
 seoTitle: "Online zakazivanje termina na web stranici"
 date: "2026-10-01"
+updated: "2026-11-05"
 excerpt: "Kako postaviti zakazivanje termina na stranici, da kupac ne mora zvati, a Vi ne dobijete dva kupca u isto vrijeme. Iz prakse sa SmartTimeom."
 ---
 
@@ -70,4 +71,4 @@ Za svaku uslugu koja ima trajanje i termin: servis, salon, ordinacija, radionica
 
 ## Hoćete zakazivanje i kod sebe?
 
-Pogledajte [kako radi kod SmartTimea](/radovi/smarttime) ili nam [pišite](/kontakt) koje usluge radite i koliko traju.
+Pogledajte [online zakazivanje za berbernice i salone sa demom](/zakazivanje) i [kako radi kod SmartTimea](/radovi/smarttime), ili nam [pišite](/kontakt) koje usluge radite i koliko traju.

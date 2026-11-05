@@ -12,6 +12,7 @@ import { igraj } from '../../lib/primjeri.js'
 import { popuni, waLink } from '../../lib/whatsapp.js'
 import { cl } from '../../lib/pokreti/racun.js'
 import { prati } from '../../lib/statistika.js'
+import { uslugeLinkovi } from '../../uslugeLinkovi.js'
 
 const zivo = () => typeof document !== 'undefined' && document.documentElement.classList.contains('pokret')
 
@@ -48,6 +49,7 @@ function useProlaz(ref, crtaj) {
 // Kartica usluge sa većim živim primjerom: primjer se odigra kad kartica dođe na ekran,
 // a dodir ga odigra ponovo. "Pitajte za ovo" otvara WhatsApp sa imenom usluge.
 function KarticaUsluge({ u, i, t }) {
+  const detalj = t.jezik === 'bs' && uslugeLinkovi.find(l => l.id === u.id || (u.id === 'termini' && l.id === 'termin'))
   const ref = useRef(null)
   const igre = useRef(0)
   useEffect(() => {
@@ -75,7 +77,7 @@ function KarticaUsluge({ u, i, t }) {
   return (
     <article className="tk-usluga" data-pokret="pojavi" style={{ '--i': i % 2 }}>
       <span className="tk-usluga__br">{String(i + 1).padStart(2, '0')}</span>
-      <h3>{u.ime}</h3>
+      <h3>{detalj ? <Link to={detalj.put}>{u.ime}</Link> : u.ime}</h3>
       <p>{u.opis}</p>
       <div
         ref={ref}

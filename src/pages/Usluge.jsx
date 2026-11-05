@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import Seo from '../components/Seo.jsx'
 import { Vrh, DioNaslov, Kvacice, Mjerac, PitajteZaOvo } from '../components/stranica/dijelovi.jsx'
 import SmjenaRijeci from '../components/stranica/SmjenaRijeci.jsx'
@@ -9,6 +10,7 @@ import IgraOlx from '../components/igre/IgraOlx.jsx'
 import IgraTermin from '../components/igre/IgraTermin.jsx'
 import Vodic from '../components/igre/Vodic.jsx'
 import { PAROVI } from '../lib/jezik.js'
+import { uslugeLinkovi } from '../uslugeLinkovi.js'
 import '../components/stranica/stranica.css'
 import '../components/igre/igre.css'
 import '../components/usluge/usluge.css'
@@ -107,6 +109,13 @@ export default function Usluge({ t }) {
                 <p className="st-uvod" data-pokret="pali">
                   {s.opis}
                 </p>
+                {t.jezik === 'bs' && (
+                  <ul className="us-detalji">
+                    {uslugeLinkovi.filter(l => l.id === s.id || (s.id === 'seo' && l.id === 'olx') || (s.id === 'sistemi' && l.id === 'termin')).map(l => (
+                      <li key={l.put}><Link to={l.put}>{l.naziv} ↗</Link></li>
+                    ))}
+                  </ul>
+                )}
                 <div className="us-pitaj">
                   {s.usluge.map((u) => (
                     <PitajteZaOvo key={u.ime} usluga={u} pitaj={t.pitaj} />

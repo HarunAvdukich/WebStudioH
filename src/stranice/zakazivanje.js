@@ -14,7 +14,7 @@ export const seo = {
 
 export const vrh = {
   nad: 'Zakazivanje za berbernice i frizerske salone',
-  naslov: 'Mušterija zakaže sama. Telefon ne zvoni usred šišanja.',
+  naslov: 'Online zakazivanje za berbernice i salone.',
   uvod: 'Na Vašoj stranici mušterija izabere uslugu, berbera i slobodan termin, a Vi termin vidite na telefonu. Dan prije joj stigne podsjetnik. Isprobajte demo, pa nam recite kako radite.',
   demo: 'Isprobajte demo',
   pitaj: 'Pitajte za svoju berbernicu',
