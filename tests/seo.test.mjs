@@ -30,7 +30,7 @@ const pages = existsSync(DIST)
 // /sati je skrivena evidencija rada za klijenta: otvara se samo linkom sa ključem.
 // Demoi su statične stranice iz public/, bez okvira sajta: kalkulator za stanice tehničkog pregleda
 // zakazivanje za berbernice i red vožnje sa kartama za autobuskog prevoznika.
-const DEMOI = ['/kalkulator-registracije', '/demo-termini', '/demo-prevoz', '/demo-viena']
+const DEMOI = ['/kalkulator-registracije', '/demo-termini', '/demo-prevoz', '/demo-viena', '/demo-saskas', '/demo-saskas-kurs']
 const U_IZRADI = ['/radovi/urez', '/en/work/urez']
 const NEINDEKSIRANE = ['/404', '/sati', ...DEMOI, ...U_IZRADI]
 const indeksirane = pages.filter((p) => !NEINDEKSIRANE.includes(p.path))
