@@ -34,6 +34,8 @@ Sve radi na serveru: ne treba upaljen računar i ne treba niko da klikne. Svakih
 
 Na dan 29. 9. 2026. mrt.ba je na OLX-u imao 4.453 oglasa koji se ovako ažuriraju. Kako takva veza radi i šta treba pripremiti opisali smo u vodiču [Kako povezati web shop sa OLX-om](/savjeti/povezivanje-web-shopa-sa-olx-om).
 
+Pogledajte [snimak ažuriranja OLX oglasa i ponudu povezivanja](/olx) da vidite kako promjena cijene iz ove trgovine stiže na oglas.
+
 ## Feed za Ananas
 
 Ananas preuzima katalog mrt.ba iz feeda koji trgovina pravi sama: cijene, akcijske cijene i zalihu. Nema posebne tabele koju neko mora slati i ažurirati ručno.
