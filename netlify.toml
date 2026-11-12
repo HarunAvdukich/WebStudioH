@@ -24,3 +24,10 @@
   from = "/demo-berbernica"
   to = "/demo-termini"
   status = 301
+
+# Skice sajtova za firme iz hladnih mailova: /demoskica/<slug> je uvijek isti šablon,
+# a podatke firme čita iz /demoskica-podaci/<slug>.json (scripts/demoskica.mjs).
+[[redirects]]
+  from = "/demoskica/*"
+  to = "/demoskica.html"
+  status = 200
