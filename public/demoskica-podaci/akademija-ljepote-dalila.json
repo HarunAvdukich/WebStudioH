@@ -1,0 +1,21 @@
+{
+  "ime": "Akademija Ljepote Dalila",
+  "grad": "Sarajevo",
+  "vrsta": "ljepota",
+  "tel": "061 885 588",
+  "adresa": "Safvet-bega Bašagića 7, Baščaršija",
+  "oznaka": "Salon ljepote i akademija",
+  "boja": "#8a6630",
+  "sati": [
+    [
+      "Ponedjeljak do subota",
+      "09:00",
+      "20:00"
+    ],
+    [
+      "Nedjelja",
+      null,
+      null
+    ]
+  ]
+}
