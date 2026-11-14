@@ -52,7 +52,7 @@ h2 em,h1 em{font-style:italic;font-weight:400;color:var(--bordo)}
 .znak{display:flex;align-items:center;gap:12px;text-decoration:none}
 .znak img{width:46px;height:46px;border-radius:50%;box-shadow:0 0 0 1px var(--linija)}
 .znak b{display:block;font-family:var(--serif);font-weight:600;font-size:23px;line-height:1}
-.znak small{display:block;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--siva);margin-top:4px}
+.znak small{display:block;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--siva);margin-top:4px}
 .meni{display:flex;gap:26px;font-size:15px}
 .meni a{text-decoration:none;position:relative}
 .meni a::after{content:"";position:absolute;left:0;right:0;bottom:-4px;height:1px;background:var(--bordo);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
@@ -86,9 +86,7 @@ h2 em,h1 em{font-style:italic;font-weight:400;color:var(--bordo)}
 .plutajuca b{display:block;font-size:14px;font-weight:500;color:var(--tinta)}
 .plutajuca.p1{right:-1%;bottom:20%;max-width:240px}
 .plutajuca.p2{right:4%;top:6%}
-.tacka{width:10px;height:10px;border-radius:50%;background:#3aa16e;flex:none;box-shadow:0 0 0 0 rgba(58,161,110,.5);animation:puls 2s infinite}
-@keyframes puls{70%{box-shadow:0 0 0 9px rgba(58,161,110,0)}100%{box-shadow:0 0 0 0 rgba(58,161,110,0)}}
-@media (prefers-reduced-motion:reduce){.tacka{animation:none}}
+.tacka{width:10px;height:10px;border-radius:50%;background:#3aa16e;flex:none;box-shadow:0 0 0 4px rgba(58,161,110,.18)}
 
 /* traka */
 .traka{background:var(--bordo-t);color:#f6e4e4;overflow:hidden;padding:20px 0}
