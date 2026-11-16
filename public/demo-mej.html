@@ -37,7 +37,7 @@ button{cursor:pointer}
 .mono{font-family:var(--mono)}
 .oko{display:inline-flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--zlato2)}
 .oko::before{content:"";width:22px;height:1px;background:currentColor}
-.primjer{display:inline-block;font:600 10.5px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--zlato2);border:1px solid rgba(212,165,60,.45);border-radius:6px;padding:4px 7px;vertical-align:middle;white-space:nowrap}
+.primjer{display:inline-block;font:600 11px/1 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--zlato2);border:1px solid rgba(212,165,60,.45);border-radius:6px;padding:4px 7px;vertical-align:middle;white-space:nowrap}
 
 /* dugmad */
 .dugme{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:11px;padding:13px 20px;font-weight:700;font-size:15px;line-height:1.2;text-decoration:none;white-space:nowrap;transition:transform .15s,background .15s,box-shadow .15s,color .15s}
@@ -85,7 +85,7 @@ h1[tabindex="-1"]:focus{outline:none}
 .polje:focus-within{box-shadow:0 0 0 3px rgba(233,190,90,.6),0 28px 60px -24px rgba(0,0,0,.75)}
 .polje>svg{flex:none;color:#5B6B80}
 .polje input{flex:1;min-width:0;border:0;background:none;outline:none;color:var(--tekst);font-size:17px;padding:14px 12px}
-.polje input::placeholder{color:#7D8CA0}
+.polje input::placeholder{color:#5B6B80}
 .polje input::-webkit-search-cancel-button{-webkit-appearance:none}
 .polje .dugme{padding:13px 22px}
 .prijedlozi{position:absolute;left:0;right:0;top:calc(100% + 8px);z-index:35;background:#fff;color:var(--tekst);border-radius:14px;box-shadow:0 40px 80px -30px rgba(0,0,0,.85),0 0 0 1px rgba(14,26,43,.08);padding:8px;max-height:min(480px,66vh);overflow:auto;overscroll-behavior:contain;text-align:left}
@@ -137,7 +137,7 @@ mark{background:rgba(212,165,60,.32);color:inherit;border-radius:3px;padding:0 1
 .okvir i:nth-child(2){right:0;top:0;border-right-width:1px;border-top-width:1px}
 .okvir i:nth-child(3){left:0;bottom:0;border-left-width:1px;border-bottom-width:1px}
 .okvir i:nth-child(4){right:0;bottom:0;border-right-width:1px;border-bottom-width:1px}
-.ocitanje{position:absolute;left:72%;top:21%;font:500 10.5px/1.75 var(--mono);letter-spacing:.06em;color:var(--muted);pointer-events:none;white-space:nowrap}
+.ocitanje{position:absolute;left:72%;top:21%;font:500 11px/1.7 var(--mono);letter-spacing:.04em;color:var(--muted);pointer-events:none;white-space:nowrap}
 .ocitanje b{color:var(--zlato2);font-weight:600}
 .sloj{position:absolute;inset:0;pointer-events:none;transform:translate3d(calc(var(--px) * var(--d) * 1px),calc(var(--py) * var(--d) * .8px),0);transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .35s,filter .35s}
 .sloj>a{pointer-events:auto}
@@ -271,7 +271,7 @@ li.product.k-upit{background:var(--noc) radial-gradient(380px 260px at 100% 0,rg
 .vin-forma label{display:block;font-size:13px;font-weight:600;color:var(--srebro);margin:0 0 7px}
 .vin-ulaz{position:relative}
 .vin-ulaz input{width:100%;font:600 18px var(--mono);letter-spacing:.1em;text-transform:uppercase;background:#F5F7FA;color:var(--tekst);border:0;border-radius:11px;padding:14px 74px 14px 16px;outline:none}
-.vin-ulaz input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#7D8CA0;font-family:var(--sans);font-size:15.5px}
+.vin-ulaz input::placeholder{text-transform:none;letter-spacing:0;font-weight:400;color:#5B6B80;font-family:var(--sans);font-size:15.5px}
 .vin-forma input:focus{box-shadow:0 0 0 3px rgba(233,190,90,.6)}
 .vin-br{position:absolute;right:14px;top:50%;transform:translateY(-50%);font:600 12px var(--mono);color:var(--tekst2)}
 .vin-crtice{display:grid;grid-template-columns:repeat(17,1fr);gap:3px;margin:8px 0 16px}
@@ -441,7 +441,7 @@ textarea.input-text{min-height:88px;resize:vertical}
 .woocommerce-thankyou-order-received{display:flex;align-items:center;gap:14px;font-size:clamp(26px,3vw,38px);font-weight:800;font-stretch:120%;color:var(--bijela);margin:10px 0 18px;line-height:1.1}
 .woocommerce-thankyou-order-received svg{flex:none;color:#1A1306;background:var(--zlato2);border-radius:50%;padding:8px;width:46px;height:46px}
 .order_details{list-style:none;margin:0 0 24px;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--linija);border-radius:16px;overflow:hidden}
-.order_details li{padding:16px 18px;border-left:1px solid var(--linija);font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.order_details li{padding:16px 18px;border-left:1px solid var(--linija);font-size:12.5px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .order_details li:first-child{border-left:0}
 .order_details strong{display:block;margin-top:5px;font-size:16px;color:var(--bijela);text-transform:none;letter-spacing:0}
 .hvala-tekst{color:var(--muted);font-size:16px;margin:0 0 22px}
@@ -529,7 +529,7 @@ textarea.input-text{min-height:88px;resize:vertical}
   .polje .dugme{padding:12px 15px}
   .povjerenje{gap:8px 16px}
   .oznaka small,.ocitanje{display:none}
-  .oznaka b{font-size:10px}
+  .oznaka b{font-size:11px}
   .o-meh{left:66%}
   .o-ak{left:72%}
   .sekcija{padding:60px 0}
@@ -548,11 +548,11 @@ textarea.input-text{min-height:88px;resize:vertical}
   .k-tijelo{padding:10px 6px 0}
   .woocommerce-loop-product__title{font-size:14.5px}
   .k-oe{font-size:11px}
-  .k-marka{font-size:10px}
+  .k-marka{font-size:11px}
   .k-cijena{min-height:0;padding:8px 0 60px}
   li.product .price{font-size:17px}
   li.product .add_to_cart_button{left:10px;right:10px;bottom:10px;padding:10px;font-size:13.5px}
-  .k-garancija{font-size:10px;left:6px;top:6px}
+  .k-garancija{font-size:11px;left:6px;top:6px}
   .k-upit{grid-column:1/-1;padding:22px}
   .vin{padding:22px;gap:24px;border-radius:18px}
   .vin-forma{padding:18px}
