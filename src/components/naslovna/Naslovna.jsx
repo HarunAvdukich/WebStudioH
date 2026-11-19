@@ -133,8 +133,8 @@ export default function Naslovna() {
 
             <div className="scena" role="group" aria-label="Snimci stranica koje smo napravili">
               <Petlja />
-              <div className="tel-okvir tel-a"><img src="/kadrovi/mrt-telefon.webp" width="780" height="1270" alt="Snimak web shopa mrt.ba na telefonu" fetchpriority="high" /></div>
-              <div className="tel-okvir tel-b"><img src="/kadrovi/smarttime-telefon.webp" width="780" height="1270" alt="Snimak web shopa smarttime.ba na telefonu" /></div>
+              <div className="tel-okvir tel-a"><img src="/kadrovi/mrt-pocetna.webp" width="780" height="1270" alt="Početna web shopa mrt.ba na telefonu: akcija i kategorije alata" fetchpriority="high" /></div>
+              <div className="tel-okvir tel-b"><img src="/kadrovi/smarttime-pocetna.webp" width="780" height="1270" alt="Početna web shopa smarttime.ba na telefonu" /></div>
               <span className="adresa ad-a"><i />mrt.ba</span>
               <span className="adresa ad-b"><i />smarttime.ba</span>
               <div className="kartica-plutaj kp-a">
@@ -147,13 +147,6 @@ export default function Naslovna() {
                 <p>AI asistent na mrt.ba odgovara kupcima i noću</p>
               </div>
             </div>
-          </div>
-
-          <div className="cinjenice">
-            <div className="otkrij"><div className="v"><span className="brojac tis" style={{ '--do': '4250' }}><span className="sr">4.250</span></span></div><p>aktivnih OLX oglasa se ažurira samo, bez ručnog prepisivanja</p><span className="mono">mrt.ba na OLX-u · 19. 11. 2026.</span></div>
-            <div className="otkrij"><div className="v"><span className="brojac" style={{ '--do': '52' }}><span className="sr">52</span></span> <small>ms</small></div><p>odziv servera, stranica se otvori prije nego trepnete</p><span className="mono">mrt.ba · 27. 9. 2026.</span></div>
-            <div className="otkrij"><div className="v"><span className="brojac" style={{ '--do': '35' }}><span className="sr">35</span></span></div><p>Google recenzija kupaca prikazano na samoj stranici</p><span className="mono">smarttime.ba · 1. 10. 2026.</span></div>
-            <div className="otkrij"><div className="v"><span className="brojac tis" style={{ '--do': '8714' }}><span className="sr">8.714</span></span></div><p>artikala nosi jedan web shop, sa cijenama od dobavljača</p><span className="mono">mrt.ba · 2. 11. 2026.</span></div>
           </div>
         </div>
       </section>
@@ -301,7 +294,7 @@ export default function Naslovna() {
               </ul>
               <a className="link" href="/radovi/mrt">Pročitajte kako smo ga napravili <Ik d={STRELICA} /></a>
             </div>
-            <div className="slika"><img src="/radovi/mrt-olx.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Snimak OLX trgovine Motorremont na telefonu" /></div>
+            <div className="slika"><img src="/radovi/mrt-pocetna-artikli.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Motorne pile na početnoj mrt.ba: cijena, zaliha i garancija, snimak telefona" /></div>
           </article>
           <article className="rad">
             <div className="tekst">
@@ -315,7 +308,7 @@ export default function Naslovna() {
               </ul>
               <a className="link" href="/radovi/smarttime">Pročitajte kako smo ga napravili <Ik d={STRELICA} /></a>
             </div>
-            <div className="slika"><img src="/radovi/smarttime-termin.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Snimak zakazivanja termina na smarttime.ba" /></div>
+            <div className="slika"><img src="/radovi/smarttime-pocetna-satovi.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Izdvojeni satovi na početnoj smarttime.ba, snimak telefona" /></div>
           </article>
         </div>
         <div className="jos">
