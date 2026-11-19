@@ -138,8 +138,7 @@
 /* djelatnosti i gradovi */
 .h .bransa{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .h .bransa a{display:flex;justify-content:space-between;align-items:center;border:1px solid var(--linija);border-radius:16px;padding:20px 22px;font-weight:700;font-size:18px;background:rgba(244,244,242,.025)}
-.h .bransa a span{display:block;font-weight:500;font-size:14.5px;color:var(--tiho);margin-top:3px}
-.h .bransa a svg{width:18px;height:18px;color:var(--tise);flex:none}
+.h .bransa .red>svg{width:18px;height:18px;color:var(--tise);flex:none}
 .h .bransa a:hover{border-color:var(--linija2)}
 .h .gradovi{margin-top:40px;border:1px solid var(--linija);border-radius:22px;padding:28px 30px;display:grid;grid-template-columns:260px 1fr;gap:30px;align-items:center;background:var(--bg2)}
 .h .gradovi h3{font-size:22px;font-weight:700;line-height:1.25;letter-spacing:-.01em}
@@ -451,7 +450,7 @@
 .h .cinjenice>div .v{color:var(--b)}
 .h .provjera:nth-child(1){--b:var(--svijetli)}.h .provjera:nth-child(2){--b:var(--nebo)}.h .provjera:nth-child(3){--b:var(--ljub)}.h .provjera:nth-child(4){--b:var(--zlato)}
 .h .provjera .ocjena{color:var(--b)}
-.h .bransa a:nth-child(3n+1) svg{color:var(--zlato)}.h .bransa a:nth-child(3n+2) svg{color:var(--nebo)}.h .bransa a:nth-child(3n) svg{color:var(--koral)}
+.h .bransa a:nth-child(3n+1) .red>svg{color:var(--zlato)}.h .bransa a:nth-child(3n+2) .red>svg{color:var(--nebo)}.h .bransa a:nth-child(3n) .red>svg{color:var(--koral)}
 
 /* ===== bez rizika (krem sekcija) ===== */
 .h .rizik{background:var(--krema);color:var(--tamno);position:relative;overflow:hidden;isolation:isolate}
@@ -500,10 +499,6 @@
 .h .niste-sigurni h3{font-size:28px;font-weight:800;letter-spacing:-.02em}
 .h .niste-sigurni p{color:#4f6159;margin-top:4px;max-width:560px}
 .h .ns-akcije{display:flex;gap:10px;flex-wrap:wrap}
-.h .traka2{background:var(--zlato);color:#1d1404;transform:rotate(-2deg);margin:-26px -20px 0;padding:18px 0;overflow:hidden;position:relative;z-index:2;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
-.h .traka2-niz{display:flex;align-items:center;gap:28px;width:max-content;white-space:nowrap}
-.h .traka2 span{font-size:30px;font-weight:800;letter-spacing:-.02em}
-.h .traka2 i{width:12px;height:12px;background:#1d1404;transform:rotate(45deg);flex:none}
 
 .h .obecanja{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
 .h .obecanja li{display:flex;gap:18px;align-items:center;background:#fff;border-radius:22px;padding:22px 24px;border:1px solid rgba(16,35,28,.08)}
@@ -530,7 +525,6 @@
   .h .skica-tekst h3{font-size:34px}
   .h .ponude{grid-template-columns:1fr}
   .h .niste-sigurni{flex-direction:column;align-items:flex-start;padding:26px 22px}
-  .h .traka2 span{font-size:22px}
   .h .pretr-tijelo{min-height:260px}
 }
 
@@ -553,8 +547,6 @@
   .h .stub:nth-child(3) .ik,.h .ponuda:nth-child(3) .ik3{animation-delay:-2s}
   .h .stub:nth-child(4) .ik,.h .ponuda:nth-child(4) .ik3{animation-delay:-3s}
   @keyframes ljulja{50%{transform:translateY(-5px) rotate(-4deg)}}
-  .h .traka2-niz{animation:teci2 30s linear infinite}
-  @keyframes teci2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
   .h .skica-kartica::before{animation:sjena 10s ease-in-out infinite}
   .h .pretr{animation:plutaj 6s ease-in-out infinite}
   /* skica se gradi u petlji */
@@ -582,8 +574,6 @@
     @keyframes nagni{from{opacity:0;transform:perspective(1200px) rotateX(14deg) translateY(80px) scale(.95)}}
     .h .ponuda,.h .niste-sigurni{animation:otkrij linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
     .h .ponuda:nth-child(2){animation-range:entry 8% entry 63%}.h .ponuda:nth-child(3){animation-range:entry 16% entry 71%}.h .ponuda:nth-child(4){animation-range:entry 24% entry 79%}
-    .h .traka2{animation:traka2 linear both;animation-timeline:view()}
-    @keyframes traka2{from{transform:rotate(-4deg) translateX(-3%)}to{transform:rotate(-1deg) translateX(3%)}}
     .h .orb{animation-timeline:auto}
   }
 }
@@ -593,7 +583,7 @@
 @supports (animation-timeline:view()){
   @media (prefers-reduced-motion:no-preference){
     /* svaka sekcija daje --p: 1 kad ulazi, 0 na sredini, -1 kad izlazi; pozadina se usput oboji */
-    .h .sek,.h .traka{animation:skrol linear both;animation-timeline:view();animation-range:cover}
+    .h .sek{animation:skrol linear both;animation-timeline:view();animation-range:cover}
     @keyframes skrol{from{--p:1}to{--p:-1}}
     .h .sek{--ton:#14382b;--kk:1;animation-name:skrolTon}
     @keyframes skrolTon{from{--p:1}50%{background-color:var(--ton)}to{--p:-1}}
@@ -615,7 +605,7 @@
 
     /* boja kartica i ikona se mijenja sa skrolom */
     .h .usluga:not(:hover),.h .rad,.h .recenzija{border-color:color-mix(in oklab,var(--b,var(--svijetli)) calc((1 - var(--p)) * 30%),var(--linija))}
-    .h .usluga .ik2,.h .stub .ik,.h .korak .mono,.h .bransa a svg,.h .cinjenice .v{filter:hue-rotate(calc(var(--p) * 45deg))}
+    .h .usluga .ik2,.h .stub .ik,.h .korak .mono,.h .bransa .red>svg,.h .cinjenice .v{filter:hue-rotate(calc(var(--p) * 45deg))}
     .h .sek h2.n2 span{animation:none;background-position:calc(50% - var(--p) * 50%) 0}
 
     /* hero: scena i telefoni se razilaze dok se odlazi dole */
@@ -625,10 +615,6 @@
     .h .hero h1.naslov{translate:0 calc(var(--q) * 70px)}
     .h .tel-a{rotate:calc(var(--q) * -9deg)}
     .h .tel-b{rotate:calc(var(--q) * 11deg)}
-
-    /* traka klizi sa skrolom i mijenja boju */
-    .h .traka .traka-niz{translate:calc(var(--p) * -240px) 0}
-    .h .traka .puna{color:color-mix(in oklab,var(--svijetli) calc((1 - var(--p)) * 45%),var(--tekst))}
 
     /* mrlje u "Bez rizika" putuju */
     .h .rizik .orb.o1{translate:calc(var(--p) * -130px) calc(var(--p) * 210px)}
@@ -642,11 +628,11 @@
 .h .bransa a:nth-child(3n+2){--b:var(--nebo)}.h .bransa a:nth-child(3n){--b:var(--koral)}
 .h .bransa a::before{content:"";position:absolute;left:24px;top:0;width:38px;height:3px;border-radius:0 0 3px 3px;background:var(--b);transition:width .4s cubic-bezier(.2,.8,.2,1)}
 .h .bransa a:hover::before{width:calc(100% - 48px)}
-.h .bransa a div{display:flex;flex-direction:column;gap:8px}
+.h .bransa .red>div{display:flex;flex-direction:column;gap:8px}
 .h .bransa .bn{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--tekst);line-height:1.2}
 .h .bransa .bt{font-size:15px;font-weight:500;color:var(--tiho);line-height:1.4}
-.h .bransa a svg{width:38px;height:38px;padding:10px;border-radius:50%;border:1px solid color-mix(in oklab,var(--b) 45%,transparent);color:var(--b)!important;transition:background .3s,color .3s,transform .35s}
-.h .bransa a:hover svg{background:var(--b);color:var(--tamno)!important;transform:rotate(45deg)}
+.h .bransa .red>svg{width:38px;height:38px;padding:10px;border-radius:50%;border:1px solid color-mix(in oklab,var(--b) 45%,transparent);color:var(--b)!important;transition:background .3s,color .3s,transform .35s}
+.h .bransa a:hover .red>svg{background:var(--b);color:var(--tamno)!important;transform:rotate(45deg)}
 .h .gradovi{grid-template-columns:1fr;gap:22px;padding:32px 34px}
 .h .gradovi h3{font-size:24px;max-width:none}
 .h .gradovi .cipovi{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
