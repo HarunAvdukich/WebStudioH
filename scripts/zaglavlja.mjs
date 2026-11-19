@@ -12,7 +12,8 @@ import { readFileSync, writeFileSync, readdirSync, statSync } from 'node:fs'
 import { join, relative, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-export const UMAMI = ['https://cloud.umami.is', 'https://api-gateway.umami.dev']
+// Skripta je na cloud.umami.is, a šalje na gateway.umami.is (ranije api-gateway.umami.dev).
+export const UMAMI = ['https://cloud.umami.is', 'https://gateway.umami.is', 'https://api-gateway.umami.dev']
 
 // Stranice koje uvijek dobiju blaži CSP, i kad su React.
 export const BLAZE = ['/sati']

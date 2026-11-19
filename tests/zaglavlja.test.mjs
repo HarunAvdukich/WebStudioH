@@ -63,6 +63,8 @@ test('svaka stranica ima tačno jedan CSP, React stranice bez unsafe-inline i sa
       const v = csp[0][1]
       assert.match(v, /frame-ancestors 'none'/, put)
       assert.match(v, /object-src 'none'/, put)
+      // Umami skripta šalje na gateway.umami.is (na React stranicama se učita iz statistika.js).
+      assert.match(v, /connect-src [^;]*https:\/\/gateway\.umami\.is/, `${put}: Umami slanje`)
       if (html.includes('cloud.umami.is')) assert.match(scriptSrc(v), /https:\/\/cloud\.umami\.is/, `${put}: Umami`)
       const react = html.includes('window.__staticRouterHydrationData')
       if (react && !BLAZE.includes(p[0])) {
