@@ -1,5 +1,5 @@
 import Seo from '../components/Seo.jsx'
-import KrozZnak from '../components/pocetna/KrozZnak.jsx'
+import Naslovna from '../components/naslovna/Naslovna.jsx'
 import { sajt } from '../components/JsonLd.jsx'
 import * as bosanski from '../pocetna.js'
 
@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <>
       <Seo path="/" punNaslov={bosanski.seo.naslov} description={bosanski.seo.opis} jezik="bs" verzije={VERZIJE_POCETNE} podaci={[sajt()]} />
-      <KrozZnak t={bosanski} />
+      <Naslovna />
     </>
   )
 }
