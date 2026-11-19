@@ -41,7 +41,7 @@
 
 /* slojevi */
 .h .sk-slojevi{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:12px 84px 12px 12px}
-.h .sk-slojevi>div{display:flex;align-items:center;height:19px;padding-left:8px;border-radius:6px;border-left:3px solid var(--b);background:color-mix(in oklab,var(--b) 16%,transparent);color:var(--tekst);margin-left:calc(var(--i) * 6px)}
+.h .sk-slojevi>div{display:flex;align-items:center;height:19px;padding-left:8px;border-radius:6px;border:1px solid color-mix(in oklab,var(--b) 45%,transparent);background:color-mix(in oklab,var(--b) 16%,transparent);color:var(--tekst);margin-left:calc(var(--i) * 6px)}
 .h .sk-slojevi::after{content:"";position:absolute;right:66px;top:16px;bottom:16px;width:9px;border:1.5px solid color-mix(in oklab,var(--b) 60%,transparent);border-left:0;border-radius:0 8px 8px 0}
 .h .ss-broj{position:absolute;right:12px;top:50%;margin-top:-13px;height:26px;padding:0 9px;display:flex;align-items:center;border-radius:999px;background:var(--b);color:var(--tamno);font-weight:700;white-space:nowrap}
 
@@ -230,7 +230,7 @@
   /* slojevi */
   .h .sk-ide .sk-slojevi>div{animation:sk-sloj var(--t) cubic-bezier(.2,.8,.2,1) infinite both;animation-delay:calc(var(--i) * .18s)}
   @keyframes sk-sloj{0%,4%{opacity:0;transform:translateX(-16px)}12%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
-  .h .sk-ide .ss-broj,.h .sk-ide .sk-slojevi::after{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both}
+  .h .sk-ide .ss-broj,.h .sk-ide .sk-slojevi::after{animation:sk-pop var(--t) cubic-bezier(.22,1,.36,1) infinite both}
   @keyframes sk-pop{0%,22%{opacity:0;transform:scale(.6)}30%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
 
   /* noć */
@@ -271,10 +271,10 @@
   .h .sk-ide .sk-sati .izabran{animation:sk-bira2 var(--t) ease infinite both}
   @keyframes sk-bira{0%,12%{background:transparent;color:var(--tiho)}16%,90%{background:var(--b);color:var(--tamno)}96%,100%{background:transparent;color:var(--tiho)}}
   @keyframes sk-bira2{0%,30%{background:transparent;color:var(--tiho);border-color:var(--linija)}34%,90%{background:var(--b);color:var(--tamno);border-color:transparent}96%,100%{background:transparent;color:var(--tiho);border-color:var(--linija)}}
-  .h .sk-ide .sk-ok{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .24)}
+  .h .sk-ide .sk-ok{animation:sk-pop var(--t) cubic-bezier(.22,1,.36,1) infinite both;animation-delay:calc(var(--t) * .24)}
 
   /* chatbot */
-  .h .sk-ide .sb-prozor{animation:sk-prozor var(--t) cubic-bezier(.3,1.4,.5,1) infinite both}
+  .h .sk-ide .sb-prozor{animation:sk-prozor var(--t) cubic-bezier(.22,1,.36,1) infinite both}
   @keyframes sk-prozor{0%,12%{opacity:0;transform:scale(.4)}20%,88%{opacity:1;transform:none}95%,100%{opacity:0;transform:scale(.4)}}
   .h .sk-ide .sb-p1{animation:sk-p2 var(--t) ease infinite both}
   .h .sk-ide .sb-p2{animation:sk-p3 var(--t) ease infinite both}
@@ -288,11 +288,11 @@
   .h .sk-ide .kp-list b:nth-child(2){animation-delay:.15s}.h .sk-ide .kp-list b:nth-child(3){animation-delay:.3s}.h .sk-ide .kp-list b:nth-child(4){animation-delay:.45s}
   @keyframes sk-crta{0%,4%{transform:scaleX(0)}16%,90%{transform:none}97%,100%{transform:scaleX(0)}}
   .h .kp-list b,.h .ki-t b{transform-origin:left}
-  .h .sk-ide .kp-pecat{animation:sk-pecat var(--t) cubic-bezier(.2,1.4,.4,1) infinite both}
+  .h .sk-ide .kp-pecat{animation:sk-pecat var(--t) cubic-bezier(.22,1,.36,1) infinite both}
   @keyframes sk-pecat{0%,34%{opacity:0;transform:scale(1.8)}40%,90%{opacity:1;transform:none}96%,100%{opacity:0}}
   .h .sk-ide .ki-t b{animation:sk-crta var(--t) cubic-bezier(.2,.8,.2,1) infinite both}
   .h .sk-ide .ki-t b:nth-child(2){animation-delay:.3s}.h .sk-ide .ki-t b:nth-child(3){animation-delay:.6s}
-  .h .sk-ide .ki-oz{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .12)}
+  .h .sk-ide .ki-oz{animation:sk-pop var(--t) cubic-bezier(.22,1,.36,1) infinite both;animation-delay:calc(var(--t) * .12)}
   .h .sk-ide .ko-tr i{animation:sk-napredak var(--t) cubic-bezier(.5,0,.3,1) infinite both}
   @keyframes sk-napredak{0%,6%{transform:scaleX(0)}40%,90%{transform:none}96%,100%{transform:scaleX(0)}}
   .h .sk-ide .ko-st{animation:sk-p3 var(--t) ease infinite both}
@@ -301,7 +301,7 @@
   .h .sk-ide .od-lin{animation:sk-linija var(--t) cubic-bezier(.4,0,.2,1) infinite both}
   @keyframes sk-linija{0%,4%{stroke-dashoffset:100}40%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:100}}
   .h .sk-ide .od-pod{animation:sk-p2 var(--t) ease infinite both}
-  .h .sk-ide .od-ok{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .2)}
+  .h .sk-ide .od-ok{animation:sk-pop var(--t) cubic-bezier(.22,1,.36,1) infinite both;animation-delay:calc(var(--t) * .2)}
 
   /* djelatnosti */
   .h .sk-ide .bt-tx em{animation:sk-korpa var(--t) ease infinite both}
@@ -315,12 +315,12 @@
   @keyframes sk-bljesak{0%,24%,44%,100%{background:transparent}30%,38%{background:color-mix(in oklab,var(--b) 22%,transparent)}}
   .h .sk-ide .sk-fri .novi{animation:sk-termin var(--t) ease infinite both}
   @keyframes sk-termin{0%,22%{background:transparent;color:var(--tekst);border-color:var(--linija2);transform:none}27%{transform:scale(1.12)}30%,90%{background:var(--b);color:var(--tamno);border-color:transparent;transform:none}96%,100%{background:transparent;color:var(--tekst);border-color:var(--linija2)}}
-  .h .sk-ide .bs-obav{animation:sk-obav var(--t) cubic-bezier(.2,.9,.3,1.2) infinite both}
+  .h .sk-ide .bs-obav{animation:sk-obav var(--t) cubic-bezier(.22,1,.36,1) infinite both}
   .h .sk-ide .bs-2{animation-delay:calc(var(--t) * .3)}
   @keyframes sk-obav{0%,4%{opacity:0;transform:translateY(-14px)}12%,86%{opacity:1;transform:none}94%,100%{opacity:0}}
   .h .sk-ide .br-meni div{animation:sk-p1 var(--t) ease infinite both}
   .h .sk-ide .br-meni div:nth-child(2){animation-delay:.15s}.h .sk-ide .br-meni div:nth-child(3){animation-delay:.3s}
-  .h .sk-ide .br-sto{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .2)}
+  .h .sk-ide .br-sto{animation:sk-pop var(--t) cubic-bezier(.22,1,.36,1) infinite both;animation-delay:calc(var(--t) * .2)}
 
   /* mapa: tačke dišu jedna za drugom */
   .h .m-val{animation:mapa-val 3.6s ease-out infinite both;animation-delay:calc(var(--i) * -.41s)}
