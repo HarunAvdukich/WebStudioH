@@ -2,6 +2,8 @@
 import { useEffect, useState } from 'react'
 import './fontovi.css'
 import './naslovna.css'
+import './skice.css'
+import { SkicaStub, SkicaUsluga, SkicaKorak, SkicaBransa, Gradovi } from './Skice.jsx'
 import { WA, WA_SKICA, WA_PREGLED, WA_POSAO, VIBER, meni, stubovi, usluge, koraci, djelatnosti, gradovi, pitanja } from '../../naslovna.js'
 
 const TEL = 'tel:+387603000751'
@@ -88,7 +90,6 @@ function Zaglavlje() {
 }
 
 const TRAKA = ['Web stranice', 'Web shop', 'Online rezervacije', 'AI chatbot', 'OLX veza', 'B2B portal', 'SEO', 'Održavanje']
-const TRAKA2 = ['Besplatna skica', 'Besplatan pregled', 'Demo uživo', '30 / 70', 'Pisana ponuda', 'Sve je Vaše', 'Odgovor za 24 h', 'Bez mjesečnih naknada']
 
 function Sek({ oznaka, naslov, tise, opis, prvi, children, ...rest }) {
   return (
@@ -241,15 +242,11 @@ export default function Naslovna() {
         </ul>
       </Sek>
 
-      <div className="traka2" aria-hidden="true"><div className="traka2-niz">
-        {[...TRAKA2, ...TRAKA2].map((t, i) => [<span key={'t' + i}>{t}</span>, <i key={'i' + i} />])}
-      </div></div>
-
       <Sek prvi oznaka="Zašto Hunar" naslov="Ono što bh. firmi treba," tise="a agencija iz šablona ne radi." opis="Ne prodajemo lijepu stranicu koja stoji. Pravimo alat koji radi posao: prodaje, zakazuje i odgovara, i kad ste Vi zatvorili.">
         <div className="stubovi">
-          {stubovi.map((s) => (
+          {stubovi.map((s, i) => (
             <div className="stub" key={s.naslov}>
-              <div className="ik"><Ik d={s.ikona} sw={1.8} /></div>
+              <SkicaStub i={i} />
               <h3>{s.naslov}</h3>
               <p>{s.tekst}</p>
             </div>
@@ -259,12 +256,13 @@ export default function Naslovna() {
 
       <Sek oznaka="Usluge" naslov="Sve na webu," tise="na jednom mjestu." opis="Od prve stranice do web shopa sa hiljadama artikala. Kažite šta prodajete, a mi predložimo šta Vam stvarno treba.">
         <div className="usluge">
-          {usluge.map((u) => (
+          {usluge.map((u, i) => (
             <a className="usluga" href={u.link} key={u.br}>
               <div className="gore">
                 <span className="ik2"><Ik d={u.ikona} sw={1.7} /></span>
                 <span className="mono">{u.br}</span>
               </div>
+              <SkicaUsluga i={i} />
               <h3>{u.naslov}</h3>
               <p>{u.opis}</p>
             </a>
@@ -357,9 +355,10 @@ export default function Naslovna() {
 
       <Sek oznaka="Kako radimo" naslov="Od prve poruke" tise="do prve narudžbe." opis="Svaki korak ima rok i nešto što vidite i odobrite. Bez mjeseci tišine i iznenađenja na kraju.">
         <div className="koraci">
-          {koraci.map((k) => (
+          {koraci.map((k, i) => (
             <div className="korak" key={k.br}>
               <span className="mono">{k.br}</span>
+              <SkicaKorak i={i} />
               <h3>{k.naslov}</h3>
               <p>{k.tekst}</p>
             </div>
@@ -369,16 +368,11 @@ export default function Naslovna() {
 
       <Sek oznaka="Djelatnosti" naslov="Svaka branša" tise="prodaje drugačije." opis="Radnja sa alatom treba katalog i OLX. Salon treba termine. Restoran treba meni i rezervacije. Počinjemo od Vašeg posla, ne od šablona.">
         <div className="bransa">
-          {djelatnosti.map((d) => (
-            <a href={d.link} key={d.naslov}><div><b className="bn">{d.naslov}</b><small className="bt">{d.tekst}</small></div><Ik d="M7 17 17 7M8 7h9v9" /></a>
+          {djelatnosti.map((d, i) => (
+            <a href={d.link} key={d.naslov}><SkicaBransa i={i} /><div className="red"><div><b className="bn">{d.naslov}</b><small className="bt">{d.tekst}</small></div><Ik d="M7 17 17 7M8 7h9v9" /></div></a>
           ))}
         </div>
-        <div className="gradovi">
-          <h3>Radimo za firme <span>iz cijele BiH</span>, uživo ili preko poruka.</h3>
-          <div className="cipovi">
-            {gradovi.map((g) => <a className="cip" href={g.link} key={g.link}>{g.ime}</a>)}
-          </div>
-        </div>
+        <Gradovi gradovi={gradovi} />
       </Sek>
 
       <section className="sek" style={{ paddingTop: 0 }}>

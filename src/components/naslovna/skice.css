@@ -1,0 +1,328 @@
+/* Isprogramirane skice na karticama početne i mapa BiH (19. 11. 2026).
+   Bez pokreta (ili van ekrana) svaka skica je gotova slika. Pokret ide samo uz .sk-ide (skica na ekranu). */
+@property --sk-n{syntax:'<integer>';inherits:false;initial-value:99}
+
+.h .sk-om{--b:var(--svijetli)}
+.h .stub .sk-om,.h .usluga .sk-om,.h .korak .sk-om,.h .bransa .sk-om{--b:inherit}
+.h .sk{position:relative;height:124px;border-radius:14px;border:1px solid var(--linija);background:linear-gradient(160deg,color-mix(in oklab,var(--b) 9%,transparent),rgba(0,0,0,.16) 70%);overflow:hidden;font-family:"JetBrains Mono",ui-monospace,monospace;font-size:10.5px;line-height:1.3;letter-spacing:0;color:var(--tiho);font-weight:500;text-align:left}
+.h .sk em{font-style:normal}
+.h .sk b{font-weight:700}
+.h .sk-cij{display:inline-grid}
+.h .sk-cij em{grid-area:1/1}
+.h .sk-cij em:first-child{opacity:0}
+.h .sk-kur{position:absolute;width:16px;height:16px;filter:drop-shadow(0 2px 3px rgba(0,0,0,.5));pointer-events:none}
+.h .sk-bar{display:flex;align-items:center;gap:4px;height:18px;padding:0 8px;border-bottom:1px solid var(--linija);background:rgba(244,244,242,.03)}
+.h .sk-bar i{width:5px;height:5px;border-radius:50%;background:rgba(244,244,242,.18)}
+.h .sk-bar span{flex:1;height:7px;margin-left:6px;border-radius:4px;background:rgba(244,244,242,.07)}
+
+/* mjesto u karticama */
+.h .stub .sk-om{margin-bottom:22px}
+.h .usluga .gore{margin-bottom:16px}
+.h .usluga h3{margin-top:18px}
+.h .korak .sk-om{margin:14px 0 2px}
+.h .korak .sk{height:92px}
+.h .bransa a{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:16px}
+.h .bransa .sk{height:108px;background:rgba(0,0,0,.16)}
+.h .bransa .red{display:flex;justify-content:space-between;align-items:flex-start;gap:18px}
+
+/* ===== Zašto Hunar ===== */
+/* OLX veza */
+.h .sk-veza{display:grid;grid-template-columns:minmax(0,1fr) 22px minmax(0,1.12fr);align-items:center;padding:12px 10px 12px 12px}
+.h .sv-art{border:1px solid var(--linija2);border-radius:9px;padding:6px;background:rgba(244,244,242,.05);display:flex;flex-direction:column;gap:3px}
+.h .sv-sl{display:block;height:40px;border-radius:6px;background:radial-gradient(circle at 35% 40%,color-mix(in oklab,var(--b) 70%,#fff 10%) 0 14%,transparent 15%),linear-gradient(135deg,color-mix(in oklab,var(--b) 38%,transparent),color-mix(in oklab,var(--b) 8%,transparent))}
+.h .sv-art>span:not(.sk-cij){color:var(--tekst);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h .sv-art .sk-cij{color:var(--b);font-weight:700;font-size:11.5px}
+.h .sv-zice{align-self:stretch;width:22px;height:100%}
+.h .sv-zice path{fill:none;stroke:color-mix(in oklab,var(--b) 60%,transparent);stroke-width:1.4;stroke-dasharray:3 3;vector-effect:non-scaling-stroke}
+.h .sv-kan{display:flex;flex-direction:column;gap:6px}
+.h .sv-kan div{display:flex;justify-content:space-between;gap:4px;border:1px solid var(--linija);border-radius:7px;padding:4px 6px;background:rgba(244,244,242,.03);white-space:nowrap}
+.h .sv-kan span{color:var(--tekst);overflow:hidden;text-overflow:ellipsis}
+.h .sv-kan .sk-cij{color:var(--b);flex:none}
+
+/* slojevi */
+.h .sk-slojevi{display:flex;flex-direction:column;justify-content:center;gap:5px;padding:12px 84px 12px 12px}
+.h .sk-slojevi>div{display:flex;align-items:center;height:19px;padding-left:8px;border-radius:6px;border-left:3px solid var(--b);background:color-mix(in oklab,var(--b) 16%,transparent);color:var(--tekst);margin-left:calc(var(--i) * 6px)}
+.h .sk-slojevi::after{content:"";position:absolute;right:66px;top:16px;bottom:16px;width:9px;border:1.5px solid color-mix(in oklab,var(--b) 60%,transparent);border-left:0;border-radius:0 8px 8px 0}
+.h .ss-broj{position:absolute;right:12px;top:50%;margin-top:-13px;height:26px;padding:0 9px;display:flex;align-items:center;border-radius:999px;background:var(--b);color:var(--tamno);font-weight:700;white-space:nowrap}
+
+/* noć */
+.h .sk-noc{display:flex;flex-direction:column;gap:6px;padding:9px 12px;background:linear-gradient(170deg,#0a1a24,rgba(0,0,0,.2))}
+.h .sn-gore{display:flex;align-items:center;justify-content:space-between;color:var(--tise)}
+.h .sn-mj{display:block;width:12px;height:12px;border-radius:50%;box-shadow:inset 4px -2px 0 0 #f5d77a}
+.h .sn-k,.h .sn-b{max-width:88%;padding:5px 8px;border-radius:10px}
+.h .sn-k{align-self:flex-start;background:rgba(244,244,242,.09);color:var(--tekst);border-bottom-left-radius:3px}
+.h .sn-b{align-self:flex-end;background:color-mix(in oklab,var(--b) 22%,transparent);color:var(--tekst);border-bottom-right-radius:3px}
+.h .sn-b b{display:block;color:var(--b);font-size:9.5px;margin-bottom:1px}
+.h .sn-t{position:absolute;right:12px;bottom:12px;display:flex;gap:3px;padding:7px 9px;border-radius:10px;background:color-mix(in oklab,var(--b) 18%,transparent);opacity:0}
+.h .sn-t i{width:5px;height:5px;border-radius:50%;background:var(--b)}
+
+/* brzina */
+.h .sk-brzina{display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:6px}
+.h .sk-brzina svg{width:124px;height:68px;overflow:visible}
+.h .sk-brzina path{fill:none;stroke-width:9;stroke-linecap:round}
+.h .sb-pod{stroke:rgba(244,244,242,.09)}
+.h .sb-luk{stroke:var(--b);stroke-dasharray:100;stroke-dashoffset:1;filter:drop-shadow(0 0 6px color-mix(in oklab,var(--b) 50%,transparent))}
+.h .sb-br{position:absolute;left:0;right:0;top:46px;text-align:center;font-family:Urbanist,system-ui,sans-serif;font-size:28px;font-weight:800;color:var(--tekst);letter-spacing:-.02em;line-height:1}
+.h .sb-br::after{counter-reset:skn var(--sk-n);content:counter(skn);font-variant-numeric:tabular-nums}
+.h .sb-ozn{margin-top:8px;color:var(--tise)}
+
+/* ===== Usluge ===== */
+.h .sw-t{padding:10px 12px 0;display:flex;flex-direction:column;gap:5px}
+.h .sw-t b{display:block;height:7px;border-radius:4px;background:rgba(244,244,242,.16)}
+.h .sw-t .sw-n{width:72%;height:9px;background:rgba(244,244,242,.3)}
+.h .sw-t .sw-n2{width:48%}
+.h .sw-t .sw-d{width:52px;height:14px;margin-top:3px;border-radius:5px;background:var(--b)}
+.h .sw-k{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:9px 12px 0}
+.h .sw-k b{display:block;height:30px;border-radius:6px;background:rgba(244,244,242,.06);border:1px solid var(--linija)}
+.h .sk-web .sk-kur{left:58px;top:56px}
+
+.h .sk-shop{padding:12px}
+.h .sh-art{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:22px}
+.h .sh-art div{border:1px solid var(--linija);border-radius:7px;padding:5px;background:rgba(244,244,242,.04)}
+.h .sh-art i{display:block;height:32px;border-radius:5px;background:color-mix(in oklab,var(--b) 20%,transparent)}
+.h .sh-art b{display:block;height:5px;width:80%;margin-top:5px;border-radius:3px;background:rgba(244,244,242,.18)}
+.h .sh-art em{display:block;height:5px;width:45%;margin-top:4px;border-radius:3px;background:var(--b)}
+.h .sh-korpa{position:absolute;right:12px;top:9px;display:flex;align-items:center;gap:4px;color:var(--tekst)}
+.h .sh-korpa svg{width:16px;height:16px}
+.h .sh-korpa .sk-cij{min-width:16px;height:16px;border-radius:999px;background:var(--b);color:var(--tamno);font-weight:700;place-items:center;font-size:10px}
+.h .sh-let{position:absolute;left:50%;top:62%;width:9px;height:9px;margin:-4px;border-radius:50%;background:var(--b);opacity:0}
+
+.h .sk-kal{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:10px;padding:11px 12px}
+.h .sk-dani{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;align-content:start}
+.h .sk-dani span{display:grid;place-items:center;height:15px;border-radius:4px;font-size:9.5px;color:var(--tiho)}
+.h .sk-dani .dn{color:var(--tise);height:13px}
+.h .sk-dani .zatv{opacity:.3}
+.h .sk-dani .izabran,.h .sk-sati .izabran{background:var(--b);color:var(--tamno);font-weight:700}
+.h .sk-sati{display:flex;flex-direction:column;gap:4px}
+.h .sk-sati span{display:grid;place-items:center;height:17px;border-radius:5px;border:1px solid var(--linija);font-size:10px}
+.h .sk-sati .izabran{border-color:transparent}
+.h .sk-ok{display:flex;align-items:center;justify-content:center;gap:3px;height:19px;margin-top:2px;border-radius:5px;color:var(--svijetli);background:rgba(79,214,160,.12);font-size:9.5px;white-space:nowrap}
+.h .sk-ok svg{width:10px;height:10px;flex:none}
+
+.h .sb-str{padding:10px 12px 0;display:flex;flex-direction:column;gap:6px}
+.h .sb-str b{display:block;height:7px;border-radius:4px;background:rgba(244,244,242,.14)}
+.h .sb-str b:first-child{width:60%;height:9px;background:rgba(244,244,242,.26)}
+.h .sb-str b:last-child{width:40%}
+.h .sb-prozor{position:absolute;right:10px;bottom:36px;width:66%;display:flex;flex-direction:column;gap:4px;padding:7px;border-radius:10px;border:1px solid var(--linija2);background:#13291f;box-shadow:0 10px 24px -10px rgba(0,0,0,.7);transform-origin:100% 100%}
+.h .sb-prozor span{padding:4px 7px;border-radius:8px;font-size:9.5px;line-height:1.25}
+.h .sb-p1{align-self:flex-end;background:rgba(244,244,242,.1);color:var(--tekst)}
+.h .sb-p2{align-self:flex-start;background:color-mix(in oklab,var(--b) 25%,transparent);color:var(--tekst)}
+.h .sb-dug{position:absolute;right:10px;bottom:8px;width:22px;height:22px;border-radius:50%;background:var(--b);box-shadow:0 0 0 4px color-mix(in oklab,var(--b) 20%,transparent)}
+
+/* ===== Kako radimo ===== */
+.h .sk-raz{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:10px}
+.h .sk-raz span{max-width:86%;padding:5px 8px;border-radius:10px;color:var(--tekst)}
+.h .kr-a{align-self:flex-start;background:rgba(244,244,242,.09);border-bottom-left-radius:3px}
+.h .kr-b{align-self:flex-end;background:color-mix(in oklab,var(--b) 24%,transparent);border-bottom-right-radius:3px}
+
+.h .sk-pon{display:flex;align-items:center;justify-content:center}
+.h .kp-list{position:relative;width:62%;height:70px;padding:9px 10px;border-radius:6px;background:var(--krema);display:flex;flex-direction:column;gap:5px}
+.h .kp-list b{display:block;height:4px;border-radius:2px;background:rgba(16,35,28,.22)}
+.h .kp-list b:first-child{width:55%;height:6px;background:rgba(16,35,28,.55)}
+.h .kp-list b.kr{width:70%}
+.h .kp-list span{position:absolute;right:9px;bottom:7px;color:var(--tamno);font-weight:700;font-size:10px}
+.h .kp-pecat{position:absolute;right:12px;top:10px;padding:3px 6px;border:2px solid var(--b);border-radius:6px;color:var(--b);font-weight:700;rotate:-12deg;background:rgba(15,36,29,.6)}
+
+.h .ki-t{display:grid;grid-template-columns:1.3fr 1fr;gap:6px;padding:9px 10px}
+.h .ki-t b{display:block;height:22px;border-radius:5px;background:color-mix(in oklab,var(--b) 22%,transparent);transform-origin:left}
+.h .ki-t b:first-child{grid-row:span 2;height:auto}
+.h .ki-oz{position:absolute;right:8px;bottom:7px;padding:2px 6px;border-radius:999px;border:1px dashed color-mix(in oklab,var(--b) 70%,transparent);color:var(--b)}
+
+.h .sk-obj{display:flex;flex-direction:column;justify-content:center;gap:9px;padding:10px 12px}
+.h .ko-url{display:flex;align-items:center;gap:6px;height:24px;padding:0 9px;border-radius:999px;background:rgba(244,244,242,.07);color:var(--tekst)}
+.h .ko-url svg{width:12px;height:12px;color:var(--svijetli);flex:none}
+.h .ko-tr{height:4px;border-radius:2px;background:rgba(244,244,242,.08);overflow:hidden}
+.h .ko-tr i{display:block;height:100%;background:var(--b);transform-origin:left}
+.h .ko-st{display:flex;align-items:center;gap:6px;color:var(--svijetli)}
+.h .ko-st i{width:7px;height:7px;border-radius:50%;background:var(--svijetli);box-shadow:0 0 0 3px rgba(79,214,160,.2)}
+
+.h .sk-odr svg{position:absolute;left:0;right:0;bottom:0;width:100%;height:62%}
+.h .od-pod{fill:color-mix(in oklab,var(--b) 16%,transparent)}
+.h .od-lin{fill:none;stroke:var(--b);stroke-width:2;stroke-linejoin:round;vector-effect:non-scaling-stroke;stroke-dasharray:100;stroke-dashoffset:0}
+.h .od-ok{position:absolute;left:10px;top:9px;display:flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;background:color-mix(in oklab,var(--b) 18%,transparent);color:var(--b);font-weight:700}
+.h .od-ok svg{width:10px;height:10px}
+
+/* ===== Djelatnosti ===== */
+.h .sk-trg{display:flex;align-items:center;gap:12px;padding:12px}
+.h .bt-sl{flex:none;width:82px;height:82px;border-radius:9px;background:radial-gradient(circle at 50% 45%,color-mix(in oklab,var(--b) 55%,transparent) 0 22%,transparent 23%),linear-gradient(150deg,color-mix(in oklab,var(--b) 26%,transparent),rgba(244,244,242,.03))}
+.h .bt-tx{flex:1;display:flex;flex-direction:column;gap:6px}
+.h .bt-tx b{display:block;width:80%;height:7px;border-radius:4px;background:rgba(244,244,242,.25)}
+.h .bt-tx span{color:var(--tekst);font-weight:700;font-size:13px}
+.h .bt-tx em{align-self:flex-start;padding:5px 10px;border-radius:7px;background:var(--b);color:var(--tamno);font-weight:700}
+.h .bt-olx{position:absolute;right:10px;top:9px;padding:2px 7px;border-radius:999px;border:1px solid var(--linija2);color:var(--tiho)}
+
+.h .sk-ali{padding:0 12px;-webkit-mask:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
+.h .ba-niz>div{display:flex;justify-content:space-between;height:24px;align-items:center;border-bottom:1px solid var(--linija);color:var(--tekst)}
+.h .ba-niz b{color:var(--b);font-weight:600}
+.h .ba-oz{position:absolute;right:10px;top:50%;margin-top:-10px;padding:3px 8px;border-radius:999px;background:var(--b);color:var(--tamno);font-weight:700;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
+
+.h .sk-b2b{display:flex;flex-direction:column;justify-content:center;padding:8px 12px}
+.h .bb-red{display:grid;grid-template-columns:1.4fr 1fr 1fr;align-items:center;height:27px;border-bottom:1px solid var(--linija);color:var(--tekst)}
+.h .bb-red:last-child{border-bottom:0}
+.h .bb-red>*:not(:first-child){text-align:right}
+.h .bb-zag{color:var(--tise);height:22px}
+.h .bb-red b{color:var(--b);font-size:12px}
+
+.h .sk-fri{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:6px;padding:12px}
+.h .sk-fri span{display:grid;place-items:center;border-radius:7px;border:1px solid var(--linija2);color:var(--tekst)}
+.h .sk-fri .zauzet{color:var(--tise);border-color:var(--linija);text-decoration:line-through;opacity:.6}
+.h .sk-fri .novi{background:var(--b);border-color:transparent;color:var(--tamno);font-weight:700}
+
+.h .sk-sto{display:flex;flex-direction:column;justify-content:center;gap:7px;padding:10px 12px}
+.h .bs-obav{display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:10px;background:rgba(244,244,242,.07);border:1px solid var(--linija)}
+.h .bs-obav>i{flex:none;display:grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--b);color:var(--tamno)}
+.h .bs-obav>i svg{width:12px;height:12px}
+.h .bs-obav b{display:block;color:var(--tekst);font-size:10.5px}
+.h .bs-obav span{display:block;color:var(--tiho);font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h .bs-obav div{min-width:0}
+
+.h .sk-res{padding:10px 12px}
+.h .br-meni{display:flex;flex-direction:column;gap:7px;margin-top:22px}
+.h .br-meni div{display:flex;align-items:baseline;gap:6px;color:var(--tekst)}
+.h .br-meni div::after{content:"";order:1;flex:1;border-bottom:1px dotted rgba(244,244,242,.25);transform:translateY(-3px)}
+.h .br-meni b{order:2;color:var(--b)}
+.h .br-sto{position:absolute;left:12px;top:8px;padding:2px 8px;border-radius:999px;border:1px solid color-mix(in oklab,var(--b) 60%,transparent);color:var(--b);font-weight:700}
+
+/* ===== Mapa BiH ===== */
+.h .gradovi{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:44px;align-items:center}
+.h .mapa svg{display:block;width:100%;height:auto;overflow:visible}
+.h .mapa-obris{fill:rgba(79,214,160,.05);stroke:color-mix(in oklab,var(--svijetli) 45%,transparent);stroke-width:1.5;stroke-linejoin:round}
+.h .mapa pattern circle{fill:rgba(244,244,242,.1)}
+.h .mjesto{cursor:pointer;outline:none;--c:var(--svijetli)}
+.h .mjesto circle{transform-box:fill-box;transform-origin:center}
+.h .m-tac{fill:var(--c);stroke:var(--bg2);stroke-width:2;transition:transform .25s cubic-bezier(.2,.8,.2,1),fill .25s}
+.h .m-val{fill:none;stroke:var(--c);stroke-width:1.5;opacity:0}
+.h .m-hit{fill:transparent}
+.h .mjesto text{font-family:Urbanist,system-ui,sans-serif;font-size:14px;font-weight:600;fill:var(--tiho);paint-order:stroke;stroke:var(--bg2);stroke-width:4px;stroke-linejoin:round;opacity:0;transition:opacity .2s,fill .2s;pointer-events:none}
+.h .mjesto.stalno text{opacity:1}
+.h .mjesto:hover,.h .mjesto:focus-visible,.h .mjesto.on{--c:var(--zlato)}
+.h .mjesto:hover text,.h .mjesto:focus-visible text,.h .mjesto.on text{opacity:1;fill:var(--tekst)}
+.h .mjesto:hover .m-tac,.h .mjesto:focus-visible .m-tac,.h .mjesto.on .m-tac{transform:scale(1.5)}
+.h .mjesto:focus-visible .m-tac{stroke:var(--tekst)}
+.h .gradovi-tekst p{color:var(--tiho);font-size:16px;margin:12px 0 20px;max-width:420px}
+.h .gradovi .cipovi{grid-template-columns:repeat(3,1fr)}
+.h .gradovi .cip.on{border-color:var(--zlato);background:color-mix(in oklab,var(--zlato) 12%,transparent);color:var(--zlato)}
+@media (max-width:860px){.h .gradovi{grid-template-columns:1fr;gap:26px}.h .mapa{max-width:520px;width:100%;margin:0 auto}}
+@media (max-width:720px){.h .gradovi .cipovi{grid-template-columns:repeat(2,1fr)}.h .mjesto text{font-size:17px}}
+
+/* ===== Pokreti ===== */
+@media (prefers-reduced-motion:no-preference){
+  .h .sk-ide{--t:7s}
+  .h .sk-ide .sk-cij em:first-child{animation:sk-staro var(--t) ease infinite both}
+  .h .sk-ide .sk-cij em:last-child{animation:sk-novo var(--t) ease infinite both}
+  @keyframes sk-staro{0%,38%{opacity:1;transform:none}44%,90%{opacity:0;transform:translateY(-6px)}96%,100%{opacity:1;transform:none}}
+  @keyframes sk-novo{0%,40%{opacity:0;transform:translateY(6px)}46%,90%{opacity:1;transform:none}95%,100%{opacity:0}}
+  @keyframes sk-p1{0%,4%{opacity:0;transform:translateY(6px)}10%,90%{opacity:1;transform:none}96%,100%{opacity:0}}
+  @keyframes sk-p2{0%,26%{opacity:0;transform:translateY(6px)}32%,90%{opacity:1;transform:none}96%,100%{opacity:0}}
+  @keyframes sk-p3{0%,42%{opacity:0;transform:translateY(6px)}48%,90%{opacity:1;transform:none}96%,100%{opacity:0}}
+
+  /* OLX veza: cijena kreće iz artikla, kanali je dobiju jedan za drugim */
+  .h .sk-ide .sv-zice path{animation:sk-tece 1s linear infinite both}
+  @keyframes sk-tece{to{stroke-dashoffset:-12}}
+  .h .sk-ide .sv-kan div:nth-child(1) .sk-cij em{animation-delay:.25s}
+  .h .sk-ide .sv-kan div:nth-child(2) .sk-cij em{animation-delay:.45s}
+  .h .sk-ide .sv-kan div:nth-child(3) .sk-cij em{animation-delay:.65s}
+  .h .sk-ide .sv-kan div{animation:sk-blic var(--t) ease infinite both}
+  .h .sk-ide .sv-kan div:nth-child(2){animation-delay:.2s}
+  .h .sk-ide .sv-kan div:nth-child(3){animation-delay:.4s}
+  @keyframes sk-blic{0%,42%,60%,100%{border-color:var(--linija)}47%{border-color:var(--b)}}
+
+  /* slojevi */
+  .h .sk-ide .sk-slojevi>div{animation:sk-sloj var(--t) cubic-bezier(.2,.8,.2,1) infinite both;animation-delay:calc(var(--i) * .18s)}
+  @keyframes sk-sloj{0%,4%{opacity:0;transform:translateX(-16px)}12%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+  .h .sk-ide .ss-broj,.h .sk-ide .sk-slojevi::after{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both}
+  @keyframes sk-pop{0%,22%{opacity:0;transform:scale(.6)}30%,88%{opacity:1;transform:none}96%,100%{opacity:0}}
+
+  /* noć */
+  .h .sk-ide .sn-k{animation:sk-p1 var(--t) ease infinite both}
+  .h .sk-ide .sn-t{animation:sk-kuca var(--t) linear infinite both}
+  @keyframes sk-kuca{0%,14%{opacity:0}17%,40%{opacity:1}43%,100%{opacity:0}}
+  .h .sk-ide .sn-t i{animation:sk-tacka .9s ease-in-out infinite both}
+  .h .sk-ide .sn-t i:nth-child(2){animation-delay:.15s}
+  .h .sk-ide .sn-t i:nth-child(3){animation-delay:.3s}
+  @keyframes sk-tacka{0%,60%,100%{transform:none;opacity:.5}30%{transform:translateY(-3px);opacity:1}}
+  .h .sk-ide .sn-b{animation:sk-p3 var(--t) ease infinite both}
+
+  /* brzina */
+  .h .sk-ide .sb-luk{animation:sk-luk var(--t) cubic-bezier(.3,.7,.2,1) infinite both}
+  @keyframes sk-luk{0%,6%{stroke-dashoffset:100}40%,90%{stroke-dashoffset:1}100%{stroke-dashoffset:100}}
+  .h .sk-ide .sb-br{animation:sk-broj var(--t) cubic-bezier(.3,.7,.2,1) infinite both}
+  @keyframes sk-broj{0%,6%{--sk-n:0}40%,90%{--sk-n:99}100%{--sk-n:0}}
+
+  /* web stranica: kursor dođe do dugmeta i klikne */
+  .h .sk-ide.sk-om .sk-web .sk-kur,.h .sk-ide .sk-web .sk-kur{animation:sk-kursor var(--t) cubic-bezier(.5,0,.3,1) infinite both}
+  @keyframes sk-kursor{0%,10%{transform:translate(120px,40px)}36%{transform:translate(0,0)}40%{transform:scale(.82)}44%,70%{transform:none}92%,100%{transform:translate(120px,40px)}}
+  .h .sk-ide .sw-d{animation:sk-dugme var(--t) ease infinite both}
+  @keyframes sk-dugme{0%,39%,52%,100%{box-shadow:0 0 0 0 transparent;filter:none}41%{box-shadow:0 0 0 5px color-mix(in oklab,var(--b) 35%,transparent);filter:brightness(1.25)}}
+  .h .sk-ide .sw-k b{animation:sk-p3 var(--t) ease infinite both}
+  .h .sk-ide .sw-k b:nth-child(2){animation-delay:.12s}
+  .h .sk-ide .sw-k b:nth-child(3){animation-delay:.24s}
+
+  /* shop: artikal odleti u korpu */
+  .h .sk-ide .sh-let{animation:sk-let var(--t) cubic-bezier(.5,0,.4,1) infinite both}
+  @keyframes sk-let{0%,22%{opacity:0;left:50%;top:62%}25%{opacity:1;left:50%;top:62%}40%{opacity:1;left:calc(100% - 30px);top:17px}43%,100%{opacity:0;left:calc(100% - 30px);top:17px}}
+  .h .sk-ide .sh-art div:nth-child(2){animation:sk-stisni var(--t) ease infinite both}
+  @keyframes sk-stisni{0%,18%,28%,100%{transform:none;border-color:var(--linija)}22%{transform:scale(.94);border-color:var(--b)}}
+  .h .sk-ide .sh-korpa svg{animation:sk-trza var(--t) ease infinite both}
+  @keyframes sk-trza{0%,40%,50%,100%{transform:none}44%{transform:rotate(-14deg) scale(1.15)}}
+
+  /* rezervacije: dan, sat, potvrda */
+  .h .sk-ide .sk-dani .izabran{animation:sk-bira var(--t) ease infinite both}
+  .h .sk-ide .sk-sati .izabran{animation:sk-bira2 var(--t) ease infinite both}
+  @keyframes sk-bira{0%,12%{background:transparent;color:var(--tiho)}16%,90%{background:var(--b);color:var(--tamno)}96%,100%{background:transparent;color:var(--tiho)}}
+  @keyframes sk-bira2{0%,30%{background:transparent;color:var(--tiho);border-color:var(--linija)}34%,90%{background:var(--b);color:var(--tamno);border-color:transparent}96%,100%{background:transparent;color:var(--tiho);border-color:var(--linija)}}
+  .h .sk-ide .sk-ok{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .24)}
+
+  /* chatbot */
+  .h .sk-ide .sb-prozor{animation:sk-prozor var(--t) cubic-bezier(.3,1.4,.5,1) infinite both}
+  @keyframes sk-prozor{0%,12%{opacity:0;transform:scale(.4)}20%,88%{opacity:1;transform:none}95%,100%{opacity:0;transform:scale(.4)}}
+  .h .sk-ide .sb-p1{animation:sk-p2 var(--t) ease infinite both}
+  .h .sk-ide .sb-p2{animation:sk-p3 var(--t) ease infinite both}
+  .h .sk-ide .sb-dug{animation:sk-dug var(--t) ease infinite both}
+  @keyframes sk-dug{0%,6%,16%,100%{transform:none}10%{transform:scale(.8)}}
+
+  /* koraci */
+  .h .sk-ide .kr-a{animation:sk-p1 var(--t) ease infinite both}
+  .h .sk-ide .kr-b{animation:sk-p2 var(--t) ease infinite both}
+  .h .sk-ide .kp-list b{animation:sk-crta var(--t) ease infinite both}
+  .h .sk-ide .kp-list b:nth-child(2){animation-delay:.15s}.h .sk-ide .kp-list b:nth-child(3){animation-delay:.3s}.h .sk-ide .kp-list b:nth-child(4){animation-delay:.45s}
+  @keyframes sk-crta{0%,4%{transform:scaleX(0)}16%,90%{transform:none}97%,100%{transform:scaleX(0)}}
+  .h .kp-list b,.h .ki-t b{transform-origin:left}
+  .h .sk-ide .kp-pecat{animation:sk-pecat var(--t) cubic-bezier(.2,1.4,.4,1) infinite both}
+  @keyframes sk-pecat{0%,34%{opacity:0;transform:scale(1.8)}40%,90%{opacity:1;transform:none}96%,100%{opacity:0}}
+  .h .sk-ide .ki-t b{animation:sk-crta var(--t) cubic-bezier(.2,.8,.2,1) infinite both}
+  .h .sk-ide .ki-t b:nth-child(2){animation-delay:.3s}.h .sk-ide .ki-t b:nth-child(3){animation-delay:.6s}
+  .h .sk-ide .ki-oz{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .12)}
+  .h .sk-ide .ko-tr i{animation:sk-napredak var(--t) cubic-bezier(.5,0,.3,1) infinite both}
+  @keyframes sk-napredak{0%,6%{transform:scaleX(0)}40%,90%{transform:none}96%,100%{transform:scaleX(0)}}
+  .h .sk-ide .ko-st{animation:sk-p3 var(--t) ease infinite both}
+  .h .sk-ide .ko-st i{animation:sk-disi 1.6s ease-out infinite both}
+  @keyframes sk-disi{0%{box-shadow:0 0 0 0 rgba(79,214,160,.5)}100%{box-shadow:0 0 0 7px rgba(79,214,160,0)}}
+  .h .sk-ide .od-lin{animation:sk-linija var(--t) cubic-bezier(.4,0,.2,1) infinite both}
+  @keyframes sk-linija{0%,4%{stroke-dashoffset:100}40%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:100}}
+  .h .sk-ide .od-pod{animation:sk-p2 var(--t) ease infinite both}
+  .h .sk-ide .od-ok{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .2)}
+
+  /* djelatnosti */
+  .h .sk-ide .bt-tx em{animation:sk-korpa var(--t) ease infinite both}
+  @keyframes sk-korpa{0%,30%,40%,100%{transform:none;filter:none}34%{transform:scale(.9);filter:brightness(1.2)}}
+  .h .sk-ide .bt-olx{animation:sk-blic2 var(--t) ease infinite both}
+  @keyframes sk-blic2{0%,36%,60%,100%{border-color:var(--linija2);color:var(--tiho)}42%,54%{border-color:var(--b);color:var(--b)}}
+  .h .sk-ide .ba-niz{animation:sk-klizi 9s linear infinite both}
+  @keyframes sk-klizi{to{transform:translateY(-50%)}}
+  .h .sk-ide .bb-red b{animation:sk-bljesak var(--t) ease infinite both}
+  .h .sk-ide .bb-red:nth-child(3) b{animation-delay:.3s}
+  @keyframes sk-bljesak{0%,24%,44%,100%{background:transparent}30%,38%{background:color-mix(in oklab,var(--b) 22%,transparent)}}
+  .h .sk-ide .sk-fri .novi{animation:sk-termin var(--t) ease infinite both}
+  @keyframes sk-termin{0%,22%{background:transparent;color:var(--tekst);border-color:var(--linija2);transform:none}27%{transform:scale(1.12)}30%,90%{background:var(--b);color:var(--tamno);border-color:transparent;transform:none}96%,100%{background:transparent;color:var(--tekst);border-color:var(--linija2)}}
+  .h .sk-ide .bs-obav{animation:sk-obav var(--t) cubic-bezier(.2,.9,.3,1.2) infinite both}
+  .h .sk-ide .bs-2{animation-delay:calc(var(--t) * .3)}
+  @keyframes sk-obav{0%,4%{opacity:0;transform:translateY(-14px)}12%,86%{opacity:1;transform:none}94%,100%{opacity:0}}
+  .h .sk-ide .br-meni div{animation:sk-p1 var(--t) ease infinite both}
+  .h .sk-ide .br-meni div:nth-child(2){animation-delay:.15s}.h .sk-ide .br-meni div:nth-child(3){animation-delay:.3s}
+  .h .sk-ide .br-sto{animation:sk-pop var(--t) cubic-bezier(.3,1.6,.5,1) infinite both;animation-delay:calc(var(--t) * .2)}
+
+  /* mapa: tačke dišu jedna za drugom */
+  .h .m-val{animation:mapa-val 3.6s ease-out infinite both;animation-delay:calc(var(--i) * -.41s)}
+  @keyframes mapa-val{0%{opacity:.75;transform:scale(1)}70%,100%{opacity:0;transform:scale(3.4)}}
+}

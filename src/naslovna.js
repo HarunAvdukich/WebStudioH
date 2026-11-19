@@ -47,7 +47,7 @@ export const djelatnosti = [
   { naslov: 'Restorani i kafići', tekst: 'Meni, rezervacije, narudžbe', link: '/usluge' },
 ]
 
-export const gradovi = sviGradovi.map((g) => ({ ime: g.ime, link: putGrada(g) }))
+export const gradovi = sviGradovi.map((g) => ({ ime: g.ime, slug: g.slug, link: putGrada(g) }))
 
 export const pitanja = [
   { q: 'Koliko košta izrada web stranice?', a: 'Zavisi od toga šta Vam treba: broj stranica, web shop, veze sa OLX-om ili dobavljačima. Zato nemamo fiksni cjenovnik. Poslije kratkog razgovora šaljemo pisanu ponudu sa cijenom i rokom.' },
