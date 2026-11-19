@@ -24,6 +24,8 @@ export default function App() {
   const engleski = pathname === '/en' || pathname.startsWith('/en/')
   // Evidencija rada (/sati) je alat za klijenta: bez okvira, statistike i naslova koji zove nazad.
   const bezOkvira = pathname === '/sati' || pathname === '/sati/'
+  // Bosanska početna (19. 11. 2026) ima svoje zaglavlje i podnožje iz dizajna.
+  const naslovna = pathname === '/'
 
   // Statistika bez kolačića (Umami), samo na hunar.ba; učita se poslije stranice.
   useEffect(() => {
@@ -73,14 +75,14 @@ export default function App() {
   }
 
   return (
-    <div className={pocetna ? 'page page--pocetna' : 'page'}>
+    <div className={naslovna ? 'page page--naslovna' : pocetna ? 'page page--pocetna' : 'page'}>
       <JsonLd />
       <ScrollToTop />
-      <Zaglavlje />
+      {!naslovna && <Zaglavlje />}
       <main>
         <Outlet />
       </main>
-      <Podnozje />
+      {!naslovna && <Podnozje />}
       <TrakaTelefon />
       <NazadNaVrh />
       <Zavjesa />

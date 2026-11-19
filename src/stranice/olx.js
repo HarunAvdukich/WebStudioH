@@ -60,14 +60,14 @@ export const dobijate = {
     'Kad objavite puno artikala odjednom, objava sama nastavi sljedeći dan, jer OLX prima najviše 350 novih oglasa dnevno.',
   ],
   brojke: [
-    { do: 3061, opis: 'Toliko aktivnih oglasa mrt.ba ima na OLX-u, i svi se ovako drže ažurnim.', datum: 'izbrojano na OLX-u 11. 10. 2026.' },
+    { do: 4250, opis: 'Toliko aktivnih oglasa mrt.ba ima na OLX-u, i svi se ovako drže ažurnim.', datum: 'izbrojano na OLX-u 19. 11. 2026.' },
     { do: 14, poslije: ' s', opis: 'Od klika na Ažuriraj do nove cijene na OLX-u.', datum: 'izmjereno 6. 10. 2026.' },
   ],
   brojkeNad: 'Na mrt.ba',
 }
 
 // Igra je ista kao na Uslugama; napomena ispod nje nosi broj oglasa sa ove stranice.
-export const igraNapomena = 'Ilustracija. Na mrt.ba ovako radi 3.061 oglas (11. 10. 2026).'
+export const igraNapomena = 'Ilustracija. Na mrt.ba ovako radi 4.250 oglasa (19. 11. 2026).'
 
 export const pitanja = {
   nad: 'Česta pitanja',

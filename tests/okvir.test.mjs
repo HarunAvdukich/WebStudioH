@@ -75,19 +75,31 @@ test('ostale stranice imaju novo zaglavlje sa menijem, a ne staro', () => {
   }
 })
 
-test('početna ima zaglavlje priče (računar) i zajednički okvir za tok (telefon)', () => {
-  const pocetne = stranice.filter((x) => x.put === 'index.html' || x.put === 'en.html')
-  assert.equal(pocetne.length, 2)
-  for (const s of pocetne) {
-    assert.match(s.html, /class="kz-zaglavlje/, s.put)
-    assert.match(s.html, /class="page page--pocetna"/, s.put)
-    assert.match(s.html, /class="ok-zaglavlje/, s.put)
-    assert.match(s.html, /class="ok-podnozje/, s.put)
-    assert.match(s.html, /class="ok-traka/, s.put)
-    assert.doesNotMatch(s.html, /class="kz-podnozje/, s.put)
-    // jedan naslov h1 na stranici
-    assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1, s.put)
-  }
+test('engleska početna ima zaglavlje priče (računar) i zajednički okvir za tok (telefon)', () => {
+  const s = stranice.find((x) => x.put === 'en.html')
+  assert.ok(s)
+  assert.match(s.html, /class="kz-zaglavlje/)
+  assert.match(s.html, /class="page page--pocetna"/)
+  assert.match(s.html, /class="ok-zaglavlje/)
+  assert.match(s.html, /class="ok-podnozje/)
+  assert.match(s.html, /class="ok-traka/)
+  assert.doesNotMatch(s.html, /class="kz-podnozje/)
+  assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1)
+})
+
+test('bosanska početna ima svoje zaglavlje i podnožje iz dizajna (19. 11. 2026)', () => {
+  const s = stranice.find((x) => x.put === 'index.html')
+  assert.ok(s)
+  assert.match(s.html, /class="page page--naslovna"/)
+  assert.match(s.html, /<header class="zag/)
+  assert.match(s.html, /<footer class="pod/)
+  assert.match(s.html, /aria-controls="meni-mob"/)
+  assert.match(s.html, /class="ok-traka/)
+  assert.doesNotMatch(s.html, /class="ok-zaglavlje|class="ok-podnozje|kz-zaglavlje/)
+  assert.match(s.html, /href="\/politika-privatnosti"/)
+  assert.match(s.html, /href="tel:\+387603000751"/)
+  assert.match(s.html, /i još dosta projekata/i)
+  assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1)
 })
 
 test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balona', () => {
