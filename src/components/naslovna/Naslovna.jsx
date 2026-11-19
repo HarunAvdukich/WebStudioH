@@ -1,7 +1,6 @@
 // Nova početna (Claude Design "Hunar landing", 19. 11. 2026). Stil je u naslovna.css, sve pod .h.
 import { useEffect, useState } from 'react'
-import '@fontsource/jetbrains-mono/400.css'
-import '@fontsource/jetbrains-mono/500.css'
+import './fontovi.css'
 import './naslovna.css'
 import { WA, WA_SKICA, WA_PREGLED, WA_POSAO, VIBER, meni, stubovi, usluge, koraci, djelatnosti, gradovi, pitanja } from '../../naslovna.js'
 
