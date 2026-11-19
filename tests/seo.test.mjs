@@ -108,6 +108,30 @@ test('nove usluge imaju sadržaj, stvaran rad i jasan put do upita u statičnom 
   }
 })
 
+test('stranice gradova imaju svoj tekst, stvaran rad, grad u JSON-LD i link sa hub stranice', async () => {
+  const { gradovi, putGrada } = await import('../src/stranice/gradovi.js')
+  const hub = pages.find(p => p.path === '/izrada-web-stranica')
+  const lokalni = new Set()
+  for (const g of gradovi) {
+    const path = putGrada(g)
+    const p = pages.find(p => p.path === path)
+    assert.ok(p, `${path} nije izgrađena`)
+    const article = p.html.match(/<article\b[^>]*>([\s\S]*?)<\/article>/)?.[1] || ''
+    const rijeci = article.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length
+    assert.ok(rijeci >= 400, `${path}: ${rijeci} riječi`)
+    assert.match(article, /href="\/radovi\/(mrt|smarttime)"/, path)
+    assert.match(article, /href="\/cijene"/, path)
+    assert.match(article, /href="\/kontakt"/, path)
+    assert.match(p.html, /href="https:\/\/wa\.me\/387603000751\?text=/, path)
+    assert.match(p.html, new RegExp(`"areaServed":\\{"@type":"City","name":"${g.ime}"`), path)
+    assert.ok(hub.html.includes(`href="${path}"`), `hub ne vodi na ${path}`)
+    // Lokalni dio i pitanje moraju biti različiti za svaki grad.
+    lokalni.add(g.lokalno.tekst).add(g.pitanje.q)
+    for (const s of g.susjedi) assert.ok(gradovi.some(x => x.slug === s && s !== g.slug), `${g.slug}: susjed ${s}`)
+  }
+  assert.equal(lokalni.size, gradovi.length * 2)
+})
+
 for (const p of indeksirane) {
   test(`${p.path}: naslov, opis, canonical, jedan h1`, () => {
     const naslovi = [...p.html.matchAll(/<title[^>]*>([^<]*)<\/title>/g)].map((m) => m[1])

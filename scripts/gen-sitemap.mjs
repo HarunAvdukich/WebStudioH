@@ -5,6 +5,7 @@ import { writeFileSync, readdirSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { projects } from '../src/data.js'
 import { izrada } from '../src/stranice/izrada.js'
+import { gradovi, putGrada } from '../src/stranice/gradovi.js'
 
 const BASE = 'https://hunar.ba'
 
@@ -27,6 +28,7 @@ const urls = [
   ['/usluge', nova('Usluge', 'usluge', ['src/components/usluge', 'src/components/igre'])],
   ['/en/services', nova('Usluge', 'usluge.en', ['src/components/usluge', 'src/components/igre'])],
   ...izrada.map(t => [t.put, ['src/pages/Izrada.jsx', 'src/stranice/izrada.js', `src/content/usluge/${t.put.slice(1)}.md`]]),
+  ...gradovi.map(g => [putGrada(g), ['src/pages/Grad.jsx', 'src/stranice/gradovi.js']]),
   ['/radovi', nova('Radovi', 'radovi', ['src/components/radovi'])],
   ['/en/work', nova('Radovi', 'radovi.en', ['src/components/radovi'])],
   ['/cijene', nova('Cijene', 'cijene', ['src/components/cijene'])],

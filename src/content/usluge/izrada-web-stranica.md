@@ -34,6 +34,12 @@ Cijenu dogovaramo prema broju i vrsti stranica, pripremi sadržaja, jezicima i p
 
 Iznose ne objavljujemo jer različite firme trebaju različit posao. Pogledajte [kako nastaje ponuda](/cijene) i [šta utiče na cijenu web stranice](/savjeti/koliko-kosta-web-stranica), ili nam [pošaljite šta Vam treba](/kontakt).
 
+## Izrada web stranica po gradovima
+
+Radimo za firme iz cijele Bosne i Hercegovine, a dogovor ide preko WhatsAppa, telefona i maila. Za veće gradove imamo stranice sa onim što je tamo posebno: jezikom i pismom, kupcima iz dijaspore, turistima ili prodajom preko granice.
+
+[Sarajevo](/izrada-web-stranica/sarajevo) · [Banja Luka](/izrada-web-stranica/banja-luka) · [Tuzla](/izrada-web-stranica/tuzla) · [Zenica](/izrada-web-stranica/zenica) · [Mostar](/izrada-web-stranica/mostar) · [Bijeljina](/izrada-web-stranica/bijeljina) · [Prijedor](/izrada-web-stranica/prijedor) · [Brčko](/izrada-web-stranica/brcko) · [Doboj](/izrada-web-stranica/doboj) · [Cazin](/izrada-web-stranica/cazin) · [Bihać](/izrada-web-stranica/bihac) · [Travnik](/izrada-web-stranica/travnik) · [Gračanica](/izrada-web-stranica/gracanica) · [Lukavac](/izrada-web-stranica/lukavac) · [Visoko](/izrada-web-stranica/visoko) · [Livno](/izrada-web-stranica/livno) · [Široki Brijeg](/izrada-web-stranica/siroki-brijeg) · [Goražde](/izrada-web-stranica/gorazde)
+
 ## Česta pitanja
 
 ### Radite li za firme iz cijele Bosne i Hercegovine?

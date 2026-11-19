@@ -126,7 +126,9 @@ export function mrvice(koraci) {
 }
 
 // Usluga na vlastitoj stranici, sa istim pružaocem iz zajedničkog JSON-LD-a.
-export function usluga({ path, naziv, opis }) {
+// grad: ime grada za stranice /izrada-web-stranica/<grad>; tada je područje usluge taj grad.
+export function usluga({ path, naziv, opis, grad }) {
+  const bih = { '@type': 'Country', name: 'Bosna i Hercegovina' }
   return {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -136,7 +138,7 @@ export function usluga({ path, naziv, opis }) {
     description: opis,
     url: SITE_URL + path,
     provider: { '@id': ORGANIZACIJA_ID },
-    areaServed: { '@type': 'Country', name: 'Bosna i Hercegovina' },
+    areaServed: grad ? { '@type': 'City', name: grad, containedInPlace: bih } : bih,
     availableChannel: { '@type': 'ServiceChannel', serviceUrl: `${SITE_URL}/kontakt` },
   }
 }

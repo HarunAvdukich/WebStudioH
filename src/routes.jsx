@@ -7,6 +7,8 @@ import * as oHunaruEn from './stranice/o-hunaru.en.js'
 import Usluge from './pages/Usluge.jsx'
 import Izrada from './pages/Izrada.jsx'
 import { izrada } from './stranice/izrada.js'
+import Grad from './pages/Grad.jsx'
+import { gradovi, putGrada } from './stranice/gradovi.js'
 import * as usluge from './stranice/usluge.js'
 import * as uslugeEn from './stranice/usluge.en.js'
 import Radovi from './pages/Radovi.jsx'
@@ -42,6 +44,7 @@ export const routes = [
       { path: 'en/about', element: <ONama t={oHunaruEn} /> },
       { path: 'usluge', element: <Usluge t={usluge} /> },
       ...izrada.map(t => ({ path: t.put.slice(1), element: <Izrada t={t} /> })),
+      ...gradovi.map(g => ({ path: putGrada(g).slice(1), element: <Grad g={g} /> })),
       { path: 'en/services', element: <Usluge t={uslugeEn} /> },
       { path: 'radovi', element: <Radovi t={radovi} /> },
       { path: 'en/work', element: <Radovi t={radoviEn} /> },
