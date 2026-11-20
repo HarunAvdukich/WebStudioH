@@ -13,7 +13,7 @@ const van = { target: '_blank', rel: 'noopener' }
 const POVJERENJE = [
   ['Potpis na svakom sajtu', 'U podnožju mrt.ba, smarttime.ba i caneras.ba piše „Izradio hunar“. Otvorite i pogledajte.'],
   ['Klijenti ostaju', 'Stranice koje smo napravili i danas održavamo, za iste firme.'],
-  ['Vidite prije nego platite', 'Prvo dobijete besplatnu skicu, a veći dio plaćate tek kad je stranica gotova.'],
+  ['Veći dio na kraju', 'Veći dio cijene plaćate tek kad je stranica gotova i kad je pregledate.'],
   ['Brojke sa datumom', 'Svaka brojka na ovoj stranici ima datum i izvor, pa je možete provjeriti.'],
 ]
 
@@ -137,7 +137,7 @@ export default function Naslovna() {
                 <li><i style={{ '--b': 'var(--nebo)' }} />Pisana ponuda<span>tri paketa</span></li>
                 <li><i style={{ '--b': 'var(--koral)' }} />Sve je Vaše<span>stranica i domena</span></li>
               </ul>
-              <p className="biljeska mono">Skica Vas ne obavezuje ni na šta · cijena po dogovoru</p>
+              <p className="biljeska mono">Cijena po dogovoru, tek kad vidite skicu</p>
             </div>
 
             <div className="scena" role="group" aria-label="Snimci stranica koje smo napravili">
@@ -176,19 +176,19 @@ export default function Naslovna() {
         {[...TRAKA, ...TRAKA].map((t, i) => [<span key={'t' + i} className={i % 2 ? 'obris' : 'puna'}>{t}</span>, <i key={'i' + i} />])}
       </div></div>
 
-      <Sek prvi className="sek rizik" id="skica" oznaka="Bez rizika za Vas" naslov="Prije nego platite išta," tise="vidite šta dobijate." opis="Ne tražimo da kupite mačka u vreći. Prvo vidite skicu, probate demo ili dobijete pregled stranice koju već imate. Tek onda odlučujete.">
+      <Sek prvi className="sek rizik" id="skica" oznaka="Bez rizika za Vas" naslov="Prvo pogledate," tise="pa tek onda odlučite." opis="Ne tražimo da kupite mačka u vreći. Prvo vidite skicu, probate demo ili dobijete pregled stranice koju već imate.">
         <span className="orb o1" aria-hidden="true" /><span className="orb o2" aria-hidden="true" />
         <article className="skica-kartica">
           <div className="skica-tekst">
             <span className="etiketa mono">Besplatno · bez obaveze</span>
-            <h3>Besplatna skica Vaše stranice</h3>
+            <h3>Kako bi izgledala Vaša stranica</h3>
             <p>Pošaljite naziv firme i šta radite. Napravimo skicu Vaše buduće stranice sa Vašim imenom i Vašim uslugama i pošaljemo Vam link. Ako Vam se ne svidi, ne dugujete ništa.</p>
             <ul className="kvacice">
               <li>Vaše ime i Vaše usluge, ne prazan šablon</li>
               <li>Link koji otvorite na telefonu i pokažete drugima</li>
               <li>Bez plaćanja, bez ugovora, bez naknadnog zvanja</li>
             </ul>
-            <a className="dugme zlatno" href="/skica">Tražim besplatnu skicu<Ik d={STRELICA} /></a>
+            <a className="dugme zlatno" href="/skica">Napravite mi skicu<Ik d={STRELICA} /></a>
           </div>
           <div className="pretr" aria-hidden="true">
             <div className="pretr-traka"><i /><i /><i /><span className="mono">vasa-firma.ba</span></div>
@@ -431,7 +431,7 @@ export default function Naslovna() {
             <p>Napišite šta prodajete i kome. Plan i cijenu šaljemo poslije razgovora, bez obaveze.</p>
           </div>
           <div className="kanali">
-            <a className="kanal zlatni" href="/skica"><Ik d={ZVIJEZDA} /><div>Tražim besplatnu skicu<span>Bez plaćanja i bez obaveze</span></div><Ik className="str" d={STRELICA} /></a>
+            <a className="kanal zlatni" href="/skica"><Ik d={ZVIJEZDA} /><div>Pogledajte svoju skicu<span>Osnovnu vidite odmah</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal bijeli" href={WA} {...van}><Ik d={WA_IK} /><div>WhatsApp<span>Najbrži put do nas</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal" href={VIBER}><Ik d="M4 5h16v11H8l-4 4z" /><div>Viber<span>060 3000 751</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal" href="mailto:info@hunar.ba"><Ik><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Ik><div>Email<span>info@hunar.ba</span></div><Ik className="str" d={STRELICA} /></a>

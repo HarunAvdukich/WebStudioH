@@ -438,7 +438,7 @@
 @media (max-width:720px){.h .koraci::after{display:none}}
 
 /* ===== više boja ===== */
-.h .dugme.zlatno{background:linear-gradient(135deg,#ffd27a,var(--zlato) 55%,#f09a3e);color:#1d1404;position:relative;overflow:hidden;box-shadow:0 10px 30px -14px rgba(245,185,66,.8)}
+.h .dugme.zlatno{background:linear-gradient(135deg,#ffd27a,var(--zlato) 55%,#f09a3e);color:#1d1404;position:relative;overflow:hidden;isolation:isolate;box-shadow:0 10px 30px -14px rgba(245,185,66,.8)}
 .h .dugme.zlatno:hover{box-shadow:0 16px 36px -12px rgba(245,185,66,.9)}
 .h .dugme.tamno{background:var(--tamno);color:#fff}
 .h .dugme.obrub{border:1.5px solid rgba(16,35,28,.25);color:var(--tamno);background:transparent}
@@ -553,7 +553,7 @@
   @keyframes prelivaj{to{background-position:-300% 0}}
   .h .kuke li{animation:iskoci .6s cubic-bezier(.3,1.6,.5,1) both}
   .h .kuke li:nth-child(1){animation-delay:.75s}.h .kuke li:nth-child(2){animation-delay:.87s}.h .kuke li:nth-child(3){animation-delay:.99s}
-  .h .dugme.zlatno::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.55) 50%,transparent 65%);background-size:250% 100%;animation:prelij 3.8s ease-in-out infinite}
+  .h .dugme.zlatno::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(110deg,transparent 35%,rgba(255,255,255,.4) 50%,transparent 65%);background-size:250% 100%;animation:prelij 3.8s ease-in-out infinite}
   .h .dugme.zlatno svg:first-child{animation:zvijezda 3s ease-in-out infinite}
   @keyframes zvijezda{50%{transform:rotate(90deg) scale(1.15)}}
   .h .orb.o1{animation:orb1 16s ease-in-out infinite}
