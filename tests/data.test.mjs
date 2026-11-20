@@ -15,8 +15,8 @@ function strings(value, path = '', out = []) {
 
 const texts = strings({ data, radovi: { ...radovi }, radoviEn: { ...radoviEn } })
 
-test('radovi: mrt, smarttime, urez, tim redom, isto na oba jezika i u podacima', () => {
-  const slugovi = ['mrt', 'smarttime', 'urez']
+test('radovi: mrt, smarttime, caneras, urez, tim redom, isto na oba jezika i u podacima', () => {
+  const slugovi = ['mrt', 'smarttime', 'caneras', 'urez']
   assert.deepEqual(data.projects.map((p) => p.slug), slugovi)
   assert.deepEqual(radovi.radovi.map((r) => r.slug), slugovi)
   assert.deepEqual(radoviEn.radovi.map((r) => r.slug), slugovi)

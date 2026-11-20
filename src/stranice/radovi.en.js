@@ -13,8 +13,8 @@ const st = satoviSmarttime('en')
 export const put = '/en/work'
 
 export const seo = {
-  naslov: 'Work · mrt.ba and SmartTime · Hunar',
-  opis: 'Real online stores we built, with numbers you can check: mrt.ba, a tool store linked to OLX, and SmartTime, a watch store with online booking.',
+  naslov: 'Work · mrt.ba, SmartTime and caneras.ba · Hunar',
+  opis: 'Work you can check: mrt.ba linked to OLX, SmartTime with online booking and caneras.ba, a brand site for electric bikes.',
 }
 
 export const vrh = {
@@ -111,6 +111,39 @@ export const radovi = [
     snimciOpis: 'A product page and appointment booking on smarttime.ba. Captured on a phone on 29 Sep 2026.',
     igra: 'termin',
     poziv: { naslov: 'Do you sell services, not only products?', opis: 'Appointment booking can work for you too.' },
+  },
+  {
+    slug: 'caneras',
+    ime: 'caneras.ba',
+    oznaka: 'Electric bikes and scooters',
+    opis: 'A brand site with model filters, a page for each model and a comparison table. Buying happens on mrt.ba.',
+    url: 'https://caneras.ba',
+    seo: {
+      naslov: 'caneras.ba: a brand site for electric bikes · Hunar',
+      opis: 'How we built caneras.ba: the Caneras brand site with model filters and a comparison table, custom built without a database.',
+    },
+    naslov: 'caneras.ba: four models, one comparison table.',
+    uvod: 'Caneras makes electric bikes, scooters and tricycles, represented in Bosnia and Herzegovina by Motor Remont Trade. They needed a brand site where buyers compare models and find support, then buy on mrt.ba.',
+    napravili: [
+      'A custom brand site, without a database',
+      'Model filters: bikes, scooters and tricycles',
+      'A view of each model with its details',
+      'A model comparison table',
+      'Support and service questions',
+      'A link to buy on mrt.ba',
+    ],
+    brojke: [
+      { do: 4, opis: 'models in the catalogue', datum: 'checked 20 Nov 2026' },
+      { do: 3, opis: 'vehicle types in the filters', datum: 'checked 20 Nov 2026' },
+    ],
+    slika: { src: '/project-caneras.webp', width: 1200, height: 769, alt: 'The caneras.ba home page on a computer: Caneras electric bikes and scooters' },
+    snimci: [
+      { src: '/radovi/caneras-modeli.webp', width: 780, height: 1688, alt: 'Caneras models with filters on caneras.ba, phone screenshot', opis: 'Models with filters' },
+      { src: '/radovi/caneras-poredjenje.webp', width: 780, height: 1688, alt: 'Model comparison table on caneras.ba, phone screenshot', opis: 'Model comparison' },
+    ],
+    snimciNaslov: 'Models and comparison, both on a phone.',
+    snimciOpis: 'Models with filters and the comparison table on caneras.ba. Captured on a phone on 20 Nov 2026.',
+    poziv: { naslov: 'Representing a brand?', opis: 'We can build a site where buyers compare models and know where to buy.' },
   },
   {
     slug: 'urez',
