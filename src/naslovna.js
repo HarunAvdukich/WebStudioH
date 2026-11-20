@@ -13,6 +13,7 @@ export const meni = [
   { ime: 'Cijene', link: '/cijene' },
   { ime: 'O Hunaru', link: '/o-nama' },
   { ime: 'Savjeti', link: '/savjeti' },
+  { ime: 'Besplatna skica', link: '/skica' },
   { ime: 'Kontakt', link: '/kontakt' },
 ]
 

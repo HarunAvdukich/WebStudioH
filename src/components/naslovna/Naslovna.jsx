@@ -4,7 +4,7 @@ import './fontovi.css'
 import './naslovna.css'
 import './skice.css'
 import { SkicaStub, SkicaUsluga, SkicaKorak, SkicaBransa, Gradovi } from './Skice.jsx'
-import { WA, WA_SKICA, WA_PREGLED, WA_POSAO, VIBER, meni, stubovi, usluge, koraci, djelatnosti, gradovi, pitanja } from '../../naslovna.js'
+import { WA, WA_PREGLED, WA_POSAO, VIBER, meni, stubovi, usluge, koraci, djelatnosti, gradovi, pitanja } from '../../naslovna.js'
 
 const TEL = 'tel:+387603000751'
 const van = { target: '_blank', rel: 'noopener' }
@@ -90,8 +90,8 @@ function Zaglavlje() {
         </div>
       </div>
       <nav id="meni-mob" className="meni-mob" aria-label="Meni" hidden={!otvoren}>
-        {meni.map((m) => <a key={m.link} href={m.link} onClick={() => setOtvoren(false)}>{m.ime}</a>)}
-        <a className="dugme zlatno" href={WA_SKICA} {...van}>Besplatna skica Vaše stranice</a>
+        {meni.filter((m) => m.link !== "/skica").map((m) => <a key={m.link} href={m.link} onClick={() => setOtvoren(false)}>{m.ime}</a>)}
+        <a className="dugme zlatno" href="/skica">Besplatna skica Vaše stranice</a>
       </nav>
     </header>
   )
@@ -129,7 +129,7 @@ export default function Naslovna() {
               <h1 className="naslov"><span className="red"><span>Web stranice i web shopovi</span></span> <span className="red tise"><span>koji donose <em>upite</em>,</span></span> <span className="red tise"><span>ne samo posjete.</span></span></h1>
               <p className="uvod">Pravimo stranice, web shopove i zakazivanje termina. Vežemo ih sa <b>OLX-om, Ananasom i Vašim dobavljačima</b>, pa artikle unosite jednom, a ne na tri mjesta.</p>
               <div className="akcije">
-                <a className="dugme zlatno" href={WA_SKICA} {...van}><Ik d={ZVIJEZDA} />Besplatna skica Vaše stranice</a>
+                <a className="dugme zlatno" href="/skica"><Ik d={ZVIJEZDA} />Besplatna skica Vaše stranice</a>
                 <a className="dugme drugo" href={WA} {...van}><Ik d={WA_IK} />Pišite na WhatsApp</a>
               </div>
               <ul className="kuke">
@@ -188,7 +188,7 @@ export default function Naslovna() {
               <li>Link koji otvorite na telefonu i pokažete drugima</li>
               <li>Bez plaćanja, bez ugovora, bez naknadnog zvanja</li>
             </ul>
-            <a className="dugme zlatno" href={WA_SKICA} {...van}>Tražim besplatnu skicu<Ik d={STRELICA} /></a>
+            <a className="dugme zlatno" href="/skica">Tražim besplatnu skicu<Ik d={STRELICA} /></a>
           </div>
           <div className="pretr" aria-hidden="true">
             <div className="pretr-traka"><i /><i /><i /><span className="mono">vasa-firma.ba</span></div>
@@ -431,7 +431,7 @@ export default function Naslovna() {
             <p>Napišite šta prodajete i kome. Plan i cijenu šaljemo poslije razgovora, bez obaveze.</p>
           </div>
           <div className="kanali">
-            <a className="kanal zlatni" href={WA_SKICA} {...van}><Ik d={ZVIJEZDA} /><div>Tražim besplatnu skicu<span>Bez plaćanja i bez obaveze</span></div><Ik className="str" d={STRELICA} /></a>
+            <a className="kanal zlatni" href="/skica"><Ik d={ZVIJEZDA} /><div>Tražim besplatnu skicu<span>Bez plaćanja i bez obaveze</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal bijeli" href={WA} {...van}><Ik d={WA_IK} /><div>WhatsApp<span>Najbrži put do nas</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal" href={VIBER}><Ik d="M4 5h16v11H8l-4 4z" /><div>Viber<span>060 3000 751</span></div><Ik className="str" d={STRELICA} /></a>
             <a className="kanal" href="mailto:info@hunar.ba"><Ik><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></Ik><div>Email<span>info@hunar.ba</span></div><Ik className="str" d={STRELICA} /></a>
