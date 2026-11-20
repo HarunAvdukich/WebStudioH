@@ -27,6 +27,7 @@ export const meni = [
   { naziv: 'Cijene', put: '/cijene' },
   { naziv: 'O Hunaru', put: '/o-nama' },
   { naziv: 'Savjeti', put: '/savjeti' },
+  { naziv: 'Besplatna skica', put: '/skica' },
   { naziv: 'Kontakt', put: '/kontakt' },
 ]
 
