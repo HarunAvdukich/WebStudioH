@@ -24,6 +24,7 @@ import * as kontaktEn from './stranice/kontakt.en.js'
 import Savjeti from './pages/Savjeti.jsx'
 import Olx from './pages/Olx.jsx'
 import Zakazivanje from './pages/Zakazivanje.jsx'
+import Skica from './pages/Skica.jsx'
 import Clanak from './pages/Clanak.jsx'
 import Privatnost from './pages/Privatnost.jsx'
 import * as privatnost from './stranice/privatnost.js'
@@ -63,6 +64,7 @@ export const routes = [
       { path: 'savjeti', element: <Savjeti /> },
       { path: 'olx', element: <Olx /> },
       { path: 'zakazivanje', element: <Zakazivanje /> },
+      { path: 'skica', element: <Skica /> },
       // Skrivena evidencija rada za klijenta: van menija, sitemapa i indeksa (vidi src/pages/Sati.jsx).
       { path: 'sati', element: <Sati /> },
       {
