@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cirkus Zubek, skica sajta</title>
+<meta name="description" content="Skica sajta za Cirkus Zubek: cirkuski program, gostovanja, luna park i prodaja atrakcija.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&amp;family=Work+Sans:wght@400;500;600;700;800&amp;display=swap">
+<style>
+body{margin:0;background:#12103a}
+a{color:#f5c542}a:hover{color:#ffe08a}
+.cz-img{display:block;width:100%;height:100%;object-fit:cover}
+.cz-kartica{transition:transform .25s ease, box-shadow .25s ease}
+.cz-kartica:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(0,0,0,.35)}
+.cz-polje{width:100%;box-sizing:border-box;font:inherit;font-size:17px;padding:14px 16px;border-radius:12px;border:2px solid #3a3690;background:#0f0d33;color:#fff6e0;min-height:52px}
+.cz-polje::placeholder{color:#8f89b8}
+@keyframes cz-sijalice{0%,100%{opacity:1}50%{opacity:.45}}
+.cz-sijalice{animation:cz-sijalice 1.6s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){.cz-sijalice{animation:none}.cz-kartica{transition:none}}
+</style>
+<style>
+@media (max-width:700px){.cz-zag{position:static !important}}@media (max-width:600px){.cz-vel{grid-row:span 1 !important}}
+</style>
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+</head>
+<body>
+<div style="font-family: 'Work Sans', system-ui, sans-serif; color: #fff6e0; background: #12103a; min-height: 100vh">
+
+<div style="background: #c8102e; color: #ffffff; font-weight: 700; font-size: 15px; letter-spacing: 1px; text-transform: uppercase">
+<div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 28px; justify-content: center; text-align: center">
+<span>Cirkus u Vašem gradu</span><span aria-hidden="true" style="color: #f5c542">★</span><span>Ljeti luna park</span><span aria-hidden="true" style="color: #f5c542">★</span><span>Prodaja atrakcija</span>
+</div>
+</div>
+
+<header class="cz-zag" style="background: #0b0a26; border-bottom: 1px solid #2b2870; position: sticky; top: 0; z-index: 5">
+<div style="max-width: 1240px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
+<a href="#vrh" style="display: flex; align-items: center; gap: 14px; text-decoration: none">
+<img decoding="async" src="/demo-cirkus-zubek/logo.webp" alt="Logo Cirkusa Zubek: majmun i zmija" width="56" height="56" style="width: 56px; height: 56px; border-radius: 50%; border: 3px solid #f5c542; object-fit: cover">
+<span style="font-family: Bungee, sans-serif; font-size: 26px; color: #f5c542; letter-spacing: 1px">Cirkus Zubek</span>
+</a>
+<nav aria-label="Glavni meni" style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 16px; font-weight: 600">
+<a href="#gostovanja" style="color: #fff6e0; text-decoration: none">Gostovanja</a>
+<a href="#program" style="color: #fff6e0; text-decoration: none">Program</a>
+<a href="#skole" style="color: #fff6e0; text-decoration: none">Škole i vrtići</a>
+<a href="#lunapark" style="color: #fff6e0; text-decoration: none">Luna park</a>
+<a href="#prodaja" style="color: #fff6e0; text-decoration: none">Prodaja</a>
+<a href="#upit" style="color: #fff6e0; text-decoration: none">Kontakt</a>
+</nav>
+<a href="tel:" style="background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Pozovite: [TELEFON]</a>
+</div>
+</header>
+
+<section id="vrh" style="position: relative; overflow: hidden; background: radial-gradient(ellipse at 70% 10%, #3a2f9a 0%, #1a1650 40%, #12103a 75%)">
+<div aria-hidden="true" class="cz-sijalice" style="height: 14px; background: radial-gradient(circle, #f5c542 0 4px, transparent 5px) 0 0/24px 14px"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 64px 24px 88px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 520px; min-width: 0">
+<p style="margin: 0 0 18px; display: inline-flex; align-items: center; gap: 10px; background: rgba(245,197,66,.12); border: 1px solid rgba(245,197,66,.45); border-radius: 999px; padding: 8px 16px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #f5c542; font-size: 14px">Putujući cirkus i luna park</p>
+<h1 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(46px, 6.4vw, 92px); line-height: 1; color: #ffffff">Cirkus je stigao <span style="color: #f5c542; text-shadow: 0 0 28px rgba(245,197,66,0.55)">u Vaš grad.</span></h1>
+<p style="margin: 26px 0 0; font-size: 20px; line-height: 1.6; max-width: 560px; color: #e6dfcc">Klovnovi, žongleri, majmun, golubovi i zmije pitoni. Na kraju tombola, a kokice idu uz predstavu. Zabava za cijelu porodicu.</p>
+<div style="margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px">
+<a href="#gostovanja" style="background: #f5c542; color: #12103a; text-decoration: none; font-weight: 800; font-size: 18px; padding: 15px 28px; border-radius: 999px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center">Gdje nastupamo</a>
+<a href="#upit" style="border: 2px solid #fff6e0; color: #fff6e0; text-decoration: none; font-weight: 700; font-size: 18px; padding: 13px 26px; border-radius: 999px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center">Dovedite nas u Vaš grad</a>
+</div>
+<div style="margin-top: 40px; display: flex; flex-wrap: wrap; gap: 28px">
+
+<div style="border-left: 3px solid #c8102e; padding-left: 14px">
+<p style="margin: 0; font-family: Bungee, sans-serif; font-size: 28px; color: #f5c542">8 tačaka</p>
+<p style="margin: 4px 0 0; font-size: 15px; color: #cfc8f5">u jednoj predstavi</p>
+</div>
+
+<div style="border-left: 3px solid #c8102e; padding-left: 14px">
+<p style="margin: 0; font-family: Bungee, sans-serif; font-size: 28px; color: #f5c542">Tombola</p>
+<p style="margin: 4px 0 0; font-size: 15px; color: #cfc8f5">na kraju svake predstave</p>
+</div>
+
+<div style="border-left: 3px solid #c8102e; padding-left: 14px">
+<p style="margin: 0; font-family: Bungee, sans-serif; font-size: 28px; color: #f5c542">Ljeto</p>
+<p style="margin: 4px 0 0; font-size: 15px; color: #cfc8f5">luna park sa vožnjama</p>
+</div>
+
+</div>
+</div>
+<div style="flex: 1 1 440px; min-width: 0; position: relative; display: flex; justify-content: center; padding: 20px 0">
+<div aria-hidden="true" style="position: absolute; width: 58%; right: 2%; top: 4%; transform: rotate(7deg); border-radius: 14px; overflow: hidden; box-shadow: 0 24px 60px rgba(0,0,0,.5); border: 4px solid #fff6e0">
+<img decoding="async" class="cz-img" src="/demo-cirkus-zubek/plakat-crveni.webp" alt="">
+</div>
+<figure style="position: relative; margin: 0; width: 82%; transform: rotate(-3deg); border-radius: 18px; overflow: hidden; border: 5px solid #f5c542; box-shadow: 0 30px 80px rgba(0,0,0,.6)">
+<img decoding="async" class="cz-img" src="/demo-cirkus-zubek/plakat-gorila.webp" alt="Plakat Cirkusa Zubek: gorila, klovnovi, majmun i zečevi pod šatorom" style="aspect-ratio: 765 / 652">
+</figure>
+</div>
+</div>
+<div aria-hidden="true" class="cz-sijalice" style="height: 14px; background: radial-gradient(circle, #f5c542 0 4px, transparent 5px) 12px 0/24px 14px"></div>
+</section>
+
+<section id="gostovanja" style="background: #fff6e0; color: #1d1a3f">
+<div style="max-width: 1240px; margin: 0 auto; padding: 84px 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: end; justify-content: space-between; margin-bottom: 36px">
+<div style="max-width: 640px">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); color: #c8102e">Gdje smo sljedeće</h2>
+<p style="margin: 12px 0 0; font-size: 18px; line-height: 1.6">Letke dijelimo po školama i vrtićima, a ovdje uvijek piše tačno mjesto i vrijeme. Roditelji više ne moraju tražiti po Facebooku.</p>
+</div>
+<a href="#upit" style="color: #c8102e; font-weight: 700; font-size: 17px">Hoćete nas u Vašem gradu? Javite se →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 20px">
+
+<div class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; box-shadow: 6px 6px 0 #1d1a3f">
+<p style="margin: 0; align-self: flex-start; background: #c8102e; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Sada</p>
+<p style="margin: 6px 0 0; font-family: Bungee, sans-serif; font-size: 28px">[GRAD]</p>
+<p style="margin: 0; font-size: 17px">[DATUM OD DO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Šator: [MJESTO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Predstave: [VRIJEME]</p>
+<p style="margin: 8px 0 0; padding-top: 12px; border-top: 1px dashed #c9bfa6; font-weight: 700">Ulaz: [CIJENA]</p>
+</div>
+
+<div class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; box-shadow: 6px 6px 0 #1d1a3f">
+<p style="margin: 0; align-self: flex-start; background: #1d1a3f; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Sljedeće</p>
+<p style="margin: 6px 0 0; font-family: Bungee, sans-serif; font-size: 28px">[GRAD]</p>
+<p style="margin: 0; font-size: 17px">[DATUM OD DO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Šator: [MJESTO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Predstave: [VRIJEME]</p>
+<p style="margin: 8px 0 0; padding-top: 12px; border-top: 1px dashed #c9bfa6; font-weight: 700">Ulaz: [CIJENA]</p>
+</div>
+
+<div class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; padding: 26px; display: flex; flex-direction: column; gap: 10px; box-shadow: 6px 6px 0 #1d1a3f">
+<p style="margin: 0; align-self: flex-start; background: #1d1a3f; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Uskoro</p>
+<p style="margin: 6px 0 0; font-family: Bungee, sans-serif; font-size: 28px">[GRAD]</p>
+<p style="margin: 0; font-size: 17px">[DATUM OD DO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Šator: [MJESTO]</p>
+<p style="margin: 0; font-size: 17px; color: #4a4566">Predstave: [VRIJEME]</p>
+<p style="margin: 8px 0 0; padding-top: 12px; border-top: 1px dashed #c9bfa6; font-weight: 700">Ulaz: [CIJENA]</p>
+</div>
+
+</div>
+</div>
+</section>
+
+<section id="program" style="background: #12103a">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 340px; min-width: 0; max-width: 440px">
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; border: 4px solid #c8102e; transform: rotate(-2deg); box-shadow: 0 24px 60px rgba(0,0,0,.5)">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/program.webp" alt="Plakat sa programom: majmun, klovnovi, zečevi, golubovi, žongleri, zmije pitoni, tombola, kokice" style="aspect-ratio: 620 / 874">
+</figure>
+</div>
+<div style="flex: 1 1 520px; min-width: 0">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); color: #f5c542">Šta Vas čeka u šatoru</h2>
+<p style="margin: 12px 0 32px; font-size: 18px; line-height: 1.6; max-width: 560px; color: #e6dfcc">Isti program kao na našem plakatu. Djeca su najglasnija publika, a roditelji se smiju jednako.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px">
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">1</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Majmun</span>
+<span style="font-size: 15px; color: #b9b2e0">Miljenik male publike</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">2</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Klovnovi</span>
+<span style="font-size: 15px; color: #b9b2e0">Smijeh od prve minute</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">3</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Zečevi</span>
+<span style="font-size: 15px; color: #b9b2e0">Iz šešira, naravno</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">4</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Golubovi</span>
+<span style="font-size: 15px; color: #b9b2e0">Bijeli golubovi u manežu</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">5</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Žongleri</span>
+<span style="font-size: 15px; color: #b9b2e0">Lopte, čunjevi i obruči</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">6</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Zmije pitoni</span>
+<span style="font-size: 15px; color: #b9b2e0">Za hrabre</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">7</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Tombola</span>
+<span style="font-size: 15px; color: #b9b2e0">Nagrade za publiku</span>
+</span>
+</div>
+
+<div style="background: #1d1a52; border: 1px solid #3a3690; border-radius: 16px; padding: 18px 20px; display: flex; align-items: center; gap: 16px">
+<span aria-hidden="true" style="flex: 0 0 auto; width: 46px; height: 46px; border-radius: 50%; background: #c8102e; color: #ffffff; font-family: Bungee, sans-serif; font-size: 19px; display: flex; align-items: center; justify-content: center">8</span>
+<span style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 19px; font-weight: 700">Kokice</span>
+<span style="font-size: 15px; color: #b9b2e0">Uz svaku predstavu</span>
+</span>
+</div>
+
+</div>
+</div>
+</div>
+</section>
+
+<section id="skole" style="background: #f5c542; color: #12103a">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<div style="flex: 1 1 520px; min-width: 0">
+<p style="margin: 0 0 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 14px; color: #c8102e">Za škole i vrtiće</p>
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); line-height: 1.05">Dovedite cijeli razred u cirkus.</h2>
+<p style="margin: 18px 0 28px; font-size: 19px; line-height: 1.6; max-width: 560px">Letke već dijelimo po školama i vrtićima. Ovdje je sve što učiteljicama treba na jednom mjestu.</p>
+<ul style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; font-size: 18px">
+
+<li style="display: flex; gap: 14px; align-items: flex-start"><span aria-hidden="true" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #12103a; color: #f5c542; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px">✓</span><span><strong>Grupni termin.</strong> Predstava u prijepodnevnom terminu, samo za Vašu grupu: [TERMIN].</span></li>
+
+<li style="display: flex; gap: 14px; align-items: flex-start"><span aria-hidden="true" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #12103a; color: #f5c542; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px">✓</span><span><strong>Cijena po djetetu.</strong> [CIJENA ZA GRUPE].</span></li>
+
+<li style="display: flex; gap: 14px; align-items: flex-start"><span aria-hidden="true" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #12103a; color: #f5c542; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px">✓</span><span><strong>Leci za roditelje.</strong> Donesemo letke u školu ili vrtić prije gostovanja.</span></li>
+
+<li style="display: flex; gap: 14px; align-items: flex-start"><span aria-hidden="true" style="flex: 0 0 auto; width: 28px; height: 28px; border-radius: 50%; background: #12103a; color: #f5c542; font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 15px">✓</span><span><strong>Mjesta zajedno.</strong> Grupa sjedi skupa, uz učiteljice i vaspitačice.</span></li>
+
+</ul>
+<a href="#upit" style="margin-top: 32px; background: #12103a; color: #f5c542; text-decoration: none; font-weight: 800; font-size: 18px; padding: 15px 28px; border-radius: 999px; min-height: 52px; box-sizing: border-box; display: inline-flex; align-items: center">Rezervišite grupni termin</a>
+</div>
+<div style="flex: 1 1 360px; min-width: 0; max-width: 420px; margin: 0 auto">
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; border: 5px solid #12103a; transform: rotate(3deg); box-shadow: 14px 14px 0 #c8102e">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/plakat-plavi.webp" alt="Plakat Cirkusa Zubek: klovn, majmun, zec i golubovi" style="aspect-ratio: 2 / 3">
+</figure>
+</div>
+</div>
+</section>
+
+<section id="lunapark" style="background: #c8102e; color: #ffffff">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: end; justify-content: space-between; margin-bottom: 36px">
+<div style="max-width: 640px">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px)">Ljeti: luna park</h2>
+<p style="margin: 14px 0 0; font-size: 19px; line-height: 1.6">Kad prođe sezona cirkusa, postavljamo zabavne radnje. Autodrom, karusel i lančani ringišpil, a navečer sve svijetli.</p>
+</div>
+<a href="#upit" style="color: #ffe08a; font-weight: 700; font-size: 17px">Luna park za Vaš vašar ili manifestaciju →</a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); grid-auto-rows: 260px; gap: 14px">
+<figure class="cz-vel" style="margin: 0; grid-row: span 2; border-radius: 18px; overflow: hidden; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/atrakcija-noc.webp" alt="Osvijetljena atrakcija luna parka noću">
+<figcaption style="position: absolute; left: 12px; bottom: 12px; background: rgba(11,10,38,.82); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 15px">Navečer sve svijetli</figcaption>
+</figure>
+
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/karusel.webp" alt="Dječiji karusel sa autićima i avionima">
+<figcaption style="position: absolute; left: 12px; bottom: 12px; background: rgba(11,10,38,.82); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 15px">Karusel</figcaption>
+</figure>
+
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/autici-2.webp" alt="Autodrom, autići na sudar pod krovom">
+<figcaption style="position: absolute; left: 12px; bottom: 12px; background: rgba(11,10,38,.82); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 15px">Autodrom</figcaption>
+</figure>
+
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/lancani.webp" alt="Lančani ringišpil u postavljanju">
+<figcaption style="position: absolute; left: 12px; bottom: 12px; background: rgba(11,10,38,.82); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 15px">Lančani ringišpil</figcaption>
+</figure>
+
+<figure style="margin: 0; border-radius: 18px; overflow: hidden; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/ringispil.webp" alt="Ringišpil sa autićima za najmlađe">
+<figcaption style="position: absolute; left: 12px; bottom: 12px; background: rgba(11,10,38,.82); padding: 8px 14px; border-radius: 999px; font-weight: 700; font-size: 15px">Ringišpil za djecu</figcaption>
+</figure>
+
+</div>
+</div>
+</section>
+
+<section id="prodaja" style="background: #fff6e0; color: #1d1a3f">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px">
+<div style="display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: end; justify-content: space-between; margin-bottom: 36px">
+<div style="max-width: 680px">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); color: #c8102e">Prodaja atrakcija</h2>
+<p style="margin: 12px 0 0; font-size: 18px; line-height: 1.6">Sve atrakcije su iz našeg luna parka i sve rade. Pogledajte ih uživo prije kupovine, a pokazaćemo Vam i kako se postavljaju.</p>
+</div>
+<p style="margin: 0; font-weight: 700; font-size: 17px">Cijene na upit · <a href="tel:" style="color: #c8102e">[TELEFON]</a></p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 22px">
+
+<article class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="aspect-ratio: 4 / 3; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/autici-1.webp" alt="Autići autodroma na platformi">
+<span style="position: absolute; top: 12px; left: 12px; background: #c8102e; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Na prodaju</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<h3 style="margin: 0; font-size: 22px">Autodrom</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #4a4566">Autići na sudar sa platformom i krovom. Radi, može se pogledati uživo.</p>
+<p style="margin: 6px 0 0; font-size: 16px"><strong>Cijena:</strong> na upit</p>
+<a href="#upit" style="margin-top: auto; align-self: flex-start; background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Pitajte za cijenu</a>
+</div>
+</article>
+
+<article class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="aspect-ratio: 4 / 3; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/karusel.webp" alt="Dječiji karusel na otvorenom">
+<span style="position: absolute; top: 12px; left: 12px; background: #c8102e; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Na prodaju</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<h3 style="margin: 0; font-size: 22px">Dječiji karusel</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #4a4566">Autići i avioni za najmlađe, sa osvjetljenjem.</p>
+<p style="margin: 6px 0 0; font-size: 16px"><strong>Cijena:</strong> na upit</p>
+<a href="#upit" style="margin-top: auto; align-self: flex-start; background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Pitajte za cijenu</a>
+</div>
+</article>
+
+<article class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="aspect-ratio: 4 / 3; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/lancani.webp" alt="Lančani ringišpil">
+<span style="position: absolute; top: 12px; left: 12px; background: #c8102e; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Na prodaju</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<h3 style="margin: 0; font-size: 22px">Lančani ringišpil</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #4a4566">Stolice na lancima, vožnja za stariju djecu i odrasle.</p>
+<p style="margin: 6px 0 0; font-size: 16px"><strong>Cijena:</strong> na upit</p>
+<a href="#upit" style="margin-top: auto; align-self: flex-start; background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Pitajte za cijenu</a>
+</div>
+</article>
+
+<article class="cz-kartica" style="background: #ffffff; border: 2px solid #1d1a3f; border-radius: 18px; overflow: hidden; display: flex; flex-direction: column">
+<div style="aspect-ratio: 4 / 3; position: relative">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/ringispil.webp" alt="Mali ringišpil sa autićima">
+<span style="position: absolute; top: 12px; left: 12px; background: #c8102e; color: #ffffff; font-size: 13px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; padding: 6px 12px; border-radius: 999px">Na prodaju</span>
+</div>
+<div style="padding: 22px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<h3 style="margin: 0; font-size: 22px">Ringišpil sa autićima</h3>
+<p style="margin: 0; font-size: 16px; line-height: 1.5; color: #4a4566">Mala vožnja, brzo se postavlja i seli.</p>
+<p style="margin: 6px 0 0; font-size: 16px"><strong>Cijena:</strong> na upit</p>
+<a href="#upit" style="margin-top: auto; align-self: flex-start; background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 999px; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center">Pitajte za cijenu</a>
+</div>
+</article>
+
+</div>
+</div>
+</section>
+
+<section style="background: #0b0a26">
+<div style="max-width: 1240px; margin: 0 auto; padding: 88px 24px; display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
+<figure style="flex: 1 1 460px; min-width: 0; margin: 0; border-radius: 20px; overflow: hidden; border: 3px solid #2b2870">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/ekipa.webp" alt="Ekipa Cirkusa Zubek na platformi autodroma" style="aspect-ratio: 492 / 480">
+</figure>
+<div style="flex: 1 1 460px; min-width: 0">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); color: #f5c542">Porodična ekipa</h2>
+<p style="margin: 16px 0 0; font-size: 19px; line-height: 1.65; color: #e6dfcc">Mi postavljamo šator i mi stojimo uz svaku vožnju. Zato znamo svaku atrakciju do zadnjeg šarafa, i one koje prodajemo.</p>
+<p style="margin: 22px 0 0; font-size: 18px; color: #ffffff"><strong>Nisvet Ahmetović</strong>, vlasnik</p>
+<div style="margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; max-width: 460px">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/staza.webp" alt="Postavljanje autodroma pod šatorom" style="aspect-ratio: 1; border-radius: 14px">
+<img loading="lazy" decoding="async" class="cz-img" src="/demo-cirkus-zubek/sator.webp" alt="Konstrukcija krova autodroma u postavljanju" style="aspect-ratio: 1; border-radius: 14px">
+</div>
+</div>
+</div>
+</section>
+
+<section id="upit" style="background: radial-gradient(ellipse at 20% 0%, #2d2780 0%, #12103a 65%)">
+<div aria-hidden="true" class="cz-sijalice" style="height: 14px; background: radial-gradient(circle, #f5c542 0 4px, transparent 5px) 0 0/24px 14px"></div>
+<div style="max-width: 1240px; margin: 0 auto; padding: 80px 24px 88px; display: flex; flex-wrap: wrap; gap: 56px">
+<div style="flex: 1 1 420px; min-width: 0">
+<h2 style="margin: 0; font-family: Bungee, sans-serif; font-size: clamp(30px, 4vw, 46px); color: #f5c542">Pišite nam</h2>
+<p style="margin: 14px 0 28px; font-size: 19px; line-height: 1.6; color: #e6dfcc">Gostovanje u Vašem gradu, luna park za manifestaciju, grupa iz škole ili kupovina atrakcije.</p>
+<div style="display: flex; flex-direction: column; gap: 14px; font-size: 18px">
+<a href="tel:" style="display: flex; align-items: center; gap: 14px; background: #c8102e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; min-height: 56px; box-sizing: border-box">Pozovite: [TELEFON]</a>
+<a href="https://wa.me/" style="display: flex; align-items: center; gap: 14px; background: #1d1a52; border: 1px solid #3a3690; color: #fff6e0; text-decoration: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; min-height: 56px; box-sizing: border-box">WhatsApp i Viber: [TELEFON]</a>
+<a href="https://www.facebook.com/profile.php?id=61577289308962" style="display: flex; align-items: center; gap: 14px; background: #1d1a52; border: 1px solid #3a3690; color: #fff6e0; text-decoration: none; font-weight: 700; padding: 16px 20px; border-radius: 16px; min-height: 56px; box-sizing: border-box">Facebook: Cirkus Zubek</a>
+</div>
+</div>
+<form onsubmit="return false" style="flex: 1 1 520px; min-width: 0; background: #1a1750; border: 1px solid #3a3690; border-radius: 22px; padding: 30px; display: flex; flex-direction: column; gap: 16px">
+<label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600">Šta Vas zanima
+<select class="cz-polje">
+<option>Gostovanje cirkusa u našem gradu</option>
+<option>Luna park za manifestaciju</option>
+<option>Grupni dolazak škole ili vrtića</option>
+<option>Kupovina atrakcije</option>
+</select>
+</label>
+<div style="display: flex; flex-wrap: wrap; gap: 16px">
+<label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-weight: 600">Ime<input class="cz-polje" type="text" placeholder="Vaše ime" autocomplete="name"></label>
+<label style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 8px; font-weight: 600">Telefon<input class="cz-polje" type="tel" placeholder="06x xxx xxx" autocomplete="tel"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600">Grad i datum<input class="cz-polje" type="text" placeholder="Na primjer: Tuzla, maj"></label>
+<label style="display: flex; flex-direction: column; gap: 8px; font-weight: 600">Poruka<textarea class="cz-polje" rows="3" placeholder="Koliko djece, kakav prostor, šta Vam treba"></textarea></label>
+<button type="button" style="margin-top: 6px; background: #f5c542; color: #12103a; border: 0; font: inherit; font-weight: 800; font-size: 18px; padding: 16px 28px; border-radius: 999px; min-height: 54px; cursor: pointer">Pošaljite upit</button>
+<p style="margin: 0; font-size: 14px; color: #a9a3c9">Ovo je skica, upit se još nigdje ne šalje.</p>
+</form>
+</div>
+</section>
+
+<footer id="kontakt" style="background: #0b0a26; border-top: 1px solid #2b2870">
+<div style="max-width: 1240px; margin: 0 auto; padding: 48px 24px 32px; display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between">
+<div style="display: flex; align-items: center; gap: 16px">
+<img loading="lazy" decoding="async" src="/demo-cirkus-zubek/logo.webp" alt="" width="64" height="64" style="width: 64px; height: 64px; border-radius: 50%; border: 3px solid #f5c542; object-fit: cover">
+<div>
+<p style="margin: 0; font-family: Bungee, sans-serif; font-size: 26px; color: #f5c542">Cirkus Zubek</p>
+<p style="margin: 4px 0 0; font-size: 16px; color: #cfc8f5">Putujući cirkus, luna park i prodaja atrakcija</p>
+</div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 16px; font-weight: 600">
+<a href="tel:">[TELEFON]</a>
+<a href="https://www.facebook.com/profile.php?id=61577289308962">Facebook</a>
+</div>
+</div>
+<p style="margin: 0; padding: 0 24px 28px; text-align: center; font-size: 14px; color: #8f89b8">Skica sajta: Hunar</p>
+</footer>
+
+</div>
+
+</body>
+</html>
