@@ -44,6 +44,9 @@ English: Hunar is a web studio from Bosnia and Herzegovina building websites, on
 - [Online zakazivanje termina na web stranici](https://hunar.ba/savjeti/online-zakazivanje-termina)
 - [Koliko košta web stranica](https://hunar.ba/savjeti/koliko-kosta-web-stranica)
 - [WordPress ili izrada po mjeri](https://hunar.ba/savjeti/wordpress-ili-custom)
+- [Šta pripremiti prije izrade web stranice](https://hunar.ba/savjeti/sta-pripremiti-za-izradu-web-stranice)
+- [Google profil firme: kako da Vas nađu na mapama](https://hunar.ba/savjeti/google-profil-firme)
+- [Brzina web stranice: kako je izmjeriti](https://hunar.ba/savjeti/brzina-web-stranice)
 
 ## Napomene
 
