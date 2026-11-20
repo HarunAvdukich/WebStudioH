@@ -28,7 +28,7 @@ test('WhatsApp ima unaprijed upisanu poruku', () => {
 
 test('404 tekst je sa platna', () => {
   assert.equal(okvir.nePostoji.naslov, 'Ova stranica ne postoji.')
-  assert.equal(okvir.nePostoji.podnaslov, 'Ali vaša može.')
+  assert.equal(okvir.nePostoji.podnaslov, 'Ali Vaša može.')
 })
 
 test('naslov kartice postoji na oba jezika', () => {
@@ -127,7 +127,7 @@ test('404: tekst sa platna, put nazad i WhatsApp', () => {
   const s = stranice.find((x) => x.put === '404.html')
   assert.ok(s, 'nema dist/404.html')
   assert.match(s.html, /Ova stranica ne postoji\./)
-  assert.match(s.html, /Ali vaša može\./)
+  assert.match(s.html, /Ali Vaša može\./)
   assert.match(s.html, /data-pokret="slozi"/)
   assert.match(s.html, /href="\/"/)
   assert.match(s.html, /wa\.me\/387603000751/)

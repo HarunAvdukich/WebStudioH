@@ -137,6 +137,10 @@ export const radovi = [
       { do: 4, opis: 'modela u katalogu', datum: 'provjereno 20. 11. 2026' },
       { do: 3, opis: 'vrste vozila u filterima', datum: 'provjereno 20. 11. 2026' },
     ],
+    citat: {
+      tekst: 'Trebala nam je stranica na kojoj kupac uporedi naše modele i odmah vidi koji mu odgovara. Sada filtrira bicikle, skutere i tricikle i gleda ih jedan pored drugog u tabeli. Stranica izgleda tačno kako smo zamislili brend.',
+      ko: 'caneras.ba',
+    },
     slika: { src: '/project-caneras.webp', width: 1200, height: 769, alt: 'Početna stranica caneras.ba na računaru: električni bicikli i skuteri Caneras' },
     snimci: [
       { src: '/radovi/caneras-modeli.webp', width: 780, height: 1688, alt: 'Modeli Caneras sa filterima na caneras.ba, snimak ekrana telefona', opis: 'Modeli sa filterima' },
@@ -159,7 +163,7 @@ export const radovi = [
     naslov: 'urez.ba: naša trgovina gravura, u izradi.',
     uvod: 'urez.ba je naša vlastita trgovina personalizovanih graviranih proizvoda. Radimo je sada, a kad bude online, ovdje će stajati priča i brojke, kao kod ostalih radova.',
     napravili: ['Personalizovani gravirani proizvodi', 'Vlastita trgovina studija Hunar', 'Uskoro online'],
-    poziv: { naslov: 'Sljedeća kartica može biti vaša firma.', opis: 'Napišite šta prodajete i šta vam treba. Odgovaramo lično.' },
+    poziv: { naslov: 'Sljedeća kartica može biti Vaša firma.', opis: 'Napišite šta prodajete i šta Vam treba. Odgovaramo lično.' },
   },
 ]
 
@@ -186,8 +190,8 @@ export const studija = {
 
 export const poziv = {
   nad: 'Vaš rad',
-  naslov: 'Sljedeća kartica može biti vaša firma.',
-  opis: 'Napišite šta prodajete i šta vam treba. Odgovaramo lično.',
+  naslov: 'Sljedeća kartica može biti Vaša firma.',
+  opis: 'Napišite šta prodajete i šta Vam treba. Odgovaramo lično.',
   dugme: 'Pišite nam na WhatsApp',
   ili: 'ili nazovite',
 }

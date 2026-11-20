@@ -7,36 +7,36 @@ export const put = '/politika-privatnosti'
 
 export const seo = {
   naslov: 'Politika privatnosti · Hunar',
-  opis: 'Kako Hunar prikuplja, koristi i štiti vaše lične podatke: obrazac, WhatsApp i mail, bez kolačića za praćenje.',
+  opis: 'Kako Hunar prikuplja, koristi i štiti Vaše lične podatke: obrazac, WhatsApp i mail, bez kolačića za praćenje.',
 }
 
 export const vrh = {
   nad: 'Pravno',
   naslov: 'Politika privatnosti',
-  uvod: 'Kako prikupljamo, koristimo i štitimo vaše lične podatke.',
+  uvod: 'Kako prikupljamo, koristimo i štitimo Vaše lične podatke.',
   azurirano: 'Posljednje ažuriranje: 3. 10. 2026.',
 }
 
 export const dijelovi = [
   {
     naslov: 'Ukratko',
-    p: ['Vaša privatnost nam je važna. Ova politika objašnjava koje podatke prikupljamo putem stranice hunar.ba, u koju svrhu i koja su vaša prava. Voditelj obrade je Hunar.'],
+    p: ['Vaša privatnost nam je važna. Ova politika objašnjava koje podatke prikupljamo putem stranice hunar.ba, u koju svrhu i koja su Vaša prava. Voditelj obrade je Hunar.'],
   },
   {
     naslov: 'Koje podatke prikupljamo',
     ul: [
-      'Podaci iz obrasca: ime, firma (nije obavezno), telefon ili mail, šta vam treba i sadržaj poruke koju pošaljete.',
+      'Podaci iz obrasca: ime, firma (nije obavezno), telefon ili mail, šta Vam treba i sadržaj poruke koju pošaljete.',
       'Komunikacija: poruke koje razmijenimo putem maila, telefona ili WhatsAppa.',
       'Statistika posjeta, bez ličnih podataka (vidi dio Statistika posjeta).',
     ],
   },
   {
     naslov: 'U koju svrhu koristimo podatke',
-    ul: ['Da vam odgovorimo na upit i pripremimo ponudu.', 'Za komunikaciju tokom projekta i pružanje usluga.'],
+    ul: ['Da Vam odgovorimo na upit i pripremimo ponudu.', 'Za komunikaciju tokom projekta i pružanje usluga.'],
   },
   {
     naslov: 'Pravni osnov',
-    p: ['Podatke obrađujemo na osnovu vašeg pristanka (slanjem obrasca ili poruke) i legitimnog interesa za komunikaciju i pružanje traženih usluga.'],
+    p: ['Podatke obrađujemo na osnovu Vašeg pristanka (slanjem obrasca ili poruke) i legitimnog interesa za komunikaciju i pružanje traženih usluga.'],
   },
   {
     naslov: 'Dijeljenje s trećim stranama',
@@ -46,7 +46,7 @@ export const dijelovi = [
     naslov: 'Statistika posjeta',
     p: [
       'Da znamo koje stranice i usluge zanimaju posjetioce, posjete brojimo alatom Umami. Bilježi se koja je stranica otvorena, odakle ste došli (link ili pretraga), država, vrsta uređaja i preglednika, te klikovi na dugmad kao što su WhatsApp, poziv i „Pitajte za ovo“.',
-      'Umami ne koristi kolačiće, ne čuva vašu IP adresu i ne prati vas na drugim sajtovima, pa iz tih podataka ne možemo saznati ko ste. Podatke čuvamo najviše šest mjeseci.',
+      'Umami ne koristi kolačiće, ne čuva Vašu IP adresu i ne prati Vas na drugim sajtovima, pa iz tih podataka ne možemo saznati ko ste. Podatke čuvamo najviše šest mjeseci.',
     ],
   },
   {

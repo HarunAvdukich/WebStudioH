@@ -82,10 +82,10 @@ export const prvi = {
 // Osam usluga: riječ u naslovu, ime, oblik za poruku i kratak opis za "Šta pravimo".
 // Mobilne aplikacije i redizajn se nude, ali se ne predstavljaju kao urađen posao.
 export const usluge = [
-  { id: 'stranica', rijec: 'web stranice', ime: 'Web stranice', uPoruci: 'web stranica', opis: 'Da vas kupci nađu i shvate za pola minute.' },
-  { id: 'shop', rijec: 'web shop', ime: 'Web shop', uPoruci: 'web shop', opis: 'Radnja koja je otvorena i kad ste vi zatvorili. Može i uz OLX.' },
+  { id: 'stranica', rijec: 'web stranice', ime: 'Web stranice', uPoruci: 'web stranica', opis: 'Da Vas kupci nađu i shvate za pola minute.' },
+  { id: 'shop', rijec: 'web shop', ime: 'Web shop', uPoruci: 'web shop', opis: 'Radnja koja je otvorena i kad ste Vi zatvorili. Može i uz OLX.' },
   { id: 'aplikacija', rijec: 'mobilne aplikacije', ime: 'Mobilne aplikacije', uPoruci: 'mobilna aplikacija', opis: 'Vaša aplikacija na telefonima kupaca, sa obavijestima.' },
-  { id: 'seo', rijec: 'SEO optimizaciju', ime: 'SEO optimizacija', uPoruci: 'SEO optimizacija', opis: 'Da vas nađu na Googleu kad traže ono što radite.' },
+  { id: 'seo', rijec: 'SEO optimizaciju', ime: 'SEO optimizacija', uPoruci: 'SEO optimizacija', opis: 'Da Vas nađu na Googleu kad traže ono što radite.' },
   { id: 'termini', rijec: 'online rezervacije', ime: 'Online rezervacije', uPoruci: 'online rezervacije', opis: 'Kupac sam rezerviše termin, i kad ste zatvoreni.' },
   { id: 'chatbot', rijec: 'AI chatbot', ime: 'AI chatbot', uPoruci: 'AI chatbot', opis: 'Asistent koji kupcima odgovara na stranici, i noću.' },
   { id: 'redizajn', rijec: 'redizajn stranica', ime: 'Redizajn stranica', uPoruci: 'redizajn stranice', opis: 'Imate staru stranicu? Napravimo je novom, brzom i jasnom.' },
@@ -103,7 +103,7 @@ export const primjeri = {
     uredjaji: ['iPhone ✓', 'Android ✓', 'Obavijesti ✓'],
   },
   seo: {
-    oznaka: 'SEO, da vas nađu na Googleu',
+    oznaka: 'SEO, da Vas nađu na Googleu',
     pretrage: [['frizer Sarajevo', 'frizerski salon'], ['auto servis Tuzla', 'auto servis'], ['pekara Mostar', 'pekara']],
     adresa: 'vasafirma.ba',
     firma: 'Vaša firma · {djelatnost}',
@@ -137,7 +137,7 @@ export const poglavlja = [
 
 export const uNajava = {
   nad: 'U · šta dobijate',
-  naslov: 'Sve što vaša firma treba na webu. Složeno kao sat.',
+  naslov: 'Sve što Vaša firma treba na webu. Složeno kao sat.',
   opis: 'Svaki dio ovog sata je jedna usluga. Uzmite jedan dio ili cijeli sklop, a mi pazimo da sve radi zajedno.',
 }
 
@@ -154,14 +154,14 @@ export const sat = {
     { y: 0.215, strana: 'L', pomak: 0, naslov: 'Web stranice', opis: 'Usluge, kontakt i mapa na jednom mjestu. Tekst mijenjate sami, bez programera.' },
     { y: 0.305, strana: 'D', pomak: -30, naslov: 'Web shop', opis: 'Kupac naruči sa telefona u par dodira. Oglasi na OLX-u se ažuriraju sami.' },
     { y: 0.4175, strana: 'L', pomak: 0, naslov: 'Mobilne aplikacije', opis: 'Vaša aplikacija za Android i iPhone, sa obavijestima kupcima.' },
-    { y: 0.4175, strana: 'D', pomak: 34, naslov: 'SEO optimizacija', opis: 'Kupci vas nađu na Googleu, a stranica se otvori prije nego što odustanu.' },
+    { y: 0.4175, strana: 'D', pomak: 34, naslov: 'SEO optimizacija', opis: 'Kupci Vas nađu na Googleu, a stranica se otvori prije nego što odustanu.' },
     { y: 0.5675, strana: 'L', pomak: 10, naslov: 'Online rezervacije', opis: 'Kupac sam bira uslugu i termin, i kad ste zatvoreni.' },
     { y: 0.5675, strana: 'D', pomak: 40, naslov: 'AI chatbot', opis: 'Asistent koji kupcima odgovara na stranici, i noću.' },
     { y: 0.725, strana: 'L', pomak: 20, naslov: 'Redizajn stranica', opis: 'Staru stranicu pretvorimo u novu: brzu, jasnu i laku za izmjene.' },
     { y: 0.725, strana: 'D', pomak: 50, naslov: 'Održavanje i hosting', opis: 'Ažuriranja, kopije i nadzor. Vi prodajete, mi pazimo da sve radi.' },
   ],
   lista: {
-    naslov: 'Sklapamo vašu firmu:',
+    naslov: 'Sklapamo Vašu firmu:',
     stavke: ['Web stranice', 'Web shop', 'Mobilne aplikacije', 'SEO optimizacija', 'Online rezervacije', 'AI chatbot', 'Redizajn stranica', 'Održavanje i hosting'],
   },
   kraj: {
@@ -226,7 +226,7 @@ export const kosilica = {
 
 // Potpis "Izradio Hunar" stoji u podnožju ovih trgovina; redovi vode na rad.
 export const potpis = {
-  tekst: 'Naš potpis stoji na dnu ovih trgovina. Sljedeći može stajati na vašoj.',
+  tekst: 'Naš potpis stoji na dnu ovih trgovina. Sljedeći može stajati na Vašoj.',
   radovi: [
     { naziv: 'mrt.ba', put: '/radovi/mrt', opis: 'Alati, kosilice i dijelovi. Katalog, korpa, OLX i Ananas.' },
     { naziv: 'smarttime.ba', put: '/radovi/smarttime', opis: 'Ručni satovi. Narudžbe i zakazivanje graviranja.' },
@@ -237,15 +237,15 @@ export const potpis = {
 export const finale = {
   naslov: 'Vaša firma je sljedeća.',
   ili: 'ili nazovite',
-  opis: 'Napišite nam šta prodajete i šta vam treba. Javljamo se lično, a ponudu dajemo u razgovoru.',
-  ispod: 'Krenite od jednog dijela ili tražite cijeli sklop. Cijene su po dogovoru, prema onome što vam treba.',
+  opis: 'Napišite nam šta prodajete i šta Vam treba. Javljamo se lično, a ponudu dajemo u razgovoru.',
+  ispod: 'Krenite od jednog dijela ili tražite cijeli sklop. Cijene su po dogovoru, prema onome što Vam treba.',
   ponuda: [
     { naslov: 'Web stranice', opis: 'Firma koju kupci nađu i razumiju za pola minute. Tekst mijenjate sami.' },
     { naslov: 'Web shop', opis: 'Katalog, filteri i korpa na telefonu. Pouzeće, uplata na račun i OLX veza.' },
-    { naslov: 'Mobilne aplikacije', opis: 'Aplikacija za Android i iPhone, za vaše kupce ili za vaš tim.' },
+    { naslov: 'Mobilne aplikacije', opis: 'Aplikacija za Android i iPhone, za Vaše kupce ili za Vaš tim.' },
     { naslov: 'SEO optimizacija', opis: 'Brzina, naslovi i Google Search Console. Mjerimo i pokažemo sa datumom.' },
     { naslov: 'Online rezervacije', opis: 'Kupac sam bira uslugu i termin. Vi dobijete obavijest.' },
-    { naslov: 'AI chatbot', opis: 'Asistent na stranici koji odgovara kupcima, i kad vi ne stignete.' },
+    { naslov: 'AI chatbot', opis: 'Asistent na stranici koji odgovara kupcima, i kad Vi ne stignete.' },
     { naslov: 'Redizajn stranica', opis: 'Pošaljite link stare stranice, a mi kažemo šta bismo promijenili i zašto.' },
     { naslov: 'Održavanje i hosting', opis: 'Ažuriranja, kopije i nadzor. Isti studio koji je pravio i popravlja.' },
   ],
@@ -263,7 +263,7 @@ export const linija = ['Hunar', 'Šta pravimo', 'O nama', 'Ponuda', 'Radovi', 'V
 
 export const sta = {
   nad: 'Šta pravimo',
-  naslov: 'Sve što vaša firma treba na webu.',
+  naslov: 'Sve što Vaša firma treba na webu.',
   opis: 'Krenite od jednog dijela, a sljedeći dodajte kad posao poraste.',
   pitaj: { dugme: 'Pitajte za ovo', poruka: 'Zdravo, zanima me {usluga}. Možemo li se čuti?' },
 }
@@ -275,7 +275,7 @@ export const film = {
   sat: {
     oznaka: 'Složeno kao sat',
     kartice: [
-      { naslov: 'Dizajn po mjeri', opis: 'Izgled koji liči na vašu firmu, a ne na hiljadu drugih.' },
+      { naslov: 'Dizajn po mjeri', opis: 'Izgled koji liči na Vašu firmu, a ne na hiljadu drugih.' },
       { naslov: 'Stranica i trgovina', opis: 'Kupac nađe artikal na telefonu i naruči u par dodira.' },
       { naslov: 'Veze koje rade same', opis: 'OLX, Ananas i dobavljači. Navija se sam, kao automatik.' },
       { naslov: 'Sve iz jedne ruke', opis: 'Dizajn, kod, hosting i održavanje u istom studiju.' },
@@ -296,9 +296,9 @@ export const onama = { nad: 'O nama', znakNad: 'Hunar znači vještina' }
 
 export const doPonude = {
   nad: 'Kako do ponude',
-  naslov: 'Recite šta vam treba, a mi kažemo koliko košta.',
+  naslov: 'Recite šta Vam treba, a mi kažemo koliko košta.',
   koraci: [
-    { naslov: 'Napišete šta prodajete i šta vam treba.', opis: 'WhatsApp, telefon ili mail.', poruka: 'Prodajem alate, imam oko 500 artikala i oglase na OLX-u.' },
+    { naslov: 'Napišete šta prodajete i šta Vam treba.', opis: 'WhatsApp, telefon ili mail.', poruka: 'Prodajem alate, imam oko 500 artikala i oglase na OLX-u.' },
     { naslov: 'Kratko razgovaramo.', opis: 'Pitamo samo ono što mijenja posao: broj artikala, OLX, dobavljači, termini.' },
     { naslov: 'Dobijete ponudu sa jasnim obimom.', dokument: 'Ponuda', pecat: 'jasan obim' },
     { naslov: 'Kad se dogovorimo, krećemo.', opis: 'Vi pratite kako napreduje.' },
@@ -324,7 +324,7 @@ export const reference = {
   },
 }
 
-export const vodicNad = { nad: 'Ne znate šta vam treba?', naslov: 'Dva pitanja, pa preporuka.' }
+export const vodicNad = { nad: 'Ne znate šta Vam treba?', naslov: 'Dva pitanja, pa preporuka.' }
 
 // Tri česta pitanja prije poziva; odgovori su isti kao na Cijenama.
 export const pitanja = {
