@@ -9,6 +9,14 @@ import { WA, WA_PREGLED, WA_POSAO, VIBER, meni, stubovi, usluge, koraci, djelatn
 const TEL = 'tel:+387603000751'
 const van = { target: '_blank', rel: 'noopener' }
 
+// Povjerenje bez lica i nagrada: samo ono što posjetilac može sam provjeriti.
+const POVJERENJE = [
+  ['Potpis na svakom sajtu', 'U podnožju mrt.ba, smarttime.ba i caneras.ba piše „Izradio hunar“. Otvorite i pogledajte.'],
+  ['Klijenti ostaju', 'Stranice koje smo napravili i danas održavamo, za iste firme.'],
+  ['Vidite prije nego platite', 'Prvo dobijete besplatnu skicu, a veći dio plaćate tek kad je stranica gotova.'],
+  ['Brojke sa datumom', 'Svaka brojka na ovoj stranici ima datum i izvor, pa je možete provjeriti.'],
+]
+
 const PETLJA = 'M0,0 V159 A149,149 0 0 0 298,159 V96.009 A57,57 0 0 0 220,149 V159 A71,71 0 0 1 78,159 V0 Z'
 const PETLJA_LOGO = 'M0.000,0 V159.000 A149.000,149.000 0 0 0 298.000,159.000 V96.009 A57.000,57.000 0 0 0 220.000,149.000 V159.000 A71.000,71.000 0 0 1 78.000,159.000 V0 Z'
 const SLOVA = 'M0.000,0.000 H24.000 V142.000 H0.000 Z M72.000,90.000 H96.000 V142.000 H72.000 Z M0.000,90.000 A48.000,48.000 0 0 1 96.000,90.000 L72.000,90.000 A24.000,24.000 0 0 0 24.000,90.000 Z M121.200,42.000 H145.200 V94.000 H121.200 Z M193.200,42.000 H217.200 V142.000 H193.200 Z M217.200,94.000 A48.000,48.000 0 0 1 121.200,94.000 L145.200,94.000 A24.000,24.000 0 0 0 193.200,94.000 Z M242.400,42.000 H266.400 V142.000 H242.400 Z M314.400,90.000 H338.400 V142.000 H314.400 Z M242.400,90.000 A48.000,48.000 0 0 1 338.400,90.000 L314.400,90.000 A24.000,24.000 0 0 0 266.400,90.000 Z M462.220,92.000 A51.200,51.200 0 0 1 359.820,92.000 L383.820,92.000 A27.200,27.200 0 0 0 438.220,92.000 Z M359.820,92.000 A51.200,51.200 0 0 1 462.220,92.000 L438.220,92.000 A27.200,27.200 0 0 0 383.820,92.000 Z M438.220,42.000 H462.220 V142.000 H438.220 Z M487.420,42.000 H511.420 V142.000 H487.420 Z M487.420,88.200 A46.200,46.200 0 0 1 549.421,44.786 L541.213,67.339 A22.200,22.200 0 0 0 511.420,88.200 Z'
@@ -152,16 +160,15 @@ export default function Naslovna() {
         </div>
       </section>
 
-      <section className="potpis" aria-label="Stranice sa našim potpisom">
+      <section className="klijenti" aria-label="Firme koje rade sa nama">
         <div className="okvir">
-          <div className="lbl">Izradio <b>hun<span>a</span>r</b></div>
-          <div className="cipovi">
-            <a className="cip" href="https://mrt.ba" {...van}><i />mrt.ba</a>
-            <a className="cip" href="https://b2b.mrt.ba" {...van}><i />b2b.mrt.ba</a>
-            <a className="cip" href="https://smarttime.ba" {...van}><i />smarttime.ba</a>
-            <span className="cip tih">i još dosta projekata</span>
-          </div>
-          <span className="status mono">Brojke provjerene 2. 11. 2026.</span>
+          <p className="lbl">Firme koje rade{' '}<br />sa nama</p>
+          <ul className="logoi">
+            <li><a href="https://mrt.ba" {...van}><img src="/klijenti/mrt.webp" width="125" height="96" alt="" loading="lazy" decoding="async" /><span>mrt.ba</span></a></li>
+            <li><a href="https://smarttime.ba" {...van}><img src="/klijenti/smarttime.webp" width="90" height="96" alt="" loading="lazy" decoding="async" /><span>SmartTime</span></a></li>
+            <li><a href="https://caneras.ba" {...van}><img className="rijec" src="/klijenti/caneras.webp" width="410" height="96" alt="Caneras" loading="lazy" decoding="async" /></a></li>
+            <li><span className="cip tih">i još dosta projekata</span></li>
+          </ul>
         </div>
       </section>
 
@@ -308,6 +315,20 @@ export default function Naslovna() {
             </div>
             <div className="slika"><img src="/radovi/smarttime-pocetna-satovi.webp" width="780" height="1688" loading="lazy" decoding="async" alt="Izdvojeni satovi na početnoj smarttime.ba, snimak telefona" /></div>
           </article>
+          <article className="rad siroki">
+            <div className="tekst">
+              <span className="mono">Caneras · stranica brenda</span>
+              <h3>caneras.ba</h3>
+              <p>Stranica brenda za električne bicikle, skutere i tricikle. Kupac filtrira modele i uporedi ih u tabeli, a kupuje preko mrt.ba.</p>
+              <ul>
+                <li><b>4</b>modela u katalogu (20. 11. 2026.)</li>
+                <li><b>Tabela</b>modeli jedan pored drugog, bez listanja</li>
+                <li><b>Po mjeri</b>pisano od nule, bez šablona i baze</li>
+              </ul>
+              <a className="link" href="/radovi/caneras">Pogledajte rad <Ik d={STRELICA} /></a>
+            </div>
+            <div className="slika"><img src="/project-caneras.webp" width="1200" height="769" loading="lazy" decoding="async" alt="Početna stranica caneras.ba na računaru: električni bicikli i skuteri Caneras" /></div>
+          </article>
         </div>
         <div className="jos">
           <span><b>I još dosta projekata.</b> Pitajte nas za primjer iz Vaše branše, pokažemo ga u razgovoru.</span>
@@ -315,7 +336,7 @@ export default function Naslovna() {
         </div>
       </Sek>
 
-      <Sek oznaka="Šta kažu klijenti" naslov="Ne vjerujte nama." tise="Pitajte njih." opis="Obje firme rade sa nama i danas. Recenzije su potpisane nazivom firme.">
+      <Sek oznaka="Šta kažu klijenti" naslov="Ne vjerujte nama." tise="Pitajte njih." opis="Firme čije radove vidite i danas rade sa nama. Recenzije su potpisane nazivom firme.">
         <div className="recenzije">
           <figure className="recenzija otkrij">
             <Ik className="navod" sw={1.6} d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5" />
@@ -328,6 +349,14 @@ export default function Naslovna() {
             <footer><div><b>SmartTime</b><span>Satovi, servis i graviranje</span></div><a href="https://smarttime.ba" {...van}>Otvorite smarttime.ba</a></footer>
           </figure>
         </div>
+        <ul className="povjerenje">
+          {POVJERENJE.map(([h, p]) => (
+            <li key={h}>
+              <Ik d="M5 12.5l4.5 4.5L19 7.5" />
+              <div><h3>{h}</h3><p>{p}</p></div>
+            </li>
+          ))}
+        </ul>
       </Sek>
 
       <Sek oznaka="Provjerite sami" naslov="Ova stranica," tise="izmjerena." opis="Mjerili smo javnim alatima 19. 11. 2026. Svaki link pokrene isto mjerenje uživo, pa uporedite.">

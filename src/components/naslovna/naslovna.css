@@ -71,17 +71,20 @@
 .h .cinjenice p{color:var(--tiho);font-size:15px;line-height:1.4;margin:6px 0 10px;max-width:250px}
 .h .cinjenice .v{font-size:40px;color:var(--tekst);margin-top:0}
 
-/* potpis */
-.h .potpis{border-top:1px solid var(--linija);border-bottom:1px solid var(--linija);background:var(--bg2)}
-.h .potpis .okvir{display:flex;align-items:center;gap:28px;height:96px}
-.h .potpis .lbl{display:flex;align-items:baseline;gap:8px;white-space:nowrap;color:var(--tiho);font-size:15px}
-.h .potpis .lbl b{color:var(--tekst);font-size:19px;font-weight:800;letter-spacing:-.01em}
-.h .potpis .lbl b span{color:var(--svijetli)}
+/* klijenti: logotipi firmi koje rade sa nama */
+.h .klijenti{border-top:1px solid var(--linija);border-bottom:1px solid var(--linija);background:var(--bg2)}
+.h .klijenti .okvir{display:flex;align-items:center;gap:44px;min-height:112px}
+.h .klijenti .lbl{color:var(--tise);font-size:14px;font-weight:600;line-height:1.35;white-space:nowrap;padding-right:44px;border-right:1px solid var(--linija2)}
+.h .logoi{list-style:none;display:flex;align-items:center;gap:52px;flex:1;flex-wrap:wrap}
+.h .logoi a{display:inline-flex;align-items:center;gap:12px;color:var(--tekst);font-size:21px;font-weight:800;letter-spacing:-.02em;opacity:.72;transition:opacity .3s}
+.h .logoi a:hover{opacity:1}
+.h .logoi img{height:34px;width:auto}
+.h .logoi img.rijec{height:22px}
+.h .logoi li:last-child{margin-left:auto}
 .h .cipovi{display:flex;gap:10px;flex-wrap:wrap}
 .h .cip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--linija2);border-radius:999px;padding:8px 14px;font-weight:600;font-size:15px;color:var(--tekst)}
 .h .cip i{width:7px;height:7px;border-radius:50%;background:var(--svijetli)}
 .h .cip.tih{color:var(--tiho);border-style:dashed}
-.h .potpis .status{margin-left:auto;color:var(--tise)}
 
 /* sekcije */
 .h .sek{padding:120px 0}
@@ -119,11 +122,13 @@
 .h .rad p{color:var(--tiho);margin-top:12px;font-size:16.5px}
 .h .rad ul{list-style:none;margin-top:22px;display:grid;gap:10px}
 .h .rad li{display:flex;gap:10px;align-items:baseline;font-size:15.5px}
-.h .rad li b{font-weight:800;font-size:19px;min-width:62px}
+.h .rad li b{font-weight:800;font-size:19px;min-width:62px;white-space:nowrap}
 .h .rad .link{margin-top:auto;padding-top:24px;display:inline-flex;gap:8px;align-items:center;font-weight:700;color:var(--svijetli)}
 .h .rad .link svg{width:17px;height:17px}
 .h .rad .slika{background:var(--pov2);border-left:1px solid var(--linija);position:relative;overflow:hidden}
 .h .rad .slika img{position:absolute;left:18px;top:28px;width:190px;height:auto;border-radius:22px;border:6px solid #08130f;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.h .rad.siroki{grid-column:1/-1;grid-template-columns:1fr 1.15fr;min-height:380px}
+.h .rad.siroki .slika img{left:36px;top:36px;width:640px;border-radius:14px;border:1px solid var(--linija2)}
 .h .jos{margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:20px;border:1px dashed var(--linija2);border-radius:18px;padding:20px 26px;color:var(--tiho)}
 .h .jos b{color:var(--tekst)}
 
@@ -189,6 +194,11 @@
 .h .recenzija footer b{font-size:17px}
 .h .recenzija footer span{display:block;color:var(--tiho);font-size:14.5px;font-weight:500}
 .h .recenzija footer a{color:var(--svijetli);font-weight:700;font-size:15px;white-space:nowrap}
+.h .povjerenje{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:28px;margin-top:44px;padding-top:34px;border-top:1px solid var(--linija)}
+.h .povjerenje li{display:flex;gap:12px;align-items:flex-start}
+.h .povjerenje svg{width:22px;height:22px;flex:none;color:var(--svijetli);margin-top:2px}
+.h .povjerenje h3{font-size:17.5px;font-weight:700;letter-spacing:-.01em}
+.h .povjerenje p{color:var(--tiho);font-size:15px;line-height:1.45;margin-top:6px}
 .h .provjere{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .h .provjera{border:1px solid var(--linija);border-radius:24px;padding:28px 26px 24px;background:rgba(244,244,242,.025);display:flex;flex-direction:column;gap:6px}
 .h .provjera .mono{color:var(--tise)}
@@ -199,6 +209,8 @@
 .h .provjera a svg{transition:transform .3s}
 .h .provjera a:hover svg{transform:translateX(4px)}
 @media (max-width:1100px){.h .provjere{grid-template-columns:1fr 1fr}}
+@media (max-width:1100px){.h .povjerenje{grid-template-columns:1fr 1fr}.h .rad.siroki .slika img{width:520px}}
+@media (max-width:720px){.h .rad.siroki{grid-template-columns:1fr;min-height:0}.h .rad.siroki .slika{height:230px}.h .rad.siroki .slika img{left:20px;top:22px;transform:none;width:calc(100% - 20px);max-width:none}}
 @media (max-width:620px){.h .provjere{grid-template-columns:1fr}}
 
 /* još usluga */
@@ -255,8 +267,15 @@
   .h .cinjenice>div:nth-child(3){border-left:0;padding-left:0}
   .h .cinjenice>div:nth-child(n+3){border-top:1px solid var(--linija)}
   .h .cinjenice .v{font-size:24px}
-  .h .potpis .okvir{height:auto;flex-direction:column;align-items:flex-start;gap:14px;padding-top:22px;padding-bottom:22px}
-  .h .potpis .status{margin-left:0}
+  .h .klijenti .okvir{flex-direction:column;align-items:flex-start;gap:18px;padding-top:24px;padding-bottom:24px}
+  .h .klijenti .lbl{border-right:0;padding-right:0}
+  .h .klijenti .lbl br{display:none}
+  .h .logoi{gap:22px 30px}
+  .h .logoi a{font-size:18px;opacity:.85}
+  .h .logoi img{height:28px}
+  .h .logoi img.rijec{height:18px}
+  .h .logoi li:last-child{margin-left:0;flex-basis:100%}
+  .h .povjerenje{grid-template-columns:1fr}
   .h .sek{padding:80px 0}
   .h .sek-zag{grid-template-columns:1fr;gap:16px;margin-bottom:34px}
   .h h2.n2{font-size:36px}
@@ -350,7 +369,6 @@
   @keyframes teci{to{transform:translateX(-50%)}}
 
   /* potpis: čipovi pulsiraju */
-  .h .potpis .cip i{animation:disi 2.4s ease-out infinite}
 
   /* prelazi */
   .h .usluga,.h .stub,.h .rad,.h .recenzija,.h .bransa a,.h .cip,.h .dugme,.h .tel{transition:transform .35s cubic-bezier(.2,.8,.2,1),border-color .3s,background .3s,box-shadow .35s}

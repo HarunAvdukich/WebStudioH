@@ -14,8 +14,8 @@ const st = satoviSmarttime('bs')
 export const put = '/radovi'
 
 export const seo = {
-  naslov: 'Radovi · mrt.ba i SmartTime · Hunar',
-  opis: 'Stvarne trgovine koje smo napravili, sa brojkama koje možete provjeriti: mrt.ba, trgovina alata sa OLX vezom, i SmartTime, trgovina satova.',
+  naslov: 'Radovi · mrt.ba, SmartTime i caneras.ba · Hunar',
+  opis: 'Radovi koje možete provjeriti: mrt.ba sa OLX vezom, SmartTime sa zakazivanjem termina i caneras.ba, stranica brenda električnih bicikala.',
 }
 
 export const vrh = {
@@ -112,6 +112,39 @@ export const radovi = [
     snimciOpis: 'Stranica artikla i zakazivanje termina na smarttime.ba. Snimljeno na telefonu 29. 9. 2026.',
     igra: 'termin',
     poziv: { naslov: 'Radite i usluge, ne samo prodaju?', opis: 'Zakazivanje termina može raditi i kod Vas.' },
+  },
+  {
+    slug: 'caneras',
+    ime: 'caneras.ba',
+    oznaka: 'Električni bicikli i skuteri',
+    opis: 'Stranica brenda sa filterima modela, prikazom svakog modela i tabelom poređenja. Kupovina ide preko mrt.ba.',
+    url: 'https://caneras.ba',
+    seo: {
+      naslov: 'caneras.ba: stranica brenda električnih bicikala · Hunar',
+      opis: 'Kako smo napravili caneras.ba: stranica brenda Caneras sa filterima i tabelom poređenja modela, pisana po mjeri, bez baze podataka.',
+    },
+    naslov: 'caneras.ba: četiri modela, jedna tabela poređenja.',
+    uvod: 'Caneras su električni bicikli, skuteri i tricikli koje u BiH zastupa Motor Remont Trade. Trebala im je stranica brenda na kojoj kupac uporedi modele i nađe podršku, a kupuje na mrt.ba.',
+    napravili: [
+      'Stranicu brenda pisanu po mjeri, bez baze podataka',
+      'Filtere modela: bicikli, skuteri i tricikli',
+      'Prikaz svakog modela sa podacima',
+      'Tabelu poređenja modela',
+      'Pitanja o podršci i servisu',
+      'Vezu na kupovinu preko mrt.ba',
+    ],
+    brojke: [
+      { do: 4, opis: 'modela u katalogu', datum: 'provjereno 20. 11. 2026' },
+      { do: 3, opis: 'vrste vozila u filterima', datum: 'provjereno 20. 11. 2026' },
+    ],
+    slika: { src: '/project-caneras.webp', width: 1200, height: 769, alt: 'Početna stranica caneras.ba na računaru: električni bicikli i skuteri Caneras' },
+    snimci: [
+      { src: '/radovi/caneras-modeli.webp', width: 780, height: 1688, alt: 'Modeli Caneras sa filterima na caneras.ba, snimak ekrana telefona', opis: 'Modeli sa filterima' },
+      { src: '/radovi/caneras-poredjenje.webp', width: 780, height: 1688, alt: 'Tabela poređenja modela na caneras.ba, snimak ekrana telefona', opis: 'Poređenje modela' },
+    ],
+    snimciNaslov: 'Modeli i poređenje, oboje na telefonu.',
+    snimciOpis: 'Modeli sa filterima i tabela poređenja na caneras.ba. Snimljeno na telefonu 20. 11. 2026.',
+    poziv: { naslov: 'Zastupate brend?', opis: 'Napravimo stranicu na kojoj kupac uporedi modele i zna gdje da kupi.' },
   },
   {
     slug: 'urez',

@@ -35,6 +35,7 @@ export const osnovano = '2026-06-01'
 export const projects = [
   { slug: 'mrt', name: 'mrt.ba', url: 'https://mrt.ba', image: '/project-mrt.webp' },
   { slug: 'smarttime', name: 'SmartTime', url: 'https://smarttime.ba', image: '/project-smarttime.webp' },
+  { slug: 'caneras', name: 'caneras.ba', url: 'https://caneras.ba', image: '/project-caneras.webp' },
   { slug: 'urez', name: 'urez.ba' },
 ]
 
