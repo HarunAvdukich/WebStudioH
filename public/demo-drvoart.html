@@ -21,14 +21,14 @@ a{color:#3d5a3a}a:hover{color:#2b1a10}
 .da-dugme:active{transform:scale(.97)}
 </style>
 <style>
-[data-kategorija][hidden]{display:none !important}@media (max-width:700px){.da-zag{position:static !important}.da-sajam{grid-template-columns:1fr 1fr !important;grid-auto-rows:170px !important}.da-sajam>:first-child{grid-column:span 2;grid-row:span 1 !important}}@media (max-width:600px){[style*="minmax(270px, 1fr)); gap: 24px"]{grid-template-columns:1fr 1fr !important;gap:12px !important}.da-kartica>div:first-child{aspect-ratio:1 !important}.da-kartica>div:first-child>span{font-size:11px !important;padding:4px 8px !important;left:8px !important;bottom:8px !important}.da-kartica>div:last-child{padding:12px !important;gap:6px !important}.da-kartica h3{font-size:16px !important}.da-kartica p{font-size:13px !important;line-height:1.4 !important}.da-kartica>div:last-child>div{flex-direction:column;align-items:stretch !important;gap:8px !important;padding-top:6px !important}.da-kartica>div:last-child>div>span{font-size:16px !important}.da-kartica .da-dugme{font-size:14px !important;padding:10px 12px !important}[style*="minmax(300px, 1fr)); gap: 28px"]{grid-template-columns:none !important;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;padding-bottom:6px}[style*="minmax(300px, 1fr)); gap: 28px"]>*{scroll-snap-align:start}}
+html{scroll-padding-top:84px}@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}.zag{background:rgba(43,26,16,.8) !important;-webkit-backdrop-filter:blur(16px) saturate(170%);backdrop-filter:blur(16px) saturate(170%);transition:box-shadow .3s ease}.zag>div{transition:padding .3s ease}.zag.zag-skrol{box-shadow:0 14px 34px -14px rgba(0,0,0,.6)}.zag.zag-skrol>div{padding-top:6px !important;padding-bottom:6px !important}.zag>div>a:first-child img,.zag>div>a:first-child>svg{transition:width .3s ease,height .3s ease}.zag.zag-skrol>div>a:first-child img{width:44px !important;height:44px !important}.zag.zag-skrol>div>a:first-child>svg{width:38px;height:38px}.zag-nav{gap:2px !important;align-items:center}.zag-nav a{position:relative;padding:10px 14px;border-radius:999px;transition:background-color .2s ease,color .2s ease}.zag-nav a::after{content:"";position:absolute;left:14px;right:14px;bottom:5px;height:2px;border-radius:2px;background:#e2b77f;transform:scaleX(0);transition:transform .3s cubic-bezier(.2,.8,.2,1)}.zag-nav a:hover{background:rgba(255,255,255,.08)}.zag-nav a:hover::after,.zag-nav a.aktivan::after{transform:scaleX(1)}.zag-nav a.aktivan{color:#e2b77f !important}.zag a:focus-visible,.zag-dugme:focus-visible{outline:2px solid #e2b77f;outline-offset:3px}.zag-akcija{gap:8px;transition:transform .2s ease,box-shadow .2s ease,filter .2s ease}.zag-akcija:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(0,0,0,.55);filter:brightness(1.07)}.zag-dugme{display:none}@keyframes zag-puls{0%{transform:scale(1)}40%{transform:scale(1.35)}100%{transform:scale(1)}}.puls{animation:zag-puls .4s cubic-bezier(.2,.8,.2,1)}@media (max-width:1080px){.zag>div{flex-wrap:nowrap !important;padding:8px 16px !important;gap:10px !important}.zag-akcija{order:1;margin-left:auto;position:relative;width:44px;height:44px;padding:0 !important;justify-content:center;flex:none}.zag-tekst{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.zag-dugme{order:2;display:inline-flex;flex:none;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:44px;height:44px;padding:0;border-radius:14px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.07);cursor:pointer}.zag-dugme span{display:block;width:20px;height:2px;border-radius:2px;background:#f3ece1;transition:transform .35s cubic-bezier(.2,.8,.2,1)}.zag-otvoren .zag-dugme span:first-child{transform:translateY(4px) rotate(45deg)}.zag-otvoren .zag-dugme span:last-child{transform:translateY(-4px) rotate(-45deg)}.zag-nav{order:3;position:absolute;top:100%;left:0;right:0;height:calc(100dvh - var(--zv,60px));overflow-y:auto;flex-direction:column !important;flex-wrap:nowrap !important;align-items:stretch !important;gap:0 !important;padding:12px 24px 32px;background:#2b1a10;border-top:1px solid rgba(255,255,255,.08);opacity:0;visibility:hidden;transform:translateY(-12px);transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1),visibility 0s linear .35s}.zag-otvoren .zag-nav{opacity:1;visibility:visible;transform:none;transition:opacity .25s ease,transform .35s cubic-bezier(.2,.8,.2,1)}.zag-nav a{display:flex;justify-content:space-between;align-items:center;font-family:Fraunces, Georgia, serif;font-size:26px !important;padding:18px 4px !important;border-radius:0;border-bottom:1px solid rgba(255,255,255,.09);opacity:0;transform:translateY(10px);transition:opacity .3s ease,transform .45s cubic-bezier(.2,.8,.2,1),color .2s ease}.zag-nav a::after{position:static;flex:none;width:10px;height:10px;background:none;border-top:2px solid #e2b77f;border-right:2px solid #e2b77f;border-radius:0;transform:rotate(45deg) !important;margin-right:6px}.zag-nav a:hover{background:none;color:#e2b77f !important}.zag-otvoren .zag-nav a{opacity:1;transform:none}.zag-otvoren .zag-nav a:nth-child(1){transition-delay:75ms}.zag-otvoren .zag-nav a:nth-child(2){transition-delay:110ms}.zag-otvoren .zag-nav a:nth-child(3){transition-delay:145ms}.zag-otvoren .zag-nav a:nth-child(4){transition-delay:180ms}.zag-otvoren .zag-nav a:nth-child(5){transition-delay:215ms}.zag-otvoren .zag-nav a:nth-child(6){transition-delay:250ms}html.zag-zakljucan{overflow:hidden}}@media (prefers-reduced-motion:reduce){.zag,.zag *{transition:none !important;animation:none !important}}@media (max-width:1080px){#korpa-broj{position:absolute;top:-5px;right:-5px;min-width:20px;height:20px;padding:0 5px;box-sizing:border-box;border-radius:10px;background:#2b1a10;color:#e2b77f;border:2px solid #e2b77f;font-size:11px;line-height:16px;text-align:center}}[data-kategorija][hidden]{display:none !important}@media (max-width:700px){.da-sajam{grid-template-columns:1fr 1fr !important;grid-auto-rows:170px !important}.da-sajam>:first-child{grid-column:span 2;grid-row:span 1 !important}}@media (max-width:600px){[style*="minmax(270px, 1fr)); gap: 24px"]{grid-template-columns:1fr 1fr !important;gap:12px !important}.da-kartica>div:first-child{aspect-ratio:1 !important}.da-kartica>div:first-child>span{font-size:11px !important;padding:4px 8px !important;left:8px !important;bottom:8px !important}.da-kartica>div:last-child{padding:12px !important;gap:6px !important}.da-kartica h3{font-size:16px !important}.da-kartica p{font-size:13px !important;line-height:1.4 !important}.da-kartica>div:last-child>div{flex-direction:column;align-items:stretch !important;gap:8px !important;padding-top:6px !important}.da-kartica>div:last-child>div>span{font-size:16px !important}.da-kartica .da-dugme{font-size:14px !important;padding:10px 12px !important}[style*="minmax(300px, 1fr)); gap: 28px"]{grid-template-columns:none !important;grid-auto-flow:column;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px !important;padding-bottom:6px}[style*="minmax(300px, 1fr)); gap: 28px"]>*{scroll-snap-align:start}}
 </style>
 <script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
 </head>
 <body>
 <div style="font-family: Inter, system-ui, sans-serif; color: #2b1a10; background: #f3ece1; min-height: 100vh">
 
-<header class="da-zag" style="position: sticky; top: 0; z-index: 5; background: rgba(43,26,16,.96); color: #f3ece1">
+<header class="da-zag zag" style="position: sticky; top: 0; z-index: 5; background: rgba(43,26,16,.96); color: #f3ece1">
 <div style="max-width: 1240px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px">
 <a href="#vrh" style="display: flex; align-items: center; gap: 12px; color: #f3ece1; text-decoration: none">
 <svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e2b77f" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="22"></circle><path d="M8 32 L18 18 L24 26 L30 16 L40 32"></path><path d="M20 32 v-5 h6 v5"></path><path d="M19 27 L23 23 L27 27"></path><path d="M35 32 v-3 M35 22 l-3 5 h6 z"></path></svg>
@@ -37,16 +37,16 @@ a{color:#3d5a3a}a:hover{color:#2b1a10}
 <span style="font-size: 12px; font-weight: 600; letter-spacing: 3px; color: #e2b77f">KREŠEVO</span>
 </span>
 </a>
-<nav aria-label="Glavni meni" style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 15px; font-weight: 500">
+<button class="zag-dugme" type="button" aria-controls="meni" aria-expanded="false" aria-label="Otvori meni"><span></span><span></span></button><nav class="zag-nav" id="meni" aria-label="Glavni meni" style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 15px; font-weight: 500">
 <a href="#ponuda" style="color: #f3ece1; text-decoration: none">Ponuda</a>
 <a href="#sa-imenom" style="color: #f3ece1; text-decoration: none">Sa Vašim imenom</a>
 <a href="#sjekira" style="color: #f3ece1; text-decoration: none">Kovana sjekira</a>
 <a href="#sajam" style="color: #f3ece1; text-decoration: none">Na sajmu</a>
 <a href="#narudzba" style="color: #f3ece1; text-decoration: none">Narudžba</a>
 </nav>
-<a href="#narudzba" style="display: inline-flex; align-items: center; gap: 8px; background: #e2b77f; color: #2b1a10; text-decoration: none; font-weight: 700; padding: 10px 18px; border-radius: 999px; min-height: 44px; box-sizing: border-box">
+<a class="zag-akcija" href="#narudzba" style="display: inline-flex; align-items: center; gap: 8px; background: #e2b77f; color: #2b1a10; text-decoration: none; font-weight: 700; padding: 10px 18px; border-radius: 999px; min-height: 44px; box-sizing: border-box">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 11h11.2L21 8H6.2"></path><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle></svg>
-<span>Korpa (<span id="korpa-broj">0</span>)</span>
+<span><span class="zag-tekst">Korpa (</span><span id="korpa-broj">0</span><span class="zag-tekst">)</span></span>
 </a>
 </div>
 </header>
@@ -377,6 +377,20 @@ a{color:#3d5a3a}a:hover{color:#2b1a10}
 </div>
 <script>
 (function(){
+var z=document.querySelector('.zag'),d=z.querySelector('.zag-dugme'),n=document.getElementById('meni');
+function postavi(o){z.style.setProperty('--zv',z.offsetHeight+'px');z.classList.toggle('zag-otvoren',o);document.documentElement.classList.toggle('zag-zakljucan',o);d.setAttribute('aria-expanded',o?'true':'false');d.setAttribute('aria-label',o?'Zatvori meni':'Otvori meni');}
+function otvoren(){return z.classList.contains('zag-otvoren');}
+d.addEventListener('click',function(){postavi(!otvoren());});
+n.addEventListener('click',function(e){if(e.target.closest('a'))postavi(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&otvoren()){postavi(false);d.focus();}});
+matchMedia('(min-width:1081px)').addEventListener('change',function(m){if(m.matches)postavi(false);});
+function skrol(){z.classList.toggle('zag-skrol',scrollY>8);}
+addEventListener('scroll',skrol,{passive:true});skrol();
+var veze=[].slice.call(n.querySelectorAll('a[href^="#"]'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(u){u.forEach(function(x){if(!x.isIntersecting)return;veze.forEach(function(a){var da=a.getAttribute('href')==='#'+x.target.id;a.classList.toggle('aktivan',da);if(da)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});});},{rootMargin:'-45% 0px -50% 0px'});
+veze.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t)io.observe(t);});}
+})();
+(function(){
 var osnova='font: inherit; font-size: 15px; font-weight: 600; padding: 10px 16px; border-radius: 999px; min-height: 44px; cursor: pointer; border: 1.5px solid #2b1a10; ';
 var dugmad=document.querySelectorAll('[data-kat]');
 dugmad.forEach(function(b){b.addEventListener('click',function(){
@@ -385,7 +399,7 @@ dugmad.forEach(function(d){var a=d===b;d.setAttribute('aria-pressed',a?'true':'f
 document.querySelectorAll('[data-kategorija]').forEach(function(p){p.hidden=!(kat==='Sve'||p.getAttribute('data-kategorija')===kat);});
 });});
 var broj=document.getElementById('korpa-broj'),n=0;
-document.querySelectorAll('[data-dodaj]').forEach(function(b){b.addEventListener('click',function(){n++;broj.textContent=n;});});
+document.querySelectorAll('[data-dodaj]').forEach(function(b){b.addEventListener('click',function(){n++;broj.textContent=n;broj.classList.remove('puls');void broj.offsetWidth;broj.classList.add('puls');});});
 })();
 </script>
 </body>
