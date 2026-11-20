@@ -32,7 +32,7 @@ export const clanak = {
 export const poziv = {
   nad: 'Pitajte nas',
   naslov: 'Imate pitanje o svojoj stranici?',
-  opis: 'Napišite šta prodajete i šta vam treba. Odgovaramo lično, bez obaveze.',
+  opis: 'Napišite šta prodajete i šta Vam treba. Odgovaramo lično, bez obaveze.',
   dugme: 'Pišite nam na WhatsApp',
   ili: 'ili nazovite',
 }

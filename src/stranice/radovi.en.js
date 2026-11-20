@@ -136,6 +136,10 @@ export const radovi = [
       { do: 4, opis: 'models in the catalogue', datum: 'checked 20 Nov 2026' },
       { do: 3, opis: 'vehicle types in the filters', datum: 'checked 20 Nov 2026' },
     ],
+    citat: {
+      tekst: 'We needed a site where buyers compare our models and see right away which one suits them. Now they filter bikes, scooters and tricycles and see them side by side in a table. The site looks exactly the way we imagined the brand.',
+      ko: 'caneras.ba',
+    },
     slika: { src: '/project-caneras.webp', width: 1200, height: 769, alt: 'The caneras.ba home page on a computer: Caneras electric bikes and scooters' },
     snimci: [
       { src: '/radovi/caneras-modeli.webp', width: 780, height: 1688, alt: 'Caneras models with filters on caneras.ba, phone screenshot', opis: 'Models with filters' },

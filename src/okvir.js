@@ -41,7 +41,7 @@ export const naslovKartice = {
 export const nePostoji = {
   seo: 'Stranica nije pronađena',
   naslov: 'Ova stranica ne postoji.',
-  podnaslov: 'Ali vaša može.',
+  podnaslov: 'Ali Vaša može.',
   nazad: 'Nazad na početnu',
   pisite: 'Pišite nam',
 }

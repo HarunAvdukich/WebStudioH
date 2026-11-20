@@ -6,15 +6,15 @@ export const put = '/kontakt'
 
 export const seo = {
   naslov: 'Kontakt · pišite na WhatsApp · Hunar',
-  opis: 'Pišite na WhatsApp ili nazovite 060 3000 751. Napišite šta prodajete i šta vam treba, odgovaramo lično.',
+  opis: 'Pišite na WhatsApp ili nazovite 060 3000 751. Napišite šta prodajete i šta Vam treba, odgovaramo lično.',
 }
 
 // Veliki trenutak "Poruka koja se sama piše".
 export const poruka = {
   nad: 'Kontakt',
   naslov: 'Pišite nam. Odgovaramo lično.',
-  uvod: 'Najbrže je preko WhatsAppa. Izaberite šta vam treba, a poruka se napiše sama.',
-  pitanje: { prije: 'Šta vam treba:', poslije: '?' },
+  uvod: 'Najbrže je preko WhatsAppa. Izaberite šta Vam treba, a poruka se napiše sama.',
+  pitanje: { prije: 'Šta Vam treba:', poslije: '?' },
   izbori: [
     { id: 'stranica', tekst: 'Web stranica', uPoruci: 'web stranica' },
     { id: 'shop', tekst: 'Web shop', uPoruci: 'web shop' },
@@ -45,19 +45,19 @@ export const kanali = {
 export const obrazac = {
   nad: 'Obrazac',
   naslov: 'Ili nam napišite ovdje.',
-  uvod: 'Napišite šta prodajete i šta vam treba. Odgovaramo lično.',
+  uvod: 'Napišite šta prodajete i šta Vam treba. Odgovaramo lično.',
   polja: {
     ime: 'Ime',
     firma: 'Firma (nije obavezno)',
     kontakt: 'Telefon ili mail',
-    treba: 'Šta vam treba',
+    treba: 'Šta Vam treba',
     poruka: 'Poruka',
   },
   izbori: ['Web stranica', 'Web shop', 'Veza sa OLX-om', 'Mobilna aplikacija', 'Sistem', 'Još ne znam'],
   primjer: 'Npr. prodajem alate, imam oko 500 artikala i oglase na OLX-u.',
   dugme: 'Pošalji',
   saljem: 'Šaljem',
-  ispod: 'Podatke koristimo samo da vam odgovorimo.',
+  ispod: 'Podatke koristimo samo da Vam odgovorimo.',
   hvala: { naslov: 'Hvala! Poruka je stigla.', opis: 'Javljamo se lično.' },
   greska: 'Poruka nije otišla. Pokušajte ponovo ili pišite na WhatsApp 060 3000 751.',
   zamka: 'Ne popunjavati:',

@@ -63,14 +63,16 @@ export const ukratko = {
       opis: ['Websites, online stores and custom systems: sync with marketplaces (OLX, Ananas) and suppliers, online booking, B2B portals, SEO, AI chatbots, hosting and maintenance.'],
     },
     { pojam: 'Who for', opis: ['Companies across Bosnia and Herzegovina, and companies abroad in English.'] },
-    { pojam: 'Since', opis: ['1 June 2026.'] },
+    { pojam: 'Clients', opis: ['Sites we built and still maintain today, for the same companies.'] },
     {
       pojam: 'Work',
       opis: [
         { tekst: 'mrt.ba', put: '/en/work/mrt' },
-        ', a tool store synced with OLX, the largest classifieds site in Bosnia, and ',
+        ', a tool store synced with OLX, the largest classifieds site in Bosnia, ',
         { tekst: 'SmartTime', put: '/en/work/smarttime' },
-        ', a watch store with online booking.',
+        ', a watch store with online booking, ',
+        { tekst: 'caneras.ba', put: '/en/work/caneras' },
+        ', a brand site for electric bikes, and many more projects.',
       ],
     },
     {

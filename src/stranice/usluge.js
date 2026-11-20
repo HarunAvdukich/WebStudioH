@@ -23,7 +23,7 @@ export const vrh = {
     rijeci: ['web stranice', 'web shopove', 'mobilne aplikacije', 'SEO optimizaciju', 'online rezervacije', 'AI chatbotove', 'redizajn stranica', 'održavanje i hosting'],
     poslije: '.',
   },
-  uvod: 'Radnji koja tek hoće sajt treba nešto drugo nego firmi kojoj treba sistem. Zato usluge idu stepenicama: krenite od one koja vam treba danas, a sljedeću dodajte kad posao poraste.',
+  uvod: 'Radnji koja tek hoće sajt treba nešto drugo nego firmi kojoj treba sistem. Zato usluge idu stepenicama: krenite od one koja Vam treba danas, a sljedeću dodajte kad posao poraste.',
 }
 
 // "Pitajte za ovo": WhatsApp poruka sa imenom usluge.
@@ -37,12 +37,12 @@ export const stepenice = [
     id: 'stranica',
     oznaka: 'Web stranica',
     ime: 'Web stranica i redizajn',
-    naslov: 'Da vas kupci nađu i shvate za pola minute.',
+    naslov: 'Da Vas kupci nađu i shvate za pola minute.',
     opis: 'Za firme, radnje i udruženja kojima treba uredna i brza stranica, ili nova umjesto stare.',
     stavke: [
-      'Dizajn po mjeri vaše firme, ne iz šablona',
+      'Dizajn po mjeri Vaše firme, ne iz šablona',
       'Usluge, kontakt, mapa i dugme za WhatsApp',
-      'Brza na telefonu, gdje vas kupci najčešće gledaju',
+      'Brza na telefonu, gdje Vas kupci najčešće gledaju',
       'Tekst i slike mijenjate sami',
       'Redizajn: pošaljite link stare stranice, a mi kažemo šta bismo promijenili i zašto',
     ],
@@ -55,7 +55,7 @@ export const stepenice = [
     id: 'shop',
     oznaka: 'Web shop',
     ime: 'Web shop',
-    naslov: 'Radnja koja je otvorena i kad ste vi zatvorili.',
+    naslov: 'Radnja koja je otvorena i kad ste Vi zatvorili.',
     opis: 'Za prodavnice koje hoće prodavati i preko interneta, ozbiljno i bez komplikacija.',
     stavke: [
       'Katalog sa kategorijama, filterima i pretragom',
@@ -72,7 +72,7 @@ export const stepenice = [
     oznaka: 'SEO i veze',
     ime: 'SEO i veze sa bh. tržištem',
     naslov: 'Manje kucanja, više vremena za kupce.',
-    opis: 'Da vas nađu na Googleu, a artikli sami stignu na OLX i Ananas. Veze pravljene baš za bh. tržište.',
+    opis: 'Da Vas nađu na Googleu, a artikli sami stignu na OLX i Ananas. Veze pravljene baš za bh. tržište.',
     stavke: [
       'SEO optimizacija: brzina, naslovi i opisi, strukturirani podaci i Google Search Console',
       'Artikli se sami objavljuju i ažuriraju na OLX-u kad promijenite cijenu ili zalihu',
@@ -87,12 +87,12 @@ export const stepenice = [
     id: 'sistemi',
     oznaka: 'Sistemi',
     ime: 'Sistemi i aplikacije',
-    naslov: 'Kad vam treba više od trgovine.',
+    naslov: 'Kad Vam treba više od trgovine.',
     opis: 'Za firme koje hoće da im web radi dio posla.',
     stavke: [
       'Online rezervacije: kupac sam bira uslugu i vrijeme (primjer: smarttime.ba)',
       'AI chatbot na stranici (primjer: asistent Kobi na mrt.ba)',
-      'Mobilna aplikacija za Android i iPhone, za vaše kupce ili za vaš tim',
+      'Mobilna aplikacija za Android i iPhone, za Vaše kupce ili za Vaš tim',
       'B2B portal za veleprodajne kupce (primjer: b2b.mrt.ba)',
     ],
     usluge: [
@@ -181,8 +181,8 @@ export const igre = {
 
 export const vodic = {
   nad: 'Vodič',
-  naslov: 'Ne znate koja vam stepenica treba?',
-  uvod: 'Dva pitanja, pa vam kažemo odakle da krenete.',
+  naslov: 'Ne znate koja Vam stepenica treba?',
+  uvod: 'Dva pitanja, pa Vam kažemo odakle da krenete.',
   prvo: {
     pitanje: 'Šta prodajete?',
     odgovori: [
@@ -206,7 +206,7 @@ export const vodic = {
   },
   preporuke: {
     termini: { stepenica: 4, ime: 'online rezervacije', opis: 'Kupac sam bira uslugu i vrijeme, i kad je radnja zatvorena. Kao na smarttime.ba.' },
-    stranica: { stepenica: 1, ime: 'web stranica', opis: 'Da vas kupci nađu i shvate za pola minute. Rezervacije se dodaju kad zatreba.' },
+    stranica: { stepenica: 1, ime: 'web stranica', opis: 'Da Vas kupci nađu i shvate za pola minute. Rezervacije se dodaju kad zatreba.' },
     olx: { stepenica: 3, ime: 'web shop sa OLX vezom', opis: 'Trgovina koja sama drži OLX i zalihe ažurnim. Kao na mrt.ba.' },
     shop: { stepenica: 2, ime: 'web shop', opis: 'Krenite od trgovine, a veze dodajte kad posao poraste.' },
   },

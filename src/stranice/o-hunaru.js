@@ -17,8 +17,8 @@ export const seo = {
 export const vrh = {
   nad: 'O Hunaru',
   naslov: 'Hunar znači vještina.',
-  uvod: 'Hunar je web studio iz Bosne i Hercegovine. Dizajn, kod, hosting i održavanje radimo sami, iz jedne ruke, pa nema prebacivanja između dizajnera, programera i hosting firme. Kad nas zovete, javlja se onaj ko je pravio vašu stranicu.',
-  uvod2: 'Radimo za firme u BiH i govorimo jezikom posla: OLX, pouzeće, dobavljač, zaliha, termin. Ne prodajemo "digitalna rješenja", nego stranice i trgovine koje rade za vaš posao i skidaju vam ručni rad s leđa.',
+  uvod: 'Hunar je web studio iz Bosne i Hercegovine. Dizajn, kod, hosting i održavanje radimo sami, iz jedne ruke, pa nema prebacivanja između dizajnera, programera i hosting firme. Kad nas zovete, javlja se onaj ko je pravio Vašu stranicu.',
+  uvod2: 'Radimo za firme u BiH i govorimo jezikom posla: OLX, pouzeće, dobavljač, zaliha, termin. Ne prodajemo "digitalna rješenja", nego stranice i trgovine koje rade za Vaš posao i skidaju Vam ručni rad s leđa.',
 }
 
 // Veliki trenutak "Iz jedne ruke".
@@ -34,14 +34,14 @@ export const ruka = {
   izmedju: ['prebacivanje', 'čekanje', 'novi broj'],
   jedna: {
     naslov: 'Sve iz jedne ruke.',
-    opis: 'Kad nas zovete, javlja se onaj ko je pravio vašu stranicu.',
+    opis: 'Kad nas zovete, javlja se onaj ko je pravio Vašu stranicu.',
     stavke: ['Dizajn', 'Kod', 'Hosting', 'Održavanje'],
   },
 }
 
 export const znak = {
   nad: 'Znak',
-  recenica: 'Znak su dva ista slova, u i n, spojena u petlju. Tako i radimo: spajamo vašu firmu sa kupcima, OLX-om, dobavljačima i terminima.',
+  recenica: 'Znak su dva ista slova, u i n, spojena u petlju. Tako i radimo: spajamo Vašu firmu sa kupcima, OLX-om, dobavljačima i terminima.',
 }
 
 export const kako = {
@@ -50,7 +50,7 @@ export const kako = {
   pravila: [
     { naslov: 'Dokaz ispred obećanja.', opis: 'Pokazujemo trgovine koje rade i brojke sa datumom.' },
     { naslov: 'Brzina se mjeri.', opis: 'Kad kažemo da je stranica brza, kažemo i na kojem uređaju i kada je mjereno.', mjerac: true },
-    { naslov: 'Iskreno.', opis: 'Ne obećavamo ništa što vi ili vaši kupci ne možete provjeriti.' },
+    { naslov: 'Iskreno.', opis: 'Ne obećavamo ništa što Vi ili Vaši kupci ne možete provjeriti.' },
     { naslov: 'Kratak put.', opis: 'Pišete na WhatsApp, odgovaramo lično.' },
   ],
   mjerac: { vrijednost: 100, opis: 'Lighthouse, računar, početna hunar.ba', datum: 'mjereno 29. 9. 2026', izmjeri: 'https://hunar.ba/' },
@@ -68,14 +68,16 @@ export const ukratko = {
       opis: ['Web stranice, web trgovine i sisteme po mjeri: veze sa OLX-om, Ananasom i dobavljačima, zakazivanje termina, B2B portale, SEO, AI chatbot, hosting i održavanje.'],
     },
     { pojam: 'Za koga', opis: ['Firme i radnje iz cijele BiH, a na engleskom i firme van BiH.'] },
-    { pojam: 'Od kada', opis: ['Od 1. 6. 2026.'] },
+    { pojam: 'Klijenti', opis: ['Stranice koje smo napravili i danas održavamo, za iste firme.'] },
     {
       pojam: 'Radovi',
       opis: [
         { tekst: 'mrt.ba', put: '/radovi/mrt' },
-        ', trgovina alata povezana sa OLX-om, i ',
+        ', trgovina alata povezana sa OLX-om, ',
         { tekst: 'SmartTime', put: '/radovi/smarttime' },
-        ', trgovina satova sa zakazivanjem termina.',
+        ', trgovina satova sa zakazivanjem termina, ',
+        { tekst: 'caneras.ba', put: '/radovi/caneras' },
+        ', stranica brenda električnih bicikala, i još dosta projekata.',
       ],
     },
     {
@@ -99,7 +101,7 @@ export const trake = [
 export const poziv = {
   nad: 'Pišite nam',
   naslov: 'Imate posao koji zaslužuje dobru stranicu?',
-  opis: 'Napišite šta prodajete i šta vam treba. Odgovaramo lično.',
+  opis: 'Napišite šta prodajete i šta Vam treba. Odgovaramo lično.',
   dugme: 'Pišite nam na WhatsApp',
   ili: 'ili nazovite',
 }
