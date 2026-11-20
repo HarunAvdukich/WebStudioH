@@ -245,7 +245,7 @@ export default function Naslovna() {
         <ul className="obecanja">
           <li style={{ '--b': 'var(--nebo)' }}><b className="mono">24 h</b><div><h3>Odgovor u roku od 24 sata</h3><p>Na svaku poruku odgovorimo najkasnije sutradan.</p></div></li>
           <li style={{ '--b': 'var(--svijetli)' }}><b className="mono">30</b><div><h3>30 dana podrške poslije predaje</h3><p>Sitne izmjene i pitanja u prvih mjesec dana su uključeni.</p></div></li>
-          <li style={{ '--b': 'var(--koral)' }}><b className="mono">0 KM</b><div><h3>Bez mjesečnih naknada</h3><p>Plaćate izradu, a za stranicu nema pretplate.</p></div></li>
+          <li style={{ '--b': 'var(--koral)' }}><b className="mono">0</b><div><h3>Bez skrivenih troškova</h3><p>U ponudi odvojeno stoji izrada, a odvojeno domena, hosting i održavanje.</p></div></li>
         </ul>
       </Sek>
 
@@ -340,13 +340,18 @@ export default function Naslovna() {
         <div className="recenzije">
           <figure className="recenzija otkrij">
             <Ik className="navod" sw={1.6} d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5" />
-            <blockquote><p>„Prije smo svaku promjenu cijene i stanja prepisivali ručno na OLX. Sada artikal unesemo jednom u administraciji, a stranica i preko 4.000 oglasa na OLX-u se ažuriraju sami.“</p></blockquote>
+            <blockquote><p>„Prije smo svaku promjenu cijene i stanja prepisivali ručno na OLX. Sada artikal unesemo jednom u administraciji, a stranica i preko 4.000 oglasa na OLX-u se ažuriraju sami. Prezadovoljni smo i sa Hunarom radimo i dalje.“</p></blockquote>
             <footer><div><b>mrt.ba</b><span>Motorremont, alati i oprema</span></div><a href="https://mrt.ba" {...van}>Otvorite mrt.ba</a></footer>
           </figure>
           <figure className="recenzija otkrij">
             <Ik className="navod" sw={1.6} d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5" />
-            <blockquote><p>„Htjeli smo da kupac sa telefona za par minuta nađe sat i naruči ga. Sada bira između preko 500 modela, a termin za graviranje ili servis rezerviše sam, bez poziva.“</p></blockquote>
+            <blockquote><p>„Htjeli smo da kupac sa telefona za par minuta nađe sat i naruči ga. Sada bira između preko 500 modela, a termin za graviranje ili servis rezerviše sam, bez poziva. Prezadovoljni smo i svakome bismo ih preporučili.“</p></blockquote>
             <footer><div><b>SmartTime</b><span>Satovi, servis i graviranje</span></div><a href="https://smarttime.ba" {...van}>Otvorite smarttime.ba</a></footer>
+          </figure>
+          <figure className="recenzija otkrij">
+            <Ik className="navod" sw={1.6} d="M10 7H6a2 2 0 0 0-2 2v3h5v5H4M20 7h-4a2 2 0 0 0-2 2v3h5v5h-5" />
+            <blockquote><p>„Trebala nam je stranica na kojoj kupac uporedi naše modele i odmah vidi koji mu odgovara. Sada filtrira bicikle, skutere i tricikle i gleda ih jedan pored drugog u tabeli. Stranica izgleda tačno kako smo zamislili brend.“</p></blockquote>
+            <footer><div><b>Caneras</b><span>Električni bicikli i skuteri</span></div><a href="https://caneras.ba" {...van}>Otvorite caneras.ba</a></footer>
           </figure>
         </div>
         <ul className="povjerenje">

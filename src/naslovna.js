@@ -54,7 +54,7 @@ export const pitanja = [
   { q: 'Koliko košta izrada web stranice?', a: 'Zavisi od toga šta Vam treba: broj stranica, web shop, veze sa OLX-om ili dobavljačima. Zato nemamo fiksni cjenovnik. Poslije kratkog razgovora šaljemo pisanu ponudu sa cijenom i rokom.' },
   { q: 'Koliko traje izrada?', a: 'Rok pišemo u ponudi i držimo ga. Jednostavna stranica je gotova brže, a web shop sa vezama treba više vremena.' },
   { q: 'Da li je stranica moja?', a: 'Da. Stranica, domena i materijali su Vaši.' },
-  { q: 'Plaćam li nešto svaki mjesec?', a: 'Ne. Plaćate izradu, 30 % na početku i 70 % na kraju, a za stranicu nema mjesečne naknade.' },
+  { q: 'Plaćam li nešto svaki mjesec?', a: 'Izradu plaćate jednom, 30 % na početku i 70 % na kraju. Domena, hosting i održavanje stoje odvojeno u ponudi, pa znate šta je jednokratno, a šta mjesečno.' },
   { q: 'Šta ako nešto zatreba poslije predaje?', a: 'Prvih 30 dana poslije predaje sitne izmjene i pitanja su uključeni. Na poruke odgovaramo najkasnije za 24 sata.' },
   { q: 'Mogu li sam mijenjati sadržaj?', a: 'Da. Tekst, slike i artikle mijenjate sami, a mi pomognemo kad zatreba.' },
   { q: 'Možete li povezati trgovinu sa OLX-om?', a: 'Možemo. Na mrt.ba se OLX oglasi prave i ažuriraju iz istog kataloga kao web shop, pa cijenu ili zalihu mijenjate na jednom mjestu.' },

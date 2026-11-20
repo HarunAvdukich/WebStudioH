@@ -186,10 +186,10 @@
 .h .poziv-kutija .petlja path{stroke:#fff}
 
 /* recenzije */
-.h .recenzije{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.h .recenzije{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .h .recenzija{border:1px solid var(--linija);border-radius:24px;padding:36px 34px 30px;background:rgba(244,244,242,.025);display:flex;flex-direction:column}
 .h .recenzija .navod{width:34px;height:34px;color:var(--svijetli)}
-.h .recenzija blockquote p{font-size:24px;line-height:1.38;letter-spacing:-.01em;font-weight:600;margin-top:18px}
+.h .recenzija blockquote p{font-size:20px;line-height:1.38;letter-spacing:-.01em;font-weight:600;margin-top:18px}
 .h .recenzija footer{margin-top:auto;padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;border-top:1px solid var(--linija);margin-top:28px}
 .h .recenzija footer b{font-size:17px}
 .h .recenzija footer span{display:block;color:var(--tiho);font-size:14.5px;font-weight:500}
@@ -212,6 +212,7 @@
 @media (max-width:1100px){.h .povjerenje{grid-template-columns:1fr 1fr}.h .rad.siroki .slika img{width:520px}}
 @media (max-width:720px){.h .rad.siroki{grid-template-columns:1fr;min-height:0}.h .rad.siroki .slika{height:230px}.h .rad.siroki .slika img{left:20px;top:22px;transform:none;width:calc(100% - 20px);max-width:none}}
 @media (max-width:620px){.h .provjere{grid-template-columns:1fr}}
+@media (max-width:1100px){.h .recenzije{grid-template-columns:1fr}}
 
 /* još usluga */
 .h .usluge-jos{margin-top:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;border:1px dashed var(--linija2);border-radius:18px;padding:18px 22px;color:var(--tiho)}
@@ -409,6 +410,7 @@
     .h .sek-zag,.h .stub,.h .usluga,.h .usluge-jos,.h .rad,.h .recenzija,.h .provjera,.h .korak,.h .bransa a,.h .gradovi,.h .faq-mreza details,.h .lijevo,.h .cinjenice>div,.h .jos{animation:otkrij linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
     @keyframes otkrij{from{opacity:0;transform:translateY(60px)}}
     .h .stub:nth-child(2),.h .usluga:nth-child(2),.h .korak:nth-child(2),.h .rad:nth-child(2),.h .recenzija:nth-child(2){animation-range:entry 8% entry 63%}
+    .h .recenzija:nth-child(3){animation-range:entry 16% entry 71%}
     .h .stub:nth-child(3),.h .usluga:nth-child(3),.h .korak:nth-child(3){animation-range:entry 16% entry 71%}
     .h .stub:nth-child(4),.h .usluga:nth-child(4),.h .korak:nth-child(4){animation-range:entry 24% entry 79%}
     .h .korak:nth-child(5){animation-range:entry 32% entry 87%}
