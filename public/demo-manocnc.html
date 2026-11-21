@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>ManoCNC · SCULPFUN laseri za kreativce i profesionalce</title>
+<meta name="description" content="Demo web shopa za MANOCNC d.o.o. iz Bijeljine: SCULPFUN laserski graveri i rezači, rotacioni dodaci i oprema, izbor lasera i poređenje modela.">
+<meta name="theme-color" content="#16120E">
+<link rel="icon" href="/demo-manocnc/znak.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Great+Vibes&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<style>
+:root{
+  --papir:#F5F1EA; --papir2:#ECE5DA; --bijela:#FFFFFF; --rub:#E3DBCF; --rub2:#D3C8B8;
+  --ugalj:#16120E; --ugalj2:#211B15; --ugalj3:#2C241C; --linija:#3A3027;
+  --tekst:#1B1612; --tekst2:#665B50; --svijetlo:#F6F1EA; --muted:#AFA295;
+  --nar:#E97F34; --nar2:#F29A55; --nar3:#FFB57A; --smedja:#612C0D; --zeleno:#2E9566; --crveno:#C8452B;
+  --naslov:'Barlow Condensed','Arial Narrow',system-ui,sans-serif; --sans:'Barlow',system-ui,-apple-system,'Segoe UI',sans-serif; --mono:'JetBrains Mono',ui-monospace,Consolas,monospace;
+  --r:14px; --sjena:0 1px 2px rgba(40,25,10,.06),0 8px 24px -12px rgba(40,25,10,.18);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:96px}
+html.bez-skrola{overflow:hidden}
+body{margin:0;background:var(--papir);color:var(--tekst);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+[hidden]{display:none!important}
+:focus-visible{outline:2px solid var(--nar);outline-offset:3px;border-radius:6px}
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.omot{max-width:1240px;margin:0 auto;padding:0 28px}
+.mono{font-family:var(--mono)}
+.oko{display:inline-flex;align-items:center;gap:10px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--nar)}
+.oko::before{content:"";width:18px;height:2px;background:currentColor}
+h1,h2,h3{font-family:var(--naslov);font-weight:800;line-height:1.02;letter-spacing:.005em;margin:0;text-transform:uppercase}
+h2{font-size:clamp(34px,4.4vw,54px)}
+h3{font-size:24px;font-weight:700}
+.uvod{color:var(--tekst2);font-size:18px;max-width:620px;margin:14px 0 0}
+.sekcija{padding:96px 0}
+.glava-sekcije{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px}
+.ik{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* dugmad */
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:999px;padding:15px 24px;font-weight:700;font-size:16px;text-decoration:none;transition:transform .15s ease,background .2s ease,box-shadow .2s ease;white-space:nowrap}
+.dugme:active{transform:scale(.97)}
+.dugme-nar{background:var(--nar);color:#1B0E04;box-shadow:0 6px 16px -8px rgba(0,0,0,.45)}
+.dugme-nar:hover{background:var(--nar2)}
+.dugme-obris{background:transparent;color:inherit;box-shadow:inset 0 0 0 1.5px currentColor}
+.dugme-obris:hover{background:rgba(233,127,52,.1)}
+.dugme-tamno{background:var(--ugalj);color:var(--svijetlo)}
+.dugme-tamno:hover{background:var(--ugalj3)}
+.dugme-malo{padding:10px 16px;font-size:14px}
+
+/* traka i zaglavlje */
+.traka{background:var(--ugalj);color:#D8CCBE;font:500 12.5px/1 var(--mono);letter-spacing:.02em}
+.traka .omot{display:flex;justify-content:space-between;gap:20px;height:38px;align-items:center}
+.traka span{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.traka b{color:var(--nar2);font-weight:500}
+.traka .ik{width:15px;height:15px;color:var(--nar)}
+.zaglavlje{position:sticky;top:0;z-index:40;background:rgba(245,241,234,.9);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--rub)}
+.zaglavlje .omot{display:flex;align-items:center;gap:28px;height:76px}
+.logo{display:flex;align-items:center;flex:none}
+.logo img{height:54px;width:auto}
+.meni{display:flex;gap:4px;margin:0;padding:0;list-style:none}
+.meni a{display:block;padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:600;font-size:15.5px;color:var(--tekst)}
+.meni a:hover{background:var(--papir2)}
+.trazi{position:relative;flex:1;max-width:360px;margin-left:auto}
+.trazi input{width:100%;height:46px;border-radius:999px;border:1.5px solid var(--rub2);background:var(--bijela);padding:0 18px 0 44px;font-size:15px}
+.trazi input:focus{outline:none;border-color:var(--nar);box-shadow:0 0 0 4px rgba(233,127,52,.15)}
+.trazi>.ik{position:absolute;left:16px;top:13px;color:var(--tekst2)}
+.rezultati{position:absolute;left:0;right:0;top:54px;background:var(--bijela);border:1px solid var(--rub);border-radius:16px;box-shadow:0 18px 50px -18px rgba(30,18,8,.35);padding:8px;max-height:420px;overflow:auto;z-index:50}
+.rezultati a{display:flex;gap:12px;align-items:center;padding:8px;border-radius:10px;text-decoration:none}
+.rezultati a:hover,.rezultati a.akt{background:var(--papir)}
+.rezultati img{width:48px;height:48px;object-fit:contain;background:#fff;border-radius:8px;border:1px solid var(--rub)}
+.rezultati b{display:block;font-size:14.5px;line-height:1.25}
+.rezultati small{color:var(--tekst2);font-family:var(--mono);font-size:12px}
+.rezultati .nema{padding:14px;color:var(--tekst2);font-size:14px}
+.akcije-z{display:flex;gap:8px;align-items:center}
+.ikona-dugme{position:relative;width:46px;height:46px;border-radius:999px;border:1.5px solid var(--rub2);background:var(--bijela);display:grid;place-items:center}
+.ikona-dugme:hover{border-color:var(--nar)}
+.ikona-dugme .broj{position:absolute;top:-4px;right:-4px;min-width:20px;height:20px;border-radius:99px;background:var(--nar);color:#1B0E04;font:700 11.5px/20px var(--sans);text-align:center;padding:0 5px}
+.samo-mob{display:none}
+
+/* hero */
+.hero{position:relative;background:var(--ugalj);color:var(--svijetlo);overflow:hidden;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:44px 44px;mask-image:radial-gradient(ellipse at 70% 40%,#000 20%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at 70% 40%,#000 20%,transparent 75%)}
+.hero::after{content:"";position:absolute;z-index:-1;width:720px;height:720px;right:-120px;top:-160px;background:radial-gradient(circle,rgba(233,127,52,.22),transparent 62%)}
+.hero .omot{display:grid;grid-template-columns:1.02fr 1fr;gap:56px;align-items:center;padding-top:72px;padding-bottom:84px}
+.hero h1{font-size:clamp(46px,6vw,82px);margin:18px 0 0}
+.hero h1 em{font-style:normal;color:var(--nar)}
+.hero .uvod{color:#CFC3B5;max-width:540px}
+.hero-dugmad{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.hero-sitno{display:flex;gap:22px;flex-wrap:wrap;margin-top:30px;color:#B9AC9D;font-size:14.5px}
+.hero-sitno span{display:inline-flex;align-items:center;gap:8px}
+.hero-sitno .ik{width:17px;height:17px;color:var(--nar)}
+
+/* laser na skici */
+.stanica{background:linear-gradient(180deg,#2A221B,#1C1611);border:1px solid #3A3027;border-radius:22px;padding:18px;box-shadow:0 40px 80px -40px #000,inset 0 1px 0 rgba(255,255,255,.05)}
+.stanica-vrh{display:flex;justify-content:space-between;align-items:center;font:500 11.5px/1 var(--mono);letter-spacing:.08em;color:#9C8F80;text-transform:uppercase;padding:2px 4px 14px}
+.stanica-vrh i{display:inline-block;width:8px;height:8px;border-radius:50%;background:#4B3F33;margin-right:8px;vertical-align:-1px;transition:background .2s}
+.stanica.radi .stanica-vrh i{background:var(--nar);box-shadow:0 0 10px var(--nar)}
+.masina{position:relative;aspect-ratio:5/3.4;border-radius:12px;background:#0F0C09;padding:22px 26px;overflow:hidden}
+.sina{position:absolute;background:linear-gradient(90deg,#7C8A93,#C6D0D6 45%,#6C7880);border-radius:3px}
+.sina.l{left:8px;top:8px;bottom:8px;width:10px}
+.sina.d{right:8px;top:8px;bottom:8px;width:10px}
+.ploca{position:relative;height:100%;border-radius:4px;overflow:hidden;background:
+  repeating-linear-gradient(92deg,rgba(120,70,30,.0) 0 7px,rgba(120,70,30,.09) 7px 9px,rgba(120,70,30,0) 9px 19px),
+  repeating-linear-gradient(88deg,rgba(255,240,210,.0) 0 23px,rgba(255,240,210,.12) 23px 25px,rgba(0,0,0,0) 25px 41px),
+  linear-gradient(170deg,#E2B57C,#CF9A5C 55%,#C08A4F);box-shadow:inset 0 0 0 1px rgba(0,0,0,.25),inset 0 -20px 40px rgba(90,45,10,.25)}
+.gravura{position:absolute;inset:0;display:grid;place-items:center;padding:6% 8%;clip-path:inset(0 0 100% 0)}
+.gravura span{font-family:'Great Vibes',cursive;color:#3A1B08;line-height:1.05;text-align:center;text-shadow:0 0 1px rgba(58,27,8,.9),0 0 9px rgba(92,40,8,.38);white-space:nowrap}
+.portal{position:absolute;left:4px;right:4px;top:0;height:20px;transform:translateY(var(--y,22px));pointer-events:none}
+.portal::before{content:"";position:absolute;left:0;right:0;top:6px;height:9px;border-radius:3px;background:linear-gradient(180deg,#D4DCE1,#8E9AA2);box-shadow:0 6px 12px rgba(0,0,0,.45)}
+.glava{position:absolute;top:-9px;left:0;width:38px;height:38px;transform:translateX(var(--x,30px));}
+.glava::before{content:"";position:absolute;inset:0;border-radius:7px;background:linear-gradient(160deg,#3B3530,#16120E);box-shadow:0 8px 16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.12)}
+.glava::after{content:"";position:absolute;left:8px;top:6px;width:22px;height:4px;border-radius:2px;background:var(--nar);opacity:.85}
+.snop{position:absolute;left:50%;top:50%;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:#fff;box-shadow:0 0 6px 3px #FFC98F,0 0 18px 8px rgba(233,127,52,.75);opacity:0;transition:opacity .15s}
+.stanica.radi .snop{opacity:1;animation:treperi .09s steps(2) infinite}
+@keyframes treperi{50%{transform:scale(.8)}}
+.graviraj{display:flex;gap:10px;margin-top:16px}
+.graviraj input{flex:1;min-width:0;height:50px;border-radius:999px;border:1.5px solid #4A3E33;background:#120E0B;color:var(--svijetlo);padding:0 20px;font-size:16px}
+.graviraj input::placeholder{color:#A39684}
+.graviraj input:focus{outline:none;border-color:var(--nar)}
+.stanica-nap{margin:12px 4px 0;color:#9C8F80;font-size:13.5px}
+
+/* činjenice */
+.cinjenice{background:var(--ugalj2);color:var(--svijetlo);border-top:1px solid var(--linija)}
+.cinjenice ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr)}
+.cinjenice li{display:flex;gap:14px;align-items:flex-start;padding:26px 22px;border-left:1px solid var(--linija)}
+.cinjenice li:first-child{border-left:0;padding-left:0}
+.cinjenice .ik{width:26px;height:26px;color:var(--nar);margin-top:2px}
+.cinjenice b{display:block;font-family:var(--naslov);font-size:21px;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.cinjenice small{color:#B3A697;font-size:14px}
+
+/* izbor lasera */
+.izbor{display:grid;grid-template-columns:1.05fr 1fr;gap:28px;align-items:start}
+.pitanje{margin:0 0 26px;border:0;padding:0}
+.pitanje legend{font-family:var(--naslov);font-weight:700;font-size:22px;text-transform:uppercase;margin-bottom:12px;padding:0}
+.pitanje legend span{font-family:var(--mono);font-size:12px;color:var(--nar);margin-right:10px;vertical-align:3px}
+.opcije{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opcije.cetiri{grid-template-columns:repeat(4,1fr)}
+.opcija{position:relative}
+.opcija input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.opcija label{display:block;height:100%;background:var(--bijela);border:1.5px solid var(--rub);border-radius:14px;padding:14px 14px 13px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s}
+.opcija label b{display:block;font-size:15.5px;line-height:1.25}
+.opcija label small{display:block;color:var(--tekst2);font-size:13px;line-height:1.35;margin-top:4px}
+.opcija input:checked+label{border-color:var(--nar);box-shadow:0 0 0 3px rgba(233,127,52,.18);background:#FFF9F3}
+.opcija input:focus-visible+label{outline:2px solid var(--nar);outline-offset:2px}
+.opcija label:hover{border-color:var(--rub2)}
+.preporuka{position:sticky;top:100px;background:var(--ugalj);color:var(--svijetlo);border-radius:22px;padding:24px;box-shadow:0 30px 60px -30px rgba(20,10,0,.6)}
+.preporuka .oko{color:var(--nar2)}
+.prep-glavni{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;margin-top:16px}
+.prep-glavni .slika{background:#fff;border-radius:14px;aspect-ratio:1;display:grid;place-items:center;padding:8px}
+.prep-glavni img{max-height:100%;object-fit:contain}
+.prep-glavni h3{font-size:30px}
+.prep-glavni .cijena-r{margin-top:8px}
+.prep-zasto{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:8px}
+.prep-zasto li{display:flex;gap:10px;color:#DCCFC1;font-size:15px}
+.prep-zasto .ik{color:var(--nar);width:18px;height:18px;margin-top:3px}
+.prep-dugmad{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.prep-alt{margin-top:22px;padding-top:18px;border-top:1px solid var(--linija);display:grid;gap:8px}
+.prep-alt small{font:500 11.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#9C8F80}
+.prep-alt a{display:flex;align-items:center;gap:12px;text-decoration:none;padding:8px;border-radius:12px;background:var(--ugalj2)}
+.prep-alt a:hover{background:var(--ugalj3)}
+.prep-alt img{width:44px;height:44px;border-radius:8px;background:#fff;object-fit:contain}
+.prep-alt span{flex:1;font-weight:600;font-size:15px}
+.prep-alt em{font-style:normal;color:var(--nar2);font-weight:700;white-space:nowrap}
+
+/* kartice proizvoda */
+.filteri{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cip{border:1.5px solid var(--rub2);background:var(--bijela);border-radius:999px;padding:9px 15px;font-size:14.5px;font-weight:600;color:var(--tekst)}
+.cip[aria-pressed="true"]{background:var(--ugalj);color:var(--svijetlo);border-color:var(--ugalj)}
+.cip:hover{border-color:var(--tekst)}
+.poredaj{height:42px;border-radius:999px;border:1.5px solid var(--rub2);background:var(--bijela);padding:0 14px;font-size:14.5px;font-weight:600}
+.mreza{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.kartica{position:relative;display:flex;flex-direction:column;background:var(--bijela);border:1px solid var(--rub);border-radius:18px;overflow:hidden;transition:transform .2s ease,box-shadow .2s ease}
+.kartica:hover{transform:translateY(-3px);box-shadow:0 22px 40px -24px rgba(40,22,6,.4)}
+.kartica .slika{position:relative;aspect-ratio:1/1;background:#fff;display:grid;place-items:center;padding:14px;border-bottom:1px solid #F0EBE3}
+.kartica .slika img{max-height:100%;object-fit:contain;transition:transform .35s ease}
+.kartica:hover .slika img{transform:scale(1.04)}
+.znacke{position:absolute;left:12px;top:12px;display:flex;gap:6px;flex-wrap:wrap}
+.znacka{font:500 11px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase;padding:6px 8px;border-radius:6px;background:var(--ugalj);color:var(--svijetlo)}
+.znacka.akcija{background:var(--crveno);color:#fff}
+.znacka.svijetla{background:var(--papir2);color:var(--tekst)}
+.kartica .tijelo{display:flex;flex-direction:column;flex:1;padding:16px 16px 16px}
+.marka{font:500 11.5px/1 var(--mono);letter-spacing:.12em;color:var(--tekst2);text-transform:uppercase}
+.kartica h3{font-size:22px;line-height:1.05;margin:7px 0 0}
+.kartica h3 a{text-decoration:none}
+.kartica h3 a::after{content:"";position:absolute;inset:0}
+.spec-linija{font:500 12.5px/1.45 var(--mono);color:var(--tekst2);margin-top:8px}
+.kartica .dno{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px}
+.cijena-r b{display:block;font-family:var(--naslov);font-size:28px;font-weight:800;line-height:1}
+.cijena-r s{display:block;color:var(--tekst2);font-size:14px;margin-bottom:3px}
+.cijena-r .usteda{display:inline-block;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--crveno)}
+.u-korpu{position:relative;z-index:2;width:46px;height:46px;border-radius:999px;border:0;background:var(--nar);color:#1B0E04;display:grid;place-items:center;flex:none;transition:transform .15s,background .2s}
+.u-korpu:hover{background:var(--nar2)}
+.u-korpu:active{transform:scale(.92)}
+.mreza-oprema{grid-template-columns:repeat(5,1fr)}
+.mreza-oprema .kartica h3{font-size:19px}
+.mreza-oprema .cijena-r b{font-size:24px}
+
+/* akcija */
+.akcija-traka{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.akc{position:relative;display:grid;grid-template-columns:1fr 1.05fr;align-items:center;background:var(--ugalj);color:var(--svijetlo);border-radius:22px;overflow:hidden;text-decoration:none;min-height:300px}
+.akc .slika{background:#fff;height:100%;display:grid;place-items:center;padding:16px}
+.akc .slika img{max-height:270px;object-fit:contain;transition:transform .4s ease}
+.akc:hover .slika img{transform:scale(1.04)}
+.akc .tekst{padding:26px}
+.akc h3{font-size:34px;margin-top:10px}
+.akc p{color:#CFC3B5;margin:10px 0 0;font-size:15px}
+.akc .cijena-r{margin-top:16px}
+.akc .cijena-r b{font-size:36px;color:var(--nar2)}
+.akc .cijena-r s{color:#9C8F80}
+
+/* poređenje */
+.tabela-omot{overflow-x:auto;border:1px solid var(--rub);border-radius:18px;background:var(--bijela);-webkit-overflow-scrolling:touch}
+.poredi{border-collapse:separate;border-spacing:0;width:100%;min-width:980px;font-size:14.5px}
+.poredi th,.poredi td{padding:13px 14px;text-align:left;border-bottom:1px solid #EFE9E0;vertical-align:middle}
+.poredi thead th{font:500 11.5px/1.2 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--tekst2);background:#FBF8F4;position:sticky;top:0}
+.poredi tbody tr:last-child td,.poredi tbody tr:last-child th{border-bottom:0}
+.poredi tbody tr:hover td,.poredi tbody tr:hover th{background:#FFF9F3}
+.poredi th[scope=row]{position:sticky;left:0;background:var(--bijela);z-index:1;min-width:210px}
+.poredi th[scope=row] a{display:flex;gap:10px;align-items:center;text-decoration:none;font-weight:700}
+.poredi th[scope=row] img{width:40px;height:40px;object-fit:contain;border-radius:6px;border:1px solid var(--rub);background:#fff}
+.poredi .da{color:var(--zeleno);font-weight:700}
+.poredi .ne{color:var(--tekst2)}
+.tackice{display:inline-flex;gap:3px}
+.tackice i{width:9px;height:9px;border-radius:2px;background:#E6DED2}
+.tackice i.p{background:var(--nar)}
+.poredi .cij{font-weight:700;white-space:nowrap}
+.tabela-nap{color:var(--tekst2);font-size:13.5px;margin:12px 4px 0}
+
+/* kategorije */
+.kategorije{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.kat{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:260px;border-radius:20px;overflow:hidden;text-decoration:none;background:#fff;border:1px solid var(--rub);padding:22px}
+.kat img{position:absolute;right:-6%;top:-4%;width:76%;height:78%;object-fit:contain;transition:transform .4s ease}
+.kat:hover img{transform:scale(1.05) rotate(-1deg)}
+.kat h3{position:relative;font-size:28px}
+.kat small{position:relative;color:var(--tekst2);font-family:var(--mono);font-size:12.5px;margin-top:6px;display:flex;align-items:center;gap:8px}
+.kat small .ik{width:16px;height:16px;color:var(--nar)}
+
+/* šta možete raditi */
+.radovi{display:grid;grid-template-columns:1.15fr 1fr;gap:22px;align-items:stretch}
+.radovi-slika{border-radius:22px;overflow:hidden;background:#fff;border:1px solid var(--rub);display:grid;place-items:center}
+.radovi-slika img{width:100%;height:100%;object-fit:cover}
+.ideje{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ideja{background:var(--bijela);border:1px solid var(--rub);border-radius:18px;padding:20px}
+.ideja .ik{width:28px;height:28px;color:var(--nar)}
+.ideja h3{font-size:20px;margin-top:12px}
+.ideja p{margin:6px 0 0;color:var(--tekst2);font-size:14.5px}
+.materijali{grid-column:1/-1;background:var(--ugalj);color:var(--svijetlo);border-radius:18px;padding:20px}
+.materijali h3{font-size:18px}
+.materijali .red{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.materijali span{font-size:13.5px;border:1px solid var(--linija);border-radius:99px;padding:5px 11px;color:#DCCFC1}
+.materijali h3+.red+h3{margin-top:16px}
+
+/* lightburn */
+.lightburn{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;background:linear-gradient(120deg,#2A1A0E,#16120E 60%);color:var(--svijetlo);border-radius:24px;padding:34px 38px;border:1px solid #3A2A1C}
+.lb-znak{width:84px;height:84px;border-radius:20px;background:radial-gradient(circle at 35% 30%,#FFB57A,#E97F34 45%,#8A3A10);display:grid;place-items:center;box-shadow:0 12px 26px -12px rgba(0,0,0,.7)}
+.lb-znak .ik{width:42px;height:42px;color:#1B0E04;stroke-width:2.2}
+.lightburn h2{font-size:clamp(28px,3vw,38px)}
+.lightburn p{color:#CFC3B5;margin:8px 0 0;max-width:640px}
+
+/* zašto */
+.zasto{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.zasto div{border-top:2px solid var(--tekst);padding-top:18px}
+.zasto .br{font:500 12px/1 var(--mono);color:var(--nar)}
+.zasto h3{font-size:24px;margin-top:12px}
+.zasto p{color:var(--tekst2);margin:8px 0 0;font-size:15px}
+
+/* edukacija */
+.eduk{display:grid;grid-template-columns:1fr 1.1fr;gap:36px;align-items:start}
+.koraci{list-style:none;margin:0;padding:0;counter-reset:k;background:var(--bijela);border:1px solid var(--rub);border-radius:20px;padding:10px 24px}
+.koraci li{counter-increment:k;display:grid;grid-template-columns:44px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid #EFE9E0}
+.koraci li:last-child{border-bottom:0}
+.koraci li::before{content:counter(k,decimal-leading-zero);font:500 13px/1 var(--mono);color:var(--nar);padding-top:5px}
+.koraci b{display:block;font-size:16.5px}
+.koraci span{color:var(--tekst2);font-size:14.5px}
+.pitanja details{border-bottom:1px solid var(--rub)}
+.pitanja summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:20px 0;font-weight:700;font-size:17.5px}
+.pitanja summary::-webkit-details-marker{display:none}
+.pitanja summary .ik{transition:transform .25s ease;color:var(--nar)}
+.pitanja details[open] summary .ik{transform:rotate(45deg)}
+.pitanja p{margin:-6px 0 20px;color:var(--tekst2);max-width:620px}
+
+/* kontakt i podnožje */
+.kontakt{background:var(--ugalj);color:var(--svijetlo);border-radius:28px;padding:48px;display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;position:relative;overflow:hidden}
+.kontakt::after{content:"";position:absolute;right:-140px;bottom:-200px;width:520px;height:520px;background:radial-gradient(circle,rgba(233,127,52,.25),transparent 62%)}
+.kontakt h2{font-size:clamp(34px,4vw,52px)}
+.kontakt p{color:#CFC3B5;margin:12px 0 0;max-width:500px}
+.kanali{position:relative;z-index:1;display:grid;gap:10px}
+.kanal{display:flex;align-items:center;gap:14px;padding:16px 18px;border-radius:16px;background:var(--ugalj2);border:1px solid var(--linija);text-decoration:none;transition:border-color .2s,transform .2s}
+.kanal:hover{border-color:var(--nar);transform:translateX(3px)}
+.kanal .ik{color:var(--nar);width:24px;height:24px}
+.kanal b{display:block;font-size:16.5px}
+.kanal small{color:#A89B8C;font-size:13.5px}
+.podnozje{background:var(--ugalj);color:#B9AC9D;margin-top:96px;padding:56px 0 28px;font-size:14.5px}
+.podnozje .omot>div:first-child{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:32px}
+.podnozje img{height:84px;width:auto}
+.podnozje h4{margin:0 0 12px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--svijetlo)}
+.podnozje ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.podnozje a{text-decoration:none}
+.podnozje a:hover{color:var(--nar2)}
+.podnozje-dno{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:1px solid var(--linija);margin-top:40px;padding-top:22px;font-size:13px}
+
+/* stranica proizvoda */
+.mrvice{display:flex;gap:8px;flex-wrap:wrap;font-size:14px;color:var(--tekst2);padding:26px 0 18px}
+.mrvice a{text-decoration:none}
+.mrvice a:hover{color:var(--nar)}
+.proizvod{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:start}
+.galerija{position:sticky;top:96px}
+.galerija .glavna{background:#fff;border:1px solid var(--rub);border-radius:22px;aspect-ratio:1/1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.galerija .glavna::-webkit-scrollbar{display:none}
+.galerija .glavna img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;padding:22px;scroll-snap-align:center}
+.palcevi{display:flex;gap:10px;margin-top:12px;overflow-x:auto;padding-bottom:4px}
+.palcevi button{flex:none;width:76px;height:76px;border-radius:12px;border:1.5px solid var(--rub);background:#fff;padding:5px}
+.palcevi button[aria-current="true"]{border-color:var(--nar);box-shadow:0 0 0 2px rgba(233,127,52,.25)}
+.palcevi img{width:100%;height:100%;object-fit:contain}
+.info h1{font-size:clamp(38px,4.4vw,58px);margin-top:10px}
+.info .kratko{font-size:18px;color:var(--tekst2);margin:12px 0 0}
+.info .brzo{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.info .brzo span{font:500 12.5px/1 var(--mono);padding:8px 10px;border-radius:8px;background:var(--papir2)}
+.kupi{margin-top:24px;background:var(--bijela);border:1px solid var(--rub);border-radius:20px;padding:22px}
+.kupi .cijena-r b{font-size:44px}
+.kupi .cijena-r s{font-size:16px}
+.lager{display:flex;align-items:center;gap:8px;color:var(--zeleno);font-weight:700;font-size:15px;margin-top:14px}
+.lager i{width:8px;height:8px;border-radius:50%;background:var(--zeleno);box-shadow:0 0 0 4px rgba(46,149,102,.15)}
+.lager span{color:var(--tekst2);font-weight:500}
+.kupi-red{display:flex;gap:10px;margin-top:18px}
+.kolicina{display:flex;align-items:center;border:1.5px solid var(--rub2);border-radius:999px;height:54px;flex:none}
+.kolicina button{width:44px;height:100%;border:0;background:none;display:grid;place-items:center}
+.kolicina output{min-width:26px;text-align:center;font-weight:700}
+.kupi-red .dugme{flex:1;height:54px}
+.kupi-pitaj{display:flex;gap:10px;margin-top:10px}
+.kupi-pitaj .dugme{flex:1;height:48px;font-size:15px}
+.garancije{list-style:none;margin:18px 0 0;padding:16px 0 0;border-top:1px solid #EFE9E0;display:grid;gap:10px;font-size:15px}
+.garancije li{display:flex;gap:10px;align-items:flex-start}
+.garancije .ik{color:var(--nar);margin-top:2px}
+.blok{margin-top:34px}
+.blok h2{font-size:28px;margin-bottom:14px}
+.spec{width:100%;border-collapse:collapse;background:var(--bijela);border:1px solid var(--rub);border-radius:16px;overflow:hidden;font-size:15px}
+.spec th,.spec td{text-align:left;padding:12px 16px;border-bottom:1px solid #EFE9E0;vertical-align:top}
+.spec tr:last-child th,.spec tr:last-child td{border-bottom:0}
+.spec th{width:42%;color:var(--tekst2);font-weight:500}
+.spec td{font-weight:600}
+.cipovi{display:flex;flex-wrap:wrap;gap:6px}
+.cipovi span{background:var(--bijela);border:1px solid var(--rub);border-radius:99px;padding:6px 12px;font-size:14px}
+.dva{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.dva h3{font-size:18px;margin-bottom:10px}
+.paket{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.paket li{display:flex;gap:10px;align-items:flex-start;font-size:15px;background:var(--bijela);border:1px solid var(--rub);border-radius:12px;padding:10px 12px}
+.paket .ik{color:var(--zeleno);width:18px;height:18px;margin-top:2px}
+.opis p{margin:0 0 12px;font-size:16.5px;max-width:680px}
+.napomena{font-size:13.5px;color:var(--tekst2)}
+.ljepljivo{display:none}
+
+/* narudžba */
+.narudzba{display:grid;grid-template-columns:1.2fr .9fr;gap:36px;align-items:start;padding-bottom:20px}
+.forma{background:var(--bijela);border:1px solid var(--rub);border-radius:22px;padding:28px}
+.forma h2{font-size:28px;margin-bottom:6px}
+.polja{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.polje{display:grid;gap:6px}
+.polje.puno{grid-column:1/-1}
+.polje label{font-size:14px;font-weight:600}
+.polje input,.polje textarea{height:50px;border-radius:12px;border:1.5px solid var(--rub2);background:#FDFBF8;padding:0 14px;font-size:16px}
+.polje textarea{height:90px;padding:12px 14px;resize:vertical}
+.polje input:focus,.polje textarea:focus{outline:none;border-color:var(--nar);box-shadow:0 0 0 4px rgba(233,127,52,.14)}
+.placanje{display:grid;gap:10px;margin-top:22px}
+.placanje .opcija label{display:flex;gap:12px;align-items:flex-start}
+.placanje .opcija label .ik{color:var(--nar);margin-top:2px}
+.sazetak{position:sticky;top:96px;background:var(--bijela);border:1px solid var(--rub);border-radius:22px;padding:24px}
+.sazetak h2{font-size:24px}
+.stavka{display:grid;grid-template-columns:56px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #EFE9E0}
+.stavka img{width:56px;height:56px;object-fit:contain;border:1px solid var(--rub);border-radius:10px;background:#fff}
+.stavka b{display:block;font-size:14.5px;line-height:1.25}
+.stavka small{color:var(--tekst2);font-size:13px}
+.stavka .iznos{font-weight:700;white-space:nowrap}
+.zbir{display:grid;gap:8px;margin-top:14px;font-size:15px}
+.zbir div{display:flex;justify-content:space-between;gap:10px}
+.zbir .ukupno{font-family:var(--naslov);font-weight:800;font-size:28px;text-transform:uppercase;padding-top:10px;border-top:1px solid var(--rub);margin-top:4px}
+.zbir .besplatno{color:var(--zeleno);font-weight:700}
+.hvala{text-align:center;max-width:620px;margin:40px auto 0;background:var(--bijela);border:1px solid var(--rub);border-radius:24px;padding:44px 30px}
+.hvala .krug{width:74px;height:74px;border-radius:50%;background:rgba(46,149,102,.12);display:grid;place-items:center;margin:0 auto 18px;color:var(--zeleno)}
+.hvala .krug .ik{width:36px;height:36px;stroke-width:2.4}
+.hvala h1{font-size:44px}
+.hvala p{color:var(--tekst2)}
+
+/* korpa */
+.zavjesa{position:fixed;inset:0;background:rgba(15,10,6,.5);z-index:60;opacity:0;pointer-events:none;transition:opacity .25s ease}
+.zavjesa.otv{opacity:1;pointer-events:auto}
+.korpa{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--papir);z-index:61;display:flex;flex-direction:column;transform:translateX(102%);transition:transform .32s cubic-bezier(.2,.8,.2,1),visibility 0s .32s;visibility:hidden}
+.korpa.otv{transform:none;visibility:visible;transition:transform .32s cubic-bezier(.2,.8,.2,1);box-shadow:-30px 0 60px -30px rgba(0,0,0,.4)}
+.korpa-vrh{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--rub)}
+.korpa-vrh h2{font-size:28px}
+.dostava-traka{padding:16px 22px;border-bottom:1px solid var(--rub);font-size:14.5px}
+.dostava-traka .tr{height:8px;border-radius:99px;background:var(--papir2);margin-top:10px;overflow:hidden}
+.dostava-traka .tr i{display:block;height:100%;background:linear-gradient(90deg,var(--nar),var(--nar2));border-radius:99px;transition:width .4s ease}
+.korpa-lista{flex:1;overflow:auto;padding:4px 22px}
+.korpa-lista .stavka{grid-template-columns:64px 1fr auto}
+.korpa-lista .stavka img{width:64px;height:64px}
+.mala-kol{display:inline-flex;align-items:center;border:1px solid var(--rub2);border-radius:99px;margin-top:6px;height:32px}
+.mala-kol button{width:30px;height:100%;border:0;background:none;display:grid;place-items:center}
+.mala-kol button .ik{width:15px;height:15px}
+.mala-kol span{min-width:20px;text-align:center;font-weight:700;font-size:14px}
+.ukloni{border:0;background:none;color:var(--tekst2);font-size:13px;text-decoration:underline;margin-left:10px;padding:0}
+.korpa-prazna{text-align:center;padding:50px 10px;color:var(--tekst2)}
+.korpa-prazna .ik{width:44px;height:44px;color:var(--rub2);margin:0 auto 12px}
+.korpa-dno{padding:18px 22px 22px;border-top:1px solid var(--rub);background:var(--bijela)}
+.korpa-dno .dugme{width:100%;margin-top:14px;height:56px}
+
+/* poruka */
+.poruka{position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);background:var(--ugalj);color:var(--svijetlo);border-radius:16px;padding:12px 12px 12px 18px;display:flex;align-items:center;gap:16px;z-index:70;box-shadow:0 20px 40px -16px rgba(0,0,0,.5);transition:transform .35s cubic-bezier(.2,.8,.2,1);width:max-content;max-width:calc(100% - 32px)}
+.poruka.vid{transform:translate(-50%,0)}
+.poruka .ik{color:var(--nar)}
+.poruka button{border:0;background:var(--nar);color:#1B0E04;font-weight:700;border-radius:10px;padding:9px 13px;font-size:14px;white-space:nowrap}
+
+/* pojava */
+@media (prefers-reduced-motion:no-preference){
+  .pojava{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+  .pojava.vid{opacity:1;transform:none}
+}
+
+/* prilagođavanje */
+@media (max-width:1180px){
+  .mreza{grid-template-columns:repeat(3,1fr)}
+  .mreza-oprema{grid-template-columns:repeat(4,1fr)}
+  .meni a{padding:10px 9px;font-size:15px}
+}
+@media (max-width:1020px){
+  .meni{display:none}
+  .hero .omot{grid-template-columns:1fr;gap:40px;padding-top:52px}
+  .izbor,.eduk,.radovi,.proizvod,.narudzba{grid-template-columns:1fr}
+  .preporuka,.galerija,.sazetak{position:static}
+  .cinjenice ul{grid-template-columns:1fr 1fr}
+  .cinjenice li:nth-child(3){border-left:0;padding-left:0}
+  .cinjenice li:nth-child(n+3){border-top:1px solid var(--linija)}
+  .akcija-traka{grid-template-columns:1fr}
+  .zasto{grid-template-columns:1fr 1fr}
+  .kontakt{grid-template-columns:1fr;padding:36px}
+  .podnozje .omot>div:first-child{grid-template-columns:1fr 1fr}
+  .lightburn{grid-template-columns:auto 1fr}
+  .lightburn .dugme{grid-column:1/-1;justify-self:start}
+  .samo-mob{display:grid}
+}
+@media (max-width:760px){
+  .omot{padding:0 16px}
+  .sekcija{padding:68px 0}
+  .traka .omot{justify-content:center}
+  .traka span+span{display:none}
+  .zaglavlje .omot{height:66px;gap:10px}
+  .logo img{height:44px}
+  .zaglavlje .logo{margin-right:auto}
+  .trazi{display:none;position:absolute;left:12px;right:12px;top:72px;max-width:none}
+  .trazi.otv{display:block}
+  .mreza,.mreza-oprema{grid-template-columns:1fr 1fr;gap:12px}
+  .kartica .tijelo{padding:12px}
+  .kartica h3,.mreza-oprema .kartica h3{font-size:18px}
+  .cijena-r b,.mreza-oprema .cijena-r b{font-size:22px}
+  .spec-linija{font-size:11.5px}
+  .u-korpu{width:40px;height:40px}
+  .znacke{left:8px;top:8px}
+  .znacka{font-size:10px;padding:5px 6px}
+  .hero h1{font-size:40px}
+  .hero .uvod{font-size:17px}
+  .hero-dugmad .dugme{flex:1}
+  .masina{padding:16px 18px}
+  .opcije,.opcije.cetiri{grid-template-columns:1fr 1fr}
+  .prep-glavni{grid-template-columns:110px 1fr;gap:14px}
+  .prep-glavni h3{font-size:24px}
+  .kategorije{grid-template-columns:1fr}
+  .kat{min-height:180px}
+  .kat img{width:55%;height:100%;top:0}
+  .akc{grid-template-columns:1fr;min-height:0}
+  .akc .slika{height:240px}
+  .akc .slika img{max-height:210px}
+  .akc h3{font-size:28px}
+  .ideje{grid-template-columns:1fr}
+  .lightburn{grid-template-columns:1fr;padding:26px}
+  .zasto{grid-template-columns:1fr}
+  .kontakt{padding:28px 20px;border-radius:22px}
+  .podnozje .omot>div:first-child{grid-template-columns:1fr}
+  .cinjenice li{padding:18px 12px}
+  .cinjenice li:nth-child(odd){padding-left:0}
+  .cinjenice b{font-size:17px}
+  .cinjenice small{font-size:13px}
+  .cinjenice .ik{width:22px;height:22px}
+  .dva,.paket,.polja{grid-template-columns:1fr}
+  .kupi .cijena-r b{font-size:38px}
+  .info h1{font-size:38px}
+  .ljepljivo{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--rub);padding:10px 16px calc(10px + env(safe-area-inset-bottom));gap:12px;align-items:center;transform:translateY(110%);transition:transform .3s ease}
+  .ljepljivo.vid{transform:none}
+  .ljepljivo b{font-family:var(--naslov);font-size:24px;font-weight:800;line-height:1}
+  .ljepljivo small{display:block;color:var(--tekst2);font-size:12.5px}
+  .ljepljivo .dugme{margin-left:auto;padding:13px 20px}
+  .forma{padding:20px}
+  .glava-sekcije{margin-bottom:24px}
+}
+@media (max-width:380px){.hero h1{font-size:36px}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-korpa" viewBox="0 0 24 24"><path d="M3 4h2.2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.5L21 8H6.1"/><circle cx="10" cy="20.5" r="1.2"/><circle cx="18" cy="20.5" r="1.2"/></symbol>
+  <symbol id="i-trazi" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-kamion" viewBox="0 0 24 24"><path d="M3 6h11v10H3zM14 9h4l3 3.5V16h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17.5" cy="17.5" r="1.8"/></symbol>
+  <symbol id="i-stit" viewBox="0 0 24 24"><path d="M12 3 4.5 6v5.5c0 4.6 3.2 8.3 7.5 9.5 4.3-1.2 7.5-4.9 7.5-9.5V6z"/><path d="m8.8 12 2.2 2.2 4.4-4.4"/></symbol>
+  <symbol id="i-alat" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.6 17.4a1.4 1.4 0 0 0 2 2l5.7-5.7a4 4 0 0 0 5.4-5.4l-2.5 2.5-2-.5-.5-2z"/></symbol>
+  <symbol id="i-kutija" viewBox="0 0 24 24"><path d="m3.5 7.5 8.5-4 8.5 4v9l-8.5 4-8.5-4z"/><path d="m3.5 7.5 8.5 4 8.5-4M12 11.5v9"/></symbol>
+  <symbol id="i-poruka" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path d="M5 4h3.5l1.7 4.3-2.2 1.4a11 11 0 0 0 6.3 6.3l1.4-2.2L20 15.5V19a1.5 1.5 0 0 1-1.6 1.5A16 16 0 0 1 3.5 5.6 1.5 1.5 0 0 1 5 4z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-desno" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-kvacica" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-laser" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="8" rx="1.5"/><path d="M12 11v4M12 19v2M8 17h-2M18 17h-2M9.2 14.2 8 13M14.8 14.2 16 13"/></symbol>
+  <symbol id="i-poklon" viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 3.5 8 4.2 8.4 8 12 8zm0 0s1.5-4.5 4-3.8S15.6 8 12 8z"/></symbol>
+  <symbol id="i-znak" viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 7V4M16 7V4"/><path d="M8 12h8"/></symbol>
+  <symbol id="i-kuca" viewBox="0 0 24 24"><path d="M4 11 12 4l8 7v9H4z"/><path d="M10 20v-5h4v5"/></symbol>
+  <symbol id="i-casa" viewBox="0 0 24 24"><path d="M7 3h10l-1 17H8z"/><path d="M7.4 9h9.2"/></symbol>
+  <symbol id="i-knjiga" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z"/><path d="M4 20.5A2.5 2.5 0 0 0 6.5 23H20v-5"/></symbol>
+  <symbol id="i-kartica" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></symbol>
+  <symbol id="i-novac" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></symbol>
+  <symbol id="i-racun" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol>
+  <symbol id="i-meni" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+</svg>
+
+<div class="traka"><div class="omot">
+  <span><svg class="ik"><use href="#i-kamion"/></svg>Besplatna dostava za kupovinu <b>preko 200 KM</b></span>
+  <span><svg class="ik"><use href="#i-stit"/></svg>Originalna SCULPFUN oprema</span>
+  <span><svg class="ik"><use href="#i-alat"/></svg>Podrška kupcima širom BiH</span>
+</div></div>
+
+<header class="zaglavlje">
+  <div class="omot">
+    <a class="logo" href="#/" aria-label="ManoCNC, početna"><img src="/demo-manocnc/logo.png" alt="MANOCNC, preciznost u pokretu" width="261" height="210"></a>
+    <nav aria-label="Glavni meni"><ul class="meni">
+      <li><a href="#laseri">Laseri</a></li>
+      <li><a href="#oprema">Dodatna oprema</a></li>
+      <li><a href="#izbor">Koji laser?</a></li>
+      <li><a href="#edukacija">Edukacija</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul></nav>
+    <div class="trazi" id="trazi" role="search">
+      <svg class="ik"><use href="#i-trazi"/></svg>
+      <label class="sr" for="pojam">Pretraga proizvoda</label>
+      <input id="pojam" type="search" placeholder="Traži: S30, rotacija, kamera…" autocomplete="off" aria-controls="rezultati" aria-expanded="false">
+      <div class="rezultati" id="rezultati" hidden></div>
+    </div>
+    <div class="akcije-z">
+      <button class="ikona-dugme samo-mob" id="otvori-trazi" aria-label="Pretraga"><svg class="ik"><use href="#i-trazi"/></svg></button>
+      <button class="ikona-dugme" id="otvori-korpu" aria-label="Korpa"><svg class="ik"><use href="#i-korpa"/></svg><span class="broj" id="broj-korpa" hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ POČETNA ============ -->
+<main id="v-pocetna">
+  <section class="hero">
+    <div class="omot">
+      <div>
+        <span class="oko">SCULPFUN · Bijeljina</span>
+        <h1>Laseri za kreativce i <em>profesionalce</em></h1>
+        <p class="uvod">Graviranje i rezanje drveta, kože, akrila i metala. Mašine su na lageru u Bijeljini, a uz svaku dobijate pomoć pri sastavljanju, podešavanju i prvim projektima.</p>
+        <div class="hero-dugmad">
+          <a class="dugme dugme-nar" href="#izbor">Koji laser je za mene? <svg class="ik"><use href="#i-desno"/></svg></a>
+          <a class="dugme dugme-obris" href="#laseri">Svi laseri</a>
+        </div>
+        <div class="hero-sitno">
+          <span><svg class="ik"><use href="#i-kamion"/></svg>Isporuka 24 do 48 h</span>
+          <span><svg class="ik"><use href="#i-novac"/></svg>Plaćanje pouzećem</span>
+          <span><svg class="ik"><use href="#i-alat"/></svg>Podrška na našem jeziku</span>
+        </div>
+      </div>
+      <div class="stanica" id="stanica">
+        <div class="stanica-vrh"><span><i></i><span id="stanje">Spreman</span></span><span>400 × 320 mm · 12 W</span></div>
+        <div class="masina" aria-hidden="true">
+          <span class="sina l"></span><span class="sina d"></span>
+          <div class="ploca" id="ploca"><div class="gravura" id="gravura"><span id="gravura-tekst">ManoCNC</span></div></div>
+          <div class="portal" id="portal"><div class="glava" id="glava"><i class="snop"></i></div></div>
+        </div>
+        <form class="graviraj" id="graviraj">
+          <label class="sr" for="tekst-graviranja">Tekst za graviranje</label>
+          <input id="tekst-graviranja" maxlength="22" placeholder="Upišite ime, npr. Za mamu" autocomplete="off">
+          <button class="dugme dugme-nar" type="submit">Graviraj</button>
+        </form>
+        <p class="stanica-nap">Probajte: upišite ime i pogledajte kako ga laser ugravira u dasku.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cinjenice"><div class="omot"><ul>
+    <li><svg class="ik"><use href="#i-kutija"/></svg><div><b>Sve na lageru</b><small>Šaljemo iz Bijeljine, bez čekanja uvoza</small></div></li>
+    <li><svg class="ik"><use href="#i-kamion"/></svg><div><b>24 do 48 h</b><small>Isporuka u BiH i Srbiju</small></div></li>
+    <li><svg class="ik"><use href="#i-stit"/></svg><div><b>Originalno</b><small>Direktan uvoz, fer cijene</small></div></li>
+    <li><svg class="ik"><use href="#i-alat"/></svg><div><b>Tehnička podrška</b><small>LightBurn, podešavanje, prvi projekti</small></div></li>
+  </ul></div></section>
+
+  <section class="sekcija" id="izbor">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div>
+          <span class="oko">Izbor za 20 sekundi</span>
+          <h2>Koji laser je za Vas?</h2>
+          <p class="uvod">Odgovorite na tri pitanja, a mi predlažemo model. Isto pitamo i kad nas pozovete.</p>
+        </div>
+      </div>
+      <div class="izbor">
+        <form id="upitnik" class="pojava">
+          <fieldset class="pitanje">
+            <legend><span>01</span>Šta najviše želite raditi?</legend>
+            <div class="opcije">
+              <div class="opcija"><input type="radio" name="rad" id="r-pokloni" value="pokloni" checked><label for="r-pokloni"><b>Graviranje i pokloni</b><small>Imena, logotipi, fotografije na drvetu i koži</small></label></div>
+              <div class="opcija"><input type="radio" name="rad" id="r-rezanje" value="rezanje"><label for="r-rezanje"><b>Rezanje</b><small>Drvo, šperploča, MDF, tamni akril</small></label></div>
+              <div class="opcija"><input type="radio" name="rad" id="r-proizvodnja" value="proizvodnja"><label for="r-proizvodnja"><b>Proizvodnja za prodaju</b><small>Serije, veći komadi, svaki dan</small></label></div>
+            </div>
+          </fieldset>
+          <fieldset class="pitanje">
+            <legend><span>02</span>Gdje će laser raditi?</legend>
+            <div class="opcije">
+              <div class="opcija"><input type="radio" name="mjesto" id="m-stan" value="stan" checked><label for="m-stan"><b>U stanu ili kući</b><small>Važni su dim i sigurnost</small></label></div>
+              <div class="opcija"><input type="radio" name="mjesto" id="m-radionica" value="radionica"><label for="m-radionica"><b>U radionici</b><small>Ili garaži, uz provjetravanje</small></label></div>
+              <div class="opcija"><input type="radio" name="mjesto" id="m-svejedno" value="svejedno"><label for="m-svejedno"><b>Još ne znam</b><small>Pokazat ćemo obje vrste</small></label></div>
+            </div>
+          </fieldset>
+          <fieldset class="pitanje">
+            <legend><span>03</span>Okvirni budžet?</legend>
+            <div class="opcije cetiri">
+              <div class="opcija"><input type="radio" name="budzet" id="b-1" value="1000"><label for="b-1"><b>Do 1.000 KM</b></label></div>
+              <div class="opcija"><input type="radio" name="budzet" id="b-2" value="2000"><label for="b-2"><b>Do 2.000 KM</b></label></div>
+              <div class="opcija"><input type="radio" name="budzet" id="b-3" value="3000"><label for="b-3"><b>Preko 2.000 KM</b></label></div>
+              <div class="opcija"><input type="radio" name="budzet" id="b-0" value="0" checked><label for="b-0"><b>Nisam siguran</b></label></div>
+            </div>
+          </fieldset>
+        </form>
+        <aside class="preporuka pojava" id="preporuka" aria-live="polite"></aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div><span class="oko">Snižene cijene</span><h2>Na akciji ovog mjeseca</h2></div>
+      </div>
+      <div class="akcija-traka pojava" id="akcija"></div>
+    </div>
+  </section>
+
+  <section class="sekcija" id="laseri" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div><span class="oko">SCULPFUN CNC laseri</span><h2>Laserski graveri i rezači</h2></div>
+        <div class="filteri" id="filteri-laseri" role="group" aria-label="Filter lasera">
+          <button class="cip" aria-pressed="true" data-f="svi">Svi</button>
+          <button class="cip" aria-pressed="false" data-f="zatvoren">Zatvoreni</button>
+          <button class="cip" aria-pressed="false" data-f="kamera">Sa kamerom</button>
+          <button class="cip" aria-pressed="false" data-f="rez">Za rezanje</button>
+          <button class="cip" aria-pressed="false" data-f="mali">Kompaktni</button>
+          <label class="sr" for="poredaj">Poredaj</label>
+          <select class="poredaj" id="poredaj">
+            <option value="pre">Preporučeno</option>
+            <option value="c-gore">Cijena: od najniže</option>
+            <option value="c-dolje">Cijena: od najviše</option>
+            <option value="snaga">Snaga lasera</option>
+          </select>
+        </div>
+      </div>
+      <div class="mreza" id="mreza-laseri"></div>
+    </div>
+  </section>
+
+  <section class="sekcija" id="poredjenje" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div><span class="oko">Uporedite</span><h2>Svi laseri u jednoj tabeli</h2><p class="uvod">Snaga, radna površina, kućište i kamera, jedno pored drugog. Kliknite model za detalje.</p></div>
+      </div>
+      <div class="tabela-omot pojava"><table class="poredi" id="tabela"></table></div>
+      <p class="tabela-nap">Snaga za rezanje je naša okvirna ocjena po snazi lasera. Koliko debelo reže zavisi od vrste i gustine materijala.</p>
+    </div>
+  </section>
+
+  <section class="sekcija" id="oprema" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div><span class="oko">Dodatna oprema</span><h2>Rotacija, moduli i dodaci</h2></div>
+        <div class="filteri" id="filteri-oprema" role="group" aria-label="Filter opreme">
+          <button class="cip" aria-pressed="true" data-f="sve">Sve</button>
+          <button class="cip" aria-pressed="false" data-f="rotacija">Rotacioni dodaci</button>
+          <button class="cip" aria-pressed="false" data-f="modul">Laserski moduli</button>
+          <button class="cip" aria-pressed="false" data-f="dodatak">Oprema i dodaci</button>
+        </div>
+      </div>
+      <div class="mreza mreza-oprema" id="mreza-oprema"></div>
+    </div>
+  </section>
+
+  <section class="sekcija" style="padding-top:0">
+    <div class="omot">
+      <div class="kategorije pojava">
+        <a class="kat" href="#laseri"><img src="/demo-manocnc/81226993-0.webp" alt="" loading="lazy"><h3>SCULPFUN laseri</h3><small>8 modela, od 579 KM <svg class="ik"><use href="#i-desno"/></svg></small></a>
+        <a class="kat" href="#oprema" data-kat="rotacija"><img src="/demo-manocnc/76892291-0.webp" alt="" loading="lazy"><h3>Rotacioni dodaci</h3><small>Čaše, boce, termosice <svg class="ik"><use href="#i-desno"/></svg></small></a>
+        <a class="kat" href="#oprema" data-kat="dodatak"><img src="/demo-manocnc/76892499-0.webp" alt="" loading="lazy"><h3>Oprema i dodaci</h3><small>Saće, leće, kamera, ekran <svg class="ik"><use href="#i-desno"/></svg></small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" id="radovi" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava">
+        <div><span class="oko">Šta možete raditi</span><h2>Od hobija do malog biznisa</h2><p class="uvod">Laser se brzo isplati kad radite stvari koje se prodaju: poklone, natpise, reklamne predmete i dekoracije.</p></div>
+      </div>
+      <div class="radovi">
+        <div class="radovi-slika pojava"><img src="/demo-manocnc/76343909-3.webp" alt="Drveni ukrasi, kutije i natpisi izrađeni laserom" loading="lazy"></div>
+        <div class="ideje pojava">
+          <div class="ideja"><svg class="ik"><use href="#i-poklon"/></svg><h3>Personalizovani pokloni</h3><p>Imena, datumi i fotografije na drvetu, koži i kamenu.</p></div>
+          <div class="ideja"><svg class="ik"><use href="#i-znak"/></svg><h3>Natpisi i logotipi</h3><p>Pločice, table za firme, reklamni predmeti u seriji.</p></div>
+          <div class="ideja"><svg class="ik"><use href="#i-kuca"/></svg><h3>Dekoracije i makete</h3><p>Rezanje šperploče i MDF-a za ukrase, kutije i makete.</p></div>
+          <div class="ideja"><svg class="ik"><use href="#i-casa"/></svg><h3>Čaše i termosice</h3><p>Uz <a href="#/proizvod/rotary-roller">rotacioni dodatak</a> gravirate i okrugle predmete.</p></div>
+          <div class="materijali">
+            <h3>Gravira</h3>
+            <div class="red"><span>Drvo</span><span>Koža</span><span>Kamen i škriljac</span><span>Keramika</span><span>Anodizirani aluminijum</span><span>Metal sa premazom</span><span>Karton</span></div>
+            <h3>Reže</h3>
+            <div class="red"><span>Drvo</span><span>Šperploča</span><span>MDF</span><span>Tamni akril</span><span>Koža</span><span>Filc</span><span>Karton</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" style="padding-top:0">
+    <div class="omot">
+      <div class="lightburn pojava">
+        <div class="lb-znak"><svg class="ik"><use href="#i-laser"/></svg></div>
+        <div><h2>LightBurn licenca preko nas</h2><p>LightBurn je najpopularniji program za lasere: crtate, uvozite slike i pokrećete graviranje. Licencu kupujete preko ManoCNC partner programa, a mi pomognemo da je podesite uz Vaš laser.</p></div>
+        <a class="dugme dugme-nar" href="#kontakt">Pitajte za licencu</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava"><div><span class="oko">Zašto ManoCNC?</span><h2>Kupujete od ljudi koji rade sa laserima</h2></div></div>
+      <div class="zasto pojava">
+        <div><span class="br">01</span><h3>Industrijski kvalitet</h3><p>SCULPFUN mašine sa metalnom konstrukcijom i linearnim vodilicama.</p></div>
+        <div><span class="br">02</span><h3>Tehnička podrška</h3><p>Pomažemo pri odabiru, sastavljanju, podešavanju i prvim projektima.</p></div>
+        <div><span class="br">03</span><h3>Brza isporuka</h3><p>Sve je na lageru. Šaljemo za 24 do 48 h u BiH i Srbiju.</p></div>
+        <div><span class="br">04</span><h3>Fer cijene</h3><p>Direktan uvoz, bez posrednika. Cijena na sajtu je cijena koju plaćate.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" id="edukacija" style="padding-top:0">
+    <div class="omot">
+      <div class="glava-sekcije pojava"><div><span class="oko">Edukacija</span><h2>Prvi put radite sa laserom?</h2><p class="uvod">Mini vodič za početak i odgovori na pitanja koja nam kupci najčešće postave.</p></div></div>
+      <div class="eduk">
+        <ol class="koraci pojava">
+          <li><div><b>Sastavite mašinu na ravnoj podlozi</b><span>Ispod stavite metalnu ploču ili saće, da laser ne pali sto.</span></div></li>
+          <li><div><b>Instalirajte LightBurn ili LaserGRBL</b><span>Povežite laser preko USB-a ili Wi-Fi-ja i provjerite da se glava pomjera.</span></div></li>
+          <li><div><b>Podesite fokus</b><span>Pločicom za fokus ili automatski, zavisno od modela. Oštar fokus je pola uspjeha.</span></div></li>
+          <li><div><b>Uradite probnu mrežu na otpatku</b><span>Isprobajte više snaga i brzina, pa zapišite šta najbolje izgleda za taj materijal.</span></div></li>
+          <li><div><b>Pokrenite prvi projekat</b><span>Uz zaštitne naočale i provjetravanje. Ne ostavljajte laser da radi bez nadzora.</span></div></li>
+        </ol>
+        <div class="pitanja pojava">
+          <details open><summary>Da li mi treba računar?<svg class="ik"><use href="#i-plus"/></svg></summary><p>Za većinu lasera da, preko USB-a ili Wi-Fi-ja. iCube radi i preko aplikacije na telefonu, a uz TS1 ekran laser radi bez računara, sa SD kartice.</p></details>
+          <details><summary>Mogu li laser držati u stanu?<svg class="ik"><use href="#i-plus"/></svg></summary><p>Najbolje zatvoreni modeli: E1 ima kućište i odvod dima, a iCube filter dima i alarm za temperaturu. Otvorene mašine držite u radionici ili garaži, uz dobro provjetravanje.</p></details>
+          <details><summary>Koliko debelo drvo reže?<svg class="ik"><use href="#i-plus"/></svg></summary><p>Zavisi od snage i vrste drveta. Po proizvođaču, SF-A9 reže do 20 mm šperploče, S30 Pro Max 15 do 20 mm drveta, a C2 do 8 mm. Pošaljite nam materijal koji koristite, pa kažemo tačnije.</p></details>
+          <details><summary>Kako plaćam i kad stiže?<svg class="ik"><use href="#i-plus"/></svg></summary><p>Pouzećem kuriru ili uplatom na račun. Šaljemo za 24 do 48 h u BiH i Srbiju, a preko 200 KM je dostava besplatna.</p></details>
+          <details><summary>Šta ako nešto zapne?<svg class="ik"><use href="#i-plus"/></svg></summary><p>Pozovite ili pišite na Viber. Pomažemo oko sastavljanja, LightBurna i podešavanja, i poslije kupovine.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sekcija" id="kontakt" style="padding-top:0">
+    <div class="omot">
+      <div class="kontakt pojava">
+        <div><span class="oko">Kontakt</span><h2>Niste sigurni koji model? Pitajte nas.</h2><p>Recite šta želite raditi i koliko imate prostora, pa predložimo laser i opremu. Bez obaveze kupovine.</p></div>
+        <div class="kanali">
+          <a class="kanal" href="viber://chat?number=%2B38762830962"><svg class="ik"><use href="#i-poruka"/></svg><div><b>Viber</b><small>062 830 962, odgovaramo brzo</small></div></a>
+          <a class="kanal" href="tel:+38762830962"><svg class="ik"><use href="#i-tel"/></svg><div><b>Pozovite</b><small>+387 62 830 962</small></div></a>
+          <a class="kanal" href="mailto:info@manocnc.ba"><svg class="ik"><use href="#i-mail"/></svg><div><b>info@manocnc.ba</b><small>Za firme i predračune</small></div></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ PROIZVOD ============ -->
+<main id="v-proizvod" hidden>
+  <div class="omot" id="proizvod-sadrzaj"></div>
+</main>
+
+<!-- ============ NARUDŽBA ============ -->
+<main id="v-narudzba" hidden>
+  <div class="omot" id="narudzba-sadrzaj"></div>
+</main>
+
+<footer class="podnozje">
+  <div class="omot">
+    <div>
+      <div><img src="/demo-manocnc/logo-svijetli.png" alt="MANOCNC" width="261" height="210" loading="lazy"><p style="margin:14px 0 0;max-width:300px">Prodaja, edukacija i podrška za SCULPFUN CNC lasere širom BiH.</p></div>
+      <div><h4>Prodavnica</h4><ul><li><a href="#laseri">SCULPFUN laseri</a></li><li><a href="#oprema" data-kat="rotacija">Rotacioni dodaci</a></li><li><a href="#oprema" data-kat="dodatak">Oprema i dodaci</a></li><li><a href="#poredjenje">Uporedi lasere</a></li></ul></div>
+      <div><h4>Pomoć</h4><ul><li><a href="#izbor">Koji laser je za mene?</a></li><li><a href="#edukacija">Edukacija</a></li><li><a href="#edukacija">Česta pitanja</a></li><li><a href="#kontakt">Kontakt</a></li></ul></div>
+      <div><h4>ManoCNC d.o.o.</h4><ul><li>Bijeljina, Republika Srpska, BiH</li><li><a href="tel:+38762830962">+387 62 830 962</a></li><li><a href="mailto:info@manocnc.ba">info@manocnc.ba</a></li></ul></div>
+    </div>
+    <div class="podnozje-dno">
+      <span>© 2026 MANOCNC d.o.o. Bijeljina</span>
+      <span>Demo skica: <a href="https://hunar.ba">Hunar</a>. Pravljeno da se prenese na WooCommerce.</span>
+    </div>
+  </div>
+</footer>
+
+<div class="zavjesa" id="zavjesa"></div>
+<aside class="korpa" id="korpa" aria-label="Korpa" aria-hidden="true">
+  <div class="korpa-vrh"><h2>Korpa</h2><button class="ikona-dugme" id="zatvori-korpu" aria-label="Zatvori korpu"><svg class="ik"><use href="#i-x"/></svg></button></div>
+  <div class="dostava-traka" id="dostava-traka"></div>
+  <div class="korpa-lista" id="korpa-lista"></div>
+  <div class="korpa-dno" id="korpa-dno"></div>
+</aside>
+<div class="poruka" id="poruka" role="status"><svg class="ik"><use href="#i-kvacica"/></svg><span id="poruka-tekst">Dodano u korpu</span><button id="poruka-dugme">Korpa</button></div>
+<div class="ljepljivo" id="ljepljivo"></div>
+
+<script>
+(() => {
+const SL = '/demo-manocnc/';
+const BESPLATNO = 200;
+const VIBER = 'viber://chat?number=%2B38762830962';
+
+/* Proizvodi, cijene i opisi: OLX trgovina ManoCNCdoo, 21. 11. 2026. */
+const P = [
+  { s:'sculpfun-s30-ultra-33w', o:81227080, sl:5, k:'laser', naziv:'SCULPFUN S30 Ultra 33W', c:2899, st:3199, w:33, pov:'590 × 595 mm', pa:590*595, brz:'', zat:false, kam:false, vez:'USB, Bluetooth', rez:5,
+    p:{pokloni:2, rezanje:4, proizvodnja:5}, kratko:'Najveća radna površina u ponudi, za veće komade i serije.',
+    zasto:'Najveća radna površina: veći natpisi i više komada u jednom prolazu.',
+    spec:[['Optička snaga','33 W, diodni laser'],['Talasna dužina','455 ± 5 nm'],['Radna površina','590 × 595 mm'],['Laserska tačka','0,08 × 0,10 mm'],['Preciznost','0,005 mm'],['Air Assist','automatski, pumpa 30 L/min'],['Povezivanje','USB, Bluetooth'],['Softver','LightBurn, LaserGRBL'],['Napajanje','24 V / 7 A']],
+    gravira:['Drvo i šperploča','MDF','Koža','Kamen i škriljac','Keramika','Oksidirani aluminijum','Nehrđajući čelik 304'],
+    reze:['Drvo','Šperploča','MDF','Akril','Koža','Bambus','Karton i papir'],
+    paket:['Mašina i laserski modul 33 W','Automatska pumpa i crijevo za Air Assist','Napajanje 24 V / 7 A i USB kabl','Zaštitne naočale','Aluminijumske zaštitne ploče','Granični prekidači i komplet alata'],
+    opis:['S30 Ultra je najveća mašina u ponudi. Radna površina 590 × 595 mm znači da veći natpis, tablu ili više komada odjednom uradite u jednom prolazu.','Automatski Air Assist sa pumpom od 30 L/min tjera dim sa mjesta reza, pa su ivice čistije, a rez brži. Zaštitno staklo na glavi se mijenja, pa modul duže traje.'],
+    uz:['honeycomb-400','rotary-roller','sculpfun-ts1','cam500','lens-kit'] },
+  { s:'sculpfun-sf-a9-40w', o:81226993, sl:5, k:'laser', naziv:'SCULPFUN SF-A9 40W', c:2779, st:2999, w:40, pov:'400 × 400 mm', pa:400*400, brz:'36.000 mm/min', zat:false, kam:false, vez:'Wi-Fi, USB, Bluetooth', rez:5,
+    p:{pokloni:2, rezanje:5, proizvodnja:4}, kratko:'Najjači laser u ponudi: 40 W i 36.000 mm/min.',
+    zasto:'Najjači rez u ponudi: do 20 mm šperploče u jednom prolazu.',
+    spec:[['Optička snaga','40 W, prebacivo na 20 W'],['Talasna dužina','450 nm'],['Radna površina','400 × 400 mm'],['Laserska tačka','0,10 / 0,15 mm, podesiva'],['Najveća brzina','36.000 mm/min'],['Air Assist','automatski'],['Povezivanje','Wi-Fi, USB, Bluetooth'],['Sigurnost','detekcija plamena, alarm temperature'],['Rez po proizvođaču','do 20 mm šperploče, 6 mm tamnog akrila']],
+    gravira:['Drvo i šperploča','MDF','Koža','Bambus','Tkanina i filc','Tamni akril','Anodizirani aluminijum','Brušeni nehrđajući čelik'],
+    reze:['Drvo','Šperploča','MDF','Bambus','Koža','Tamni akril','Tkanina i filc'],
+    paket:[],
+    opis:['SF-A9 je za one kojima laser radi svaki dan. Sa 40 W i brzinom do 36.000 mm/min reže šperploču do 20 mm i tamni akril do 6 mm u jednom prolazu, a snaga se prebacuje na 20 W za fino graviranje.','Industrijska linearna vodilica na X osi drži glavu mirnom i pri punoj brzini. Detekcija plamena i alarm temperature čuvaju radionicu.'],
+    uz:['honeycomb-400','rotary-roller','cam500','sculpfun-ts1'] },
+  { s:'sculpfun-s30-pro-max-20w', o:76343909, sl:4, k:'laser', naziv:'SCULPFUN S30 Pro Max 20W', c:1799, st:0, w:20, pov:'410 × 400 mm', pa:410*400, brz:'24.000 mm/min', zat:false, kam:false, vez:'USB', rez:4,
+    p:{pokloni:2, rezanje:4, proizvodnja:3}, kratko:'20 W i automatski fokus, za ozbiljno rezanje drveta.',
+    zasto:'Automatski fokus i rez drveta 15 do 20 mm u jednom prolazu.',
+    spec:[['Optička snaga','20 W, dvostruki kompresovani laser'],['Laserska tačka','0,06 × 0,06 mm'],['Radna površina','410 × 400 mm'],['Brzina graviranja','24.000 mm/min'],['Automatski fokus','da'],['Povezivanje','USB'],['Softver','LightBurn, LaserGRBL'],['Zaštita','filter staklo, sigurnosni prekidači']],
+    gravira:['Drvo','Koža','Metal sa premazom','Anodizirani aluminij','Staklo uz premaz','Kamen'],
+    reze:['Drvo 3 do 20 mm','Šperploča','Koža','Karton','EVA pjena','Crni akril'],
+    paket:[],
+    opis:['S30 Pro Max je laser za male biznise i proizvodnju u manjim serijama. 20 W optičke snage reže drvo 15 do 20 mm u jednom prolazu, a automatski fokus znači da ne podešavate visinu ručno za svaki materijal.','Linearne vodilice daju glatko i precizno kretanje, a metalna konstrukcija stoji stabilno godinama.'],
+    uz:['honeycomb-400','rotary-roller','limit-switch-kit','lens-kit','sculpfun-ts1'] },
+  { s:'sculpfun-e1-12w', o:80183506, sl:6, k:'laser', naziv:'SCULPFUN E1 12W', c:1799, st:0, w:12, pov:'400 × 320 mm', pa:400*320, brz:'600 mm/s', zat:true, kam:true, vez:'USB, Wi-Fi', rez:3,
+    p:{pokloni:4, rezanje:2, proizvodnja:3}, kratko:'Zatvoren laser sa HD kamerom, siguran i za rad u kući.',
+    zasto:'Zatvoreno kućište, odvod dima i kamera koja pokazuje gdje laser radi.',
+    spec:[['Optička snaga','12 W, diodni laser'],['Talasna dužina','455 nm'],['Radna površina','400 × 320 mm'],['Najveća brzina','600 mm/s'],['Sistem kretanja','CoreXY'],['Kamera','ugrađena HD'],['Kućište','zatvoreno, Class 1'],['Air Assist i dim','ugrađen Air Assist i odvod dima'],['Povezivanje','USB, Wi-Fi'],['Softver','Sculpfun Space, LightBurn, LaserGRBL']],
+    gravira:['Drvo i šperploča','MDF','Bambus','Koža','Papir i karton','Kamen','Keramika','Premazane površine'],
+    reze:['Drvo','Šperploča','MDF','Tamni akril','Koža','Karton'],
+    paket:[],
+    opis:['E1 je potpuno zatvoren laser: kućište, Air Assist i odvod dima su ugrađeni, a sigurnosni nivo je Class 1. Zato je dobar izbor kad laser radi u stanu, radnji ili pored djece.','Ugrađena HD kamera pokazuje materijal u programu, pa logo ili ime postavite tačno gdje treba, bez probanja. CoreXY sistem vozi glavu do 600 mm/s.'],
+    uz:[] },
+  { s:'sculpfun-icube-pro-max-10w', o:76343570, sl:4, k:'laser', naziv:'SCULPFUN iCube Pro Max 10W', c:899, st:0, w:10, pov:'120 × 120 mm', pa:120*120, brz:'10.000 mm/min', zat:true, kam:false, vez:'Wi-Fi, Bluetooth, USB-C', rez:2,
+    p:{pokloni:4, rezanje:1, proizvodnja:1}, kratko:'Mali zatvoreni laser sa filterom dima i aplikacijom za telefon.',
+    zasto:'Mali, zatvoren, sa filterom dima: radi u stanu i preko telefona.',
+    spec:[['Optička snaga','10 W'],['Laserska tačka','0,06 mm'],['Radna površina','120 × 120 mm'],['Brzina graviranja','10.000 mm/min'],['Povezivanje','Wi-Fi, Bluetooth 4.2, USB-C'],['Aplikacija','Android i iOS'],['Softver','LightBurn, LaserGRBL, Sculpfun App'],['Zaštita','zatvorena komora, filter dima, alarm na 45 °C']],
+    gravira:['Drvo','Koža','Karton','Crni akril','Anodizirani aluminij','Metal sa premazom','Staklo uz crni premaz'],
+    reze:['Drvo 3 do 10 mm','Karton','Koža','EVA pjena','Tamni akril'],
+    paket:[],
+    opis:['iCube je kompaktan zatvoren laser za poklone, privjeske, futrole i drvene pločice. Filter dima i zatvorena komora čine ga praktičnim za rad u stanu.','Šaljete mu dizajn sa telefona preko aplikacije ili sa računara preko LightBurna. Senzor temperature ga zaustavi ako se pregrije.'],
+    uz:['ra-mini'] },
+  { s:'sculpfun-c2-14w', o:81226695, sl:4, k:'laser', naziv:'SCULPFUN C2 14W', c:749, st:0, w:14, pov:'300 × 300 mm', pa:300*300, brz:'20.000 mm/min', zat:false, kam:false, vez:'USB', rez:2,
+    p:{pokloni:3, rezanje:2, proizvodnja:1}, kratko:'Kompaktan, a dovoljno jak za rezanje tanjeg drveta i akrila.',
+    zasto:'Najviše snage za novac: 14 W i 300 × 300 mm ispod 1.000 KM.',
+    spec:[['Optička snaga','14 W, diodni laser'],['Talasna dužina','455 nm'],['Radna površina','300 × 300 mm'],['Laserska tačka','0,06 × 0,06 mm'],['Najveća brzina','20.000 mm/min'],['Težina','1,6 kg'],['Sigurnost','dugme za hitno zaustavljanje, štitnik glave'],['Softver','LightBurn, LaserGRBL, SCULPFUN Space'],['Rez po proizvođaču','drvo do 8 mm, crni akril do 5 mm']],
+    gravira:['Drvo i šperploča','Koža','Pluta i filc','Akril','Guma','Anodizirani aluminijum','Keramika','Kamen i mermer'],
+    reze:['Drvo do 8 mm','Crni akril do 5 mm','Šperploča','Koža','Karton'],
+    paket:['Laserski modul 14 W','Konstrukcija mašine','Napajanje 24 V / 3 A i USB kabl','Zaštitne naočale','Metalna zaštitna ploča','Ploča za testiranje i set alata'],
+    opis:['C2 je mali laser koji ozbiljno radi. Sa 14 W i površinom 300 × 300 mm gravira poklone i reklamne predmete, a reže drvo do 8 mm i crni akril do 5 mm.','Težak je samo 1,6 kg, pa ga lako pomjerate. Kasnije mu možete dodati Air Assist i rotacioni dodatak.'],
+    uz:['rotary-roller','honeycomb-400'] },
+  { s:'sculpfun-c1-6w', o:81226419, sl:4, k:'laser', naziv:'SCULPFUN C1 6W', c:579, st:0, w:6, pov:'150 × 130 mm', pa:150*130, brz:'', zat:false, kam:false, vez:'USB', rez:1,
+    p:{pokloni:3, rezanje:0, proizvodnja:0}, kratko:'Mali prenosivi graver za početak, sastavljen iz kutije.',
+    zasto:'Najpovoljniji početak: sastavljen iz kutije i težak samo 1,05 kg.',
+    spec:[['Optička snaga','6 W'],['Radna površina','150 × 130 mm'],['Laserska tačka','0,06 × 0,06 mm'],['Dimenzije uređaja','290 × 250 × 140 mm'],['Težina','1,05 kg'],['Konstrukcija','unaprijed sastavljena'],['Granični prekidači','na X i Y osi'],['Softver','LightBurn, LaserGRBL']],
+    gravira:['Drvo i šperploča','Koža','Karton i papir','Pluta','Kamen i škriljac','Anodizirani metal','Akril'],
+    reze:['Papir i karton','Tanko drvo i furnir'],
+    paket:['Mašina i laserski modul 6 W','Napojni adapter i USB kabl','Zaštitne naočale','Metalna zaštitna podloga','Ploča za fokus i alat','Materijal za probno graviranje'],
+    opis:['C1 je najjednostavniji ulaz u lasersko graviranje. Dolazi sastavljen, staje na radni sto, a težak je 1,05 kg, pa ga nosite gdje treba.','Odličan je za imena na drvetu, privjeske, kožne novčanike i male pločice.'],
+    uz:[] },
+  { s:'sculpfun-s9', o:76892548, sl:4, k:'laser', naziv:'SCULPFUN S9 5.5W', c:810, st:0, w:5.5, pov:'410 × 420 mm', pa:410*420, brz:'', zat:false, kam:false, vez:'USB', rez:2,
+    p:{pokloni:2, rezanje:2, proizvodnja:1}, kratko:'Provjeren klasik: velika površina i fina tačka 0,06 mm.',
+    zasto:'Velika radna površina za mali novac, sa puno opreme za nadogradnju.',
+    spec:[['Optička snaga','5,5 W'],['Laserska tačka','0,06 mm, kompresovana'],['Radna površina','410 × 420 mm'],['Fokus','klizni, brzo podešavanje'],['Konstrukcija','metalna'],['Zaštita','poklopac filtrira 98 % UV zraka'],['Softver','LightBurn, LaserGRBL']],
+    gravira:['Drvo','Koža','Karton','Metal sa premazom','Anodizirani aluminij'],
+    reze:['Drvo 10 do 15 mm','Šperploča','Karton','Koža','Crni akril'],
+    paket:[],
+    opis:['S9 je jedan od najpopularnijih lasera u svojoj klasi. Fina tačka od 0,06 mm daje oštre detalje, a radna površina 410 × 420 mm prima i veće table.','Za S9 imamo cijelu liniju nadogradnje: Air Assist, granične prekidače, leće i jači modul od 10 W.'],
+    uz:['air-assist-s9','s30-pro-modul-10w','limit-switch-kit','lens-kit','honeycomb-400'] },
+
+  { s:'rotary-roller', o:76892291, sl:3, k:'rotacija', naziv:'SCULPFUN Rotary Roller', c:329, st:0, kratko:'Rotacija za čaše, boce, termosice i šoljice.',
+    spec:[['Prečnik predmeta','6 do 150 mm'],['Rotacija','360°'],['Valjci','gumeni, visokofrikcioni'],['Montaža','sastavljen, priključuje se na Y osu']],
+    odg:'Većina otvorenih lasera (S9, S30, SF-A9, C2)',
+    opis:['Rotary Roller okreće okrugli predmet ispod lasera, pa gravirate ukrug: čaše, boce, limenke, termosice, šoljice i drvene valjke.','Gumeni valjci ne dozvoljavaju klizanje, a dolazi sastavljen. Priključite ga umjesto Y ose i radite.'] },
+  { s:'ra-mini', o:76892255, sl:4, k:'rotacija', naziv:'SCULPFUN RA Mini', c:249, st:0, kratko:'Mali rotacioni dodatak za iCube seriju.',
+    spec:[['Namjena','čaše, boce, tube, bočice'],['Valjci','70A gumeni, protiv klizanja'],['Prečnik','klizno podešavanje'],['Montaža','100 % sastavljen']],
+    odg:'iCube serija, iCube Ultra, C1 Mini',
+    opis:['RA Mini je kompaktna rotacija za zatvorene iCube lasere. Gravira okrugle predmete 1:1, bez klizanja i deformacija.','Prečnik podešavate kliznim mehanizmom, a dodatni stalak drži duže predmete.'] },
+  { s:'s30-pro-modul-10w', o:76892411, sl:3, k:'modul', naziv:'SCULPFUN S30 Pro modul 10W', c:549, st:0, kratko:'Jači laserski modul sa automatskim Air Assistom.',
+    spec:[['Optička snaga','10 W, dvostruki kompresovani'],['Laserska tačka','0,08 mm'],['Air Assist','automatski, iz LightBurna'],['Zaštitna leća','zamjenjiva']],
+    odg:'S9, S6 Pro, Atomstack, Ortur (12 V)',
+    opis:['S30 Pro modul je najlakša nadogradnja postojećeg lasera: skinete stari modul, stavite ovaj i dobijete skoro duplo jači rez.','Automatski Air Assist se uključuje iz LightBurna, a zaštitna leća se mijenja, pa modul traje duže.'] },
+  { s:'s9-modul-5-5w', o:76892366, sl:3, k:'modul', naziv:'SCULPFUN S9 laserski modul 5.5W', c:349, st:0, kratko:'Originalni rezervni modul za S9.',
+    spec:[['Optička snaga','5,5 W'],['Laserska tačka','0,06 mm'],['Kućište','metalno, sa hlađenjem'],['U paketu','nosač, šrafovi, imbus ključ']],
+    odg:'S9, S6 Pro i DIY CNC okviri',
+    opis:['Originalni S9 modul za zamjenu ili nadogradnju. Mijenja se sa dva šrafa i jednim konektorom.'] },
+  { s:'honeycomb-400', o:76892499, sl:4, k:'dodatak', naziv:'SCULPFUN Honeycomb 400 × 400', c:139, st:0, kratko:'Saće sa metalnom pločom, za čist rez bez paljenja.',
+    spec:[['Radna površina','400 × 400 mm'],['Donja ploča','metalna, štiti sto'],['Skale','X i Y za mjerenje']],
+    odg:'S9, S10, S30, SF-A9 i drugi otvoreni laseri',
+    opis:['Saće podiže materijal, pa dim i toplina odlaze ispod njega. Ivice su čistije, bez žutila, a rez brži.','Metalna ploča ispod štiti sto, a skale na rubu pomažu da materijal postavite ravno.'] },
+  { s:'cam500', o:76892031, sl:3, k:'dodatak', naziv:'SCULPFUN CAM500 kamera', c:259, st:0, kratko:'5 MP LightBurn kamera za precizno postavljanje.',
+    spec:[['Senzor','5 MP, industrijski CMOS'],['Greška pozicije','manja od 1 mm'],['Ugao','120°, pokriva 400 × 400 mm'],['Softver','LightBurn kamera']],
+    odg:'Otvoreni laseri do 400 × 400 mm, uz LightBurn',
+    opis:['CAM500 se montira iznad lasera i u LightBurnu pokazuje gdje je materijal. Dizajn postavite mišem tačno na predmet, bez centriranja i probanja.','Dobra je za serije: više predmeta odjednom, svaki na svom mjestu.'] },
+  { s:'sculpfun-ts1', o:81284423, sl:4, k:'dodatak', naziv:'SCULPFUN TS1 ekran 3.5"', c:199, st:0, kratko:'Ekran na dodir za rad bez računara.',
+    spec:[['Ekran','3,5" kapacitivni, 480 × 320'],['Povezivanje','USB i Wi-Fi'],['Rad bez računara','da, sa SD kartice'],['Aplikacija','SCULPFUN, preko Wi-Fi-ja']],
+    odg:'Laseri sa GRBL upravljanjem (S9, S30, SF-A9, C2)',
+    opis:['TS1 pokreće laser bez računara: projekat sačuvate na SD karticu, ubacite je u ekran i pokrenete graviranje dodirom.','Preko Wi-Fi-ja laser vodite i iz SCULPFUN aplikacije.'] },
+  { s:'air-assist-s9', o:76892462, sl:3, k:'dodatak', naziv:'SCULPFUN S9 Air Assist Kit', c:249, st:0, kratko:'Pumpa 30 L/min za brži i čišći rez.',
+    spec:[['Pumpa','30 L/min'],['Mlaznica','metalna, 13,5 m/s'],['Montaža','oko 5 minuta']],
+    odg:'S9 i S6 Pro',
+    opis:['Air Assist duva zrak u mjesto reza: rez je 2 do 3 puta brži, bez čađi i bez paljenja ivica.','Leća ostaje čista, pa duže traje.'] },
+  { s:'lens-kit', o:76892101, sl:3, k:'dodatak', naziv:'SCULPFUN Lens Kit (6 leća)', c:99, st:0, kratko:'Šest originalnih zamjenskih leća.',
+    spec:[['Količina','6 leća'],['Materijal','visoko transparentan'],['Zamjena','oko 1 minute']],
+    odg:'S9, S10, S30, S30 Pro, S30 Ultra, iCube Ultra',
+    opis:['Originalne zaštitne leće za SCULPFUN module. Otporne su na dim i prljavštinu, a set od šest je rezerva za dugo.'] },
+  { s:'limit-switch-kit', o:76892581, sl:3, k:'dodatak', naziv:'SCULPFUN Limit Switch Kit', c:69, st:0, kratko:'Granični prekidači za automatski Homing.',
+    spec:[['U setu','4 prekidača, kablovi, nosači'],['Funkcija','automatski Homing u LightBurnu'],['Montaža','10 do 15 minuta']],
+    odg:'S9, S10, S30, S30 Pro, S30 Ultra',
+    opis:['Prekidači govore laseru gdje je početak, pa se sam vrati na nulu i ne udara u krajeve. Ponovljeni poslovi idu na isto mjesto, do milimetra.'] }
+];
+const PO = Object.fromEntries(P.map(p => [p.s, p]));
+const LASERI = P.filter(p => p.k === 'laser');
+const OPREMA = P.filter(p => p.k !== 'laser');
+
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const ik = (n, k = 'ik') => `<svg class="${k}"><use href="#i-${n}"/></svg>`;
+const fmt = n => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.') + ' KM';
+const slika = (p, i = 0) => `${SL}${p.o}-${i}.webp`;
+const MIRNO = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function cijena(p, velika) {
+  const st = p.st ? `<s>${fmt(p.st)}</s>` : '';
+  const us = p.st && velika ? `<span class="usteda">Uštedite ${fmt(p.st - p.c)}</span>` : '';
+  return `<div class="cijena-r">${st}<b>${fmt(p.c)}</b>${us}</div>`;
+}
+function specLinija(p) {
+  if (p.k === 'laser') return [p.w + ' W', p.pov, p.zat ? 'zatvoren' : ''].filter(Boolean).join(' · ');
+  return p.kratko;
+}
+function kartica(p) {
+  const z = [];
+  if (p.st) z.push(`<span class="znacka akcija">-${Math.round((1 - p.c / p.st) * 100)} %</span>`);
+  if (p.zat) z.push('<span class="znacka">Zatvoren</span>');
+  if (p.kam) z.push('<span class="znacka svijetla">Kamera</span>');
+  return `<article class="kartica">
+    <div class="slika"><img src="${slika(p)}" alt="${esc(p.naziv)}" loading="lazy" width="400" height="400"><div class="znacke">${z.join('')}</div></div>
+    <div class="tijelo">
+      <span class="marka">SCULPFUN</span>
+      <h3><a href="#/proizvod/${p.s}">${esc(p.naziv.replace('SCULPFUN ', ''))}</a></h3>
+      <div class="spec-linija">${esc(specLinija(p))}</div>
+      <div class="dno">${cijena(p)}<button class="u-korpu" data-dodaj="${p.s}" aria-label="Dodaj ${esc(p.naziv)} u korpu">${ik('korpa')}</button></div>
+    </div></article>`;
+}
+
+/* ---------- laseri: filter i redoslijed ---------- */
+let fLaser = 'svi', fOprema = 'sve';
+function crtajLasere() {
+  let l = LASERI.filter(p => fLaser === 'svi' || (fLaser === 'zatvoren' && p.zat) || (fLaser === 'kamera' && p.kam) || (fLaser === 'rez' && p.w >= 10 && !p.zat) || (fLaser === 'mali' && p.pa <= 300 * 300));
+  const r = $('#poredaj').value;
+  if (r === 'c-gore') l = [...l].sort((a, b) => a.c - b.c);
+  if (r === 'c-dolje') l = [...l].sort((a, b) => b.c - a.c);
+  if (r === 'snaga') l = [...l].sort((a, b) => b.w - a.w);
+  $('#mreza-laseri').innerHTML = l.map(kartica).join('');
+}
+function crtajOpremu() {
+  const l = OPREMA.filter(p => fOprema === 'sve' || p.k === fOprema);
+  $('#mreza-oprema').innerHTML = l.map(kartica).join('');
+}
+function cipovi(id, fn) {
+  $(id).addEventListener('click', e => {
+    const b = e.target.closest('.cip'); if (!b) return;
+    $$('.cip', $(id)).forEach(x => x.setAttribute('aria-pressed', x === b));
+    fn(b.dataset.f);
+  });
+}
+cipovi('#filteri-laseri', f => { fLaser = f; crtajLasere(); });
+cipovi('#filteri-oprema', f => { fOprema = f; crtajOpremu(); });
+$('#poredaj').addEventListener('change', crtajLasere);
+function postaviOpremu(f) {
+  fOprema = f;
+  $$('#filteri-oprema .cip').forEach(x => x.setAttribute('aria-pressed', x.dataset.f === f));
+  crtajOpremu();
+}
+document.addEventListener('click', e => { const a = e.target.closest('[data-kat]'); if (a) postaviOpremu(a.dataset.kat); });
+
+/* ---------- akcija ---------- */
+$('#akcija').innerHTML = LASERI.filter(p => p.st).map(p => `<a class="akc" href="#/proizvod/${p.s}">
+  <div class="slika"><img src="${slika(p)}" alt="${esc(p.naziv)}" loading="lazy"></div>
+  <div class="tekst"><span class="znacka akcija">-${Math.round((1 - p.c / p.st) * 100)} %</span><h3>${esc(p.naziv.replace('SCULPFUN ', ''))}</h3><p>${esc(p.kratko)}</p>${cijena(p, true)}</div></a>`).join('');
+
+/* ---------- tabela ---------- */
+const tackice = n => `<span class="tackice" aria-label="${n} od 5">${[1,2,3,4,5].map(i => `<i class="${i <= n ? 'p' : ''}"></i>`).join('')}</span>`;
+const dane = v => v ? '<span class="da">Da</span>' : '<span class="ne">Ne</span>';
+$('#tabela').innerHTML = `<thead><tr><th>Model</th><th>Snaga</th><th>Radna površina</th><th>Brzina</th><th>Kućište</th><th>Kamera</th><th>Povezivanje</th><th>Snaga za rezanje</th><th>Cijena</th></tr></thead><tbody>` +
+  [...LASERI].sort((a, b) => a.c - b.c).map(p => `<tr><th scope="row"><a href="#/proizvod/${p.s}"><img src="${slika(p)}" alt="" loading="lazy">${esc(p.naziv.replace('SCULPFUN ', ''))}</a></th>
+  <td class="mono">${p.w} W</td><td class="mono">${p.pov}</td><td class="mono">${p.brz || '<span class="ne">nije navedeno</span>'}</td><td>${p.zat ? '<span class="da">Zatvoreno</span>' : 'Otvoreno'}</td><td>${dane(p.kam)}</td><td>${p.vez}</td><td>${tackice(p.rez)}</td><td class="cij">${fmt(p.c)}</td></tr>`).join('') + '</tbody>';
+
+/* ---------- izbor lasera ---------- */
+function preporuci() {
+  const f = new FormData($('#upitnik'));
+  const rad = f.get('rad'), mjesto = f.get('mjesto'), budzet = +f.get('budzet');
+  const ocj = LASERI.map(p => {
+    let s = p.p[rad] * 2;
+    if (mjesto === 'stan') s += p.zat ? 5 : -3;
+    if (budzet) {
+      if (p.c > budzet) s -= 12;
+      else if (budzet > 1000 && p.c < budzet / 2.2) s -= 1.5;
+    }
+    return { p, s };
+  }).sort((a, b) => b.s - a.s || a.p.c - b.p.c);
+  const g = ocj[0].p, alt = ocj.slice(1, 3).map(x => x.p);
+  const r = [g.zasto];
+  if (mjesto === 'stan' && g.zat) r.push('Zatvoren je, pa je siguran za rad u stanu.');
+  if (mjesto === 'stan' && !g.zat) r.push('Otvoren je, pa ga držite u prostoriji sa provjetravanjem.');
+  if (rad === 'rezanje' && g.spec.find(x => x[0].startsWith('Rez'))) r.push('Rez po proizvođaču: ' + g.spec.find(x => x[0].startsWith('Rez'))[1] + '.');
+  if (budzet && g.c <= budzet) r.push(`Uklapa se u budžet: ${fmt(g.c)}.`);
+  r.push('Na lageru, stiže za 24 do 48 h.');
+  $('#preporuka').innerHTML = `<span class="oko">Naš prijedlog</span>
+    <div class="prep-glavni"><div class="slika"><img src="${slika(g)}" alt="${esc(g.naziv)}"></div>
+    <div><span class="marka" style="color:#9C8F80">SCULPFUN</span><h3>${esc(g.naziv.replace('SCULPFUN ', ''))}</h3>${cijena(g)}</div></div>
+    <ul class="prep-zasto">${r.map(t => `<li>${ik('kvacica')}<span>${esc(t)}</span></li>`).join('')}</ul>
+    <div class="prep-dugmad"><a class="dugme dugme-nar" href="#/proizvod/${g.s}">Pogledaj laser</a><button class="dugme dugme-obris" data-dodaj="${g.s}">${ik('korpa')} U korpu</button></div>
+    <div class="prep-alt"><small>Pogledajte i</small>${alt.map(p => `<a href="#/proizvod/${p.s}"><img src="${slika(p)}" alt=""><span>${esc(p.naziv.replace('SCULPFUN ', ''))}</span><em>${fmt(p.c)}</em></a>`).join('')}</div>`;
+}
+$('#upitnik').addEventListener('change', preporuci);
+
+/* ---------- korpa ---------- */
+let korpa = [];
+try { korpa = JSON.parse(localStorage.getItem('manocnc-korpa') || '[]').filter(x => PO[x.s]); } catch (e) { korpa = []; }
+const sacuvaj = () => { try { localStorage.setItem('manocnc-korpa', JSON.stringify(korpa)); } catch (e) {} };
+const ukupno = () => korpa.reduce((z, x) => z + PO[x.s].c * x.k, 0);
+const komada = () => korpa.reduce((z, x) => z + x.k, 0);
+function dodaj(s, k = 1) {
+  const x = korpa.find(x => x.s === s);
+  if (x) x.k += k; else korpa.push({ s, k });
+  sacuvaj(); osvjeziKorpu();
+  javi(`${PO[s].naziv.replace('SCULPFUN ', '')} je u korpi`);
+}
+function promijeni(s, d) {
+  const x = korpa.find(x => x.s === s); if (!x) return;
+  x.k += d; if (x.k < 1) korpa = korpa.filter(y => y !== x);
+  sacuvaj(); osvjeziKorpu();
+  if (location.hash === '#/narudzba') crtajNarudzbu();
+}
+function dostavaHtml() {
+  const u = ukupno();
+  if (!u) return 'Dostava je besplatna za kupovinu preko 200 KM.';
+  if (u >= BESPLATNO) return `<b style="color:var(--zeleno)">Imate besplatnu dostavu.</b><div class="tr"><i style="width:100%"></i></div>`;
+  return `Još <b>${fmt(BESPLATNO - u)}</b> do besplatne dostave.<div class="tr"><i style="width:${Math.round(u / BESPLATNO * 100)}%"></i></div>`;
+}
+function stavkaHtml(x, mala) {
+  const p = PO[x.s];
+  return `<div class="stavka"><img src="${slika(p)}" alt=""><div><b>${esc(p.naziv)}</b>${mala
+    ? `<div><span class="mala-kol"><button data-minus="${p.s}" aria-label="Manje">${ik('minus')}</button><span>${x.k}</span><button data-plus="${p.s}" aria-label="Više">${ik('plus')}</button></span><button class="ukloni" data-ukloni="${p.s}">Ukloni</button></div>`
+    : `<small>${x.k} × ${fmt(p.c)}</small>`}</div><span class="iznos">${fmt(p.c * x.k)}</span></div>`;
+}
+function osvjeziKorpu() {
+  const n = komada();
+  $('#broj-korpa').textContent = n; $('#broj-korpa').hidden = !n;
+  $('#dostava-traka').innerHTML = dostavaHtml();
+  $('#korpa-lista').innerHTML = korpa.length ? korpa.map(x => stavkaHtml(x, true)).join('')
+    : `<div class="korpa-prazna">${ik('korpa')}<p>Korpa je prazna.</p><a class="dugme dugme-tamno dugme-malo" href="#laseri" data-zatvori>Pogledajte lasere</a></div>`;
+  $('#korpa-dno').innerHTML = korpa.length ? `<div class="zbir"><div><span>Proizvodi</span><b>${fmt(ukupno())}</b></div><div><span>Dostava</span>${ukupno() >= BESPLATNO ? '<span class="besplatno">Besplatna</span>' : '<span>po cjeniku kurira</span>'}</div></div><a class="dugme dugme-nar" href="#/narudzba" data-zatvori>Nastavi na narudžbu ${ik('desno')}</a>` : '';
+}
+const korpaEl = $('#korpa'), zavjesa = $('#zavjesa');
+function otvoriKorpu() { $('#poruka').classList.remove('vid'); korpaEl.classList.add('otv'); zavjesa.classList.add('otv'); korpaEl.setAttribute('aria-hidden', 'false'); document.documentElement.classList.add('bez-skrola'); setTimeout(() => $('#zatvori-korpu').focus(), 50); }
+function zatvoriKorpu() { korpaEl.classList.remove('otv'); zavjesa.classList.remove('otv'); korpaEl.setAttribute('aria-hidden', 'true'); document.documentElement.classList.remove('bez-skrola'); }
+$('#otvori-korpu').addEventListener('click', otvoriKorpu);
+$('#zatvori-korpu').addEventListener('click', zatvoriKorpu);
+zavjesa.addEventListener('click', zatvoriKorpu);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { zatvoriKorpu(); zatvoriPretragu(); } });
+document.addEventListener('click', e => {
+  const d = e.target.closest('[data-dodaj]'); if (d) { e.preventDefault(); dodaj(d.dataset.dodaj, +(d.dataset.kol || 1)); return; }
+  const pl = e.target.closest('[data-plus]'); if (pl) return promijeni(pl.dataset.plus, 1);
+  const mi = e.target.closest('[data-minus]'); if (mi) return promijeni(mi.dataset.minus, -1);
+  const uk = e.target.closest('[data-ukloni]'); if (uk) { korpa = korpa.filter(x => x.s !== uk.dataset.ukloni); sacuvaj(); osvjeziKorpu(); if (location.hash === '#/narudzba') crtajNarudzbu(); return; }
+  if (e.target.closest('[data-zatvori]')) zatvoriKorpu();
+});
+
+let tajmer;
+function javi(t) {
+  $('#poruka-tekst').textContent = t;
+  $('#poruka').classList.add('vid');
+  clearTimeout(tajmer); tajmer = setTimeout(() => $('#poruka').classList.remove('vid'), 3200);
+}
+$('#poruka-dugme').addEventListener('click', () => { $('#poruka').classList.remove('vid'); otvoriKorpu(); });
+
+/* ---------- pretraga ---------- */
+const osnova = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/đ/g, 'dj');
+const INDEKS = P.map(p => ({ p, t: osnova([p.naziv, p.kratko, p.k === 'rotacija' ? 'rotacija rotacioni casa boca' : '', p.k === 'modul' ? 'modul glava' : '', p.zat ? 'zatvoren' : '', p.kam ? 'kamera' : '', p.odg || ''].join(' ')) }));
+const pojam = $('#pojam'), rez = $('#rezultati');
+let akt = -1;
+function trazi() {
+  const q = osnova(pojam.value.trim());
+  if (!q) { rez.hidden = true; pojam.setAttribute('aria-expanded', 'false'); return; }
+  const tok = q.split(/\s+/);
+  const l = INDEKS.filter(x => tok.every(t => x.t.includes(t))).slice(0, 7);
+  akt = -1;
+  rez.innerHTML = l.length ? l.map(({ p }) => `<a href="#/proizvod/${p.s}"><img src="${slika(p)}" alt=""><span><b>${esc(p.naziv)}</b><small>${fmt(p.c)}</small></span></a>`).join('') : `<div class="nema">Nema rezultata za „${esc(pojam.value)}". Pitajte nas na Viber.</div>`;
+  rez.hidden = false; pojam.setAttribute('aria-expanded', 'true');
+}
+function zatvoriPretragu() { rez.hidden = true; pojam.setAttribute('aria-expanded', 'false'); $('#trazi').classList.remove('otv'); }
+pojam.addEventListener('input', trazi);
+pojam.addEventListener('focus', trazi);
+pojam.addEventListener('keydown', e => {
+  const a = $$('a', rez); if (!a.length) return;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); akt = (akt + (e.key === 'ArrowDown' ? 1 : -1) + a.length) % a.length; a.forEach((x, i) => x.classList.toggle('akt', i === akt)); }
+  if (e.key === 'Enter') { e.preventDefault(); (a[akt] || a[0]).click(); }
+});
+rez.addEventListener('click', e => { if (e.target.closest('a')) { pojam.value = ''; zatvoriPretragu(); } });
+document.addEventListener('click', e => { if (!e.target.closest('#trazi') && !e.target.closest('#otvori-trazi')) zatvoriPretragu(); });
+$('#otvori-trazi').addEventListener('click', () => { $('#trazi').classList.toggle('otv'); if ($('#trazi').classList.contains('otv')) pojam.focus(); });
+
+/* ---------- stranica proizvoda ---------- */
+let kol = 1;
+function crtajProizvod(p) {
+  kol = 1;
+  const slike = Array.from({ length: p.sl }, (_, i) => slika(p, i));
+  const laser = p.k === 'laser';
+  const kat = laser ? ['SCULPFUN laseri', '#laseri', ''] : p.k === 'rotacija' ? ['Rotacioni dodaci', '#oprema', 'rotacija'] : ['Oprema i dodaci', '#oprema', p.k === 'modul' ? 'modul' : 'dodatak'];
+  const brzo = laser ? [p.w + ' W', p.pov, p.zat ? 'Zatvoren' : 'Otvoren okvir', p.kam ? 'HD kamera' : '', p.vez].filter(Boolean) : [];
+  const uz = (p.uz || []).map(s => PO[s]).filter(Boolean);
+  const kompat = laser ? [] : LASERI.filter(l => (l.uz || []).includes(p.s));
+  $('#proizvod-sadrzaj').innerHTML = `
+  <nav class="mrvice" aria-label="Putanja"><a href="#/">Početna</a><span>/</span><a href="${kat[1]}" ${kat[2] ? `data-kat="${kat[2]}"` : ''}>${kat[0]}</a><span>/</span><span>${esc(p.naziv)}</span></nav>
+  <div class="proizvod">
+    <div class="galerija">
+      <div class="glavna" id="glavna">${slike.map((s, i) => `<img src="${s}" alt="${esc(p.naziv)}, slika ${i + 1}" ${i ? 'loading="lazy"' : ''}>`).join('')}</div>
+      <div class="palcevi" id="palcevi">${slike.map((s, i) => `<button aria-label="Slika ${i + 1}" aria-current="${i === 0}" data-i="${i}"><img src="${s}" alt="" loading="lazy"></button>`).join('')}</div>
+    </div>
+    <div class="info">
+      <span class="marka">SCULPFUN · ${kat[0]}</span>
+      <h1>${esc(p.naziv.replace('SCULPFUN ', ''))}</h1>
+      <p class="kratko">${esc(p.kratko)}</p>
+      ${brzo.length ? `<div class="brzo">${brzo.map(b => `<span>${esc(b)}</span>`).join('')}</div>` : ''}
+      ${p.odg ? `<div class="brzo"><span>Odgovara: ${esc(p.odg)}</span></div>` : ''}
+      <div class="kupi">
+        ${cijena(p, true)}
+        <div class="lager"><i></i>Na lageru <span>· šaljemo za 24 do 48 h</span></div>
+        <div class="kupi-red">
+          <div class="kolicina"><button id="kol-m" aria-label="Manje">${ik('minus')}</button><output id="kol">1</output><button id="kol-p" aria-label="Više">${ik('plus')}</button></div>
+          <button class="dugme dugme-nar" id="dodaj-glavno" data-dodaj="${p.s}" data-kol="1">${ik('korpa')} Dodaj u korpu</button>
+        </div>
+        <div class="kupi-pitaj">
+          <a class="dugme dugme-obris" href="${VIBER}">${ik('poruka')} Pitajte na Viber</a>
+          <a class="dugme dugme-obris" href="tel:+38762830962">${ik('tel')} Pozovite</a>
+        </div>
+        <ul class="garancije">
+          <li>${ik('kamion')}<span>${p.c >= BESPLATNO ? 'Besplatna dostava na Vašu adresu' : 'Besplatna dostava kad korpa pređe 200 KM'}</span></li>
+          <li>${ik('novac')}<span>Plaćanje pouzećem ili uplatom na račun</span></li>
+          <li>${ik('alat')}<span>${laser ? 'Pomoć pri sastavljanju, podešavanju i LightBurnu' : 'Pomoć pri montaži i podešavanju'}</span></li>
+          <li>${ik('stit')}<span>Originalna SCULPFUN oprema, direktan uvoz</span></li>
+        </ul>
+      </div>
+      <div class="blok opis"><h2>O proizvodu</h2>${p.opis.map(t => `<p>${esc(t)}</p>`).join('')}</div>
+    </div>
+  </div>
+  <div class="blok"><h2>Karakteristike</h2><table class="spec">${p.spec.map(r => `<tr><th scope="row">${esc(r[0])}</th><td>${esc(r[1])}</td></tr>`).join('')}</table></div>
+  ${laser ? `<div class="blok dva"><div><h3>Gravira</h3><div class="cipovi">${p.gravira.map(m => `<span>${esc(m)}</span>`).join('')}</div></div><div><h3>Reže</h3><div class="cipovi">${p.reze.map(m => `<span>${esc(m)}</span>`).join('')}</div></div></div>
+  <p class="napomena">Mogućnosti rezanja zavise od vrste, debljine i gustine materijala, fokusa i podešavanja.</p>` : ''}
+  ${p.paket && p.paket.length ? `<div class="blok"><h2>Šta dobijate u paketu</h2><ul class="paket">${p.paket.map(x => `<li>${ik('kvacica')}<span>${esc(x)}</span></li>`).join('')}</ul></div>` : ''}
+  ${uz.length ? `<div class="blok"><h2>Preporučena oprema uz ovaj laser</h2><div class="mreza mreza-oprema">${uz.map(kartica).join('')}</div></div>` : ''}
+  ${kompat.length ? `<div class="blok"><h2>Laseri uz koje ide</h2><div class="mreza">${kompat.map(kartica).join('')}</div></div>` : ''}
+  ${laser && !uz.length ? `<div class="blok"><h2>Pogledajte i</h2><div class="mreza">${LASERI.filter(l => l !== p).sort((a, b) => Math.abs(a.c - p.c) - Math.abs(b.c - p.c)).slice(0, 4).map(kartica).join('')}</div></div>` : ''}`;
+  $('#ljepljivo').innerHTML = `<div><b>${fmt(p.c)}</b><small>Na lageru · 24 do 48 h</small></div><button class="dugme dugme-nar" data-dodaj="${p.s}">${ik('korpa')} U korpu</button>`;
+  const gl = $('#glavna'), pal = $$('#palcevi button');
+  pal.forEach(b => b.addEventListener('click', () => gl.scrollTo({ left: gl.clientWidth * +b.dataset.i, behavior: MIRNO ? 'auto' : 'smooth' })));
+  gl.addEventListener('scroll', () => { const i = Math.round(gl.scrollLeft / gl.clientWidth); pal.forEach((b, j) => b.setAttribute('aria-current', i === j)); }, { passive: true });
+  const kEl = $('#kol'), dg = $('#dodaj-glavno');
+  const pk = d => { kol = Math.max(1, Math.min(9, kol + d)); kEl.textContent = kol; dg.dataset.kol = kol; };
+  $('#kol-m').addEventListener('click', () => pk(-1));
+  $('#kol-p').addEventListener('click', () => pk(1));
+  document.title = `${p.naziv} · ManoCNC`;
+}
+
+/* ---------- narudžba ---------- */
+function crtajNarudzbu() {
+  const u = ukupno();
+  if (!korpa.length) {
+    $('#narudzba-sadrzaj').innerHTML = `<div class="hvala"><div class="krug">${ik('korpa')}</div><h1>Korpa je prazna</h1><p>Dodajte laser ili opremu, pa se vratite ovdje.</p><a class="dugme dugme-nar" href="#laseri">Pogledajte lasere</a></div>`;
+    return;
+  }
+  $('#narudzba-sadrzaj').innerHTML = `
+  <nav class="mrvice" aria-label="Putanja"><a href="#/">Početna</a><span>/</span><span>Narudžba</span></nav>
+  <div class="narudzba">
+    <form class="forma" id="forma-narudzba" novalidate>
+      <h2>Podaci za dostavu</h2>
+      <p class="napomena">Zovemo Vas prije slanja da potvrdimo narudžbu.</p>
+      <div class="polja">
+        <div class="polje"><label for="n-ime">Ime i prezime</label><input id="n-ime" required autocomplete="name"></div>
+        <div class="polje"><label for="n-tel">Telefon</label><input id="n-tel" type="tel" required autocomplete="tel" placeholder="06x xxx xxx"></div>
+        <div class="polje puno"><label for="n-adr">Adresa</label><input id="n-adr" required autocomplete="street-address"></div>
+        <div class="polje"><label for="n-grad">Grad</label><input id="n-grad" required autocomplete="address-level2"></div>
+        <div class="polje"><label for="n-post">Poštanski broj</label><input id="n-post" inputmode="numeric" autocomplete="postal-code"></div>
+        <div class="polje puno"><label for="n-nap">Napomena (nije obavezno)</label><textarea id="n-nap" placeholder="Npr. naziv firme za predračun ili šta ćete gravirati"></textarea></div>
+      </div>
+      <h2 style="margin-top:26px">Plaćanje</h2>
+      <div class="placanje">
+        <div class="opcija"><input type="radio" name="plac" id="p-pouzece" checked><label for="p-pouzece">${ik('novac')}<span><b>Pouzećem</b><small>Plaćate kuriru kad paket stigne</small></span></label></div>
+        <div class="opcija"><input type="radio" name="plac" id="p-racun"><label for="p-racun">${ik('racun')}<span><b>Uplata na račun</b><small>Šaljemo predračun, za firme i fizička lica</small></span></label></div>
+        <div class="opcija"><input type="radio" name="plac" id="p-kartica"><label for="p-kartica">${ik('kartica')}<span><b>Karticom</b><small>Online plaćanje, kad se uključi na pravom shopu</small></span></label></div>
+      </div>
+      <button class="dugme dugme-nar" type="submit" style="width:100%;margin-top:24px;height:58px">Pošalji narudžbu · ${fmt(u)}</button>
+      <p class="napomena" style="text-align:center;margin-top:10px">Ovo je skica: narudžba se nigdje ne šalje.</p>
+    </form>
+    <aside class="sazetak">
+      <h2>Vaša narudžba</h2>
+      ${korpa.map(x => stavkaHtml(x, false)).join('')}
+      <div class="zbir">
+        <div><span>Proizvodi</span><span>${fmt(u)}</span></div>
+        <div><span>Dostava</span>${u >= BESPLATNO ? '<span class="besplatno">Besplatna</span>' : '<span>po cjeniku kurira</span>'}</div>
+        <div class="ukupno"><span>Ukupno</span><span>${fmt(u)}</span></div>
+      </div>
+    </aside>
+  </div>`;
+  $('#forma-narudzba').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, prazno = $$('[required]', f).find(i => !i.value.trim());
+    if (prazno) { prazno.focus(); prazno.style.borderColor = 'var(--crveno)'; return; }
+    const ime = $('#n-ime').value.trim().split(' ')[0];
+    korpa = []; sacuvaj(); osvjeziKorpu();
+    $('#narudzba-sadrzaj').innerHTML = `<div class="hvala"><div class="krug">${ik('kvacica')}</div><h1>Hvala, ${esc(ime)}!</h1><p>Narudžba je primljena. Zovemo Vas danas da potvrdimo, a paket šaljemo za 24 do 48 h.</p><p class="napomena">Skica: ništa nije poslano. Na pravom shopu narudžba stiže u WooCommerce i na mail, a kupac dobije potvrdu.</p><a class="dugme dugme-tamno" href="#/">Nazad na početnu</a></div>`;
+    scrollTo(0, 0);
+  });
+}
+
+/* ---------- rute ---------- */
+function ruta() {
+  const h = location.hash;
+  const pr = h.match(/^#\/proizvod\/([\w-]+)/);
+  const vP = $('#v-pocetna'), vPr = $('#v-proizvod'), vN = $('#v-narudzba');
+  const lj = $('#ljepljivo');
+  lj.classList.remove('vid');
+  if (pr && PO[pr[1]]) {
+    vP.hidden = true; vN.hidden = true; vPr.hidden = false;
+    crtajProizvod(PO[pr[1]]); scrollTo(0, 0);
+  } else if (h === '#/narudzba') {
+    vP.hidden = true; vPr.hidden = true; vN.hidden = false;
+    crtajNarudzbu(); scrollTo(0, 0); document.title = 'Narudžba · ManoCNC';
+  } else {
+    const bio = vP.hidden;
+    vPr.hidden = true; vN.hidden = true; vP.hidden = false;
+    document.title = 'ManoCNC · SCULPFUN laseri za kreativce i profesionalce';
+    const id = h.startsWith('#/') || !h ? '' : h.slice(1);
+    if (id && document.getElementById(id)) requestAnimationFrame(() => document.getElementById(id).scrollIntoView({ behavior: bio || MIRNO ? 'auto' : 'smooth' }));
+    else if (bio) scrollTo(0, 0);
+    pojava();
+  }
+}
+addEventListener('hashchange', ruta);
+addEventListener('scroll', () => {
+  if (!$('#v-proizvod').hidden) $('#ljepljivo').classList.toggle('vid', scrollY > 620);
+}, { passive: true });
+
+/* ---------- pojava pri skrolu ---------- */
+let posmatrac;
+function pojava() {
+  if (MIRNO || !('IntersectionObserver' in window)) { $$('.pojava').forEach(e => e.classList.add('vid')); return; }
+  posmatrac = posmatrac || new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vid'); posmatrac.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  $$('.pojava:not(.vid)').forEach(e => posmatrac.observe(e));
+}
+
+/* ---------- laser u heroju ---------- */
+const st = $('#stanica'), ploca = $('#ploca'), grav = $('#gravura'), gt = $('#gravura-tekst'), portal = $('#portal'), glava = $('#glava');
+let anim = 0;
+function velicinaTeksta() {
+  const w = ploca.clientWidth, n = Math.max(gt.textContent.length, 4);
+  let f = Math.min(ploca.clientHeight * 0.42, (w * 1.55) / n);
+  gt.style.fontSize = f + 'px';
+  const sirina = gt.getBoundingClientRect().width, max = w * 0.84;
+  if (sirina > max) gt.style.fontSize = (f * max / sirina) + 'px';
+}
+function graviraj(tekst) {
+  cancelAnimationFrame(anim);
+  gt.textContent = tekst; velicinaTeksta();
+  const H = ploca.clientHeight, W = ploca.clientWidth, top = ploca.offsetTop, lijevo = ploca.offsetLeft;
+  const pr = gt.getBoundingClientRect(), pp = ploca.getBoundingClientRect();
+  const y0 = Math.max(0, pr.top - pp.top - 6), y1 = Math.min(H, pr.bottom - pp.top + 6);
+  const x0 = Math.max(0, pr.left - pp.left - 6), x1 = Math.min(W, pr.right - pp.left + 6);
+  if (MIRNO) { grav.style.clipPath = 'none'; return; }
+  st.classList.add('radi'); $('#stanje').textContent = 'Gravira';
+  const trajanje = 2600 + tekst.length * 70, t0 = performance.now();
+  const korak = t => {
+    const p = Math.min(1, (t - t0) / trajanje);
+    const y = y0 + (y1 - y0) * p;
+    const linija = (t - t0) / 160, tr = Math.abs((linija % 2) - 1);
+    const x = x0 + (x1 - x0) * tr;
+    grav.style.clipPath = `inset(0 0 ${Math.max(0, H - y) / H * 100}% 0)`;
+    portal.style.setProperty('--y', (top + y - 10) + 'px');
+    glava.style.setProperty('--x', (lijevo - 4 + x - 19) + 'px');
+    if (p < 1) anim = requestAnimationFrame(korak);
+    else { st.classList.remove('radi'); $('#stanje').textContent = 'Gotovo'; grav.style.clipPath = 'none'; portal.style.setProperty('--y', '0px'); glava.style.setProperty('--x', (lijevo - 4) + 'px'); }
+  };
+  anim = requestAnimationFrame(korak);
+}
+$('#graviraj').addEventListener('submit', e => {
+  e.preventDefault();
+  const t = $('#tekst-graviranja').value.trim() || 'Za mamu';
+  graviraj(t);
+});
+addEventListener('resize', () => { if (!st.classList.contains('radi')) velicinaTeksta(); }, { passive: true });
+
+/* ---------- start ---------- */
+crtajLasere(); crtajOpremu(); preporuci(); osvjeziKorpu(); ruta();
+const kreni = () => graviraj('ManoCNC');
+if (document.fonts && document.fonts.load) document.fonts.load('64px "Great Vibes"').then(kreni, kreni); else kreni();
+})();
+</script>
+</body>
+</html>
