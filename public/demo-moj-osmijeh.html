@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Stomatološka ordinacija Moj osmijeh · Bihać (skica)</title>
+<meta name="description" content="Skica sajta za stomatološku ordinaciju Moj osmijeh, dr. Osman Makić, Bihać.">
+<link rel="icon" href="/demo-moj-osmijeh/logo.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<style>
+:root{
+  --plava:#2466b0;--plava-t:#1a4f8f;--noc:#0b2545;--led:#eef5fc;--led2:#dceafa;
+  --mint:#35c9ae;--mint-s:#e3f8f3;--papir:#fbfdff;--tekst:#14233a;--siva:#5b6b80;--crta:#d6e3f1;
+  --r:22px;--sjena:0 20px 50px -24px rgba(11,37,69,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{font-family:Inter,system-ui,sans-serif;color:var(--tekst);background:var(--papir);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+.s{width:min(1180px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;line-height:1.08;letter-spacing:-.015em;color:var(--noc)}
+h2{font-size:clamp(32px,4.2vw,50px)}
+h2 em,h1 em{font-style:italic;font-weight:500;color:var(--plava)}
+.oznaka{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--plava)}
+.oznaka::before{content:"";width:22px;height:2px;background:var(--mint);border-radius:2px}
+.uvod{color:var(--siva);font-size:18px;max-width:56ch}
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:15px 24px;border-radius:999px;font-weight:600;font-size:16px;text-decoration:none;border:0;cursor:pointer;transition:transform .2s ease,background .2s ease,box-shadow .2s ease}
+.dugme:active{transform:scale(.97)}
+.d-plavo{background:var(--plava);color:#fff;box-shadow:0 10px 24px -10px rgba(36,102,176,.7)}
+.d-plavo:hover{background:var(--plava-t)}
+.d-svijetlo{background:#fff;color:var(--noc);border:1.5px solid var(--crta)}
+.d-svijetlo:hover{border-color:var(--plava)}
+.zag-zakljucan,.zag-zakljucan body{overflow:hidden}
+
+/* zaglavlje */
+.zag{position:sticky;top:0;z-index:50;transition:background .3s,box-shadow .3s}
+.zag-skrol{background:rgba(251,253,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 1px 0 var(--crta)}
+.zag-u{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+.znak{display:flex;align-items:center;gap:12px;text-decoration:none}
+.znak img{width:30px;height:auto}
+.znak b{font-family:Fraunces,serif;font-size:21px;font-weight:600;color:var(--noc);line-height:1}
+.znak small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--siva);margin-top:3px}
+.zag-nav{display:flex;gap:30px;list-style:none}
+.zag-nav a{text-decoration:none;font-size:15px;font-weight:500;color:var(--tekst);position:relative;padding:6px 0}
+.zag-nav a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--mint);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.zag-nav a:hover::after,.zag-nav a.aktivan::after{transform:scaleX(1)}
+.zag-desno{display:flex;align-items:center;gap:12px}
+.zag-desno .dugme{padding:11px 18px;font-size:15px}
+.zag-dugme{display:none;width:46px;height:46px;border-radius:50%;border:1.5px solid var(--crta);background:#fff;cursor:pointer;position:relative}
+.zag-dugme span,.zag-dugme span::before,.zag-dugme span::after{position:absolute;left:50%;width:18px;height:2px;background:var(--noc);border-radius:2px;transition:transform .3s,opacity .2s}
+.zag-dugme span{top:50%;transform:translate(-50%,-50%)}
+.zag-dugme span::before,.zag-dugme span::after{content:"";left:0}
+.zag-dugme span::before{top:-6px}.zag-dugme span::after{top:6px}
+.zag-otvoren .zag-dugme span{background:transparent}
+.zag-otvoren .zag-dugme span::before{transform:translateY(6px) rotate(45deg)}
+.zag-otvoren .zag-dugme span::after{transform:translateY(-6px) rotate(-45deg)}
+@media (max-width:1080px){
+  .zag-dugme{display:block}
+  .zag-desno .d-plavo{display:none}
+  .zag-nav{position:fixed;left:0;right:0;top:var(--zv,74px);bottom:0;flex-direction:column;gap:0;padding:18px 20px 40px;background:var(--papir);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .25s,transform .25s,visibility .25s}
+  .zag-otvoren .zag-nav{opacity:1;visibility:visible;transform:none}
+  .zag-otvoren{background:var(--papir)}
+  .zag-nav a{display:block;font-family:Fraunces,serif;font-size:30px;padding:14px 0;border-bottom:1px solid var(--crta)}
+  .zag-nav a::after{display:none}
+}
+
+/* vrh */
+.vrh{position:relative;padding:40px 0 90px;overflow:hidden}
+.vrh::before{content:"";position:absolute;right:-12%;top:-30%;width:70%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 40%,var(--led2),transparent 65%);z-index:-1}
+.vrh-u{display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center}
+.ocjena{text-decoration:none;display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--crta);border-radius:999px;padding:7px 14px 7px 8px;font-size:14px;color:var(--siva);margin-bottom:26px}
+.ocjena b{background:var(--noc);color:#fff;border-radius:999px;padding:3px 10px;font-size:13px}
+.zvj{color:#f5b400;letter-spacing:1px}
+.vrh h1{font-size:clamp(42px,5.6vw,74px);margin-bottom:22px}
+.vrh .uvod{margin-bottom:32px}
+.vrh-dugmad{display:flex;flex-wrap:wrap;gap:12px}
+.vrh-mali{display:flex;gap:22px;margin-top:34px;flex-wrap:wrap;font-size:14px;color:var(--siva)}
+.vrh-mali span{display:flex;align-items:center;gap:8px}
+.vrh-mali svg{color:var(--mint)}
+.vrh-slika{position:relative}
+.vrh-okvir{border-radius:200px 200px var(--r) var(--r);overflow:hidden;box-shadow:var(--sjena);aspect-ratio:4/5;max-height:560px;margin-left:auto}
+.vrh-okvir img{width:100%;height:100%;object-fit:cover}
+.kartica{position:absolute;background:#fff;border-radius:18px;box-shadow:var(--sjena);padding:14px 16px;font-size:14px}
+.k-termin{left:-36px;bottom:70px;display:flex;align-items:center;gap:12px}
+.k-termin i{width:40px;height:40px;border-radius:12px;background:var(--mint-s);color:#16967f;display:grid;place-items:center;font-style:normal}
+.k-termin small{display:block;color:var(--siva);font-size:12px}
+.k-termin b{color:var(--noc)}
+.k-cit{right:-18px;top:46px;max-width:230px;font-family:Fraunces,serif;font-style:italic;color:var(--noc);line-height:1.35}
+.k-cit small{display:block;font-family:Inter,sans-serif;font-style:normal;color:var(--siva);font-size:12px;margin-top:6px}
+
+/* traka */
+.traka{background:var(--noc);color:#fff}
+.traka-u{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding:34px 0}
+.traka b{display:block;font-family:Fraunces,serif;font-size:34px;font-weight:600;line-height:1.1}
+.traka span{font-size:14px;color:#b4c6de}
+
+/* sekcije */
+section{padding:110px 0}
+.glava{display:flex;justify-content:space-between;align-items:end;gap:40px;margin-bottom:50px;flex-wrap:wrap}
+.glava h2{margin-top:12px;max-width:16ch}
+.usluge{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.usluga{background:#fff;border:1px solid var(--crta);border-radius:var(--r);padding:26px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .3s ease,box-shadow .3s ease,border-color .3s}
+.usluga:hover{transform:translateY(-4px);box-shadow:var(--sjena);border-color:transparent}
+.usluga i{width:52px;height:52px;border-radius:16px;background:var(--led);color:var(--plava);display:grid;place-items:center;margin-bottom:6px}
+.usluga h3{font-size:22px}
+.usluga p{font-size:15px;color:var(--siva);flex:1}
+.usluga .cijena{font-size:14px;font-weight:600;color:var(--noc);border-top:1px dashed var(--crta);padding-top:12px;margin-top:4px}
+.usluga .cijena span{color:var(--siva);font-weight:500}
+
+/* doktor */
+.doktor{background:var(--led)}
+.doktor-u{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:center}
+.doktor-slike{position:relative;padding-bottom:60px}
+.doktor-slike .d1{border-radius:var(--r);overflow:hidden;box-shadow:var(--sjena);width:82%}
+.doktor-slike .d2{position:absolute;right:0;bottom:0;width:46%;border-radius:var(--r);overflow:hidden;border:6px solid var(--led);box-shadow:var(--sjena)}
+.doktor h2{margin:12px 0 20px}
+.doktor .uvod{margin-bottom:28px}
+.navod{border-left:3px solid var(--mint);padding:4px 0 4px 22px;font-family:Fraunces,serif;font-style:italic;font-size:22px;color:var(--noc);line-height:1.4;margin-bottom:30px}
+.navod small{display:block;font-family:Inter,sans-serif;font-style:normal;font-size:14px;color:var(--siva);margin-top:10px}
+.liste{display:grid;grid-template-columns:1fr 1fr;gap:12px 26px;list-style:none}
+.liste li{display:flex;gap:10px;font-size:15px;align-items:flex-start}
+.liste svg{flex:none;margin-top:4px;color:var(--plava)}
+
+/* djeca */
+.djeca-u{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+.djeca h2{margin:12px 0 20px}
+.djeca .uvod{margin-bottom:26px}
+.koraci{list-style:none;display:grid;gap:14px;counter-reset:k}
+.koraci li{counter-increment:k;display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--crta);border-radius:16px;padding:16px 18px}
+.koraci li::before{content:counter(k);flex:none;width:32px;height:32px;border-radius:50%;background:var(--mint-s);color:#16967f;font-weight:700;display:grid;place-items:center;font-size:14px}
+.koraci b{display:block;color:var(--noc)}
+.koraci span{font-size:15px;color:var(--siva)}
+.mozaik{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.mozaik figure{border-radius:var(--r);overflow:hidden;position:relative;box-shadow:var(--sjena)}
+.mozaik img{width:100%;height:100%;object-fit:cover}
+.mozaik .m1{grid-row:span 2}
+.mozaik figcaption{position:absolute;left:12px;bottom:12px;background:rgba(255,255,255,.92);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;color:var(--noc)}
+
+/* studenti */
+.studenti{padding:0 0 110px}
+.st-kartica{position:relative;overflow:hidden;background:linear-gradient(120deg,var(--plava) 0%,#1b4f92 60%,#123a6e 100%);color:#fff;border-radius:32px;padding:56px 60px;display:grid;grid-template-columns:auto 1fr auto;gap:46px;align-items:center}
+.st-kartica::after{content:"";position:absolute;right:-80px;top:-120px;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(53,201,174,.45),transparent 70%)}
+.st-broj{font-family:Fraunces,serif;font-size:110px;font-weight:600;line-height:.9;letter-spacing:-.04em}
+.st-broj small{display:block;font-family:Inter,sans-serif;font-size:14px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;opacity:.8;margin-bottom:8px}
+.st-kartica h2{color:#fff;font-size:clamp(28px,3vw,38px);margin-bottom:10px}
+.st-kartica p{color:#cfe0f5;max-width:46ch}
+.st-kartica .dugme{position:relative;z-index:1;background:#fff;color:var(--noc)}
+
+/* termin */
+.termin{background:var(--noc);color:#fff;position:relative;overflow:hidden}
+.termin::before{content:"";position:absolute;left:-200px;bottom:-260px;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle,rgba(36,102,176,.55),transparent 70%)}
+.termin-u{position:relative;display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+.termin h2{color:#fff;margin:12px 0 20px}
+.termin h2 em{color:var(--mint)}
+.termin .uvod{color:#b4c6de;margin-bottom:28px}
+.termin .oznaka{color:var(--mint)}
+.prednosti{list-style:none;display:grid;gap:14px}
+.prednosti li{display:flex;gap:12px;color:#dbe6f4;font-size:16px}
+.prednosti svg{flex:none;color:var(--mint);margin-top:3px}
+.forma{background:#fff;color:var(--tekst);border-radius:28px;padding:30px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.korak{margin-bottom:24px}
+.korak > b{display:block;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--siva);margin-bottom:10px}
+.cipovi{display:flex;flex-wrap:wrap;gap:8px}
+.cip{border:1.5px solid var(--crta);background:#fff;border-radius:999px;padding:9px 15px;font:inherit;font-size:14px;font-weight:500;cursor:pointer;color:var(--tekst);transition:all .2s}
+.cip:hover{border-color:var(--plava)}
+.cip[aria-pressed="true"]{background:var(--plava);border-color:var(--plava);color:#fff}
+.dani{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.dan{border:1.5px solid var(--crta);background:#fff;border-radius:14px;padding:10px 4px;text-align:center;cursor:pointer;font:inherit;color:var(--tekst);transition:all .2s}
+.dan small{display:block;font-size:12px;color:var(--siva);text-transform:uppercase;letter-spacing:.06em}
+.dan b{font-size:20px;font-family:Fraunces,serif}
+.dan:hover{border-color:var(--plava)}
+.dan[aria-pressed="true"]{background:var(--noc);border-color:var(--noc);color:#fff}
+.dan[aria-pressed="true"] small{color:#b4c6de}
+.sati{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sat{border:1.5px solid var(--crta);background:#fff;border-radius:10px;padding:9px 0;font:inherit;font-size:14px;font-weight:600;cursor:pointer;color:var(--tekst);transition:all .2s}
+.sat:hover:not(:disabled){border-color:var(--mint)}
+.sat:disabled{background:var(--led);color:#a9b6c6;text-decoration:line-through;cursor:not-allowed;border-color:transparent}
+.sat[aria-pressed="true"]{background:var(--mint);border-color:var(--mint);color:#fff}
+.polja{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.polja input{width:100%;border:1.5px solid var(--crta);border-radius:12px;padding:13px 14px;font:inherit;font-size:15px;color:var(--tekst)}
+.polja input:focus{outline:none;border-color:var(--plava)}
+.forma .dugme{width:100%;margin-top:16px}
+.napomena{font-size:13px;color:var(--siva);margin-top:12px;text-align:center}
+.potvrda{display:none;text-align:center;padding:30px 10px}
+.potvrda i{width:64px;height:64px;border-radius:50%;background:var(--mint-s);color:#16967f;display:grid;place-items:center;margin:0 auto 18px;font-style:normal}
+.potvrda h3{font-size:28px;margin-bottom:10px}
+.potvrda p{color:var(--siva);max-width:40ch;margin:0 auto 8px}
+.forma.poslano .unos{display:none}
+.forma.poslano .potvrda{display:block;animation:iskoci .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes iskoci{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+
+/* recenzije */
+.rec-u{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.rec{background:#fff;border:1px solid var(--crta);border-radius:var(--r);padding:30px;display:flex;flex-direction:column;gap:16px}
+.rec p{font-family:Fraunces,serif;font-size:19px;line-height:1.45;color:var(--noc);flex:1}
+.rec footer{display:flex;align-items:center;gap:12px;font-size:14px}
+.rec footer i{width:40px;height:40px;border-radius:50%;background:var(--led2);color:var(--plava);display:grid;place-items:center;font-style:normal;font-weight:700}
+.rec footer small{display:block;color:var(--siva)}
+.rec-ukupno{background:var(--plava);color:#fff;border:0;justify-content:center;align-items:flex-start}
+.rec-ukupno b{font-family:Fraunces,serif;font-size:80px;line-height:1;font-weight:600}
+.rec-ukupno .zvj{font-size:22px}
+.rec-ukupno span{color:#d4e4f7}
+.rec-ukupno a{color:#fff;font-weight:600}
+
+/* kontakt */
+.kontakt{background:var(--led);padding-bottom:90px}
+.kontakt-u{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.k-blok{background:#fff;border-radius:28px;padding:40px}
+.k-blok h2{margin:12px 0 26px}
+.k-red{display:flex;gap:16px;padding:16px 0;border-top:1px solid var(--crta);align-items:flex-start}
+.k-red i{flex:none;width:44px;height:44px;border-radius:14px;background:var(--led);color:var(--plava);display:grid;place-items:center;font-style:normal}
+.k-red small{display:block;color:var(--siva);font-size:13px}
+.k-red a,.k-red b{font-weight:600;color:var(--noc);text-decoration:none}
+.k-red a:hover{color:var(--plava)}
+.poruke{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.poruke a{flex:1;min-width:130px}
+.d-viber{background:#7360f2;color:#fff}
+.d-wa{background:#25d366;color:#08311a}
+.mapa{border-radius:28px;overflow:hidden;position:relative;min-height:420px;background:#e4edf6;text-decoration:none;display:block}
+.mapa svg.ulice{position:absolute;inset:0;width:100%;height:100%}
+.mapa .igla{position:absolute;left:50%;top:46%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.mapa .igla span{background:var(--noc);color:#fff;border-radius:12px;padding:8px 14px;font-weight:600;font-size:14px;white-space:nowrap;box-shadow:var(--sjena)}
+.mapa .igla i{width:22px;height:22px;border-radius:50%;background:var(--plava);border:5px solid #fff;box-shadow:0 0 0 8px rgba(36,102,176,.2)}
+.mapa .otvori{position:absolute;left:20px;right:20px;bottom:20px;background:#fff;border-radius:16px;padding:16px 18px;display:flex;justify-content:space-between;align-items:center;font-weight:600;color:var(--noc);box-shadow:var(--sjena)}
+
+/* podnozje */
+.pod{background:var(--noc);color:#b4c6de;padding:40px 0;font-size:14px}
+.pod-u{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.pod .znak b{color:#fff}
+.pod .znak small{color:#8fa6c4}
+.pod a{color:#fff}
+
+/* traka na telefonu */
+.dno{display:none}
+@media (max-width:720px){
+  .dno{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:40;gap:8px;transform:translateY(130%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .dno.vidi{transform:none}
+  .dno a{flex:1;padding:14px 10px;font-size:15px}
+  .pod{padding-bottom:100px}
+}
+
+/* pokret */
+.pk{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.8,.2,1)}
+.pk.vidi{opacity:1;transform:none}
+.bez-js .pk{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.pk{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* uski */
+@media (max-width:1080px){
+  .vrh-u,.doktor-u,.djeca-u,.termin-u{grid-template-columns:1fr;gap:50px}
+  .usluge{grid-template-columns:repeat(2,1fr)}
+  .rec-u{grid-template-columns:1fr 1fr}
+  .rec-ukupno{grid-column:span 2}
+  .st-kartica{grid-template-columns:auto 1fr;padding:44px}
+  .st-kartica .dugme{grid-column:span 2;justify-self:start}
+  .vrh-okvir{margin:0 auto;max-width:460px}
+  .k-termin{left:0}.k-cit{right:0}
+}
+@media (max-width:720px){
+  body{font-size:16px}
+  section{padding:76px 0}
+  .vrh{padding:18px 0 60px}
+  .vrh h1{font-size:40px}
+  .vrh-dugmad{display:grid;grid-template-columns:1fr}
+  .vrh-mali{gap:8px 18px;margin-top:24px}
+  .traka-u{grid-template-columns:1fr 1fr;gap:22px}
+  .traka b{font-size:28px}
+  .usluge{grid-template-columns:1fr}
+  .usluga{flex-direction:row;flex-wrap:wrap;gap:4px 14px;padding:20px}
+  .usluga i{margin:0}
+  .usluga h3{flex:1;align-self:center;font-size:20px}
+  .usluga p,.usluga .cijena{flex-basis:100%}
+  .liste{grid-template-columns:1fr}
+  .k-cit{display:none}
+  .k-termin{bottom:22px}
+  .st-kartica{grid-template-columns:1fr;padding:34px 26px;gap:20px;border-radius:24px}
+  .st-kartica .dugme{grid-column:auto}
+  .st-broj{font-size:84px}
+  .studenti{padding-bottom:76px}
+  .forma{padding:22px 18px;border-radius:22px}
+  .dani{grid-template-columns:repeat(3,1fr)}
+  .sati{grid-template-columns:repeat(4,1fr)}
+  .polja{grid-template-columns:1fr}
+  .rec-u{grid-template-columns:1fr}
+  .rec-ukupno{grid-column:auto}
+  .kontakt-u{grid-template-columns:1fr}
+  .k-blok{padding:28px 22px}
+  .mapa{min-height:300px}
+  .doktor-u{gap:30px}
+}
+</style>
+</head>
+<body>
+<script>document.body.classList.add('js')</script>
+<noscript><style>.pk{opacity:1;transform:none}</style></noscript>
+
+<header class="zag">
+  <div class="s zag-u">
+    <a class="znak" href="#vrh" aria-label="Moj osmijeh, na vrh">
+      <img src="/demo-moj-osmijeh/logo.webp" alt="" width="76" height="103">
+      <span><b>Moj osmijeh</b><small>Stomatološka ordinacija</small></span>
+    </a>
+    <ul class="zag-nav" id="meni">
+      <li><a href="#usluge">Usluge</a></li>
+      <li><a href="#doktor">Dr. Makić</a></li>
+      <li><a href="#djeca">Djeca</a></li>
+      <li><a href="#recenzije">Recenzije</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <div class="zag-desno">
+      <a class="dugme d-plavo" href="#termin">Zakažite termin</a>
+      <button class="zag-dugme" type="button" aria-controls="meni" aria-expanded="false" aria-label="Otvori meni"><span></span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<div class="vrh" id="vrh">
+  <div class="s vrh-u">
+    <div>
+      <a class="ocjena pk" href="#recenzije"><b>5,0</b><span class="zvj">★★★★★</span> 18 recenzija na Googleu</a>
+      <h1 class="pk">Osmijeh na koji ćete biti <em>ponosni.</em></h1>
+      <p class="uvod pk">Moderna stomatološka ordinacija u Bihaću, na čelu sa dr. Osmanom Makićem. Pregledi, plombe, krunice, izbjeljivanje i djeca koja odu bez straha.</p>
+      <div class="vrh-dugmad pk">
+        <a class="dugme d-plavo" href="#termin">Zakažite termin online
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="dugme d-svijetlo" href="tel:+38762395160">062 395 160</a>
+      </div>
+      <div class="vrh-mali pk">
+        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Jablanska 13, Bihać</span>
+        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Studenti do 50% popusta</span>
+        <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Viber i WhatsApp</span>
+      </div>
+    </div>
+    <div class="vrh-slika pk">
+      <div class="vrh-okvir"><img src="/demo-moj-osmijeh/ordinacija.webp" alt="Dr. Osman Makić sa pacijentom u ordinaciji Moj osmijeh" width="512" height="640" fetchpriority="high"></div>
+      <div class="kartica k-termin"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></i><span><small>Prvi slobodan termin</small><b id="prvi-termin">sutra, 10:30</b></span></div>
+      <div class="kartica k-cit">„Ovdje nema onog medicinskog mirisa, čisto i uredno.”<small>Nevzet R., Google</small></div>
+    </div>
+  </div>
+</div>
+
+<div class="traka">
+  <div class="s traka-u">
+    <div class="pk"><b>5,0 ★</b><span>prosječna ocjena na Googleu</span></div>
+    <div class="pk"><b>18 / 18</b><span>recenzija sa pet zvjezdica</span></div>
+    <div class="pk"><b>do 50%</b><span>popusta za studente</span></div>
+    <div class="pk"><b>[GODINA]</b><span>godina iskustva</span></div>
+  </div>
+</div>
+
+<section id="usluge">
+  <div class="s">
+    <div class="glava">
+      <div class="pk"><span class="oznaka">Usluge</span><h2>Sve za zdrave zube <em>na jednom mjestu.</em></h2></div>
+      <p class="uvod pk">Cijene su okvirne. Tačnu cijenu dobijete na pregledu, prije nego što išta počnemo.</p>
+    </div>
+    <div class="usluge">
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.3-4.3"/></svg></i><h3>Pregled i savjet</h3><p>Pregledamo zube, kažemo šta treba i koliko košta. Bez iznenađenja.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5c-2.2 0-3.5 1.8-3.5 4.3 0 3 1.2 4.4 1.8 7.4.5 2.7 1 5.3 2.3 5.3 1.6 0 1.3-5 4.4-5s2.8 5 4.4 5c1.3 0 1.8-2.6 2.3-5.3.6-3 1.8-4.4 1.8-7.4 0-2.5-1.3-4.3-3.5-4.3-2 0-2.9 1.2-5 1.2S9 3.5 7 3.5z"/><circle cx="12" cy="9.5" r="1.6" fill="currentColor"/></svg></i><h3>Bijele plombe</h3><p>Kompozitne plombe u boji Vašeg zuba. Ne vide se kad se nasmijete.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3.5c-2.2 0-3.5 1.8-3.5 4.3 0 3 1.2 4.4 1.8 7.4.5 2.7 1 5.3 2.3 5.3 1.6 0 1.3-5 4.4-5s2.8 5 4.4 5c1.3 0 1.8-2.6 2.3-5.3.6-3 1.8-4.4 1.8-7.4 0-2.5-1.3-4.3-3.5-4.3-2 0-2.9 1.2-5 1.2S9 3.5 7 3.5z"/><path d="M10 8v6M14 8v6"/></svg></i><h3>Liječenje kanala</h3><p>Spašavamo zub umjesto da ga vadimo, uz anesteziju koja stvarno djeluje.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l2-4h12l2 4"/><path d="M4 9h16v3c0 4-2 8-4 8-1.5 0-1.5-4-4-4s-2.5 4-4 4c-2 0-4-4-4-8z"/></svg></i><h3>Krunice i mostovi</h3><p>Metalokeramika i cirkon. Zubi koji izgledaju i rade kao Vaši.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg></i><h3>Izbjeljivanje</h3><p>Nekoliko nijansi bjelji osmijeh, za vjenčanje, slike ili samo za sebe.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l7-7"/><path d="M11 13l2-6 6-2-2 6z"/><path d="M15 4l5 5"/></svg></i><h3>Čišćenje kamenca</h3><p>Uklanjanje kamenca i poliranje. Preporuka je jednom do dva puta godišnje.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.4-7-10.2A4.8 4.8 0 0112 7a4.8 4.8 0 017 3.8C19 16.6 12 21 12 21z"/></svg></i><h3>Vađenje zuba</h3><p>Kad baš mora. Brzo, mirno i bez bola, sa uputama šta poslije.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+      <article class="usluga pk"><i><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="4"/><path d="M10.5 9.5c.8.7 2.2.7 3 0"/><path d="M5 21c.8-3.6 3.6-6 7-6s6.2 2.4 7 6"/></svg></i><h3>Dječija stomatologija</h3><p>Prvi pregled kao igra. Na kraju svako dijete dobije diplomu za hrabrost.</p><div class="cijena"><span>od</span> [CIJENA] KM</div></article>
+    </div>
+  </div>
+</section>
+
+<section class="doktor" id="doktor">
+  <div class="s doktor-u">
+    <div class="doktor-slike pk">
+      <div class="d1"><img src="/demo-moj-osmijeh/doktor.webp" alt="Dr. Osman Makić sa nasmijanom pacijenticom" width="490" height="530" loading="lazy"></div>
+      <div class="d2"><img src="/demo-moj-osmijeh/mantil.webp" alt="Mantil ordinacije Moj osmijeh" width="488" height="530" loading="lazy"></div>
+    </div>
+    <div>
+      <span class="oznaka pk">Ko Vas dočeka</span>
+      <h2 class="pk">Dr. Osman <em>Makić</em></h2>
+      <p class="uvod pk">Ordinaciju Moj osmijeh vodi dr. Osman Makić. Kod nas Vas ne liječi „neko iz smjene”, nego isti doktor koji Vas pregleda, objasni plan i javi se kad treba na kontrolu.</p>
+      <blockquote class="navod pk">„Dr. Makić je prijatan i pouzdan te izuzetno srdačan u svom poslu.”<small>Samir C., recenzija na Googleu</small></blockquote>
+      <ul class="liste pk">
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Doktor stomatologije, [FAKULTET]</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Plan i cijena prije početka rada</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Moderna oprema i sterilizacija</li>
+        <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Pristup za invalidska kolica</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="djeca" id="djeca">
+  <div class="s djeca-u">
+    <div>
+      <span class="oznaka pk">Za najmlađe</span>
+      <h2 class="pk">Pobijedi strah, <em>ponesi diplomu.</em></h2>
+      <p class="uvod pk">Djeca kod nas ne dolaze „kod zubara”. Dolaze po diplomu za hrabrost, sa svojim imenom i datumom, koju ponosno nose kući.</p>
+      <ol class="koraci pk">
+        <li><span><b>Upoznavanje bez bušilice</b>Prvo sjednu u stolicu, pogledaju ogledalce i lampu. Ništa ne boli.</span></li>
+        <li><span><b>Kratko i nježno</b>Popravimo šta treba, polako i uz objašnjenje šta radimo.</span></li>
+        <li><span><b>Diploma za hrabrost</b>Na kraju dijete dobije diplomu sa svojim imenom. Zasluženo.</span></li>
+      </ol>
+    </div>
+    <div class="mozaik pk">
+      <figure class="m1"><img src="/demo-moj-osmijeh/diploma.webp" alt="Djevojčica sa diplomom za hrabrost iz ordinacije Moj osmijeh" width="640" height="640" loading="lazy"><figcaption>Diploma za hrabrost</figcaption></figure>
+      <figure><img src="/demo-moj-osmijeh/hrabrost.webp" alt="Dr. Makić pregleda djevojčicu" width="470" height="540" loading="lazy"></figure>
+      <figure><img src="/demo-moj-osmijeh/djevojcica.webp" alt="Nasmijana djevojčica u stolici kod dr. Makića" width="360" height="640" loading="lazy" style="object-position:center 30%"></figure>
+    </div>
+  </div>
+</section>
+
+<div class="studenti">
+  <div class="s">
+    <div class="st-kartica pk">
+      <div class="st-broj"><small>Studentski popust</small>50%</div>
+      <div><h2>Studenti štede do pola cijene.</h2><p>Pokažite indeks ili potvrdu o upisu i dobijete popust od [20 do 50%] na [USLUGE]. Zdravi zubi ne smiju čekati kraj studija.</p></div>
+      <a class="dugme" href="#termin">Zakažite sa popustom</a>
+    </div>
+  </div>
+</div>
+
+<section class="termin" id="termin">
+  <div class="s termin-u">
+    <div>
+      <span class="oznaka pk">Zakazivanje</span>
+      <h2 class="pk">Termin za minut, <em>i u ponoć.</em></h2>
+      <p class="uvod pk">Izaberite uslugu, dan i sat. Doktor dobije zahtjev na telefon i potvrdi ga, a Vi dan prije dobijete podsjetnik da ne zaboravite.</p>
+      <ul class="prednosti pk">
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Vidite samo slobodne termine, bez zvanja i čekanja</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Podsjetnik dan prije, na Viber ili SMS</li>
+        <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>Manje propuštenih termina, manje poziva usred rada</li>
+      </ul>
+    </div>
+    <form class="forma pk" id="forma" novalidate>
+      <div class="unos">
+        <div class="korak"><b>1. Usluga</b>
+          <div class="cipovi" id="usluge-izbor">
+            <button type="button" class="cip" aria-pressed="true">Pregled</button>
+            <button type="button" class="cip" aria-pressed="false">Plomba</button>
+            <button type="button" class="cip" aria-pressed="false">Čišćenje kamenca</button>
+            <button type="button" class="cip" aria-pressed="false">Izbjeljivanje</button>
+            <button type="button" class="cip" aria-pressed="false">Dijete</button>
+            <button type="button" class="cip" aria-pressed="false">Bol, hitno</button>
+          </div>
+        </div>
+        <div class="korak"><b>2. Dan</b><div class="dani" id="dani"></div></div>
+        <div class="korak"><b>3. Slobodni termini</b><div class="sati" id="sati"></div></div>
+        <div class="korak" style="margin-bottom:0"><b>4. Vaši podaci</b>
+          <div class="polja">
+            <input type="text" placeholder="Ime i prezime" aria-label="Ime i prezime" autocomplete="name">
+            <input type="tel" placeholder="Broj telefona" aria-label="Broj telefona" autocomplete="tel">
+          </div>
+        </div>
+        <button class="dugme d-plavo" type="submit" id="posalji">Zakaži termin</button>
+        <p class="napomena">Ovo je skica: ništa se ne šalje.</p>
+      </div>
+      <div class="potvrda" aria-live="polite">
+        <i><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></i>
+        <h3>Termin je rezervisan</h3>
+        <p id="potvrda-tekst"></p>
+        <p>Na pravom sajtu ordinacija bi sada dobila poruku, a Vi podsjetnik dan prije.</p>
+        <button type="button" class="dugme d-svijetlo" id="ponovo" style="margin-top:14px;width:auto">Probaj ponovo</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<section id="recenzije">
+  <div class="s">
+    <div class="glava">
+      <div class="pk"><span class="oznaka">Recenzije</span><h2>Pacijenti pišu <em>umjesto nas.</em></h2></div>
+    </div>
+    <div class="rec-u">
+      <div class="rec rec-ukupno pk"><b>5,0</b><span class="zvj">★★★★★</span><span>Prosjek svih 18 recenzija na Googleu.</span><a href="https://www.google.com/maps/search/?api=1&query=Stomatolo%C5%A1ka+ordinacija+Moj+osmijeh+Biha%C4%87" target="_blank" rel="noopener">Pročitajte sve na Googleu</a></div>
+      <article class="rec pk"><span class="zvj">★★★★★</span><p>„Najbolja stomatološka ordinacija. Profesionalno i odgovorno. Znate onaj osjećaj kad odete kod stomatologa i osjetite onaj medicinski miris, ovdje toga nema, definitivno čisto i uredno.”</p><footer><i>N</i><span><b>Nevzet R.</b><small>Google recenzija</small></span></footer></article>
+      <article class="rec pk"><span class="zvj">★★★★★</span><p>„Usluga za svaku pohvalu i preporuku. Dr. Makić je prijatan i pouzdan te izuzetno srdačan u svom poslu. Moj osmijeh je ljepši nakon posjete ordinaciji.”</p><footer><i>S</i><span><b>Samir C.</b><small>Google recenzija</small></span></footer></article>
+    </div>
+  </div>
+</section>
+
+<section class="kontakt" id="kontakt">
+  <div class="s kontakt-u">
+    <div class="k-blok pk">
+      <span class="oznaka">Kontakt</span>
+      <h2>Vidimo se u <em>Jablanskoj.</em></h2>
+      <div class="k-red"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0114 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><span><small>Adresa</small><b>Jablanska 13, 77000 Bihać</b></span></div>
+      <div class="k-red"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2"/></svg></i><span><small>Telefon</small><a href="tel:+38762395160">062 395 160</a></span></div>
+      <div class="k-red"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></i><span><small>Radno vrijeme</small><b>[RADNO VRIJEME]</b></span></div>
+      <div class="k-red"><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r=".8" fill="currentColor"/></svg></i><span><small>Instagram</small><a href="https://www.instagram.com/mojosmijeh.ord/" target="_blank" rel="noopener">@mojosmijeh.ord</a></span></div>
+      <div class="poruke">
+        <a class="dugme d-viber" href="viber://chat?number=%2B38762395160">Viber</a>
+        <a class="dugme d-wa" href="https://wa.me/38762395160" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <a class="mapa pk" href="https://www.google.com/maps/search/?api=1&query=Jablanska+13+Biha%C4%87" target="_blank" rel="noopener" aria-label="Otvori Jablansku 13 u Google mapama">
+      <svg class="ulice" viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="600" height="460" fill="#e4edf6"/>
+        <path d="M-20 330 C120 300 200 360 330 320 S520 250 640 280" stroke="#bcd3ea" stroke-width="38" fill="none"/>
+        <path d="M-20 330 C120 300 200 360 330 320 S520 250 640 280" stroke="#a9c7e6" stroke-width="2" fill="none" stroke-dasharray="6 8"/>
+        <g stroke="#fff" stroke-linecap="round" fill="none">
+          <path d="M40 -10 L120 470" stroke-width="14"/><path d="M-10 120 L620 190" stroke-width="16"/>
+          <path d="M300 -10 L280 470" stroke-width="12"/><path d="M450 -10 L520 470" stroke-width="10"/>
+          <path d="M-10 230 L620 250" stroke-width="9"/><path d="M180 -10 C200 120 160 220 210 470" stroke-width="7"/>
+        </g>
+        <g fill="#d3e2f1"><rect x="140" y="140" width="110" height="70" rx="8"/><rect x="320" y="140" width="110" height="80" rx="8"/><rect x="330" y="20" width="90" height="80" rx="8"/><rect x="60" y="20" width="90" height="80" rx="8"/><rect x="470" y="200" width="100" height="40" rx="8"/></g>
+      </svg>
+      <span class="igla"><span>Moj osmijeh</span><i></i></span>
+      <span class="otvori">Otvori u Google mapama <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M7 17L17 7M9 7h8v8"/></svg></span>
+    </a>
+  </div>
+</section>
+</main>
+
+<footer class="pod">
+  <div class="s pod-u">
+    <span class="znak"><img src="/demo-moj-osmijeh/logo.webp" alt="" width="76" height="103"><span><b>Moj osmijeh</b><small>dr. Osman Makić · Bihać</small></span></span>
+    <p>Jablanska 13, Bihać · <a href="tel:+38762395160">062 395 160</a></p>
+    <p style="opacity:.7">Skica sajta: Hunar</p>
+  </div>
+</footer>
+
+<div class="dno" id="dno">
+  <a class="dugme d-svijetlo" href="tel:+38762395160">Pozovite</a>
+  <a class="dugme d-plavo" href="#termin">Zakažite termin</a>
+</div>
+
+<script>
+(function(){
+var z=document.querySelector('.zag'),d=z.querySelector('.zag-dugme'),n=document.getElementById('meni');
+function postavi(o){z.style.setProperty('--zv',z.offsetHeight+'px');z.classList.toggle('zag-otvoren',o);document.documentElement.classList.toggle('zag-zakljucan',o);d.setAttribute('aria-expanded',o?'true':'false');d.setAttribute('aria-label',o?'Zatvori meni':'Otvori meni');}
+function otvoren(){return z.classList.contains('zag-otvoren');}
+d.addEventListener('click',function(){postavi(!otvoren());});
+n.addEventListener('click',function(e){if(e.target.closest('a'))postavi(false);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&otvoren()){postavi(false);d.focus();}});
+matchMedia('(min-width:1081px)').addEventListener('change',function(m){if(m.matches)postavi(false);});
+var dno=document.getElementById('dno');
+function skrol(){z.classList.toggle('zag-skrol',scrollY>8);dno.classList.toggle('vidi',scrollY>520);}
+addEventListener('scroll',skrol,{passive:true});skrol();
+var veze=[].slice.call(n.querySelectorAll('a[href^="#"]'));
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(u){u.forEach(function(x){if(!x.isIntersecting)return;veze.forEach(function(a){var da=a.getAttribute('href')==='#'+x.target.id;a.classList.toggle('aktivan',da);if(da)a.setAttribute('aria-current','true');else a.removeAttribute('aria-current');});});},{rootMargin:'-45% 0px -50% 0px'});
+veze.forEach(function(a){var t=document.getElementById(a.getAttribute('href').slice(1));if(t)io.observe(t);});}
+
+/* pojavljivanje */
+var pk=[].slice.call(document.querySelectorAll('.pk'));
+if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  var po=new IntersectionObserver(function(u){u.forEach(function(x){if(x.isIntersecting){var el=x.target,sus=[].slice.call(el.parentNode.children).filter(function(c){return c.classList.contains('pk');});el.style.transitionDelay=Math.min(sus.indexOf(el),6)*70+'ms';el.classList.add('vidi');po.unobserve(el);}});},{rootMargin:'0px 0px -8% 0px'});
+  pk.forEach(function(el){po.observe(el);});
+}else pk.forEach(function(el){el.classList.add('vidi');});
+
+/* zakazivanje */
+var DANI=['ned','pon','uto','sri','čet','pet','sub'],MJ=['januara','februara','marta','aprila','maja','juna','jula','augusta','septembra','oktobra','novembra','decembra'];
+var SATI=['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','12:00','13:00','13:30','14:00','14:30','15:00','15:30'];
+var daniEl=document.getElementById('dani'),satiEl=document.getElementById('sati'),dani=[],t=new Date();t.setHours(0,0,0,0);
+for(var i=1;dani.length<6;i++){var x=new Date(t);x.setDate(t.getDate()+i);if(x.getDay()!==0)dani.push(x);}
+function zauzet(dan,s){var h=(dan.getDate()*31+dan.getMonth()*7+s*13)%10;return h<4;}
+var izabranDan=0,izabranSat=null;
+function crtajSate(){satiEl.innerHTML='';izabranSat=null;var dan=dani[izabranDan],sub=dan.getDay()===6;
+  SATI.forEach(function(s,j){if(sub&&j>8)return;var b=document.createElement('button');b.type='button';b.className='sat';b.textContent=s;b.setAttribute('aria-pressed','false');
+    if(zauzet(dan,j)){b.disabled=true;b.setAttribute('aria-label',s+', zauzeto');}
+    b.addEventListener('click',function(){[].forEach.call(satiEl.children,function(c){c.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');izabranSat=s;});
+    satiEl.appendChild(b);});}
+dani.forEach(function(dan,k){var b=document.createElement('button');b.type='button';b.className='dan';b.setAttribute('aria-pressed',k===0?'true':'false');
+  b.innerHTML='<small>'+DANI[dan.getDay()]+'</small><b>'+dan.getDate()+'.</b>';
+  b.addEventListener('click',function(){[].forEach.call(daniEl.children,function(c){c.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');izabranDan=k;crtajSate();});
+  daniEl.appendChild(b);});
+crtajSate();
+(function(){for(var j=0;j<SATI.length;j++)if(!zauzet(dani[0],j)){document.getElementById('prvi-termin').textContent=(dani[0].getDay()===6?'subota':'sutra')+', '+SATI[j];return;}})();
+var cipovi=document.getElementById('usluge-izbor');
+cipovi.addEventListener('click',function(e){var b=e.target.closest('.cip');if(!b)return;[].forEach.call(cipovi.children,function(c){c.setAttribute('aria-pressed','false');});b.setAttribute('aria-pressed','true');});
+var forma=document.getElementById('forma');
+forma.addEventListener('submit',function(e){e.preventDefault();
+  if(!izabranSat){var prvi=satiEl.querySelector('.sat:not(:disabled)');if(prvi)prvi.click();}
+  var dan=dani[izabranDan],usl=cipovi.querySelector('[aria-pressed="true"]').textContent,ime=forma.querySelector('input').value.trim();
+  document.getElementById('potvrda-tekst').textContent=(ime?ime+', ':'')+usl.toLowerCase()+' kod dr. Makića, '+DANI[dan.getDay()]+' '+dan.getDate()+'. '+MJ[dan.getMonth()]+' u '+izabranSat+'.';
+  forma.classList.add('poslano');});
+document.getElementById('ponovo').addEventListener('click',function(){forma.classList.remove('poslano');});
+})();
+</script>
+</body>
+</html>
