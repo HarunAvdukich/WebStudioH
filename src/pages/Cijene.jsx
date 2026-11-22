@@ -15,7 +15,10 @@ function Kartica({ k, i, okreni, bilo, rok }) {
       <button type="button" className={`fk${okrenuta ? ' je-okrenuta' : ''}`} aria-pressed={okrenuta} onClick={() => setOkrenuta((o) => !o)}>
         <span className="fk__in">
           <span className="fk__s fk__s--pr">
-            <span className="fk__br">{String(i + 1).padStart(2, '0')}</span>
+            <span className="fk__br">
+              {String(i + 1).padStart(2, '0')}
+              {k.paket && <span className="fk__paket">{k.paket}</span>}
+            </span>
             <b>{k.ime}</b>
             {k.cijena && (
               <span className={`fk__cijena${k.cijena.bilo ? '' : ' fk__cijena--dogovor'}`}>
@@ -87,6 +90,29 @@ export default function Cijene({ t }) {
           </div>
         </div>
       </section>
+
+      {t.plus && (
+        <section className="st-dio ci-plus">
+          <div className="st-sirina">
+            <DioNaslov nad={t.plus.nad} naslov={t.plus.naslov} uvod={t.plus.uvod} />
+            <div className="ci-plus__lista">
+              {t.plus.paketi.map((p, i) => (
+                <article key={p.ime} className="ci-plus__kartica" data-pokret="pojavi" style={{ '--i': i }}>
+                  <span className="ci-plus__oznaka">{t.plus.oznaka}</span>
+                  <h3>{p.ime}</h3>
+                  <strong className="ci-plus__cijena">{p.cijena}</strong>
+                  <p className="ci-plus__sve">{t.plus.sve}</p>
+                  <ul>
+                    {p.stavke.map((x) => (
+                      <li key={x}>{x}</li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <section className="st-dio ci-odrzavanje">
         <div className="st-sirina ci-odrzavanje__in">

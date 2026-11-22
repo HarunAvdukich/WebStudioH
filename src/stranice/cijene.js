@@ -17,7 +17,7 @@ export const seo = {
 export const vrh = {
   nad: 'Cijene',
   naslov: 'Cijena izrade web stranice i web shopa.',
-  uvod: 'Web stranica od 399 KM, web shop od 899 KM i online zakazivanje od 499 KM. Kad pošaljete tekst i slike, stranicu dobijete gotovu za 2 dana. Veće trgovine, OLX veza i sistemi po mjeri su po dogovoru.',
+  uvod: 'Web stranica od 399 KM, web shop od 899 KM i online zakazivanje od 499 KM. Kad pošaljete tekst i slike, stranicu dobijete gotovu za 2 dana. Za svaku postoji i jači paket Plus. Veće trgovine, OLX veza i sistemi po mjeri su po dogovoru.',
 }
 
 // Veliki trenutak "Razgovor": primjer, ne prepiska sa stvarnim klijentom.
@@ -53,11 +53,25 @@ export const narudzba = {
   rok: 'gotovo za 2 dana',
   okreni: 'Pogledajte šta dobijate',
   kartice: [
-    { ime: 'Web stranica', cijena: { od: 'od 399 KM', bilo: '669 KM' }, opis: 'Za firme i udruženja kojima treba uredna i brza stranica: dizajn po mjeri, za telefon i računar, kontakt, mapa i poruke na WhatsApp, osnovni SEO. Može i redizajn postojeće.' },
-    { ime: 'Web shop', cijena: { od: 'od 899 KM', bilo: '1.499 KM' }, opis: 'Za prodavnice koje hoće prodavati online: katalog, korpa, pouzeće i uplata na račun. Narudžbe stižu i kad ste zatvoreni.' },
-    { ime: 'Online zakazivanje', cijena: { od: 'od 499 KM', bilo: '829 KM' }, opis: 'Za salone, berbernice i ordinacije: klijenti sami zakazuju termin, 0 do 24, a Vi imate manje poziva.' },
+    { ime: 'Web stranica', paket: 'Osnovno', cijena: { od: 'od 399 KM', bilo: '669 KM' }, opis: 'Za firme i udruženja kojima treba uredna i brza stranica: dizajn po mjeri, za telefon i računar, kontakt, mapa i poruke na WhatsApp, osnovni SEO. Može i redizajn postojeće.' },
+    { ime: 'Web shop', paket: 'Osnovno', cijena: { od: 'od 899 KM', bilo: '1.499 KM' }, opis: 'Za prodavnice koje hoće prodavati online: katalog, korpa, pouzeće i uplata na račun. Narudžbe stižu i kad ste zatvoreni.' },
+    { ime: 'Online zakazivanje', paket: 'Osnovno', cijena: { od: 'od 499 KM', bilo: '829 KM' }, opis: 'Za salone, berbernice i ordinacije: klijenti sami zakazuju termin, 0 do 24, a Vi imate manje poziva.' },
     { ime: 'Trgovina sa bh. vezama', cijena: { od: 'po dogovoru' }, opis: 'Sve iz web shopa, plus OLX koji se sam ažurira, feed za Ananas i uvoz od dobavljača. Po potrebi i B2B portal.' },
     { ime: 'Sistem po mjeri', cijena: { od: 'po dogovoru' }, opis: 'AI chatbot, mobilna aplikacija ili B2B portal za Vaš način rada.' },
+  ],
+}
+
+// Jači paket za svaku uslugu (odluka vlasnika 22. 11. 2026): osnovno se reklamira, Plus stoji pored.
+export const plus = {
+  nad: 'Paket Plus',
+  naslov: 'Kad Vam treba više, tu je Plus.',
+  uvod: 'Svaka usluga ima i jači paket. Dobijete sve iz osnovnog paketa, i dosta više uz to.',
+  oznaka: 'Plus',
+  sve: 'Sve iz osnovnog, i:',
+  paketi: [
+    { ime: 'Web stranica Plus', cijena: 'od 799 KM', stavke: ['više stranica, galerija i novosti', 'prevod na engleski ili njemački, za dijasporu i strane kupce', 'podešen Google profil, jači SEO i statistika posjeta', 'domen i hosting prvu godinu', '3 mjeseca održavanja'] },
+    { ime: 'Web shop Plus', cijena: 'od 1.799 KM', stavke: ['OLX koji se sam ažurira i feed za Ananas', 'uvoz artikala od dobavljača', 'plaćanje karticom, kad imate ugovor sa bankom', 'artikle unosimo mi', 'kuponi i akcije', 'obavijest o narudžbi na Viber ili WhatsApp', 'domen i hosting prvu godinu, 3 mjeseca održavanja'] },
+    { ime: 'Online zakazivanje Plus', cijena: 'od 999 KM', stavke: ['više radnika i stolica', 'podsjetnik klijentu dan ranije', 'akontacija i poklon-bonovi', 'statistika termina za vlasnika', 'web stranica salona uz zakazivanje'] },
   ],
 }
 
@@ -73,6 +87,7 @@ export const pitanja = {
   naslov: 'Šta nas najčešće pitaju.',
   lista: [
     { p: 'Šta ulazi u cijenu od 399 KM?', o: 'Stranica po mjeri za telefon i računar, kontakt, mapa i poruke na WhatsApp, uz besplatnu skicu unaprijed. Ako Vam treba više, kažemo cijenu prije nego počnemo, bez skrivenih troškova.' },
+    { p: 'Šta je paket Plus?', o: 'Jači paket za svaku uslugu: sve iz osnovnog, plus prevod, više stranica, OLX veza, podsjetnici, domen i hosting prvu godinu i 3 mjeseca održavanja, zavisno od usluge. Web stranica Plus je od 799 KM, web shop Plus od 1.799 KM, a zakazivanje Plus od 999 KM.' },
     { p: 'Koliko traje izrada?', o: 'Stranica, web shop ili zakazivanje dobijete gotove za 2 dana od kad pošaljete tekst i slike. Trgovina sa OLX vezom i uvozom od dobavljača traje duže, a rok stoji u ponudi.' },
     { p: 'Da li je stranica moja?', o: 'Da. Stranica i materijali su Vaši.' },
     { p: 'Mogu li sam mijenjati sadržaj?', o: 'Da. Tekst, slike i artikle mijenjate sami, a uz predaju dobijete kratku obuku.' },

@@ -87,3 +87,16 @@ test('o hunaru: bez broja ljudi i bez "jednog čovjeka"', async () => {
     assert.doesNotMatch(JSON.stringify(t), /jednog (čovjeka|majstora)|jedan majstor|one-person|one person|solo/i)
   }
 })
+
+test('cijene: uz osnovne pakete stoji Plus za svaku uslugu', async () => {
+  for (const t of [await import('../src/stranice/cijene.js'), await import('../src/stranice/cijene.en.js')]) {
+    const osnovni = t.narudzba.kartice.filter((k) => k.paket)
+    assert.equal(osnovni.length, 3, t.put)
+    assert.equal(t.plus.paketi.length, 3, t.put)
+    for (const p of t.plus.paketi) {
+      assert.match(p.ime, /Plus$/)
+      assert.match(p.cijena, /\d KM$/)
+      assert.ok(p.stavke.length >= 4, p.ime)
+    }
+  }
+})
