@@ -16,7 +16,7 @@ export const seo = {
 export const vrh = {
   nad: 'Pricing',
   naslov: 'Clear starting prices. Ready in days, not months.',
-  uvod: 'A website from 399 KM, an online store from 899 KM and online booking from 499 KM (1 EUR is about 1.96 KM). Once you send the text and photos, you get it ready in 2 days. Larger stores, marketplace links and custom systems are quoted for the job.',
+  uvod: 'A website from 399 KM, an online store from 899 KM and online booking from 499 KM (1 EUR is about 1.96 KM). Once you send the text and photos, you get it ready in 2 days. Each one also comes as a stronger Plus package. Larger stores, marketplace links and custom systems are quoted for the job.',
 }
 
 export const razgovor = {
@@ -51,11 +51,24 @@ export const narudzba = {
   rok: 'ready in 2 days',
   okreni: 'See what you get',
   kartice: [
-    { ime: 'Website', cijena: { od: 'from 399 KM', bilo: '669 KM' }, opis: 'For companies and associations that need a clean, fast website: custom design, for phone and desktop, contact, map and WhatsApp messages, basic SEO. A redesign of your current site works too.' },
-    { ime: 'Online store', cijena: { od: 'from 899 KM', bilo: '1,499 KM' }, opis: 'For retailers who want to sell online: catalogue, cart, cash on delivery and bank transfer. Orders come in even when you are closed.' },
-    { ime: 'Online booking', cijena: { od: 'from 499 KM', bilo: '829 KM' }, opis: 'For salons, barbers and clinics: clients book a slot themselves, around the clock, and you get fewer calls.' },
+    { ime: 'Website', paket: 'Basic', cijena: { od: 'from 399 KM', bilo: '669 KM' }, opis: 'For companies and associations that need a clean, fast website: custom design, for phone and desktop, contact, map and WhatsApp messages, basic SEO. A redesign of your current site works too.' },
+    { ime: 'Online store', paket: 'Basic', cijena: { od: 'from 899 KM', bilo: '1,499 KM' }, opis: 'For retailers who want to sell online: catalogue, cart, cash on delivery and bank transfer. Orders come in even when you are closed.' },
+    { ime: 'Online booking', paket: 'Basic', cijena: { od: 'from 499 KM', bilo: '829 KM' }, opis: 'For salons, barbers and clinics: clients book a slot themselves, around the clock, and you get fewer calls.' },
     { ime: 'Store with marketplace links', cijena: { od: 'quoted' }, opis: 'Everything in the online store, plus OLX listings that update themselves, a feed for Ananas and supplier import. A B2B portal if you need one.' },
     { ime: 'Custom system', cijena: { od: 'quoted' }, opis: 'An AI chatbot, a mobile app or a B2B portal built around how you work.' },
+  ],
+}
+
+export const plus = {
+  nad: 'Plus package',
+  naslov: 'When you need more, there is Plus.',
+  uvod: 'Every service also comes as a stronger package. You get everything in the basic package, and a lot more on top.',
+  oznaka: 'Plus',
+  sve: 'Everything in basic, and:',
+  paketi: [
+    { ime: 'Website Plus', cijena: 'from 799 KM', stavke: ['more pages, a gallery and news', 'an English or German version, for the diaspora and foreign buyers', 'a set up Google profile, stronger SEO and visitor statistics', 'domain and hosting for the first year', '3 months of maintenance'] },
+    { ime: 'Online store Plus', cijena: 'from 1,799 KM', stavke: ['OLX listings that update themselves and a feed for Ananas', 'product import from suppliers', 'card payments, once you have a contract with a bank', 'we enter the products for you', 'coupons and sales', 'order alerts on Viber or WhatsApp', 'domain and hosting for the first year, 3 months of maintenance'] },
+    { ime: 'Online booking Plus', cijena: 'from 999 KM', stavke: ['more staff and chairs', 'a reminder to the client a day before', 'deposits and gift vouchers', 'booking statistics for the owner', 'a salon website along with booking'] },
   ],
 }
 
@@ -71,6 +84,7 @@ export const pitanja = {
   naslov: 'What people ask us most.',
   lista: [
     { p: 'What does the 399 KM website include?', o: 'A custom website for phone and desktop, contact, map and WhatsApp messages, with a free sketch first. If you need more, we tell you the price before we start, with no hidden costs.' },
+    { p: 'What is the Plus package?', o: 'A stronger package for each service: everything in basic, plus a second language, more pages, OLX links, reminders, domain and hosting for the first year and 3 months of maintenance, depending on the service. Website Plus is from 799 KM, online store Plus from 1,799 KM and booking Plus from 999 KM.' },
     { p: 'How long does it take?', o: 'A website, an online store or booking is ready in 2 days after you send the text and photos. A store with marketplace links and supplier import takes longer, and the deadline is in the quote.' },
     { p: 'Is the website mine?', o: 'Yes. The website and the materials are yours.' },
     { p: 'Can I change the content myself?', o: 'Yes. You edit text, images and products yourself, and you get a short training at handover.' },

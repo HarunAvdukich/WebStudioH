@@ -86,6 +86,21 @@
 .ci-akcija { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: -8px 0 24px; font-size: 17px; line-height: 1.5; color: var(--siva); }
 .ci-akcija b { padding: 3px 12px; border-radius: 999px; background: var(--mint); color: var(--zelena); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
 
+.fk__br { display: flex; align-items: center; gap: 10px; }
+.fk__paket { padding: 3px 10px; border-radius: 999px; border: 1px solid var(--linija); font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: var(--siva); }
+
+/* ---------- paket Plus ---------- */
+.ci-plus__lista { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+@media (min-width: 900px) { .ci-plus__lista { grid-template-columns: repeat(3, 1fr); } }
+.ci-plus__kartica { display: flex; flex-direction: column; padding: 28px 26px; border-radius: 26px; background: var(--mint); color: var(--zelena); }
+.ci-plus__oznaka { align-self: flex-start; padding: 3px 12px; border-radius: 999px; background: var(--zelena); color: var(--mint); font-size: 13px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.ci-plus__kartica h3 { margin: 16px 0 0; font-size: 24px; line-height: 1.1; letter-spacing: -0.02em; }
+.ci-plus__cijena { margin-top: 10px; font-size: 30px; line-height: 1; font-weight: 800; letter-spacing: -0.02em; }
+.ci-plus__sve { margin: 18px 0 8px; font-size: 15px; font-weight: 700; }
+.ci-plus__kartica ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.45; }
+.ci-plus__kartica li { position: relative; padding-left: 26px; }
+.ci-plus__kartica li::before { content: ''; position: absolute; left: 2px; top: 5px; width: 12px; height: 7px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; transform: rotate(-45deg); }
+
 /* ---------- održavanje i pitanja ---------- */
 .ci-odrzavanje { background: var(--zelena-dublja); }
 .ci-odrzavanje__in { display: grid; gap: 40px; align-items: center; }
