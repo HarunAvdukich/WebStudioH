@@ -72,8 +72,6 @@ export default function Cijene({ t }) {
       />
       <Vrh nad={t.vrh.nad} naslov={t.vrh.naslov} uvod={t.vrh.uvod} />
 
-      <Razgovor t={t.razgovor} />
-
       <section className="st-dio ci-narudzba">
         <div className="st-sirina">
           <DioNaslov nad={t.narudzba.nad} naslov={t.narudzba.naslov} />
@@ -113,6 +111,8 @@ export default function Cijene({ t }) {
           </div>
         </section>
       )}
+
+      <Razgovor t={t.razgovor} />
 
       <section className="st-dio ci-odrzavanje">
         <div className="st-sirina ci-odrzavanje__in">
