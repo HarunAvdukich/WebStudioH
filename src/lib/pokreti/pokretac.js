@@ -21,9 +21,10 @@ function razbijNaRijeci(el, maska = true) {
   const rijeci = []
   for (const cvor of cvorovi) {
     const frag = document.createDocumentFragment()
-    for (const dio of cvor.textContent.split(/(\s+)/)) {
+    // Tvrdi razmak (nbsp) ostaje unutar riječi, da se "2 dana" ne razdvoji.
+    for (const dio of cvor.textContent.split(/([ \t\n\r]+)/)) {
       if (!dio) continue
-      if (/^\s+$/.test(dio)) {
+      if (/^[ \t\n\r]+$/.test(dio)) {
         frag.append(dio)
         continue
       }
