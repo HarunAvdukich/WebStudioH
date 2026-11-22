@@ -42,7 +42,8 @@ for (const ime of STRANICE) {
   })
 
   test(`${ime}: svaka velika brojka ima datum`, () => {
-    const brojka = /\d[.,]\d{3}\b/
+    // Cijene u KM nisu mjerenja, pa ne traže datum.
+    const brojka = /\d[.,]\d{3}\b(?! KM)/
     for (const s of [...strings(bezCitata(bs)), ...strings(bezCitata(en))].filter((x) => brojka.test(x))) {
       assert.match(s, /2026/, s)
     }

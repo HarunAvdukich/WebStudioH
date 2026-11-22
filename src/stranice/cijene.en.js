@@ -1,5 +1,5 @@
-// English Pricing page (/en/pricing), same shape as cijene.js. Prices are not published;
-// every quote is made for the job.
+// English Pricing page (/en/pricing), same shape as cijene.js. Starting prices match the
+// Black November ads (22 Nov 2026); everything else is quoted for the job.
 
 import { oglasiMrt } from '../brojke.js'
 
@@ -10,13 +10,13 @@ export const put = '/en/pricing'
 
 export const seo = {
   naslov: 'Pricing · quoted for your project · Hunar',
-  opis: 'The price of a website or online store depends on what you need. Here is how a quote is made and what you get.',
+  opis: 'A website from 399 KM, an online store from 899 KM, online booking from 499 KM. Ready in 2 days, with a free sketch first.',
 }
 
 export const vrh = {
   nad: 'Pricing',
-  naslov: 'Priced by agreement. Here is why and how.',
-  uvod: 'A shop that needs a website and a store with thousands of products and marketplace links do not need the same work, so not the same price either. Instead of a price list that fits nobody, we make a quote for your job.',
+  naslov: 'Clear starting prices. Ready in days, not months.',
+  uvod: 'A website from 399 KM, an online store from 899 KM and online booking from 499 KM (1 EUR is about 1.96 KM). Once you send the text and photos, you get it ready in 2 days. Larger stores, marketplace links and custom systems are quoted for the job.',
 }
 
 export const razgovor = {
@@ -45,13 +45,17 @@ export const razgovor = {
 
 export const narudzba = {
   nad: 'What you can order',
-  naslov: 'Everything by agreement, by scope.',
+  naslov: 'Clear starting prices, ready in 2 days.',
+  akcija: { oznaka: 'Black November', tekst: 'Prices are valid until 30 November 2026. Every order comes with a free sketch first, so you decide before you pay.' },
+  bilo: 'was',
+  rok: 'ready in 2 days',
   okreni: 'See what you get',
   kartice: [
-    { ime: 'Website', opis: 'For companies and associations that need a clean, fast website: custom design, contact and map, basic SEO, text you edit yourself. A redesign of your current site works too.' },
-    { ime: 'Online store', opis: 'For retailers who want to sell online: catalogue, filters and cart, cash on delivery and bank transfer, support after launch.' },
-    { ime: 'Store with marketplace links', opis: 'Everything in the online store, plus OLX listings that update themselves, a feed for Ananas and supplier import. A B2B portal if you need one.' },
-    { ime: 'Custom system', opis: 'Online booking, an AI chatbot, a mobile app or a B2B portal built around how you work.' },
+    { ime: 'Website', cijena: { od: 'from 399 KM', bilo: '669 KM' }, opis: 'For companies and associations that need a clean, fast website: custom design, for phone and desktop, contact, map and WhatsApp messages, basic SEO. A redesign of your current site works too.' },
+    { ime: 'Online store', cijena: { od: 'from 899 KM', bilo: '1,499 KM' }, opis: 'For retailers who want to sell online: catalogue, cart, cash on delivery and bank transfer. Orders come in even when you are closed.' },
+    { ime: 'Online booking', cijena: { od: 'from 499 KM', bilo: '829 KM' }, opis: 'For salons, barbers and clinics: clients book a slot themselves, around the clock, and you get fewer calls.' },
+    { ime: 'Store with marketplace links', cijena: { od: 'quoted' }, opis: 'Everything in the online store, plus OLX listings that update themselves, a feed for Ananas and supplier import. A B2B portal if you need one.' },
+    { ime: 'Custom system', cijena: { od: 'quoted' }, opis: 'An AI chatbot, a mobile app or a B2B portal built around how you work.' },
   ],
 }
 
@@ -66,8 +70,8 @@ export const pitanja = {
   nad: 'Questions',
   naslov: 'What people ask us most.',
   lista: [
-    { p: 'Why are there no fixed prices?', o: 'Because every job has a different scope. We price what you actually need, with no hidden costs.' },
-    { p: 'How long does it take?', o: 'The deadline is in the quote and depends on the scope. A simple website is done sooner than a store with marketplace links and supplier import.' },
+    { p: 'What does the 399 KM website include?', o: 'A custom website for phone and desktop, contact, map and WhatsApp messages, with a free sketch first. If you need more, we tell you the price before we start, with no hidden costs.' },
+    { p: 'How long does it take?', o: 'A website, an online store or booking is ready in 2 days after you send the text and photos. A store with marketplace links and supplier import takes longer, and the deadline is in the quote.' },
     { p: 'Is the website mine?', o: 'Yes. The website and the materials are yours.' },
     { p: 'Can I change the content myself?', o: 'Yes. You edit text, images and products yourself, and you get a short training at handover.' },
     { p: 'Do you redesign existing websites?', o: 'Yes. Send us the link and we tell you what we would change and why.' },

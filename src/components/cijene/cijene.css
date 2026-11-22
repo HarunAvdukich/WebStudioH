@@ -62,6 +62,7 @@
 
 /* ---------- kartice koje se okrenu ---------- */
 .ci-kartice { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+@media (min-width: 900px) { .ci-kartice { grid-template-columns: repeat(3, 1fr); } }
 .fk-mjesto { perspective: 1200px; }
 .fk { display: block; width: 100%; height: 300px; padding: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; }
 .fk__in { position: relative; display: block; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1); }
@@ -76,6 +77,14 @@
 .fk__s--pr small { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--siva); }
 .fk__s--za { gap: 12px; background: var(--mint); color: var(--zelena); transform: rotateY(180deg); font-size: 16px; line-height: 1.5; }
 .fk__s--za b { font-size: 20px; letter-spacing: -0.02em; }
+.fk__cijena { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 10px; margin-top: 12px; }
+.fk__cijena strong { font-size: 30px; line-height: 1; font-weight: 800; letter-spacing: -0.02em; color: var(--svijetli); }
+.fk__cijena--dogovor strong { font-size: 22px; color: var(--siva); }
+.fk__bilo { font-size: 16px; color: var(--siva); }
+.fk__rok { align-self: flex-start; margin-top: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(255, 255, 255, 0.08); font-size: 13px; font-weight: 700; }
+.fk__cijena-za { margin-top: auto; font-size: 22px; font-weight: 800; }
+.ci-akcija { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 12px; margin: -8px 0 24px; font-size: 17px; line-height: 1.5; color: var(--siva); }
+.ci-akcija b { padding: 3px 12px; border-radius: 999px; background: var(--mint); color: var(--zelena); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; }
 
 /* ---------- održavanje i pitanja ---------- */
 .ci-odrzavanje { background: var(--zelena-dublja); }

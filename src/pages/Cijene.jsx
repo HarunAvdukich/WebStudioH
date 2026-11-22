@@ -8,7 +8,7 @@ import '../components/stranica/stranica.css'
 import '../components/cijene/cijene.css'
 
 // Kartica koja se okrene (36): naprijed ime, pozadi šta dobijate. Pod mišem, fokusom ili dodirom.
-function Kartica({ k, i, okreni }) {
+function Kartica({ k, i, okreni, bilo, rok }) {
   const [okrenuta, setOkrenuta] = useState(false)
   return (
     <div className="fk-mjesto" data-pokret="pojavi" style={{ '--i': i }}>
@@ -17,6 +17,18 @@ function Kartica({ k, i, okreni }) {
           <span className="fk__s fk__s--pr">
             <span className="fk__br">{String(i + 1).padStart(2, '0')}</span>
             <b>{k.ime}</b>
+            {k.cijena && (
+              <span className={`fk__cijena${k.cijena.bilo ? '' : ' fk__cijena--dogovor'}`}>
+                <strong>{k.cijena.od}</strong>
+                {k.cijena.bilo && (
+                  <span className="fk__bilo">
+                    <span className="sr-only">{bilo} </span>
+                    <s>{k.cijena.bilo}</s>
+                  </span>
+                )}
+              </span>
+            )}
+            {k.cijena?.bilo && <span className="fk__rok">{rok}</span>}
             <small>
               {okreni}
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -27,6 +39,7 @@ function Kartica({ k, i, okreni }) {
           <span className="fk__s fk__s--za">
             <b>{k.ime}</b>
             <span>{k.opis}</span>
+            {k.cijena && <strong className="fk__cijena-za">{k.cijena.od}</strong>}
           </span>
         </span>
       </button>
@@ -61,9 +74,15 @@ export default function Cijene({ t }) {
       <section className="st-dio ci-narudzba">
         <div className="st-sirina">
           <DioNaslov nad={t.narudzba.nad} naslov={t.narudzba.naslov} />
+          {t.narudzba.akcija && (
+            <p className="ci-akcija">
+              <b>{t.narudzba.akcija.oznaka}</b>
+              <span>{t.narudzba.akcija.tekst}</span>
+            </p>
+          )}
           <div className="ci-kartice">
             {t.narudzba.kartice.map((k, i) => (
-              <Kartica key={k.ime} k={k} i={i} okreni={t.narudzba.okreni} />
+              <Kartica key={k.ime} k={k} i={i} okreni={t.narudzba.okreni} bilo={t.narudzba.bilo} rok={t.narudzba.rok} />
             ))}
           </div>
         </div>
