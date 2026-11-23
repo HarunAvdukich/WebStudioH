@@ -36,7 +36,7 @@
       <div class="uvod-tekst">
         <p class="oznaka"><span></span> Frizersko-kozmetički salon u Velikoj Kladuši</p>
         <h1 id="glavni-naslov">Kosa u dobrim rukama.</h1>
-        <p class="opis">Od šišanja do svečane frizure. U Beauty Salonu Zana njegujemo i stilizujemo žensku i mušku kosu od 2021. godine.</p>
+        <p class="opis">Od šišanja i njege kose do pramenova, ekstenzija i svečanih frizura.</p>
         <div class="uvod-akcije">
           <a class="dugme svijetlo" href="#termin">Isprobajte zakazivanje</a>
           <a class="tekst-link" href="#radovi">Pogledajte radove</a>
@@ -48,12 +48,23 @@
       </figure>
     </section>
 
+    <div class="detalji okvir">
+      <a href="https://maps.google.com/?cid=8068686303186888619"><b><span aria-hidden="true">★</span> 4,8 / 5</b> <span>na Googleu</span></a>
+      <span>S Vama od 2021.</span>
+      <a href="#kontakt">Velika Kladuša</a>
+    </div>
+
     <section class="radovi okvir" id="radovi" aria-labelledby="radovi-naslov">
       <div class="radovi-uvod">
         <h2 id="radovi-naslov">Iz našeg salona</h2>
-        <p>Pogledajte kako izgledaju kosa s ekstenzijama i rezultat keratinskog tretmana.</p>
         <a class="tekst-link" href="https://www.instagram.com/beauty.salon.zana/">Više na Instagramu</a>
       </div>
+      <figure class="rad">
+        <a href="https://www.instagram.com/beauty.salon.zana/reel/DcYv6GMtsdL/" aria-label="Pogledajte objavu o balayage pramenovima">
+          <img src="/demo-beauty-salon-zana/pramenovi.webp" alt="Valovita plava kosa s balayage pramenovima" width="478" height="850" loading="lazy">
+        </a>
+        <figcaption>Balayage pramenovi <span aria-hidden="true">↗</span></figcaption>
+      </figure>
       <figure class="rad">
         <a href="https://www.instagram.com/beauty.salon.zana/p/DfcZFdmjUVZ/" aria-label="Pogledajte objavu o ekstenzijama">
           <img src="/demo-beauty-salon-zana/ekstenzije.webp" alt="Duga ravna plava kosa nakon ugradnje ekstenzija" width="480" height="640" loading="lazy">
@@ -76,12 +87,12 @@
           <a class="tekst-link" href="tel:+38761431711">061 431 711</a>
         </div>
         <ul class="cjenovnik-stavke">
-          <li><a href="#termin" data-usluga="sisanje"><span>Muško šišanje</span><b>15 KM</b><span aria-hidden="true">↗</span></a></li>
-          <li><a href="#termin" data-usluga="feniranje"><span>Feniranje</span><b>od 20 KM</b><span aria-hidden="true">↗</span></a></li>
-          <li><a href="#termin" data-usluga="bojenje"><span>Bojenje kose</span><b>od 50 KM</b><span aria-hidden="true">↗</span></a></li>
-          <li><a href="#termin" data-usluga="frizura"><span>Svečana frizura</span><b>od 40 KM</b><span aria-hidden="true">↗</span></a></li>
-          <li><a href="#termin" data-usluga="keratin"><span>Keratinski tretman</span><b>Na upit</b><span aria-hidden="true">↗</span></a></li>
-          <li><a href="#termin" data-usluga="ekstenzije"><span>Ugradnja ekstenzija</span><b>Na upit</b><span aria-hidden="true">↗</span></a></li>
+          <li><a href="#termin" data-usluga="sisanje"><span>Muško šišanje</span><b>15 KM</b><span aria-hidden="true">→</span></a></li>
+          <li><a href="#termin" data-usluga="feniranje"><span>Feniranje</span><b>od 20 KM</b><span aria-hidden="true">→</span></a></li>
+          <li><a href="#termin" data-usluga="bojenje"><span>Bojenje kose i pramenovi</span><b>od 50 KM</b><span aria-hidden="true">→</span></a></li>
+          <li><a href="#termin" data-usluga="frizura"><span>Svečana frizura</span><b>od 40 KM</b><span aria-hidden="true">→</span></a></li>
+          <li><a href="#termin" data-usluga="keratin"><span>Keratinski tretman</span><b>Na upit</b><span aria-hidden="true">→</span></a></li>
+          <li><a href="#termin" data-usluga="ekstenzije"><span>Ugradnja ekstenzija</span><b>Na upit</b><span aria-hidden="true">→</span></a></li>
         </ul>
       </div>
     </section>
@@ -99,17 +110,16 @@
               <option value="">Odaberite uslugu</option>
               <option value="sisanje">Muško šišanje</option>
               <option value="feniranje">Feniranje</option>
-              <option value="bojenje">Bojenje kose</option>
+              <option value="bojenje">Bojenje kose i pramenovi</option>
               <option value="frizura">Svečana frizura</option>
               <option value="keratin">Keratinski tretman</option>
               <option value="ekstenzije">Ugradnja ekstenzija</option>
             </select>
           </label>
-          <label for="dan">Dan
-            <select id="dan" required>
-              <option value="">Odaberite dan</option>
-            </select>
-          </label>
+          <fieldset>
+            <legend>Dan</legend>
+            <div class="termin-dani" id="dani"></div>
+          </fieldset>
           <fieldset id="vrijeme" disabled>
             <legend>Vrijeme</legend>
             <p id="napomena-vrijeme">Prvo odaberite dan.</p>
@@ -136,9 +146,9 @@
           <h2 id="kontakt-naslov">Vidimo se u salonu</h2>
           <address>
             Zuhdije Žalića 20<br>
-            77230 Velika Kladuša<br>
-            <a href="tel:+38761431711">061 431 711</a>
+            77230 Velika Kladuša
           </address>
+          <p class="kontakt-podaci">Od 08:00 do 17:00, osim praznika<br><a href="tel:+38761431711">061 431 711</a></p>
           <div class="kontakt-akcije">
             <a class="dugme svijetlo" href="https://wa.me/38761431711">Pišite na WhatsApp</a>
             <a class="tekst-link" href="https://maps.google.com/?cid=8068686303186888619">Upute do salona</a>

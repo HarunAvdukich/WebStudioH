@@ -131,22 +131,43 @@ h2 { font-size: clamp(2.65rem, 4.3vw, 4.6rem); line-height: 1.02; }
   background: var(--bordo-tamno);
   font-size: .73rem;
 }
+.detalji {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .5rem 1rem;
+  min-height: 3.8rem;
+  border-bottom: 1px solid var(--linija);
+  font-size: .9rem;
+}
+.detalji a { padding-block: .5rem; text-decoration: none; }
+.detalji a:hover { text-decoration: underline; text-underline-offset: .24em; }
+.detalji a span { color: var(--tiho); }
+.detalji a b span { margin-right: .15rem; color: var(--bordo); }
 
 .radovi {
   display: grid;
-  grid-template-columns: .78fr 1fr 1fr;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   align-items: start;
   gap: clamp(1.5rem, 3vw, 3rem);
-  padding-block: clamp(4.1rem, 8vw, 8rem);
+  padding-block: clamp(3rem, 6vw, 6.4rem);
 }
-.radovi-uvod { align-self: center; padding-right: .65rem; }
-.radovi-uvod p, .cjenovnik-uvod p, .termin-uvod p { max-width: 33ch; margin-block: 1.25rem 1.1rem; color: var(--tiho); }
+.radovi-uvod {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .9rem 1.5rem;
+}
+.cjenovnik-uvod p, .termin-uvod p { max-width: 33ch; margin-block: 1.25rem 1.1rem; color: var(--tiho); }
 .rad { position: relative; }
-.rad:nth-of-type(2) { margin-top: 3.35rem; }
+.rad:nth-of-type(2) { margin-top: 2.6rem; }
 .rad a { display: block; }
 .rad a::after { position: absolute; inset: 0; content: ""; }
 .rad img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
-.rad:nth-of-type(2) img { object-position: 50% 58%; }
+.rad:nth-of-type(3) img { object-position: 50% 58%; }
 .rad figcaption {
   display: flex;
   justify-content: space-between;
@@ -201,19 +222,23 @@ h2 { font-size: clamp(2.65rem, 4.3vw, 4.6rem); line-height: 1.02; }
 .termin-polja fieldset { min-width: 0; margin: 0; border: 0; padding: 0; }
 .termin-polja legend { padding: 0; }
 #napomena-vrijeme { margin-top: .3rem; color: var(--tiho); font-size: .9rem; }
-.termin-sati { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .5rem; }
+.termin-dani, .termin-sati { gap: .5rem; margin-top: .5rem; }
+.termin-dani { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.termin-sati { display: flex; flex-wrap: wrap; }
 .termin-sati:empty { display: none; }
-.termin-sati label { position: relative; cursor: pointer; font-weight: 600; }
-.termin-sati span {
+.termin-polja fieldset label { position: relative; cursor: pointer; font-weight: 600; }
+.termin-polja fieldset label span {
   display: block;
   min-height: 2.75rem;
   border: 1px solid var(--linija);
   border-radius: 2px;
   padding: .55rem .72rem;
+  text-align: center;
 }
-.termin-sati input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
-.termin-sati input:checked + span { border-color: var(--bordo); background: var(--bordo); color: var(--bijelo); }
-.termin-sati input:focus-visible + span { outline-color: var(--bordo); }
+.termin-polja .termin-dani span { padding-inline: .15rem; font-size: .83rem; white-space: pre-line; }
+.termin-polja fieldset input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.termin-polja fieldset input:checked + span { border-color: var(--bordo); background: var(--bordo); color: var(--bijelo); }
+.termin-polja fieldset input:focus-visible + span { outline-color: var(--bordo); }
 .termin-rezultat strong { font: 500 clamp(1.85rem, 3vw, 2.5rem)/1.1 var(--serif); }
 .termin-rezultat > p { margin-top: .8rem; }
 .podsjetnik { margin-block: 1.25rem; border-left: 3px solid var(--bordo); padding: .85rem 1rem; background: var(--roza); }
@@ -222,9 +247,9 @@ h2 { font-size: clamp(2.65rem, 4.3vw, 4.6rem); line-height: 1.02; }
 .kontakt { background: var(--bordo); color: var(--bijelo); }
 .kontakt-unutra { display: grid; grid-template-columns: .9fr 1fr; align-items: center; gap: clamp(2rem, 6vw, 6rem); padding-block: clamp(1.75rem, 4.5vw, 4.5rem); }
 .kontakt img { width: 100%; height: auto; aspect-ratio: 1.2; object-fit: cover; object-position: center 47%; }
-.kontakt address { margin-block: 1.3rem; color: #f0dfe5; font-style: normal; }
-.kontakt address a { display: inline-block; margin-top: .55rem; font-weight: 600; text-decoration: none; }
-.kontakt address a:hover { text-decoration: underline; }
+.kontakt address, .kontakt-podaci { margin-block: 1rem; color: #f0dfe5; font-style: normal; }
+.kontakt-podaci a { display: inline-block; margin-top: .35rem; font-weight: 650; text-decoration: none; }
+.kontakt-podaci a:hover { text-decoration: underline; }
 .mreze { display: flex; flex-wrap: wrap; gap: 1.25rem; margin-top: 1.4rem; }
 .podnozje { padding-block: 1.55rem; }
 .podnozje p { color: var(--tiho); font-size: .8rem; }
@@ -232,8 +257,6 @@ h2 { font-size: clamp(2.65rem, 4.3vw, 4.6rem); line-height: 1.02; }
 @media (max-width: 62rem) {
   .okvir { width: min(100% - 3rem, 82rem); }
   .uvod-tekst { padding: 2rem; }
-  .radovi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .radovi-uvod { grid-column: 1 / -1; }
 }
 @media (max-width: 43rem) {
   .okvir { width: calc(100% - 2rem); }
@@ -243,15 +266,20 @@ h2 { font-size: clamp(2.65rem, 4.3vw, 4.6rem); line-height: 1.02; }
   .zaglavlje nav a { display: inline-flex; align-items: center; min-height: 2.5rem; font-size: .84rem; }
   .znak b { font-size: 2.18rem; }
   .uvod, .cjenovnik-kolona, .termin, .kontakt-unutra { grid-template-columns: minmax(0, 1fr); }
-  .uvod-tekst { gap: 1rem; padding: 2.2rem 1.3rem; }
-  .uvod h1 { font-size: clamp(3.45rem, 13vw, 5.8rem); }
+  .uvod-tekst { gap: .93rem; padding: 1.8rem 1.3rem; }
+  .uvod h1 { max-width: 13ch; font-size: clamp(2.8rem, 11.5vw, 4.75rem); }
+  .oznaka { font-size: .75rem; }
   .uvod-akcije, .kontakt-akcije { gap: .65rem 1rem; }
   .uvod-akcije .tekst-link { font-size: .9rem; }
   .uvod-foto { min-height: 0; aspect-ratio: 1 / 1.07; }
-  .radovi { gap: 1.25rem .85rem; }
-  .rad:nth-of-type(2) { margin-top: 1.45rem; }
+  .detalji { gap: .15rem .4rem; font-size: .77rem; }
+  .radovi { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem .85rem; }
+  .rad:first-of-type { grid-column: 1 / -1; }
+  .rad:first-of-type img { aspect-ratio: 1.4; object-position: 50% 41%; }
+  .rad:nth-of-type(2) { margin-top: 0; }
   .rad figcaption { font-size: .85rem; }
   .cjenovnik-kolona, .termin { gap: 1.6rem; }
+  .termin-dani { gap: .32rem; }
   .kontakt-unutra { padding-bottom: 2.75rem; }
   .kontakt img { aspect-ratio: 1.15; }
   .podnozje { flex-wrap: wrap; gap: .75rem 1rem; }

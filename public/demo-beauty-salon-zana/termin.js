@@ -1,6 +1,6 @@
 const forma = document.querySelector('#forma-termin')
 const usluga = document.querySelector('#usluga')
-const dan = document.querySelector('#dan')
+const daniTermina = document.querySelector('#dani')
 const vrijeme = document.querySelector('#vrijeme')
 const napomena = document.querySelector('#napomena-vrijeme')
 const sati = document.querySelector('#sati')
@@ -26,13 +26,31 @@ const rasporedi = [
   ['08:30', '11:00', '13:30', '16:00'],
   ['09:30', '11:30', '14:00', '15:00'],
 ]
+const datumi = []
 
-for (let brojDana = 0; brojDana < 5;) {
+function terminOpcija(ime, vrijednost, prikaz, oznaka = prikaz) {
+  const opcija = document.createElement('label')
+  const izbor = document.createElement('input')
+  const tekst = document.createElement('span')
+  izbor.type = 'radio'
+  izbor.name = ime
+  izbor.value = vrijednost
+  izbor.required = true
+  izbor.setAttribute('aria-label', oznaka)
+  tekst.textContent = prikaz
+  opcija.append(izbor, tekst)
+  return opcija
+}
+
+while (datumi.length < 5) {
   datum.setUTCDate(datum.getUTCDate() + 1)
-  if (datum.getUTCDay() === 0 || datum.getUTCDay() === 6) continue
-  const oznakaDana = `${dani[datum.getUTCDay()]}, ${datum.getUTCDate()}. ${mjeseci[datum.getUTCMonth()]}`
-  dan.add(new Option(oznakaDana, String(brojDana)))
-  brojDana += 1
+  const imeDana = dani[datum.getUTCDay()]
+  const brojDana = datum.getUTCDate()
+  const mjesec = datum.getUTCMonth()
+  const prikaz = `${imeDana.slice(0, 3)}\n${brojDana}. ${mjesec + 1}.`
+  const oznaka = `${imeDana}, ${brojDana}. ${mjeseci[mjesec]}`
+  daniTermina.append(terminOpcija('dan', datumi.length, prikaz, oznaka))
+  datumi.push(oznaka)
 }
 
 function ocistiSate() {
@@ -41,21 +59,11 @@ function ocistiSate() {
   napomena.hidden = false
 }
 
-dan.addEventListener('change', () => {
+daniTermina.addEventListener('change', (dogadjaj) => {
   ocistiSate()
-  if (dan.value === '') return
-
-  for (const sat of rasporedi[Number(dan.value) % rasporedi.length]) {
-    const oznaka = document.createElement('label')
-    const izbor = document.createElement('input')
-    const tekst = document.createElement('span')
-    izbor.type = 'radio'
-    izbor.name = 'sat'
-    izbor.value = sat
-    izbor.required = true
-    tekst.textContent = sat
-    oznaka.append(izbor, tekst)
-    sati.append(oznaka)
+  const raspored = rasporedi[Number(dogadjaj.target.value) % rasporedi.length]
+  for (const sat of raspored) {
+    sati.append(terminOpcija('sat', sat, sat))
   }
   vrijeme.disabled = false
   napomena.hidden = true
@@ -63,13 +71,14 @@ dan.addEventListener('change', () => {
 
 forma.addEventListener('submit', (dogadjaj) => {
   dogadjaj.preventDefault()
-  const sat = new FormData(forma).get('sat')
+  const odabir = new FormData(forma)
+  const sat = odabir.get('sat')
   if (!sat) return
 
   const odabranaUsluga = usluga.selectedOptions[0].text
-  const odabraniDan = dan.selectedOptions[0].text
+  const odabraniDan = datumi[Number(odabir.get('dan'))]
   potvrda.textContent = `${odabranaUsluga}, ${odabraniDan} u ${sat}.`
-  poruka.textContent = `Podsjetnik iz Beauty Salona Zana. Sutra u ${sat} čeka Vas termin za uslugu ${odabranaUsluga}.`
+  poruka.textContent = `Vidimo se sutra u ${sat} u Beauty Salonu Zana. Za promjenu termina javite nam se na 061 431 711.`
   polja.hidden = true
   rezultat.hidden = false
   rezultat.focus()
