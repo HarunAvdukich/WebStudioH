@@ -2,12 +2,15 @@
 title: "Kako povezati web shop sa OLX-om, da se oglasi ažuriraju sami"
 seoTitle: "Povezivanje web shopa sa OLX-om"
 date: "2026-10-01"
+updated: "2026-11-11"
 excerpt: "Kako radi veza web trgovine i OLX-a, šta treba pripremiti i koje greške izbjeći. Iz prakse: mrt.ba ima preko 4.400 OLX oglasa koji se ažuriraju sami."
 ---
 
 Ako prodajete i na web trgovini i na OLX-u, vjerovatno znate kako to ide: promijenite cijenu na sajtu, pa je mijenjate i na oglasu. Artikal stigne, pa ga unosite dva puta. Sa stotinu artikala to je dosadno, a sa hiljadama nemoguće.
 
 Rješenje je veza u kojoj je web trgovina izvor istine, a OLX je prati. Ovako smo to napravili za [mrt.ba](/radovi/mrt), trgovinu alata koja je 29. 9. 2026. imala 4.453 OLX oglasa koji se ažuriraju sami.
+
+Kako izgleda stvarna promjena cijene možete pogledati u [snimku povezivanja web shopa sa OLX-om](/olx), gdje je i opis usluge za Vašu trgovinu.
 
 ## Šta veza radi
 
