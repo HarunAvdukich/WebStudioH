@@ -109,6 +109,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   background: var(--accent); color: var(--accent-ink);
   font: var(--display-weight) 15px/1 var(--display); letter-spacing: .02em;
 }
+.logo-firme { flex: none; height: 38px; width: auto; max-width: 120px; object-fit: contain; }
 .znak span:last-child { font: var(--display-weight) 18px/1.1 var(--display); font-stretch: var(--display-stretch); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .meni { margin-left: auto; display: flex; gap: 22px; font-size: 15px; }
 .meni a { text-decoration: none; color: var(--muted); }
@@ -298,6 +299,18 @@ dialog.hunar-panel::backdrop { background: rgba(8, 14, 12, .55); backdrop-filter
     }
     for (var i = 2; i < arguments.length; i++) dodaj(el, arguments[i])
     return el
+  }
+  // Logo firme (https iz JSON-a) umjesto monograma; ako se slika ne učita, vrati se monogram.
+  function znakFirme(f, ime) {
+    var mono = h('span', { class: 'monogram', 'aria-hidden': 'true', text: inicijali(ime) })
+    if (!f.logo || !/^https:\/\/[^\s"'<>]+$/.test(f.logo)) return mono
+    var img = document.createElement('img')
+    img.className = 'logo-firme'
+    img.setAttribute('alt', '')
+    img.setAttribute('referrerpolicy', 'no-referrer')
+    img.addEventListener('error', function () { if (img.parentNode) img.parentNode.replaceChild(mono, img) })
+    img.setAttribute('src', f.logo)
+    return img
   }
   function dodaj(el, d) {
     if (d == null || d === false) return
@@ -538,7 +551,7 @@ dialog.hunar-panel::backdrop { background: rgba(8, 14, 12, .55); backdrop-filter
     // Zaglavlje
     app.appendChild(h('header', { class: 'zaglavlje' },
       h('div', { class: 'omot' },
-        h('a', { class: 'znak', href: '#vrh' }, h('span', { class: 'monogram', 'aria-hidden': 'true', text: inicijali(ime) }), h('span', { text: ime })),
+        h('a', { class: 'znak', href: '#vrh' }, znakFirme(f, ime), h('span', { text: ime })),
         h('nav', { class: 'meni', 'aria-label': 'Meni' },
           h('a', { href: '#usluge', text: v === 'restoran' ? 'Meni' : v === 'radnja' ? 'Ponuda' : 'Usluge' }),
           h('a', { href: '#' + akcijaId, text: { zakazivanje: 'Zakazivanje', rezervacija: 'Rezervacija', narudzba: 'Narudžba', upit: 'Upit' }[V.akcija] }),

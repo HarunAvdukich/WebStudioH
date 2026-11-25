@@ -35,7 +35,14 @@ test('podaci svake skice su ispravni', () => {
     assert.equal(typeof d.ime, 'string', f)
     assert.ok(VRSTE.includes(d.vrsta), `${f}: vrsta ${d.vrsta}`)
     if (d.boja) assert.match(d.boja, /^#[0-9a-f]{6}$/i, f)
+    if (d.logo) assert.match(d.logo, /^https:\/\/[^\s"'<>]+$/, f)
   }
+})
+
+test('šablon prikaže logo kao sliku', () => {
+  const html = readFileSync('public/demoskica.html', 'utf8')
+  assert.match(html, /f\.logo/)
+  assert.match(html, /setAttribute\('src'/)
 })
 
 test('slug je čitljiv i bez naših slova', () => {
