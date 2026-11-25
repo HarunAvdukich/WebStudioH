@@ -16,7 +16,7 @@ import { pathToFileURL } from 'node:url'
 
 export const VRSTE = ['frizer', 'ljepota', 'stomatolog', 'restoran', 'radnja', 'usluge']
 export const MAPA = 'public/demoskica-podaci'
-const POLJA = ['grad', 'vrsta', 'tel', 'adresa', 'instagram', 'oznaka', 'naslov', 'uvod', 'boja']
+const POLJA = ['grad', 'vrsta', 'tel', 'adresa', 'instagram', 'oznaka', 'naslov', 'uvod', 'boja', 'logo']
 
 export function slugOd(ime) {
   return ime.toLowerCase()
@@ -86,7 +86,7 @@ function glavno() {
   const ime = a._[0]
   if (!ime || !VRSTE.includes(a.vrsta)) {
     console.error('Upotreba: node scripts/demoskica.mjs "Ime firme" --grad Grad --vrsta ' + VRSTE.join('|') +
-      ' [--tel] [--adresa] [--instagram] [--oznaka] [--boja #rrggbb] [--zapazanje "..."] [--pitanje "...?"] [--slug] [--prepisi]')
+      ' [--tel] [--adresa] [--instagram] [--oznaka] [--boja #rrggbb] [--logo https://...] [--zapazanje "..."] [--pitanje "...?"] [--slug] [--prepisi]')
     process.exit(1)
   }
   const slug = typeof a.slug === 'string' ? a.slug : slugOd(ime)
