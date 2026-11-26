@@ -10,13 +10,13 @@ export const put = '/en/pricing'
 
 export const seo = {
   naslov: 'Pricing · quoted for your project · Hunar',
-  opis: 'A website from 399 KM, an online store from 899 KM, online booking from 499 KM. Ready in 2 days, with a free sketch first.',
+  opis: 'A website from 300 KM, an online store from 899 KM, online booking from 499 KM. Ready in 2 days, with a free sketch first.',
 }
 
 export const vrh = {
   nad: 'Pricing',
   naslov: 'Clear starting prices. Ready in days, not months.',
-  uvod: 'A website from 399 KM, an online store from 899 KM and online booking from 499 KM (1 EUR is about 1.96 KM). Once you send the text and photos, you get it ready in 2 days. Each one also comes as a stronger Plus package. Larger stores, marketplace links and custom systems are quoted for the job.',
+  uvod: 'A website from 300 KM, an online store from 899 KM and online booking from 499 KM (1 EUR is about 1.96 KM). Once you send the text and photos, you get it ready in 2 days. Each one also comes as a stronger Plus package. Larger stores, marketplace links and custom systems are quoted for the job.',
 }
 
 export const razgovor = {
@@ -46,12 +46,12 @@ export const razgovor = {
 export const narudzba = {
   nad: 'What you can order',
   naslov: 'Clear starting prices, ready in 2 days.',
-  akcija: { oznaka: 'Black November', tekst: 'Prices are valid until 30 November 2026. Every order comes with a free sketch first, so you decide before you pay.' },
+  akcija: { oznaka: 'Black Friday', tekst: 'A website from 300 KM instead of 669 KM. Prices are valid until 30 November 2026. Every order comes with a free sketch first, so you decide before you pay.' },
   bilo: 'was',
   rok: 'ready in 2 days',
   okreni: 'See what you get',
   kartice: [
-    { ime: 'Website', paket: 'Basic', cijena: { od: 'from 399 KM', bilo: '669 KM' }, opis: 'For companies and associations that need a clean, fast website: custom design, for phone and desktop, contact, map and WhatsApp messages, basic SEO. A redesign of your current site works too.' },
+    { ime: 'Website', paket: 'Basic', cijena: { od: 'from 300 KM', bilo: '669 KM' }, opis: 'For companies and associations that need a clean, fast website: custom design, for phone and desktop, contact, map and WhatsApp messages, basic SEO. A redesign of your current site works too.' },
     { ime: 'Online store', paket: 'Basic', cijena: { od: 'from 899 KM', bilo: '1,499 KM' }, opis: 'For retailers who want to sell online: catalogue, cart, cash on delivery and bank transfer. Orders come in even when you are closed.' },
     { ime: 'Online booking', paket: 'Basic', cijena: { od: 'from 499 KM', bilo: '829 KM' }, opis: 'For salons, barbers and clinics: clients book a slot themselves, around the clock, and you get fewer calls.' },
     { ime: 'Store with marketplace links', cijena: { od: 'quoted' }, opis: 'Everything in the online store, plus OLX listings that update themselves, a feed for Ananas and supplier import. A B2B portal if you need one.' },
@@ -83,7 +83,7 @@ export const pitanja = {
   nad: 'Questions',
   naslov: 'What people ask us most.',
   lista: [
-    { p: 'What does the 399 KM website include?', o: 'A custom website for phone and desktop, contact, map and WhatsApp messages, with a free sketch first. If you need more, we tell you the price before we start, with no hidden costs.' },
+    { p: 'What does the 300 KM website include?', o: 'A custom website for phone and desktop, contact, map and WhatsApp messages, with a free sketch first. If you need more, we tell you the price before we start, with no hidden costs.' },
     { p: 'What is the Plus package?', o: 'A stronger package for each service: everything in basic, plus a second language, more pages, OLX links, reminders, domain and hosting for the first year and 3 months of maintenance, depending on the service. Website Plus is from 799 KM, online store Plus from 1,799 KM and booking Plus from 999 KM.' },
     { p: 'How long does it take?', o: 'A website, an online store or booking is ready in 2 days after you send the text and photos. A store with marketplace links and supplier import takes longer, and the deadline is in the quote.' },
     { p: 'Is the website mine?', o: 'Yes. The website and the materials are yours.' },
