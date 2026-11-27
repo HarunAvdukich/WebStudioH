@@ -50,6 +50,8 @@ export function blaziCsp() {
     ...ZAJEDNICKO.slice(1),
     'img-src * data: blob:',
     'media-src * data: blob:',
+    // Google mapa u demoima (npr. demo-konoba-jelen, "Gdje smo").
+    'frame-src https://www.google.com',
     "form-action 'self' https:",
   ].join('; ')
 }

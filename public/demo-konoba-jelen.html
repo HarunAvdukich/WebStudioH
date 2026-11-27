@@ -1,0 +1,733 @@
+<!doctype html>
+<html lang="bs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Konoba Jelen Prijedor, domaća kuhinja i proslave</title>
+<meta name="description" content="Konoba Jelen u Prijedoru: domaća kuhinja, Gazdini čevapi, teletina ispod peke, proslave uz tamburaše i rezervacija stola.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Konoba Jelen, Prijedor">
+<meta property="og:description" content="Gazdini čevapi, teletina ispod peke i proslave uz tamburaše. Rezervišite sto.">
+<meta property="og:image" content="https://hunar.ba/demo-konoba-jelen/ambijent.webp">
+<meta property="og:url" content="https://hunar.ba/demo-konoba-jelen">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316100b'/%3E%3Cg fill='none' stroke='%23c9a25e' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M32 54c-4-3-6-9-5.5-14.5L32 36l5.5 3.5C38 45 36 51 32 54z'/%3E%3Cpath d='M27.5 37.5c-5-3.5-8-9-8.5-17M19.3 27c-3.5-.8-6.2-3.3-7.3-7M19.6 16c.5-2.8 2-5 4.4-6.5M36.5 37.5c5-3.5 8-9 8.5-17M44.7 27c3.5-.8 6.2-3.3 7.3-7M44.4 16c-.5-2.8-2-5-4.4-6.5'/%3E%3C/g%3E%3C/svg%3E">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#16100b">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,700;0,800;1,500;1,700&amp;family=Alegreya+Sans:wght@400;500;700&amp;display=swap">
+<link rel="preload" as="image" href="/demo-konoba-jelen/ambijent.webp">
+<script defer src="https://cloud.umami.is/script.js" data-website-id="c548514d-f942-47aa-89d3-65acfd096109" data-domains="hunar.ba"></script>
+<style>
+:root{
+  --ugalj:#16100b; --drvo:#21170f; --drvo2:#2c1f15; --linija:rgba(243,232,212,.12);
+  --krem:#f3e8d4; --krem2:#cbb999; --krem3:#9c8a70;
+  --zar:#e2792c; --zar2:#f3a85a; --mjed:#c9a25e;
+  --papir:#f2e9da; --tinta:#2a1d13;
+  --r:18px; --maks:1200px;
+  --serif:"Alegreya",Georgia,serif; --sans:"Alegreya Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:80px;-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;background:var(--ugalj);color:var(--krem);font:400 18px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:800;line-height:1.05;margin:0;letter-spacing:-.01em}
+p{margin:0}
+.omot{max-width:var(--maks);margin:0 auto;padding:0 24px}
+.oznaka{font:700 13px/1 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--zar2)}
+.dugme{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border-radius:999px;font:700 17px/1 var(--sans);text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background-color .2s,box-shadow .25s,color .2s}
+.dugme:active{transform:scale(.97)}
+.dugme-zar{background:var(--zar);color:#1b0f06;box-shadow:0 8px 20px -10px rgba(0,0,0,.6)}
+.dugme-zar:hover{background:var(--zar2)}
+.dugme-obris{background:rgba(243,232,212,.06);color:var(--krem);box-shadow:inset 0 0 0 1.5px rgba(243,232,212,.35)}
+.dugme-obris:hover{background:rgba(243,232,212,.14)}
+.dugme svg{width:19px;height:19px;flex:none}
+:focus-visible{outline:2px solid var(--zar2);outline-offset:3px;border-radius:6px}
+
+/* zaglavlje */
+.zag{position:fixed;inset:0 0 auto;z-index:50;transition:background-color .3s,box-shadow .3s,backdrop-filter .3s}
+.zag.skrol{background:rgba(22,16,11,.86);-webkit-backdrop-filter:blur(14px) saturate(160%);backdrop-filter:blur(14px) saturate(160%);box-shadow:0 1px 0 var(--linija)}
+.zag .omot{display:flex;align-items:center;justify-content:space-between;gap:20px;height:76px;transition:height .3s}
+.zag.skrol .omot{height:64px}
+.znak{display:flex;align-items:center;gap:12px;text-decoration:none}
+.znak svg{width:42px;height:42px;color:var(--mjed);flex:none}
+.znak b{font:800 22px/1 var(--serif);letter-spacing:.01em}
+.znak small{display:block;font:500 12px/1 var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--krem3);margin-top:5px}
+.nav{display:flex;align-items:center;gap:4px}
+.nav a{padding:10px 14px;border-radius:999px;text-decoration:none;font-weight:500;color:var(--krem2);transition:color .2s,background-color .2s}
+.nav a:hover{color:var(--krem);background:rgba(243,232,212,.07)}
+.nav .dugme{margin-left:10px;padding:12px 20px;font-size:16px;color:#1b0f06}
+.nav .dugme:hover{color:#1b0f06;background:var(--zar2)}
+.zag-tel{display:none}
+
+/* prvi ekran */
+.prvi{position:relative;min-height:100svh;display:grid;align-items:end;overflow:hidden;isolation:isolate}
+.prvi-slika{position:absolute;inset:0;z-index:-2}
+.prvi-slika img{width:100%;height:100%;object-fit:cover;object-position:60% 55%;transform:scale(1.06);animation:dah 18s ease-in-out infinite alternate}
+@keyframes dah{to{transform:scale(1)}}
+.prvi::before{content:"";position:absolute;inset:0;z-index:-1;background:
+  radial-gradient(60% 55% at 78% 70%,rgba(226,121,44,.22),transparent 70%),
+  linear-gradient(90deg,rgba(22,16,11,.96) 0%,rgba(22,16,11,.82) 38%,rgba(22,16,11,.25) 75%,rgba(22,16,11,.35) 100%),
+  linear-gradient(0deg,var(--ugalj) 0%,rgba(22,16,11,0) 35%)}
+.prvi .omot{width:100%;padding-top:130px;padding-bottom:72px}
+.prvi-tekst{max-width:640px}
+.prvi h1{font-size:clamp(46px,6.4vw,86px);margin:18px 0 22px}
+.prvi h1 em{font-style:normal;font-weight:700;color:var(--zar2)}
+.prvi-uvod{font-size:clamp(18px,1.6vw,21px);color:var(--krem2);max-width:540px}
+.prvi-dugmad{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.prvi-dokazi{display:flex;flex-wrap:wrap;gap:28px;margin-top:44px;padding-top:26px;border-top:1px solid var(--linija);max-width:600px}
+.dokaz b{display:flex;align-items:center;gap:8px;font:800 30px/1 var(--serif);color:var(--krem)}
+.dokaz b svg{width:20px;height:20px;color:var(--zar2)}
+.dokaz span{display:block;margin-top:6px;font-size:15px;color:var(--krem3)}
+.iskre{position:absolute;inset:auto 0 0 45%;height:70%;z-index:-1;pointer-events:none;overflow:hidden}
+.iskra{position:absolute;bottom:-10px;width:4px;height:4px;border-radius:50%;background:var(--zar2);box-shadow:0 0 10px 2px rgba(243,168,90,.8);opacity:0;animation:iskra linear infinite}
+@keyframes iskra{0%{opacity:0;transform:translate(0,0)}15%{opacity:.9}100%{opacity:0;transform:translate(var(--x,20px),-60vh)}}
+
+/* traka */
+.traka{border-block:1px solid var(--linija);background:var(--drvo)}
+.traka ul{list-style:none;margin:0 auto;padding:22px 24px;max-width:var(--maks);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px 28px}
+.traka li{display:flex;align-items:center;gap:10px;color:var(--krem2);font-weight:500}
+.traka svg{width:22px;height:22px;color:var(--mjed);flex:none}
+
+/* sekcije */
+.sek{padding:120px 0}
+.sek-glava{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:20px 40px;margin-bottom:52px}
+.sek-glava h2{font-size:clamp(38px,4.6vw,60px);margin-top:14px;max-width:720px}
+.sek-glava p{max-width:420px;color:var(--krem2)}
+
+/* specijaliteti */
+.jela{display:grid;grid-template-columns:repeat(12,1fr);gap:20px}
+.jelo{position:relative;border-radius:var(--r);overflow:hidden;min-height:340px;display:flex;align-items:end;isolation:isolate;text-decoration:none}
+.jelo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.jelo::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(0deg,rgba(18,12,8,.92) 0%,rgba(18,12,8,.35) 45%,rgba(18,12,8,0) 70%)}
+.jelo:hover img{transform:scale(1.05)}
+.jelo div{padding:26px}
+.jelo h3{font-size:30px}
+.jelo p{color:var(--krem2);margin-top:8px;font-size:16px;max-width:380px}
+.jelo .zna{display:inline-block;margin-bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(226,121,44,.18);color:var(--zar2);font:700 12px/1 var(--sans);letter-spacing:.12em;text-transform:uppercase;backdrop-filter:blur(6px)}
+.j1{grid-column:span 7;min-height:520px}.j2{grid-column:span 5;min-height:520px}
+.j3{grid-column:span 4}.j4{grid-column:span 4}.j5{grid-column:span 4}
+.j1 img{object-position:center 60%}
+
+/* jelovnik */
+.jelovnik{background:var(--papir);color:var(--tinta);position:relative}
+.jelovnik::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.35;background-image:radial-gradient(rgba(42,29,19,.09) 1px,transparent 1px);background-size:4px 4px}
+.jelovnik .oznaka{color:#a4511a}
+.jelovnik .sek-glava p{color:#5b4a3a}
+.kartice{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px;position:relative}
+.kartice button{font:700 16px/1 var(--sans);padding:13px 20px;border-radius:999px;border:0;cursor:pointer;background:rgba(42,29,19,.07);color:var(--tinta);transition:background-color .2s,color .2s}
+.kartice button:hover{background:rgba(42,29,19,.13)}
+.kartice button[aria-selected="true"]{background:var(--tinta);color:var(--papir)}
+.meni{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6px 64px}
+.meni[hidden]{display:none}
+.stavka{padding:20px 0;border-bottom:1px dashed rgba(42,29,19,.25)}
+.stavka-red{display:flex;align-items:baseline;gap:12px}
+.stavka h3{font-size:24px;font-weight:700}
+.stavka .tacke{flex:1;border-bottom:2px dotted rgba(42,29,19,.3);transform:translateY(-5px)}
+.stavka .cijena{font:700 18px/1 var(--sans);color:#a4511a;white-space:nowrap}
+.stavka p{margin-top:6px;color:#5b4a3a;font-size:16px}
+.stavka .gazda{display:inline-block;margin-left:8px;padding:4px 9px;border-radius:999px;background:#a4511a;color:#fff6ea;font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;vertical-align:middle;transform:translateY(-3px)}
+.meni-nap{position:relative;margin-top:30px;font-size:15px;color:#5b4a3a}
+
+/* dogadjaji */
+.dog{display:grid;grid-template-columns:1.15fr .85fr;gap:22px}
+.plakat{position:relative;border-radius:var(--r);padding:48px;overflow:hidden;background:
+  radial-gradient(80% 70% at 85% 10%,rgba(243,168,90,.35),transparent 60%),
+  radial-gradient(60% 60% at 0% 100%,rgba(201,162,94,.18),transparent 60%),
+  linear-gradient(160deg,#3a2414,#1e140d);
+  box-shadow:inset 0 0 0 1px rgba(243,232,212,.1)}
+.plakat .oznaka{color:#e6c98f}
+.plakat h3{font-size:clamp(38px,4.2vw,58px);margin:16px 0 14px}
+.plakat h3 em{font-style:normal;color:var(--zar2);font-weight:700}
+.plakat p{color:var(--krem2);max-width:440px}
+.plakat-cijena{display:flex;align-items:baseline;gap:12px;margin:30px 0}
+.plakat-cijena b{font:800 64px/1 var(--serif);color:var(--krem)}
+.plakat-cijena span{color:var(--krem2)}
+.odbrojavanje{display:flex;gap:10px;margin:4px 0 30px}
+.odbrojavanje div{min-width:74px;padding:12px 10px;border-radius:12px;background:rgba(0,0,0,.25);box-shadow:inset 0 0 0 1px rgba(243,232,212,.1);text-align:center}
+.odbrojavanje b{display:block;font:800 30px/1 var(--serif)}
+.odbrojavanje span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--krem2)}
+.tambura{position:absolute;right:-30px;bottom:-30px;width:260px;height:260px;color:rgba(243,232,212,.06)}
+.dog-desno{display:grid;gap:22px}
+.dog-kartica{border-radius:var(--r);padding:32px;background:var(--drvo2);box-shadow:inset 0 0 0 1px var(--linija)}
+.dog-kartica h3{font-size:28px;margin:12px 0 10px}
+.dog-kartica p{color:var(--krem2);font-size:17px}
+.dog-kartica ul{margin:16px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.dog-kartica li{padding:8px 14px;border-radius:999px;background:rgba(243,232,212,.07);font-size:15px;color:var(--krem2)}
+.arhiva{display:flex;gap:16px;align-items:center}
+.arhiva .datum{flex:none;width:68px;height:68px;border-radius:14px;display:grid;place-items:center;text-align:center;background:rgba(226,121,44,.14);color:var(--zar2);font:800 24px/1 var(--serif)}
+.arhiva .datum small{display:block;font:700 11px/1 var(--sans);letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+
+/* galerija */
+.galerija{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:220px;gap:14px}
+.galerija figure{margin:0;border-radius:14px;overflow:hidden;position:relative;cursor:zoom-in}
+.galerija img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.2,.8,.2,1),filter .4s}
+.galerija figure:hover img{transform:scale(1.05)}
+.g1{grid-column:span 2;grid-row:span 2}.g2{grid-row:span 2}.g5{grid-column:span 2}
+.galerija figcaption{position:absolute;left:12px;bottom:12px;padding:6px 12px;border-radius:999px;background:rgba(22,16,11,.7);backdrop-filter:blur(6px);font-size:14px;color:var(--krem);opacity:0;transform:translateY(6px);transition:opacity .3s,transform .3s}
+.galerija figure:hover figcaption{opacity:1;transform:none}
+.lightbox{position:fixed;inset:0;z-index:80;background:rgba(10,7,5,.92);display:grid;place-items:center;padding:24px;opacity:0;pointer-events:none;transition:opacity .25s}
+.lightbox.otvoren{opacity:1;pointer-events:auto}
+.lightbox img{max-height:88vh;max-width:min(1100px,100%);border-radius:12px;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lightbox button{position:absolute;top:18px;right:18px;width:48px;height:48px;border-radius:50%;border:0;background:rgba(243,232,212,.12);color:var(--krem);font-size:26px;cursor:pointer}
+
+/* utisci */
+.utisci-sek{background:var(--drvo);border-block:1px solid var(--linija)}
+.ocjena-velika{display:flex;align-items:center;gap:18px}
+.ocjena-velika b{font:800 72px/1 var(--serif)}
+.zvijezde{display:flex;gap:3px;color:var(--zar2)}
+.zvijezde svg{width:22px;height:22px}
+.ocjena-velika small{display:block;color:var(--krem3);font-size:15px;margin-top:6px}
+.utisci{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.utisak{margin:0;padding:30px;border-radius:var(--r);background:var(--drvo2);box-shadow:inset 0 0 0 1px var(--linija);display:flex;flex-direction:column;gap:18px}
+.utisak .zvijezde svg{width:17px;height:17px}
+.utisak blockquote{margin:0;font:500 21px/1.4 var(--serif);color:var(--krem)}
+.utisak figcaption{margin-top:auto;display:flex;align-items:center;gap:12px;color:var(--krem3);font-size:15px}
+.utisak figcaption i{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;font:800 16px/1 var(--serif);font-style:normal;background:rgba(201,162,94,.18);color:var(--mjed)}
+.utisak figcaption b{display:block;color:var(--krem);font-weight:700}
+.u-veliki{grid-column:span 2;background:linear-gradient(150deg,#3a2414,var(--drvo2))}
+.u-veliki blockquote{font-size:28px}
+
+/* rezervacija */
+.rez{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start}
+.rez-info h2{font-size:clamp(38px,4.6vw,58px);margin:14px 0 18px}
+.rez-info>p{color:var(--krem2);max-width:440px}
+.kontakti{margin-top:34px;display:grid;gap:12px}
+.kontakt{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:14px;background:var(--drvo);box-shadow:inset 0 0 0 1px var(--linija);text-decoration:none;transition:background-color .2s,transform .2s}
+.kontakt:hover{background:var(--drvo2);transform:translateX(4px)}
+.kontakt .ik{width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:rgba(226,121,44,.14);color:var(--zar2);flex:none}
+.kontakt .ik svg{width:22px;height:22px}
+.kontakt b{display:block;font-size:18px}
+.kontakt span{color:var(--krem3);font-size:15px}
+.forma{padding:38px;border-radius:24px;background:var(--papir);color:var(--tinta);box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
+.forma h3{font-size:30px}
+.forma>p{color:#6b5846;margin:6px 0 24px;font-size:16px}
+.polja{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.polje{display:grid;gap:6px}
+.polje.cijelo{grid-column:1/-1}
+.polje label{font:700 14px/1 var(--sans);color:#5b4a3a}
+.polje input,.polje select,.polje textarea{width:100%;font:500 17px/1.3 var(--sans);color:var(--tinta);padding:14px 15px;border-radius:12px;border:1.5px solid rgba(42,29,19,.18);background:#fffaf1;transition:border-color .2s,box-shadow .2s}
+.polje input:focus,.polje select:focus,.polje textarea:focus{outline:0;border-color:#a4511a;box-shadow:0 0 0 4px rgba(164,81,26,.15)}
+.polje textarea{min-height:84px;resize:vertical}
+.osobe{display:flex;align-items:center;gap:0;border:1.5px solid rgba(42,29,19,.18);border-radius:12px;background:#fffaf1;overflow:hidden}
+.osobe button{width:52px;height:50px;border:0;background:transparent;font:700 22px/1 var(--sans);color:#a4511a;cursor:pointer}
+.osobe button:hover{background:rgba(164,81,26,.08)}
+.osobe output{flex:1;text-align:center;font:700 18px/1 var(--sans)}
+.prilike{display:flex;flex-wrap:wrap;gap:8px}
+.prilike label{cursor:pointer;position:relative}
+.prilike input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;pointer-events:none}
+.prilike span{display:inline-block;padding:10px 15px;border-radius:999px;background:rgba(42,29,19,.07);font:600 15px/1 var(--sans);color:var(--tinta);transition:background-color .2s,color .2s}
+.prilike input:checked+span{background:var(--tinta);color:var(--papir)}
+.prilike input:focus-visible+span{outline:2px solid #a4511a;outline-offset:2px}
+.forma .dugme{width:100%;justify-content:center;margin-top:22px;padding:18px}
+.forma-nap{margin-top:12px;font-size:14px;color:#5b4a3a;text-align:center}
+.potvrda{display:none;text-align:center;padding:30px 10px}
+.potvrda svg{width:64px;height:64px;color:#3f7a3a;margin:0 auto 16px}
+.potvrda h3{font-size:30px}
+.potvrda p{color:#5b4a3a;margin-top:10px}
+.forma.poslano .forma-sadrzaj{display:none}
+.forma.poslano .potvrda{display:block;animation:pojava .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes pojava{from{opacity:0;transform:translateY(12px)}}
+
+/* gdje smo */
+.gdje{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.mapa{border-radius:var(--r);overflow:hidden;min-height:420px;background:var(--drvo2);position:relative;box-shadow:inset 0 0 0 1px var(--linija)}
+.mapa iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(1.05)}
+.sati{padding:40px;border-radius:var(--r);background:var(--drvo);box-shadow:inset 0 0 0 1px var(--linija)}
+.sati h3{font-size:34px;margin:14px 0 6px}
+.otvoreno{display:inline-flex;align-items:center;gap:8px;margin:10px 0 22px;padding:8px 14px;border-radius:999px;background:rgba(111,170,90,.15);color:#9fd28a;font-weight:700;font-size:15px}
+.otvoreno i{width:8px;height:8px;border-radius:50%;background:currentColor;box-shadow:0 0 0 0 currentColor;animation:puls 2s infinite}
+.otvoreno.zatvoreno{background:rgba(226,121,44,.15);color:var(--zar2)}
+@keyframes puls{70%{box-shadow:0 0 0 8px transparent}}
+.sati table{width:100%;border-collapse:collapse;font-size:17px}
+.sati td{padding:11px 0;border-bottom:1px solid var(--linija);color:var(--krem2)}
+.sati td:last-child{text-align:right;color:var(--krem)}
+.sati tr.danas td{color:var(--zar2);font-weight:700}
+.ulica{color:var(--krem2);margin:-4px 0 14px}
+.adresa{margin-top:26px;display:flex;flex-wrap:wrap;gap:10px}
+
+/* podnozje */
+.skica-nap{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;padding:44px 48px;border:1px dashed rgba(201,162,94,.45);border-radius:22px;background:rgba(201,162,94,.05)}
+.skica-nap>svg{width:64px;height:64px;color:var(--mjed)}
+.skica-nap h2{font-size:clamp(28px,3vw,38px);margin-bottom:12px}
+.skica-nap p{color:var(--krem2);max-width:760px}
+@media (max-width:640px){.skica-nap{grid-template-columns:1fr;gap:18px;padding:30px 24px}.skica-nap>svg{width:48px;height:48px}}
+.podn{padding:70px 0 120px;border-top:1px solid var(--linija);background:#110c08}
+.podn .omot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:30px;align-items:center}
+.drustvene{display:flex;gap:10px}
+.drustvene a{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;background:rgba(243,232,212,.07);transition:background-color .2s,color .2s;color:var(--krem2)}
+.drustvene a:hover{background:var(--zar);color:#1b0f06}
+.drustvene svg{width:21px;height:21px}
+.potpis{margin-top:40px;text-align:center;font-size:14px;color:var(--krem3)}
+.potpis a{color:var(--krem2)}
+
+/* traka na telefonu */
+.dno{display:none}
+
+/* pojava pri skrolu */
+.pokret [data-izroni]{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--k,0s)}
+.pokret [data-izroni].vidljiv{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.prvi-slika img,.iskra,.otvoreno i{animation:none}.iskre{display:none}}
+
+@media (max-width:1000px){
+  .nav a:not(.dugme){display:none}
+  .jela{grid-template-columns:1fr 1fr}
+  .j1,.j2,.j3,.j4,.j5{grid-column:auto;min-height:360px}
+  .j1{grid-column:1/-1}
+  .dog,.rez,.gdje{grid-template-columns:1fr}
+  .utisci{grid-template-columns:1fr 1fr}
+  .u-veliki{grid-column:1/-1}
+  .meni{grid-template-columns:1fr}
+}
+@media (max-width:640px){
+  body{font-size:17px}
+  .omot{padding:0 18px}
+  .zag .omot{height:64px}
+  .znak svg{width:36px;height:36px}
+  .znak b{font-size:19px}
+  .nav .dugme{display:none}
+  .zag-tel{display:inline-flex;width:44px;height:44px;border-radius:50%;align-items:center;justify-content:center;background:var(--zar);color:#1b0f06}
+  .zag-tel svg{width:20px;height:20px}
+  .prvi{min-height:auto}
+  .prvi::before{background:linear-gradient(0deg,var(--ugalj) 8%,rgba(22,16,11,.85) 45%,rgba(22,16,11,.35) 100%)}
+  .prvi .omot{padding-top:260px;padding-bottom:48px}
+  .prvi-dugmad .dugme{flex:1;justify-content:center}
+  .prvi-dokazi{gap:22px}
+  .dokaz b{font-size:26px}
+  .traka ul{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .traka li{font-size:15px}
+  .sek{padding:80px 0}
+  .sek-glava{margin-bottom:34px}
+  .jela{grid-template-columns:1fr}
+  .j1,.j2,.j3,.j4,.j5{min-height:320px}
+  .plakat{padding:32px 24px}
+  .plakat-cijena b{font-size:52px}
+  .odbrojavanje div{min-width:0;flex:1}
+  .galerija{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
+  .g1{grid-column:1/-1}.g2{grid-row:span 2}.g5{grid-column:1/-1}
+  .utisci{grid-template-columns:1fr}
+  .u-veliki blockquote{font-size:23px}
+  .forma{padding:26px 20px}
+  .polja{grid-template-columns:1fr}
+  .sati{padding:28px 22px}
+  .mapa{min-height:320px}
+  .podn{padding-bottom:140px}
+  .dno{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;padding:8px;border-radius:999px;background:rgba(22,16,11,.9);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 16px 40px -12px rgba(0,0,0,.8),inset 0 0 0 1px var(--linija);transform:translateY(140%);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+  .dno.vidi{transform:none}
+  .dno .dugme{justify-content:center;padding:14px 10px;font-size:16px}
+}
+</style>
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('pokret')</script>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-jelen" viewBox="0 0 64 64"><g fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="30" opacity=".45"/><path d="M32 54c-4-3-6-9-5.5-14.5L32 36l5.5 3.5C38 45 36 51 32 54z"/><path d="M27.5 37.5c-5-3.5-8-9-8.5-17M19.3 27c-3.5-.8-6.2-3.3-7.3-7M19.5 21.5c-2.6-2.3-3.4-5.5-3-9M19.6 16c.5-2.8 2-5 4.4-6.5"/><path d="M36.5 37.5c5-3.5 8-9 8.5-17M44.7 27c3.5-.8 6.2-3.3 7.3-7M44.5 21.5c2.6-2.3 3.4-5.5 3-9M44.4 16c-.5-2.8-2-5-4.4-6.5"/><path d="M26.5 39.5l-4-1.5M37.5 39.5l4-1.5"/></g></symbol>
+  <symbol id="i-tel" viewBox="0 0 24 24"><path fill="currentColor" d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></symbol>
+  <symbol id="i-zv" viewBox="0 0 24 24"><path fill="currentColor" d="m12 2.8 2.8 5.8 6.3.9-4.6 4.4 1.1 6.3L12 17.2l-5.6 3 1.1-6.3L2.9 9.5l6.3-.9z"/></symbol>
+  <symbol id="i-sto" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 9h18M5 9l-1 11M19 9l1 11M8 9v6h8V9M7 4.5c0 1 1 1.5 1 2.5M12 4c0 1 1 1.5 1 2.5M16.5 4.5c0 1 1 1.5 1 2.5"/></symbol>
+  <symbol id="i-kafa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM17 10h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/></symbol>
+  <symbol id="i-basta" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3 3 9h18zM12 9v12M7 21h10M5 13v8M19 13v8"/></symbol>
+  <symbol id="i-kesa" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 8h14l-1 13H6zM9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-nota" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-7-6.2-7-12a7 7 0 0 1 14 0c0 5.8-7 12-7 12z"/><circle cx="12" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2"/></symbol>
+  <symbol id="i-viber" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 3c5 0 8 2.5 8 7.5S17 18 12 18l-4 3v-3.6C5.6 16.5 4 14 4 10.5 4 5.5 7 3 12 3z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M9.5 8.5c.5 2.5 2.5 4.5 5 5l1-1.2-1.6-1-1 .6c-.8-.4-1.4-1-1.8-1.8l.6-1-1-1.6z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path fill="currentColor" d="M14 8.5V6.8c0-.8.2-1.3 1.4-1.3H17V2.6c-.3 0-1.3-.1-2.5-.1-2.5 0-4.1 1.5-4.1 4.2v1.8H7.7v3.2h2.7V21H14v-9.3h2.7l.4-3.2z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".8" fill="currentColor" stroke="none"/></g></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-7"/></g></symbol>
+</svg>
+
+<header class="zag" id="zag">
+  <div class="omot">
+    <a class="znak" href="#vrh" aria-label="Konoba Jelen, na vrh">
+      <svg><use href="#i-jelen"/></svg>
+      <span><b>Konoba Jelen</b><small>Prijedor</small></span>
+    </a>
+    <nav class="nav" aria-label="Glavni meni">
+      <a href="#specijaliteti">Specijaliteti</a>
+      <a href="#jelovnik">Jelovnik</a>
+      <a href="#proslave">Proslave</a>
+      <a href="#utisci">Utisci</a>
+      <a href="#gdje">Gdje smo</a>
+      <a class="dugme dugme-zar" href="#rezervacija">Rezerviši sto</a>
+    </nav>
+    <a class="zag-tel" href="tel:+38752236536" aria-label="Pozovi konobu"><svg><use href="#i-tel"/></svg></a>
+  </div>
+</header>
+
+<main id="vrh">
+  <section class="prvi">
+    <div class="prvi-slika"><img src="/demo-konoba-jelen/ambijent.webp" alt="Unutrašnjost Konobe Jelen: peć na drva, bure i kamene stepenice" fetchpriority="high"></div>
+    <div class="iskre" aria-hidden="true" id="iskre"></div>
+    <div class="omot">
+      <div class="prvi-tekst">
+        <h1>Domaće jelo, pune plate i <em>vatra koja grije.</em></h1>
+        <p class="prvi-uvod">Gazdini čevapi, teletina ispod peke, gurmanski ramstek i plate za cijelo društvo. Sjednite uz peć, a za veće proslave dovodimo i tamburaše.</p>
+        <div class="prvi-dugmad">
+          <a class="dugme dugme-zar" href="#rezervacija"><svg><use href="#i-sto"/></svg>Rezerviši sto</a>
+          <a class="dugme dugme-obris" href="tel:+38752236536"><svg><use href="#i-tel"/></svg>052 236 536</a>
+        </div>
+        <div class="prvi-dokazi">
+          <div class="dokaz"><b>4,7 <svg><use href="#i-zv"/></svg></b><span>ocjena gostiju na Googleu</span></div>
+          <div class="dokaz"><b>4.100+</b><span>prijava gostiju na Facebooku</span></div>
+          <div class="dokaz"><b>08 do 23 h</b><span>doručak, ručak i večera</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="traka">
+    <ul>
+      <li><svg><use href="#i-kafa"/></svg>Doručak od 8 sati</li>
+      <li><svg><use href="#i-basta"/></svg>Bašta za ljetne dane</li>
+      <li><svg><use href="#i-kesa"/></svg>Hrana za ponijeti</li>
+      <li><svg><use href="#i-nota"/></svg>Proslave uz tamburaše</li>
+    </ul>
+  </div>
+
+  <section class="sek" id="specijaliteti">
+    <div class="omot">
+      <div class="sek-glava" data-izroni>
+        <div>
+          <h2>Porcije zbog kojih se gosti vraćaju.</h2>
+        </div>
+        <p>Gosti najčešće pišu dvije stvari: da je sve preukusno i da su porcije obilne. Evo šta se kod nas najviše naručuje.</p>
+      </div>
+      <div class="jela">
+        <article class="jelo j1" data-izroni>
+          <img loading="lazy" src="/demo-konoba-jelen/plata-kajmak.webp" alt="Plata sa mesom sa roštilja, kajmakom, pomfritom i lepinjom">
+          <div><span class="zna">Za dvoje i više</span><h3>Gazdina plata</h3><p>Meso sa roštilja, domaći kajmak, pomfrit i topla lepinja. Za društvo koje dolazi gladno.</p></div>
+        </article>
+        <article class="jelo j2" data-izroni style="--k:.08s">
+          <img loading="lazy" src="/demo-konoba-jelen/koljenica.webp" alt="Pečena koljenica u tavi">
+          <div><span class="zna">Iz pećnice</span><h3>Pečena koljenica</h3><p>Hrskava izvana, meka iznutra. Peče se polako, kao kod kuće.</p></div>
+        </article>
+        <article class="jelo j3" data-izroni>
+          <img loading="lazy" src="/demo-konoba-jelen/prsut-kroketi.webp" alt="Pršut sa kroketima i rižom">
+          <div><h3>Pršut i kroketi</h3><p>Domaći pršut, kroketi i prilog po izboru.</p></div>
+        </article>
+        <article class="jelo j4" data-izroni style="--k:.08s">
+          <img loading="lazy" src="/demo-konoba-jelen/plata-kobasice.webp" alt="Velika plata sa kobasicama i rolnicama sa kajmakom">
+          <div><h3>Plata za društvo</h3><p>Kobasice, rolnice sa kajmakom i sve što ide uz rakiju.</p></div>
+        </article>
+        <article class="jelo j5" data-izroni style="--k:.16s">
+          <img loading="lazy" src="/demo-konoba-jelen/dorucak.webp" alt="Doručak sa jajima, pršutom, sudžukom i salatom">
+          <div><h3>Domaći doručak</h3><p>Jaja, pršut, sudžuk i svježa salata. Od 8 sati ujutro.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sek jelovnik" id="jelovnik">
+    <div class="omot">
+      <div class="sek-glava" data-izroni>
+        <div>
+          <h2>Pogledajte šta Vas čeka, prije nego sjednete.</h2>
+        </div>
+        <p>Cijeli jelovnik na telefonu: gost vidi jela i cijene prije dolaska, a Vi ih mijenjate kad god hoćete.</p>
+      </div>
+      <div class="kartice" role="tablist" aria-label="Dijelovi jelovnika">
+        <button role="tab" aria-selected="true" aria-controls="m-rostilj" id="t-rostilj">Roštilj</button>
+        <button role="tab" aria-selected="false" aria-controls="m-peka" id="t-peka" tabindex="-1">Ispod peke i iz pećnice</button>
+        <button role="tab" aria-selected="false" aria-controls="m-plate" id="t-plate" tabindex="-1">Plate</button>
+        <button role="tab" aria-selected="false" aria-controls="m-dorucak" id="t-dorucak" tabindex="-1">Doručak</button>
+      </div>
+      <div class="meni" role="tabpanel" id="m-rostilj" aria-labelledby="t-rostilj">
+        <div class="stavka"><div class="stavka-red"><h3>Gazdini čevapi<span class="gazda">Najtraženije</span></h3><span class="tacke"></span><span class="cijena">10 KM</span></div><p>U lepinji, sa kajmakom i lukom.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Gurmanski ramstek</h3><span class="tacke"></span><span class="cijena">24 KM</span></div><p>Sočan biftek sa umakom i prilogom po izboru.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Punjena pljeskavica</h3><span class="tacke"></span><span class="cijena">12 KM</span></div><p>Punjena kajmakom i sirom, u lepinji.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Mješano meso</h3><span class="tacke"></span><span class="cijena">18 KM</span></div><p>Ćevapi, kobasica, piletina i vješalica, sa prilogom.</p></div>
+      </div>
+      <div class="meni" role="tabpanel" id="m-peka" aria-labelledby="t-peka" hidden>
+        <div class="stavka"><div class="stavka-red"><h3>Teletina ispod peke<span class="gazda">Najaviti</span></h3><span class="tacke"></span><span class="cijena">35 KM</span></div><p>Teletina i krompir pod sačem. Javite se dan ranije da je spremimo. Cijena je po kilogramu.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Pečena koljenica</h3><span class="tacke"></span><span class="cijena">20 KM</span></div><p>Polako pečena, sa prilogom.</p></div>
+      </div>
+      <div class="meni" role="tabpanel" id="m-plate" aria-labelledby="t-plate" hidden>
+        <div class="stavka"><div class="stavka-red"><h3>Gazdina plata</h3><span class="tacke"></span><span class="cijena">45 KM</span></div><p>Meso sa roštilja, kajmak, pomfrit, lepinja. Za dvije osobe.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Plata za društvo</h3><span class="tacke"></span><span class="cijena">60 KM</span></div><p>Kobasice, rolnice sa kajmakom, sir i pršut.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Pršut i kroketi</h3><span class="tacke"></span><span class="cijena">16 KM</span></div><p>Domaći pršut, kroketi i riža.</p></div>
+      </div>
+      <div class="meni" role="tabpanel" id="m-dorucak" aria-labelledby="t-dorucak" hidden>
+        <div class="stavka"><div class="stavka-red"><h3>Domaći doručak</h3><span class="tacke"></span><span class="cijena">9 KM</span></div><p>Jaja, pršut, sudžuk, salata i hljeb.</p></div>
+        <div class="stavka"><div class="stavka-red"><h3>Kajgana sa sudžukom</h3><span class="tacke"></span><span class="cijena">7 KM</span></div><p>Tri jaja, domaći sudžuk i topla lepinja.</p></div>
+      </div>
+      <p class="meni-nap">Cijene su u KM. Za veće društvo i posebne želje nazovite, dogovorimo meni.</p>
+    </div>
+  </section>
+
+  <section class="sek" id="proslave">
+    <div class="omot">
+      <div class="sek-glava" data-izroni>
+        <div>
+          <h2>Kad se slavi, slavi se kod Jelena.</h2>
+        </div>
+        <p>Tamburaši, puni stolovi i dobro društvo. Rezervišite na vrijeme, mjesta brzo nestanu.</p>
+      </div>
+      <div class="dog">
+        <article class="plakat" data-izroni>
+          <svg class="tambura" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-nota"/></svg>
+          <h3>Doček 2027. <em>uz tamburaše</em></h3>
+          <p>31. decembra: večera, piće i muzika do jutra. Sve je uključeno, Vi samo dođite raspoloženi.</p>
+          <div class="plakat-cijena"><b>100 KM</b><span>po osobi, all inclusive</span></div>
+          <div class="odbrojavanje" id="odbroj" aria-label="Do dočeka je ostalo">
+            <div><b data-d>0</b><span>dana</span></div>
+            <div><b data-h>0</b><span>sati</span></div>
+            <div><b data-m>0</b><span>minuta</span></div>
+          </div>
+          <div class="prvi-dugmad" style="margin-top:0">
+            <a class="dugme dugme-zar" href="#rezervacija" data-prilika="Doček Nove godine">Rezerviši mjesto</a>
+            <a class="dugme dugme-obris" href="tel:+38765765842"><svg><use href="#i-tel"/></svg>065 765 842</a>
+          </div>
+        </article>
+        <div class="dog-desno">
+          <article class="dog-kartica" data-izroni style="--k:.08s">
+            <h3>Rođendan, krštenje, firma?</h3>
+            <p>Spremimo sto, meni i muziku po dogovoru. Javite broj gostiju, a ostalo je naša briga.</p>
+            <ul><li>Rođendani</li><li>Krštenja</li><li>Godišnjice</li><li>Proslave firmi</li><li>Do 80 gostiju</li></ul>
+          </article>
+          <article class="dog-kartica" data-izroni style="--k:.16s">
+            <p class="oznaka">Bilo je kod nas</p>
+            <div class="arhiva" style="margin-top:14px">
+              <div class="datum">8.<small>mart</small></div>
+              <div><h3 style="font-size:22px;margin:0 0 4px">Dan žena uz tamburaše</h3><p>Večera i desert, 50 KM. Sala je bila puna.</p></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sek" style="padding-top:0">
+    <div class="omot">
+      <div class="galerija" id="galerija">
+        <figure class="g1" data-izroni><img loading="lazy" src="/demo-konoba-jelen/ambijent.webp" alt="Peć na drva i kamene stepenice u konobi"><figcaption>Uz peć na drva</figcaption></figure>
+        <figure class="g2" data-izroni style="--k:.06s"><img loading="lazy" src="/demo-konoba-jelen/koljenica.webp" alt="Pečena koljenica"><figcaption>Koljenica iz pećnice</figcaption></figure>
+        <figure data-izroni style="--k:.12s"><img loading="lazy" src="/demo-konoba-jelen/vepar.webp" alt="Glava vepra na zidu konobe"><figcaption>Lovački detalji</figcaption></figure>
+        <figure data-izroni style="--k:.18s"><img loading="lazy" src="/demo-konoba-jelen/plata-kobasice.webp" alt="Plata sa kobasicama"><figcaption>Plata za društvo</figcaption></figure>
+        <figure class="g5" data-izroni><img loading="lazy" src="/demo-konoba-jelen/prsut-kroketi.webp" alt="Pršut i kroketi"><figcaption>Pršut i kroketi</figcaption></figure>
+        <figure class="g5" data-izroni style="--k:.08s"><img loading="lazy" src="/demo-konoba-jelen/dorucak.webp" alt="Domaći doručak"><figcaption>Doručak od 8 sati</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sek utisci-sek" id="utisci">
+    <div class="omot">
+      <div class="sek-glava" data-izroni>
+        <div>
+          <h2>Ne morate vjerovati nama.</h2>
+        </div>
+        <div class="ocjena-velika">
+          <b>4,7</b>
+          <div><div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div><small>prosječna ocjena na Google mapama</small></div>
+        </div>
+      </div>
+      <div class="utisci">
+        <figure class="utisak u-veliki" data-izroni>
+          <div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div>
+          <blockquote>„Tu smo jeli već nekoliko puta i svaki put se iznova oduševimo! Sve je preukusno i porcije su obilne.“</blockquote>
+          <figcaption><i>M</i><span><b>Margita M.</b>Google recenzija</span></figcaption>
+        </figure>
+        <figure class="utisak" data-izroni style="--k:.08s">
+          <div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div>
+          <blockquote>„Najjači su Gazdini čevapi.“</blockquote>
+          <figcaption><i>S</i><span><b>Samir H.</b>Google recenzija</span></figcaption>
+        </figure>
+        <figure class="utisak" data-izroni>
+          <div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div>
+          <blockquote>„Gurmanski ramstek. Topla preporuka, jelo je fenomenalno.“</blockquote>
+          <figcaption><i>S</i><span><b>Skodu</b>Google recenzija</span></figcaption>
+        </figure>
+        <figure class="utisak" data-izroni style="--k:.08s">
+          <div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div>
+          <blockquote>„Jako dobra usluga i hrana. Konoba, super ugođaj.“</blockquote>
+          <figcaption><i>K</i><span><b>Kasandra M.</b>Google recenzija</span></figcaption>
+        </figure>
+        <figure class="utisak" data-izroni style="--k:.16s">
+          <div class="zvijezde"><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg><svg><use href="#i-zv"/></svg></div>
+          <blockquote>„Super ambijent, hrana i porcije su ogromne. Preporučujem!“</blockquote>
+          <figcaption><i>Z</i><span><b>Zoran B.</b>gost iz Slovenije, Google</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sek" id="rezervacija">
+    <div class="omot rez">
+      <div class="rez-info" data-izroni>
+        <h2>Vaš sto čeka.</h2>
+        <p>Rezervišite za nekoliko sekundi, bez čekanja na vezu. Za proslave i veće društvo nazovite nas, dogovorićemo sve detalje.</p>
+        <div class="kontakti">
+          <a class="kontakt" href="tel:+38752236536"><span class="ik"><svg><use href="#i-tel"/></svg></span><span><b>052 236 536</b><span>Fiksni telefon konobe</span></span></a>
+          <a class="kontakt" href="tel:+38765765842"><span class="ik"><svg><use href="#i-viber"/></svg></span><span><b>065 765 842</b><span>Poziv ili Viber</span></span></a>
+          <a class="kontakt" href="https://www.facebook.com/konobajelen" target="_blank" rel="noopener"><span class="ik"><svg><use href="#i-fb"/></svg></span><span><b>Poruka na Facebooku</b><span>facebook.com/konobajelen</span></span></a>
+        </div>
+      </div>
+      <form class="forma" id="forma" data-izroni style="--k:.08s" novalidate>
+        <div class="forma-sadrzaj">
+          <h3>Rezervacija stola</h3>
+          <p>Potvrdu šaljemo na Vaš telefon.</p>
+          <div class="polja">
+            <div class="polje"><label for="r-ime">Ime i prezime</label><input id="r-ime" name="ime" autocomplete="name" required placeholder="npr. Marko Marković"></div>
+            <div class="polje"><label for="r-tel">Telefon</label><input id="r-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" required placeholder="06x xxx xxx"></div>
+            <div class="polje"><label for="r-dan">Datum</label><input id="r-dan" name="dan" type="date" required></div>
+            <div class="polje"><label for="r-sat">Vrijeme</label>
+              <select id="r-sat" name="sat"><option>12:00</option><option>13:00</option><option>14:00</option><option>15:00</option><option>17:00</option><option>18:00</option><option selected>19:00</option><option>20:00</option><option>21:00</option></select></div>
+            <div class="polje"><label id="l-osobe">Broj osoba</label>
+              <div class="osobe" role="group" aria-labelledby="l-osobe"><button type="button" data-osobe="-1" aria-label="Manje osoba">−</button><output id="r-osobe" aria-live="polite">4</output><button type="button" data-osobe="1" aria-label="Više osoba">+</button></div></div>
+            <div class="polje"><label for="r-mjesto">Gdje sjedite</label>
+              <select id="r-mjesto" name="mjesto"><option>Svejedno</option><option>Unutra, uz peć</option><option>Bašta</option></select></div>
+            <div class="polje cijelo"><label>Prilika</label>
+              <div class="prilike" id="prilike">
+                <label><input type="radio" name="prilika" value="Ručak ili večera" checked><span>Ručak ili večera</span></label>
+                <label><input type="radio" name="prilika" value="Rođendan"><span>Rođendan</span></label>
+                <label><input type="radio" name="prilika" value="Proslava"><span>Proslava</span></label>
+                <label><input type="radio" name="prilika" value="Doček Nove godine"><span>Doček Nove godine</span></label>
+              </div></div>
+            <div class="polje cijelo"><label for="r-nap">Napomena (nije obavezno)</label><textarea id="r-nap" name="nap" placeholder="npr. teletinu ispod peke za 4 osobe"></textarea></div>
+          </div>
+          <button class="dugme dugme-zar" type="submit"><svg><use href="#i-sto"/></svg>Pošalji rezervaciju</button>
+          <p class="forma-nap">Ovo je probna forma u skici: ništa se ne šalje.</p>
+        </div>
+        <div class="potvrda" role="status">
+          <svg><use href="#i-ok"/></svg>
+          <h3>Hvala, <span id="p-ime">stižemo</span>!</h3>
+          <p id="p-tekst">Na pravom sajtu bi ova rezervacija odmah stigla konobi na telefon ili Viber, a gost dobija potvrdu.</p>
+          <button type="button" class="dugme dugme-obris" style="margin-top:22px;color:var(--tinta);box-shadow:inset 0 0 0 1.5px rgba(42,29,19,.3)" id="ponovo">Nova rezervacija</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sek" id="gdje" style="padding-top:0">
+    <div class="omot gdje">
+      <div class="sati" data-izroni>
+        <h3>Konoba Jelen, Prijedor</h3>
+        <p class="ulica">1. maja 8, 79101 Prijedor</p>
+        <span class="otvoreno" id="otvoreno"><i></i><span>Danas radimo od 08 do 23 h</span></span>
+        <table id="sati">
+          <tr data-dan="1"><td>Ponedjeljak</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="2"><td>Utorak</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="3"><td>Srijeda</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="4"><td>Četvrtak</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="5"><td>Petak</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="6"><td>Subota</td><td>08:00 do 23:00</td></tr>
+          <tr data-dan="0"><td>Nedjelja</td><td>09:00 do 22:00</td></tr>
+        </table>
+        <div class="adresa">
+          <a class="dugme dugme-zar" href="https://www.google.com/maps/search/?api=1&amp;query=Konoba%20Jelen%20Prijedor" target="_blank" rel="noopener"><svg><use href="#i-pin"/></svg>Vodi me do konobe</a>
+          <a class="dugme dugme-obris" href="tel:+38752236536"><svg><use href="#i-tel"/></svg>Pozovi</a>
+        </div>
+      </div>
+      <div class="mapa" data-izroni style="--k:.08s" id="mapa" data-src="https://www.google.com/maps?q=44.9823501,16.7220437&amp;z=16&amp;output=embed"></div>
+    </div>
+  </section>
+
+  <section class="sek skica-sek" id="skica" style="padding-top:0">
+    <div class="omot">
+      <div class="skica-nap" data-izroni>
+        <svg aria-hidden="true"><use href="#i-jelen"/></svg>
+        <div>
+          <h2>Ovo je skica, a ne gotov sajt.</h2>
+          <p>Složili smo je od Vaših slika i podataka sa Facebooka, Instagrama i Googlea, da vidite kako bi sajt Konobe Jelen mogao izgledati. Krajnja verzija može izgledati tačno onako kako je Vi zamislite: boje, slike, jelovnik, tekst i raspored dijelova. Cijene, jelovnik i radno vrijeme su ovdje primjer; prije objave upišemo Vaše prave.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="podn">
+  <div class="omot">
+    <a class="znak" href="#vrh"><svg><use href="#i-jelen"/></svg><span><b>Konoba Jelen</b><small>Prijedor · 052 236 536</small></span></a>
+    <div class="drustvene">
+      <a href="https://www.facebook.com/konobajelen" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
+      <a href="https://www.instagram.com/konobajelen/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
+    </div>
+  </div>
+  <p class="potpis">Skica sajta za Konobu Jelen. Napravio <a href="https://hunar.ba" target="_blank" rel="noopener">Hunar</a>.</p>
+</footer>
+
+<div class="dno" id="dno">
+  <a class="dugme dugme-obris" href="tel:+38752236536"><svg><use href="#i-tel"/></svg>Pozovi</a>
+  <a class="dugme dugme-zar" href="#rezervacija"><svg><use href="#i-sto"/></svg>Rezerviši</a>
+</div>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Slika"><button type="button" aria-label="Zatvori">×</button></div>
+
+<script>
+(function(){
+  var zag=document.getElementById('zag'),dno=document.getElementById('dno');
+  function skrol(){var y=scrollY;zag.classList.toggle('skrol',y>30);dno.classList.toggle('vidi',y>window.innerHeight*.6)}
+  addEventListener('scroll',skrol,{passive:true});skrol();
+
+  // iskre iz peći
+  var isk=document.getElementById('iskre');
+  if(document.documentElement.classList.contains('pokret')){
+    for(var i=0;i<16;i++){var s=document.createElement('span');s.className='iskra';
+      s.style.left=(Math.random()*100)+'%';s.style.setProperty('--x',(Math.random()*80-40)+'px');
+      s.style.animationDuration=(5+Math.random()*6)+'s';s.style.animationDelay=(-Math.random()*10)+'s';
+      var v=2+Math.random()*3;s.style.width=s.style.height=v+'px';isk.appendChild(s)}
+  }
+
+  // pojava pri skrolu
+  var els=document.querySelectorAll('[data-izroni]');
+  if('IntersectionObserver' in window&&document.documentElement.classList.contains('pokret')){
+    var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('vidljiv');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+    els.forEach(function(el){io.observe(el)});
+  } else els.forEach(function(el){el.classList.add('vidljiv')});
+
+  // jelovnik
+  var tabs=[].slice.call(document.querySelectorAll('[role=tab]'));
+  function izaberi(t){tabs.forEach(function(b){var on=b===t;b.setAttribute('aria-selected',on);b.tabIndex=on?0:-1;document.getElementById(b.getAttribute('aria-controls')).hidden=!on})}
+  tabs.forEach(function(t,i){t.addEventListener('click',function(){izaberi(t)});
+    t.addEventListener('keydown',function(e){var n=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;if(n){var k=tabs[(i+n+tabs.length)%tabs.length];izaberi(k);k.focus()}})});
+
+  // odbrojavanje do dočeka
+  var od=document.getElementById('odbroj'),cilj=new Date(2026,11,31,20,0,0);
+  function tik(){var r=Math.max(0,cilj-new Date()),d=Math.floor(r/864e5),h=Math.floor(r%864e5/36e5),m=Math.floor(r%36e5/6e4);
+    od.querySelector('[data-d]').textContent=d;od.querySelector('[data-h]').textContent=h;od.querySelector('[data-m]').textContent=m}
+  tik();setInterval(tik,30000);
+
+  // galerija
+  var lb=document.getElementById('lightbox'),lbi=document.createElement('img');lb.appendChild(lbi);
+  document.querySelectorAll('#galerija figure').forEach(function(f){f.tabIndex=0;f.setAttribute('role','button');
+    function otvori(){var im=f.querySelector('img');lbi.src=im.src;lbi.alt=im.alt;lb.classList.add('otvoren');lb.querySelector('button').focus()}
+    f.addEventListener('click',otvori);f.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();otvori()}})});
+  function zatvori(){lb.classList.remove('otvoren')}
+  lb.addEventListener('click',function(e){if(e.target!==lbi)zatvori()});
+  addEventListener('keydown',function(e){if(e.key==='Escape')zatvori()});
+
+  // forma
+  var f=document.getElementById('forma'),dan=document.getElementById('r-dan'),os=document.getElementById('r-osobe'),n=4;
+  var danas=new Date();dan.min=danas.toISOString().slice(0,10);
+  var sutra=new Date(danas.getTime()+864e5);dan.value=sutra.toISOString().slice(0,10);
+  f.querySelectorAll('[data-osobe]').forEach(function(b){b.addEventListener('click',function(){n=Math.min(60,Math.max(1,n+ +b.dataset.osobe));os.textContent=n})});
+  document.querySelectorAll('[data-prilika]').forEach(function(a){a.addEventListener('click',function(){
+    var r=f.querySelector('input[value="'+a.dataset.prilika+'"]');if(r)r.checked=true;dan.value='2026-12-31';document.getElementById('r-sat').value='20:00'})});
+  f.addEventListener('submit',function(e){e.preventDefault();
+    var ime=f.ime.value.trim(),tel=f.tel.value.trim();
+    if(!ime){f.ime.focus();f.ime.style.borderColor='#c0392b';return}
+    if(!tel){f.tel.focus();f.tel.style.borderColor='#c0392b';return}
+    var p=f.querySelector('input[name=prilika]:checked').value,dt=new Date(dan.value+'T12:00');
+    document.getElementById('p-ime').textContent=ime.split(' ')[0];
+    document.getElementById('p-tekst').textContent='Sto za '+n+(n%10>=2&&n%10<=4&&(n%100<12||n%100>14)?' osobe':' osoba')+', '+dt.toLocaleDateString('bs-BA',{weekday:'long',day:'numeric',month:'long'})+' u '+f.sat.value+' ('+p.toLowerCase()+'). Na pravom sajtu bi ova rezervacija odmah stigla konobi na telefon ili Viber, a Vi dobijate potvrdu.';
+    f.classList.add('poslano');if(window.umami)umami.track('konoba-jelen-rezervacija')});
+  ['ime','tel'].forEach(function(k){f[k].addEventListener('input',function(){f[k].style.borderColor=''})});
+  document.getElementById('ponovo').addEventListener('click',function(){f.classList.remove('poslano')});
+
+  // radno vrijeme danas
+  var d=new Date().getDay(),red=document.querySelector('#sati tr[data-dan="'+d+'"]'),ot=document.getElementById('otvoreno'),h=new Date().getHours();
+  if(red)red.classList.add('danas');
+  var otv=d===0?9:8,doo=d===0?22:23,sutraOd=d===6?9:8;
+  if(h>=otv&&h<doo){ot.querySelector('span').textContent='Sada radimo, do '+doo+' h'}
+  else{ot.classList.add('zatvoreno');ot.querySelector('span').textContent='Sada zatvoreno, otvaramo u '+('0'+(h<otv?otv:sutraOd)).slice(-2)+' h'}
+
+  // mapa tek kad se približi
+  var mapa=document.getElementById('mapa');
+  function ucitajMapu(){if(mapa.firstChild)return;var fr=document.createElement('iframe');fr.src=mapa.dataset.src;fr.title='Konoba Jelen na mapi';fr.loading='lazy';fr.referrerPolicy='no-referrer-when-downgrade';mapa.appendChild(fr)}
+  if('IntersectionObserver' in window){var mo=new IntersectionObserver(function(e){if(e[0].isIntersecting){ucitajMapu();mo.disconnect()}},{rootMargin:'400px'});mo.observe(mapa)}else ucitajMapu();
+})();
+</script>
+</body>
+</html>
