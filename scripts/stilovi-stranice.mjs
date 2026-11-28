@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 
-const MANIFEST = new URL('../dist/.vite/manifest.json', import.meta.url)
+const DIST = new URL('../dist/', import.meta.url)
+const MANIFEST = new URL('.vite/manifest.json', DIST)
 const PRELOAD_JS = /<link rel="modulepreload"[^>]* href="\/([^"]+)"[^>]*>/g
 const STIL = /<link rel="stylesheet"[^>]* href="\/([^"]+)"[^>]*>/g
 const PRELOAD_FONT = /<link rel="preload" as="font"[^>]*>/g
@@ -12,6 +13,8 @@ export default function pripremiStilove() {
     if (put === '/') {
       return html
         .replace(PRELOAD_FONT, '')
+        // Početna je već u HTML-u. Stilovi stignu u istom odgovoru, bez još jednog zahtjeva.
+        .replace(STIL, (_, fajl) => `<style>${readFileSync(new URL(fajl, DIST), 'utf8')}</style>`)
         .replace(/<script type="module"(?=[^>]* src="\/assets\/app-)/, '<script type="module" fetchpriority="low"')
     }
 
