@@ -323,15 +323,15 @@
 /* ===== pokreti ===== */
 @media (prefers-reduced-motion:no-preference){
   /* naslov izlazi red po red */
-  .h h1.naslov .red>span{animation:izRed 1s cubic-bezier(.2,.8,.2,1) both}
-  .h h1.naslov .red:nth-child(2)>span{animation-delay:.12s}
-  .h h1.naslov .red:nth-child(3)>span{animation-delay:.24s}
+  .h h1.naslov .red>span{animation:izRed .55s cubic-bezier(.2,.8,.2,1) both}
+  .h h1.naslov .red:nth-child(2)>span{animation-delay:.08s}
+  .h h1.naslov .red:nth-child(3)>span{animation-delay:.16s}
   @keyframes izRed{from{transform:translateY(105%)}}
   .h h1.naslov em{display:inline-block;animation:sjaj 3.5s 1.4s ease-in-out infinite}
   @keyframes sjaj{50%{color:#8ff0c4;text-shadow:0 0 30px rgba(79,214,160,.45)}}
 
-  .h .znacka,.h .uvod,.h .akcije,.h .biljeska{animation:gore .9s cubic-bezier(.2,.8,.2,1) both}
-  .h .znacka{animation-delay:0s}.h .uvod{animation-delay:.4s}.h .akcije{animation-delay:.52s}.h .biljeska{animation-delay:.64s}
+  .h .znacka,.h .uvod,.h .akcije,.h .biljeska{animation:gore .55s cubic-bezier(.2,.8,.2,1) both}
+  .h .znacka{animation-delay:0s}.h .uvod{animation-delay:.16s}.h .akcije{animation-delay:.22s}.h .biljeska{animation-delay:.3s}
   @keyframes gore{from{opacity:0;transform:translateY(22px)}}
 
   /* tačke dišu */
@@ -685,8 +685,12 @@
   .h .ad-b{left:auto;right:0;top:-14px}
 }
 
-/* Na telefonu je tekst prvog ekrana odmah vidljiv i miran. */
+/* Na telefonu je prvi ekran odmah vidljiv. Pokreti ispod ostaju vezani za skrol. */
 @media (max-width:720px) and (prefers-reduced-motion:no-preference){
   .h h1.naslov .red>span,.h h1.naslov em,.h .hero .znacka,.h .hero .uvod,
-  .h .hero .akcije,.h .hero .kuke li,.h .hero .biljeska,.h .hero::before{animation:none}
+  .h .hero .akcije,.h .hero .kuke li,.h .hero .biljeska,.h .hero::before,.h .hero::after,
+  .h .hero .tacka,.h .hero .petlja,.h .hero .petlja.crta path,
+  .h .hero .tel-okvir,.h .hero .adresa,.h .hero .dugme.zlatno::after,
+  .h .hero .dugme.zlatno svg:first-child{animation:none}
+  .h .hero .petlja.crta path{stroke-dashoffset:0}
 }

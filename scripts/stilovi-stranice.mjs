@@ -9,7 +9,11 @@ export default function pripremiStilove() {
   let manifest, poFajlu
 
   return (put, html) => {
-    if (put === '/') return html.replace(PRELOAD_FONT, '')
+    if (put === '/') {
+      return html
+        .replace(PRELOAD_FONT, '')
+        .replace(/<script type="module"(?=[^>]* src="\/assets\/app-)/, '<script type="module" fetchpriority="low"')
+    }
 
     // vite-react-ssg preloada direktne pakete rute, ali preskače zajednički CSS
     // iz njihovih statičkih importa i preloada dinamičke importe poput GSAP-a.
