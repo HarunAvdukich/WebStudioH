@@ -93,6 +93,7 @@ test('bosanska početna ima svoje zaglavlje i podnožje iz dizajna (19. 11. 2026
   assert.match(s.html, /class="page page--naslovna"/)
   assert.match(s.html, /<header class="zag/)
   assert.match(s.html, /<footer class="pod/)
+  assert.match(s.html, /<h2 class="mono">Usluge<\/h2>/)
   assert.match(s.html, /aria-controls="meni-mob"/)
   assert.match(s.html, /class="ok-traka/)
   assert.doesNotMatch(s.html, /class="ok-zaglavlje|class="ok-podnozje|kz-zaglavlje/)
@@ -100,6 +101,18 @@ test('bosanska početna ima svoje zaglavlje i podnožje iz dizajna (19. 11. 2026
   assert.match(s.html, /href="tel:\+387603000751"/)
   assert.match(s.html, /i još dosta projekata/i)
   assert.equal((s.html.match(/<h1[\s>]/g) || []).length, 1)
+})
+
+test('direktno otvaranje grada i studije dobije zajedničke stilove prije JavaScripta', () => {
+  const grad = stranice.find((s) => s.put === 'izrada-web-stranica/sarajevo.html')
+  const studija = stranice.find((s) => s.put === 'radovi/mrt.html')
+  assert.match(grad.html, /<link rel="stylesheet"[^>]+href="\/assets\/whatsapp-[^"]+\.css"/)
+  assert.match(studija.html, /<link rel="stylesheet"[^>]+href="\/assets\/GalerijaSnimaka-[^"]+\.css"/)
+})
+
+test('engleska početna ne preloada animacijske pakete prije interakcije', () => {
+  const s = stranice.find((x) => x.put === 'en.html')
+  assert.doesNotMatch(s.html, /rel="modulepreload"[^>]+href="[^"]+(?:ScrollTrigger|lenis)-[^"]+\.js"/)
 })
 
 test('ostale stranice imaju novo podnožje, bez starog podnožja i WhatsApp balona', () => {
