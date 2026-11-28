@@ -228,7 +228,7 @@
 .h .pod-mreza{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:56px;border-bottom:1px solid var(--linija)}
 .h .pod .logo svg{height:30px;width:auto}
 .h .pod-mreza p{color:var(--tiho);font-size:15.5px;margin-top:16px;max-width:300px}
-.h .pod h4{font-size:13px;color:var(--tise);font-weight:500;margin-bottom:14px}
+.h .pod h2{font-size:13px;color:var(--tise);font-weight:500;margin-bottom:14px}
 .h .pod ul{list-style:none;display:grid;gap:9px;font-size:15.5px;color:var(--tiho)}
 .h .pod ul a:hover{color:var(--tekst)}
 .h .pod-dno{display:flex;justify-content:space-between;align-items:center;padding-top:26px;color:var(--tise);font-size:14px}
@@ -683,4 +683,10 @@
 @media (max-width:720px){
   .h .ad-a{left:6px;top:4px}
   .h .ad-b{left:auto;right:0;top:-14px}
+}
+
+/* Na telefonu je tekst prvog ekrana odmah vidljiv i miran. */
+@media (max-width:720px) and (prefers-reduced-motion:no-preference){
+  .h h1.naslov .red>span,.h h1.naslov em,.h .hero .znacka,.h .hero .uvod,
+  .h .hero .akcije,.h .hero .kuke li,.h .hero .biljeska,.h .hero::before{animation:none}
 }

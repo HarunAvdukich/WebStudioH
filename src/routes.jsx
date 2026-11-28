@@ -1,37 +1,22 @@
 import App from './App.jsx'
 import Home from './pages/Home.jsx'
-import HomeEn from './pages/HomeEn.jsx'
-import ONama from './pages/ONama.jsx'
 import * as oHunaru from './stranice/o-hunaru.js'
 import * as oHunaruEn from './stranice/o-hunaru.en.js'
-import Usluge from './pages/Usluge.jsx'
-import Izrada from './pages/Izrada.jsx'
 import { izrada } from './stranice/izrada.js'
-import Grad from './pages/Grad.jsx'
 import { gradovi, putGrada } from './stranice/gradovi.js'
 import * as usluge from './stranice/usluge.js'
 import * as uslugeEn from './stranice/usluge.en.js'
-import Radovi from './pages/Radovi.jsx'
-import Studija from './pages/Studija.jsx'
 import * as radovi from './stranice/radovi.js'
 import * as radoviEn from './stranice/radovi.en.js'
-import Cijene from './pages/Cijene.jsx'
 import * as cijene from './stranice/cijene.js'
 import * as cijeneEn from './stranice/cijene.en.js'
-import Kontakt from './pages/Kontakt.jsx'
 import * as kontakt from './stranice/kontakt.js'
 import * as kontaktEn from './stranice/kontakt.en.js'
-import Savjeti from './pages/Savjeti.jsx'
-import Olx from './pages/Olx.jsx'
-import Zakazivanje from './pages/Zakazivanje.jsx'
-import Skica from './pages/Skica.jsx'
-import Clanak from './pages/Clanak.jsx'
-import Privatnost from './pages/Privatnost.jsx'
 import * as privatnost from './stranice/privatnost.js'
 import * as privatnostEn from './stranice/privatnost.en.js'
-import NotFound from './pages/NotFound.jsx'
-import Sati from './pages/Sati.jsx'
-import { posts } from './posts.js'
+
+const komponenta = ({ default: Component }) => ({ Component })
+const saPodacima = (props) => ({ default: Stranica }) => ({ Component: () => <Stranica {...props} /> })
 
 export const routes = [
   {
@@ -40,43 +25,46 @@ export const routes = [
     entry: 'src/App.jsx',
     children: [
       { index: true, element: <Home /> },
-      { path: 'en', element: <HomeEn /> },
-      { path: 'o-nama', element: <ONama t={oHunaru} /> },
-      { path: 'en/about', element: <ONama t={oHunaruEn} /> },
-      { path: 'usluge', element: <Usluge t={usluge} /> },
-      ...izrada.map(t => ({ path: t.put.slice(1), element: <Izrada t={t} /> })),
-      ...gradovi.map(g => ({ path: putGrada(g).slice(1), element: <Grad g={g} /> })),
-      { path: 'en/services', element: <Usluge t={uslugeEn} /> },
-      { path: 'radovi', element: <Radovi t={radovi} /> },
-      { path: 'en/work', element: <Radovi t={radoviEn} /> },
+      { path: 'en', lazy: () => import('./pages/HomeEn.jsx').then(komponenta) },
+      { path: 'o-nama', lazy: () => import('./pages/ONama.jsx').then(saPodacima({ t: oHunaru })) },
+      { path: 'en/about', lazy: () => import('./pages/ONama.jsx').then(saPodacima({ t: oHunaruEn })) },
+      { path: 'usluge', lazy: () => import('./pages/Usluge.jsx').then(saPodacima({ t: usluge })) },
+      ...izrada.map(t => ({ path: t.put.slice(1), lazy: () => import('./pages/Izrada.jsx').then(saPodacima({ t })) })),
+      ...gradovi.map(g => ({ path: putGrada(g).slice(1), lazy: () => import('./pages/Grad.jsx').then(saPodacima({ g })) })),
+      { path: 'en/services', lazy: () => import('./pages/Usluge.jsx').then(saPodacima({ t: uslugeEn })) },
+      { path: 'radovi', lazy: () => import('./pages/Radovi.jsx').then(saPodacima({ t: radovi })) },
+      { path: 'en/work', lazy: () => import('./pages/Radovi.jsx').then(saPodacima({ t: radoviEn })) },
       {
         path: 'radovi/:slug',
-        element: <Studija t={radovi} />,
+        lazy: () => import('./pages/Studija.jsx').then(saPodacima({ t: radovi })),
         getStaticPaths: () => radovi.radovi.map((r) => `radovi/${r.slug}`),
       },
       {
         path: 'en/work/:slug',
-        element: <Studija t={radoviEn} />,
+        lazy: () => import('./pages/Studija.jsx').then(saPodacima({ t: radoviEn })),
         getStaticPaths: () => radoviEn.radovi.map((r) => `en/work/${r.slug}`),
       },
-      { path: 'cijene', element: <Cijene t={cijene} /> },
-      { path: 'en/pricing', element: <Cijene t={cijeneEn} /> },
-      { path: 'savjeti', element: <Savjeti /> },
-      { path: 'olx', element: <Olx /> },
-      { path: 'zakazivanje', element: <Zakazivanje /> },
-      { path: 'skica', element: <Skica /> },
+      { path: 'cijene', lazy: () => import('./pages/Cijene.jsx').then(saPodacima({ t: cijene })) },
+      { path: 'en/pricing', lazy: () => import('./pages/Cijene.jsx').then(saPodacima({ t: cijeneEn })) },
+      { path: 'savjeti', lazy: () => import('./pages/Savjeti.jsx').then(komponenta) },
+      { path: 'olx', lazy: () => import('./pages/Olx.jsx').then(komponenta) },
+      { path: 'zakazivanje', lazy: () => import('./pages/Zakazivanje.jsx').then(komponenta) },
+      { path: 'skica', lazy: () => import('./pages/Skica.jsx').then(komponenta) },
       // Skrivena evidencija rada za klijenta: van menija, sitemapa i indeksa (vidi src/pages/Sati.jsx).
-      { path: 'sati', element: <Sati /> },
+      { path: 'sati', lazy: () => import('./pages/Sati.jsx').then(komponenta) },
       {
         path: 'savjeti/:slug',
-        element: <Clanak />,
-        getStaticPaths: () => posts.map((p) => `savjeti/${p.slug}`),
+        lazy: () => import('./pages/Clanak.jsx').then(komponenta),
+        getStaticPaths: async () => {
+          const { posts } = await import('./posts.js')
+          return posts.map((p) => `savjeti/${p.slug}`)
+        },
       },
-      { path: 'kontakt', element: <Kontakt t={kontakt} /> },
-      { path: 'en/contact', element: <Kontakt t={kontaktEn} /> },
-      { path: 'politika-privatnosti', element: <Privatnost t={privatnost} /> },
-      { path: 'en/privacy', element: <Privatnost t={privatnostEn} /> },
-      { path: '*', element: <NotFound /> },
+      { path: 'kontakt', lazy: () => import('./pages/Kontakt.jsx').then(saPodacima({ t: kontakt })) },
+      { path: 'en/contact', lazy: () => import('./pages/Kontakt.jsx').then(saPodacima({ t: kontaktEn })) },
+      { path: 'politika-privatnosti', lazy: () => import('./pages/Privatnost.jsx').then(saPodacima({ t: privatnost })) },
+      { path: 'en/privacy', lazy: () => import('./pages/Privatnost.jsx').then(saPodacima({ t: privatnostEn })) },
+      { path: '*', lazy: () => import('./pages/NotFound.jsx').then(komponenta) },
     ],
   },
 ]

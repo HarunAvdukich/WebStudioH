@@ -116,6 +116,22 @@ function Sek({ oznaka, naslov, tise, opis, prvi, children, ...rest }) {
   )
 }
 
+function SnimakTelefona({ ime, alt }) {
+  const put = `/kadrovi/${ime}-pocetna`
+  return (
+    <img
+      src={`${put}.webp`}
+      srcSet={`${put}-180.webp 180w, ${put}-360.webp 360w, ${put}-540.webp 540w, ${put}.webp 780w`}
+      sizes="(max-width: 720px) 174px, 15.125rem"
+      width="780"
+      height="1270"
+      alt={alt}
+      loading="lazy"
+      decoding="async"
+    />
+  )
+}
+
 export default function Naslovna() {
   return (
     <div className="h">
@@ -142,8 +158,8 @@ export default function Naslovna() {
 
             <div className="scena" role="group" aria-label="Snimci stranica koje smo napravili">
               <Petlja />
-              <div className="tel-okvir tel-a"><img src="/kadrovi/mrt-pocetna.webp" width="780" height="1270" alt="Početna web shopa mrt.ba na telefonu: akcija i kategorije alata" fetchpriority="high" /></div>
-              <div className="tel-okvir tel-b"><img src="/kadrovi/smarttime-pocetna.webp" width="780" height="1270" alt="Početna web shopa smarttime.ba na telefonu" /></div>
+              <div className="tel-okvir tel-a"><SnimakTelefona ime="mrt" alt="Početna web shopa mrt.ba na telefonu: akcija i kategorije alata" /></div>
+              <div className="tel-okvir tel-b"><SnimakTelefona ime="smarttime" alt="Početna web shopa smarttime.ba na telefonu" /></div>
               <span className="adresa ad-a"><i />mrt.ba</span>
               <span className="adresa ad-b"><i />smarttime.ba</span>
               <div className="kartica-plutaj kp-a">
@@ -448,19 +464,19 @@ export default function Naslovna() {
         <div className="okvir">
           <div className="pod-mreza">
             <div>
-              <a className="logo" href="/" aria-label="Hunar"><Logo skriven /></a>
+              <a className="logo" href="/" aria-label="Hunar, početna"><Logo skriven /></a>
               <p>Web stranice, web shopovi i sistemi za firme iz cijele Bosne i Hercegovine.</p>
             </div>
             <div>
-              <h4 className="mono">Usluge</h4>
+              <h2 className="mono">Usluge</h2>
               <ul><li><a href="/izrada-web-stranica">Web stranice</a></li><li><a href="/izrada-web-shopa">Web shop</a></li><li><a href="/zakazivanje">Online rezervacije</a></li><li><a href="/olx">Veza sa OLX-om</a></li></ul>
             </div>
             <div>
-              <h4 className="mono">Hunar</h4>
+              <h2 className="mono">Hunar</h2>
               <ul><li><a href="/radovi">Radovi</a></li><li><a href="/o-nama">O Hunaru</a></li><li><a href="/savjeti">Savjeti</a></li><li><a href="/cijene">Cijene</a></li></ul>
             </div>
             <div>
-              <h4 className="mono">Kontakt</h4>
+              <h2 className="mono">Kontakt</h2>
               <ul><li><a href={WA} {...van}>WhatsApp</a></li><li><a href={TEL}>060 3000 751</a></li><li><a href="mailto:info@hunar.ba">info@hunar.ba</a></li></ul>
             </div>
           </div>
